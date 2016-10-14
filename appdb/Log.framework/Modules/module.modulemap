@@ -1,0 +1,10 @@
+framework module Log {
+  umbrella header "Log.h"
+
+  export *
+  module * { export * }
+}
+
+module Log.Swift {
+    header "Log-Swift.h"
+}

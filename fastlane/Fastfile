@@ -1,0 +1,17 @@
+lane :build do
+  gym(
+    silent: true,
+    scheme: "appdb",
+    export_method: "ad-hoc",
+    use_legacy_build_api: true,
+    clean: true,
+    output_directory: "/Users/ned/Desktop/",
+    output_name: "appdb_" + get_version_number(),
+    xcargs: "CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=''",
+    include_bitcode: false,
+    include_symbols: false
+  )
+  sh "zip -d \"$IPA_OUTPUT_PATH\" \"SwiftSupport/*\""
+  sh "rm -rf /Users/ned/Library/Developer/Xcode/Archives/*"
+  sh "rm -rf /Users/ned/Desktop/*dSYM.zip"
+end

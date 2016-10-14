@@ -29,25 +29,21 @@
 		81EC008B1DAE8D1A009EEFFA /* CydiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC008A1DAE8D1A009EEFFA /* CydiaApp.swift */; };
 		81EC008D1DAE8F1F009EEFFA /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC008C1DAE8F1F009EEFFA /* Book.swift */; };
 		81EC008F1DB11E9A009EEFFA /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC008E1DB11E9A009EEFFA /* Networking.swift */; };
-		81FF54D31DB12C1000F51CAA /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB37A41DAC2ED9003A586F /* Alamofire.framework */; };
-		81FF54D41DB12C1000F51CAA /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB37A51DAC2ED9003A586F /* Cartography.framework */; };
-		81FF54D51DB12C1000F51CAA /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB37A61DAC2ED9003A586F /* Log.framework */; };
-		81FF54D61DB12C1000F51CAA /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EC00971DB12A22009EEFFA /* ObjectMapper.framework */; };
-		81FF54D71DB12C1000F51CAA /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB37A71DAC2ED9003A586F /* Realm.framework */; };
-		81FF54D81DB12C1000F51CAA /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EC00811DAE6783009EEFFA /* RealmSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		81196F931DB12F9F00FA1317 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
+		81196F941DB12F9F00FA1317 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = "<group>"; };
+		81196F951DB12F9F00FA1317 /* Log.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Log.framework; sourceTree = "<group>"; };
+		81196F961DB12F9F00FA1317 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ObjectMapper.framework; sourceTree = "<group>"; };
+		81196F971DB12F9F00FA1317 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		81196F981DB12F9F00FA1317 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		8167A60F1DAC246000F96AC2 /* appdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8167A6121DAC246000F96AC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8167A61B1DAC246000F96AC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8167A61E1DAC246000F96AC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8167A6201DAC246000F96AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8167A6261DAC24F700F96AC2 /* appdb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appdb.entitlements; sourceTree = "<group>"; };
-		81AB37A41DAC2ED9003A586F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		81AB37A51DAC2ED9003A586F /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/iOS/Cartography.framework; sourceTree = "<group>"; };
-		81AB37A61DAC2ED9003A586F /* Log.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Log.framework; path = Carthage/Build/iOS/Log.framework; sourceTree = "<group>"; };
-		81AB37A71DAC2ED9003A586F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		81AB37AD1DAC30BD003A586F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		81AB37AF1DAC30F3003A586F /* Featured.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Featured.storyboard; sourceTree = "<group>"; };
 		81AB37B11DAC3190003A586F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -63,13 +59,10 @@
 		81EC00781DAD8B5A009EEFFA /* Copyright.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Copyright.swift; sourceTree = "<group>"; };
 		81EC007A1DAD92A2009EEFFA /* Generics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generics.swift; sourceTree = "<group>"; };
 		81EC007E1DAE6680009EEFFA /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
-		81EC00811DAE6783009EEFFA /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		81EC00881DAE88D3009EEFFA /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81EC008A1DAE8D1A009EEFFA /* CydiaApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CydiaApp.swift; sourceTree = "<group>"; };
 		81EC008C1DAE8F1F009EEFFA /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		81EC008E1DB11E9A009EEFFA /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		81EC00901DB123A4009EEFFA /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
-		81EC00971DB12A22009EEFFA /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81FF54D31DB12C1000F51CAA /* Alamofire.framework in Frameworks */,
-				81FF54D41DB12C1000F51CAA /* Cartography.framework in Frameworks */,
-				81FF54D51DB12C1000F51CAA /* Log.framework in Frameworks */,
-				81FF54D61DB12C1000F51CAA /* ObjectMapper.framework in Frameworks */,
-				81FF54D71DB12C1000F51CAA /* Realm.framework in Frameworks */,
-				81FF54D81DB12C1000F51CAA /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +96,7 @@
 		8167A6111DAC246000F96AC2 /* appdb */ = {
 			isa = PBXGroup;
 			children = (
-				81EC00941DB128EA009EEFFA /* Resources */,
+				81EC00941DB128EA009EEFFA /* Frameworks */,
 				81EC00621DAD74D9009EEFFA /* Other */,
 				81EC00661DAD76BE009EEFFA /* Startup */,
 				81AB37B31DAC31CA003A586F /* Interface */,
@@ -122,13 +109,6 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81EC00971DB12A22009EEFFA /* ObjectMapper.framework */,
-				81EC00901DB123A4009EEFFA /* AlamofireObjectMapper.framework */,
-				81EC00811DAE6783009EEFFA /* RealmSwift.framework */,
-				81AB37A41DAC2ED9003A586F /* Alamofire.framework */,
-				81AB37A51DAC2ED9003A586F /* Cartography.framework */,
-				81AB37A61DAC2ED9003A586F /* Log.framework */,
-				81AB37A71DAC2ED9003A586F /* Realm.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -208,11 +188,17 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		81EC00941DB128EA009EEFFA /* Resources */ = {
+		81EC00941DB128EA009EEFFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81196F931DB12F9F00FA1317 /* Alamofire.framework */,
+				81196F941DB12F9F00FA1317 /* Cartography.framework */,
+				81196F951DB12F9F00FA1317 /* Log.framework */,
+				81196F961DB12F9F00FA1317 /* ObjectMapper.framework */,
+				81196F971DB12F9F00FA1317 /* Realm.framework */,
+				81196F981DB12F9F00FA1317 /* RealmSwift.framework */,
 			);
-			name = Resources;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,7 +211,6 @@
 				8167A60B1DAC246000F96AC2 /* Sources */,
 				8167A60C1DAC246000F96AC2 /* Frameworks */,
 				8167A60D1DAC246000F96AC2 /* Resources */,
-				81AB37AC1DAC2EDF003A586F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -288,28 +273,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		81AB37AC1DAC2EDF003A586F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Log.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Cartography.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8167A60B1DAC246000F96AC2 /* Sources */ = {
@@ -454,7 +417,7 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/appdb",
 				);
 				INFOPLIST_FILE = appdb/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -475,7 +438,7 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/appdb",
 				);
 				INFOPLIST_FILE = appdb/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
