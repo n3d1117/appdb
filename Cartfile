@@ -1,0 +1,12 @@
+github "Homely/Alamofire" "ios8"
+github "Homely/AlamofireNetworkActivityIndicator" "ios8"
+github "Homely/AlamofireImage" "ios8"
+github "realm/realm-cocoa"
+github "Hearst-DD/ObjectMapper" ~> 2.1
+github "robb/Cartography"
+github "delba/Log"
+github "SwiftyJSON/SwiftyJSON"
+github "SwiftBond/Bond" ~> 5.0
+github "jflinter/Dwifft"
+github "wokalski/Diff.swift"
+github "zvonicek/ImageSlideshow" "1.0.0"
