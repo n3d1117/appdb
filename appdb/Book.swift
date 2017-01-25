@@ -72,9 +72,7 @@ extension Book : Mappable {
         description_            <- map["description"]
         artistId                <- map["artist_id"]
         lastParseItunes         <- map["last_parse_itunes"]
-        
-        autoreleasepool {
-        
+
         let itunesParse : JSON = JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
         lastParseItunes.removeAll()
         
@@ -127,7 +125,6 @@ extension Book : Mappable {
                 ))
             }
         }; relatedBooks = tmpRelated; tmpRelated.removeAll()
-            
-        }
+
     }
 }

@@ -151,6 +151,7 @@
 			children = (
 				81702B9D1E15486400F9ABDC /* TODO */,
 				81EC00621DAD74D9009EEFFA /* Other */,
+				8180EE611E26D72D001C04B5 /* API */,
 				81EC00661DAD76BE009EEFFA /* Startup */,
 				81AB37B31DAC31CA003A586F /* Interface */,
 				81EC007D1DAE666B009EEFFA /* Models */,
@@ -275,7 +276,6 @@
 				81EC006B1DAD7728009EEFFA /* Initializers.swift */,
 				81EC00671DAD76EC009EEFFA /* Extensions.swift */,
 				81EC00691DAD7704009EEFFA /* Colors.swift */,
-				8180EE611E26D72D001C04B5 /* API */,
 			);
 			name = Startup;
 			sourceTree = "<group>";

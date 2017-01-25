@@ -99,8 +99,6 @@ extension App : Mappable {
         website                 <- map["pwebsite"]
         support                 <- map["psupport"]
         
-        autoreleasepool {
-        
         let screenshotsParse = JSON(data: screenshots.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
         let itunesParse : JSON = JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
         screenshots.removeAll(); lastParseItunes.removeAll()
@@ -180,6 +178,5 @@ extension App : Mappable {
             }
         }; relatedApps = tmpRelated; tmpRelated.removeAll()
             
-        }
     }
 }

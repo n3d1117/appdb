@@ -24,6 +24,7 @@ class ItemResponse {
 }
 
 class FlowLayout : UICollectionViewFlowLayout {
+    
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
         let cellWidth : CGFloat = Featured.size.itemWidth.value
@@ -38,9 +39,11 @@ class FlowLayout : UICollectionViewFlowLayout {
 
         return CGPoint(x: targetIndex * (cellWidth + cellSpacing), y: proposedContentOffset.y)
     }
+
 }
 
 extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
         
@@ -80,6 +83,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
+    
 }
 
 class ItemCollection: FeaturedCell  {
@@ -117,9 +121,8 @@ class ItemCollection: FeaturedCell  {
         showFullSeparator = fullSeparator
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
-        let layout: FlowLayout = FlowLayout()
-        if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
-        collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
+        
+        collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.register(FeaturedApp.self, forCellWithReuseIdentifier: "app")
         collectionView.register(FeaturedApp.self, forCellWithReuseIdentifier: "cydia")
         collectionView.register(FeaturedBook.self, forCellWithReuseIdentifier: "book")
@@ -127,6 +130,7 @@ class ItemCollection: FeaturedCell  {
         collectionView.dataSource = self
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
+        
         collectionView.backgroundColor = Color.veryVeryLightGray
         backgroundColor = Color.veryVeryLightGray
         
@@ -146,13 +150,14 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.textColor = .white
         categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
-        categoryLabel.layer.cornerRadius = 4
+        categoryLabel.layer.cornerRadius = 5
+        categoryLabel.layer.masksToBounds = true
 
         contentView.addSubview(categoryLabel)
         contentView.addSubview(sectionLabel)
         contentView.addSubview(collectionView)
 
-        refreshConstraints()
+        setConstraints()
         requestItems()
 
     }
@@ -167,22 +172,25 @@ class ItemCollection: FeaturedCell  {
         sectionLabel.font = UIFont.systemFont(ofSize: fontSizeToSet)
         sectionLabel.sizeToFit()
 
-        refreshConstraints()
+        setConstraints()
     }
-    
-    // MARK: - Constraints - called in Featured to avoid bullshit logs
     
     func setConstraints() {
-        if let layout = collectionView?.collectionViewLayout as? FlowLayout {
-            layout.scrollDirection = .horizontal
-            layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
-            layout.minimumLineSpacing = Featured.size.spacing.value
-            separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
-            layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
+        
+        let layout: FlowLayout = FlowLayout()
+        self.collectionView.collectionViewLayout = layout
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
+        layout.minimumLineSpacing = Featured.size.spacing.value
+        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
+        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
+        layout.minimumLineSpacing = Featured.size.spacing.value
+        separatorInset.left = self.showFullSeparator ? 0 : Featured.size.margin.value
+        layoutMargins.left = self.showFullSeparator ? 0 : Featured.size.margin.value
+        if let id = Featured.CellType(rawValue: self.reuseIdentifier ?? "") {
+            if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
         }
-    }
-    
-    func refreshConstraints() {
+        
         constrain(sectionLabel, categoryLabel, collectionView, replace: group) { section, category, collection in
             collection.left == collection.superview!.left
             collection.right == collection.superview!.right
@@ -217,11 +225,17 @@ class ItemCollection: FeaturedCell  {
     }
     
     func getItems <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") -> Void where T:Mappable, T:Meta {
+        
         API.search(type: type, order: order, price: price, genre: genre, success: { array in
+            
+            // Success and no errors
+            self.response.success = true; self.response.hasErrors = false
+            
             if !array.isEmpty {
                 let diff = self.items.diff(array)
                 
                 if diff.results.count > 0 {
+                    
                     self.collectionView.performBatchUpdates({
                         
                         self.items = array
@@ -237,9 +251,6 @@ class ItemCollection: FeaturedCell  {
                 }
                 
             } else { print("array is empty") }
-            
-            // Success and no errors
-            self.response.success = true; self.response.hasErrors = false
         
             }, fail: { error in
                 print(error.localizedDescription)

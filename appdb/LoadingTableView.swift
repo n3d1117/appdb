@@ -22,6 +22,7 @@ class LoadingTableView: UITableViewController {
     var loaded : Bool = false {
         didSet { if loaded { /* Done loading, hide spinner and reload tableView. */
             activityIndicator.stopAnimating()
+            tableView.isScrollEnabled = true
             tableView.reloadData()
         } }
     }
@@ -38,6 +39,7 @@ class LoadingTableView: UITableViewController {
         // Set Up
         tableView.backgroundColor = Color.tableViewBackgroundColor
         tableView.rowHeight = view.frame.height + 200 /* Temporary row height for spinner */
+        tableView.isScrollEnabled = false
         
         // Orientation did change notification
         NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeOrientation), name: .UIDeviceOrientationDidChange, object: nil)

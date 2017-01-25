@@ -76,8 +76,6 @@ extension CydiaApp : Mappable {
         originalTrackid         <- map["original_trackid"]
         originalSection         <- map["original_section"]
         screenshots             <- map["screenshots"]
-        
-        autoreleasepool {
 
         isTweaked = originalTrackid != "0"
         
@@ -105,8 +103,6 @@ extension CydiaApp : Mappable {
         countLandscapeIphone = screenshotsIphone.filter{$0.class_=="landscape"}.count
         countPortraitIpad = screenshotsIpad.filter{$0.class_=="portrait"}.count
         countLandscapeIpad = screenshotsIpad.filter{$0.class_=="landscape"}.count
-            
-        }
         
     }
 }

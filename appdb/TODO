@@ -1,5 +1,4 @@
-? custom loading indicator
-? disable scroll when indicator visible
+? custom loading indicator, laoding text
 ? add cute image & refresh button to no internet view, maybe abstract no internet view?
 
 - promotions
@@ -7,6 +6,5 @@
 - banner landscape support
 - see all button
 - fix banner wrong offset when scrolling
-- original alamofire supports iOS8!
-- do not wait all network requests are done, jut refresh table when collections are ready
+
 - D A R K   M O D E

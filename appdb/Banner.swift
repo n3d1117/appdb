@@ -45,7 +45,7 @@ class Banner: UITableViewCell {
         backgroundColor = Color.tableViewBackgroundColor
         contentView.backgroundColor = Color.tableViewBackgroundColor
         
-        slideshow = ImageSlideshow()
+        /* slideshow = ImageSlideshow()
         slideshow.setImageInputs([
             AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/DontStarveShipwrecked.jpg") as! InputSource,
             AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/FiveNightsaSisterLocation.jpg") as! InputSource,
@@ -66,7 +66,7 @@ class Banner: UITableViewCell {
         
         constrain(slideshow) { slideshow in
             slideshow.edges == slideshow.superview!.edges
-        }
+        } */
         
     }
 

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // Common corner radius (ios app icon)
-func cornerRadius(fromWidth: CGFloat) -> CGFloat { return (fromWidth / 100) * 22.37 }
+func cornerRadius(fromWidth: CGFloat) -> CGFloat { return (fromWidth / 4) }
 
 // Delay function
 func delay(_ delay : Double, closure: @escaping ()->()) {
@@ -24,6 +24,7 @@ func ~~<T>(left: T, right: T) -> T { return IS_IPAD ? left : right }
 
 // UINavigationBar extension to hide/show bottom hairline. Useful for segmented control under Navigation Bar
 extension UINavigationBar {
+    
     func hideBottomHairline() {
         if let navigationBarImageView = hairlineImageViewInNavigationBar(view: self) {
             navigationBarImageView.isHidden = true

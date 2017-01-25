@@ -61,8 +61,8 @@ class CategoryCell: UITableViewCell {
                 
                 icon.width == 30
                 
-                if reuseIdentifier == "category_ios" { icon.height == icon.width
-                } else if reuseIdentifier == "category_books" { icon.height == icon.width * 1.542 }
+                if reuseIdentifier == "category_ios" { icon.height == icon.width }
+                else if reuseIdentifier == "category_books" { icon.height == icon.width * 1.542 }
                 
                 icon.left == icon.superview!.left + Featured.size.margin.value
                 icon.centerY == icon.superview!.centerY
