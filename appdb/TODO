@@ -8,6 +8,5 @@
 - see all button
 - fix banner wrong offset when scrolling
 - original alamofire supports iOS8!
-- do not wait all network requests are done, jut refresh table when collections are ready 
-- O P E N   S O U R C E
+- do not wait all network requests are done, jut refresh table when collections are ready
 - D A R K   M O D E

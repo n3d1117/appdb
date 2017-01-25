@@ -52,7 +52,7 @@ extension API {
                             }
                         }
                     } catch let e as NSError {
-                        Log.error(e.localizedDescription)
+                        print(e.localizedDescription)
                     }
                     
                     // Get icons for categories (only once)
@@ -69,7 +69,7 @@ extension API {
                     completion(true)
                     
                 case .failure(let error):
-                    Log.error((error as NSError).localizedDescription)
+                    print((error as NSError).localizedDescription)
                     completion(false)
                 }
                 
@@ -85,7 +85,7 @@ extension API {
                         let json = JSON(value)
                         try! realm.write { cat.icon = json["data"][0]["image"].stringValue }
                     case .failure(let error):
-                        Log.error(error.localizedDescription)
+                        print(error.localizedDescription)
                     }
             }
         }

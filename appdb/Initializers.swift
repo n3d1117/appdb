@@ -8,11 +8,7 @@
 
 import Foundation
 import UIKit
-import Log
 import AlamofireImage
-
-//Logging Framework
-let Log = Logger()
 
 //Utils
 let IS_IPAD = UIDevice.current.userInterfaceIdiom == .pad

@@ -236,13 +236,13 @@ class ItemCollection: FeaturedCell  {
                     }, completion: nil)
                 }
                 
-            } else { Log.error("array is empty") }
+            } else { print("array is empty") }
             
             // Success and no errors
             self.response.success = true; self.response.hasErrors = false
         
             }, fail: { error in
-                Log.error(error.localizedDescription)
+                print(error.localizedDescription)
                 
                 // Failed with error
                 self.response.success = false; self.response.hasErrors = true

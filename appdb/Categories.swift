@@ -93,13 +93,13 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         switch index {
         case 0: //iOS
             tableView.rowHeight = 50
-            categories = Array(realm.objects(Genre.self).filter("category = 'ios'").sorted(byProperty: "name"))
+            categories = Array(realm.objects(Genre.self).filter("category = 'ios'").sorted(byKeyPath: "name"))
         case 1: //Cydia
             tableView.rowHeight = 50
-            categories = Array(realm.objects(Genre.self).filter("category = 'cydia'").sorted(byProperty: "name"))
+            categories = Array(realm.objects(Genre.self).filter("category = 'cydia'").sorted(byKeyPath: "name"))
         case 2: //Books
             tableView.rowHeight = 60
-            categories = Array(realm.objects(Genre.self).filter("category = 'books'").sorted(byProperty: "name"))
+            categories = Array(realm.objects(Genre.self).filter("category = 'books'").sorted(byKeyPath: "name"))
             
             // Ensure 'All Categories' is always at the top
             if categories.first?.compound != "0-books", let top = categories.filter({$0.compound == "0-books"}).first {

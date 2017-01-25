@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81211D541E393EB500981A3F /* AlamofireNetworkActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8EE1DB2AD4B00462256 /* AlamofireNetworkActivityIndicator.framework */; };
+		81211D551E393EB800981A3F /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8F61DB3B9E000462256 /* Bond.framework */; };
+		81211D561E393EBD00981A3F /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8D81DB198B800462256 /* Cartography.framework */; };
+		81211D571E393EC200981A3F /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C0727C1DB78BB4007266A9 /* Dwifft.framework */; };
+		81211D581E393EC700981A3F /* ImageSlideshow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81B6F6B01E212B2B000AD47C /* ImageSlideshow.framework */; };
+		81211D591E393ECC00981A3F /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8DA1DB198B800462256 /* ObjectMapper.framework */; };
+		81211D5A1E393ECE00981A3F /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8F21DB3B66700462256 /* ReactiveKit.framework */; };
+		81211D5C1E393ED600981A3F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8DB1DB198B800462256 /* Realm.framework */; };
+		81211D5D1E393ED800981A3F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8DC1DB198B800462256 /* RealmSwift.framework */; };
+		81211D5E1E393EDB00981A3F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */; };
+		81211D5F1E393F0200981A3F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8D71DB198B800462256 /* Alamofire.framework */; };
+		81211D601E393F0300981A3F /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8ED1DB2AD4B00462256 /* AlamofireImage.framework */; };
 		8167A6131DAC246000F96AC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8167A6121DAC246000F96AC2 /* AppDelegate.swift */; };
 		8167A61C1DAC246000F96AC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8167A61B1DAC246000F96AC2 /* Assets.xcassets */; };
 		8167A61F1DAC246000F96AC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8167A61D1DAC246000F96AC2 /* LaunchScreen.storyboard */; };
@@ -15,25 +27,12 @@
 		81702B9E1E15486400F9ABDC /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 81702B9D1E15486400F9ABDC /* TODO */; };
 		8180EE631E26D75E001C04B5 /* API+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8180EE621E26D75E001C04B5 /* API+Search.swift */; };
 		8180EE651E26D7B7001C04B5 /* API+Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8180EE641E26D7B7001C04B5 /* API+Genres.swift */; };
-		8188E8DD1DB198B800462256 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8D71DB198B800462256 /* Alamofire.framework */; };
-		8188E8DE1DB198B800462256 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8D81DB198B800462256 /* Cartography.framework */; };
-		8188E8DF1DB198B800462256 /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8D91DB198B800462256 /* Log.framework */; };
-		8188E8E01DB198B800462256 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8DA1DB198B800462256 /* ObjectMapper.framework */; };
-		8188E8E11DB198B800462256 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8DB1DB198B800462256 /* Realm.framework */; };
-		8188E8E21DB198B800462256 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8DC1DB198B800462256 /* RealmSwift.framework */; };
 		8188E8E61DB1997100462256 /* AlamofireObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188E8E41DB1997100462256 /* AlamofireObjectMapper.swift */; };
-		8188E8EA1DB23B6E00462256 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */; };
 		8188E8EC1DB25F6B00462256 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188E8EB1DB25F6B00462256 /* API.swift */; };
-		8188E8EF1DB2AD4B00462256 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8ED1DB2AD4B00462256 /* AlamofireImage.framework */; };
-		8188E8F01DB2AD4B00462256 /* AlamofireNetworkActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8EE1DB2AD4B00462256 /* AlamofireNetworkActivityIndicator.framework */; };
-		8188E8F41DB3B66700462256 /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8F21DB3B66700462256 /* ReactiveKit.framework */; };
-		8188E8F71DB3B9E000462256 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8F61DB3B9E000462256 /* Bond.framework */; };
 		81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB37AD1DAC30BD003A586F /* TabBarController.swift */; };
 		81AB37B01DAC30F3003A586F /* Featured.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB37AF1DAC30F3003A586F /* Featured.storyboard */; };
 		81AB37B21DAC3190003A586F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB37B11DAC3190003A586F /* Main.storyboard */; };
-		81B6F6B11E212B2B000AD47C /* ImageSlideshow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81B6F6B01E212B2B000AD47C /* ImageSlideshow.framework */; };
 		81B6F6B41E212CC1000AD47C /* AlamofireSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6F6B31E212CC1000AD47C /* AlamofireSource.swift */; };
-		81C0727D1DB78BB4007266A9 /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C0727C1DB78BB4007266A9 /* Dwifft.framework */; };
 		81E7CBFB1E1FC0F2004AF156 /* LoadingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E7CBFA1E1FC0F2004AF156 /* LoadingTableView.swift */; };
 		81EC00651DAD7514009EEFFA /* Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00641DAD7514009EEFFA /* Featured.swift */; };
 		81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00671DAD76EC009EEFFA /* Extensions.swift */; };
@@ -109,19 +108,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8188E8DD1DB198B800462256 /* Alamofire.framework in Frameworks */,
-				8188E8EF1DB2AD4B00462256 /* AlamofireImage.framework in Frameworks */,
-				8188E8DE1DB198B800462256 /* Cartography.framework in Frameworks */,
-				8188E8F01DB2AD4B00462256 /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
-				8188E8DF1DB198B800462256 /* Log.framework in Frameworks */,
-				8188E8E01DB198B800462256 /* ObjectMapper.framework in Frameworks */,
-				8188E8E11DB198B800462256 /* Realm.framework in Frameworks */,
-				8188E8E21DB198B800462256 /* RealmSwift.framework in Frameworks */,
-				8188E8EA1DB23B6E00462256 /* SwiftyJSON.framework in Frameworks */,
-				8188E8F41DB3B66700462256 /* ReactiveKit.framework in Frameworks */,
-				81B6F6B11E212B2B000AD47C /* ImageSlideshow.framework in Frameworks */,
-				8188E8F71DB3B9E000462256 /* Bond.framework in Frameworks */,
-				81C0727D1DB78BB4007266A9 /* Dwifft.framework in Frameworks */,
+				81211D5D1E393ED800981A3F /* RealmSwift.framework in Frameworks */,
+				81211D541E393EB500981A3F /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
+				81211D601E393F0300981A3F /* AlamofireImage.framework in Frameworks */,
+				81211D551E393EB800981A3F /* Bond.framework in Frameworks */,
+				81211D5F1E393F0200981A3F /* Alamofire.framework in Frameworks */,
+				81211D5E1E393EDB00981A3F /* SwiftyJSON.framework in Frameworks */,
+				81211D561E393EBD00981A3F /* Cartography.framework in Frameworks */,
+				81211D571E393EC200981A3F /* Dwifft.framework in Frameworks */,
+				81211D581E393EC700981A3F /* ImageSlideshow.framework in Frameworks */,
+				81211D591E393ECC00981A3F /* ObjectMapper.framework in Frameworks */,
+				81211D5A1E393ECE00981A3F /* ReactiveKit.framework in Frameworks */,
+				81211D5C1E393ED600981A3F /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +401,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Log.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Cartography.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
