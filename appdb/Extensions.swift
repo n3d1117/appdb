@@ -10,28 +10,38 @@ import Foundation
 import UIKit
 
 // Common corner radius (ios app icon)
-extension UIImageView {
-    func cornerRadius(fromWidth: CGFloat) -> CGFloat {
-        return (27 * fromWidth) / 120
-    }
+func cornerRadius(fromWidth: CGFloat) -> CGFloat { return (fromWidth / 100) * 22.37 }
+
+// Delay function
+func delay(_ delay : Double, closure: @escaping ()->()) {
+    let when = DispatchTime.now() + delay
+    DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
 }
 
-// Size label properly to fit its height
-extension UILabel {
-    func sizeToFitHeight() {
-        let size : CGSize = self.sizeThatFits(CGSize(width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        self.frame.size.height = size.height
-    }
-}
-
-//
 // Operator ~~ for quickly separating iphone/ipad sizes
-//
-// e.g 180 ~~ 150
-//
-// will be 180 for iPad size, 150 for iPhone size.
-//
 infix operator ~~ : AdditionPrecedence
-func ~~<T>(left: T, right: T) -> T {
-    return IS_IPAD ? left : right
+func ~~<T>(left: T, right: T) -> T { return IS_IPAD ? left : right }
+
+// UINavigationBar extension to hide/show bottom hairline. Useful for segmented control under Navigation Bar
+extension UINavigationBar {
+    func hideBottomHairline() {
+        if let navigationBarImageView = hairlineImageViewInNavigationBar(view: self) {
+            navigationBarImageView.isHidden = true
+        }
+    }
+    
+    func showBottomHairline() {
+        if let navigationBarImageView = hairlineImageViewInNavigationBar(view: self) {
+            navigationBarImageView.isHidden = false
+        }
+    }
+    
+    private func hairlineImageViewInNavigationBar(view: UIView) -> UIImageView? {
+        if view is UIImageView && view.bounds.height <= 1.0 { return (view as! UIImageView) }
+        let subviews = (view.subviews as [UIView])
+        for subview: UIView in subviews {
+            if let imageView: UIImageView = hairlineImageViewInNavigationBar(view: subview) { return imageView }
+        }
+        return nil
+    }    
 }

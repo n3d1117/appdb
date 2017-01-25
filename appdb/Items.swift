@@ -8,23 +8,61 @@
 
 import Foundation
 import RealmSwift
-
-class Item : Object {
-    dynamic var name = ""
-    dynamic var trackid = ""
-    dynamic var icon = ""
-}
+import ObjectMapper
 
 class Screenshot: Object {
     dynamic var image = ""
     dynamic var class_ = ""
+    
+    convenience init(src: String, class_: String) {
+        self.init()
+        self.image = src
+        self.class_ = class_
+    }
 }
 
 class RelatedApp: Object {
     dynamic var icon = ""
-    dynamic var trackid = ""
+    dynamic var id = ""
     dynamic var name = ""
     dynamic var artist = ""
+    
+    convenience init(icon: String, id: String, name: String, artist: String) {
+        self.init()
+        self.icon = icon
+        self.id = id
+        self.name = name
+        self.artist = artist
+    }
+}
+
+class Category {
+    var name = ""
+    var id = ""
+    convenience init(name: String, id: String) {
+        self.init()
+        self.name = name
+        self.id = id
+    }
+}
+
+class Genre: Object {
+    dynamic var category = ""
+    dynamic var id = ""
+    dynamic var name = ""
+    dynamic var icon = ""
+    dynamic var compound: String = ""
+    
+    convenience init(category: String, id: String, name: String) {
+        self.init()
+        self.category = category
+        self.id = id
+        self.name = name
+    }
+    
+    override class func primaryKey() -> String? {
+        return "compound"
+    }
 }
 
 class Version: Object {

@@ -1,0 +1,15 @@
+? custom loading indicator
+? disable scroll when indicator visible
+? add cute image & refresh button to no internet view, maybe abstract no internet view?
+
+- small cells with promotional images
+- banner landscape support
+- dynamic banner height ☑️
+- see all button
+- fix banner wrong offset when scrolling
+- original alamofire supports iOS8!
+- dumbass, icon.layer.cornerRadius = icon.frame.width/4.0, icon.layer.masksToBounds = true
+- privately opensource
+- do not wait all network requests are done, jut refresh table when collections are ready 
+- O P E N   S O U R C E
+- D A R K   M O D E

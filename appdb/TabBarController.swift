@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let featured = UIStoryboard(name: "Featured", bundle: nil)
-        let featuredNav = featured.instantiateViewController(withIdentifier: "BBFeaturedNavController") as! UINavigationController
+        let featuredNav = featured.instantiateViewController(withIdentifier: "FeaturedNavController") as! UINavigationController
         featuredNav.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
         
         //TODO ADD MORE

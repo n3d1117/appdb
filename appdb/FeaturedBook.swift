@@ -25,24 +25,21 @@ class FeaturedBook: UICollectionViewCell {
         super.init(frame: frame)
 
         cover = UIImageView()
-        cover.layer.borderWidth = (1.0 / UIScreen.main.scale)
-        cover.layer.borderColor = UIColor.lightGray.cgColor
+        cover.layer.borderWidth = 0.5
+        cover.layer.borderColor = Color.borderColor.cgColor
+        cover.image = #imageLiteral(resourceName: "placeholderCover")
         
         title = UILabel()
-        title.textColor = UIColor.black
+        title.textColor = .black
         title.font = UIFont.systemFont(ofSize: 11.5)
         title.lineBreakMode = .byTruncatingTail
-        title.text = "A Game Of Thrones"
         title.numberOfLines = 2
-        title.sizeToFitHeight()
         
         author = UILabel()
         author.textColor = Color.darkGray
         author.font = UIFont.systemFont(ofSize: 11.5)
         author.lineBreakMode = .byTruncatingTail
-        author.text = "J. J. Abrams"
         author.numberOfLines = 1
-        author.sizeToFitHeight()
         
         addSubview(cover)
         addSubview(title)
@@ -66,7 +63,7 @@ class FeaturedBook: UICollectionViewCell {
                 
                 author.left == author.superview!.left
                 author.right == author.superview!.right
-                author.top == title.bottom
+                author.top == title.bottom + 2
             }
         }
     }

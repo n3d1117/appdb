@@ -8,10 +8,12 @@
 
 import UIKit
 import Cartography
+import AlamofireImage
+import ImageSlideshow
 
-class Banner: FeaturedTableViewCell {
+class Banner: UITableViewCell {
 
-    var testLabel : UILabel!
+    var slideshow: ImageSlideshow!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -21,24 +23,51 @@ class Banner: FeaturedTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
+    static let height : CGFloat = {
+        let w: Double = Double(UIScreen.main.bounds.width)
+        let h: Double = Double(UIScreen.main.bounds.height)
+        let screenHeight: Double = max(w, h)
+        
+        switch screenHeight {
+            case 480,568: return 128
+            case 667: return 150
+            case 736: return 165.6
+            case 1024: return 220
+            case 1366: return 250
+            default: return 0
+        }
+        
+    }()
+    
     convenience init() {
-        self.init(style: .default, reuseIdentifier: CellType.banner.rawValue)
+        self.init(style: .default, reuseIdentifier: Featured.CellType.banner.rawValue)
         
         backgroundColor = Color.tableViewBackgroundColor
         contentView.backgroundColor = Color.tableViewBackgroundColor
         
-        testLabel = UILabel()
-        testLabel.text = "wake_me_up_inside.jpg"
-        testLabel.textColor = Color.copyrightText
-        testLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
-        testLabel.numberOfLines = 0
-        testLabel.sizeToFit()
+        slideshow = ImageSlideshow()
+        slideshow.setImageInputs([
+            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/DontStarveShipwrecked.jpg") as! InputSource,
+            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/FiveNightsaSisterLocation.jpg") as! InputSource,
+            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/Seconds750x303.jpg") as! InputSource,
+            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/MiniMetro750x303.jpg") as! InputSource,
+            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/TableTennisTouch.jpg") as! InputSource
+        ])
+
+        slideshow.slideshowInterval = 5.0
+        slideshow.circular = true
+        slideshow.zoomEnabled = false
+        slideshow.pageControlPosition = .hidden
+        slideshow.contentScaleMode = .scaleAspectFit
+        slideshow.draggingEnabled = true
+        slideshow.preload = .all
         
-        contentView.addSubview(testLabel)
+        contentView.addSubview(slideshow)
         
-        constrain(testLabel) { label in
-            label.center == label.superview!.center
+        constrain(slideshow) { slideshow in
+            slideshow.edges == slideshow.superview!.edges
         }
+        
     }
 
 }

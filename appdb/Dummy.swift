@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Dummy: FeaturedTableViewCell {
+class Dummy: FeaturedCell {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -18,8 +18,12 @@ class Dummy: FeaturedTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
+    override var height: CGFloat {
+        return Featured.size.spacing.value
+    }
+    
     convenience init() {
-        self.init(style: .default, reuseIdentifier: CellType.dummy.rawValue)
+        self.init(style: .default, reuseIdentifier: Featured.CellType.dummy.rawValue)
         
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false

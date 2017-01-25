@@ -8,6 +8,8 @@
 
 import UIKit
 import Cartography
+import AlamofireImage
+import RealmSwift
 
 class FeaturedApp: UICollectionViewCell {
     
@@ -17,6 +19,10 @@ class FeaturedApp: UICollectionViewCell {
     
     var didSetupConstraints = false
     
+    var tweaked : Bool = false {
+        didSet { title.textColor = tweaked ? Color.mainTint : .black }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -25,26 +31,23 @@ class FeaturedApp: UICollectionViewCell {
         super.init(frame: frame)
         
         icon = UIImageView()
-        icon.layer.cornerRadius = icon.cornerRadius(fromWidth: self.frame.size.width)
-        icon.layer.borderWidth = (1.0 / UIScreen.main.scale)
+        icon.layer.cornerRadius = cornerRadius(fromWidth: self.frame.size.width)
         icon.layer.masksToBounds = true
-        icon.layer.borderColor = UIColor.lightGray.cgColor
+        icon.layer.borderWidth = 0.5
+        icon.layer.borderColor = Color.borderColor.cgColor
+        icon.image = #imageLiteral(resourceName: "placeholderIcon")
         
         title = UILabel()
-        title.textColor = UIColor.black
+        title.textColor = .black
         title.font = UIFont.systemFont(ofSize: 11.5)
         title.lineBreakMode = .byTruncatingTail
-        title.text = "Modern Combat 5"
         title.numberOfLines = 2
-        title.sizeToFitHeight()
         
         category = UILabel()
         category.textColor = Color.darkGray
         category.font = UIFont.systemFont(ofSize: 11.5)
         category.lineBreakMode = .byTruncatingTail
-        category.text = "Games"
         category.numberOfLines = 1
-        category.sizeToFitHeight()
         
         addSubview(icon)
         addSubview(title)
@@ -64,11 +67,11 @@ class FeaturedApp: UICollectionViewCell {
                 
                 title.left == title.superview!.left
                 title.right == title.superview!.right
-                title.top == icon.bottom + (4~~7)
+                title.top == icon.bottom + 5
                 
                 category.left == category.superview!.left
                 category.right == category.superview!.right
-                category.top == title.bottom
+                category.top == title.bottom + (2~~1)
             }
         }
     }

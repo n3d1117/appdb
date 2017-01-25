@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-class Copyright: FeaturedTableViewCell {
+class Copyright: FeaturedCell {
     
     var copyrightNotice : UILabel!
 
@@ -21,8 +21,12 @@ class Copyright: FeaturedTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
+    override var height: CGFloat {
+        return 60~~75
+    }
+    
     convenience init() {
-        self.init(style: .default, reuseIdentifier: CellType.copyright.rawValue)
+        self.init(style: .default, reuseIdentifier: Featured.CellType.copyright.rawValue)
         
         selectionStyle = .none
         separatorInset.left = 10000
@@ -45,8 +49,8 @@ class Copyright: FeaturedTableViewCell {
         contentView.addSubview(copyrightNotice)
         
         constrain(copyrightNotice) { notice in
-            notice.left == notice.superview!.left + common.size.margin.value
-            notice.right == notice.superview!.right - common.size.margin.value
+            notice.left == notice.superview!.left + Featured.size.margin.value
+            notice.right == notice.superview!.right - Featured.size.margin.value
             notice.top == notice.superview!.top + 15.0
         }
     }
