@@ -1,2 +1,5 @@
-build/
+Cartfile.resolved
+Fastlane/
+Cartfile
+Carthage/
 */xcuserdata/
