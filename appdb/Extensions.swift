@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // Common corner radius (ios app icon)
-func cornerRadius(fromWidth: CGFloat) -> CGFloat { return (fromWidth / 4) }
+func cornerRadius(fromWidth: CGFloat) -> CGFloat { return (fromWidth / 4.2) /* around 23% */ }
 
 // Delay function
 func delay(_ delay : Double, closure: @escaping ()->()) {

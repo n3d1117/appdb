@@ -22,6 +22,8 @@ extension API {
         Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre])
             .responseArray(keyPath: "data") { (response: DataResponse<[T]>) in
                 
+                //print(response.request?.url?.absoluteString ?? "fuark")
+                
                 switch response.result {
                 case .success(let items):
                     autoreleasepool {

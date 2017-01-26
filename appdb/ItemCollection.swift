@@ -29,7 +29,7 @@ class FlowLayout : UICollectionViewFlowLayout {
         
         let cellWidth : CGFloat = Featured.size.itemWidth.value
         let cellSpacing: CGFloat = Featured.size.spacing.value
-        let targetX : CGFloat = self.collectionView!.contentOffset.x + velocity.x * 100.0
+        let targetX : CGFloat = self.collectionView!.contentOffset.x + velocity.x * 120.0
         var targetIndex: CGFloat = round(targetX / (cellWidth + cellSpacing))
         if velocity.x > 0 {
             targetIndex = ceil(targetX / (cellWidth + cellSpacing))
@@ -151,7 +151,6 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 5
-        categoryLabel.layer.masksToBounds = true
 
         contentView.addSubview(categoryLabel)
         contentView.addSubview(sectionLabel)
@@ -185,9 +184,9 @@ class ItemCollection: FeaturedCell  {
         layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
         layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
         layout.minimumLineSpacing = Featured.size.spacing.value
-        separatorInset.left = self.showFullSeparator ? 0 : Featured.size.margin.value
-        layoutMargins.left = self.showFullSeparator ? 0 : Featured.size.margin.value
-        if let id = Featured.CellType(rawValue: self.reuseIdentifier ?? "") {
+        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
+        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
+        if let id = Featured.CellType(rawValue: reuseIdentifier ?? "") {
             if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
         }
         
@@ -211,7 +210,7 @@ class ItemCollection: FeaturedCell  {
     // MARK: - Networking
     
     func requestItems() {
-        if let id = self.reuseIdentifier {
+        if let id = reuseIdentifier {
             switch Featured.CellType(rawValue: id)! {
                 case .cydia: getItems(type: CydiaApp.self, order: .added)
                 case .iosNew: getItems(type: App.self, order: .added)
