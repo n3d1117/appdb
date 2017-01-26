@@ -186,9 +186,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: reusableId, for: indexPath) as! CategoryCell
         
         cell.name.text = categories[indexPath.row].name
-        
-        print(categories[indexPath.row].icon)
-        
+
         if let url = URL(string: categories[indexPath.row].icon) {
             cell.icon.af_setImage(withURL: url, placeholderImage: placeholder, filter: isBookCell ? nil : Filters.categories, imageTransition: .crossDissolve(0.2))
         } else {

@@ -29,7 +29,7 @@ class FlowLayout : UICollectionViewFlowLayout {
         
         let cellWidth : CGFloat = Featured.size.itemWidth.value
         let cellSpacing: CGFloat = Featured.size.spacing.value
-        let targetX : CGFloat = self.collectionView!.contentOffset.x + velocity.x * 120.0
+        let targetX : CGFloat = collectionView!.contentOffset.x + velocity.x * 120.0
         var targetIndex: CGFloat = round(targetX / (cellWidth + cellSpacing))
         if velocity.x > 0 {
             targetIndex = ceil(targetX / (cellWidth + cellSpacing))
@@ -177,7 +177,7 @@ class ItemCollection: FeaturedCell  {
     func setConstraints() {
         
         let layout: FlowLayout = FlowLayout()
-        self.collectionView.collectionViewLayout = layout
+        collectionView.collectionViewLayout = layout
         layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
         layout.minimumLineSpacing = Featured.size.spacing.value
         separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
@@ -264,7 +264,7 @@ class ItemCollection: FeaturedCell  {
     // MARK: - Reload items after category change
     
     func reloadAfterCategoryChange(id: String, type: ItemType) {
-        if let identifier = self.reuseIdentifier {
+        if let identifier = reuseIdentifier {
             switch type {
             case .ios:
                 switch Featured.CellType(rawValue: identifier)! {

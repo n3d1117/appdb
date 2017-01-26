@@ -12,7 +12,7 @@ import UIKit
 // Abstract cell, height
 class FeaturedCell : UITableViewCell {
     var height : CGFloat {
-        guard let id = Featured.CellType(rawValue: self.reuseIdentifier ?? "") else { return 0 }
+        guard let id = Featured.CellType(rawValue: reuseIdentifier ?? "") else { return 0 }
         
         // iOS Height
         if Featured.iosTypes.contains(id) { return Featured.size.heightIos.value + (45~~40) }

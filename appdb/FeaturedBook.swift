@@ -54,7 +54,7 @@ class FeaturedBook: UICollectionViewCell {
                 cover.left == cover.superview!.left
                 cover.top == cover.superview!.top
                 cover.right == cover.superview!.right
-                cover.width == self.frame.size.width
+                cover.width == frame.size.width
                 cover.height == cover.width * 1.542
                 
                 title.left == title.superview!.left

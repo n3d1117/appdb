@@ -74,7 +74,6 @@ extension Book : Mappable {
         lastParseItunes         <- map["last_parse_itunes"]
 
         let itunesParse : JSON = JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
-        lastParseItunes.removeAll()
         
         // Information
         printLenght = itunesParse["printlength"].stringValue
@@ -124,7 +123,7 @@ extension Book : Mappable {
                     artist: itunesParse["alsobought"][i]["image"].stringValue
                 ))
             }
-        }; relatedBooks = tmpRelated; tmpRelated.removeAll()
+        }; relatedBooks = tmpRelated
 
     }
 }

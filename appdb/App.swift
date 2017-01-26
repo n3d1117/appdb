@@ -101,7 +101,6 @@ extension App : Mappable {
         
         let screenshotsParse = JSON(data: screenshots.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
         let itunesParse : JSON = JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
-        screenshots.removeAll(); lastParseItunes.removeAll()
         
         // Information
         seller = itunesParse["seller"].stringValue
@@ -138,7 +137,7 @@ extension App : Mappable {
                 src: screenshotsParse["iphone"][i]["src"].stringValue,
                 class_: screenshotsParse["iphone"][i]["class"].stringValue
             ))
-        }; screenshotsIphone = tmpScreens; tmpScreens.removeAll()
+        }; screenshotsIphone = tmpScreens
         
         let tmpScreensIpad = List<Screenshot>()
         for i in 0..<screenshotsParse["ipad"].count {
@@ -146,7 +145,7 @@ extension App : Mappable {
                 src: screenshotsParse["ipad"][i]["src"].stringValue,
                 class_: screenshotsParse["ipad"][i]["class"].stringValue
             ))
-        }; screenshotsIpad = tmpScreensIpad; tmpScreensIpad.removeAll();
+        }; screenshotsIpad = tmpScreensIpad
         
         countPortraitIphone = screenshotsIphone.filter{$0.class_=="portrait"}.count
         countLandscapeIphone = screenshotsIphone.filter{$0.class_=="landscape"}.count
@@ -176,7 +175,7 @@ extension App : Mappable {
                     artist: itunesParse["alsobought"][i]["image"].stringValue
                 ))
             }
-        }; relatedApps = tmpRelated; tmpRelated.removeAll()
+        }; relatedApps = tmpRelated
             
     }
 }
