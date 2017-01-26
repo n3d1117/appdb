@@ -41,8 +41,8 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
         // Add categories button
         let categoriesButton = UIBarButtonItem(title: "Categories", style: .plain, target: self, action:#selector(Featured.openCategories(_:)))
-        self.navigationItem.leftBarButtonItem = categoriesButton
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem = categoriesButton
+        navigationItem.leftBarButtonItem?.isEnabled = false
         
         // List Genres and enable button on completion
         API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )

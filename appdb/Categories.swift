@@ -153,7 +153,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Update constraints to reflect orientation change (recalculate navigationBar + statusBar height)
     func didChangeOrientation() {
         didSetupConstraints = false
-        self.setConstraints()
+        setConstraints()
     }
     
     // Remove observer, mom's spaghetti
@@ -186,6 +186,9 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: reusableId, for: indexPath) as! CategoryCell
         
         cell.name.text = categories[indexPath.row].name
+        
+        print(categories[indexPath.row].icon)
+        
         if let url = URL(string: categories[indexPath.row].icon) {
             cell.icon.af_setImage(withURL: url, placeholderImage: placeholder, filter: isBookCell ? nil : Filters.categories, imageTransition: .crossDissolve(0.2))
         } else {
@@ -209,9 +212,9 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         dismissAnimated()
         
         switch control.selectedSegmentIndex {
-        case 0: self.delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .ios)
-        case 1: self.delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .cydia)
-        case 2: self.delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .books)
+        case 0: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .ios)
+        case 1: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .cydia)
+        case 2: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .books)
         default: break
         }
         

@@ -93,11 +93,10 @@ extension API {
     
     static func categoryFromId(id: String, type: ItemType) -> String {
         if let genre = realm.objects(Genre.self).filter("category = %@ AND id = %@", type.rawValue, id).first {
-            // Race condition, usually at first launch, so just try again
-            if genre.name == "" { return categoryFromId(id: id, type: type) }
-            else { return genre.name }
+            return genre.name
+        } else {
+            return ""
         }
-        return ""
     }
     
     static func idFromCategory(name: String, type: ItemType) -> String {

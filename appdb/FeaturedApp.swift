@@ -31,7 +31,7 @@ class FeaturedApp: UICollectionViewCell {
         super.init(frame: frame)
         
         icon = UIImageView()
-        icon.layer.cornerRadius = cornerRadius(fromWidth: self.frame.size.width)
+        icon.layer.cornerRadius = cornerRadius(fromWidth: frame.size.width)
         icon.layer.borderWidth = 1 / UIScreen.main.scale
         icon.layer.borderColor = Color.borderColor.cgColor
         icon.image = #imageLiteral(resourceName: "placeholderIcon")
