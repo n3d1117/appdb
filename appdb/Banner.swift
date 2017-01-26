@@ -14,7 +14,7 @@ import ImageSlideshow
 class Banner: UITableViewCell {
 
     var slideshow: ImageSlideshow!
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -45,14 +45,28 @@ class Banner: UITableViewCell {
         backgroundColor = Color.tableViewBackgroundColor
         contentView.backgroundColor = Color.tableViewBackgroundColor
         
-        /* slideshow = ImageSlideshow()
-        slideshow.setImageInputs([
-            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/DontStarveShipwrecked.jpg") as! InputSource,
-            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/FiveNightsaSisterLocation.jpg") as! InputSource,
-            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/Seconds750x303.jpg") as! InputSource,
-            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/MiniMetro750x303.jpg") as! InputSource,
-            AlamofireSource(urlString: "http://dmqxr0cwqie5r.cloudfront.net/banner/TableTennisTouch.jpg") as! InputSource
-        ])
+        //
+        // Get Promotions
+        // TODO: ask fred to add banner image to API
+        //
+        
+        /*API.getPromotions( success: { items in
+            
+            if items.isEmpty {
+                print("no promotions to show")
+            } else {
+                print("found \(items.count) promotions.")
+            }
+            
+        }, fail: { error in
+            
+            print(error.localizedDescription)
+            
+        })*/
+        
+        
+        slideshow = ImageSlideshow()
+        slideshow.setImageInputs([ AlamofireSource(urlString: "http://appd.be/n3d/delta/k.png") as! InputSource ])
 
         slideshow.slideshowInterval = 5.0
         slideshow.circular = true
@@ -62,12 +76,19 @@ class Banner: UITableViewCell {
         slideshow.draggingEnabled = true
         slideshow.preload = .all
         
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(Banner.didTap))
+        slideshow.addGestureRecognizer(tapRecognizer)
+        
         contentView.addSubview(slideshow)
         
         constrain(slideshow) { slideshow in
             slideshow.edges == slideshow.superview!.edges
-        } */
+        }
         
+    }
+    
+    func didTap() {
+        print("did tap on \(slideshow.currentPage)") /* TODO: redirect to app page */
     }
 
 }

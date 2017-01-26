@@ -1,9 +1,10 @@
 ? custom loading indicator, loading text
 ? add cute image & refresh button to no internet view, maybe abstract no internet view?
 
-- promotions
+- promotions??
+- fancy animation at startup
 - small cells with promotional images
-- banner landscape support
+- banner landscape support (https://github.com/zvonicek/ImageSlideshow/issues/117)
 - see all button
 - fix banner wrong offset when scrolling
 

@@ -40,6 +40,7 @@ enum Price: String {
 enum Actions: String {
     case search = "search"
     case listGenres = "list_genres"
+    case promotions = "promotions"
 }
 
 class API {

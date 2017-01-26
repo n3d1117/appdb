@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import ObjectMapper
 
 class Screenshot: Object {
     dynamic var image = ""

@@ -46,7 +46,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
         // List Genres and enable button on completion
         API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
-        
+
         // Wait for data to be fetched, reload tableView on completion
         reloadTableWhenReady()
         
