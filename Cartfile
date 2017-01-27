@@ -8,4 +8,3 @@ github "SwiftyJSON/SwiftyJSON"
 github "SwiftBond/Bond" ~> 5.0
 github "jflinter/Dwifft"
 github "zvonicek/ImageSlideshow" "1.0.0"
-github "jiecao-fm/SwiftTheme"

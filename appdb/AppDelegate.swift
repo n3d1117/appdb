@@ -20,14 +20,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         self.window!.rootViewController = TabBarController()
         self.window!.makeKeyAndVisible()
         
+        Themes.restoreLastTheme()
+        
         // Set main tint color
-        self.window!.tintColor = Color.mainTint
+        self.window!.theme_tintColor = Color.mainTint
+        
+        //Theme Status Bar
+        UIApplication.shared.theme_setStatusBarStyle([.default, .lightContent], animated: true)
+        
+        // Theme navigation bar
+        let navigationBar = UINavigationBar.appearance()
+        let shadow = NSShadow()
+        shadow.shadowOffset = CGSize(width: 0, height: 0)
+        let titleAttributes: [[String: AnyObject]] = ["#121212", "#F8F8F8"].map { hexString in
+            return [
+                NSForegroundColorAttributeName: UIColor(rgba: hexString),
+                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16),
+                NSShadowAttributeName: shadow
+            ]
+        }
+        
+        navigationBar.isTranslucent = true
+        navigationBar.barStyle = .black
+        navigationBar.theme_tintColor = Color.mainTint
+        //navigationBar.theme_barTintColor = Color.invertedTitle
+        navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithDicts(titleAttributes)
+        
+        // Theme Tab Bar
+        let tabBar = UITabBar.appearance()
+        tabBar.isTranslucent = true
+        tabBar.barStyle = .black
+        //tabBar.theme_tintColor = Color.mainTint
+        //tabBar.theme_barTintColor = Color.invertedTitle
         
         // Show network activity indicator
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.startDelay = 0.3
         NetworkActivityIndicatorManager.shared.completionDelay = 0.3
         
+        // Realm config
         let config = Realm.Configuration(
             schemaVersion: 0,
             migrationBlock: { migration, oldSchemaVersion in }

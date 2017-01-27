@@ -26,17 +26,17 @@ class FeaturedBook: UICollectionViewCell {
 
         cover = UIImageView()
         cover.layer.borderWidth = 0.5
-        cover.layer.borderColor = Color.borderColor.cgColor
+        cover.layer.theme_borderColor = Color.borderCgColor
         cover.image = #imageLiteral(resourceName: "placeholderCover")
         
         title = UILabel()
-        title.textColor = .black
+        title.theme_textColor = Color.title
         title.font = UIFont.systemFont(ofSize: 11.5)
         title.lineBreakMode = .byTruncatingTail
         title.numberOfLines = 2
         
         author = UILabel()
-        author.textColor = Color.darkGray
+        author.theme_textColor = Color.darkGray
         author.font = UIFont.systemFont(ofSize: 11.5)
         author.lineBreakMode = .byTruncatingTail
         author.numberOfLines = 1

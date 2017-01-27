@@ -37,7 +37,7 @@ class LoadingTableView: UITableViewController {
         super.viewDidLoad()
         
         // Set Up
-        tableView.backgroundColor = Color.tableViewBackgroundColor
+        tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         tableView.rowHeight = view.frame.height + 200 /* Temporary row height for spinner */
         tableView.isScrollEnabled = false
         
@@ -50,7 +50,7 @@ class LoadingTableView: UITableViewController {
         activityIndicator.startAnimating()
         
         errorMessage = UILabel()
-        errorMessage.textColor = Color.copyrightText
+        errorMessage.theme_textColor = Color.copyrightText
         errorMessage.font = UIFont.systemFont(ofSize: 21.0)
         errorMessage.numberOfLines = 0
         errorMessage.textAlignment = .center

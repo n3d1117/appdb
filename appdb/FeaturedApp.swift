@@ -20,7 +20,7 @@ class FeaturedApp: UICollectionViewCell {
     var didSetupConstraints = false
     
     var tweaked : Bool = false {
-        didSet { title.textColor = tweaked ? Color.mainTint : .black }
+        didSet { title.theme_textColor = tweaked ? Color.mainTint : Color.title }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,17 +33,17 @@ class FeaturedApp: UICollectionViewCell {
         icon = UIImageView()
         icon.layer.cornerRadius = cornerRadius(fromWidth: frame.size.width)
         icon.layer.borderWidth = 1 / UIScreen.main.scale
-        icon.layer.borderColor = Color.borderColor.cgColor
+        icon.layer.theme_borderColor = Color.borderCgColor
         icon.image = #imageLiteral(resourceName: "placeholderIcon")
         
         title = UILabel()
-        title.textColor = .black
+        title.theme_textColor = Color.title
         title.font = UIFont.systemFont(ofSize: 11.5)
         title.lineBreakMode = .byTruncatingTail
         title.numberOfLines = 2
         
         category = UILabel()
-        category.textColor = Color.darkGray
+        category.theme_textColor = Color.darkGray
         category.font = UIFont.systemFont(ofSize: 11.5)
         category.lineBreakMode = .byTruncatingTail
         category.numberOfLines = 1

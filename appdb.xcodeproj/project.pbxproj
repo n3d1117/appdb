@@ -33,6 +33,17 @@
 		8187B4EF1E3A795800F251CD /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187B4EE1E3A795800F251CD /* Promotion.swift */; };
 		8188E8E61DB1997100462256 /* AlamofireObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188E8E41DB1997100462256 /* AlamofireObjectMapper.swift */; };
 		8188E8EC1DB25F6B00462256 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188E8EB1DB25F6B00462256 /* API.swift */; };
+		81939B471E3BA98D00179615 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B461E3BA98D00179615 /* Themes.swift */; };
+		81939B4B1E3BAA9A00179615 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B4A1E3BAA9A00179615 /* Preferences.swift */; };
+		81939B4D1E3BB4DB00179615 /* SwiftTheme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81939B4C1E3BB4DB00179615 /* SwiftTheme.framework */; };
+		81939B571E3BC75800179615 /* NSObject+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B4F1E3BC75800179615 /* NSObject+Theme.swift */; };
+		81939B581E3BC75800179615 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B501E3BC75800179615 /* ThemeManager.swift */; };
+		81939B591E3BC75800179615 /* ThemeManager+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B511E3BC75800179615 /* ThemeManager+Index.swift */; };
+		81939B5A1E3BC75800179615 /* ThemeManager+OC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B521E3BC75800179615 /* ThemeManager+OC.swift */; };
+		81939B5B1E3BC75800179615 /* ThemeManager+Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B531E3BC75800179615 /* ThemeManager+Plist.swift */; };
+		81939B5C1E3BC75800179615 /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B541E3BC75800179615 /* ThemePicker.swift */; };
+		81939B5D1E3BC75800179615 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B551E3BC75800179615 /* UIColorExtension.swift */; };
+		81939B5E1E3BC75800179615 /* UIKit+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B561E3BC75800179615 /* UIKit+Theme.swift */; };
 		81A065851E394D5E00398102 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A065841E394D5E00398102 /* Diff.framework */; };
 		81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB37AD1DAC30BD003A586F /* TabBarController.swift */; };
 		81AB37B01DAC30F3003A586F /* Featured.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB37AF1DAC30F3003A586F /* Featured.storyboard */; };
@@ -87,6 +98,17 @@
 		8188E8F21DB3B66700462256 /* ReactiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveKit.framework; path = Carthage/Build/iOS/ReactiveKit.framework; sourceTree = "<group>"; };
 		8188E8F31DB3B66700462256 /* ReactiveUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveUIKit.framework; path = Carthage/Build/iOS/ReactiveUIKit.framework; sourceTree = "<group>"; };
 		8188E8F61DB3B9E000462256 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
+		81939B461E3BA98D00179615 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
+		81939B4A1E3BAA9A00179615 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		81939B4C1E3BB4DB00179615 /* SwiftTheme.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftTheme.framework; path = Carthage/Build/iOS/SwiftTheme.framework; sourceTree = "<group>"; };
+		81939B4F1E3BC75800179615 /* NSObject+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Theme.swift"; sourceTree = "<group>"; };
+		81939B501E3BC75800179615 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		81939B511E3BC75800179615 /* ThemeManager+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThemeManager+Index.swift"; sourceTree = "<group>"; };
+		81939B521E3BC75800179615 /* ThemeManager+OC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThemeManager+OC.swift"; sourceTree = "<group>"; };
+		81939B531E3BC75800179615 /* ThemeManager+Plist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThemeManager+Plist.swift"; sourceTree = "<group>"; };
+		81939B541E3BC75800179615 /* ThemePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemePicker.swift; sourceTree = "<group>"; };
+		81939B551E3BC75800179615 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		81939B561E3BC75800179615 /* UIKit+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Theme.swift"; sourceTree = "<group>"; };
 		81A065841E394D5E00398102 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
 		81AB37AD1DAC30BD003A586F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		81AB37AF1DAC30F3003A586F /* Featured.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Featured.storyboard; sourceTree = "<group>"; };
@@ -122,6 +144,7 @@
 				81211D541E393EB500981A3F /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				81211D601E393F0300981A3F /* AlamofireImage.framework in Frameworks */,
 				81211D551E393EB800981A3F /* Bond.framework in Frameworks */,
+				81939B4D1E3BB4DB00179615 /* SwiftTheme.framework in Frameworks */,
 				81211D5F1E393F0200981A3F /* Alamofire.framework in Frameworks */,
 				81211D5E1E393EDB00981A3F /* SwiftyJSON.framework in Frameworks */,
 				81211D561E393EBD00981A3F /* Cartography.framework in Frameworks */,
@@ -213,6 +236,7 @@
 				81236ACA1E3B8A3E009748E0 /* PaddingLabel */,
 				81E7CBF91E1FC0DE004AF156 /* LoadingTableView */,
 				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
+				81939B4E1E3BC74400179615 /* SwiftTheme */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -225,9 +249,25 @@
 			name = AlamofireObjectMapper;
 			sourceTree = "<group>";
 		};
+		81939B4E1E3BC74400179615 /* SwiftTheme */ = {
+			isa = PBXGroup;
+			children = (
+				81939B4F1E3BC75800179615 /* NSObject+Theme.swift */,
+				81939B501E3BC75800179615 /* ThemeManager.swift */,
+				81939B511E3BC75800179615 /* ThemeManager+Index.swift */,
+				81939B521E3BC75800179615 /* ThemeManager+OC.swift */,
+				81939B531E3BC75800179615 /* ThemeManager+Plist.swift */,
+				81939B541E3BC75800179615 /* ThemePicker.swift */,
+				81939B551E3BC75800179615 /* UIColorExtension.swift */,
+				81939B561E3BC75800179615 /* UIKit+Theme.swift */,
+			);
+			name = SwiftTheme;
+			sourceTree = "<group>";
+		};
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81939B4C1E3BB4DB00179615 /* SwiftTheme.framework */,
 				81A065841E394D5E00398102 /* Diff.framework */,
 				81B6F6B01E212B2B000AD47C /* ImageSlideshow.framework */,
 				81C0727C1DB78BB4007266A9 /* Dwifft.framework */,
@@ -303,6 +343,7 @@
 				81EC006B1DAD7728009EEFFA /* Initializers.swift */,
 				81EC00671DAD76EC009EEFFA /* Extensions.swift */,
 				81EC00691DAD7704009EEFFA /* Colors.swift */,
+				81939B461E3BA98D00179615 /* Themes.swift */,
 			);
 			name = Startup;
 			sourceTree = "<group>";
@@ -336,6 +377,7 @@
 				81EC008A1DAE8D1A009EEFFA /* CydiaApp.swift */,
 				81EC008C1DAE8F1F009EEFFA /* Book.swift */,
 				8187B4EE1E3A795800F251CD /* Promotion.swift */,
+				81939B4A1E3BAA9A00179615 /* Preferences.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -443,6 +485,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Dwifft.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ImageSlideshow.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Diff.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftTheme.framework",
 			);
 			outputPaths = (
 			);
@@ -457,7 +500,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81939B5E1E3BC75800179615 /* UIKit+Theme.swift in Sources */,
 				81EC00651DAD7514009EEFFA /* Featured.swift in Sources */,
+				81939B5C1E3BC75800179615 /* ThemePicker.swift in Sources */,
 				8187B4EF1E3A795800F251CD /* Promotion.swift in Sources */,
 				81EC006A1DAD7704009EEFFA /* Colors.swift in Sources */,
 				81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */,
@@ -465,11 +510,13 @@
 				81EC00891DAE88D3009EEFFA /* App.swift in Sources */,
 				81EC008B1DAE8D1A009EEFFA /* CydiaApp.swift in Sources */,
 				81236AC91E3B6899009748E0 /* ChevronButton.swift in Sources */,
+				81939B5B1E3BC75800179615 /* ThemeManager+Plist.swift in Sources */,
 				8188E8E61DB1997100462256 /* AlamofireObjectMapper.swift in Sources */,
 				81EC006C1DAD7728009EEFFA /* Initializers.swift in Sources */,
 				81EC007F1DAE6680009EEFFA /* Items.swift in Sources */,
 				8180EE631E26D75E001C04B5 /* API+Search.swift in Sources */,
 				81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */,
+				81939B471E3BA98D00179615 /* Themes.swift in Sources */,
 				81EC007B1DAD92A2009EEFFA /* FeaturedExtension.swift in Sources */,
 				8167A6131DAC246000F96AC2 /* AppDelegate.swift in Sources */,
 				81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */,
@@ -481,12 +528,18 @@
 				81EC00731DAD79A8009EEFFA /* FeaturedBook.swift in Sources */,
 				81B6F6B41E212CC1000AD47C /* AlamofireSource.swift in Sources */,
 				81E7CBFB1E1FC0F2004AF156 /* LoadingTableView.swift in Sources */,
+				81939B591E3BC75800179615 /* ThemeManager+Index.swift in Sources */,
 				81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */,
+				81939B571E3BC75800179615 /* NSObject+Theme.swift in Sources */,
+				81939B581E3BC75800179615 /* ThemeManager.swift in Sources */,
 				81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */,
+				81939B5D1E3BC75800179615 /* UIColorExtension.swift in Sources */,
 				816CEEDB1DBD00E5002CFF6E /* CategoryCell.swift in Sources */,
 				816CEED91DBCE8A2002CFF6E /* Categories.swift in Sources */,
 				81EC006E1DAD7915009EEFFA /* ItemCollection.swift in Sources */,
+				81939B4B1E3BAA9A00179615 /* Preferences.swift in Sources */,
 				81EC008D1DAE8F1F009EEFFA /* Book.swift in Sources */,
+				81939B5A1E3BC75800179615 /* ThemeManager+OC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

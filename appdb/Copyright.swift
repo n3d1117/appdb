@@ -30,15 +30,15 @@ class Copyright: FeaturedCell {
         
         selectionStyle = .none
         separatorInset.left = 10000
-        backgroundColor = Color.tableViewBackgroundColor
-        contentView.backgroundColor = Color.tableViewBackgroundColor
+        theme_backgroundColor = Color.tableViewBackgroundColor
+        contentView.theme_backgroundColor = Color.tableViewBackgroundColor
         
         // Hide ugly white line on iOS 8
-        layer.borderColor = Color.tableViewBackgroundColor.cgColor
+        layer.theme_borderColor = Color.tableViewCGBackgroundColor
         layer.borderWidth = 1.0
         
         copyrightNotice = UILabel()
-        copyrightNotice.textColor = Color.copyrightText
+        copyrightNotice.theme_textColor = Color.copyrightText
         copyrightNotice.font = UIFont.systemFont(ofSize: 11.3)
         let newLine = " " ~~ "\n"
         copyrightNotice.text = "© 2012-\(getCurrentYear()) appdb.cc.\(newLine)" +

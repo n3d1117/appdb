@@ -29,7 +29,7 @@ class Dummy: FeaturedCell {
         preservesSuperviewLayoutMargins = false
         separatorInset.left = 0
         layoutMargins.left = 0
-        contentView.backgroundColor = Color.tableViewBackgroundColor
+        contentView.theme_backgroundColor = Color.tableViewBackgroundColor
     }
 
 }

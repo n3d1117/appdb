@@ -23,14 +23,20 @@ class CategoryCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        // Margins
         contentView.preservesSuperviewLayoutMargins = false
         preservesSuperviewLayoutMargins = false
-        
         layoutMargins.left = Featured.size.margin.value
         separatorInset.left = Featured.size.margin.value
         
+        // UI
+        theme_backgroundColor = Color.veryVeryLightGray
+        let bgColorView = UIView()
+        bgColorView.theme_backgroundColor = Color.cellSelectionColor
+        selectedBackgroundView = bgColorView
+  
+        // Icon
         icon = UIImageView()
-        
         if reuseIdentifier == "category_ios" {
             icon.layer.cornerRadius = cornerRadius(fromWidth: 30)
             icon.image = #imageLiteral(resourceName: "placeholderIcon")
@@ -38,10 +44,10 @@ class CategoryCell: UITableViewCell {
             icon.layer.cornerRadius = 0
             icon.image = #imageLiteral(resourceName: "placeholderCover")
         }
-        
         icon.layer.borderWidth = 0.5
-        icon.layer.borderColor = Color.borderColor.cgColor
+        icon.layer.theme_borderColor = Color.borderCgColor
         
+        // Name
         name = UILabel()
         name.textColor = .black
         name.font = UIFont.systemFont(ofSize: 17~~16)

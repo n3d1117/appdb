@@ -42,8 +42,8 @@ class Banner: UITableViewCell {
     convenience init() {
         self.init(style: .default, reuseIdentifier: Featured.CellType.banner.rawValue)
         
-        backgroundColor = Color.tableViewBackgroundColor
-        contentView.backgroundColor = Color.tableViewBackgroundColor
+        theme_backgroundColor = Color.tableViewBackgroundColor
+        contentView.theme_backgroundColor = Color.tableViewBackgroundColor
         
         //
         // Get Promotions

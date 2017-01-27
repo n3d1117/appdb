@@ -128,11 +128,11 @@ class ItemCollection: FeaturedCell  {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
         
-        collectionView.backgroundColor = Color.veryVeryLightGray
-        backgroundColor = Color.veryVeryLightGray
+        collectionView.theme_backgroundColor = Color.veryVeryLightGray
+        theme_backgroundColor = Color.veryVeryLightGray
         
         sectionLabel = UILabel()
-        sectionLabel.textColor = .black
+        sectionLabel.theme_textColor = Color.title
         
         if #available(iOS 8.2, *) {
             sectionLabel.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: UIFontWeightMedium)
@@ -144,7 +144,7 @@ class ItemCollection: FeaturedCell  {
         sectionLabel.sizeToFit()
         
         categoryLabel  = PaddingLabel()
-        categoryLabel.textColor = .white
+        categoryLabel.theme_textColor = Color.invertedTitle
         categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 5

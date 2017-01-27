@@ -41,6 +41,8 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.theme_separatorColor = Color.borderColor
+        
         headerView = ILTranslucentView(frame: CGRect())
         headerView.translucentStyle = .default
         headerView.translucentAlpha = 1
@@ -64,8 +66,8 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Set up
         tableView.register(CategoryCell.self, forCellReuseIdentifier: "category_ios")
         tableView.register(CategoryCell.self, forCellReuseIdentifier: "category_books")
-        tableView.backgroundColor = Color.tableViewBackgroundColor
-        view.backgroundColor = Color.tableViewBackgroundColor
+        tableView.theme_backgroundColor = Color.tableViewBackgroundColor
+        view.theme_backgroundColor = Color.tableViewBackgroundColor
         title = "Select Category"
         
         // Fix margins on iOS 9+
@@ -193,7 +195,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell.icon.image = placeholder
         }
 
-        cell.name.textColor = checked[selected]![indexPath.row] ? Color.mainTint : .black
+        cell.name.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.title
         cell.name.font = checked[selected]![indexPath.row] ? UIFont.boldSystemFont(ofSize: 17~~16) : UIFont.systemFont(ofSize: 17~~16)
         cell.accessoryType = checked[selected]![indexPath.row] ? .checkmark : .none
         

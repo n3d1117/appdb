@@ -38,11 +38,15 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
         // Register cells
         registerCells()
+        tableView.theme_separatorColor = Color.borderColor
         
         // Add categories button
         let categoriesButton = UIBarButtonItem(title: "Categories", style: .plain, target: self, action:#selector(Featured.openCategories(_:)))
         navigationItem.leftBarButtonItem = categoriesButton
         navigationItem.leftBarButtonItem?.isEnabled = false
+        
+        let tmpButton = UIBarButtonItem(title: "switch mode", style: .plain, target: self, action:#selector(self.tmpSwitch))
+        navigationItem.rightBarButtonItem = tmpButton
         
         // List Genres and enable button on completion
         API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
@@ -50,6 +54,10 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         // Wait for data to be fetched, reload tableView on completion
         reloadTableWhenReady()
         
+    }
+    
+    func tmpSwitch() {
+        Themes.switchTo(theme: Themes.isNight() ? .Light : .Dark)
     }
     
     // MARK: - Load Initial Data

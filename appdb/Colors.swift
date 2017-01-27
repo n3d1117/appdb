@@ -9,11 +9,20 @@
 import Foundation
 import UIKit
 
+/* First is light theme, second is Dark theme hex. */
+
 enum Color {
-    static let mainTint: UIColor = { return UIColor(red: 68/255, green: 108/255, blue: 179/255, alpha: 1.0) }()
-    static let darkGray: UIColor = { return UIColor(red: 111/255, green: 113/255, blue: 121/255, alpha: 1.0) }()
-    static let tableViewBackgroundColor: UIColor = { return UIColor(red: 239/255.0, green: 239/255.0, blue: 244/255.0, alpha: 1) }()
-    static let borderColor: UIColor = { return UITableView().separatorColor }()!
-    static let copyrightText: UIColor = { return UIColor(red: 85/255.0, green: 85/255.0, blue: 85/255.0, alpha: 1) }()
-    static let veryVeryLightGray: UIColor = { return UIColor(red: 253/255.0, green: 253/255.0, blue: 253/255.0, alpha: 1) }()
+    static let mainTint: ThemeColorPicker = ["#446CB3", "#6FACFA"] /* Blue main tint */
+    static let darkGray: ThemeColorPicker = ["#6F7179", "#9c9c9c"]
+    static let tableViewBackgroundColor: ThemeColorPicker = ["#EFEFF4", "#121212"]
+    static let borderColor: ThemeColorPicker = ["#C7C7CC", "#373737"]
+    static let copyrightText: ThemeColorPicker = ["#555555", "#7E7E7E"]
+    static let veryVeryLightGray: ThemeColorPicker = ["#FDFDFD", "#1E1E1E"]
+    static let title: ThemeColorPicker = ["#121212", "#F8F8F8"]
+    static let invertedTitle: ThemeColorPicker = ["#F8F8F8", "#121212"]
+    static let cellSelectionColor: ThemeColorPicker = ["#D8D8D8", "#595959"]
+    
+    /* CG Colors */
+    static let borderCgColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#C7C7CC", "#1E1E1E")
+    static let tableViewCGBackgroundColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#EFEFF4", "#121212")
 }

@@ -10,18 +10,18 @@ import UIKit
 
 class ChevronButton {
     
-    static func create(text: String, color: UIColor) -> UIButton {
+    static func create(text: String, color: ThemeColorPicker) -> UIButton {
         let button = UIButton(type: .system) as UIButton
         
         button.setTitle(text, for: .normal)
         button.setImage(#imageLiteral(resourceName: "rightArrow"), for: .normal)
-        button.setTitleColor(color, for: .normal)
+        button.theme_setTitleColor(color, forState: .normal)
         if #available(iOS 8.2, *) {
             button.titleLabel?.font = UIFont.systemFont(ofSize: 10.5, weight: UIFontWeightSemibold)
         } else {
             button.titleLabel?.font = UIFont.systemFont(ofSize: 10.5)
         }
-        button.tintColor = color
+        button.theme_tintColor = color
         
         button.sizeToFit()
         
