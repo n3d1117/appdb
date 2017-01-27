@@ -80,6 +80,7 @@ extension API {
         if let cat = realm.objects(Genre.self).filter("category = %@ AND id = %@", type.rawValue, id).first {
             Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": "clicks_all"])
                 .responseJSON { response in
+                    //print(response.request!.url!.absoluteString)
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)

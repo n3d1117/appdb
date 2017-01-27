@@ -58,7 +58,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
         let itemCells = cells.flatMap{$0 as? ItemCollection}
         if itemCells.count != (itemCells.filter{$0.response.success == true}.count) {
-            if !(itemCells.filter{$0.response.hasErrors==true}.isEmpty) {
+            if !(itemCells.filter{$0.response.failed==true}.isEmpty) {
                 showErrorMessage(text: "Cannot connect to appdb.")
             } else {
                 // Not ready, retrying in 0.2 seconds

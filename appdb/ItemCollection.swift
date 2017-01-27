@@ -15,12 +15,8 @@ import Dwifft
 
 // Class to handle response correctly from Featured
 class ItemResponse {
-    init(success: Bool = false, errorsCount: Bool = false) {
-        self.success = success
-        self.hasErrors = errorsCount
-    }
     var success : Bool = false
-    var hasErrors : Bool = false
+    var failed : Bool = false
 }
 
 class FlowLayout : UICollectionViewFlowLayout {
@@ -94,7 +90,8 @@ class ItemCollection: FeaturedCell  {
     // UI Elements
     var collectionView : UICollectionView!
     var sectionLabel : UILabel!
-    var categoryLabel : UILabel!
+    var categoryLabel : PaddingLabel!
+    var seeAllButton : UIButton!
     
     // Array to fill data with
     var items : [Object] = []
@@ -146,14 +143,17 @@ class ItemCollection: FeaturedCell  {
         sectionLabel.text = title
         sectionLabel.sizeToFit()
         
-        categoryLabel  = UILabel()
+        categoryLabel  = PaddingLabel()
         categoryLabel.textColor = .white
         categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 5
+        
+        seeAllButton = ChevronButton.create(text: "See All", color: Color.darkGray)
 
         contentView.addSubview(categoryLabel)
         contentView.addSubview(sectionLabel)
+        contentView.addSubview(seeAllButton)
         contentView.addSubview(collectionView)
 
         setConstraints()
@@ -178,19 +178,19 @@ class ItemCollection: FeaturedCell  {
         
         let layout: FlowLayout = FlowLayout()
         collectionView.collectionViewLayout = layout
-        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
-        layout.minimumLineSpacing = Featured.size.spacing.value
-        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
-        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
-        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
-        layout.minimumLineSpacing = Featured.size.spacing.value
-        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
-        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
         if let id = Featured.CellType(rawValue: reuseIdentifier ?? "") {
             if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
         }
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
+        layout.minimumLineSpacing = Featured.size.spacing.value
+        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
+        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
+        layout.minimumLineSpacing = Featured.size.spacing.value
+        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
+        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
         
-        constrain(sectionLabel, categoryLabel, collectionView, replace: group) { section, category, collection in
+        constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
             collection.left == collection.superview!.left
             collection.right == collection.superview!.right
             collection.bottom == collection.superview!.bottom ~ 999
@@ -199,10 +199,14 @@ class ItemCollection: FeaturedCell  {
             section.left == section.superview!.left + Featured.size.margin.value
             section.right == section.left + sectionLabel.frame.size.width ~ 999
             
-            section.bottom == collection.top - (44~~39 - section.height.view.frame.size.height) / 2
-            category.left == section.right + 10
+            seeAll.right == seeAll.superview!.right - Featured.size.margin.value
+            seeAll.left == seeAll.superview!.right - Featured.size.margin.value - seeAll.width.view.frame.size.width
+            seeAll.centerY == section.centerY
             
-            category.rightMargin <= category.superview!.rightMargin - Featured.size.margin.value
+            section.bottom == collection.top - (44~~39 - section.height.view.frame.size.height) / 2
+            category.left == section.right + 8
+            
+            category.right <= seeAll.left - 8
             category.centerY == section.centerY
         }
     }
@@ -211,14 +215,20 @@ class ItemCollection: FeaturedCell  {
     
     func requestItems() {
         if let id = reuseIdentifier {
-            switch Featured.CellType(rawValue: id)! {
-                case .cydia: getItems(type: CydiaApp.self, order: .added)
-                case .iosNew: getItems(type: App.self, order: .added)
-                case .iosPaid: getItems(type: App.self, order: .month, price: .paid)
-                case .iosPopular: getItems(type: App.self, order: .day, price: .all)
-                case .iosGames: getItems(type: App.self, order: .all, price: .all, genre: "6014")
-                case .books: getItems(type: Book.self, order: .month)
-                default: break
+            if let type = Featured.CellType(rawValue: id) {
+                
+                if Featured.iosTypes.contains(type) { for _ in 0..<25 { self.items.append(App()) } }
+                else { for _ in 0..<25 { self.items.append(Book()) } }
+                
+                switch type {
+                    case .cydia: getItems(type: CydiaApp.self, order: .added)
+                    case .iosNew: getItems(type: App.self, order: .added)
+                    case .iosPaid: getItems(type: App.self, order: .month, price: .paid)
+                    case .iosPopular: getItems(type: App.self, order: .day, price: .all)
+                    case .iosGames: getItems(type: App.self, order: .all, price: .all, genre: "6014")
+                    case .books: getItems(type: Book.self, order: .month)
+                    default: break
+                }
             }
         }
     }
@@ -228,7 +238,7 @@ class ItemCollection: FeaturedCell  {
         API.search(type: type, order: order, price: price, genre: genre, success: { array in
             
             // Success and no errors
-            self.response.success = true; self.response.hasErrors = false
+            self.response.success = true
             
             if !array.isEmpty {
                 let diff = self.items.diff(array)
@@ -243,8 +253,12 @@ class ItemCollection: FeaturedCell  {
                         
                         // Update category label
                         if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
-                            self.categoryLabel.text = "  " + API.categoryFromId(id: genre, type: type).uppercased() + "  "
-                        } else { self.categoryLabel.text = "" }
+                            self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
+                            self.categoryLabel.isHidden = false
+                        } else {
+                            self.categoryLabel.text = ""
+                            self.categoryLabel.isHidden = true
+                        }
             
                     }, completion: nil)
                 }
@@ -252,10 +266,19 @@ class ItemCollection: FeaturedCell  {
             } else { print("array is empty") }
         
             }, fail: { error in
-                print(error.localizedDescription)
+                print(error)
                 
-                // Failed with error
-                self.response.success = false; self.response.hasErrors = true
+                if error.code == -1009 { /* The Internet connection appears to be offline. */
+                    
+                    self.response.failed = true
+                
+                } else { /* Most likely ObjectMapper failed to serialize response (Error code: 2) */
+                    
+                    // If it's actually reloading a category response is not needed, but fuck it
+                    
+                    self.response.success = true
+                
+                }
                 
             }
         )
