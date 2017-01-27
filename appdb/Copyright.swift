@@ -51,7 +51,7 @@ class Copyright: FeaturedCell {
         constrain(copyrightNotice) { notice in
             notice.left == notice.superview!.left + Featured.size.margin.value
             notice.right == notice.superview!.right - Featured.size.margin.value
-            notice.top == notice.superview!.top + 15.0
+            notice.top == notice.superview!.top + 15
         }
     }
     
