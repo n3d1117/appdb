@@ -1,7 +1,5 @@
-? custom loading indicator, loading text
-
+- custom loading indicator, loading text
 - promotions??
-- refresh button, more text to no internet view
 - small cells with promotional images
 - ImageSlideshow landscape support (waiting https://github.com/zvonicek/ImageSlideshow/issues/117)
 - fix banner wrong offset when scrolling hard
