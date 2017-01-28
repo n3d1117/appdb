@@ -149,7 +149,7 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 5
         
-        seeAllButton = ChevronButton.create(text: "See All", color: Color.darkGray)
+        seeAllButton = ButtonFactory.createChevronButton(text: "See All", color: Color.darkGray)
         seeAllButton.isEnabled = false
 
         contentView.addSubview(categoryLabel)
@@ -215,6 +215,7 @@ class ItemCollection: FeaturedCell  {
     // MARK: - Networking
     
     func requestItems() {
+        self.response.success = false; self.response.failed = false
         if let id = reuseIdentifier {
             if let type = Featured.CellType(rawValue: id) {
                 
@@ -256,10 +257,10 @@ class ItemCollection: FeaturedCell  {
                         // Update category label
                         if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
                             self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
-                            self.categoryLabel.isHidden = false
+                            self.categoryLabel.alpha = 1
                         } else {
                             self.categoryLabel.text = ""
-                            self.categoryLabel.isHidden = true
+                            self.categoryLabel.alpha = 0
                         }
             
                     }, completion: nil)

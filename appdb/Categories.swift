@@ -30,9 +30,6 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Orientation did change notification
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeOrientation), name: .UIDeviceOrientationDidChange, object: nil)
-        
         // Hide bottom hairline
         if let nav = navigationController { nav.navigationBar.hideBottomHairline() }
         
@@ -152,14 +149,13 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     // Update constraints to reflect orientation change (recalculate navigationBar + statusBar height)
-    func didChangeOrientation() {
-        didSetupConstraints = false
-        setConstraints()
-    }
-    
-    // Remove observer, mom's spaghetti
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            self.didSetupConstraints = false
+            self.setConstraints()
+        }, completion: nil)
     }
     
     // MARK: - Dismiss animated

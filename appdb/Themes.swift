@@ -23,9 +23,7 @@ enum Themes: Int {
         saveLastTheme()
     }
 
-    static func isNight() -> Bool {
-        return current == .Dark
-    }
+    static var isNight : Bool { return current == .Dark }
     
     // MARK: - Save & Restore
     

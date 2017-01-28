@@ -50,6 +50,8 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         let tmpButton = UIBarButtonItem(title: "switch mode", style: .plain, target: self, action:#selector(self.tmpSwitch))
         navigationItem.rightBarButtonItem = tmpButton
         
+        refreshButton.addTarget(self, action: #selector(self.retry), for: .touchUpInside)
+        
         // List Genres and enable button on completion
         API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
         
@@ -62,7 +64,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
     }
     
     func tmpSwitch() {
-        Themes.switchTo(theme: Themes.isNight() ? .Light : .Dark)
+        Themes.switchTo(theme: Themes.isNight ? .Light : .Dark)
     }
     
     // MARK: - Load Initial Data
@@ -72,7 +74,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         let itemCells = cells.flatMap{$0 as? ItemCollection}
         if itemCells.count != (itemCells.filter{$0.response.success == true}.count) {
             if !(itemCells.filter{$0.response.failed==true}.isEmpty) {
-                showErrorMessage(text: "Cannot connect to appdb.")
+                showErrorMessage(text: "Cannot connect to appdb")
             } else {
                 // Not ready, retrying in 0.2 seconds
                 delay(0.2) { self.reloadTableWhenReady() }
@@ -100,6 +102,27 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
                 self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
             }, completion: nil)
             
+        }
+    }
+    
+    // MARK: - Retry Loading
+    func retry() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.errorMessage.text = ""
+            self.refreshButton.alpha = 0
+        }) { _ in
+            
+            self.activityIndicator.startAnimating()
+            
+            // List Genres and enable button on completion
+            API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
+            
+            // Retry network operations
+            for cell in self.cells.flatMap({$0 as? ItemCollection}) {
+                cell.requestItems()
+            }
+            
+            self.reloadTableWhenReady()
         }
     }
     

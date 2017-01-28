@@ -19,7 +19,7 @@
 		81211D5E1E393EDB00981A3F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */; };
 		81211D5F1E393F0200981A3F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8D71DB198B800462256 /* Alamofire.framework */; };
 		81211D601E393F0300981A3F /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8ED1DB2AD4B00462256 /* AlamofireImage.framework */; };
-		81236AC91E3B6899009748E0 /* ChevronButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236AC81E3B6899009748E0 /* ChevronButton.swift */; };
+		81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236AC81E3B6899009748E0 /* ButtonFactory.swift */; };
 		81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */; };
 		8167A6131DAC246000F96AC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8167A6121DAC246000F96AC2 /* AppDelegate.swift */; };
 		8167A61C1DAC246000F96AC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8167A61B1DAC246000F96AC2 /* Assets.xcassets */; };
@@ -79,7 +79,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		81236AC81E3B6899009748E0 /* ChevronButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChevronButton.swift; sourceTree = "<group>"; };
+		81236AC81E3B6899009748E0 /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		8167A60F1DAC246000F96AC2 /* appdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8167A6121DAC246000F96AC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,12 +180,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		81236AC71E3B6870009748E0 /* ChevronButton */ = {
+		81236AC71E3B6870009748E0 /* ButtonFactory */ = {
 			isa = PBXGroup;
 			children = (
-				81236AC81E3B6899009748E0 /* ChevronButton.swift */,
+				81236AC81E3B6899009748E0 /* ButtonFactory.swift */,
 			);
-			name = ChevronButton;
+			name = ButtonFactory;
 			sourceTree = "<group>";
 		};
 		81236ACA1E3B8A3E009748E0 /* PaddingLabel */ = {
@@ -252,7 +252,7 @@
 			children = (
 				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
 				81B6F6B21E212CAC000AD47C /* AlamofireSource */,
-				81236AC71E3B6870009748E0 /* ChevronButton */,
+				81236AC71E3B6870009748E0 /* ButtonFactory */,
 				81236ACA1E3B8A3E009748E0 /* PaddingLabel */,
 				81E7CBF91E1FC0DE004AF156 /* LoadingTableView */,
 				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
@@ -538,7 +538,7 @@
 				81F3D6581E1310BA003CD808 /* ILTranslucentView.swift in Sources */,
 				81EC00891DAE88D3009EEFFA /* App.swift in Sources */,
 				81EC008B1DAE8D1A009EEFFA /* CydiaApp.swift in Sources */,
-				81236AC91E3B6899009748E0 /* ChevronButton.swift in Sources */,
+				81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */,
 				81BA82581E3CA80500FCC4C0 /* ThemeFontPicker.swift in Sources */,
 				8188E8E61DB1997100462256 /* AlamofireObjectMapper.swift in Sources */,
 				81EC006C1DAD7728009EEFFA /* Initializers.swift in Sources */,

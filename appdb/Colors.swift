@@ -23,6 +23,8 @@ enum Color {
     static let cellSelectionColor: ThemeColorPicker = ["#D8D8D8", "#595959"]
     
     /* CG Colors */
+    static let copyrightTextCgColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#555555", "#7E7E7E")
     static let borderCgColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#C7C7CC", "#1E1E1E")
     static let tableViewCGBackgroundColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#EFEFF4", "#121212")
+    static let buttonBorderCgColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#D0D0D4", "#272727")
 }
