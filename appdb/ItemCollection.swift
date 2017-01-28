@@ -150,6 +150,7 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.layer.cornerRadius = 5
         
         seeAllButton = ChevronButton.create(text: "See All", color: Color.darkGray)
+        seeAllButton.isEnabled = false
 
         contentView.addSubview(categoryLabel)
         contentView.addSubview(sectionLabel)
@@ -239,6 +240,7 @@ class ItemCollection: FeaturedCell  {
             
             // Success and no errors
             self.response.success = true
+            self.seeAllButton.isEnabled = true
             
             if !array.isEmpty {
                 let diff = self.items.diff(array)
@@ -267,6 +269,8 @@ class ItemCollection: FeaturedCell  {
         
             }, fail: { error in
                 print(error)
+                
+                self.seeAllButton.isEnabled = false
                 
                 if error.code == -1009 { /* The Internet connection appears to be offline. */
                     
