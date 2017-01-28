@@ -29,6 +29,8 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         ItemCollection(id: .books, title: "📚 Top Books", fullSeparator: true),
         Copyright()
     ]
+    
+    var banner : Banner!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,9 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
         // List Genres and enable button on completion
         API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
+        
+        /* Initialized here to load images faster */
+        self.banner = Banner()
 
         // Wait for data to be fetched, reload tableView on completion
         reloadTableWhenReady()
@@ -80,7 +85,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             }
             
             // Add banner
-            addBanner()
+            addBanner(from: self.banner)
             
             // Works around crazy cell bugs on rotation, enables preloading
             tableView.estimatedRowHeight = 32
@@ -88,6 +93,13 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             
             // Reload tableView, hide spinner
             loaded = true
+            
+            // Bounce animation - should I add this to LoadingTableView? Ai posteri l'ardua sentenza.
+            self.view.transform = CGAffineTransform.identity.scaledBy(x: 0.93, y: 0.93)
+            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+            }, completion: nil)
+            
         }
     }
     

@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         Themes.restoreLastTheme()
         
         // Set main tint color
+        self.window!.theme_backgroundColor = Color.invertedTitle
         self.window!.theme_tintColor = Color.mainTint
         
         //Theme Status Bar

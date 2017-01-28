@@ -72,10 +72,10 @@ extension Featured {
     }
     
     // Add Banner
-    func addBanner() {
-        tableView.tableHeaderView = Banner()
+    func addBanner(from: Banner) {
+        tableView.tableHeaderView = from
         if let headerView = tableView.tableHeaderView {
-            let height : CGFloat = Banner.height
+            let height : CGFloat = from.height
             var headerFrame = headerView.frame
             if height != headerFrame.size.height {
                 headerFrame.size.height = height

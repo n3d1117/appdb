@@ -2,9 +2,7 @@
 ? add cute image & refresh button to no internet view, maybe abstract no internet view?
 
 - promotions??
-- fancy animation at startup
 - small cells with promotional images
 - banner landscape support (waiting https://github.com/zvonicek/ImageSlideshow/issues/117)
 - fix banner wrong offset when scrolling hard
-
-- D A R K   M O D E todo: cell selection color in categories, spinner, barstyle (tab and nav) (https://github.com/jiecao-fm/SwiftTheme/issues/21), color description
+- proper splash view
