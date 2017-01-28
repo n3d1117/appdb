@@ -95,7 +95,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             loaded = true
             
             // Bounce animation - should I add this to LoadingTableView? Ai posteri l'ardua sentenza.
-            self.view.transform = CGAffineTransform.identity.scaledBy(x: 0.93, y: 0.93)
+            self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.07, y: 1.07)
             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
             }, completion: nil)
