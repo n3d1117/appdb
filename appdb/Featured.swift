@@ -47,9 +47,12 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         navigationItem.leftBarButtonItem = categoriesButton
         navigationItem.leftBarButtonItem?.isEnabled = false
         
+        /* DEBUG */
         let tmpButton = UIBarButtonItem(title: "switch mode", style: .plain, target: self, action:#selector(self.tmpSwitch))
         navigationItem.rightBarButtonItem = tmpButton
+        /* DEBUG */
         
+        // Button target action to retry loading
         refreshButton.addTarget(self, action: #selector(self.retry), for: .touchUpInside)
         
         // List Genres and enable button on completion
@@ -63,9 +66,11 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
     }
     
+    /* DEBUG */
     func tmpSwitch() {
         Themes.switchTo(theme: Themes.isNight ? .Light : .Dark)
     }
+    /* DEBUG */
     
     // MARK: - Load Initial Data
     
@@ -107,21 +112,15 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
     
     // MARK: - Retry Loading
     func retry() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.errorMessage.text = ""
-            self.refreshButton.alpha = 0
-        }) { _ in
-            
-            self.activityIndicator.startAnimating()
-            
-            // List Genres and enable button on completion
+        self.refreshButton.isHidden = true
+        self.errorMessage.isHidden = true
+        self.activityIndicator.startAnimating()
+        
+        delay(0.3) {
+            // Retry all network operations
             API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
-            
-            // Retry network operations
-            for cell in self.cells.flatMap({$0 as? ItemCollection}) {
-                cell.requestItems()
-            }
-            
+            for cell in self.cells.flatMap({$0 as? ItemCollection}) { cell.requestItems() }
+            if let banner = self.banner { banner.setImageInputs() }
             self.reloadTableWhenReady()
         }
     }

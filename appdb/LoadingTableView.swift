@@ -57,7 +57,7 @@ class LoadingTableView: UITableViewController {
         
         // Set up 'Retry' button
         refreshButton = ButtonFactory.createRetryButton(text: "Retry", color: Color.copyrightText)
-        refreshButton.alpha = 0
+        refreshButton.isHidden = true
         
         view.addSubview(refreshButton)
         view.addSubview(errorMessage)
@@ -97,12 +97,13 @@ class LoadingTableView: UITableViewController {
     
     // MARK: - error Screen
     func showErrorMessage(text: String = "") {
+        
         activityIndicator.stopAnimating()
 
-        refreshButton.alpha = 1
+        errorMessage.isHidden = false
+        refreshButton.isHidden = false
         errorMessage.text = text
-        
-        errorMessage.sizeToFit()
+
     }
 
 }

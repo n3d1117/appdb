@@ -28,7 +28,7 @@ class Banner: UITableViewCell {
         let h: Double = Double(UIScreen.main.bounds.height)
         let screenHeight: Double = max(w, h)
         
-        switch screenHeight {
+        switch screenHeight { /* Are these numbers out of my ass? Probably. There should be a better way. */
             case 480,568: return 128
             case 667: return 150
             case 736: return 165.6
@@ -65,9 +65,11 @@ class Banner: UITableViewCell {
         })*/
         
         
+        // Initialize Slideshow
         slideshow = ImageSlideshow()
-        slideshow.setImageInputs([ AlamofireSource(urlString: "http://appd.be/n3d/delta/k.png") as! InputSource ])
+        setImageInputs()
 
+        // Set Up Slideshow
         slideshow.slideshowInterval = 5.0
         slideshow.circular = true
         slideshow.zoomEnabled = false
@@ -76,15 +78,24 @@ class Banner: UITableViewCell {
         slideshow.draggingEnabled = true
         slideshow.preload = .all
         
+        // Add tap recognizer
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(Banner.didTap))
         slideshow.addGestureRecognizer(tapRecognizer)
         
         contentView.addSubview(slideshow)
         
+        // Add constraints
         constrain(slideshow) { slideshow in
             slideshow.edges == slideshow.superview!.edges
         }
         
+    }
+    
+    /* This is also a retry function, in case banner should be reloaded */
+    func setImageInputs() {
+        if let slideshow = self.slideshow {
+            slideshow.setImageInputs([ AlamofireSource(urlString: "http://appd.be/n3d/delta/k.png") as! InputSource ])
+        }
     }
     
     func didTap() {

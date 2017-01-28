@@ -148,6 +148,7 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 5
+        categoryLabel.alpha = 0
         
         seeAllButton = ButtonFactory.createChevronButton(text: "See All", color: Color.darkGray)
         seeAllButton.isEnabled = false
