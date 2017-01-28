@@ -41,17 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         }
         
         navigationBar.isTranslucent = true
-        navigationBar.barStyle = .black
+        navigationBar.theme_barStyle = [.default, .black]
         navigationBar.theme_tintColor = Color.mainTint
-        //navigationBar.theme_barTintColor = Color.invertedTitle
         navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithDicts(titleAttributes)
         
         // Theme Tab Bar
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = true
-        tabBar.barStyle = .black
-        //tabBar.theme_tintColor = Color.mainTint
-        //tabBar.theme_barTintColor = Color.invertedTitle
+        tabBar.theme_barStyle = [.default, .black]
         
         // Show network activity indicator
         NetworkActivityIndicatorManager.shared.isEnabled = true

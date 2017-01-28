@@ -45,7 +45,8 @@ class LoadingTableView: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeOrientation), name: .UIDeviceOrientationDidChange, object: nil)
         
         //Set up Activity Indicator View
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.theme_activityIndicatorViewStyle = [.gray, .white]
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         

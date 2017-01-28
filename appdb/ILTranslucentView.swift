@@ -57,21 +57,6 @@ open class ILTranslucentView: UIView {
         }
     }
 
-    @IBInspectable open var translucentStyle : UIBarStyle {
-        set {
-            if self.toolbarBG != nil {
-                self.toolbarBG!.barStyle = newValue
-            }
-        }
-        get {
-            if self.toolbarBG != nil {
-                return self.toolbarBG!.barStyle
-            } else {
-                return UIBarStyle.default
-            }
-        }
-    }
-
     fileprivate var _translucentTintColor = UIColor.clear
     @IBInspectable open var translucentTintColor : UIColor {
         set {
@@ -134,6 +119,7 @@ extension ILTranslucentView {
 
         let _toolbarBG = UIToolbar(frame: rect)
         _toolbarBG.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        _toolbarBG.theme_barStyle = [.default, .black] /* Support dark mode */
         self.toolbarBG = _toolbarBG
 
         self.toolbarContainerClipView!.addSubview(self.toolbarBG!)

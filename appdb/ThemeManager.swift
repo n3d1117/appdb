@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Gesen. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public let ThemeUpdateNotification = "ThemeUpdateNotification"
 
@@ -30,15 +30,15 @@ public enum ThemePath {
     }
 }
 
-open class ThemeManager: NSObject {
+public final class ThemeManager: NSObject {
     
-    open static var animationDuration = 0.3
+    public static var animationDuration = 0.3
     
-    open fileprivate(set) static var currentTheme      : NSDictionary?
-    open fileprivate(set) static var currentThemePath  : ThemePath?
-    open fileprivate(set) static var currentThemeIndex : Int = 0
+    public fileprivate(set) static var currentTheme      : NSDictionary?
+    public fileprivate(set) static var currentThemePath  : ThemePath?
+    public fileprivate(set) static var currentThemeIndex : Int = 0
     
-    open class func setTheme(index: Int) {
+    public class func setTheme(index: Int) {
         currentThemeIndex = index
         NotificationCenter.default.post(name: Notification.Name(rawValue: ThemeUpdateNotification), object: nil)
     }

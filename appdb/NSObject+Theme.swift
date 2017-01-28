@@ -10,9 +10,9 @@ import UIKit
 
 extension NSObject {
     
-    public typealias ThemePickers = [String: ThemePicker]
+    typealias ThemePickers = [String: ThemePicker]
     
-    public var themePickers: ThemePickers {
+    var themePickers: ThemePickers {
         get {
             if let themePickers = objc_getAssociatedObject(self, &themePickersKey) as? ThemePickers {
                 return themePickers
@@ -30,28 +30,37 @@ extension NSObject {
     
     func performThemePicker(selector: String, picker: ThemePicker?) {
         let sel = Selector(selector)
-        let methodSignature = self.method(for: sel)
-        guard responds(to: sel)     else { return }
+        
+        guard responds(to: sel)           else { return }
         guard let value = picker?.value() else { return }
         
         if let statePicker = picker as? ThemeStatePicker {
-            let setState = unsafeBitCast(methodSignature, to: setValueForStateIMP.self)
+            let setState = unsafeBitCast(method(for: sel), to: setValueForStateIMP.self)
             statePicker.values.forEach { setState(self, sel, $1.value()! as AnyObject, UIControlState(rawValue: $0)) }
         }
             
         else if let statusBarStylePicker = picker as? ThemeStatusBarStylePicker {
-            let setStatusBarStyle = unsafeBitCast(methodSignature, to: setStatusBarStyleValueIMP.self)
-            setStatusBarStyle(self, sel, statusBarStylePicker.currentStyle(value as AnyObject?), statusBarStylePicker.animated)
+            let setStatusBarStyle = unsafeBitCast(method(for: sel), to: setStatusBarStyleValueIMP.self)
+            setStatusBarStyle(self, sel, value as! UIStatusBarStyle, statusBarStylePicker.animated)
+        }
             
+        else if picker is ThemeBarStylePicker {
+            let setBarStyle = unsafeBitCast(method(for: sel), to: setBarStyleValueIMP.self)
+            setBarStyle(self, sel, value as! UIBarStyle)
+        }
+            
+        else if picker is ThemeActivityIndicatorViewStylePicker {
+            let setActivityStyle = unsafeBitCast(method(for: sel), to: setActivityStyleValueIMP.self)
+            setActivityStyle(self, sel, value as! UIActivityIndicatorViewStyle)
         }
         
         else if picker is ThemeCGFloatPicker {
-            let setCGFloat = unsafeBitCast(methodSignature, to: setCGFloatValueIMP.self)
+            let setCGFloat = unsafeBitCast(method(for: sel), to: setCGFloatValueIMP.self)
             setCGFloat(self, sel, value as! CGFloat)
         }
         
         else if picker is ThemeCGColorPicker {
-            let setCGColor = unsafeBitCast(methodSignature, to: setCGColorValueIMP.self)
+            let setCGColor = unsafeBitCast(method(for: sel), to: setCGColorValueIMP.self)
             setCGColor(self, sel, value as! CGColor)
         }
         
@@ -61,6 +70,8 @@ extension NSObject {
     fileprivate typealias setCGColorValueIMP        = @convention(c) (NSObject, Selector, CGColor) -> Void
     fileprivate typealias setCGFloatValueIMP        = @convention(c) (NSObject, Selector, CGFloat) -> Void
     fileprivate typealias setValueForStateIMP       = @convention(c) (NSObject, Selector, AnyObject, UIControlState) -> Void
+    fileprivate typealias setActivityStyleValueIMP  = @convention(c) (NSObject, Selector, UIActivityIndicatorViewStyle) -> Void
+    fileprivate typealias setBarStyleValueIMP       = @convention(c) (NSObject, Selector, UIBarStyle) -> Void
     fileprivate typealias setStatusBarStyleValueIMP = @convention(c) (NSObject, Selector, UIStatusBarStyle, Bool) -> Void
     
 }
@@ -81,9 +92,9 @@ extension NSObject {
     
     @objc private func _updateTheme() {
         themePickers.forEach { selector, picker in
-            UIView.animate(withDuration: ThemeManager.animationDuration, animations: {
+            UIView.animate(withDuration: ThemeManager.animationDuration) {
                 self.performThemePicker(selector: selector, picker: picker)
-            }) 
+            }
         }
     }
     

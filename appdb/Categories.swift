@@ -44,7 +44,6 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.theme_separatorColor = Color.borderColor
         
         headerView = ILTranslucentView(frame: CGRect())
-        headerView.translucentStyle = .default
         headerView.translucentAlpha = 1
         
         control = UISegmentedControl(items: ["iOS", "Cydia", "Books"])
