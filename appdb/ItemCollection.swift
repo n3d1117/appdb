@@ -187,16 +187,12 @@ class ItemCollection: FeaturedCell  {
         layout.minimumLineSpacing = Featured.size.spacing.value
         separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
         layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
-        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
-        layout.minimumLineSpacing = Featured.size.spacing.value
-        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
-        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
         
         constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
             collection.left == collection.superview!.left
             collection.right == collection.superview!.right
-            collection.bottom == collection.superview!.bottom ~ 999
             collection.top == collection.superview!.top + (44~~39)
+            collection.bottom == collection.superview!.bottom
             
             section.left == section.superview!.left + Featured.size.margin.value
             section.right == section.left + sectionLabel.frame.size.width ~ 999
