@@ -20,27 +20,28 @@ enum Themes: Int {
     
     static func switchTo(theme: Themes) {
         ThemeManager.setTheme(index: theme.rawValue)
-        saveLastTheme()
+        saveCurrentTheme()
     }
 
     static var isNight : Bool { return current == .Dark }
     
     // MARK: - Save & Restore
     
-    static func saveLastTheme() {
+    static func saveCurrentTheme() {
         let realm = try! Realm()
         if let pref = realm.objects(Preferences.self).first {
             try! realm.write { pref.theme = ThemeManager.currentThemeIndex }
-        } else {
-            let pref = Preferences()
-            pref.theme = ThemeManager.currentThemeIndex
-            try! realm.write { realm.add(pref) }
         }
     }
     
     static func restoreLastTheme() {
         let realm = try! Realm()
         if let pref = realm.objects(Preferences.self).first {
+            switchTo(theme: Themes(rawValue: pref.theme)!)
+        } else {
+            let pref = Preferences()
+            pref.theme = ThemeManager.currentThemeIndex // will be 0 at first launch
+            try! realm.write { realm.add(pref) }
             switchTo(theme: Themes(rawValue: pref.theme)!)
         }
     }
