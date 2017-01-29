@@ -18,15 +18,15 @@ protocol ChangeCategory {
 class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControllerDelegate {
     
     let cells : [FeaturedCell] = [
-        ItemCollection(id: .cydia, title: "🚀 Custom Apps", fullSeparator: true),
+        ItemCollection(id: .cydia, title: "Custom Apps", fullSeparator: true), //🚀
         Dummy(),
-        ItemCollection(id: .iosNew, title: "🎁 New and Noteworthy"),
-        ItemCollection(id: .iosPaid, title: "💰 Top Paid", fullSeparator: true),
+        ItemCollection(id: .iosNew, title: "New and Noteworthy"), //🎁
+        ItemCollection(id: .iosPaid, title: "Top Paid", fullSeparator: true), // 💰
         Dummy(),
-        ItemCollection(id: .iosPopular, title: "🃏 Popular Today"),
-        ItemCollection(id: .iosGames, title: "🎈 Best Games", fullSeparator: true),
+        ItemCollection(id: .iosPopular, title: "Popular Today"), //🃏
+        ItemCollection(id: .iosGames, title: "Best Games", fullSeparator: true), //🎈
         Dummy(),
-        ItemCollection(id: .books, title: "📚 Top Books", fullSeparator: true),
+        ItemCollection(id: .books, title: "Top Books", fullSeparator: true), //📚
         Copyright()
     ]
     
