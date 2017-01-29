@@ -78,8 +78,9 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
         let itemCells = cells.flatMap{$0 as? ItemCollection}
         if itemCells.count != (itemCells.filter{$0.response.success == true}.count) {
-            if !(itemCells.filter{$0.response.failed==true}.isEmpty) {
-                showErrorMessage(text: "Cannot connect to appdb")
+            if !(itemCells.filter{$0.response.errorDescription != ""}.isEmpty) {
+                let error = itemCells.filter{$0.response.errorDescription != ""}.first!.response.errorDescription
+                showErrorMessage(text: "Cannot connect to appdb", secondaryText: error)
             } else {
                 // Not ready, retrying in 0.2 seconds
                 delay(0.2) { self.reloadTableWhenReady() }
@@ -118,6 +119,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
     func retry() {
         self.refreshButton.isHidden = true
         self.errorMessage.isHidden = true
+        self.secondaryErrorMessage.isHidden = true
         self.activityIndicator.startAnimating()
         
         delay(0.3) {

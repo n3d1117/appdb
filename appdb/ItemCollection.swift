@@ -16,7 +16,7 @@ import Dwifft
 // Class to handle response correctly from Featured
 class ItemResponse {
     var success : Bool = false
-    var failed : Bool = false
+    var errorDescription : String = ""
 }
 
 class FlowLayout : UICollectionViewFlowLayout {
@@ -216,7 +216,7 @@ class ItemCollection: FeaturedCell  {
     // MARK: - Networking
     
     func requestItems() {
-        self.response.success = false; self.response.failed = false
+        self.response.success = false; self.response.errorDescription = ""
         if let id = reuseIdentifier {
             if let type = Featured.CellType(rawValue: id) {
                 
@@ -270,20 +270,14 @@ class ItemCollection: FeaturedCell  {
             } else { print("array is empty") }
         
             }, fail: { error in
-                print(error)
+                //print(error)
                 
                 self.seeAllButton.isEnabled = false
                 
-                if error.code == -1009 { /* The Internet connection appears to be offline. */
-                    
-                    self.response.failed = true
-                
-                } else { /* Most likely ObjectMapper failed to serialize response (Error code: 2) */
-                    
-                    // If it's actually reloading a category response is not needed, but fuck it
-                    
-                    self.response.success = true
-                
+                if error.code == 2 { /* ObjectMapper failed to serialize response, let's ignore it */
+                    self.response.success = true // If it's actually reloading a category response is not needed, but fuck it
+                } else {
+                    self.response.errorDescription = error.localizedDescription
                 }
                 
             }

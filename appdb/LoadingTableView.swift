@@ -29,6 +29,7 @@ class LoadingTableView: UITableViewController {
     
     var activityIndicator : UIActivityIndicatorView!
     var errorMessage : UILabel!
+    var secondaryErrorMessage : UILabel!
     var refreshButton : UIButton!
     var group = ConstraintGroup()
     
@@ -54,6 +55,15 @@ class LoadingTableView: UITableViewController {
         errorMessage.font = UIFont.systemFont(ofSize: 22)
         errorMessage.numberOfLines = 0
         errorMessage.textAlignment = .center
+        errorMessage.isHidden = true
+        
+        //Set up Secondary Error Message
+        secondaryErrorMessage = UILabel()
+        secondaryErrorMessage.theme_textColor = Color.copyrightText
+        secondaryErrorMessage.font = UIFont.systemFont(ofSize: 15)
+        secondaryErrorMessage.numberOfLines = 0
+        secondaryErrorMessage.textAlignment = .center
+        secondaryErrorMessage.isHidden = true
         
         // Set up 'Retry' button
         refreshButton = ButtonFactory.createRetryButton(text: "Retry", color: Color.copyrightText)
@@ -61,6 +71,7 @@ class LoadingTableView: UITableViewController {
         
         view.addSubview(refreshButton)
         view.addSubview(errorMessage)
+        view.addSubview(secondaryErrorMessage)
         view.addSubview(activityIndicator)
         
         setConstraints()
@@ -69,7 +80,8 @@ class LoadingTableView: UITableViewController {
     // MARK: - Orientation
 
     func setConstraints() {
-        constrain(activityIndicator, errorMessage, refreshButton, replace: group) { indicator, message, button in
+        constrain(activityIndicator, errorMessage, secondaryErrorMessage, refreshButton, replace: group) { indicator, message, secondaryMessage, button in
+            
             let offset = navigationController!.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height + tabBarController!.tabBar.frame.height
             
             indicator.centerX == indicator.superview!.centerX
@@ -78,10 +90,14 @@ class LoadingTableView: UITableViewController {
             message.left == message.superview!.left + 30
             message.right == message.superview!.right - 30
             message.centerX == message.superview!.centerX
-            message.centerY == message.superview!.centerY - (offset / 2.0) - 25
+            message.centerY == message.superview!.centerY - (offset / 2.0) - 35
             
-            button.top == message.bottom + 30
-            button.width == 78
+            secondaryMessage.left == message.left
+            secondaryMessage.right == message.right
+            secondaryMessage.top == message.bottom + 10
+            
+            button.top == secondaryMessage.bottom + 30
+            button.width == 80
             button.centerX == button.superview!.centerX
         }
     }
@@ -96,12 +112,15 @@ class LoadingTableView: UITableViewController {
     }
     
     // MARK: - error Screen
-    func showErrorMessage(text: String = "") {
+    func showErrorMessage(text: String = "", secondaryText: String = "") {
         
         activityIndicator.stopAnimating()
 
+        secondaryErrorMessage.isHidden = false
         errorMessage.isHidden = false
         refreshButton.isHidden = false
+        
+        secondaryErrorMessage.text = secondaryText
         errorMessage.text = text
 
     }
