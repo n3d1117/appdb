@@ -155,6 +155,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             popover.delegate = self
             popover.sourceView = sender.value(forKey: "view") as! UIView?
             popover.sourceRect = (sender.value(forKey: "view") as! UIView!).bounds
+            popover.theme_backgroundColor = Color.popoverArrowColor
         }
         present(nav, animated: true, completion: nil)
     }

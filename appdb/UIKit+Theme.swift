@@ -8,6 +8,14 @@
 
 import UIKit
 
+// Added by me
+extension UIPopoverPresentationController {
+    public var theme_backgroundColor: ThemeColorPicker? {
+        get { return getThemePicker(self, "setBackgroundColor:") as? ThemeColorPicker }
+        set { setThemePicker(self, "setBackgroundColor:", newValue) }
+    }
+}
+
 extension UIView
 {
     public var theme_alpha: ThemeCGFloatPicker? {

@@ -21,6 +21,7 @@ enum Color {
     static let title: ThemeColorPicker = ["#121212", "#F8F8F8"]
     static let invertedTitle: ThemeColorPicker = ["#F8F8F8", "#121212"]
     static let cellSelectionColor: ThemeColorPicker = ["#D8D8D8", "#595959"]
+    static let popoverArrowColor: ThemeColorPicker = ["#F6F6F7", "#161616"]
     
     /* CG Colors */
     static let copyrightTextCgColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#555555", "#7E7E7E")
