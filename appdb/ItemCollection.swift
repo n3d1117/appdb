@@ -265,7 +265,7 @@ class ItemCollection: FeaturedCell  {
                         }
             
                     }, completion: nil)
-                }
+                } else { print("diff is empty... wtf?") }
                 
             } else { print("array is empty") }
         

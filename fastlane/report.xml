@@ -5,27 +5,27 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: get_version_number" time="0.811168">
+      <testcase classname="fastlane.lanes" name="0: get_version_number" time="2.593495">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: gym" time="84.048603">
+      <testcase classname="fastlane.lanes" name="1: gym" time="72.472416">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: zip -d &quot;$IPA_OUTPUT_PATH&quot; &quot;SwiftSupport/*&quot;" time="0.48585">
+      <testcase classname="fastlane.lanes" name="2: zip -d &quot;$IPA_OUTPUT_PATH&quot; &quot;SwiftSupport/*&quot;" time="0.283866">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: rm -rf /Users/ned/Library/Developer/Xcode/Archives/*" time="0.050179">
+      <testcase classname="fastlane.lanes" name="3: rm -rf /Users/ned/Library/Developer/Xcode/Archives/*" time="0.037069">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: rm -rf /Users/ned/Desktop/*dSYM.zip" time="0.010392">
+      <testcase classname="fastlane.lanes" name="4: rm -rf /Users/ned/Desktop/*dSYM.zip" time="0.007023">
         
       </testcase>
     

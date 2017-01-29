@@ -85,12 +85,14 @@ extension Featured {
         }
     }
     
-    //Stick banner to top
+    // Stick banner to top
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let headerView = tableView.tableHeaderView as? Banner {
-            let minOff : CGFloat = -navigationController!.navigationBar.frame.height - UIApplication.shared.statusBarFrame.size.height + 1.0
+            let minOff : CGFloat = -navigationController!.navigationBar.frame.height - UIApplication.shared.statusBarFrame.size.height
             if scrollView.contentOffset.y < minOff {
-                headerView.contentView.frame.origin.y = min(scrollView.contentOffset.y - minOff+0.5, 0)
+                headerView.subviews[0].bounds.origin.y = minOff - scrollView.contentOffset.y
+            } else {
+                headerView.subviews[0].bounds.origin.y = 0
             }
         }  
     }
