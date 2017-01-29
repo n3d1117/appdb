@@ -2,6 +2,5 @@
 - promotions??
 - small cells with promotional images
 - ImageSlideshow landscape support (waiting https://github.com/zvonicek/ImageSlideshow/issues/117)
-- fix banner wrong offset when scrolling hard
 - proper splash view
 - describe colors
