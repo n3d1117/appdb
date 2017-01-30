@@ -148,7 +148,7 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 5
-        categoryLabel.alpha = 0
+        categoryLabel.isHidden = true
         
         seeAllButton = ButtonFactory.createChevronButton(text: "See All", color: Color.darkGray)
         seeAllButton.isEnabled = false
@@ -254,13 +254,14 @@ class ItemCollection: FeaturedCell  {
                         // Update category label
                         if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
                             self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
-                            self.categoryLabel.alpha = 1
+                            self.categoryLabel.isHidden = false
                         } else {
                             self.categoryLabel.text = ""
-                            self.categoryLabel.alpha = 0
+                            self.categoryLabel.isHidden = true
                         }
             
                     }, completion: nil)
+                    
                 } else { print("diff is empty... wtf?") }
                 
             } else { print("array is empty") }
