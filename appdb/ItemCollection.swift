@@ -61,6 +61,13 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             if let url = URL(string: cydiaApp.image) {
                 cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.featured, imageTransition: .crossDissolve(0.2))
             }
+            
+            /* Fixes missing category text if text is empty and it's first launch, fixes #3 */
+            if cell.category.text!.isEmpty, Global.firstLaunch { delay(0.3) {
+                cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
+                cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
+            } }
+            
             return cell
         }
         if let book = item as? Book {
