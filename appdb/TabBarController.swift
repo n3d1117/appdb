@@ -9,15 +9,14 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let featured = UIStoryboard(name: "Featured", bundle: nil)
-        let featuredNav = featured.instantiateViewController(withIdentifier: "FeaturedNavController") as! UINavigationController
+        let featuredNav : UINavigationController = UINavigationController(rootViewController: Featured())
         featuredNav.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
         
-        //TODO ADD MORE
+        // TODO ADD MORE
         
         self.viewControllers = [featuredNav]
     }

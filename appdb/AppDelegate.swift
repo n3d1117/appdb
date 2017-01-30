@@ -17,11 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        self.window!.rootViewController = TabBarController()
-        self.window!.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.main.bounds)
         
-        Global.setFirstLaunch()
-        Themes.restoreLastTheme()
+        window!.rootViewController = TabBarController()
+        window!.makeKeyAndVisible()
         
         // Set main tint color
         self.window!.theme_backgroundColor = Color.invertedTitle
@@ -52,6 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         tabBar.isTranslucent = true
         tabBar.theme_barStyle = [.default, .black]
         
+        // Global Operations
+        Global.setFirstLaunch()
+        Themes.restoreLastTheme()
+        
         // Show network activity indicator
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.startDelay = 0.3
@@ -66,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         )
         Realm.Configuration.defaultConfiguration = config
         
-        //Log.debug(Realm.Configuration.defaultConfiguration.fileURL)
+        //print(Realm.Configuration.defaultConfiguration.fileURL)
 
         return true
     }
