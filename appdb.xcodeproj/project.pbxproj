@@ -26,7 +26,6 @@
 		8167A61F1DAC246000F96AC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8167A61D1DAC246000F96AC2 /* LaunchScreen.storyboard */; };
 		816CEED91DBCE8A2002CFF6E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816CEED81DBCE8A2002CFF6E /* Categories.swift */; };
 		816CEEDB1DBD00E5002CFF6E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */; };
-		81702B9E1E15486400F9ABDC /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 81702B9D1E15486400F9ABDC /* TODO */; };
 		8180EE631E26D75E001C04B5 /* API+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8180EE621E26D75E001C04B5 /* API+Search.swift */; };
 		8180EE651E26D7B7001C04B5 /* API+Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8180EE641E26D7B7001C04B5 /* API+Genres.swift */; };
 		8187B4ED1E3A789000F251CD /* API+Promotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187B4EC1E3A789000F251CD /* API+Promotions.swift */; };
@@ -35,7 +34,6 @@
 		8188E8EC1DB25F6B00462256 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188E8EB1DB25F6B00462256 /* API.swift */; };
 		81939B471E3BA98D00179615 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B461E3BA98D00179615 /* Themes.swift */; };
 		81939B4B1E3BAA9A00179615 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B4A1E3BAA9A00179615 /* Preferences.swift */; };
-		81939B4D1E3BB4DB00179615 /* SwiftTheme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81939B4C1E3BB4DB00179615 /* SwiftTheme.framework */; };
 		81A065851E394D5E00398102 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A065841E394D5E00398102 /* Diff.framework */; };
 		81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB37AD1DAC30BD003A586F /* TabBarController.swift */; };
 		81B6F6B41E212CC1000AD47C /* AlamofireSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6F6B31E212CC1000AD47C /* AlamofireSource.swift */; };
@@ -87,7 +85,6 @@
 		8167A6261DAC24F700F96AC2 /* appdb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appdb.entitlements; sourceTree = "<group>"; };
 		816CEED81DBCE8A2002CFF6E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
-		81702B9D1E15486400F9ABDC /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		8180EE621E26D75E001C04B5 /* API+Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Search.swift"; sourceTree = "<group>"; };
 		8180EE641E26D7B7001C04B5 /* API+Genres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Genres.swift"; sourceTree = "<group>"; };
 		8187B4EC1E3A789000F251CD /* API+Promotions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Promotions.swift"; sourceTree = "<group>"; };
@@ -160,7 +157,6 @@
 				81211D541E393EB500981A3F /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				81211D601E393F0300981A3F /* AlamofireImage.framework in Frameworks */,
 				81211D551E393EB800981A3F /* Bond.framework in Frameworks */,
-				81939B4D1E3BB4DB00179615 /* SwiftTheme.framework in Frameworks */,
 				81211D5F1E393F0200981A3F /* Alamofire.framework in Frameworks */,
 				81211D5E1E393EDB00981A3F /* SwiftyJSON.framework in Frameworks */,
 				81211D561E393EBD00981A3F /* Cartography.framework in Frameworks */,
@@ -212,7 +208,6 @@
 		8167A6111DAC246000F96AC2 /* appdb */ = {
 			isa = PBXGroup;
 			children = (
-				81702B9D1E15486400F9ABDC /* TODO */,
 				81EC00621DAD74D9009EEFFA /* Other */,
 				8180EE611E26D72D001C04B5 /* API */,
 				81EC007D1DAE666B009EEFFA /* Models */,
@@ -471,7 +466,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81702B9E1E15486400F9ABDC /* TODO in Resources */,
 				8167A61F1DAC246000F96AC2 /* LaunchScreen.storyboard in Resources */,
 				8167A61C1DAC246000F96AC2 /* Assets.xcassets in Resources */,
 			);
@@ -499,7 +493,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Dwifft.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ImageSlideshow.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Diff.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftTheme.framework",
 			);
 			outputPaths = (
 			);
