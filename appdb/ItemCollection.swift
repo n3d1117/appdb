@@ -63,7 +63,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             }
             
             /* Fixes missing category text if text is empty and it's first launch, fixes #3 */
-            if cell.category.text!.isEmpty, Global.firstLaunch { delay(0.3) {
+            if Global.firstLaunch { delay(0.3) {
                 cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
                 cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
             } }
