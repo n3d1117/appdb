@@ -207,9 +207,9 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         dismissAnimated()
         
         switch control.selectedSegmentIndex {
-        case 0: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .ios)
-        case 1: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .cydia)
-        case 2: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .books)
+            case 0: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .ios)
+            case 1: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .cydia)
+            case 2: delegate?.reloadViewAfterCategoryChange(id: categories[indexPath.row].id, type: .books)
         default: break
         }
         

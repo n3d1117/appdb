@@ -67,9 +67,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
     }
     
     /* DEBUG */
-    func tmpSwitch() {
-        Themes.switchTo(theme: Themes.isNight ? .Light : .Dark)
-    }
+    func tmpSwitch() { Themes.switchTo(theme: Themes.isNight ? .Light : .Dark) }
     /* DEBUG */
     
     // MARK: - Load Initial Data
