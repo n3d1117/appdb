@@ -131,7 +131,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             // Retry all network operations
             API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
             for cell in self.cells.flatMap({$0 as? ItemCollection}) { cell.requestItems() }
-            if let banner = self.banner { banner.slideshow.pauseTimerIfNeeded(); banner.setImageInputs() }
+            if let banner = self.banner { banner.setImageInputs() }
             self.reloadTableWhenReady()
         }
     }

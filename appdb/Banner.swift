@@ -69,14 +69,12 @@ class Banner: UITableViewCell {
         setImageInputs()
 
         // Set Up Slideshow
-        slideshow.slideshowInterval = 5.0
         slideshow.circular = true
         slideshow.zoomEnabled = false
         slideshow.pageControlPosition = .hidden
         slideshow.contentScaleMode = .scaleAspectFit
         slideshow.draggingEnabled = true
         slideshow.preload = .all
-        slideshow.pauseTimerIfNeeded()
         
         // Add tap recognizer
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(Banner.didTap))
@@ -89,6 +87,11 @@ class Banner: UITableViewCell {
             slideshow.edges == slideshow.superview!.edges
         }
         
+    }
+    
+    /* Should be called only when view is loaded */
+    func startTimer() {
+        slideshow.slideshowInterval = 5.0
     }
     
     /* This is also a retry function, in case banner should be reloaded */

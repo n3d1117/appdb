@@ -74,7 +74,7 @@ extension Featured {
     // Add Banner
     func addBanner(from: Banner) {
         tableView.tableHeaderView = from
-        from.slideshow.unpauseTimerIfNeeded()
+        from.startTimer()
         if let headerView = tableView.tableHeaderView {
             let height : CGFloat = from.height
             var headerFrame = headerView.frame
