@@ -40,6 +40,11 @@
 		8188E8EC1DB25F6B00462256 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188E8EB1DB25F6B00462256 /* API.swift */; };
 		81939B471E3BA98D00179615 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B461E3BA98D00179615 /* Themes.swift */; };
 		81939B4B1E3BAA9A00179615 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B4A1E3BAA9A00179615 /* Preferences.swift */; };
+		819EC2CA1E40FF4400BA7A50 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC2C61E40FF4400BA7A50 /* Localize.swift */; };
+		819EC2CB1E40FF4400BA7A50 /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC2C71E40FF4400BA7A50 /* String+LocalizeBundle.swift */; };
+		819EC2CC1E40FF4400BA7A50 /* String+LocalizedBundleTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC2C81E40FF4400BA7A50 /* String+LocalizedBundleTableName.swift */; };
+		819EC2CD1E40FF4400BA7A50 /* String+LocalizeTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC2C91E40FF4400BA7A50 /* String+LocalizeTableName.swift */; };
+		819EC2D01E41013D00BA7A50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 819EC2D21E41013D00BA7A50 /* Localizable.strings */; };
 		81A065851E394D5E00398102 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A065841E394D5E00398102 /* Diff.framework */; };
 		81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB37AD1DAC30BD003A586F /* TabBarController.swift */; };
 		81B6F6B41E212CC1000AD47C /* AlamofireSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6F6B31E212CC1000AD47C /* AlamofireSource.swift */; };
@@ -72,7 +77,7 @@
 		81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00741DAD89AF009EEFFA /* Dummy.swift */; };
 		81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00761DAD89D7009EEFFA /* Banner.swift */; };
 		81EC00791DAD8B5A009EEFFA /* Copyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00781DAD8B5A009EEFFA /* Copyright.swift */; };
-		81EC007B1DAD92A2009EEFFA /* FeaturedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC007A1DAD92A2009EEFFA /* FeaturedExtension.swift */; };
+		81EC007B1DAD92A2009EEFFA /* Featured+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */; };
 		81EC007F1DAE6680009EEFFA /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC007E1DAE6680009EEFFA /* Items.swift */; };
 		81EC00891DAE88D3009EEFFA /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00881DAE88D3009EEFFA /* App.swift */; };
 		81EC008B1DAE8D1A009EEFFA /* CydiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC008A1DAE8D1A009EEFFA /* CydiaApp.swift */; };
@@ -119,6 +124,12 @@
 		81939B461E3BA98D00179615 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		81939B4A1E3BAA9A00179615 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		81939B4C1E3BB4DB00179615 /* SwiftTheme.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftTheme.framework; path = Carthage/Build/iOS/SwiftTheme.framework; sourceTree = "<group>"; };
+		819EC2C61E40FF4400BA7A50 /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
+		819EC2C71E40FF4400BA7A50 /* String+LocalizeBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeBundle.swift"; sourceTree = "<group>"; };
+		819EC2C81E40FF4400BA7A50 /* String+LocalizedBundleTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizedBundleTableName.swift"; sourceTree = "<group>"; };
+		819EC2C91E40FF4400BA7A50 /* String+LocalizeTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeTableName.swift"; sourceTree = "<group>"; };
+		819EC2D11E41013D00BA7A50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		819EC2D31E41016D00BA7A50 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		81A065841E394D5E00398102 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
 		81AB37AD1DAC30BD003A586F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		81B6F6B01E212B2B000AD47C /* ImageSlideshow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageSlideshow.framework; path = Carthage/Build/iOS/ImageSlideshow.framework; sourceTree = "<group>"; };
@@ -153,7 +164,7 @@
 		81EC00741DAD89AF009EEFFA /* Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		81EC00761DAD89D7009EEFFA /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		81EC00781DAD8B5A009EEFFA /* Copyright.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Copyright.swift; sourceTree = "<group>"; };
-		81EC007A1DAD92A2009EEFFA /* FeaturedExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedExtension.swift; sourceTree = "<group>"; };
+		81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Featured+Extension.swift"; sourceTree = "<group>"; };
 		81EC007E1DAE6680009EEFFA /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 		81EC00881DAE88D3009EEFFA /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81EC008A1DAE8D1A009EEFFA /* CydiaApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CydiaApp.swift; sourceTree = "<group>"; };
@@ -275,6 +286,7 @@
 				81E7CBF91E1FC0DE004AF156 /* LoadingTableView */,
 				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
 				81939B4E1E3BC74400179615 /* SwiftTheme */,
+				819EC2C51E40FF3600BA7A50 /* Localize_Swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -310,6 +322,18 @@
 				81BA82501E3CA80500FCC4C0 /* UIKit+Theme.swift */,
 			);
 			name = SwiftTheme;
+			sourceTree = "<group>";
+		};
+		819EC2C51E40FF3600BA7A50 /* Localize_Swift */ = {
+			isa = PBXGroup;
+			children = (
+				819EC2D21E41013D00BA7A50 /* Localizable.strings */,
+				819EC2C61E40FF4400BA7A50 /* Localize.swift */,
+				819EC2C71E40FF4400BA7A50 /* String+LocalizeBundle.swift */,
+				819EC2C81E40FF4400BA7A50 /* String+LocalizedBundleTableName.swift */,
+				819EC2C91E40FF4400BA7A50 /* String+LocalizeTableName.swift */,
+			);
+			name = Localize_Swift;
 			sourceTree = "<group>";
 		};
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
@@ -358,7 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				81EC00641DAD7514009EEFFA /* Featured.swift */,
-				81EC007A1DAD92A2009EEFFA /* FeaturedExtension.swift */,
+				81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */,
 				81EC007C1DAD92BE009EEFFA /* Cells */,
 				816CEED71DBCE88E002CFF6E /* Categories */,
 			);
@@ -469,6 +493,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = 8167A6061DAC246000F96AC2;
 			productRefGroup = 8167A6101DAC246000F96AC2 /* Products */;
@@ -486,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8167A61F1DAC246000F96AC2 /* LaunchScreen.storyboard in Resources */,
+				819EC2D01E41013D00BA7A50 /* Localizable.strings in Resources */,
 				8167A61C1DAC246000F96AC2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				819EC2CD1E40FF4400BA7A50 /* String+LocalizeTableName.swift in Sources */,
 				81BA82621E3CA80500FCC4C0 /* UIKit+Theme.swift in Sources */,
 				81EC00651DAD7514009EEFFA /* Featured.swift in Sources */,
 				812EEF311E40DEC200B40474 /* UIImageView+Tools.swift in Sources */,
@@ -533,6 +560,7 @@
 				81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */,
 				81F3D6581E1310BA003CD808 /* ILTranslucentView.swift in Sources */,
 				81EC00891DAE88D3009EEFFA /* App.swift in Sources */,
+				819EC2CC1E40FF4400BA7A50 /* String+LocalizedBundleTableName.swift in Sources */,
 				81EC008B1DAE8D1A009EEFFA /* CydiaApp.swift in Sources */,
 				812EEF2D1E40DEC200B40474 /* ImageSlideshow.swift in Sources */,
 				81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */,
@@ -546,7 +574,7 @@
 				81BA82611E3CA80500FCC4C0 /* UIColorExtension.swift in Sources */,
 				81BA82541E3CA80500FCC4C0 /* ThemeCGColorPicker.swift in Sources */,
 				81939B471E3BA98D00179615 /* Themes.swift in Sources */,
-				81EC007B1DAD92A2009EEFFA /* FeaturedExtension.swift in Sources */,
+				81EC007B1DAD92A2009EEFFA /* Featured+Extension.swift in Sources */,
 				8167A6131DAC246000F96AC2 /* AppDelegate.swift in Sources */,
 				81BA825E1E3CA80500FCC4C0 /* ThemePicker.swift in Sources */,
 				812EEF2E1E40DEC200B40474 /* ImageSlideshowItem.swift in Sources */,
@@ -555,12 +583,14 @@
 				81BA825D1E3CA80500FCC4C0 /* ThemeManager+Plist.swift in Sources */,
 				81BA82551E3CA80500FCC4C0 /* ThemeCGFloatPicker.swift in Sources */,
 				81BA82521E3CA80500FCC4C0 /* ThemeActivityIndicatorViewStylePicker.swift in Sources */,
+				819EC2CB1E40FF4400BA7A50 /* String+LocalizeBundle.swift in Sources */,
 				8180EE651E26D7B7001C04B5 /* API+Genres.swift in Sources */,
 				81BA82561E3CA80500FCC4C0 /* ThemeColorPicker.swift in Sources */,
 				81BA82571E3CA80500FCC4C0 /* ThemeDictionaryPicker.swift in Sources */,
 				8187B4ED1E3A789000F251CD /* API+Promotions.swift in Sources */,
 				8188E8EC1DB25F6B00462256 /* API.swift in Sources */,
 				81EC00791DAD8B5A009EEFFA /* Copyright.swift in Sources */,
+				819EC2CA1E40FF4400BA7A50 /* Localize.swift in Sources */,
 				81EC00711DAD7979009EEFFA /* FeaturedApp.swift in Sources */,
 				81EC00731DAD79A8009EEFFA /* FeaturedBook.swift in Sources */,
 				81B6F6B41E212CC1000AD47C /* AlamofireSource.swift in Sources */,
@@ -596,6 +626,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		819EC2D21E41013D00BA7A50 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				819EC2D11E41013D00BA7A50 /* en */,
+				819EC2D31E41016D00BA7A50 /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -603,6 +642,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -654,6 +694,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

@@ -18,15 +18,15 @@ protocol ChangeCategory {
 class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControllerDelegate {
     
     let cells : [FeaturedCell] = [
-        ItemCollection(id: .cydia, title: "Custom Apps", fullSeparator: true), //🚀
+        ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true), //🚀
         Dummy(),
-        ItemCollection(id: .iosNew, title: "New and Noteworthy"), //🎁
-        ItemCollection(id: .iosPaid, title: "Top Paid", fullSeparator: true), // 💰
+        ItemCollection(id: .iosNew, title: "New and Noteworthy".localized()), //🎁
+        ItemCollection(id: .iosPaid, title: "Top Paid".localized(), fullSeparator: true), // 💰
         Dummy(),
-        ItemCollection(id: .iosPopular, title: "Popular Today"), //🃏
-        ItemCollection(id: .iosGames, title: "Best Games", fullSeparator: true), //🎈
+        ItemCollection(id: .iosPopular, title: "Popular Today".localized()), //🃏
+        ItemCollection(id: .iosGames, title: "Best Games".localized(), fullSeparator: true), //🎈
         Dummy(),
-        ItemCollection(id: .books, title: "Top Books", fullSeparator: true), //📚
+        ItemCollection(id: .books, title: "Top Books".localized(), fullSeparator: true), //📚
         Copyright()
     ]
     
@@ -36,14 +36,14 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         super.viewDidLoad()
 
         // Set up
-        title = "Featured"
+        title = "Featured".localized()
         
         // Register cells
         registerCells()
         tableView.theme_separatorColor = Color.borderColor
         
         // Add categories button
-        let categoriesButton = UIBarButtonItem(title: "Categories", style: .plain, target: self, action:#selector(Featured.openCategories(_:)))
+        let categoriesButton = UIBarButtonItem(title: "Categories".localized(), style: .plain, target: self, action:#selector(Featured.openCategories(_:)))
         navigationItem.leftBarButtonItem = categoriesButton
         navigationItem.leftBarButtonItem?.isEnabled = false
         
@@ -51,7 +51,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
         
         /* DEBUG */
-        let tmpButton = UIBarButtonItem(title: "switch mode", style: .plain, target: self, action:#selector(self.tmpSwitch))
+        let tmpButton = UIBarButtonItem(title: "switch mode".localized(), style: .plain, target: self, action:#selector(self.tmpSwitch))
         navigationItem.rightBarButtonItem = tmpButton
         /* DEBUG */
         
@@ -80,10 +80,11 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
                 
                 let error = itemCells.filter{$0.response.errorDescription != ""}.first!.response.errorDescription
                 
-                showErrorMessage(text: "Cannot connect to appdb", secondaryText: error)
+                showErrorMessage(text: "Cannot connect".localized(), secondaryText: error)
                 
                 // Button target action to retry loading
                 refreshButton.addTarget(self, action: #selector(self.retry), for: .touchUpInside)
+                
             } else {
                 // Not ready, retrying in 0.2 seconds
                 delay(0.3) { self.reloadTableWhenReady() }

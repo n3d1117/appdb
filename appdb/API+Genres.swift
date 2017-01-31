@@ -44,9 +44,9 @@ extension API {
                     
                     do {
                         try realm.write {
-                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories", "category": "ios", "compound": "0-ios"], update: true)
-                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories", "category": "cydia", "compound": "0-cydia"], update: true)
-                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories", "category": "books", "compound": "0-books"], update: true)
+                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "ios", "compound": "0-ios"], update: true)
+                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "cydia", "compound": "0-cydia"], update: true)
+                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "books", "compound": "0-books"], update: true)
                             for genre in tmp {
                                 realm.create(Genre.self, value: ["id": genre.id, "name": genre.name, "category": genre.category, "compound": "\(genre.id)-\(genre.category)"], update: true)
                             }

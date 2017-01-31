@@ -42,7 +42,7 @@ class Copyright: FeaturedCell {
         copyrightNotice.font = UIFont.systemFont(ofSize: 11.3)
         let newLine = " " ~~ "\n"
         copyrightNotice.text = "© 2012-\(getCurrentYear()) appdb.cc.\(newLine)" +
-        "We do not host any prohibited content. All data is publicly available via iTunes API."
+        "We do not host any prohibited content. All data is publicly available via iTunes API.".localized()
         copyrightNotice.numberOfLines = 0
         copyrightNotice.sizeToFit()
         

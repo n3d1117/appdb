@@ -1,0 +1,69 @@
+/* 
+  Localizable.strings
+  appdb
+
+  Created by ned on 31/01/2017.
+  Copyright © 2017 ned. All rights reserved.
+*/
+
+//////////////////////
+//                  //
+//  TAB BAR TITLES  //
+//                  //
+//////////////////////
+
+"Featured" = "Featured";
+
+//////////////////////
+//                  //
+//    NETWORKING    //
+//                  //
+//////////////////////
+
+"Cannot connect" = "Cannot connect";
+"Retry" = "Retry";
+
+//////////////////////
+//                  //
+//    CATEGORIES    //
+//                  //
+//////////////////////
+
+"All Categories" = "All Categories";
+"Categories" = "Categories";
+"Select Category" = "Select Category";
+"iOS" = "iOS";
+"Cydia" = "Cydia";
+"Books" = "Books";
+"Cancel" = "Cancel";
+
+/////////////////////////////
+//                         //
+//    FEATURED SECTIONS    //
+//                         //
+/////////////////////////////
+
+
+"Custom Apps" = "Custom Apps";
+"New and Noteworthy" = "New and Noteworthy";
+"Top Paid" = "Top Paid";
+"Popular Today" = "Popular Today";
+"Best Games" = "Best Games";
+"Top Books" = "Top Books";
+"See All" = "See All";
+
+///////////////////
+//               //
+//     OTHER     //
+//               //
+///////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "We do not host any prohibited content. All data is publicly available via iTunes API.";
+
+///////////////////
+//               //
+//     DEBUG     //
+//               //
+///////////////////
+
+"switch mode" = "switch mode";

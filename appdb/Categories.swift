@@ -43,7 +43,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         headerView = ILTranslucentView(frame: CGRect())
         headerView.translucentAlpha = 1
         
-        control = UISegmentedControl(items: ["iOS", "Cydia", "Books"])
+        control = UISegmentedControl(items: ["iOS".localized(), "Cydia".localized(), "Books".localized()])
         control.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)
         control.selectedSegmentIndex = selected
         reloadAfterIndexChange(index: selected)
@@ -64,7 +64,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.register(CategoryCell.self, forCellReuseIdentifier: "category_books")
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         view.theme_backgroundColor = Color.tableViewBackgroundColor
-        title = "Select Category"
+        title = "Select Category".localized()
         
         // Fix margins on iOS 9+
         if #available(iOS 9.0, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
@@ -73,7 +73,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
         // Add cancel button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action:#selector(Categories.dismissAnimated))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action:#selector(Categories.dismissAnimated))
         
     }
     
@@ -92,25 +92,29 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         case 0: //iOS
             tableView.rowHeight = 50
             categories = Array(realm.objects(Genre.self).filter("category = 'ios'").sorted(byKeyPath: "name"))
+            putCategoriesAtTheTop(compound: "0-ios")
         case 1: //Cydia
             tableView.rowHeight = 50
             categories = Array(realm.objects(Genre.self).filter("category = 'cydia'").sorted(byKeyPath: "name"))
+            putCategoriesAtTheTop(compound: "0-cydia")
         case 2: //Books
             tableView.rowHeight = 60
             categories = Array(realm.objects(Genre.self).filter("category = 'books'").sorted(byKeyPath: "name"))
+            putCategoriesAtTheTop(compound: "0-books")
             
-            // Ensure 'All Categories' is always at the top
-            if categories.first?.compound != "0-books", let top = categories.filter({$0.compound == "0-books"}).first {
-                if let index = categories.index(of: top) {
-                    categories.remove(at: index)
-                    categories.insert(top, at: 0)
-                }
-            }
         default: break
         }
         
         for _ in categories { checked[selected]!.append(false) }
         tableView.reloadData()
+    }
+    
+    func putCategoriesAtTheTop(compound: String) {
+        if categories.first?.compound != compound, let top = categories.filter({$0.compound == compound}).first {
+            if let index = categories.index(of: top) {
+                categories.remove(at: index); categories.insert(top, at: 0)
+            }
+        }
     }
     
     // MARK: - Constraints

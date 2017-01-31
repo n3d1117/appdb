@@ -66,7 +66,7 @@ class LoadingTableView: UITableViewController {
         secondaryErrorMessage.isHidden = true
         
         // Set up 'Retry' button
-        refreshButton = ButtonFactory.createRetryButton(text: "Retry", color: Color.copyrightText)
+        refreshButton = ButtonFactory.createRetryButton(text: "Retry".localized(), color: Color.copyrightText)
         refreshButton.isHidden = true
         
         view.addSubview(refreshButton)

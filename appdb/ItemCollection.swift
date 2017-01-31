@@ -150,7 +150,7 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.layer.cornerRadius = 5
         categoryLabel.isHidden = true
         
-        seeAllButton = ButtonFactory.createChevronButton(text: "See All", color: Color.darkGray)
+        seeAllButton = ButtonFactory.createChevronButton(text: "See All".localized(), color: Color.darkGray)
         seeAllButton.isEnabled = false
 
         contentView.addSubview(categoryLabel)

@@ -1,0 +1,68 @@
+/* 
+  Localizable.strings
+  appdb
+
+  Created by ned on 31/01/2017.
+  Copyright © 2017 ned. All rights reserved.
+*/
+
+//////////////////////
+//                  //
+//  TAB BAR TITLES  //
+//                  //
+//////////////////////
+
+"Featured" = "Primo piano";
+
+//////////////////////
+//                  //
+//    NETWORKING    //
+//                  //
+//////////////////////
+
+"Cannot connect" = "Impossibile connettersi";
+"Retry" = "Riprova";
+
+//////////////////////
+//                  //
+//    CATEGORIES    //
+//                  //
+//////////////////////
+
+"All Categories" = "Tutte le categorie";
+"Categories" = "Categorie";
+"Select Category" = "Seleziona categoria";
+"iOS" = "iOS";
+"Cydia" = "Cydia";
+"Books" = "Libri";
+"Cancel" = "Annulla";
+
+/////////////////////////////
+//                         //
+//    FEATURED SECTIONS    //
+//                         //
+/////////////////////////////
+
+"Custom Apps" = "App di terze parti";
+"New and Noteworthy" = "Novità";
+"Top Paid" = "App a pagamento";
+"Popular Today" = "Populari oggi";
+"Best Games" = "Giochi stupendi";
+"Top Books" = "Libri più scaricati";
+"See All" = "Vedi tutto";
+
+///////////////////
+//               //
+//     OTHER     //
+//               //
+///////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "Non hostiamo nessun contenuto proibito. Tutti i dati sono disponibili pubblicamente attraverso le API di iTunes.";
+
+///////////////////
+//               //
+//     DEBUG     //
+//               //
+///////////////////
+
+"switch mode" = "switcha";

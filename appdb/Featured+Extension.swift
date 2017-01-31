@@ -1,5 +1,5 @@
 //
-//  FeaturedGenerics.swift
+//  Featured+Extension.swift
 //  appdb
 //
 //  Created by ned on 11/10/2016.
