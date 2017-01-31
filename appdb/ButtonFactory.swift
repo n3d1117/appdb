@@ -57,8 +57,6 @@ class ButtonFactory {
         button.layer.cornerRadius = 5.0
         button.layer.masksToBounds = true
         button.contentEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
-        
-        button.sizeToFit()
         button.isHighlighted = false /* set to false initially so the initial borderColor is set too */
 
         // Hardcoded insets, do not try this at home
@@ -68,6 +66,9 @@ class ButtonFactory {
         titleInset.left = 2; titleInset.right = 9
         button.titleEdgeInsets = titleInset
         button.imageEdgeInsets = imageInset
+        
+        button.sizeToFit()
+        button.tag = Int(button.bounds.width) /* pass dynamic width */ 
         
         return button
     }

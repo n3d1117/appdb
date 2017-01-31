@@ -97,8 +97,8 @@ class LoadingTableView: UITableViewController {
             secondaryMessage.top == message.bottom + 10
             
             button.top == secondaryMessage.bottom + 30
-            button.width == 80
             button.centerX == button.superview!.centerX
+            button.width == CGFloat(refreshButton.tag + 20) /* Dynamic width */
         }
     }
     
