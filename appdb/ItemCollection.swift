@@ -179,14 +179,15 @@ class ItemCollection: FeaturedCell  {
     func setConstraints() {
         
         let layout: FlowLayout = FlowLayout()
-        collectionView.collectionViewLayout = layout
-        if let id = Featured.CellType(rawValue: reuseIdentifier ?? "") {
+        if let id = Featured.CellType(rawValue: reuseIdentifier!) {
             if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
         }
         layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
         layout.minimumLineSpacing = Featured.size.spacing.value
         separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
         layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
+        
+        collectionView.collectionViewLayout = layout
         
         constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
             collection.left == collection.superview!.left
@@ -196,14 +197,13 @@ class ItemCollection: FeaturedCell  {
             
             section.left == section.superview!.left + Featured.size.margin.value
             section.right == section.left + sectionLabel.frame.size.width ~ 999
-            
+            section.bottom == collection.top - (44~~39 - section.height.view.bounds.height) / 2
+        
             seeAll.right == seeAll.superview!.right - Featured.size.margin.value
             seeAll.left == seeAll.superview!.right - Featured.size.margin.value - seeAll.width.view.frame.size.width
             seeAll.centerY == section.centerY
             
-            section.bottom == collection.top - (44~~39 - section.height.view.frame.size.height) / 2
             category.left == section.right + 8
-            
             category.right <= seeAll.left - 8
             category.centerY == section.centerY
         }
@@ -269,7 +269,6 @@ class ItemCollection: FeaturedCell  {
             } else { print("array is empty") }
         
             }, fail: { error in
-                //print(error)
                 
                 self.seeAllButton.isEnabled = false
                 

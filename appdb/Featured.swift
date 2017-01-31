@@ -52,9 +52,6 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         navigationItem.rightBarButtonItem = tmpButton
         /* DEBUG */
         
-        // Button target action to retry loading
-        refreshButton.addTarget(self, action: #selector(self.retry), for: .touchUpInside)
-        
         // List Genres and enable button on completion
         API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
         
@@ -77,11 +74,16 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         let itemCells = cells.flatMap{$0 as? ItemCollection}
         if itemCells.count != (itemCells.filter{$0.response.success == true}.count) {
             if !(itemCells.filter{$0.response.errorDescription != ""}.isEmpty) {
+                
                 let error = itemCells.filter{$0.response.errorDescription != ""}.first!.response.errorDescription
+                
                 showErrorMessage(text: "Cannot connect to appdb", secondaryText: error)
+                
+                // Button target action to retry loading
+                refreshButton.addTarget(self, action: #selector(self.retry), for: .touchUpInside)
             } else {
                 // Not ready, retrying in 0.2 seconds
-                delay(0.2) { self.reloadTableWhenReady() }
+                delay(0.3) { self.reloadTableWhenReady() }
             }
         } else {
             
@@ -114,6 +116,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
     }
     
     // MARK: - Retry Loading
+    
     func retry() {
         self.refreshButton.isHidden = true
         self.errorMessage.isHidden = true
