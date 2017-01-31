@@ -47,6 +47,9 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         navigationItem.leftBarButtonItem = categoriesButton
         navigationItem.leftBarButtonItem?.isEnabled = false
         
+        // Fix random separator margin issues
+        if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
+        
         /* DEBUG */
         let tmpButton = UIBarButtonItem(title: "switch mode", style: .plain, target: self, action:#selector(self.tmpSwitch))
         navigationItem.rightBarButtonItem = tmpButton
