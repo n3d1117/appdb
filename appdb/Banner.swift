@@ -9,7 +9,6 @@
 import UIKit
 import Cartography
 import AlamofireImage
-import ImageSlideshow
 
 class Banner: UITableViewCell {
 
@@ -77,6 +76,7 @@ class Banner: UITableViewCell {
         slideshow.contentScaleMode = .scaleAspectFit
         slideshow.draggingEnabled = true
         slideshow.preload = .all
+        slideshow.pauseTimerIfNeeded()
         
         // Add tap recognizer
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(Banner.didTap))

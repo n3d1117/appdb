@@ -11,7 +11,6 @@
 		81211D551E393EB800981A3F /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8F61DB3B9E000462256 /* Bond.framework */; };
 		81211D561E393EBD00981A3F /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8D81DB198B800462256 /* Cartography.framework */; };
 		81211D571E393EC200981A3F /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C0727C1DB78BB4007266A9 /* Dwifft.framework */; };
-		81211D581E393EC700981A3F /* ImageSlideshow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81B6F6B01E212B2B000AD47C /* ImageSlideshow.framework */; };
 		81211D591E393ECC00981A3F /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8DA1DB198B800462256 /* ObjectMapper.framework */; };
 		81211D5A1E393ECE00981A3F /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8F21DB3B66700462256 /* ReactiveKit.framework */; };
 		81211D5C1E393ED600981A3F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8DB1DB198B800462256 /* Realm.framework */; };
@@ -21,6 +20,13 @@
 		81211D601E393F0300981A3F /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188E8ED1DB2AD4B00462256 /* AlamofireImage.framework */; };
 		81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236AC81E3B6899009748E0 /* ButtonFactory.swift */; };
 		81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */; };
+		812EEF2C1E40DEC200B40474 /* FullScreenSlideshowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812EEF251E40DEC200B40474 /* FullScreenSlideshowViewController.swift */; };
+		812EEF2D1E40DEC200B40474 /* ImageSlideshow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812EEF261E40DEC200B40474 /* ImageSlideshow.swift */; };
+		812EEF2E1E40DEC200B40474 /* ImageSlideshowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812EEF271E40DEC200B40474 /* ImageSlideshowItem.swift */; };
+		812EEF2F1E40DEC200B40474 /* InputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812EEF281E40DEC200B40474 /* InputSource.swift */; };
+		812EEF301E40DEC200B40474 /* UIImage+AspectFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812EEF291E40DEC200B40474 /* UIImage+AspectFit.swift */; };
+		812EEF311E40DEC200B40474 /* UIImageView+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812EEF2A1E40DEC200B40474 /* UIImageView+Tools.swift */; };
+		812EEF321E40DEC200B40474 /* ZoomAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812EEF2B1E40DEC200B40474 /* ZoomAnimatedTransitioning.swift */; };
 		8167A6131DAC246000F96AC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8167A6121DAC246000F96AC2 /* AppDelegate.swift */; };
 		8167A61C1DAC246000F96AC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8167A61B1DAC246000F96AC2 /* Assets.xcassets */; };
 		8167A61F1DAC246000F96AC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8167A61D1DAC246000F96AC2 /* LaunchScreen.storyboard */; };
@@ -77,6 +83,13 @@
 /* Begin PBXFileReference section */
 		81236AC81E3B6899009748E0 /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		812EEF251E40DEC200B40474 /* FullScreenSlideshowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenSlideshowViewController.swift; sourceTree = "<group>"; };
+		812EEF261E40DEC200B40474 /* ImageSlideshow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSlideshow.swift; sourceTree = "<group>"; };
+		812EEF271E40DEC200B40474 /* ImageSlideshowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSlideshowItem.swift; sourceTree = "<group>"; };
+		812EEF281E40DEC200B40474 /* InputSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSource.swift; sourceTree = "<group>"; };
+		812EEF291E40DEC200B40474 /* UIImage+AspectFit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+AspectFit.swift"; sourceTree = "<group>"; };
+		812EEF2A1E40DEC200B40474 /* UIImageView+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Tools.swift"; sourceTree = "<group>"; };
+		812EEF2B1E40DEC200B40474 /* ZoomAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		8167A60F1DAC246000F96AC2 /* appdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8167A6121DAC246000F96AC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8167A61B1DAC246000F96AC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,7 +174,6 @@
 				81211D5E1E393EDB00981A3F /* SwiftyJSON.framework in Frameworks */,
 				81211D561E393EBD00981A3F /* Cartography.framework in Frameworks */,
 				81211D571E393EC200981A3F /* Dwifft.framework in Frameworks */,
-				81211D581E393EC700981A3F /* ImageSlideshow.framework in Frameworks */,
 				81A065851E394D5E00398102 /* Diff.framework in Frameworks */,
 				81211D591E393ECC00981A3F /* ObjectMapper.framework in Frameworks */,
 				81211D5A1E393ECE00981A3F /* ReactiveKit.framework in Frameworks */,
@@ -188,6 +200,21 @@
 			name = PaddingLabel;
 			sourceTree = "<group>";
 		};
+		812EEF0A1E40DE1500B40474 /* ImageSlideshow */ = {
+			isa = PBXGroup;
+			children = (
+				81B6F6B31E212CC1000AD47C /* AlamofireSource.swift */,
+				812EEF251E40DEC200B40474 /* FullScreenSlideshowViewController.swift */,
+				812EEF261E40DEC200B40474 /* ImageSlideshow.swift */,
+				812EEF271E40DEC200B40474 /* ImageSlideshowItem.swift */,
+				812EEF281E40DEC200B40474 /* InputSource.swift */,
+				812EEF291E40DEC200B40474 /* UIImage+AspectFit.swift */,
+				812EEF2A1E40DEC200B40474 /* UIImageView+Tools.swift */,
+				812EEF2B1E40DEC200B40474 /* ZoomAnimatedTransitioning.swift */,
+			);
+			name = ImageSlideshow;
+			sourceTree = "<group>";
+		};
 		8167A6061DAC246000F96AC2 = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +238,7 @@
 				81EC00621DAD74D9009EEFFA /* Other */,
 				8180EE611E26D72D001C04B5 /* API */,
 				81EC007D1DAE666B009EEFFA /* Models */,
+				8188E8E31DB1993700462256 /* Resources */,
 				81EC00661DAD76BE009EEFFA /* Startup */,
 				81EC00631DAD74EC009EEFFA /* FEATURED */,
 			);
@@ -241,8 +269,8 @@
 			isa = PBXGroup;
 			children = (
 				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
-				81B6F6B21E212CAC000AD47C /* AlamofireSource */,
 				81236AC71E3B6870009748E0 /* ButtonFactory */,
+				812EEF0A1E40DE1500B40474 /* ImageSlideshow */,
 				81236ACA1E3B8A3E009748E0 /* PaddingLabel */,
 				81E7CBF91E1FC0DE004AF156 /* LoadingTableView */,
 				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
@@ -307,14 +335,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		81B6F6B21E212CAC000AD47C /* AlamofireSource */ = {
-			isa = PBXGroup;
-			children = (
-				81B6F6B31E212CC1000AD47C /* AlamofireSource.swift */,
-			);
-			name = AlamofireSource;
-			sourceTree = "<group>";
-		};
 		81E7CBF91E1FC0DE004AF156 /* LoadingTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,7 +368,6 @@
 		81EC00661DAD76BE009EEFFA /* Startup */ = {
 			isa = PBXGroup;
 			children = (
-				8188E8E31DB1993700462256 /* Resources */,
 				8167A6121DAC246000F96AC2 /* AppDelegate.swift */,
 				81AB37AD1DAC30BD003A586F /* TabBarController.swift */,
 				81EC006B1DAD7728009EEFFA /* Initializers.swift */,
@@ -491,7 +510,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Bond.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Dwifft.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ImageSlideshow.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Diff.framework",
 			);
 			outputPaths = (
@@ -509,12 +527,14 @@
 			files = (
 				81BA82621E3CA80500FCC4C0 /* UIKit+Theme.swift in Sources */,
 				81EC00651DAD7514009EEFFA /* Featured.swift in Sources */,
+				812EEF311E40DEC200B40474 /* UIImageView+Tools.swift in Sources */,
 				8187B4EF1E3A795800F251CD /* Promotion.swift in Sources */,
 				81EC006A1DAD7704009EEFFA /* Colors.swift in Sources */,
 				81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */,
 				81F3D6581E1310BA003CD808 /* ILTranslucentView.swift in Sources */,
 				81EC00891DAE88D3009EEFFA /* App.swift in Sources */,
 				81EC008B1DAE8D1A009EEFFA /* CydiaApp.swift in Sources */,
+				812EEF2D1E40DEC200B40474 /* ImageSlideshow.swift in Sources */,
 				81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */,
 				81BA82581E3CA80500FCC4C0 /* ThemeFontPicker.swift in Sources */,
 				8188E8E61DB1997100462256 /* AlamofireObjectMapper.swift in Sources */,
@@ -529,6 +549,7 @@
 				81EC007B1DAD92A2009EEFFA /* FeaturedExtension.swift in Sources */,
 				8167A6131DAC246000F96AC2 /* AppDelegate.swift in Sources */,
 				81BA825E1E3CA80500FCC4C0 /* ThemePicker.swift in Sources */,
+				812EEF2E1E40DEC200B40474 /* ImageSlideshowItem.swift in Sources */,
 				81BA825C1E3CA80500FCC4C0 /* ThemeManager+OC.swift in Sources */,
 				81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */,
 				81BA825D1E3CA80500FCC4C0 /* ThemeManager+Plist.swift in Sources */,
@@ -544,9 +565,12 @@
 				81EC00731DAD79A8009EEFFA /* FeaturedBook.swift in Sources */,
 				81B6F6B41E212CC1000AD47C /* AlamofireSource.swift in Sources */,
 				81E7CBFB1E1FC0F2004AF156 /* LoadingTableView.swift in Sources */,
+				812EEF2C1E40DEC200B40474 /* FullScreenSlideshowViewController.swift in Sources */,
 				81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */,
 				81BA82511E3CA80500FCC4C0 /* NSObject+Theme.swift in Sources */,
+				812EEF301E40DEC200B40474 /* UIImage+AspectFit.swift in Sources */,
 				81BA82601E3CA80500FCC4C0 /* ThemeStatusBarStylePicker.swift in Sources */,
+				812EEF2F1E40DEC200B40474 /* InputSource.swift in Sources */,
 				81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */,
 				81BA825F1E3CA80500FCC4C0 /* ThemeStatePicker.swift in Sources */,
 				816CEEDB1DBD00E5002CFF6E /* CategoryCell.swift in Sources */,
@@ -557,6 +581,7 @@
 				81939B4B1E3BAA9A00179615 /* Preferences.swift in Sources */,
 				81EC008D1DAE8F1F009EEFFA /* Book.swift in Sources */,
 				81BA825A1E3CA80500FCC4C0 /* ThemeManager.swift in Sources */,
+				812EEF321E40DEC200B40474 /* ZoomAnimatedTransitioning.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

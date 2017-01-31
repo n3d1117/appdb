@@ -6,7 +6,6 @@
 //
 //
 
-import ImageSlideshow
 import UIKit
 import Alamofire
 import AlamofireImage
