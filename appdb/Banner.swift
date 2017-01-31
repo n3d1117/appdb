@@ -94,7 +94,11 @@ class Banner: UITableViewCell {
     /* This is also a retry function, in case banner should be reloaded */
     func setImageInputs() {
         if let slideshow = self.slideshow {
-            slideshow.setImageInputs([ AlamofireSource(urlString: "http://appd.be/n3d/delta/k.png") as! InputSource ])
+            slideshow.setImageInputs([
+                AlamofireSource(urlString: "http://appd.be/n3d/delta/k.png") as! InputSource,
+                AlamofireSource(urlString: "http://appd.be/n3d/delta/a.png") as! InputSource,
+                AlamofireSource(urlString: "http://appd.be/n3d/delta/b.png") as! InputSource
+            ])
         }
     }
     
