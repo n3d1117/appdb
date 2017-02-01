@@ -35,7 +35,10 @@ class FlowLayout : UICollectionViewFlowLayout {
 
         return CGPoint(x: targetIndex * (cellWidth + cellSpacing), y: proposedContentOffset.y)
     }
-
+    
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return true
+    }
 }
 
 extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -178,17 +181,6 @@ class ItemCollection: FeaturedCell  {
     
     func setConstraints() {
         
-        let layout: FlowLayout = FlowLayout()
-        if let id = Featured.CellType(rawValue: reuseIdentifier!) {
-            if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
-        }
-        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
-        layout.minimumLineSpacing = Featured.size.spacing.value
-        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
-        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
-        
-        collectionView.collectionViewLayout = layout
-        
         constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
             collection.left == collection.superview!.left
             collection.right == collection.superview!.right
@@ -207,6 +199,16 @@ class ItemCollection: FeaturedCell  {
             category.right <= seeAll.left - 8
             category.centerY == section.centerY
         }
+        
+        let layout: FlowLayout = FlowLayout()
+        if let id = Featured.CellType(rawValue: reuseIdentifier!) {
+            if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
+        }
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
+        layout.minimumLineSpacing = Featured.size.spacing.value
+        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
+        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
+        collectionView.collectionViewLayout = layout
     }
     
     // MARK: - Networking
@@ -233,20 +235,11 @@ class ItemCollection: FeaturedCell  {
     }
     
     func getItems <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") -> Void where T:Mappable, T:Meta {
-        
-        API.search(type: type, order: order, price: price, genre: genre, success: { array in
-            
-            // Success and no errors
-            self.response.success = true
-            self.seeAllButton.isEnabled = true
-            
+        API.search(type: type, order: order, price: price, genre: genre, success: { array in  
             if !array.isEmpty {
                 let diff = self.items.diff(array)
-                
                 if diff.results.count > 0 {
-                    
                     self.collectionView.performBatchUpdates({
-                        
                         self.items = array
                         self.collectionView.deleteItems(at: diff.deletions.map({ IndexPath(item: $0.idx, section: 0) }))
                         self.collectionView.insertItems(at: diff.insertions.map({ IndexPath(item: $0.idx, section: 0) }))
@@ -259,19 +252,19 @@ class ItemCollection: FeaturedCell  {
                             self.categoryLabel.text = ""
                             self.categoryLabel.isHidden = true
                         }
-            
                     }, completion: nil)
                     
                     if Global.firstLaunch { self.dirtyFixEmptyCategory() }
                     
                 } else { print("diff is empty... wtf?") }
-                
             } else { print("array is empty") }
+            
+            // Success and no errors
+            self.response.success = true
+            self.seeAllButton.isEnabled = true
         
             }, fail: { error in
-                
                 self.seeAllButton.isEnabled = false
-                
                 if error.code == 2 { /* ObjectMapper failed to serialize response, let's ignore it */
                     self.response.success = true // If it's actually reloading a category response is not needed, but fuck it
                 } else {
