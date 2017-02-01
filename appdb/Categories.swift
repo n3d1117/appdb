@@ -38,6 +38,9 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Fix random separator margin issues
+        if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
+        
         tableView.theme_separatorColor = Color.borderColor
         
         headerView = ILTranslucentView(frame: CGRect())

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ButtonFactory {
+struct ButtonFactory {
     
     // Returns a button with arrow on the right (such as 'See All' button)
     static func createChevronButton(text: String, color: ThemeColorPicker) -> UIButton {

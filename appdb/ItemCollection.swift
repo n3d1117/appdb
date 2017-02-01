@@ -14,7 +14,7 @@ import ObjectMapper
 import Dwifft
 
 // Class to handle response correctly from Featured
-class ItemResponse {
+struct ItemResponse {
     var success : Bool = false
     var errorDescription : String = ""
 }

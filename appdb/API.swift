@@ -43,7 +43,7 @@ enum Actions: String {
     case promotions = "promotions"
 }
 
-class API {
+struct API {
     
     static let realm = try! Realm()
     static let endpoint = "https://appdb.cc/API/v1.1/"

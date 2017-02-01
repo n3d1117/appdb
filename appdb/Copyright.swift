@@ -56,7 +56,7 @@ class Copyright: FeaturedCell {
     }
     
     private func getCurrentYear() -> String {
-        let components = NSCalendar.current.dateComponents([.year], from: NSDate() as Date)
+        let components = NSCalendar.current.dateComponents([.year], from: Date())
         return "\(components.year!)"
     }
 
