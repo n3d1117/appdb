@@ -13,6 +13,7 @@ import Cartography
 private var categories : [Genre] = []
 private var checked : [Int:[Bool]] = [0:[true], 1:[true], 2:[true]]
 private var selected : Int = 0
+private var savedScrollPosition: CGFloat = 0.0
 
 class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -26,6 +27,16 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Constraints group, will be replaced when orientation changes
     var group = ConstraintGroup()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let tableView = tableView { tableView.setContentOffset(CGPoint(x: 0, y: savedScrollPosition), animated: false) }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        savedScrollPosition = tableView.contentOffset.y
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,7 +219,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         checked[selected]!.removeAll(keepingCapacity: true)
         for i in 0..<categories.count { checked[selected]!.append(i == indexPath.row) }
         tableView.reloadData()
-        
+
         dismissAnimated()
         
         switch control.selectedSegmentIndex {
