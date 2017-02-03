@@ -56,7 +56,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         /* DEBUG */
         
         // List Genres and enable button on completion
-        API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success; print("done") } )
+        API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
         
         /* Initialized here to load images faster */
         self.banner = Banner()
