@@ -22,8 +22,8 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         Dummy(),
         ItemCollection(id: .iosNew, title: "New and Noteworthy".localized()), //🎁
         ItemCollection(id: .iosPaid, title: "Top Paid".localized(), fullSeparator: true), // 💰
-        Dummy(),
         ItemCollection(id: .iosPopular, title: "Popular Today".localized()), //🃏
+        Dummy(),
         ItemCollection(id: .iosGames, title: "Best Games".localized(), fullSeparator: true), //🎈
         Dummy(),
         ItemCollection(id: .books, title: "Top Books".localized(), fullSeparator: true), //📚
