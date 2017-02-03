@@ -236,28 +236,27 @@ class ItemCollection: FeaturedCell  {
     
     func getItems <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") -> Void where T:Mappable, T:Meta {
         API.search(type: type, order: order, price: price, genre: genre, success: { array in  
-            if !array.isEmpty {
-                let diff = self.items.diff(array)
-                if diff.results.count > 0 {
-                    self.collectionView.performBatchUpdates({
-                        self.items = array
-                        self.collectionView.deleteItems(at: diff.deletions.map({ IndexPath(item: $0.idx, section: 0) }))
-                        self.collectionView.insertItems(at: diff.insertions.map({ IndexPath(item: $0.idx, section: 0) }))
-                        
-                        // Update category label
-                        if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
-                            self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
-                            self.categoryLabel.isHidden = false
-                        } else {
-                            self.categoryLabel.text = ""
-                            self.categoryLabel.isHidden = true
-                        }
-                    }, completion: nil)
+            
+            let diff = self.items.diff(array)
+            if diff.results.count > 0 {
+                self.collectionView.performBatchUpdates({
+                    self.items = array
+                    self.collectionView.deleteItems(at: diff.deletions.map({ IndexPath(item: $0.idx, section: 0) }))
+                    self.collectionView.insertItems(at: diff.insertions.map({ IndexPath(item: $0.idx, section: 0) }))
                     
-                    if Global.firstLaunch { self.dirtyFixEmptyCategory() }
-                    
-                } else { print("diff is empty... wtf?") }
-            } else { print("array is empty") }
+                    // Update category label
+                    if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
+                        self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
+                        self.categoryLabel.isHidden = false
+                    } else {
+                        self.categoryLabel.text = ""
+                        self.categoryLabel.isHidden = true
+                    }
+                }, completion: nil)
+                
+                if Global.firstLaunch { self.dirtyFixEmptyCategory() }
+                
+            } else { print("diff is empty... wtf?") }
             
             // Success and no errors
             self.response.success = true
