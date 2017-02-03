@@ -75,11 +75,8 @@ extension API {
                         getIcon(id: genre.id, type: .books)
                     }
                     
-                    completion(true)
-                    
                 case .failure(let error):
                     print((error as NSError).localizedDescription)
-                    completion(false)
                 }
                 
         }

@@ -56,7 +56,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         /* DEBUG */
         
         // List Genres and enable button on completion
-        API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
+        API.listGenres()
         
         /* Initialized here to load images faster */
         self.banner = Banner()
@@ -103,6 +103,9 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             tableView.estimatedRowHeight = 32
             tableView.rowHeight = UITableViewAutomaticDimension
             
+            // Enable categories button
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+            
             // Reload tableView, hide spinner
             loaded = true
             
@@ -129,7 +132,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
         delay(0.3) {
             // Retry all network operations
-            API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
+            API.listGenres()
             for cell in self.cells.flatMap({$0 as? ItemCollection}) { cell.requestItems() }
             if let banner = self.banner { banner.setImageInputs() }
             self.reloadTableWhenReady()
