@@ -16,7 +16,7 @@ extension API {
     
     // MARK: - Genres
     
-    static func listGenres(completion: @escaping (_ success : Bool) -> Void) {
+    static func listGenres() {
         
         Alamofire.request(endpoint, parameters: ["action": Actions.listGenres.rawValue])
             .responseJSON { response in
@@ -45,13 +45,19 @@ extension API {
                     do {
                         try realm.write {
                             
-                            realm.delete(realm.objects(Genre.self))
+                            // 'Marking' 666 for future comparison
+                            for object in realm.objects(Genre.self) { object.id = "666" }
                             
+                            // Using this ugly create method so that icon url is preserved at next launch
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "ios", "compound": "0-ios"], update: true)
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "cydia", "compound": "0-cydia"], update: true)
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "books", "compound": "0-books"], update: true)
-                            
-                            realm.add(genres)
+                            for genre in genres {
+                                realm.create(Genre.self, value: ["id": genre.id, "name": genre.name, "category": genre.category, "compound": "\(genre.id)-\(genre.category)"], update: true)
+                            }
+
+                            // Delete any old category that was deleted from appdb
+                            realm.delete(realm.objects(Genre.self).filter("id = '666'"))
                             
                         }
                     } catch let e as NSError {
@@ -83,7 +89,6 @@ extension API {
         if let cat = realm.objects(Genre.self).filter("category = %@ AND id = %@", type.rawValue, id).first {
             Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": "clicks_all"])
                 .responseJSON { response in
-                    //print(response.request!.url!.absoluteString)
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
