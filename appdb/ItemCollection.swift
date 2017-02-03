@@ -243,21 +243,22 @@ class ItemCollection: FeaturedCell  {
                     self.items = array
                     self.collectionView.deleteItems(at: diff.deletions.map({ IndexPath(item: $0.idx, section: 0) }))
                     self.collectionView.insertItems(at: diff.insertions.map({ IndexPath(item: $0.idx, section: 0) }))
-                    
-                    // Update category label
-                    if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
-                        self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
-                        self.categoryLabel.isHidden = false
-                    } else {
-                        self.categoryLabel.text = ""
-                        self.categoryLabel.isHidden = true
-                    }
                 }, completion: nil)
-                
-                if Global.firstLaunch { self.dirtyFixEmptyCategory() }
                 
             } else { print("diff is empty... wtf?") }
             
+            // Fix rare issue where first three Cydia items would not load category text.
+            if Global.firstLaunch { self.dirtyFixEmptyCategory() }
+            
+            // Update category label
+            if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
+                self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
+                self.categoryLabel.isHidden = false
+            } else {
+                self.categoryLabel.text = ""
+                self.categoryLabel.isHidden = true
+            }
+                 
             // Success and no errors
             self.response.success = true
             self.seeAllButton.isEnabled = true
