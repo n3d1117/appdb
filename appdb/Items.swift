@@ -57,6 +57,7 @@ class Genre: Object {
         self.category = category
         self.id = id
         self.name = name
+        self.compound = self.id + "-" + self.category
     }
     
     override class func primaryKey() -> String? {

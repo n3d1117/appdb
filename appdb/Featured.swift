@@ -51,12 +51,12 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
         
         /* DEBUG */
-        let tmpButton = UIBarButtonItem(title: "switch mode".localized(), style: .plain, target: self, action:#selector(self.tmpSwitch))
+        let tmpButton = UIBarButtonItem(title: "switch mode", style: .plain, target: self, action:#selector(self.tmpSwitch))
         navigationItem.rightBarButtonItem = tmpButton
         /* DEBUG */
         
         // List Genres and enable button on completion
-        API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success } )
+        API.listGenres( completion: { success in self.navigationItem.leftBarButtonItem?.isEnabled = success; print("done") } )
         
         /* Initialized here to load images faster */
         self.banner = Banner()

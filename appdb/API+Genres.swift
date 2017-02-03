@@ -25,31 +25,34 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     
-                    var tmp : [Genre] = []
+                    var genres : [Genre] = []
                     
                     // Cydia genres
                     for (key, value):(String, JSON) in json["data"]["cydia"] {
-                        tmp.append(Genre(category: "cydia", id: key, name: value.stringValue))
+                        genres.append(Genre(category: "cydia", id: key, name: value.stringValue))
                     }
                     
                     // iOS Genres
                     for (key, value):(String, JSON) in json["data"]["ios"] {
-                        tmp.append(Genre(category: "ios", id: key, name: value.stringValue))
+                        genres.append(Genre(category: "ios", id: key, name: value.stringValue))
                     }
                     
                     // Books Genres
                     for (key, value):(String, JSON) in json["data"]["books"] {
-                        tmp.append(Genre(category: "books", id: key, name: value.stringValue))
+                        genres.append(Genre(category: "books", id: key, name: value.stringValue))
                     }
                     
                     do {
                         try realm.write {
+                            
+                            realm.delete(realm.objects(Genre.self))
+                            
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "ios", "compound": "0-ios"], update: true)
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "cydia", "compound": "0-cydia"], update: true)
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "books", "compound": "0-books"], update: true)
-                            for genre in tmp {
-                                realm.create(Genre.self, value: ["id": genre.id, "name": genre.name, "category": genre.category, "compound": "\(genre.id)-\(genre.category)"], update: true)
-                            }
+                            
+                            realm.add(genres)
+                            
                         }
                     } catch let e as NSError {
                         print(e.localizedDescription)
