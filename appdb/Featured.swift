@@ -90,7 +90,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             }
         } else {
             
-            // Set layout scroll direction (Xcode gives bs logs if I don't do it here, smh)
+            // If i don't do this here, stuff breaks :(
             for cell in itemCells {
                 if let layout = cell.collectionView?.collectionViewLayout as? FlowLayout { layout.scrollDirection = .horizontal }
             }

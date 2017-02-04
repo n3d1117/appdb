@@ -122,7 +122,14 @@ class ItemCollection: FeaturedCell  {
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
         
-        collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: UICollectionViewFlowLayout())
+        let layout: FlowLayout = FlowLayout()
+        if let id = Featured.CellType(rawValue: reuseIdentifier!) {
+            if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
+        }
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
+        layout.minimumLineSpacing = Featured.size.spacing.value
+        
+        collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
         collectionView.register(FeaturedApp.self, forCellWithReuseIdentifier: "app")
         collectionView.register(FeaturedApp.self, forCellWithReuseIdentifier: "cydia")
         collectionView.register(FeaturedBook.self, forCellWithReuseIdentifier: "book")
@@ -200,15 +207,8 @@ class ItemCollection: FeaturedCell  {
             category.centerY == section.centerY
         }
         
-        let layout: FlowLayout = FlowLayout()
-        if let id = Featured.CellType(rawValue: reuseIdentifier!) {
-            if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
-        }
-        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
-        layout.minimumLineSpacing = Featured.size.spacing.value
         separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
         layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
-        collectionView.collectionViewLayout = layout
     }
     
     // MARK: - Networking
