@@ -79,7 +79,6 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             if !(itemCells.filter{$0.response.errorDescription != ""}.isEmpty) {
                 
                 let error = itemCells.filter{$0.response.errorDescription != ""}.first!.response.errorDescription
-                
                 showErrorMessage(text: "Cannot connect".localized(), secondaryText: error)
                 
                 // Button target action to retry loading
