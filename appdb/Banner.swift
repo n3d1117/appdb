@@ -30,7 +30,7 @@ class Banner: UITableViewCell {
         switch screenHeight { /* Are these numbers out of my ass? Probably. There should be a better way. */
             case 480,568: return 128
             case 667: return 150
-            case 736: return 165.6
+            case 736: return 165
             case 1024: return 220
             case 1366: return 250
             default: return 0

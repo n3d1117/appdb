@@ -21,8 +21,8 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true), //🚀
         Dummy(),
         ItemCollection(id: .iosNew, title: "New and Noteworthy".localized()), //🎁
-        ItemCollection(id: .iosPaid, title: "Top Paid".localized(), fullSeparator: true), // 💰
-        ItemCollection(id: .iosPopular, title: "Popular Today".localized()), //🃏
+        ItemCollection(id: .iosPaid, title: "Top Paid".localized()), // 💰
+        ItemCollection(id: .iosPopular, title: "Popular Today".localized(), fullSeparator: true), //🃏
         Dummy(),
         ItemCollection(id: .iosGames, title: "Best Games".localized(), fullSeparator: true), //🎈
         Dummy(),
@@ -31,6 +31,13 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
     ]
     
     var banner : Banner!
+    
+    override func viewDidLayoutSubviews() {
+        if loaded {
+            print("called")
+            addBanner(from: self.banner)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
