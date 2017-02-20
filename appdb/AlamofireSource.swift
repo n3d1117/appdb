@@ -1,14 +1,14 @@
 //
 //  AlamofireSource.swift
-//  Pods
+//  ImageSlideshow
 //
 //  Created by Petr Zvoníček on 14.01.16.
 //
 //
 
-import UIKit
 import Alamofire
 import AlamofireImage
+import UIKit
 
 /// Input Source to image using Alamofire
 public class AlamofireSource: NSObject, InputSource {
@@ -32,13 +32,13 @@ public class AlamofireSource: NSObject, InputSource {
         }
     }
 
-    public func load(to imageView: UIImageView, with callback: @escaping (UIImage) -> ()) {
-        imageView.af_setImage(withURL: self.url, placeholderImage: #imageLiteral(resourceName: "placeholderBanner"), filter: nil, imageTransition: .crossDissolve(0.2)) { (response) in
+    public func load(to imageView: UIImageView, with callback: @escaping (UIImage) -> Void) {
+        imageView.af_setImage(withURL: self.url, placeholderImage: #imageLiteral(resourceName: "placeholderBanner"), filter: nil, imageTransition: .crossDissolve(0.2)) { response in
             imageView.image = response.result.value
             if let value = response.result.value {
                 callback(value)
             }
         }
     }
-    
+
 }

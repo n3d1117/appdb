@@ -46,10 +46,18 @@
 "Custom Apps" = "App di terze parti";
 "New and Noteworthy" = "Ultime uscite";
 "Top Paid" = "App a pagamento";
-"Popular Today" = "Popolari oggi";
+"Popular This Week" = "Popolari questa settimana";
 "Best Games" = "Giochi fantastici";
 "Top Books" = "Libri più scaricati";
 "See All" = "Vedi tutto";
+
+////////////////////
+//                //
+//     ERRORS     //
+//                //
+////////////////////
+
+"Maintenance mode. We will be back soon." = "Modalità manutenzione. Torniamo subito.";
 
 ///////////////////
 //               //
@@ -58,3 +66,4 @@
 ///////////////////
 
 "We do not host any prohibited content. All data is publicly available via iTunes API." = "Non disponiamo di alcun contenuto proibito. Tutti i dati sono disponibili pubblicamente attraverso le API di iTunes.";
+"Dismiss" = "Chiudi";

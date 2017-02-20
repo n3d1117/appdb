@@ -1,10 +1,7 @@
-github "Alamofire/Alamofire" ~> 4.3
-github "Alamofire/AlamofireNetworkActivityIndicator" ~> 2.0
-github "Alamofire/AlamofireImage" ~> 3.1
+github "Alamofire/Alamofire"
+github "Alamofire/AlamofireNetworkActivityIndicator"
+github "Alamofire/AlamofireImage"
 github "realm/realm-cocoa"
-github "Hearst-DD/ObjectMapper" ~> 2.1
+github "Hearst-DD/ObjectMapper"
 github "robb/Cartography"
 github "SwiftyJSON/SwiftyJSON"
-github "SwiftBond/Bond" ~> 5.0
-github "jflinter/Dwifft"
-github "zvonicek/ImageSlideshow" "1.0.0"

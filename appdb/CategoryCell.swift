@@ -49,7 +49,6 @@ class CategoryCell: UITableViewCell {
         
         // Name
         name = UILabel()
-        name.textColor = .black
         name.font = UIFont.systemFont(ofSize: 17~~16)
         name.numberOfLines = 1
         

@@ -18,7 +18,7 @@ extension API {
     
     static func listGenres() {
         
-        Alamofire.request(endpoint, parameters: ["action": Actions.listGenres.rawValue])
+        Alamofire.request(endpoint, parameters: ["action": Actions.listGenres.rawValue, "lang": languageCode])
             .responseJSON { response in
                 
                 switch response.result {

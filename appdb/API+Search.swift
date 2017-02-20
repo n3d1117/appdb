@@ -17,26 +17,32 @@ extension API {
     // MARK: - Search
     
     static func search <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0",
-                        success:@escaping (_ items: [T]) -> Void, fail:@escaping (_ error: NSError) -> Void) -> Void where T:Mappable, T:Meta {
+                        success:@escaping (_ items: [T]) -> Void, fail:@escaping (_ error: String) -> Void) where T:Mappable, T:Meta {
         
-        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre])
+        var shouldContinue: Bool = true
+        
+        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre, "lang": languageCode])
+            .responseJSON { response in
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    if !json["success"].boolValue, !json["errors"].isEmpty {
+                        fail(json["errors"][0].stringValue); shouldContinue = false
+                    }
+                }
+            }
+            
             .responseArray(keyPath: "data") { (response: DataResponse<[T]>) in
-                
-                //print(response.request?.url?.absoluteString ?? "fuark")
-                
-                switch response.result {
-                case .success(let items):
-                    autoreleasepool {
+                if shouldContinue { switch response.result {
+                    case .success(let items):
                         do {
                             try realm.write { realm.add(items, update: true) }
                             success(items)
                         } catch let error as NSError {
-                            fail(error)
+                            fail(error.localizedDescription)
                         }
-                    }
-                case .failure(let error):
-                    fail(error as NSError)
-                }
-        }
+                    case .failure(let error):
+                        fail(error.localizedDescription)
+                } }
+            }
     }
 }

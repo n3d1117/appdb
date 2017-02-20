@@ -11,7 +11,6 @@ import UIKit
 import Cartography
 import RealmSwift
 import ObjectMapper
-import Dwifft
 
 // Class to handle response correctly from Featured
 struct ItemResponse {
@@ -51,7 +50,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.title.text = app.name
             cell.category.text = app.category?.name
             if let url = URL(string: app.image) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.featured, imageTransition: .crossDissolve(0.2))
+                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: Featured.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }
@@ -62,7 +61,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
             cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
             if let url = URL(string: cydiaApp.image) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.featured, imageTransition: .crossDissolve(0.2))
+                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: Featured.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }
@@ -83,12 +82,17 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
         return items.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.pushDetailsController(with: items[indexPath.row])
+    }
+    
 }
 
 class ItemCollection: FeaturedCell  {
     
     // Adjust title space and category if content size category did change
     let group = ConstraintGroup()
+    var didSetConstraints = false
 
     // UI Elements
     var collectionView : UICollectionView!
@@ -97,12 +101,15 @@ class ItemCollection: FeaturedCell  {
     var seeAllButton : UIButton!
     
     // Array to fill data with
-    var items : [Object] = []
+    var items: [Object] = []
     
     var showFullSeparator : Bool = false
     
     // Response object
     var response : ItemResponse = ItemResponse()
+    
+    // Redirect to Details view
+    var delegate : ContentRedirection? = nil
 
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
@@ -161,7 +168,6 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.isHidden = true
         
         seeAllButton = ButtonFactory.createChevronButton(text: "See All".localized(), color: Color.darkGray)
-        seeAllButton.isEnabled = false
 
         contentView.addSubview(categoryLabel)
         contentView.addSubview(sectionLabel)
@@ -182,11 +188,14 @@ class ItemCollection: FeaturedCell  {
         
         sectionLabel.font = UIFont.systemFont(ofSize: fontSizeToSet)
         sectionLabel.sizeToFit()
-
+        
+        didSetConstraints = false
         setConstraints()
     }
     
     func setConstraints() {
+        
+        if didSetConstraints { return }
         
         constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
             collection.left == collection.superview!.left
@@ -209,6 +218,8 @@ class ItemCollection: FeaturedCell  {
         
         separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
         layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
+        
+        didSetConstraints = true
     }
     
     // MARK: - Networking
@@ -218,15 +229,13 @@ class ItemCollection: FeaturedCell  {
         if let id = reuseIdentifier {
             if let type = Featured.CellType(rawValue: id) {
                 
-                if Featured.iosTypes.contains(type) { for _ in 0..<25 { self.items.append(App()) } }
-                else { for _ in 0..<25 { self.items.append(Book()) } }
+                //if Featured.iosTypes.contains(type) { for _ in 0..<25 { self.items.append(App()) } }
+                //else { for _ in 0..<25 { self.items.append(Book()) } }
                 
                 switch type {
                     case .cydia: getItems(type: CydiaApp.self, order: .added)
                     case .iosNew: getItems(type: App.self, order: .added)
-                    case .iosPaid: getItems(type: App.self, order: .month, price: .paid)
-                    case .iosPopular: getItems(type: App.self, order: .day, price: .all)
-                    case .iosGames: getItems(type: App.self, order: .all, price: .all, genre: "6014")
+                    case .iosPopular: getItems(type: App.self, order: .week, price: .all)
                     case .books: getItems(type: Book.self, order: .month)
                     default: break
                 }
@@ -247,8 +256,8 @@ class ItemCollection: FeaturedCell  {
                 
             } else { print("diff is empty... wtf?") }
             
-            // Fix rare issue where first three Cydia items would not load category text.
-            if Global.firstLaunch { self.dirtyFixEmptyCategory() }
+            // Fix rare issue where first three Cydia items would not load category text - probs not fixed
+            if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }
             
             // Update category label
             if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
@@ -261,18 +270,10 @@ class ItemCollection: FeaturedCell  {
                  
             // Success and no errors
             self.response.success = true
-            self.seeAllButton.isEnabled = true
         
-            }, fail: { error in
-                self.seeAllButton.isEnabled = false
-                if error.code == 2 { /* ObjectMapper failed to serialize response, let's ignore it */
-                    self.response.success = true // If it's actually reloading a category response is not needed, but fuck it
-                } else {
-                    self.response.errorDescription = error.localizedDescription
-                }
-                
-            }
-        )
+        }, fail: { error in
+            self.response.errorDescription = error.prettified()
+        })
     }
     
     // Fixes rare issue where first three Cydia items would not load category text. 
@@ -299,17 +300,18 @@ class ItemCollection: FeaturedCell  {
             case .ios:
                 switch Featured.CellType(rawValue: identifier)! {
                     case .iosNew: getItems(type: App.self, order: .added, genre: id)
-                    case .iosPaid: getItems(type: App.self, order: .week, price: .paid, genre: id)
                     case .iosPopular: getItems(type: App.self, order: .day, price: .all, genre: id)
                     default: break
                 }
             case .cydia:
-                if Featured.CellType(rawValue: identifier) == .cydia {
-                    getItems(type: CydiaApp.self, order: .added, genre: id)
+                switch Featured.CellType(rawValue: identifier)! {
+                    case .cydia: getItems(type: CydiaApp.self, order: .added, genre: id)
+                    default: break
                 }
             case .books:
-                if Featured.CellType(rawValue: identifier) == .books {
-                    getItems(type: Book.self, order: .month, genre: id)
+                switch Featured.CellType(rawValue: identifier)! {
+                    case .books: getItems(type: Book.self, order: .month, genre: id)
+                    default: break
                 }
             }
         }

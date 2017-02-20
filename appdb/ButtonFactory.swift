@@ -11,30 +11,26 @@ import UIKit
 struct ButtonFactory {
     
     // Returns a button with arrow on the right (such as 'See All' button)
-    static func createChevronButton(text: String, color: ThemeColorPicker) -> UIButton {
+    static func createChevronButton(text: String, color: ThemeColorPicker, size: CGFloat = 10.5, bold: Bool = true) -> UIButton {
         let button = UIButton(type: .system) as UIButton /* Type is system to keep nice highlighting features */
         
         button.setTitle(text, for: .normal)
         button.setImage(#imageLiteral(resourceName: "rightArrow"), for: .normal)
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
-        if #available(iOS 8.2, *) {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 10.5, weight: UIFontWeightSemibold)
+        if #available(iOS 8.2, *), bold {
+            button.titleLabel?.font = UIFont.systemFont(ofSize: size, weight: UIFontWeightSemibold)
         } else {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 10.5)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: size)
         }
+        button.contentHorizontalAlignment = .left
+        button.titleLabel?.lineBreakMode = .byTruncatingTail
         
         button.sizeToFit()
         
-        // Hardcoded insets, do not try this at home
-        let imageRect = button.imageRect(forContentRect: button.bounds)
-        let titleRect = button.titleRect(forContentRect: button.bounds)
-        var imageInset = UIEdgeInsets.zero
-        var titleInset = UIEdgeInsets.zero
-        titleInset.left = -imageRect.size.width - 9
-        imageInset.left = titleRect.size.width
-        button.titleEdgeInsets = titleInset
-        button.imageEdgeInsets = imageInset
+        // What the fuck is this
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageRect(forContentRect: button.bounds).size.width, 0, 0)
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleRect(forContentRect: button.bounds).size.width, 0, 0)
         
         return button
     }
@@ -48,10 +44,13 @@ struct ButtonFactory {
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if #available(iOS 8.2, *) {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightSemibold)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 14~~13, weight: UIFontWeightSemibold)
         } else {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 14~~13)
         }
+        
+        button.contentHorizontalAlignment = .left
+        button.titleLabel?.lineBreakMode = .byTruncatingTail
         
         button.layer.borderWidth = 0.8
         button.layer.cornerRadius = 5.0
@@ -59,13 +58,8 @@ struct ButtonFactory {
         button.contentEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         button.isHighlighted = false /* set to false initially so the initial borderColor is set too */
 
-        // Hardcoded insets, do not try this at home
-        var imageInset = UIEdgeInsets.zero
-        var titleInset = UIEdgeInsets.zero
-        imageInset.left = -8; imageInset.right = 0
-        titleInset.left = 2; titleInset.right = 9
-        button.titleEdgeInsets = titleInset
-        button.imageEdgeInsets = imageInset
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets.zero
         
         button.sizeToFit()
         button.tag = Int(button.bounds.width) /* pass dynamic width */ 

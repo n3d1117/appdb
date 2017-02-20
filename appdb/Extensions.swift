@@ -46,3 +46,13 @@ extension UINavigationBar {
         return nil
     }    
 }
+
+// Prettify errors
+extension String {
+    func prettified() -> String {
+        switch self {
+            case "MAINTENANCE_MODE": return "Maintenance mode. We will be back soon.".localized()
+            default: return self
+        }
+    }
+}

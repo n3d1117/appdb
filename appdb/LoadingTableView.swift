@@ -11,10 +11,11 @@ import Cartography
 
 /*
  *    USAGE FOR FUTURE NED
- *    subclass LoadingTableView, spinner will appear automatically in the center
+ *    subclass LoadingTableView, spinner will appear automatically in the center.
  *    when data is done loading, set loaded = true and tableView will be reloaded
  *    ( if loading fails, call showErrorMessage with error string,
- *    spinner will be hidden and message will be shown in the center )
+ *    spinner will be hidden and message will be shown in the center,
+ *    just remember to add target to refreshButton )
  */
 
 class LoadingTableView: UITableViewController {
@@ -40,7 +41,7 @@ class LoadingTableView: UITableViewController {
         
         // Set Up
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
-        tableView.rowHeight = view.frame.height + 200 /* Temporary row height for spinner */
+        tableView.rowHeight = view.frame.height + 900 /* Temporary row height for spinner */
         tableView.isScrollEnabled = false
 
         //Set up Activity Indicator View
@@ -52,7 +53,7 @@ class LoadingTableView: UITableViewController {
         //Set up Error Message
         errorMessage = UILabel()
         errorMessage.theme_textColor = Color.copyrightText
-        errorMessage.font = UIFont.systemFont(ofSize: 22)
+        errorMessage.font = UIFont.systemFont(ofSize: 26~~22)
         errorMessage.numberOfLines = 0
         errorMessage.textAlignment = .center
         errorMessage.isHidden = true
@@ -60,7 +61,7 @@ class LoadingTableView: UITableViewController {
         //Set up Secondary Error Message
         secondaryErrorMessage = UILabel()
         secondaryErrorMessage.theme_textColor = Color.copyrightText
-        secondaryErrorMessage.font = UIFont.systemFont(ofSize: 15)
+        secondaryErrorMessage.font = UIFont.systemFont(ofSize: 19~~15)
         secondaryErrorMessage.numberOfLines = 0
         secondaryErrorMessage.textAlignment = .center
         secondaryErrorMessage.isHidden = true
@@ -80,6 +81,7 @@ class LoadingTableView: UITableViewController {
     // MARK: - Orientation
 
     func setConstraints() {
+        guard let activityIndicator = activityIndicator, let secondaryErrorMessage = secondaryErrorMessage, let refreshButton = refreshButton else { return }
         constrain(activityIndicator, errorMessage, secondaryErrorMessage, refreshButton, replace: group) { indicator, message, secondaryMessage, button in
             
             let offset = navigationController!.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height + tabBarController!.tabBar.frame.height
@@ -98,7 +100,7 @@ class LoadingTableView: UITableViewController {
             
             button.top == secondaryMessage.bottom + 30
             button.centerX == button.superview!.centerX
-            button.width == CGFloat(refreshButton.tag + 20) /* Dynamic width */
+            button.width == CGFloat(refreshButton.tag + 20)
         }
     }
     

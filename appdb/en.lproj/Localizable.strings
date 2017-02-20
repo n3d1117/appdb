@@ -47,10 +47,19 @@
 "Custom Apps" = "Custom Apps";
 "New and Noteworthy" = "New and Noteworthy";
 "Top Paid" = "Top Paid";
-"Popular Today" = "Popular Today";
+"Popular This Week" = "Popular This Week";
 "Best Games" = "Best Games";
 "Top Books" = "Top Books";
 "See All" = "See All";
+
+////////////////////
+//                //
+//     ERRORS     //
+//                //
+////////////////////
+
+
+"Maintenance mode. We will be back soon." = "Maintenance mode. We will be back soon.";
 
 ///////////////////
 //               //
@@ -59,3 +68,5 @@
 ///////////////////
 
 "We do not host any prohibited content. All data is publicly available via iTunes API." = "We do not host any prohibited content. All data is publicly available via iTunes API.";
+
+"Dismiss" = "Dismiss";

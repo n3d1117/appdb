@@ -67,6 +67,7 @@ extension CydiaApp : Mappable {
         id                      <- map["id"]
         image                   <- map["image"]
         bundleId                <- map["bundle_id"]
+        developer               <- map["pname"]
         version                 <- map["version"]
         price                   <- map["price"]
         categoryId              <- map["genre_id"]
@@ -78,6 +79,7 @@ extension CydiaApp : Mappable {
         screenshots             <- map["screenshots"]
 
         isTweaked = originalTrackid != "0"
+        if developer.hasSuffix(" ") { developer = String(developer.characters.dropLast()) }
         
         let screenshotsParse = JSON(data: screenshots.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
         

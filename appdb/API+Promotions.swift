@@ -11,9 +11,9 @@ import Alamofire
 
 extension API {
     
-    static func getPromotions(success:@escaping (_ items: [Promotion]) -> Void, fail:@escaping (_ error: NSError) -> Void) -> Void {
+    static func getPromotions(success:@escaping (_ items: [Promotion]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
         
-        Alamofire.request(endpoint, parameters: ["action": Actions.promotions.rawValue])
+        Alamofire.request(endpoint, parameters: ["action": Actions.promotions.rawValue, "lang": languageCode])
             .responseArray(keyPath: "data") { (response: DataResponse<[Promotion]>) in
 
                 switch response.result {

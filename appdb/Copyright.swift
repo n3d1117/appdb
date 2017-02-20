@@ -30,6 +30,7 @@ class Copyright: FeaturedCell {
         
         selectionStyle = .none
         separatorInset.left = 10000
+        layoutMargins = UIEdgeInsets.zero
         theme_backgroundColor = Color.tableViewBackgroundColor
         contentView.theme_backgroundColor = Color.tableViewBackgroundColor
         

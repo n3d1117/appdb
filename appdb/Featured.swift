@@ -10,47 +10,41 @@ import UIKit
 import AlamofireImage
 import RealmSwift
 import Cartography
+import ObjectMapper
 
 protocol ChangeCategory {
     func reloadViewAfterCategoryChange(id: String, type: ItemType)
 }
 
-class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControllerDelegate {
+protocol ContentRedirection {
+    func pushDetailsController(with content: Object)
+}
+
+class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     
     let cells : [FeaturedCell] = [
         ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true), //🚀
         Dummy(),
         ItemCollection(id: .iosNew, title: "New and Noteworthy".localized()), //🎁
-        ItemCollection(id: .iosPaid, title: "Top Paid".localized()), // 💰
-        ItemCollection(id: .iosPopular, title: "Popular Today".localized(), fullSeparator: true), //🃏
-        Dummy(),
-        ItemCollection(id: .iosGames, title: "Best Games".localized(), fullSeparator: true), //🎈
+        ItemCollection(id: .iosPopular, title: "Popular This Week".localized(), fullSeparator: true), //🃏
         Dummy(),
         ItemCollection(id: .books, title: "Top Books".localized(), fullSeparator: true), //📚
         Copyright()
     ]
     
-    var banner : Banner!
-    
-    override func viewDidLayoutSubviews() {
-        if loaded {
-            print("called")
-            addBanner(from: self.banner)
-        }
-    }
+    var banner : Banner = Banner()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Set up
         title = "Featured".localized()
-        
-        // Register cells
         registerCells()
+        tableView.tableFooterView = UIView()
         tableView.theme_separatorColor = Color.borderColor
         
         // Add categories button
-        let categoriesButton = UIBarButtonItem(title: "Categories".localized(), style: .plain, target: self, action:#selector(Featured.openCategories(_:)))
+        let categoriesButton = UIBarButtonItem(title: "Categories".localized(), style: .plain, target: self, action:#selector(self.openCategories))
         navigationItem.leftBarButtonItem = categoriesButton
         navigationItem.leftBarButtonItem?.isEnabled = false
         
@@ -64,9 +58,6 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         
         // List Genres and enable button on completion
         API.listGenres()
-        
-        /* Initialized here to load images faster */
-        self.banner = Banner()
 
         // Wait for data to be fetched, reload tableView on completion
         reloadTableWhenReady()
@@ -92,25 +83,23 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
                 refreshButton.addTarget(self, action: #selector(self.retry), for: .touchUpInside)
                 
             } else {
-                // Not ready, retrying in 0.2 seconds
+                // Not ready, retrying in 0.3 seconds
                 delay(0.3) { self.reloadTableWhenReady() }
             }
         } else {
             
             // If i don't do this here, stuff breaks :(
-            for cell in itemCells {
-                if let layout = cell.collectionView?.collectionViewLayout as? FlowLayout { layout.scrollDirection = .horizontal }
-            }
+            for layout in itemCells.flatMap({$0.collectionView.collectionViewLayout as? FlowLayout}) { layout.scrollDirection = .horizontal }
             
             // Add banner
             addBanner(from: self.banner)
             
+            // Enable categories button
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+            
             // Works around crazy cell bugs on rotation, enables preloading
             tableView.estimatedRowHeight = 32
             tableView.rowHeight = UITableViewAutomaticDimension
-            
-            // Enable categories button
-            self.navigationItem.leftBarButtonItem?.isEnabled = true
             
             // Reload tableView, hide spinner
             loaded = true
@@ -140,7 +129,7 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
             // Retry all network operations
             API.listGenres()
             for cell in self.cells.flatMap({$0 as? ItemCollection}) { cell.requestItems() }
-            if let banner = self.banner { banner.setImageInputs() }
+            self.banner.setImageInputs()
             self.reloadTableWhenReady()
         }
     }
@@ -163,8 +152,12 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         return loaded ? cells[indexPath.row].height : 0
     }
     
-    // MARK: - Open categories
+}
+
+// MARK: - Reload view after category change
+extension Featured: ChangeCategory {
     
+    // Open categories
     func openCategories(_ sender: UIBarButtonItem) {
         let categoriesViewController = Categories()
         categoriesViewController.delegate = self
@@ -180,20 +173,27 @@ class Featured: LoadingTableView, ChangeCategory, UIPopoverPresentationControlle
         present(nav, animated: true, completion: nil)
     }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        // Popover on ipad, modal on iphone 
-        return .fullScreen
-    }
+    // Popover on ipad, modal on iphone
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle { return .fullScreen }
     
-    // MARK: - Reload view after category change
-    
+    // Reload Categories
     func reloadViewAfterCategoryChange(id: String, type: ItemType) {
-        for cell in cells {
-            if let collection = cell as? ItemCollection {
-                collection.reloadAfterCategoryChange(id: id, type: type)
-            }
-        }
-        
+        for cell in cells { if let collection = cell as? ItemCollection {
+            collection.reloadAfterCategoryChange(id: id, type: type)
+        } }
     }
+}
 
+// MARK: - Push Details controller
+extension Featured: ContentRedirection {
+    func pushDetailsController(with content: Object) {
+        let detailsViewController = Details(content: content)
+        if IS_IPAD {
+            let nav = DismissableModalNavController(rootViewController: detailsViewController)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.pushViewController(detailsViewController, animated: true)
+        }
+    }
 }

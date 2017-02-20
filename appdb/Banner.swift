@@ -99,8 +99,7 @@ class Banner: UITableViewCell {
         if let slideshow = self.slideshow {
             slideshow.setImageInputs([
                 AlamofireSource(urlString: "http://appd.be/n3d/delta/k.png") as! InputSource,
-                AlamofireSource(urlString: "http://appd.be/n3d/delta/a.png") as! InputSource,
-                AlamofireSource(urlString: "http://appd.be/n3d/delta/b.png") as! InputSource
+                AlamofireSource(urlString: "http://appd.be/n3d/delta/a.png") as! InputSource
             ])
         }
     }

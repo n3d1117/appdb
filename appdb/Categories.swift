@@ -80,9 +80,6 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         title = "Select Category".localized()
         
-        // Fix margins on iOS 9+
-        if #available(iOS 9.0, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
-        
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
@@ -179,7 +176,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Dismiss animated
     
     func dismissAnimated() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
     // MARK: - Table view data source
@@ -203,7 +200,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.name.text = categories[indexPath.row].name
 
         if let url = URL(string: categories[indexPath.row].icon) {
-            cell.icon.af_setImage(withURL: url, placeholderImage: placeholder, filter: isBookCell ? nil : Filters.categories, imageTransition: .crossDissolve(0.2))
+            cell.icon.af_setImage(withURL: url, placeholderImage: placeholder, filter: isBookCell ? nil : Filters.getFilter(from: 30), imageTransition: .crossDissolve(0.2))
         }
 
         cell.name.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.title

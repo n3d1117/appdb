@@ -46,6 +46,7 @@ enum Actions: String {
 struct API {
     
     static let realm = try! Realm()
-    static let endpoint = "https://appdb.cc/API/v1.1/"
+    static let endpoint = "https://appdb.cc/API/v1.2/"
+    static let languageCode = Locale.current.languageCode ?? "en"
     
 }

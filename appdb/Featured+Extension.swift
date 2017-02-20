@@ -28,9 +28,7 @@ extension Featured {
     // Reuse identifiers
     enum CellType : String {
         case iosNew = "ios_new"
-        case iosPaid = "ios_paid"
         case iosPopular = "ios_popular"
-        case iosGames = "ios_games"
         case cydia = "cydia"
         case books = "books"
         case dummy = "dummy"
@@ -38,7 +36,7 @@ extension Featured {
         case copyright = "copyright"
     }
     
-    static let iosTypes : [CellType] = [.iosNew, .iosPaid, .iosPopular, .iosGames, .cydia]
+    static let iosTypes : [CellType] = [.iosNew, .iosPopular, .cydia]
     
     enum size {
         case spacing      // The spacing between items
@@ -69,6 +67,7 @@ extension Featured {
         tableView.register(Dummy.self, forCellReuseIdentifier: CellType.dummy.rawValue)
         tableView.register(Banner.self, forCellReuseIdentifier: CellType.banner.rawValue)
         tableView.register(Copyright.self, forCellReuseIdentifier: CellType.copyright.rawValue)
+        for cell in cells.flatMap({$0 as? ItemCollection}) { cell.delegate = self } /* content redirection delegate */
     }
     
     // Add Banner
