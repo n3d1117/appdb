@@ -41,7 +41,7 @@ class Book: Object, Meta {
     
     //Ratings
     dynamic var numberOfRating = ""
-    dynamic var numberOfStars : Double = 0.0
+    dynamic var numberOfStars: Double = 0.0
     
     //Information
     dynamic var updated = ""
@@ -59,7 +59,7 @@ class Book: Object, Meta {
     var relatedBooks = List<RelatedApp>()
 }
 
-extension Book : Mappable {
+extension Book: Mappable {
     func mapping(map: Map) {
         
         name                    <- map["name"]
@@ -73,7 +73,7 @@ extension Book : Mappable {
         artistId                <- map["artist_id"]
         lastParseItunes         <- map["last_parse_itunes"]
 
-        let itunesParse : JSON = JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
+        let itunesParse: JSON = JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
         
         // Information
         printLenght = itunesParse["printlength"].stringValue
@@ -89,7 +89,7 @@ extension Book : Mappable {
             let array = itunesParse["ratings"]["current"].stringValue.components(separatedBy: ", ")
             let array2 = "\(array[1])".components(separatedBy: " ")
             if let tmpNumber = Int(array2[0]) {
-                let num : NSNumber = NSNumber(value: tmpNumber)
+                let num: NSNumber = NSNumber(value: tmpNumber)
                 numberOfRating = "(" + NumberFormatter.localizedString(from: num, number: .decimal) + ")"
             }
             

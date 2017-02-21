@@ -13,14 +13,14 @@ import RealmSwift
 
 class FeaturedApp: UICollectionViewCell {
     
-    var title : UILabel!
-    var category : UILabel!
-    var icon : UIImageView!
+    var title: UILabel!
+    var category: UILabel!
+    var icon: UIImageView!
     
     var didSetupConstraints = false
     
-    var tweaked : Bool = false {
-        didSet { title.theme_textColor = tweaked ? Color.mainTint : Color.title }
+    var tweaked: Bool = false {
+        didSet { title.theme_textColor = tweaked ? Color.mainTint: Color.title }
     }
     
     required init?(coder aDecoder: NSCoder) {

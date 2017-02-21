@@ -16,7 +16,7 @@ protocol Meta {
     static func type() -> ItemType
 }
 
-enum ItemType : String {
+enum ItemType: String {
     case ios = "ios"
     case books = "books"
     case cydia = "cydia"

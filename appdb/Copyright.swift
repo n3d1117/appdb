@@ -11,7 +11,7 @@ import Cartography
 
 class Copyright: FeaturedCell {
     
-    var copyrightNotice : UILabel!
+    var copyrightNotice: UILabel!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

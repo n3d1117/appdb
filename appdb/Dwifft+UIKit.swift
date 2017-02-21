@@ -27,7 +27,7 @@ open class TableViewDiffCalculator<T: Equatable> {
 
     /// Change this value to trigger animations on the table view.
     private var _rows: [T]
-    open var rows : [T] {
+    open var rows: [T] {
         get {
             return _rows
         }
@@ -66,7 +66,7 @@ open class CollectionViewDiffCalculator<T: Equatable> {
     private var _rows: [T]
 
     /// Change this value to trigger animations on the collection view.
-    open var rows : [T] {
+    open var rows: [T] {
         get {
             return _rows
         }

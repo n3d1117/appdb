@@ -22,7 +22,7 @@ protocol ContentRedirection {
 
 class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     
-    let cells : [FeaturedCell] = [
+    let cells: [FeaturedCell] = [
         ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true), //🚀
         Dummy(),
         ItemCollection(id: .iosNew, title: "New and Noteworthy".localized()), //🎁
@@ -32,7 +32,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         Copyright()
     ]
     
-    var banner : Banner = Banner()
+    var banner: Banner = Banner()
 
     override func viewDidLoad() {
         super.viewDidLoad()

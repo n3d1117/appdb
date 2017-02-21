@@ -239,26 +239,26 @@ extension CALayer
 }
 
 private func getThemePicker(
-    _ object : NSObject,
-    _ selector : String
+    _ object: NSObject,
+    _ selector: String
 ) -> ThemePicker? {
     return object.themePickers[selector]
 }
 
 private func setThemePicker(
-    _ object : NSObject,
-    _ selector : String,
-    _ picker : ThemePicker?
+    _ object: NSObject,
+    _ selector: String,
+    _ picker: ThemePicker?
 ) {
     object.themePickers[selector] = picker
     object.performThemePicker(selector: selector, picker: picker)
 }
 
 private func makeStatePicker(
-    _ object : NSObject,
-    _ selector : String,
-    _ picker : ThemePicker?,
-    _ state : UIControlState
+    _ object: NSObject,
+    _ selector: String,
+    _ picker: ThemePicker?,
+    _ state: UIControlState
 ) -> ThemePicker? {
     
     var picker = picker

@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 
 /* TODO - use presentation controller instead? */
-class DismissableModalNavController : UINavigationController, UIGestureRecognizerDelegate {
+class DismissableModalNavController: UINavigationController, UIGestureRecognizerDelegate {
     
-    private var recognizer : UITapGestureRecognizer!
+    private var recognizer: UITapGestureRecognizer!
     
     // Content size for iPad popover
-    var popoverContentSize : CGSize {
+    var popoverContentSize: CGSize {
         get {
             if view.bounds.size.width > view.bounds.size.height {
                 let proposedHeight = view.bounds.size.height*(3/4)
-                return CGSize(width: proposedHeight, height: proposedHeight)
+                return CGSize(width: proposedHeight + 50, height: proposedHeight)
             } else {
                 let proposedWidth = view.bounds.size.width*(3/4)
-                return CGSize(width: proposedWidth, height: proposedWidth)
+                return CGSize(width: proposedWidth + 50, height: proposedWidth)
             }
         }
     }

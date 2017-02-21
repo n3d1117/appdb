@@ -32,7 +32,7 @@ public func +<T> (left: Diff<T>, right: DiffStep<T>) -> Diff<T> {
 }
 
 /// These get returned from calls to Array.diff(). They represent insertions or deletions that need to happen to transform array a into array b.
-public enum DiffStep<T> : CustomDebugStringConvertible {
+public enum DiffStep<T>: CustomDebugStringConvertible {
     case insert(Int, T)
     case delete(Int, T)
     var isInsertion: Bool {

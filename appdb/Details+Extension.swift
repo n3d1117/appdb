@@ -13,7 +13,7 @@ import UIKit
 extension Details {
     
     // Returns content type
-    var contentType : ItemType {
+    var contentType: ItemType {
         if content is App { return .ios }
         if content is CydiaApp { return .cydia }
         if content is Book { return .books }
@@ -49,10 +49,10 @@ extension Details {
 
 class DetailsCell: UITableViewCell {
     
-    var didSetupConstraints : Bool = false
-    var type : ItemType = .ios
-    var identifier : String { return "" }
-    var height : CGFloat { return 0 }
+    var didSetupConstraints: Bool = false
+    var type: ItemType = .ios
+    var identifier: String { return "" }
+    var height: CGFloat { return 0 }
     func setConstraints() {}
     
 }

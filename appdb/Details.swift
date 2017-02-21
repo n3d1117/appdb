@@ -12,9 +12,9 @@ import ObjectMapper
 
 class Details: UITableViewController {
     
-    var content : Object!
+    var content: Object!
     
-    var cells : [DetailsCell] = []
+    var cells: [DetailsCell] = []
     
     // Init with content (app, cydia app or book)
     convenience init(content: Object) {

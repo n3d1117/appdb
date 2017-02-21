@@ -13,7 +13,7 @@ import UIKit
 func cornerRadius(fromWidth: CGFloat) -> CGFloat { return (fromWidth / 4.2) /* around 23% */ }
 
 // Delay function
-func delay(_ delay : Double, closure: @escaping ()->()) {
+func delay(_ delay: Double, closure: @escaping ()->()) {
     let when = DispatchTime.now() + delay
     DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
 }

@@ -11,7 +11,7 @@ import RealmSwift
 import ObjectMapper
 import SwiftyJSON
 
-class App : Object, Meta {
+class App: Object, Meta {
     
     convenience required init?(map: Map) { self.init() }
     
@@ -32,7 +32,7 @@ class App : Object, Meta {
     var screenshots = ""
     
     // General
-    var category : Category?
+    var category: Category?
     dynamic var seller = ""
     
     // Text cells
@@ -62,7 +62,7 @@ class App : Object, Meta {
     
     // Ratings
     dynamic var numberOfRating = ""
-    dynamic var numberOfStars : Double = 0.0
+    dynamic var numberOfStars: Double = 0.0
     
     // Screenshots
     var screenshotsIphone = List<Screenshot>()
@@ -79,7 +79,7 @@ class App : Object, Meta {
 
 }
 
-extension App : Mappable {
+extension App: Mappable {
     
     func mapping(map: Map) {
 
@@ -100,7 +100,7 @@ extension App : Mappable {
         support                 <- map["psupport"]
         
         let screenshotsParse = JSON(data: screenshots.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
-        let itunesParse : JSON = JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
+        let itunesParse = JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
         
         // Information
         seller = itunesParse["seller"].stringValue
@@ -118,7 +118,7 @@ extension App : Mappable {
             let array = itunesParse["ratings"]["current"].stringValue.components(separatedBy: ", ")
             let array2 = "\(array[1])".components(separatedBy: " ")
             if let tmpNumber = Int(array2[0]) {
-                let num : NSNumber = NSNumber(value: tmpNumber)
+                let num: NSNumber = NSNumber(value: tmpNumber)
                 numberOfRating = "(" + NumberFormatter.localizedString(from: num, number: .decimal) + ")"
             }
             

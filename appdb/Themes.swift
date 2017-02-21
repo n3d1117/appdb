@@ -23,7 +23,7 @@ enum Themes: Int {
         saveCurrentTheme()
     }
 
-    static var isNight : Bool { return current == .Dark }
+    static var isNight: Bool { return current == .Dark }
     
     // MARK: - Save & Restore
     

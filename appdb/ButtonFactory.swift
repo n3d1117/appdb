@@ -15,7 +15,7 @@ struct ButtonFactory {
         let button = UIButton(type: .system) as UIButton /* Type is system to keep nice highlighting features */
         
         button.setTitle(text, for: .normal)
-        button.setImage(#imageLiteral(resourceName: "rightArrow"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "rightArrow").withRenderingMode(.alwaysTemplate), for: .normal)
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if #available(iOS 8.2, *), bold {
@@ -73,7 +73,7 @@ struct ButtonFactory {
 // Class to match system button image/text highlighting with the border color
 // Values are hardcoded to match specifically the 'Retry' button for no internet view
 //
-class ButtonWithColoredBorder : UIButton {
+class ButtonWithColoredBorder: UIButton {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted { layer.theme_borderColor = Color.buttonBorderCgColor } /* apple's button selected color */

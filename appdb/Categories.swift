@@ -10,20 +10,20 @@ import UIKit
 import RealmSwift
 import Cartography
 
-private var categories : [Genre] = []
-private var checked : [Int:[Bool]] = [0:[true], 1:[true], 2:[true]]
-private var selected : Int = 0
+private var categories: [Genre] = []
+private var checked: [Int:[Bool]] = [0:[true], 1:[true], 2:[true]]
+private var selected: Int = 0
 private var savedScrollPosition: CGFloat = 0.0
 
 class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var tableView : UITableView!
-    var headerView : ILTranslucentView!
-    var control : UISegmentedControl!
-    var line : UIView!
+    var tableView: UITableView!
+    var headerView: ILTranslucentView!
+    var control: UISegmentedControl!
+    var line: UIView!
     
     var didSetupConstraints = false
-    var delegate : ChangeCategory? = nil
+    var delegate: ChangeCategory? = nil
     
     // Constraints group, will be replaced when orientation changes
     var group = ConstraintGroup()
@@ -135,7 +135,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
             constrain(view, tableView, headerView, control, line, replace: group) { view, tableView, header, control, line in
 
                 // Calculate navBar + eventual Status bar height
-                var height : CGFloat = 0
+                var height: CGFloat = 0
                 if let nav = navigationController {
                     // If it's inside a popover, we don't need to add statusBar height
                     height = (nav.navigationBar.frame.size.height) ~~ (nav.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height)

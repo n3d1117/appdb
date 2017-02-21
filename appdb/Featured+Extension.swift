@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 // Abstract cell, height
-class FeaturedCell : UITableViewCell {
-    var height : CGFloat {
+class FeaturedCell: UITableViewCell {
+    var height: CGFloat {
         guard let id = Featured.CellType(rawValue: reuseIdentifier ?? "") else { return 0 }
         
         // iOS Height
@@ -26,7 +26,7 @@ class FeaturedCell : UITableViewCell {
 extension Featured {
     
     // Reuse identifiers
-    enum CellType : String {
+    enum CellType: String {
         case iosNew = "ios_new"
         case iosPopular = "ios_popular"
         case cydia = "cydia"
@@ -36,7 +36,7 @@ extension Featured {
         case copyright = "copyright"
     }
     
-    static let iosTypes : [CellType] = [.iosNew, .iosPopular, .cydia]
+    static let iosTypes: [CellType] = [.iosNew, .iosPopular, .cydia]
     
     enum size {
         case spacing      // The spacing between items
@@ -45,7 +45,7 @@ extension Featured {
         case heightIos    // Height of collectionView for ios (add 40 for height of cell)
         case heightBooks  // Height of collectionView for books
         
-        var value : CGFloat {
+        var value: CGFloat {
             switch self {
             case .spacing: return 25~~15
             case .margin: return 20~~15
@@ -57,8 +57,8 @@ extension Featured {
     }
     
     // Featured's collection view item sizes
-    static let sizeIos : CGSize = CGSize(width: Featured.size.itemWidth.value, height: Featured.size.heightIos.value)
-    static let sizeBooks : CGSize = CGSize(width: Featured.size.itemWidth.value, height: Featured.size.heightBooks.value)
+    static let sizeIos: CGSize = CGSize(width: Featured.size.itemWidth.value, height: Featured.size.heightIos.value)
+    static let sizeBooks: CGSize = CGSize(width: Featured.size.itemWidth.value, height: Featured.size.heightBooks.value)
     
     // Register cells
     func registerCells() {
@@ -75,7 +75,7 @@ extension Featured {
         tableView.tableHeaderView = from
         from.startTimer()
         if let headerView = tableView.tableHeaderView {
-            let height : CGFloat = from.height
+            let height: CGFloat = from.height
             var headerFrame = headerView.frame
             if height != headerFrame.size.height {
                 headerFrame.size.height = height
@@ -88,7 +88,7 @@ extension Featured {
     // Stick banner to top
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let headerView = tableView.tableHeaderView as? Banner {
-            let minOff : CGFloat = -navigationController!.navigationBar.frame.height - UIApplication.shared.statusBarFrame.size.height
+            let minOff: CGFloat = -navigationController!.navigationBar.frame.height - UIApplication.shared.statusBarFrame.size.height
             if scrollView.contentOffset.y < minOff {
                 headerView.subviews[0].bounds.origin.y = minOff - scrollView.contentOffset.y
             } else {

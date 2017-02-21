@@ -9,9 +9,9 @@
 import Foundation
 import RealmSwift
 
-class Preferences : Object {
+class Preferences: Object {
 
-    dynamic var theme : Int = 0
-    dynamic var isFirstLaunch : Bool = false
+    dynamic var theme: Int = 0
+    dynamic var isFirstLaunch: Bool = false
     
 }

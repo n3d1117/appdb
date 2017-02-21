@@ -14,7 +14,7 @@ import UIKit
 open class ILTranslucentView: UIView {
 
     fileprivate var _translucent = true
-    @IBInspectable open var translucent : Bool {
+    @IBInspectable open var translucent: Bool {
         set {
             _translucent = newValue
             if self.toolbarBG == nil {
@@ -37,8 +37,8 @@ open class ILTranslucentView: UIView {
         }
     }
 
-    fileprivate var _translucentAlpha : CGFloat = 1.0
-    @IBInspectable open var translucentAlpha : CGFloat {
+    fileprivate var _translucentAlpha: CGFloat = 1.0
+    @IBInspectable open var translucentAlpha: CGFloat {
         set {
             if newValue > 1 {
                 _translucentAlpha = 1
@@ -58,7 +58,7 @@ open class ILTranslucentView: UIView {
     }
 
     fileprivate var _translucentTintColor = UIColor.clear
-    @IBInspectable open var translucentTintColor : UIColor {
+    @IBInspectable open var translucentTintColor: UIColor {
         set {
             _translucentTintColor = newValue
             if (self.isItClearColor(newValue)) {
@@ -72,13 +72,13 @@ open class ILTranslucentView: UIView {
         }
     }
 
-    fileprivate var ilColorBG : UIColor?
-    fileprivate var ilDefaultColorBG : UIColor?
+    fileprivate var ilColorBG: UIColor?
+    fileprivate var ilDefaultColorBG: UIColor?
 
-    fileprivate var toolbarBG : UIToolbar?
-    fileprivate var nonExistentSubview : UIView?
-    fileprivate var toolbarContainerClipView : UIView?
-    fileprivate var overlayBackgroundView : UIView?
+    fileprivate var toolbarBG: UIToolbar?
+    fileprivate var nonExistentSubview: UIView?
+    fileprivate var toolbarContainerClipView: UIView?
+    fileprivate var overlayBackgroundView: UIView?
     fileprivate var initComplete = false
 
     override init(frame: CGRect) {
@@ -136,15 +136,15 @@ extension ILTranslucentView {
     }
 
     fileprivate func isItClearColor(_ color: UIColor) -> Bool {
-        var red : CGFloat = 0.0
-        var green : CGFloat = 0.0
-        var blue : CGFloat = 0.0
-        var alpha : CGFloat = 0.0
+        var red: CGFloat = 0.0
+        var green: CGFloat = 0.0
+        var blue: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
         color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         return red == 0.0 && green == 0.0 && blue == 0.0 && alpha == 0.0
     }
 
-    @objc open override var frame : CGRect {
+    @objc open override var frame: CGRect {
         set {
             if self.toolbarContainerClipView == nil {
                 super.frame = newValue
@@ -174,7 +174,7 @@ extension ILTranslucentView {
         }
     }
 
-    @objc override open var bounds : CGRect {
+    @objc override open var bounds: CGRect {
         set {
             var rect = newValue
             rect.origin = CGPoint.zero
@@ -198,7 +198,7 @@ extension ILTranslucentView {
         }
     }
 
-    @objc override open var backgroundColor : UIColor! {
+    @objc override open var backgroundColor: UIColor! {
         set {
             if self.initComplete {
                 self.ilColorBG = newValue
@@ -215,7 +215,7 @@ extension ILTranslucentView {
         }
     }
 
-    @objc override open var subviews : [UIView] {
+    @objc override open var subviews: [UIView] {
         if self.initComplete {
             var array = super.subviews as [UIView]
 

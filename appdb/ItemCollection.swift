@@ -95,21 +95,21 @@ class ItemCollection: FeaturedCell  {
     var didSetConstraints = false
 
     // UI Elements
-    var collectionView : UICollectionView!
-    var sectionLabel : UILabel!
-    var categoryLabel : PaddingLabel!
-    var seeAllButton : UIButton!
+    var collectionView: UICollectionView!
+    var sectionLabel: UILabel!
+    var categoryLabel: PaddingLabel!
+    var seeAllButton: UIButton!
     
     // Array to fill data with
     var items: [Object] = []
     
-    var showFullSeparator : Bool = false
+    var showFullSeparator: Bool = false
     
     // Response object
     var response : ItemResponse = ItemResponse()
     
     // Redirect to Details view
-    var delegate : ContentRedirection? = nil
+    var delegate: ContentRedirection? = nil
 
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
@@ -164,7 +164,7 @@ class ItemCollection: FeaturedCell  {
         categoryLabel.theme_textColor = Color.invertedTitle
         categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
-        categoryLabel.layer.cornerRadius = 5
+        categoryLabel.layer.cornerRadius = 6
         categoryLabel.isHidden = true
         
         seeAllButton = ButtonFactory.createChevronButton(text: "See All".localized(), color: Color.darkGray)
@@ -256,9 +256,6 @@ class ItemCollection: FeaturedCell  {
                 
             } else { print("diff is empty... wtf?") }
             
-            // Fix rare issue where first three Cydia items would not load category text - probs not fixed
-            if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }
-            
             // Update category label
             if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
                 self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
@@ -274,22 +271,6 @@ class ItemCollection: FeaturedCell  {
         }, fail: { error in
             self.response.errorDescription = error.prettified()
         })
-    }
-    
-    // Fixes rare issue where first three Cydia items would not load category text. 
-    // Reloading text after 0.3 seconds, seems to work (tested on iPad Mini 2)
-    
-    func dirtyFixEmptyCategory() {
-        if self.items[0] is CydiaApp {
-            delay(0.3) { for i in 0..<3 {
-                if let cell = self.collectionView.cellForItem(at: IndexPath(row: i, section: 0)) as? FeaturedApp {
-                    if cell.category.text == "", let cydiaApp = self.items[i] as? CydiaApp {
-                        cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
-                        cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
-                    }
-                }
-            } }
-        }
     }
     
     // MARK: - Reload items after category change

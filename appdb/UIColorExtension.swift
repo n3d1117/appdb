@@ -13,7 +13,7 @@ import UIKit
  UnableToScanHexValue:      "Scan hex error"
  MismatchedHexStringLength: "Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8"
  */
-public enum UIColorInputError : Error {
+public enum UIColorInputError: Error {
     case missingHashMarkAsPrefix,
     unableToScanHexValue,
     mismatchedHexStringLength

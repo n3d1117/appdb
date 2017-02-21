@@ -23,7 +23,7 @@ class CydiaApp: Object, Meta {
         return .cydia
     }
     
-    var screenshots : String = ""
+    var screenshots: String = ""
     
     dynamic var name = ""
     dynamic var id = ""
@@ -60,7 +60,7 @@ class CydiaApp: Object, Meta {
     
 }
 
-extension CydiaApp : Mappable {
+extension CydiaApp: Mappable {
     func mapping(map: Map) {
         
         name                    <- map["name"]

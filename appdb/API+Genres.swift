@@ -25,7 +25,7 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     
-                    var genres : [Genre] = []
+                    var genres: [Genre] = []
                     
                     // Cydia genres
                     for (key, value):(String, JSON) in json["data"]["cydia"] {

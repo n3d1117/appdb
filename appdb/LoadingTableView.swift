@@ -20,7 +20,7 @@ import Cartography
 
 class LoadingTableView: UITableViewController {
     
-    var loaded : Bool = false {
+    var loaded: Bool = false {
         didSet { if loaded { /* Done loading, hide spinner and reload tableView. */
             activityIndicator.stopAnimating()
             tableView.isScrollEnabled = true
@@ -28,10 +28,10 @@ class LoadingTableView: UITableViewController {
         } }
     }
     
-    var activityIndicator : UIActivityIndicatorView!
-    var errorMessage : UILabel!
-    var secondaryErrorMessage : UILabel!
-    var refreshButton : UIButton!
+    var activityIndicator: UIActivityIndicatorView!
+    var errorMessage: UILabel!
+    var secondaryErrorMessage: UILabel!
+    var refreshButton: UIButton!
     var group = ConstraintGroup()
     
     // MARK: - ViewDidLoad

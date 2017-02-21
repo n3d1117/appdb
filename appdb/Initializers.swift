@@ -28,7 +28,7 @@ struct Global {
         }
     }
     
-    static var firstLaunch : Bool {
+    static var firstLaunch: Bool {
         let realm = try! Realm()
         return realm.objects(Preferences.self).first!.isFirstLaunch
     }

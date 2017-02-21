@@ -157,7 +157,7 @@ open class Localize: NSObject {
      - Returns: The localized string.
      */
     open class func displayNameForLanguage(_ language: String) -> String {
-        let locale : NSLocale = NSLocale(localeIdentifier: currentLanguage())
+        let locale: NSLocale = NSLocale(localeIdentifier: currentLanguage())
         if let displayName = locale.displayName(forKey: NSLocale.Key.identifier, value: language) {
             return displayName
         }
