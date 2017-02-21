@@ -14,6 +14,7 @@ class FeaturedBook: UICollectionViewCell {
     var title: UILabel!
     var author: UILabel!
     var cover: UIImageView!
+    var dim: UIView = DimmableView.get()
     
     var didSetupConstraints = false
     
@@ -41,16 +42,17 @@ class FeaturedBook: UICollectionViewCell {
         author.lineBreakMode = .byTruncatingTail
         author.numberOfLines = 1
         
-        addSubview(cover)
-        addSubview(title)
-        addSubview(author)
+        contentView.addSubview(cover)
+        contentView.addSubview(title)
+        contentView.addSubview(author)
+        contentView.addSubview(dim)
         
         setConstraints()
     }
     
     func setConstraints() {        
         if !didSetupConstraints { didSetupConstraints = true
-            constrain(cover, title, author) { cover, title, author in
+            constrain(cover, title, author, dim) { cover, title, author, dim in
                 cover.left == cover.superview!.left
                 cover.top == cover.superview!.top
                 cover.right == cover.superview!.right
@@ -64,7 +66,16 @@ class FeaturedBook: UICollectionViewCell {
                 author.left == author.superview!.left
                 author.right == author.superview!.right
                 author.top == title.bottom + 2
+                
+                dim.edges == cover.edges
             }
+        }
+    }
+    
+    // Hover cover
+    override var isHighlighted: Bool {
+        didSet {
+            UIView.animate(withDuration: 0.1, animations: { self.dim.layer.opacity = self.isHighlighted ? DimmableView.opacity : 0 })
         }
     }
 }

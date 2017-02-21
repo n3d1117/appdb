@@ -47,11 +47,11 @@ extension Featured {
         
         var value: CGFloat {
             switch self {
-            case .spacing: return 25~~15
-            case .margin: return 20~~15
-            case .itemWidth: return 83~~73
-            case .heightIos: return 150~~135
-            case .heightBooks: return 190~~180
+            case .spacing: return (25~~15)
+            case .margin: return (20~~15)
+            case .itemWidth: return (83~~73)
+            case .heightIos: return (150~~135)
+            case .heightBooks: return (190~~180)
             }
         }
     }

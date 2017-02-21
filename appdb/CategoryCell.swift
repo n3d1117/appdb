@@ -49,11 +49,11 @@ class CategoryCell: UITableViewCell {
         
         // Name
         name = UILabel()
-        name.font = UIFont.systemFont(ofSize: 17~~16)
+        name.font = UIFont.systemFont(ofSize: (17~~16))
         name.numberOfLines = 1
         
-        addSubview(icon)
-        addSubview(name)
+        contentView.addSubview(icon)
+        contentView.addSubview(name)
         
         setConstraints()
     }

@@ -16,6 +16,7 @@ class FeaturedApp: UICollectionViewCell {
     var title: UILabel!
     var category: UILabel!
     var icon: UIImageView!
+    var dim: UIView = DimmableView.get()
     
     var didSetupConstraints = false
     
@@ -47,22 +48,25 @@ class FeaturedApp: UICollectionViewCell {
         category.font = UIFont.systemFont(ofSize: 11.5)
         category.lineBreakMode = .byTruncatingTail
         category.numberOfLines = 1
+
+        dim.layer.cornerRadius = icon.layer.cornerRadius
         
-        addSubview(icon)
-        addSubview(title)
-        addSubview(category)
+        contentView.addSubview(icon)
+        contentView.addSubview(title)
+        contentView.addSubview(category)
+        contentView.addSubview(dim)
         
         setConstraints()
     }
     
     func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true
-            constrain(icon, title, category) { icon, title, category in
+            constrain(icon, title, category, dim) { icon, title, category, dim in
                 icon.left == icon.superview!.left
                 icon.top == icon.superview!.top
                 icon.right == icon.superview!.right
                 icon.height == frame.size.width
-                icon.width == frame.size.width
+                icon.width == icon.height
                 
                 title.left == title.superview!.left
                 title.right == title.superview!.right
@@ -71,7 +75,17 @@ class FeaturedApp: UICollectionViewCell {
                 category.left == category.superview!.left
                 category.right == category.superview!.right
                 category.top == title.bottom + (2~~1)
+                
+                dim.edges == icon.edges
+                
             }
+        }
+    }
+    
+    // Hover icon
+    override var isHighlighted: Bool {
+        didSet {
+            UIView.animate(withDuration: 0.1, animations: { self.dim.layer.opacity = self.isHighlighted ? DimmableView.opacity : 0 })
         }
     }
 }

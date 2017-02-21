@@ -162,7 +162,11 @@ class ItemCollection: FeaturedCell  {
         
         categoryLabel  = PaddingLabel()
         categoryLabel.theme_textColor = Color.invertedTitle
-        categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
+        if #available(iOS 8.2, *) {
+            categoryLabel.font = UIFont.systemFont(ofSize: 10.0, weight: UIFontWeightSemibold)
+        } else {
+            categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
+        }
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 6
         categoryLabel.isHidden = true
@@ -208,7 +212,6 @@ class ItemCollection: FeaturedCell  {
             section.bottom == collection.top - (44~~39 - section.height.view.bounds.height) / 2
         
             seeAll.right == seeAll.superview!.right - Featured.size.margin.value
-            seeAll.left == seeAll.superview!.right - Featured.size.margin.value - seeAll.width.view.frame.size.width
             seeAll.centerY == section.centerY
             
             category.left == section.right + 8

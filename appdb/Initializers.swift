@@ -32,6 +32,8 @@ struct Global {
         let realm = try! Realm()
         return realm.objects(Preferences.self).first!.isFirstLaunch
     }
+    
+    static let bulletPoint = " • "
 }
 
 struct Filters {

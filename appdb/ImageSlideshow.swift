@@ -329,14 +329,16 @@ open class ImageSlideshow: UIView {
     }
 
     func slideshowTick(_ timer: Timer) {
-        let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        var nextPage = page + 1
-
-        if !circular && page == scrollViewImages.count - 1 {
-            nextPage = 0
+        if !scrollView.contentOffset.x.isZero, !scrollView.frame.size.width.isZero {
+            let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+            var nextPage = page + 1
+            
+            if !circular && page == scrollViewImages.count - 1 {
+                nextPage = 0
+            }
+            
+            self.setScrollViewPage(nextPage, animated: true)
         }
-
-        self.setScrollViewPage(nextPage, animated: true)
     }
 
     fileprivate func setCurrentPageForScrollViewPage(_ page: Int) {

@@ -22,7 +22,7 @@ class Copyright: FeaturedCell {
     }
     
     override var height: CGFloat {
-        return 60~~75
+        return (60~~75)
     }
     
     convenience init() {

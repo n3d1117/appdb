@@ -52,7 +52,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
         
         /* DEBUG */
-        let tmpButton = UIBarButtonItem(title: "switch mode", style: .plain, target: self, action:#selector(self.tmpSwitch))
+        let tmpButton = UIBarButtonItem(title: "switch".localized(), style: .plain, target: self, action:#selector(self.tmpSwitch))
         navigationItem.rightBarButtonItem = tmpButton
         /* DEBUG */
         

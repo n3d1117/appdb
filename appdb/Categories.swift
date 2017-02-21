@@ -138,7 +138,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 var height: CGFloat = 0
                 if let nav = navigationController {
                     // If it's inside a popover, we don't need to add statusBar height
-                    height = (nav.navigationBar.frame.size.height) ~~ (nav.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height)
+                    height = (nav.navigationBar.frame.size.height)~~(nav.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height)
                 }
                 
                 header.top == view.top + height
@@ -204,7 +204,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         cell.name.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.title
-        cell.name.font = checked[selected]![indexPath.row] ? UIFont.boldSystemFont(ofSize: 17~~16) : UIFont.systemFont(ofSize: 17~~16)
+        cell.name.font = checked[selected]![indexPath.row] ? UIFont.boldSystemFont(ofSize: (17~~16)) : UIFont.systemFont(ofSize: (17~~16))
         cell.accessoryType = checked[selected]![indexPath.row] ? .checkmark : .none
         
         return cell

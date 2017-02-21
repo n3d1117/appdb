@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>appdb copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>appdb.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>813DD7921E5C95E300BE411F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8167A60E1DAC246000F96AC2</key>
 		<dict>
 			<key>primary</key>

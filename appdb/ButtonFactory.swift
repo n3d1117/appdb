@@ -12,6 +12,7 @@ struct ButtonFactory {
     
     // Returns a button with arrow on the right (such as 'See All' button)
     static func createChevronButton(text: String, color: ThemeColorPicker, size: CGFloat = 10.5, bold: Bool = true) -> UIButton {
+        
         let button = UIButton(type: .system) as UIButton /* Type is system to keep nice highlighting features */
         
         button.setTitle(text, for: .normal)
@@ -26,12 +27,13 @@ struct ButtonFactory {
         button.contentHorizontalAlignment = .left
         button.titleLabel?.lineBreakMode = .byTruncatingTail
         
+        button.imageView!.contentMode = .center
         button.sizeToFit()
-        
-        // What the fuck is this
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageRect(forContentRect: button.bounds).size.width, 0, 0)
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleRect(forContentRect: button.bounds).size.width, 0, 0)
-        
+
+        // (bold ? 5 : 0) (im lazy) is actually to add 5 just for see all in featured - TODO make it better
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageRect(forContentRect: button.bounds).size.width + (bold ? 3 : 0), 0, 0)
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleRect(forContentRect: button.bounds).size.width + (bold ? 5 : 0), 0, 0)
+
         return button
     }
     
@@ -44,9 +46,9 @@ struct ButtonFactory {
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if #available(iOS 8.2, *) {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 14~~13, weight: UIFontWeightSemibold)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: (14~~13), weight: UIFontWeightSemibold)
         } else {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 14~~13)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: (14~~13))
         }
         
         button.contentHorizontalAlignment = .left
