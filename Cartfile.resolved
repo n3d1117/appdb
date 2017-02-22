@@ -1,6 +1,5 @@
 github "Alamofire/Alamofire" "4.3.0"
 github "robb/Cartography" "1.0.1"
-github "marketplacer/Cosmos" "8.0.2"
 github "Hearst-DD/ObjectMapper" "2.2.3"
 github "SwiftyJSON/SwiftyJSON" "3.1.4"
 github "realm/realm-cocoa" "v2.4.3"

@@ -94,7 +94,7 @@ class Banner: UITableViewCell {
         slideshow.slideshowInterval = 5.0
     }
     
-    /* This is also a retry function, in case banner should be reloaded */
+    /* This is also a retry function, in case sources should be reloaded */
     func setImageInputs() {
         if let slideshow = self.slideshow {
             slideshow.setImageInputs([

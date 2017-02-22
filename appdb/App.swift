@@ -70,12 +70,6 @@ class App: Object, Meta {
     
     // Related Apps
     var relatedApps = List<RelatedApp>()
-    
-    // Screenshots count
-    var countPortraitIphone = 0
-    var countLandscapeIphone = 0
-    var countPortraitIpad = 0
-    var countLandscapeIpad = 0
 
 }
 
@@ -135,7 +129,8 @@ extension App: Mappable {
         for i in 0..<screenshotsParse["iphone"].count {
             tmpScreens.append(Screenshot(
                 src: screenshotsParse["iphone"][i]["src"].stringValue,
-                class_: screenshotsParse["iphone"][i]["class"].stringValue
+                class_: screenshotsParse["iphone"][i]["class"].stringValue,
+                type: "iphone"
             ))
         }; screenshotsIphone = tmpScreens
         
@@ -143,14 +138,10 @@ extension App: Mappable {
         for i in 0..<screenshotsParse["ipad"].count {
             tmpScreensIpad.append(Screenshot(
                 src: screenshotsParse["ipad"][i]["src"].stringValue,
-                class_: screenshotsParse["ipad"][i]["class"].stringValue
+                class_: screenshotsParse["ipad"][i]["class"].stringValue,
+                type: "ipad"
             ))
         }; screenshotsIpad = tmpScreensIpad
-        
-        countPortraitIphone = screenshotsIphone.filter{$0.class_=="portrait"}.count
-        countLandscapeIphone = screenshotsIphone.filter{$0.class_=="landscape"}.count
-        countPortraitIpad = screenshotsIpad.filter{$0.class_=="portrait"}.count
-        countLandscapeIpad = screenshotsIpad.filter{$0.class_=="landscape"}.count
         
         //Related Apps
         let tmpRelated = List<RelatedApp>()

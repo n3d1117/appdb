@@ -1,5 +1,5 @@
 //
-//  DetailsHeader.swift
+//  Details+Header.swift
 //  appdb
 //
 //  Created by ned on 20/02/2017.

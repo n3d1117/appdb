@@ -43,6 +43,19 @@ extension Details {
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
     }
     
+    func getScreenshots(from content: Object) -> List<Screenshot> {
+        switch contentType {
+        case .ios: if let app = content as? App {
+            return app.screenshotsIpad.isEmpty ? app.screenshotsIphone : (app.screenshotsIpad~~app.screenshotsIphone)
+        }
+        case .cydia: if let cydiaApp = content as? CydiaApp {
+            return cydiaApp.screenshotsIpad.isEmpty ? cydiaApp.screenshotsIphone : (cydiaApp.screenshotsIpad~~cydiaApp.screenshotsIphone)
+        }
+        default: break
+        }
+        return List<Screenshot>()
+    }
+    
 }
 
 // Details cell template

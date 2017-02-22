@@ -12,11 +12,13 @@ import RealmSwift
 class Screenshot: Object {
     dynamic var image = ""
     dynamic var class_ = ""
+    dynamic var type = ""
     
-    convenience init(src: String, class_: String) {
+    convenience init(src: String, class_: String, type: String) {
         self.init()
         self.image = src
         self.class_ = class_
+        self.type = type
     }
 }
 

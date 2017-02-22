@@ -33,13 +33,14 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     ]
     
     var banner: Banner = Banner()
+    var previewings : [ItemCollection : UIViewControllerPreviewing] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Set up
         title = "Featured".localized()
-        registerCells()
+        setUp()
         tableView.tableFooterView = UIView()
         tableView.theme_separatorColor = Color.borderColor
         
@@ -89,7 +90,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         } else {
             
             // If i don't do this here, stuff breaks :(
-            for layout in itemCells.flatMap({$0.collectionView.collectionViewLayout as? FlowLayout}) { layout.scrollDirection = .horizontal }
+            for layout in itemCells.flatMap({$0.collectionView.collectionViewLayout as? SnappableFlowLayout}) { layout.scrollDirection = .horizontal }
             
             // Add banner
             addBanner(from: self.banner)

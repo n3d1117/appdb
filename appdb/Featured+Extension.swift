@@ -60,14 +60,22 @@ extension Featured {
     static let sizeIos: CGSize = CGSize(width: Featured.size.itemWidth.value, height: Featured.size.heightIos.value)
     static let sizeBooks: CGSize = CGSize(width: Featured.size.itemWidth.value, height: Featured.size.heightBooks.value)
     
-    // Register cells
-    func registerCells() {
+    // Set up
+    func setUp() {
+        
+        // Register cells
         for id in Featured.iosTypes { tableView.register(ItemCollection.self, forCellReuseIdentifier: id.rawValue) }
         tableView.register(ItemCollection.self, forCellReuseIdentifier: CellType.books.rawValue)
         tableView.register(Dummy.self, forCellReuseIdentifier: CellType.dummy.rawValue)
         tableView.register(Banner.self, forCellReuseIdentifier: CellType.banner.rawValue)
         tableView.register(Copyright.self, forCellReuseIdentifier: CellType.copyright.rawValue)
+        
         for cell in cells.flatMap({$0 as? ItemCollection}) { cell.delegate = self } /* content redirection delegate */
+        
+        //Register for 3D Touch
+        if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: tableView)
+        }
     }
     
     // Add Banner
@@ -95,5 +103,36 @@ extension Featured {
                 headerView.subviews[0].bounds.origin.y = 0
             }
         }  
+    }
+}
+
+
+// MARK: - 3D Touch Peek and Pop on icons
+extension Featured: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) as? ItemCollection else { return nil }
+        
+        guard let index = cell.collectionView.indexPathForItem(at: self.view.convert(location, to: cell.collectionView)) else { return nil }
+        guard cell.items.indices.contains(index.row) else { return nil }
+        
+        if let collectionViewCell = cell.collectionView.cellForItem(at: index) as? FeaturedApp {
+            let iconRect = tableView.convert(collectionViewCell.icon.frame, from: collectionViewCell.icon.superview!)
+            if #available(iOS 9.0, *) { previewingContext.sourceRect = iconRect }
+        } else if let collectionViewCell = cell.collectionView.cellForItem(at: index) as? FeaturedBook {
+            let coverRect = tableView.convert(collectionViewCell.cover.frame, from: collectionViewCell.cover.superview!)
+            if #available(iOS 9.0, *) { previewingContext.sourceRect = coverRect }
+        } else {
+            return nil
+        }
+        
+        let detailsViewController = Details(content: cell.items[index.row])
+        return detailsViewController
+        
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
     }
 }

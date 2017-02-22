@@ -24,7 +24,8 @@ class Details: UITableViewController {
         
         // Initialize the cells now that we know the type
         cells = [
-            DetailsHeader(type: contentType, content: content)
+            DetailsHeader(type: contentType, content: content),
+            DetailsScreenshots(type: contentType, screenshots: getScreenshots(from: content))
         ]
     }
 

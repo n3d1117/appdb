@@ -18,28 +18,6 @@ struct ItemResponse {
     var errorDescription : String = ""
 }
 
-class FlowLayout : UICollectionViewFlowLayout {
-    
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        
-        let cellWidth : CGFloat = Featured.size.itemWidth.value
-        let cellSpacing: CGFloat = Featured.size.spacing.value
-        let targetX : CGFloat = collectionView!.contentOffset.x + velocity.x * 120.0
-        var targetIndex: CGFloat = round(targetX / (cellWidth + cellSpacing))
-        if velocity.x > 0 {
-            targetIndex = ceil(targetX / (cellWidth + cellSpacing))
-        } else {
-            targetIndex = floor(targetX / (cellWidth + cellSpacing))
-        }
-
-        return CGPoint(x: targetIndex * (cellWidth + cellSpacing), y: proposedContentOffset.y)
-    }
-    
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return true
-    }
-}
-
 extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,7 +66,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
     
 }
 
-class ItemCollection: FeaturedCell  {
+class ItemCollection: FeaturedCell {
     
     // Adjust title space and category if content size category did change
     let group = ConstraintGroup()
@@ -129,14 +107,14 @@ class ItemCollection: FeaturedCell  {
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
         
-        let layout: FlowLayout = FlowLayout()
+        let layout = SnappableFlowLayout(width: Featured.size.itemWidth.value, spacing: Featured.size.spacing.value)
         if let id = Featured.CellType(rawValue: reuseIdentifier!) {
             if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
         }
         layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
         layout.minimumLineSpacing = Featured.size.spacing.value
         
-        collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(FeaturedApp.self, forCellWithReuseIdentifier: "app")
         collectionView.register(FeaturedApp.self, forCellWithReuseIdentifier: "cydia")
         collectionView.register(FeaturedBook.self, forCellWithReuseIdentifier: "book")
@@ -231,10 +209,6 @@ class ItemCollection: FeaturedCell  {
         self.response.success = false; self.response.errorDescription = ""
         if let id = reuseIdentifier {
             if let type = Featured.CellType(rawValue: id) {
-                
-                //if Featured.iosTypes.contains(type) { for _ in 0..<25 { self.items.append(App()) } }
-                //else { for _ in 0..<25 { self.items.append(Book()) } }
-                
                 switch type {
                     case .cydia: getItems(type: CydiaApp.self, order: .added)
                     case .iosNew: getItems(type: App.self, order: .added)
@@ -259,6 +233,9 @@ class ItemCollection: FeaturedCell  {
                 
             } else { print("diff is empty... wtf?") }
             
+            // Fix rare issue where first three Cydia items would not load category text - probs not fixed
+            if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }
+            
             // Update category label
             if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
                 self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
@@ -274,6 +251,22 @@ class ItemCollection: FeaturedCell  {
         }, fail: { error in
             self.response.errorDescription = error.prettified()
         })
+    }
+    
+    // Fixes rare issue where first three Cydia items would not load category text.
+    // Reloading text after 0.3 seconds, seems to work (tested on iPad Mini 2)
+    
+    private func dirtyFixEmptyCategory() {
+        if self.items[0] is CydiaApp {
+            delay(0.3) { for i in 0..<3 {
+                if let cell = self.collectionView.cellForItem(at: IndexPath(row: i, section: 0)) as? FeaturedApp {
+                    if cell.category.text == "", let cydiaApp = self.items[i] as? CydiaApp {
+                        cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
+                        cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
+                    }
+                }
+            } }
+        }
     }
     
     // MARK: - Reload items after category change
