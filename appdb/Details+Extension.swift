@@ -23,10 +23,12 @@ extension Details {
     // Set up
     func setUp() {
         
+        tableView.estimatedRowHeight = 120
+        
         // Register cells
         for cell in cells { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
         
-        // Add 'Dismiss' button
+        // Add 'Dismiss' button for iPad
         if IS_IPAD {
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             self.navigationItem.rightBarButtonItem = dismissButton
@@ -43,17 +45,27 @@ extension Details {
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
     }
     
+    // Helpers
     func getScreenshots(from content: Object) -> List<Screenshot> {
         switch contentType {
-        case .ios: if let app = content as? App {
-            return app.screenshotsIpad.isEmpty ? app.screenshotsIphone : (app.screenshotsIpad~~app.screenshotsIphone)
-        }
-        case .cydia: if let cydiaApp = content as? CydiaApp {
-            return cydiaApp.screenshotsIpad.isEmpty ? cydiaApp.screenshotsIphone : (cydiaApp.screenshotsIpad~~cydiaApp.screenshotsIphone)
-        }
-        default: break
+            case .ios: if let app = content as? App {
+                return app.screenshotsIpad.isEmpty ? app.screenshotsIphone : (app.screenshotsIpad~~app.screenshotsIphone)
+            }
+            case .cydia: if let cydiaApp = content as? CydiaApp {
+                return cydiaApp.screenshotsIpad.isEmpty ? cydiaApp.screenshotsIphone : (cydiaApp.screenshotsIpad~~cydiaApp.screenshotsIphone)
+            }
+            default: break
         }
         return List<Screenshot>()
+    }
+    
+    func getDescription(from content: Object) -> String {
+        switch contentType {
+            case .ios: if let app = content as? App { return app.description_ }
+            case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.description_ }
+            case .books: if let book = content as? Book { return book.description_ }
+        }
+        return ""
     }
     
 }

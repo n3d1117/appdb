@@ -21,7 +21,7 @@ class DetailsHeader: DetailsCell {
     var additionalInfo: UILabel?
     
     private var _height = (130~~100) + Featured.size.margin.value
-    private var _heightBooks = ((130~~100) * 1.542) + Featured.size.margin.value
+    private var _heightBooks = round((130~~100) * 1.542) + Featured.size.margin.value
     override var height: CGFloat {
         switch type {
             case .ios, .cydia: return _height
@@ -43,6 +43,7 @@ class DetailsHeader: DetailsCell {
         
         //UI
         theme_backgroundColor = Color.veryVeryLightGray
+        contentView.theme_backgroundColor = Color.veryVeryLightGray
         
         // Name
         name = UILabel()

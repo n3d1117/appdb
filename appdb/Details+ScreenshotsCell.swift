@@ -15,7 +15,7 @@ class ScreenshotCell: UICollectionViewCell {
     
     var didSetupConstraints: Bool = false
     var image: UIImageView!
-     var dim: UIView = DimmableView.get()
+    var dim: UIView = DimmableView.get()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

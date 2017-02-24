@@ -17,7 +17,7 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshot", for: indexPath) as! ScreenshotCell
         if let url = URL(string: screenshots[indexPath.row].image) {
-            cell.image.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: .none, imageTransition: .crossDissolve(0.2))
+            cell.image.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
         }
         return cell
     }
@@ -28,7 +28,7 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if screenshots[indexPath.row].class_ == "landscape" {
-            return CGSize(width: widthIfLandscape, height: (200~~158)-(Featured.size.margin.value*2)-1)
+            return CGSize(width: widthIfLandscape, height: (230~~176)-(Featured.size.margin.value*2)-1)
         } else {
             return CGSize(width: widthIfPortrait, height: height-(Featured.size.margin.value*2)-1)
         }
@@ -41,7 +41,7 @@ class DetailsScreenshots: DetailsCell {
     override var identifier: String { return "screenshots" }
     override var height: CGFloat {
         if screenshots.isEmpty { return 0 }
-        return allLandscape ? (200~~158) : 280
+        return allLandscape ? (230~~176) : 300
     }
     
     var collectionView: UICollectionView!
@@ -53,8 +53,8 @@ class DetailsScreenshots: DetailsCell {
         return 0
     }
 
-    var widthIfPortrait: CGFloat { return round((280-(Featured.size.margin.value * 2)) / magic) }
-    var widthIfLandscape: CGFloat { return round(((200~~158)-(Featured.size.margin.value * 2)) * magic) }
+    var widthIfPortrait: CGFloat { return round((300-(Featured.size.margin.value * 2)) / magic) }
+    var widthIfLandscape: CGFloat { return round(((230~~176)-(Featured.size.margin.value * 2)) * magic) }
     var allLandscape: Bool { return screenshots.filter({$0.class_=="portrait"}).isEmpty }
     var mixedClasses: Bool { return !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
     var spacing: CGFloat = 15
