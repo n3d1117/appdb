@@ -11,7 +11,7 @@ import UIKit
 struct ButtonFactory {
     
     // Returns a button with arrow on the right (such as 'See All' button)
-    static func createChevronButton(text: String, color: ThemeColorPicker, size: CGFloat = 10.5, bold: Bool = true) -> UIButton {
+    static func createChevronButton(text: String, color: ThemeColorPicker, size: CGFloat = 11, bold: Bool = true) -> UIButton {
         
         let button = UIButton(type: .system) as UIButton /* Type is system to keep nice highlighting features */
         
@@ -20,9 +20,9 @@ struct ButtonFactory {
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if #available(iOS 8.2, *), bold {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: size, weight: UIFontWeightSemibold)
+            button.titleLabel?.font = .systemFont(ofSize: size, weight: UIFontWeightSemibold)
         } else {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: size)
+            button.titleLabel?.font = .systemFont(ofSize: size)
         }
         button.contentHorizontalAlignment = .left
         button.titleLabel?.lineBreakMode = .byTruncatingTail
@@ -46,9 +46,9 @@ struct ButtonFactory {
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if #available(iOS 8.2, *) {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: (14~~13), weight: UIFontWeightSemibold)
+            button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: UIFontWeightSemibold)
         } else {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: (14~~13))
+            button.titleLabel?.font = .systemFont(ofSize: (14~~13))
         }
         
         button.contentHorizontalAlignment = .left

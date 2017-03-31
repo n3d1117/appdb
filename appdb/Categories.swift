@@ -54,7 +54,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.theme_separatorColor = Color.borderColor
         
-        headerView = ILTranslucentView(frame: CGRect())
+        headerView = ILTranslucentView(frame: .zero)
         headerView.translucentAlpha = 1
         
         control = UISegmentedControl(items: ["iOS".localized(), "Cydia".localized(), "Books".localized()])
@@ -62,7 +62,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         control.selectedSegmentIndex = selected
         reloadAfterIndexChange(index: selected)
 
-        line = UIView(frame: CGRect())
+        line = UIView(frame: .zero)
         line.backgroundColor = tableView.separatorColor
         
         headerView.addSubview(line)
@@ -138,7 +138,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 var height: CGFloat = 0
                 if let nav = navigationController {
                     // If it's inside a popover, we don't need to add statusBar height
-                    height = (nav.navigationBar.frame.size.height)~~(nav.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height)
+                    height = (nav.navigationBar.frame.height)~~(nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height)
                 }
                 
                 header.top == view.top + height
@@ -146,7 +146,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 header.right == view.right
                 header.height == 40
                 
-                line.height == 1 / UIScreen.main.scale
+                line.height == 1/UIScreen.main.scale
                 line.left == header.left
                 line.right == header.right
                 line.top == header.bottom - 0.5
@@ -175,9 +175,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Dismiss animated
     
-    func dismissAnimated() {
-        dismiss(animated: true)
-    }
+    func dismissAnimated() { dismiss(animated: true) }
 
     // MARK: - Table view data source
 
@@ -204,7 +202,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         cell.name.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.title
-        cell.name.font = checked[selected]![indexPath.row] ? UIFont.boldSystemFont(ofSize: (17~~16)) : UIFont.systemFont(ofSize: (17~~16))
+        cell.name.font = checked[selected]![indexPath.row] ? .boldSystemFont(ofSize: (17~~16)) : .systemFont(ofSize: (17~~16))
         cell.accessoryType = checked[selected]![indexPath.row] ? .checkmark : .none
         
         return cell

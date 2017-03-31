@@ -31,13 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         // Theme navigation bar
         let navigationBar = UINavigationBar.appearance()
-        let shadow = NSShadow()
-        shadow.shadowOffset = CGSize(width: 0, height: 0)
         let titleAttributes: [[String: AnyObject]] = ["#121212", "#F8F8F8"].map { hexString in
             return [
                 NSForegroundColorAttributeName: UIColor(rgba: hexString),
-                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16),
-                NSShadowAttributeName: shadow
+                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)
             ]
         }
         
@@ -69,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         )
         Realm.Configuration.defaultConfiguration = config
         
-        //print(Realm.Configuration.defaultConfiguration.fileURL)
+        //print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
 
         return true
     }

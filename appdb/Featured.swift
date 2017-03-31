@@ -105,16 +105,6 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             // Reload tableView, hide spinner
             loaded = true
             
-            // Bounce animation - should I add this to LoadingTableView? Ai posteri l'ardua sentenza.
-            self.view.transform = CGAffineTransform.identity.scaledBy(x: 0.96, y: 0.96)
-            UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.01, y: 1.01)
-            }, completion: { _ in
-                UIView.animate(withDuration: 0.1, animations: {
-                    self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
-                }, completion: nil)
-            })
-            
         }
     }
     
@@ -154,6 +144,12 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     }
     
 }
+
+////////////////////////////////
+//                            //
+//  PROTOCOL IMPLEMENTATIONS  //
+//                            //
+////////////////////////////////
 
 // MARK: - Reload view after category change
 extension Featured: ChangeCategory {

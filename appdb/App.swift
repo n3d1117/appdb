@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import RealmSwift
 import ObjectMapper
 import SwiftyJSON
@@ -48,6 +49,7 @@ class App: Object, Meta {
     // Information
     dynamic var bundleId = ""
     dynamic var updated = ""
+    dynamic var published = ""
     dynamic var version = ""
     dynamic var price = ""
     dynamic var size = ""
@@ -69,7 +71,10 @@ class App: Object, Meta {
     var screenshotsIpad = List<Screenshot>()
     
     // Related Apps
-    var relatedApps = List<RelatedApp>()
+    var relatedApps = List<RelatedContent>()
+    
+    // Related Apps
+    var reviews = List<Review>()
 
 }
 
@@ -89,7 +94,6 @@ extension App: Mappable {
         whatsnew                <- map["whatsnew"]
         screenshots             <- map["screenshots"]
         lastParseItunes         <- map["last_parse_itunes"]
-        publisher               <- map["pname"]
         website                 <- map["pwebsite"]
         support                 <- map["psupport"]
         
@@ -99,12 +103,17 @@ extension App: Mappable {
         // Information
         seller = itunesParse["seller"].stringValue
         size = itunesParse["size"].stringValue
+        publisher = itunesParse["publisher"].stringValue
+        published = itunesParse["published"].stringValue
         rated = itunesParse["rating"]["text"].stringValue + " " + itunesParse["rating"]["description"].stringValue
         compatibility = itunesParse["requirements"].stringValue
-        appleWatch = itunesParse["apple_watch"].stringValue == "0" ? "No" : "Yes"
+        appleWatch = itunesParse["apple_watch"].stringValue == "0" ? "No".localized() : "Yes".localized()
         languages = itunesParse["languages"].stringValue
         category = Category(name: itunesParse["genre"]["name"].stringValue, id: itunesParse["genre"]["id"].stringValue)
         
+        if languages.contains("Watch") { languages = "Unknown".localized() } /* dirty fix "Languages: Apple Watch: Yes" */
+        if published.hasPrefix(" ") { published = String(published.characters.dropFirst()) }
+
         // Ratings
         if !itunesParse["ratings"]["current"].stringValue.isEmpty {
             
@@ -144,29 +153,43 @@ extension App: Mappable {
         }; screenshotsIpad = tmpScreensIpad
         
         //Related Apps
-        let tmpRelated = List<RelatedApp>()
+        let tmpRelated = List<RelatedContent>()
         for i in 0..<itunesParse["relatedapps"].count {
-            if !itunesParse["relatedapps"][i]["trackid"].stringValue.isEmpty && !itunesParse["relatedapps"][i]["artist"]["name"].stringValue.isEmpty {
-                tmpRelated.append(RelatedApp(
-                    icon: itunesParse["relatedapps"][i]["name"].stringValue,
-                    id: itunesParse["relatedapps"][i]["trackid"].stringValue,
-                    name: itunesParse["relatedapps"][i]["artist"]["name"].stringValue,
-                    artist: itunesParse["relatedapps"][i]["image"].stringValue
+            let item = itunesParse["relatedapps"][i]
+            if !item["type"].stringValue.isEmpty, !item["trackid"].isEmpty, !item["artist"]["name"].stringValue.isEmpty {
+                tmpRelated.append(RelatedContent(
+                    icon: item["image"].stringValue,
+                    id: item["trackid"].stringValue,
+                    name: item["name"].stringValue,
+                    artist: item["artist"]["name"].stringValue
                 ))
             }
         }
         
         //Also Bought
         for i in 0..<itunesParse["alsobought"].count {
-            if !itunesParse["alsobought"][i]["trackid"].stringValue.isEmpty && !itunesParse["alsobought"][i]["artist"]["name"].stringValue.isEmpty {
-                tmpRelated.append(RelatedApp(
-                    icon: itunesParse["alsobought"][i]["name"].stringValue,
-                    id: itunesParse["alsobought"][i]["trackid"].stringValue,
-                    name: itunesParse["alsobought"][i]["artist"]["name"].stringValue,
-                    artist: itunesParse["alsobought"][i]["image"].stringValue
+            let item = itunesParse["alsobought"][i]
+            if !item["type"].stringValue.isEmpty, !item["trackid"].stringValue.isEmpty, !item["artist"]["name"].stringValue.isEmpty {
+                tmpRelated.append(RelatedContent(
+                    icon: item["image"].stringValue,
+                    id: item["trackid"].stringValue,
+                    name: item["name"].stringValue,
+                    artist: item["artist"]["name"].stringValue
                 ))
             }
         }; relatedApps = tmpRelated
+        
+        // Reviews
+        let tmpReviews = List<Review>()
+        for i in 0..<itunesParse["reviews"].count {
+            let item = itunesParse["reviews"][i]
+            tmpReviews.append(Review(
+                author: item["author"].stringValue,
+                text: item["text"].stringValue,
+                title: item["title"].stringValue,
+                rating: item["rating"].doubleValue
+            ))
+        }; reviews = tmpReviews
             
     }
 }

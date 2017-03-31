@@ -9,6 +9,18 @@
 import Foundation
 import RealmSwift
 import UIKit
+import Cartography
+
+// Details cell template
+class DetailsCell: UITableViewCell {
+    
+    var didSetupConstraints: Bool = false
+    var type: ItemType = .ios
+    var identifier: String { return "" }
+    var height: CGFloat { return 0 }
+    func setConstraints() {}
+    
+}
 
 extension Details {
     
@@ -22,11 +34,13 @@ extension Details {
     
     // Set up
     func setUp() {
-        
-        tableView.estimatedRowHeight = 120
-        
+
         // Register cells
-        for cell in cells { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
+        for cell in header { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
+        for cell in details { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
+        //tableView.register(DetailsDownloadEmptyCell.self, forCellReuseIdentifier: "downloademptycell")
+        tableView.register(DetailsReviewCell.self, forCellReuseIdentifier: "detailsreviewcell")
+        tableView.register(DetailsDownloadCell.self, forCellReuseIdentifier: "detailsdownloadcell")
         
         // Add 'Dismiss' button for iPad
         if IS_IPAD {
@@ -38,46 +52,128 @@ extension Details {
         tableView.tableFooterView = UIView()
         
         // UI
-        tableView.theme_backgroundColor = Color.tableViewBackgroundColor//Color.veryVeryLightGray
-        tableView.theme_separatorColor = Color.borderColor
+        tableView.theme_backgroundColor = Color.veryVeryLightGray
+        tableView.separatorStyle = .none // Let's use self made separators instead
         
         // Fix random separator margin issues
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
+
     }
+    
+    func dismissAnimated() { dismiss(animated: true) }
     
     // Helpers
-    func getScreenshots(from content: Object) -> List<Screenshot> {
-        switch contentType {
-            case .ios: if let app = content as? App {
-                return app.screenshotsIpad.isEmpty ? app.screenshotsIphone : (app.screenshotsIpad~~app.screenshotsIphone)
+    
+    // Set header translucency on scroll
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let segment = tableView.headerView(forSection: 1) as? DetailsSegmentControl, indexForSegment != .download {
+            if let header = header.first as? DetailsHeader, let nav = navigationController {
+                let minOff: CGFloat = (nav.navigationBar.frame.height)~~(nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height)
+                segment.shouldBeTranslucent = (scrollView.contentOffset.y > header.height-minOff)
             }
-            case .cydia: if let cydiaApp = content as? CydiaApp {
-                return cydiaApp.screenshotsIpad.isEmpty ? cydiaApp.screenshotsIphone : (cydiaApp.screenshotsIpad~~cydiaApp.screenshotsIphone)
-            }
-            default: break
         }
-        return List<Screenshot>()
     }
     
-    func getDescription(from content: Object) -> String {
+    // Details/Reviews for details segment
+    var itemsForSegmentedControl: [detailsSelectedSegmentState] {
+        switch contentType {
+            case .ios: if let app = content as? App {
+                if !app.reviews.isEmpty { return  [.details, .reviews, .download] }
+                return [.details, .download]
+            }
+            case .books: if let book = content as? Book {
+                if !book.reviews.isEmpty { return [.details, .reviews, .download] }
+                return [.details, .download]
+            }
+            default: break
+        }; return [.details, .download]
+    }
+    
+    //
+    // Content Properties
+    //
+    var id: String {
+        switch contentType {
+        case .ios: if let app = content as? App { return app.id }
+        case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.id }
+        case .books: if let book = content as? Book { return book.id }
+        }; return ""
+    }
+    
+    var version: String {
+        switch contentType {
+        case .ios: if let app = content as? App { return app.version }
+        case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.version }
+        default: return ""
+        }; return ""
+    }
+    
+    var screenshots: [Screenshot] {
+        switch contentType {
+            case .ios: if let app = content as? App {
+                if app.screenshotsIpad.isEmpty { return Array(app.screenshotsIphone) }
+                if app.screenshotsIphone.isEmpty { return Array(app.screenshotsIpad) }
+                return Array((app.screenshotsIpad~~app.screenshotsIphone))
+            }
+            case .cydia: if let cydiaApp = content as? CydiaApp {
+                if cydiaApp.screenshotsIpad.isEmpty { return Array(cydiaApp.screenshotsIphone) }
+                if cydiaApp.screenshotsIphone.isEmpty { return Array(cydiaApp.screenshotsIpad) }
+                return Array((cydiaApp.screenshotsIpad~~cydiaApp.screenshotsIphone))
+            }
+            default: break
+        }; return []
+    }
+    
+    var relatedContent: [RelatedContent] {
+        switch contentType {
+            case .ios: if let app = content as? App { return Array(app.relatedApps) }
+            case .books: if let book = content as? Book { return Array(book.relatedBooks) }
+            default: break
+        }; return []
+    }
+    
+    var description_: String {
         switch contentType {
             case .ios: if let app = content as? App { return app.description_ }
             case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.description_ }
             case .books: if let book = content as? Book { return book.description_ }
-        }
-        return ""
+        }; return ""
     }
     
-}
-
-// Details cell template
-
-class DetailsCell: UITableViewCell {
+    var changelog: String {
+        switch contentType {
+            case .ios: if let app = content as? App { return app.whatsnew }
+            case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.whatsnew }
+            default: break
+        }; return ""
+    }
     
-    var didSetupConstraints: Bool = false
-    var type: ItemType = .ios
-    var identifier: String { return "" }
-    var height: CGFloat { return 0 }
-    func setConstraints() {}
+    var updatedDate: String {
+        switch contentType {
+            case .ios: if let app = content as? App { return app.published }
+            case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.updated }
+            default: break
+        }; return ""
+    }
+    
+    var originalTrackid: String {
+        if contentType == .cydia, let cydiaApp = content as? CydiaApp {
+            return cydiaApp.originalTrackid
+        }; return ""
+    }
+    
+    var originalSection: String {
+        if contentType == .cydia, let cydiaApp = content as? CydiaApp {
+            return cydiaApp.originalSection
+        }; return ""
+    }
+    
+    var reviews: [Review] {
+        switch contentType {
+            case .ios: if let app = content as? App { return Array(app.reviews) }
+            case .books: if let book = content as? Book { return Array(book.reviews) }
+            default: break
+        }; return []
+    }
     
 }

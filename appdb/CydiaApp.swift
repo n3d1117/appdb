@@ -29,26 +29,26 @@ class CydiaApp: Object, Meta {
     dynamic var id = ""
     dynamic var image = ""
     
-    //General
+    // General
     dynamic var categoryId = ""
     dynamic var developer = ""
     
-    //Text cells
+    // Text
     dynamic var description_ = ""
     dynamic var whatsnew = ""
     
-    //Information
+    // Information
     dynamic var bundleId = ""
     dynamic var version = ""
     dynamic var price = ""
     dynamic var updated = ""
     
-    //Tweaked
+    // Tweaked
     dynamic var originalTrackid = ""
     dynamic var originalSection = ""
     dynamic var isTweaked = false
     
-    //Screenshots
+    // Screenshots
     var screenshotsIphone = List<Screenshot>()
     var screenshotsIpad = List<Screenshot>()
     

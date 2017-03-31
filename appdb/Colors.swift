@@ -11,7 +11,9 @@ import UIKit
 
 /* First is light theme, second is Dark theme hex. */
 
-enum Color {
+struct Color {
+    
+    static func get(from picker: ThemeColorPicker) -> UIColor { return picker.value() as? UIColor ?? UIColor.blue }
     
     /////////////////
     //             //
@@ -44,10 +46,19 @@ enum Color {
     static let invertedTitle: ThemeColorPicker = ["#F8F8F8", "#121212"]
     
     /* Cell selection overlay color */
-    static let cellSelectionColor: ThemeColorPicker = ["#D8D8D8", "#595959"]
+    static let cellSelectionColor: ThemeColorPicker = ["#D8D8D8", "#383838"]
     
     /* Matches translucent barStyle color */
     static let popoverArrowColor: ThemeColorPicker = ["#F6F6F7", "#161616"]
+    
+    /* Details+Information parameter color */
+    static let informationParameter: ThemeColorPicker = ["#9A9898", "#C5C3C5"]
+    
+    /* Green for INSTALL button and verified crackers */
+    static let softGreen: ThemeColorPicker = ["#00B600", "#00B600"]
+    
+    /* Red for non verified crackers button */
+    static let softRed: ThemeColorPicker = ["#D32F2F", "#D32F2F"]
     
     
     /////////////////

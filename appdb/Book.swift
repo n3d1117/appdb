@@ -30,33 +30,36 @@ class Book: Object, Meta {
     dynamic var id = ""
     dynamic var image = ""
     
-    //General
+    // General
     dynamic var categoryId = ""
     dynamic var printLenght = ""
     dynamic var published = ""
     dynamic var author = ""
     
-    //Text Cells
+    // Text
     dynamic var description_ = ""
     
-    //Ratings
+    // Ratings
     dynamic var numberOfRating = ""
     dynamic var numberOfStars: Double = 0.0
     
-    //Information
+    // Information
     dynamic var updated = ""
     dynamic var price = ""
     dynamic var requirements = ""
     dynamic var language = ""
     
-    //Related
+    // Artist ID
     dynamic var artistId = ""
     
-    //Copyright
+    // Copyright
     dynamic var publisher = ""
     
-    //Arrays
-    var relatedBooks = List<RelatedApp>()
+    // Related Books
+    var relatedBooks = List<RelatedContent>()
+    
+    // Related Apps
+    var reviews = List<Review>()
 }
 
 extension Book: Mappable {
@@ -101,29 +104,43 @@ extension Book: Mappable {
         }
         
         //Related Books
-        let tmpRelated = List<RelatedApp>()
+        let tmpRelated = List<RelatedContent>()
         for i in 0..<itunesParse["relatedapps"].count {
-            if !itunesParse["relatedapps"][i]["trackid"].stringValue.isEmpty && !itunesParse["relatedapps"][i]["artist"]["name"].stringValue.isEmpty {
-                tmpRelated.append(RelatedApp(
-                    icon: itunesParse["relatedapps"][i]["name"].stringValue,
-                    id: itunesParse["relatedapps"][i]["trackid"].stringValue,
-                    name: itunesParse["relatedapps"][i]["artist"]["name"].stringValue,
-                    artist: itunesParse["relatedapps"][i]["image"].stringValue
+            let item = itunesParse["relatedapps"][i]
+            if !item["type"].stringValue.isEmpty, !item["trackid"].stringValue.isEmpty, !item["artist"]["name"].stringValue.isEmpty {
+                tmpRelated.append(RelatedContent(
+                    icon: item["image"].stringValue,
+                    id: item["trackid"].stringValue,
+                    name: item["name"].stringValue,
+                    artist: item["artist"]["name"].stringValue
                 ))
             }
         }
         
         //Also Bought
         for i in 0..<itunesParse["alsobought"].count {
-            if !itunesParse["alsobought"][i]["trackid"].stringValue.isEmpty && !itunesParse["alsobought"][i]["artist"]["name"].stringValue.isEmpty {
-                tmpRelated.append(RelatedApp(
-                    icon: itunesParse["alsobought"][i]["name"].stringValue,
-                    id: itunesParse["alsobought"][i]["trackid"].stringValue,
-                    name: itunesParse["alsobought"][i]["artist"]["name"].stringValue,
-                    artist: itunesParse["alsobought"][i]["image"].stringValue
+            let item = itunesParse["alsobought"][i]
+            if !item["type"].stringValue.isEmpty, !item["trackid"].stringValue.isEmpty, !item["artist"]["name"].stringValue.isEmpty {
+                tmpRelated.append(RelatedContent(
+                    icon: item["image"].stringValue,
+                    id: item["trackid"].stringValue,
+                    name: item["name"].stringValue,
+                    artist: item["artist"]["name"].stringValue
                 ))
             }
         }; relatedBooks = tmpRelated
+        
+        // Reviews
+        let tmpReviews = List<Review>()
+        for i in 0..<itunesParse["reviews"].count {
+            let item = itunesParse["reviews"][i]
+            tmpReviews.append(Review(
+                author: item["author"].stringValue,
+                text: item["text"].stringValue,
+                title: item["title"].stringValue,
+                rating: item["rating"].doubleValue
+            ))
+        }; reviews = tmpReviews
 
     }
 }

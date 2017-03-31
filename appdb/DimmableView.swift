@@ -1,5 +1,5 @@
 //
-//  dim.swift
+//  DimmableView
 //  appdb
 //
 //  Created by ned on 21/02/2017.

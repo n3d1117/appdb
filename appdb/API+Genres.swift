@@ -26,19 +26,20 @@ extension API {
                     let json = JSON(value)
                     
                     var genres: [Genre] = []
+                    let data = json["data"]
                     
                     // Cydia genres
-                    for (key, value):(String, JSON) in json["data"]["cydia"] {
+                    for (key, value):(String, JSON) in data["cydia"] {
                         genres.append(Genre(category: "cydia", id: key, name: value.stringValue))
                     }
                     
                     // iOS Genres
-                    for (key, value):(String, JSON) in json["data"]["ios"] {
+                    for (key, value):(String, JSON) in data["ios"] {
                         genres.append(Genre(category: "ios", id: key, name: value.stringValue))
                     }
                     
                     // Books Genres
-                    for (key, value):(String, JSON) in json["data"]["books"] {
+                    for (key, value):(String, JSON) in data["books"] {
                         genres.append(Genre(category: "books", id: key, name: value.stringValue))
                     }
                     

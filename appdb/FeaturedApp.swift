@@ -39,13 +39,13 @@ class FeaturedApp: UICollectionViewCell {
         
         title = UILabel()
         title.theme_textColor = Color.title
-        title.font = UIFont.systemFont(ofSize: 11.5)
+        title.font = .systemFont(ofSize: 11.5)
         title.lineBreakMode = .byTruncatingTail
         title.numberOfLines = 2
         
         category = UILabel()
         category.theme_textColor = Color.darkGray
-        category.font = UIFont.systemFont(ofSize: 11.5)
+        category.font = .systemFont(ofSize: 11.5)
         category.lineBreakMode = .byTruncatingTail
         category.numberOfLines = 1
 
@@ -85,7 +85,16 @@ class FeaturedApp: UICollectionViewCell {
     // Hover icon
     override var isHighlighted: Bool {
         didSet {
-            UIView.animate(withDuration: 0.1, animations: { self.dim.layer.opacity = self.isHighlighted ? DimmableView.opacity : 0 })
+            if isHighlighted {
+                self.dim.isHidden = false
+                self.dim.layer.opacity = DimmableView.opacity
+            } else {
+                UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: { [unowned self] in
+                    self.dim.layer.opacity = 0
+                    }, completion: { _ in
+                        self.dim.isHidden = true
+                })
+            }
         }
     }
 }

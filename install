@@ -1,0 +1,11 @@
+xcodebuild -project appdb.xcodeproj -scheme appdb -configuration Release build -archivePath ./appdb.xcarchive archive
+xcodebuild -exportArchive -archivePath ./appdb.xcarchive -exportPath . -exportOptionsPlist ./exportOptions.plist
+mkdir ./tmp
+cp ./appdb.ipa ./tmp
+cd ./tmp
+unzip ./appdb.ipa
+ios-deploy -L -b ./Payload/*.app
+cd ..
+rm -r ./tmp
+rm -r ./appdb.xcarchive
+rm -rf /Users/ned/Library/Developer/Xcode/Archives/*

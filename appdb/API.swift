@@ -41,6 +41,7 @@ enum Actions: String {
     case search = "search"
     case listGenres = "list_genres"
     case promotions = "promotions"
+    case getLinks = "get_links"
 }
 
 struct API {

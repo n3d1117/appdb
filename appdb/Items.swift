@@ -9,6 +9,21 @@
 import Foundation
 import RealmSwift
 
+class Review: Object {
+    dynamic var author = ""
+    dynamic var text = ""
+    dynamic var title = ""
+    dynamic var rating = 0.0
+    
+    convenience init(author: String, text: String, title: String, rating: Double) {
+        self.init()
+        self.author = author
+        self.text = text
+        self.title = title
+        self.rating = rating
+    }
+}
+
 class Screenshot: Object {
     dynamic var image = ""
     dynamic var class_ = ""
@@ -22,7 +37,7 @@ class Screenshot: Object {
     }
 }
 
-class RelatedApp: Object {
+class RelatedContent: Object {
     dynamic var icon = ""
     dynamic var id = ""
     dynamic var name = ""
@@ -65,18 +80,4 @@ class Genre: Object {
     override class func primaryKey() -> String? {
         return "compound"
     }
-}
-
-class Version: Object {
-    dynamic var number = ""
-    let links = List<Link>()
-}
-
-class Link: Object {
-    dynamic var link = ""
-    dynamic var cracker = ""
-    dynamic var host = ""
-    dynamic var verified = ""
-    dynamic var di_compatible = false
-    dynamic var id = 0
 }

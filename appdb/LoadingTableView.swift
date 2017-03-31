@@ -25,6 +25,16 @@ class LoadingTableView: UITableViewController {
             activityIndicator.stopAnimating()
             tableView.isScrollEnabled = true
             tableView.reloadData()
+            
+            // Bounce animation
+            self.view.transform = CGAffineTransform.identity.scaledBy(x: 0.96, y: 0.96)
+            UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.01, y: 1.01)
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+                }, completion: nil)
+            })
         } }
     }
     
@@ -53,7 +63,7 @@ class LoadingTableView: UITableViewController {
         //Set up Error Message
         errorMessage = UILabel()
         errorMessage.theme_textColor = Color.copyrightText
-        errorMessage.font = UIFont.systemFont(ofSize: (26~~22))
+        errorMessage.font = .systemFont(ofSize: (26~~22))
         errorMessage.numberOfLines = 0
         errorMessage.textAlignment = .center
         errorMessage.isHidden = true
@@ -61,7 +71,7 @@ class LoadingTableView: UITableViewController {
         //Set up Secondary Error Message
         secondaryErrorMessage = UILabel()
         secondaryErrorMessage.theme_textColor = Color.copyrightText
-        secondaryErrorMessage.font = UIFont.systemFont(ofSize: (19~~15))
+        secondaryErrorMessage.font = .systemFont(ofSize: (19~~15))
         secondaryErrorMessage.numberOfLines = 0
         secondaryErrorMessage.textAlignment = .center
         secondaryErrorMessage.isHidden = true

@@ -8,14 +8,16 @@
 
 import Foundation
 import Cartography
-import RealmSwift
 import AlamofireImage
+
+protocol ScreenshotRedirectionDelegate {
+    func screenshotImageSelected(with index: Int)
+}
 
 extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshot", for: indexPath) as! ScreenshotCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshot", for: indexPath) as! DetailsScreenshotCell
         if let url = URL(string: screenshots[indexPath.row].image) {
             cell.image.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
         }
@@ -34,6 +36,10 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.screenshotImageSelected(with: indexPath.row)
+    }
+    
 }
 
 class DetailsScreenshots: DetailsCell {
@@ -41,8 +47,10 @@ class DetailsScreenshots: DetailsCell {
     override var identifier: String { return "screenshots" }
     override var height: CGFloat {
         if screenshots.isEmpty { return 0 }
-        return allLandscape ? (230~~176) : 300
+        return allLandscape ? (230~~176) : (300~~280)
     }
+    
+    var delegate: ScreenshotRedirectionDelegate? = nil
     
     var collectionView: UICollectionView!
     var screenshots: [Screenshot] = []
@@ -53,20 +61,22 @@ class DetailsScreenshots: DetailsCell {
         return 0
     }
 
-    var widthIfPortrait: CGFloat { return round((300-(Featured.size.margin.value * 2)) / magic) }
+    var widthIfPortrait: CGFloat { return round(((300~~280)-(Featured.size.margin.value * 2)) / magic) }
     var widthIfLandscape: CGFloat { return round(((230~~176)-(Featured.size.margin.value * 2)) * magic) }
     var allLandscape: Bool { return screenshots.filter({$0.class_=="portrait"}).isEmpty }
     var mixedClasses: Bool { return !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
     var spacing: CGFloat = 15
     
-    convenience init(type: ItemType, screenshots: List<Screenshot>) {
+    convenience init(type: ItemType, screenshots: [Screenshot], delegate: ScreenshotRedirectionDelegate) {
         self.init(style: .default, reuseIdentifier: "screenshots")
         
         self.type = type
-        self.screenshots = Array(screenshots)
+        self.screenshots = screenshots
+        self.delegate = delegate
         
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
+        addSeparator()
         
         if !height.isZero {
             
@@ -78,7 +88,7 @@ class DetailsScreenshots: DetailsCell {
             layout.scrollDirection = .horizontal
             
             collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-            collectionView.register(ScreenshotCell.self, forCellWithReuseIdentifier: "screenshot")
+            collectionView.register(DetailsScreenshotCell.self, forCellWithReuseIdentifier: "screenshot")
             collectionView.delegate = self
             collectionView.dataSource = self
             collectionView.showsHorizontalScrollIndicator = false

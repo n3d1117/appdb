@@ -9,14 +9,6 @@
 import UIKit
 
 class Dummy: FeaturedCell {
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
     
     override var height: CGFloat {
         return Featured.size.spacing.value

@@ -88,12 +88,6 @@ class ItemCollection: FeaturedCell {
     
     // Redirect to Details view
     var delegate: ContentRedirection? = nil
-
-    required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
     
     deinit { NotificationCenter.default.removeObserver(self, name: Notification.Name.UIContentSizeCategoryDidChange, object: nil) }
 
@@ -130,9 +124,9 @@ class ItemCollection: FeaturedCell {
         sectionLabel.theme_textColor = Color.title
         
         if #available(iOS 8.2, *) {
-            sectionLabel.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: UIFontWeightMedium)
+            sectionLabel.font = .systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: UIFontWeightMedium)
         } else {
-            sectionLabel.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
+            sectionLabel.font = .systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
         }
         
         sectionLabel.text = title
@@ -176,31 +170,27 @@ class ItemCollection: FeaturedCell {
     }
     
     func setConstraints() {
-        
-        if didSetConstraints { return }
-        
-        constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
-            collection.left == collection.superview!.left
-            collection.right == collection.superview!.right
-            collection.top == collection.superview!.top + (44~~39)
-            collection.bottom == collection.superview!.bottom
+        if !didSetConstraints { didSetConstraints = true
+            constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
+                collection.left == collection.superview!.left
+                collection.right == collection.superview!.right
+                collection.top == collection.superview!.top + (44~~39)
+                collection.bottom == collection.superview!.bottom
             
-            section.left == section.superview!.left + Featured.size.margin.value
-            section.right == section.left + sectionLabel.frame.size.width ~ 999
-            section.bottom == collection.top - (44~~39 - section.height.view.bounds.height) / 2
+                section.left == section.superview!.left + Featured.size.margin.value
+                section.right == section.left + sectionLabel.frame.size.width ~ 999
+                section.bottom == collection.top - (44~~39 - section.height.view.bounds.height) / 2
         
-            seeAll.right == seeAll.superview!.right - Featured.size.margin.value
-            seeAll.centerY == section.centerY
-            
-            category.left == section.right + 8
-            category.right <= seeAll.left - 8
-            category.centerY == section.centerY
+                seeAll.right == seeAll.superview!.right - Featured.size.margin.value
+                seeAll.centerY == section.centerY
+                
+                category.left == section.right + 8
+                category.right <= seeAll.left - 8
+                category.centerY == section.centerY
+            }
+            separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
+            layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
         }
-        
-        separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
-        layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
-        
-        didSetConstraints = true
     }
     
     // MARK: - Networking
@@ -249,7 +239,7 @@ class ItemCollection: FeaturedCell {
             self.response.success = true
         
         }, fail: { error in
-            self.response.errorDescription = error.prettified()
+            self.response.errorDescription = error.prettified
         })
     }
     

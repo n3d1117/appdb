@@ -13,14 +13,6 @@ import AlamofireImage
 class Banner: UITableViewCell {
 
     var slideshow: ImageSlideshow!
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
     
     let height: CGFloat = {
         let w: Double = Double(UIScreen.main.bounds.width)
@@ -98,8 +90,8 @@ class Banner: UITableViewCell {
     func setImageInputs() {
         if let slideshow = self.slideshow {
             slideshow.setImageInputs([
-                AlamofireSource(urlString: "http://appd.be/n3d/delta/k.png") as! InputSource,
-                AlamofireSource(urlString: "http://appd.be/n3d/delta/a.png") as! InputSource
+                AlamofireSource(urlString: "http://appd.be/n3d/delta/k.png")!,
+                AlamofireSource(urlString: "http://appd.be/n3d/delta/a.png")!
             ])
         }
     }

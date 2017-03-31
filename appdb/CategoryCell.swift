@@ -30,6 +30,7 @@ class CategoryCell: UITableViewCell {
         separatorInset.left = Featured.size.margin.value
         
         // UI
+        contentView.theme_backgroundColor = Color.veryVeryLightGray
         theme_backgroundColor = Color.veryVeryLightGray
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
@@ -49,7 +50,7 @@ class CategoryCell: UITableViewCell {
         
         // Name
         name = UILabel()
-        name.font = UIFont.systemFont(ofSize: (17~~16))
+        name.font = .systemFont(ofSize: (17~~16))
         name.numberOfLines = 1
         
         contentView.addSubview(icon)

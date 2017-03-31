@@ -11,7 +11,7 @@ import UIKit
 import Cartography
 import Alamofire
 
-class ScreenshotCell: UICollectionViewCell {
+class DetailsScreenshotCell: UICollectionViewCell {
     
     var didSetupConstraints: Bool = false
     var image: UIImageView!
@@ -49,7 +49,16 @@ class ScreenshotCell: UICollectionViewCell {
     // Hover icon
     override var isHighlighted: Bool {
         didSet {
-            UIView.animate(withDuration: 0.1, animations: { self.dim.layer.opacity = self.isHighlighted ? DimmableView.opacity : 0 })
+            if isHighlighted {
+                self.dim.isHidden = false
+                self.dim.layer.opacity = DimmableView.opacity
+            } else {
+                UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: { [unowned self] in
+                    self.dim.layer.opacity = 0
+                    }, completion: { _ in
+                        self.dim.isHidden = true
+                })
+            }
         }
     }
 }
