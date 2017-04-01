@@ -136,8 +136,8 @@ class DetailsHeader: DetailsCell {
         }
         
         contentView.addSubview(name)
-        contentView.addSubview(seller)
         contentView.addSubview(icon)
+        if let seller = seller { contentView.addSubview(seller) }
         if let tweaked = tweaked { contentView.addSubview(tweaked) }
         if let stars = stars { contentView.addSubview(stars) }
         if let ipadOnly = ipadOnly { contentView.addSubview(ipadOnly) }
@@ -149,6 +149,7 @@ class DetailsHeader: DetailsCell {
 
     override func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true
+            if let seller = seller {
             constrain(name, seller, icon) { name, seller, icon in
                 
                 icon.width == (130~~100)
@@ -168,6 +169,7 @@ class DetailsHeader: DetailsCell {
                 seller.left == name.left
                 seller.top == name.bottom + 3
                 seller.right <= seller.superview!.right - Featured.size.margin.value
+            }
             }
             
             if let tweaked = tweaked, type == .cydia {

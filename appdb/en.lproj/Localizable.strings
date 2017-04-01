@@ -108,3 +108,5 @@
 "Related Books"="Related Books";
 "Done"="Done";
 "No links found."="No links found.";
+"Not found"="Not found";
+"Couldn't find anything for id %@"="Couldn't find anything for id %@";

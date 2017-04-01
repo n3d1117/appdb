@@ -16,12 +16,11 @@ extension API {
     
     // MARK: - Search
     
-    static func search <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0",
+    static func search <T:Object>(type: T.Type, order: Order = .all, price: Price = .all, genre: String = "0", trackid: String = "0",
                         success:@escaping (_ items: [T]) -> Void, fail:@escaping (_ error: String) -> Void) where T:Mappable, T:Meta {
-        
         var shouldContinue: Bool = true
         
-        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre, "lang": languageCode])
+        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre, "trackid": trackid, "lang": languageCode])
             .responseJSON { response in
                 if let value = response.result.value {
                     let json = JSON(value)

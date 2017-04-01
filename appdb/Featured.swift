@@ -33,7 +33,6 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     ]
     
     var banner: Banner = Banner()
-    var previewings : [ItemCollection : UIViewControllerPreviewing] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +40,8 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         // Set up
         title = "Featured".localized()
         setUp()
-        tableView.tableFooterView = UIView()
-        tableView.theme_separatorColor = Color.borderColor
+        state = .loading
+        animated = true
         
         // Add categories button
         let categoriesButton = UIBarButtonItem(title: "Categories".localized(), style: .plain, target: self, action:#selector(self.openCategories))
@@ -102,19 +101,16 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             tableView.estimatedRowHeight = 32
             tableView.rowHeight = UITableViewAutomaticDimension
             
-            // Reload tableView, hide spinner
-            loaded = true
-            
+            // Reload tableView (animated), hide spinner
+            state = .done
         }
     }
     
     // MARK: - Retry Loading
     
     func retry() {
-        self.refreshButton.isHidden = true
-        self.errorMessage.isHidden = true
-        self.secondaryErrorMessage.isHidden = true
-        self.activityIndicator.startAnimating()
+        
+        state = .loading
         
         delay(0.3) {
             // Retry all network operations
@@ -132,15 +128,15 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return loaded ? cells.count : 0
+        return state == .done ? cells.count : 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return loaded ? cells[indexPath.row] : UITableViewCell()
+        return state == .done ? cells[indexPath.row] : UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return loaded ? cells[indexPath.row].height : 0
+        return state == .done ? cells[indexPath.row].height : 0
     }
     
 }
@@ -188,9 +184,9 @@ extension Featured: ContentRedirection {
         if IS_IPAD {
             let nav = DismissableModalNavController(rootViewController: detailsViewController)
             nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
+            navigationController?.present(nav, animated: true)
         } else {
-            self.navigationController?.pushViewController(detailsViewController, animated: true)
+            navigationController?.pushViewController(detailsViewController, animated: true)
         }
     }
 }

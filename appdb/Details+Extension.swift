@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import UIKit
 import Cartography
+import ObjectMapper
 
 // Details cell template
 class DetailsCell: UITableViewCell {
@@ -38,7 +39,6 @@ extension Details {
         // Register cells
         for cell in header { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
         for cell in details { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
-        //tableView.register(DetailsDownloadEmptyCell.self, forCellReuseIdentifier: "downloademptycell")
         tableView.register(DetailsReviewCell.self, forCellReuseIdentifier: "detailsreviewcell")
         tableView.register(DetailsDownloadCell.self, forCellReuseIdentifier: "detailsdownloadcell")
         
@@ -51,13 +51,106 @@ extension Details {
         // Hide separator for empty cells
         tableView.tableFooterView = UIView()
         
+        //Register for 3D Touch
+        if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: tableView)
+        }
+        
         // UI
         tableView.theme_backgroundColor = Color.veryVeryLightGray
         tableView.separatorStyle = .none // Let's use self made separators instead
         
         // Fix random separator margin issues
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
+        
+        // Works around crazy cell bugs on rotation, enables preloading
+        tableView.estimatedRowHeight = 32
+        tableView.rowHeight = UITableViewAutomaticDimension
 
+    }
+
+    // Get content dynamically
+    func getContent<T:Object>(type: T.Type, trackid: String, success:@escaping (_ item: T) -> Void) -> Void where T:Mappable, T:Meta {
+        API.search(type: type, trackid: trackid, success: { items in
+            if let item = items.first { success(item) }
+            else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find anything for id %@".localizedFormat(trackid)) }
+        }, fail: { error in
+            self.showErrorMessage(text: "Not found", secondaryText: "Couldn't find anything for id \(trackid)")
+        })
+    }
+    
+    func fetchInfo(type: ItemType, trackid: String) {
+        switch type {
+        case .ios:
+            self.getContent(type: App.self, trackid: trackid, success: { item in
+                self.content = item
+                self.initializeCells()
+                self.state = .done
+                self.getLinks()
+            })
+        case .cydia:
+            self.getContent(type: CydiaApp.self, trackid: trackid, success: { item in
+                self.content = item
+                self.initializeCells()
+                self.state = .done
+                self.getLinks()
+            })
+        case .books:
+            self.getContent(type: Book.self, trackid: trackid, success: { item in
+                self.content = item
+                self.initializeCells()
+                self.state = .done
+                self.getLinks()
+            })
+        }
+    }
+    
+    // Initialize cells
+    func initializeCells() {
+        header = [DetailsHeader(type: contentType, content: content)]
+        
+        details = [
+            DetailsTweakedNotice(originalTrackId: originalTrackid, originalSection: originalSection, delegate: self),
+            DetailsScreenshots(type: contentType, screenshots: screenshots, delegate: self),
+            DetailsDescription(description: description_, delegate: self),
+            DetailsChangelog(type: contentType, changelog: changelog, updated: updatedDate, delegate: self),
+            DetailsRelated(type: contentType, related: relatedContent, delegate: self),
+            DetailsInformation(type: contentType, content: content)
+        ]
+        
+        switch contentType {
+        case .ios: if let app = content as? App {
+            details.append(DetailsExternalLink(text: "Developer Apps"))
+            if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website")) }
+            if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support")) }
+            if !app.publisher.isEmpty { details.append(DetailsPublisher(app.publisher)) }
+            }
+        case .cydia: if let app = content as? CydiaApp {
+            details.append(DetailsPublisher("© " + app.developer))
+            }
+        case .books: if let book = content as? Book {
+            details.append(DetailsExternalLink(text: "More by this author"))
+            if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) }
+            }
+        }
+    }
+    
+    // Get links
+    func getLinks() {
+        API.getLinks(type: contentType, trackid: id, success: { items in
+            self.versions = items
+            
+            // Ensure latest version is always at the top
+            if let latest = self.versions.filter({$0.number==self.version}).first {
+                if let index = self.versions.index(of: latest) {
+                    self.versions.remove(at: index); self.versions.insert(latest, at: 0)
+                }
+            }
+            
+            // Enable links segment
+            self.loadedLinks = true
+            
+        }, fail: { error in print(error) })
     }
     
     func dismissAnimated() { dismiss(animated: true) }
@@ -176,4 +269,34 @@ extension Details {
         }; return []
     }
     
+}
+
+// MARK: - 3D Touch Peek and Pop on icons
+extension Details: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) as? DetailsRelated else { return nil }
+        
+        guard let index = cell.collectionView.indexPathForItem(at: self.view.convert(location, to: cell.collectionView)) else { return nil }
+        guard cell.relatedContent.indices.contains(index.row) else { return nil }
+        
+        if let collectionViewCell = cell.collectionView.cellForItem(at: index) as? FeaturedApp {
+            let iconRect = tableView.convert(collectionViewCell.icon.frame, from: collectionViewCell.icon.superview!)
+            if #available(iOS 9.0, *) { previewingContext.sourceRect = iconRect }
+        } else if let collectionViewCell = cell.collectionView.cellForItem(at: index) as? FeaturedBook {
+            let coverRect = tableView.convert(collectionViewCell.cover.frame, from: collectionViewCell.cover.superview!)
+            if #available(iOS 9.0, *) { previewingContext.sourceRect = coverRect }
+        } else {
+            return nil
+        }
+        
+        let detailsViewController = Details(type: contentType, trackid: cell.relatedContent[index.row].id)
+        return detailsViewController
+        
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
 }

@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import ObjectMapper
 
-class Details: UITableViewController {
+class Details: LoadingTableView {
     
     var content: Object!
     var collapsedForIndexPath : [IndexPath: Bool] = [:]
@@ -27,63 +27,49 @@ class Details: UITableViewController {
         }}
     }
     
+    // Properties for dynamic load
+    var loadDynamically: Bool = false
+    var dynamicType: ItemType = .ios
+    var dynamicTrackid: String = ""
+    
+    // Init dynamically - fetch info from API
+    convenience init(type: ItemType, trackid: String) {
+        self.init(style: .plain)
+        
+        loadDynamically = true
+        dynamicType = type
+        dynamicTrackid = trackid
+    }
+    
     // Init with content (app, cydia app or book)
     convenience init(content: Object) {
         self.init(style: .plain)
-        
-        self.content = content
-        
-        // Initialize the cells now that we know the type
-        
-        header = [DetailsHeader(type: contentType, content: content)]
-        
-        details = [
-            DetailsTweakedNotice(originalTrackId: originalTrackid, originalSection: originalSection),
-            DetailsScreenshots(type: contentType, screenshots: screenshots, delegate: self),
-            DetailsDescription(description: description_, delegate: self),
-            DetailsChangelog(type: contentType, changelog: changelog, updated: updatedDate, delegate: self),
-            DetailsRelated(type: contentType, related: relatedContent),
-            DetailsInformation(type: contentType, content: content)
-        ]
-        
-        switch contentType {
-        case .ios: if let app = content as? App {
-                details.append(DetailsExternalLink(text: "Developer Apps"))
-                if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website")) }
-                if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support")) }
-                if !app.publisher.isEmpty { details.append(DetailsPublisher(app.publisher)) }
-            }
-        case .cydia: if let app = content as? CydiaApp {
-                details.append(DetailsPublisher("© " + app.developer))
-            }
-        case .books: if let book = content as? Book {
-            details.append(DetailsExternalLink(text: "More by this author"))
-                if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) }
-            }
-        }
-    }
 
+        self.content = content
+        loadDynamically = false
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUp()
+        // Hide the 'Back' text on back button
+        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
         
-        API.getLinks(type: contentType, trackid: id, success: { items in
-            self.versions = items
-            
-            // Ensure latest version is always at the top
-            if let latest = self.versions.filter({$0.number==self.version}).first {
-                if let index = self.versions.index(of: latest) {
-                    self.versions.remove(at: index); self.versions.insert(latest, at: 0)
-                }
-            }
-            
-            // Enable links segment
-            self.loadedLinks = true
-            
-        }, fail: { error in print(error) })
+        setUp()
+
+        if !loadDynamically {
+            initializeCells()
+            getLinks()
+        } else {
+            state = .loading
+            showsErrorButton = false
+            fetchInfo(type: dynamicType, trackid: dynamicTrackid)
+        }
 
     }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -157,15 +143,8 @@ class Details: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        heightForIndexPath[indexPath] = cell.frame.height
-    }
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return heightForIndexPath[indexPath] ?? 120
-    }
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if state != .done { return nil }
         if section == 1 {
             return DetailsSegmentControl(itemsForSegmentedControl, state: indexForSegment, enabled: loadedLinks, delegate: self)
         }
@@ -176,6 +155,7 @@ class Details: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if state != .done { return 0 }
         if section == 1 { return DetailsSegmentControl.height }
         if section > 1, indexForSegment == .download, !versions.isEmpty { return DetailsVersionHeader.height }
         return 0
@@ -229,6 +209,17 @@ extension Details: ElasticLabelDelegate {
 }
 
 //
+//   MARK: - RelatedRedirectionDelegate
+//   Push related item view controller
+//
+extension Details: RelatedRedirectionDelegate {
+    func relatedItemSelected(trackid: String) {
+        let vc = Details(type: contentType, trackid: trackid)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+//
 //   MARK: - ScreenshotRedirectionDelegate
 //   Present Full screenshots view controller with given index
 //
@@ -237,5 +228,16 @@ extension Details: ScreenshotRedirectionDelegate {
         let vc = DetailsFullScreenshots(screenshots: screenshots, index: index)
         let nav = DetailsFullScreenshotsNavController(rootViewController: vc)
         present(nav, animated: true)
+    }
+}
+
+//
+//   MARK: - DynamicContentRedirection
+//   Push details controller given type and trackid
+//
+extension Details: DynamicContentRedirection {
+    func dynamicContentSelected(type: ItemType, id: String) {
+        let vc = Details(type: type, trackid: id)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

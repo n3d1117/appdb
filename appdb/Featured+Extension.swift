@@ -76,6 +76,14 @@ extension Featured {
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         }
+        
+        tableView.tableFooterView = UIView()
+        tableView.theme_backgroundColor = Color.tableViewBackgroundColor
+        tableView.theme_separatorColor = Color.borderColor
+        
+        // Hide the 'Back' text on back button
+        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
     }
     
     // Add Banner

@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import Cartography
 
+protocol DynamicContentRedirection {
+    func dynamicContentSelected(type: ItemType, id: String)
+}
+
 class DetailsTweakedNotice: DetailsCell {
     
     var trackid: String!
@@ -22,11 +26,14 @@ class DetailsTweakedNotice: DetailsCell {
     override var height: CGFloat { return (trackid.isEmpty || trackid == "0") ? 0 : UITableViewAutomaticDimension }
     override var identifier: String { return "tweakednotice" }
     
-    convenience init(originalTrackId: String, originalSection: String) {
+    var delegate: DynamicContentRedirection? = nil
+    
+    convenience init(originalTrackId: String, originalSection: String, delegate: DynamicContentRedirection) {
         self.init(style: .default, reuseIdentifier: "tweakednotice")
         
         self.trackid = originalTrackId
         self.section = originalSection
+        self.delegate = delegate
         
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
@@ -49,6 +56,7 @@ class DetailsTweakedNotice: DetailsCell {
             content.numberOfLines = 0
             
             seeOriginal = ButtonFactory.createChevronButton(text: "See Original".localized(), color: Color.darkGray, bold: false)
+            seeOriginal.addTarget(self, action: #selector(self.originalSelected), for: .touchUpInside)
             
             contentView.addSubview(title)
             contentView.addSubview(content)
@@ -57,6 +65,13 @@ class DetailsTweakedNotice: DetailsCell {
             setConstraints()
             
         }
+    }
+    
+    func originalSelected() {
+        var type: ItemType?
+        if section == "ios" { type = .ios }
+        else if section == "cydia" { type = .cydia }
+        if let type = type { delegate?.dynamicContentSelected(type: type, id: trackid) }
     }
     
     override func setConstraints() {

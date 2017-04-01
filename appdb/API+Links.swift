@@ -30,17 +30,20 @@ extension API {
                         // No multiple keys for books
                         if type == .books {
                             
-                            let version = Version(number: "~"), fetched = data[trackid][0]
-                            for e in 0..<fetched.count {
-                                version.links.append(Link(
-                                    link: fetched[e]["link"].stringValue,
-                                    cracker: fetched[e]["cracker"].stringValue,
-                                    host: fetched[e]["host"].stringValue,
-                                    id: fetched[e]["id"].stringValue,
-                                    verified: fetched[e]["verified"].boolValue,
-                                    di_compatible: fetched[e]["di_compatible"].boolValue
-                                ))
-                            }; versions.append(version)
+                            let fetched = data[trackid][0]
+                            if !fetched.isEmpty {
+                                let version = Version(number: "~")
+                                for e in 0..<fetched.count {
+                                    version.links.append(Link(
+                                        link: fetched[e]["link"].stringValue,
+                                        cracker: fetched[e]["cracker"].stringValue,
+                                        host: fetched[e]["host"].stringValue,
+                                        id: fetched[e]["id"].stringValue,
+                                        verified: fetched[e]["verified"].boolValue,
+                                        di_compatible: fetched[e]["di_compatible"].boolValue
+                                    ))
+                                }; versions.append(version)
+                            }
                         
                         } else {
                             

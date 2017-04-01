@@ -11,6 +11,10 @@ import UIKit
 import Cartography
 import RealmSwift
 
+protocol RelatedRedirectionDelegate {
+    func relatedItemSelected(trackid: String)
+}
+
 extension DetailsRelated: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = relatedContent[indexPath.row]
@@ -41,7 +45,7 @@ extension DetailsRelated: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("did select item #\(indexPath.row)")
+        delegate?.relatedItemSelected(trackid: relatedContent[indexPath.row].id)
     }
     
 }
@@ -52,14 +56,17 @@ class DetailsRelated: DetailsCell {
     var collectionView: UICollectionView!
     var relatedContent: [RelatedContent] = []
     
+    var delegate: RelatedRedirectionDelegate? = nil
+    
     override var height: CGFloat { return relatedContent.isEmpty ? 0 : (type == .books ? (175~~165) : (140~~130))+(44~~39) }
     override var identifier: String { return "related" }
 
-    convenience init(type: ItemType, related: [RelatedContent]) {
+    convenience init(type: ItemType, related: [RelatedContent], delegate: RelatedRedirectionDelegate) {
         self.init(style: .default, reuseIdentifier: "related")
         
         self.type = type
         self.relatedContent = related
+        self.delegate = delegate
         
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false

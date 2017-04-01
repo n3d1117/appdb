@@ -1,5 +1,6 @@
 github "Alamofire/Alamofire" "4.4.0"
 github "robb/Cartography" "1.1.0"
+github "MoZhouqi/KMNavigationBarTransition" "1.0.0"
 github "Hearst-DD/ObjectMapper" "2.2.5"
 github "SwiftyJSON/SwiftyJSON" "3.1.4"
 github "realm/realm-cocoa" "v2.5.0"

@@ -151,6 +151,7 @@
 		8167A6261DAC24F700F96AC2 /* appdb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appdb.entitlements; sourceTree = "<group>"; };
 		816CEED81DBCE8A2002CFF6E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Categories.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		81759D221E8FD0C600588001 /* KMNavigationBarTransition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KMNavigationBarTransition.framework; path = Carthage/Build/iOS/KMNavigationBarTransition.framework; sourceTree = "<group>"; };
 		81795CD41E606BD300805B3A /* Modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Modules; sourceTree = "<group>"; };
 		81795CD91E60CD8800805B3A /* ElasticLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticLabel.swift; sourceTree = "<group>"; };
 		817A40E01E5E27EB003FD6F1 /* Details+Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+Screenshots.swift"; sourceTree = "<group>"; };
@@ -568,6 +569,7 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81759D221E8FD0C600588001 /* KMNavigationBarTransition.framework */,
 				81B3CE0C1E623E2B0082A764 /* TTTAttributedLabel.framework */,
 				81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */,
 				81C114C11E60699A00EE17A6 /* libxml2.tbd */,
@@ -828,6 +830,7 @@
 					8167A60E1DAC246000F96AC2 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 99C62WN9CA;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -1152,9 +1155,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bram Gradussen (U847K2V744)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bram Gradussen (U847K2V744)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 99C62WN9CA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1165,11 +1169,13 @@
 				INFOPLIST_FILE = appdb/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = it.ned.appdb;
+				PRODUCT_BUNDLE_IDENTIFIER = it.ned.appdbbbbb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5ce5574d-0b58-46b1-91d7-5b0eb2860a3e";
 				PROVISIONING_PROFILE_SPECIFIER = appdb;
 				SWIFT_INCLUDE_PATHS = /Users/ned/Documents/xcode/appdb/appdb/Modules;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1178,9 +1184,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bram Gradussen (U847K2V744)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bram Gradussen (U847K2V744)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 99C62WN9CA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1191,11 +1198,12 @@
 				INFOPLIST_FILE = appdb/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = it.ned.appdb;
+				PRODUCT_BUNDLE_IDENTIFIER = it.ned.appdbbbbb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5ce5574d-0b58-46b1-91d7-5b0eb2860a3e";
 				PROVISIONING_PROFILE_SPECIFIER = appdb;
 				SWIFT_INCLUDE_PATHS = /Users/ned/Documents/xcode/appdb/appdb/Modules;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

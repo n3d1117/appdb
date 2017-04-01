@@ -103,3 +103,5 @@
 "Related Books"="Libri correlati";
 "Done"="Fatto";
 "No links found."="Nessun link trovato.";
+"Not found"="Contenuto non trovato";
+"Couldn't find anything for id %@"="Nessun risultato per id %@";
