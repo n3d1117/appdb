@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             ]
         }
         
-        navigationBar.isTranslucent = true
         navigationBar.theme_barStyle = [.default, .black]
         navigationBar.theme_tintColor = Color.mainTint
         navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithDicts(titleAttributes)

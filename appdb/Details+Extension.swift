@@ -33,6 +33,12 @@ extension Details {
         return .ios
     }
     
+    // Fix delay in navigation bar blur updated on push
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isTranslucent = true /* God damnit, Apple */
+    }
+    
     // Set up
     func setUp() {
 
