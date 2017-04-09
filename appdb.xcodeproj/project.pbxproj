@@ -467,7 +467,6 @@
 				81795CD61E60885600805B3A /* • ElasticLabel */,
 				81236ACA1E3B8A3E009748E0 /* • PaddingLabel */,
 				81E7CBF91E1FC0DE004AF156 /* • LoadingTableView */,
-				819EC2C51E40FF3600BA7A50 /* • Localize_Swift */,
 				817A40E21E5E2F97003FD6F1 /* • SnappableFlowLayout */,
 				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
 				81F504C31E5CAE840000FACC /* Cosmos */,
@@ -475,6 +474,7 @@
 				810E54571E606A5D00818F53 /* Kanna */,
 				812EEF0A1E40DE1500B40474 /* ImageSlideshow */,
 				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
+				819EC2C51E40FF3600BA7A50 /* Localize_Swift */,
 				81939B4E1E3BC74400179615 /* SwiftTheme */,
 			);
 			name = Resources;
@@ -555,7 +555,7 @@
 			name = Related;
 			sourceTree = "<group>";
 		};
-		819EC2C51E40FF3600BA7A50 /* • Localize_Swift */ = {
+		819EC2C51E40FF3600BA7A50 /* Localize_Swift */ = {
 			isa = PBXGroup;
 			children = (
 				819EC2C61E40FF4400BA7A50 /* Localize.swift */,
@@ -563,7 +563,7 @@
 				819EC2C81E40FF4400BA7A50 /* String+LocalizedBundleTableName.swift */,
 				819EC2C91E40FF4400BA7A50 /* String+LocalizeTableName.swift */,
 			);
-			name = "• Localize_Swift";
+			name = Localize_Swift;
 			sourceTree = "<group>";
 		};
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {

@@ -26,7 +26,8 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
         if let app = item as? App {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "app", for: indexPath) as! FeaturedApp
             cell.title.text = app.name
-            cell.category.text = app.category?.name
+            if let cat = app.category { cell.category.text  = cat.name.isEmpty ? "Unknown".localized() : cat.name
+            } else { cell.category.text = "Unknown".localized() }
             if let url = URL(string: app.image) {
                 cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: Featured.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }
@@ -202,7 +203,8 @@ class ItemCollection: FeaturedCell {
                 switch type {
                     case .cydia: getItems(type: CydiaApp.self, order: .added)
                     case .iosNew: getItems(type: App.self, order: .added)
-                    case .iosPopular: getItems(type: App.self, order: .week, price: .all)
+                    case .iosPaid: getItems(type: App.self, order: .month, price: .paid)
+                    case .iosPopular: getItems(type: App.self, order: .week, price: .free)
                     case .books: getItems(type: Book.self, order: .month)
                     default: break
                 }
@@ -267,7 +269,8 @@ class ItemCollection: FeaturedCell {
             case .ios:
                 switch Featured.CellType(rawValue: identifier)! {
                     case .iosNew: getItems(type: App.self, order: .added, genre: id)
-                    case .iosPopular: getItems(type: App.self, order: .day, price: .all, genre: id)
+                    case .iosPaid: getItems(type: App.self, order: .month, price: .paid, genre: id)
+                    case .iosPopular: getItems(type: App.self, order: .week, price: .free, genre: id)
                     default: break
                 }
             case .cydia:

@@ -40,7 +40,8 @@ extension API {
                                         host: fetched[e]["host"].stringValue,
                                         id: fetched[e]["id"].stringValue,
                                         verified: fetched[e]["verified"].boolValue,
-                                        di_compatible: fetched[e]["di_compatible"].boolValue
+                                        di_compatible: fetched[e]["di_compatible"].boolValue,
+                                        hidden: fetched[e]["is_hidden"] == "0" ? false : true
                                     ))
                                 }; versions.append(version)
                             }
@@ -63,7 +64,8 @@ extension API {
                                         host: fetched[e]["host"].stringValue,
                                         id: fetched[e]["id"].stringValue,
                                         verified: fetched[e]["verified"].boolValue,
-                                        di_compatible: fetched[e]["di_compatible"].boolValue
+                                        di_compatible: fetched[e]["di_compatible"].boolValue,
+                                        hidden: fetched[e]["is_hidden"] == "0" ? false : true
                                     ))
                                 }; versions.append(version)
                             }

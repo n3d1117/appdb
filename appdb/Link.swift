@@ -28,8 +28,9 @@ class Link: Object {
     dynamic var id = ""
     dynamic var verified = false
     dynamic var di_compatible = false
+    dynamic var hidden = false
     
-    convenience init(link: String, cracker: String, host: String, id: String, verified: Bool, di_compatible: Bool) {
+    convenience init(link: String, cracker: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool) {
         self.init()
         self.link = link
         self.cracker = cracker.hasPrefix(" ") ? String(cracker.characters.dropFirst()) : cracker
@@ -37,5 +38,6 @@ class Link: Object {
         self.id = id
         self.verified = verified
         self.di_compatible = di_compatible
+        self.hidden = hidden
     }
 }

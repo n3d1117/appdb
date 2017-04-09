@@ -50,9 +50,7 @@ class Banner: UITableViewCell {
             }
             
         }, fail: { error in
-            
-            print(error.localizedDescription)
-            
+                print(error.localizedDescription)
         })*/
         
         

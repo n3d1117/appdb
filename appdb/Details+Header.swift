@@ -60,9 +60,7 @@ class DetailsHeader: DetailsCell {
         switch type {
             case .ios: if let app = content as? App {
                 name.text = app.name
-                if !app.seller.isEmpty {
-                    seller = ButtonFactory.createChevronButton(text: app.seller, color: Color.darkGray, size: (15~~13), bold: false)
-                }
+                seller = ButtonFactory.createChevronButton(text: app.seller.isEmpty ? "Unknown".localized() : app.seller, color: Color.darkGray, size: (15~~13), bold: false)
                 icon.layer.cornerRadius = cornerRadius(fromWidth: (130~~100))
                 
                 if !app.numberOfStars.isZero {

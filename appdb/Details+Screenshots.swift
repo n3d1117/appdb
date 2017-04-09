@@ -47,6 +47,7 @@ class DetailsScreenshots: DetailsCell {
     override var identifier: String { return "screenshots" }
     override var height: CGFloat {
         if screenshots.isEmpty { return 0 }
+        print(allLandscape)
         return allLandscape ? (230~~176) : (300~~280)
     }
     
@@ -63,7 +64,7 @@ class DetailsScreenshots: DetailsCell {
 
     var widthIfPortrait: CGFloat { return round(((300~~280)-(Featured.size.margin.value * 2)) / magic) }
     var widthIfLandscape: CGFloat { return round(((230~~176)-(Featured.size.margin.value * 2)) * magic) }
-    var allLandscape: Bool { return screenshots.filter({$0.class_=="portrait"}).isEmpty }
+    var allLandscape: Bool { return (screenshots.filter({$0.class_=="portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
     var mixedClasses: Bool { return !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
     var spacing: CGFloat = 15
     

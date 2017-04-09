@@ -29,6 +29,7 @@ extension Featured {
     enum CellType: String {
         case iosNew = "ios_new"
         case iosPopular = "ios_popular"
+        case iosPaid = "ios_paid"
         case cydia = "cydia"
         case books = "books"
         case dummy = "dummy"
@@ -36,7 +37,7 @@ extension Featured {
         case copyright = "copyright"
     }
     
-    static let iosTypes: [CellType] = [.iosNew, .iosPopular, .cydia]
+    static let iosTypes: [CellType] = [.iosNew, .iosPaid, .iosPopular, .cydia]
     
     enum size {
         case spacing      // The spacing between items
@@ -87,11 +88,11 @@ extension Featured {
     }
     
     // Add Banner
-    func addBanner(from: Banner) {
-        tableView.tableHeaderView = from
-        from.startTimer()
+    func addBanner(_ banner: Banner) {
+        tableView.tableHeaderView = banner
+        banner.startTimer()
         if let headerView = tableView.tableHeaderView {
-            let height: CGFloat = from.height
+            let height: CGFloat = banner.height
             var headerFrame = headerView.frame
             if height != headerFrame.size.height {
                 headerFrame.size.height = height

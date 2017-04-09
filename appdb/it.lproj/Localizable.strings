@@ -104,4 +104,5 @@
 "Done"="Fatto";
 "No links found."="Nessun link trovato.";
 "Not found"="Contenuto non trovato";
-"Couldn't find anything for id %@"="Nessun risultato per id %@";
+"Couldn't find content with id %@ in our database"="Nessun risultato trovato con id %@ nel nostro database";
+"An error has occurred"="Errore";

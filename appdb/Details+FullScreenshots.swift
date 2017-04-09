@@ -49,6 +49,17 @@ class DetailsFullScreenshots: UIViewController {
     var screenshots: [Screenshot] = []
     var index: Int = 0
     
+    var magic: CGFloat {
+        if screenshots.filter({$0.type=="ipad"}).isEmpty { return 1.775 }
+        if screenshots.filter({$0.type=="iphone"}).isEmpty { return 1.333 }
+        return 0
+    }
+    
+    var widthIfPortrait: CGFloat { return round(((300~~280)-(Featured.size.margin.value * 2)) / magic) }
+    var widthIfLandscape: CGFloat { return round(((230~~176)-(Featured.size.margin.value * 2)) * magic) }
+    var allLandscape: Bool { return screenshots.filter({$0.class_=="portrait"}).isEmpty }
+    var spacing: CGFloat = 25
+    
     convenience init(screenshots: [Screenshot], index: Int) {
         self.init()
         self.screenshots = screenshots
@@ -58,6 +69,7 @@ class DetailsFullScreenshots: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        // Insert light or dark blur based on current theme
         view.backgroundColor = .clear
         var darkBlur: UIBlurEffect = UIBlurEffect()
         darkBlur = UIBlurEffect(style: Themes.isNight ? .dark : .light)
@@ -69,9 +81,9 @@ class DetailsFullScreenshots: UIViewController {
         let doneButton = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action:#selector(self.dismissAnimated))
         navigationItem.rightBarButtonItem = doneButton
         
-        let layout = SnappableFlowLayout(width: 294, spacing: 25)
+        let layout = SnappableFlowLayout(width: 294, spacing: spacing)
         layout.sectionInset = UIEdgeInsets(top: 64+35, left: 30, bottom: 45, right: 30)
-        layout.minimumLineSpacing = 25
+        layout.minimumLineSpacing = spacing
         layout.scrollDirection = .horizontal
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)

@@ -109,4 +109,5 @@
 "Done"="Done";
 "No links found."="No links found.";
 "Not found"="Not found";
-"Couldn't find anything for id %@"="Couldn't find anything for id %@";
+"Couldn't find content with id %@ in our database"="Couldn't find content with id %@ in our database";
+"An error has occurred"="An error has occurred";

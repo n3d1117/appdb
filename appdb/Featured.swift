@@ -23,12 +23,13 @@ protocol ContentRedirection {
 class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     
     let cells: [FeaturedCell] = [
-        ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true), //🚀
+        ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true),
         Dummy(),
-        ItemCollection(id: .iosNew, title: "New and Noteworthy".localized()), //🎁
-        ItemCollection(id: .iosPopular, title: "Popular This Week".localized(), fullSeparator: true), //🃏
+        ItemCollection(id: .iosNew, title: "New and Noteworthy".localized()),
+        ItemCollection(id: .iosPaid, title: "Top Paid".localized()),
+        ItemCollection(id: .iosPopular, title: "Popular This Week".localized(), fullSeparator: true),
         Dummy(),
-        ItemCollection(id: .books, title: "Top Books".localized(), fullSeparator: true), //📚
+        ItemCollection(id: .books, title: "Top Books".localized(), fullSeparator: true),
         Copyright()
     ]
     
@@ -92,7 +93,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             for layout in itemCells.flatMap({$0.collectionView.collectionViewLayout as? SnappableFlowLayout}) { layout.scrollDirection = .horizontal }
             
             // Add banner
-            addBanner(from: self.banner)
+            addBanner(self.banner)
             
             // Enable categories button
             self.navigationItem.leftBarButtonItem?.isEnabled = true

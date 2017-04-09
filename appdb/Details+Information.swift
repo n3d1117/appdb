@@ -511,7 +511,7 @@ class DetailsInformation: DetailsCell {
     private func buildLabel(text: String?, isContent: Bool = false) -> UILabel {
         let label = UILabel()
         label.theme_textColor = isContent ? Color.darkGray : Color.informationParameter
-        if let text = text?.localized() { label.text = text }
+        if let text = text?.localized() { label.text = (text.isEmpty || text==" ") ? "Unknown".localized() : text }
         label.font = .systemFont(ofSize: (13~~12))
         label.textAlignment = isContent ? .left : .right
         label.numberOfLines = isContent ? 0 : 1

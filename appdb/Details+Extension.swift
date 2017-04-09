@@ -79,9 +79,9 @@ extension Details {
     func getContent<T:Object>(type: T.Type, trackid: String, success:@escaping (_ item: T) -> Void) -> Void where T:Mappable, T:Meta {
         API.search(type: type, trackid: trackid, success: { items in
             if let item = items.first { success(item) }
-            else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find anything for id %@".localizedFormat(trackid)) }
+            else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find content with id %@ in our database".localizedFormat(trackid)) }
         }, fail: { error in
-            self.showErrorMessage(text: "Not found", secondaryText: "Couldn't find anything for id \(trackid)")
+            self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error)
         })
     }
     

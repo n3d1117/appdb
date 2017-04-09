@@ -152,7 +152,7 @@ class LoadingTableView: UITableViewController {
                     message.left == message.superview!.left + 30
                     message.right == message.superview!.right - 30
                     message.centerX == message.superview!.centerX
-                    message.centerY == message.superview!.centerY - (offset / 2.0) - 10
+                    message.centerY == message.superview!.centerY - (offset / 2.0) - 20
                     
                     secondaryMessage.left == message.left
                     secondaryMessage.right == message.right

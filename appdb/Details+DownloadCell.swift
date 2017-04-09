@@ -35,7 +35,7 @@ class DetailsDownloadCell: DetailsCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         preservesSuperviewLayoutMargins = false
-        accessoryType = .disclosureIndicator
+        accessoryType = .none
         
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
@@ -62,6 +62,7 @@ class DetailsDownloadCell: DetailsCell {
         button.setTitle("Install".localized().uppercased(), for: .normal)
         button.theme_tintColor = Color.softGreen
         button.drawPlusIcon = false
+        button.sizeToFit()
         
         contentView.addSubview(host)
         contentView.addSubview(cracker)
@@ -75,7 +76,8 @@ class DetailsDownloadCell: DetailsCell {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(host, cracker, button) { host, cracker, button in
                 
-                button.right == button.superview!.right - 10
+                button.right == button.superview!.right - Featured.size.margin.value
+                button.left == button.right - self.button.frame.size.width
                 button.centerY == button.superview!.centerY
                 
                 host.top == host.superview!.top + 8
@@ -83,7 +85,7 @@ class DetailsDownloadCell: DetailsCell {
                 host.right <= button.left - 10
                 
                 cracker.left == host.left
-                cracker.right <= button.left - 10
+                cracker.right <= button.left - Featured.size.margin.value
                 cracker.bottom == cracker.superview!.bottom - 8
             }
         }
