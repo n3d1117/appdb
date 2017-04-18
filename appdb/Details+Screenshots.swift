@@ -47,7 +47,6 @@ class DetailsScreenshots: DetailsCell {
     override var identifier: String { return "screenshots" }
     override var height: CGFloat {
         if screenshots.isEmpty { return 0 }
-        print(allLandscape)
         return allLandscape ? (230~~176) : (300~~280)
     }
     

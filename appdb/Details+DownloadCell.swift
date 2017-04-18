@@ -21,7 +21,7 @@ class DetailsDownloadCell: DetailsCell {
     
     func configure(with link: Link) {
         host.text = link.host
-        cracker.text = link.cracker
+        cracker.text = link.cracker.decoded
         cracker.theme_textColor = link.verified ? Color.softGreen : Color.softRed
         button.linkId = link.id
         button.isHidden = !link.di_compatible

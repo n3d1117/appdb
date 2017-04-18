@@ -12,20 +12,24 @@ import Cartography
 
 class DetailsDescription: DetailsCell {
     
+    var descriptionText: String! = ""
+    
     var title: UILabel!
     var desc: ElasticLabel!
     
-    override var height: CGFloat { return UITableViewAutomaticDimension }
+    override var height: CGFloat { return descriptionText.isEmpty ? 0 : UITableViewAutomaticDimension }
     override var identifier: String { return "description" }
     
     convenience init(description: String, delegate: ElasticLabelDelegate) {
         self.init(style: .default, reuseIdentifier: "description")
         
+        self.descriptionText = description
+        
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
         addSeparator()
         
-        if !description.isEmpty {
+        if !descriptionText.isEmpty {
         
             theme_backgroundColor = Color.veryVeryLightGray
             contentView.theme_backgroundColor = Color.veryVeryLightGray
@@ -35,7 +39,7 @@ class DetailsDescription: DetailsCell {
             title.text = "Description".localized()
             title.font = .systemFont(ofSize: (17~~16))
         
-            desc = ElasticLabel(text: description.decoded, delegate: delegate)
+            desc = ElasticLabel(text: descriptionText.decoded, delegate: delegate)
             desc.theme_textColor = Color.darkGray
             desc.theme_backgroundColor = Color.veryVeryLightGray
             desc.collapsed = true
