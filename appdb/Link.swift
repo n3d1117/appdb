@@ -29,15 +29,19 @@ class Link: Object {
     dynamic var verified = false
     dynamic var di_compatible = false
     dynamic var hidden = false
+    dynamic var universal = false
     
-    convenience init(link: String, cracker: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool) {
+    convenience init(link: String, cracker: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool) {
         self.init()
         self.link = link
-        self.cracker = cracker.hasPrefix(" ") ? String(cracker.characters.dropFirst()) : cracker
+        self.cracker = cracker
         self.host = host
         self.id = id
         self.verified = verified
         self.di_compatible = di_compatible
         self.hidden = hidden
+        self.universal = universal
+        
+        while self.cracker.hasPrefix(" ") { self.cracker = String(self.cracker.characters.dropFirst()) }
     }
 }

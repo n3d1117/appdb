@@ -34,12 +34,13 @@ struct Global {
     }
     
     static let bulletPoint = " • "
+    static let tilde = "~"
 }
 
 struct Filters {
     
     static func getFilter(from width: CGFloat) -> CompositeImageFilter {
-        return AspectScaledToFillSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: cornerRadius(fromWidth: width))
+        return AspectScaledToFillSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: cornerRadius(from: width))
     }
     
 }

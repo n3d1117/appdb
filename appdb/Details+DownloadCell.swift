@@ -25,6 +25,7 @@ class DetailsDownloadCell: DetailsCell {
         cracker.theme_textColor = link.verified ? Color.softGreen : Color.softRed
         button.linkId = link.id
         button.isHidden = !link.di_compatible
+        host.theme_textColor = link.universal ? Color.mainTint : Color.title
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +51,6 @@ class DetailsDownloadCell: DetailsCell {
         host = UILabel()
         host.font = .systemFont(ofSize: (16~~15))
         host.numberOfLines = 1
-        host.theme_textColor = Color.title
         
         cracker = UILabel()
         cracker.font = .systemFont(ofSize: (13~~12))

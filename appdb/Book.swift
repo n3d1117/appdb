@@ -82,8 +82,10 @@ extension Book: Mappable {
         printLenght = itunesParse["printlength"].stringValue
         publisher = itunesParse["seller"].stringValue
         requirements = itunesParse["requirements"].stringValue
-        published = itunesParse["published"].stringValue; if published.hasPrefix(" ") { published = String(published.characters.dropFirst()) }
+        published = itunesParse["published"].stringValue
         language = itunesParse["languages"].stringValue
+        
+        while published.hasPrefix(" ") { published = String(published.characters.dropFirst()) }
         
         // Ratings
         if !itunesParse["ratings"]["current"].stringValue.isEmpty {

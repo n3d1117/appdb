@@ -61,7 +61,7 @@ class DetailsHeader: DetailsCell {
             case .ios: if let app = content as? App {
                 name.text = app.name
                 seller = ButtonFactory.createChevronButton(text: app.seller.isEmpty ? "Unknown".localized() : app.seller, color: Color.darkGray, size: (15~~13), bold: false)
-                icon.layer.cornerRadius = cornerRadius(fromWidth: (130~~100))
+                icon.layer.cornerRadius = cornerRadius(from: (130~~100))
                 
                 if !app.numberOfStars.isZero {
                     stars = buildStars()
@@ -95,7 +95,7 @@ class DetailsHeader: DetailsCell {
                     ipadOnly!.text = "iPad only".localized().uppercased()
                 } else { ipadOnly = nil }
                 
-                icon.layer.cornerRadius = cornerRadius(fromWidth: (130~~100))
+                icon.layer.cornerRadius = cornerRadius(from: (130~~100))
                 if let url = URL(string: cydiaApp.image) {
                     icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: 100),
                                  imageTransition: .crossDissolve(0.2))

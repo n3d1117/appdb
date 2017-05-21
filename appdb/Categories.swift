@@ -138,9 +138,10 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 var height: CGFloat = 0
                 if let nav = navigationController {
                     // If it's inside a popover, we don't need to add statusBar height
-                    height = (nav.navigationBar.frame.height)~~(nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height)
+                    height = (nav.navigationBar.frame.height)~~(nav.navigationBar.frame.height +
+                        (UIApplication.shared.statusBarFrame.height > 20.0 ? 20.0 : UIApplication.shared.statusBarFrame.height)) /* dirty fix hotspot status bar */
                 }
-                
+
                 header.top == view.top + height
                 header.left == view.left
                 header.right == view.right

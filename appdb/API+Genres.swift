@@ -46,10 +46,10 @@ extension API {
                     do {
                         try realm.write {
                             
-                            // 'Marking' 666 for future comparison
+                            // Marking '666' for future comparison
                             for object in realm.objects(Genre.self) { object.id = "666" }
                             
-                            // Using this ugly create method so that icon url is preserved at next launch
+                            // Using this ugly 'create()' method so that icon url is preserved at next launch
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "ios", "compound": "0-ios"], update: true)
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "cydia", "compound": "0-cydia"], update: true)
                             realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "books", "compound": "0-books"], update: true)
@@ -85,7 +85,7 @@ extension API {
     
     static func getIcon(id: String, type: ItemType) {
         if let cat = realm.objects(Genre.self).filter("category = %@ AND id = %@", type.rawValue, id).first {
-            Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": "clicks_all"])
+            Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue])
                 .responseJSON { response in
                     switch response.result {
                     case .success(let value):

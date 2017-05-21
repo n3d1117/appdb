@@ -11,7 +11,7 @@ import UIKit
 import Cartography
 
 // Common corner radius (ios app icon)
-func cornerRadius(fromWidth: CGFloat) -> CGFloat { return (fromWidth / 4.2) /* around 23% */ }
+func cornerRadius(from width: CGFloat) -> CGFloat { return (width / 4.2) /* around 23% */ }
 
 // Delay function
 func delay(_ delay: Double, closure: @escaping ()->()) {

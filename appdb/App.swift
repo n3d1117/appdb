@@ -112,7 +112,7 @@ extension App: Mappable {
         category = Category(name: itunesParse["genre"]["name"].stringValue, id: itunesParse["genre"]["id"].stringValue)
         
         if languages.contains("Watch") { languages = "Unknown".localized() } /* dirty fix "Languages: Apple Watch: Yes" */
-        if published.hasPrefix(" ") { published = String(published.characters.dropFirst()) }
+        while published.hasPrefix(" ") { published = String(published.characters.dropFirst()) }
 
         // Ratings
         if !itunesParse["ratings"]["current"].stringValue.isEmpty {
