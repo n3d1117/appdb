@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import ObjectMapper
 import SwiftyJSON
 
 class Book: Object, Meta {

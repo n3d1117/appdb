@@ -11,15 +11,19 @@ import UIKit
 public final class ThemeColorPicker: ThemePicker {
     
     public convenience init(keyPath: String) {
-        self.init(v: { ThemeManager.colorForKeyPath(keyPath) })
+        self.init(v: { ThemeManager.color(for: keyPath) })
+    }
+    
+    public convenience init(keyPath: String, map: @escaping (Any?) -> UIColor?) {
+        self.init(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
     public convenience init(colors: String...) {
-        self.init(v: { ThemeManager.colorForArray(colors) })
+        self.init(v: { ThemeManager.colorElement(for: colors) })
     }
     
     public required convenience init(arrayLiteral elements: String...) {
-        self.init(v: { ThemeManager.colorForArray(elements) })
+        self.init(v: { ThemeManager.colorElement(for: elements) })
     }
     
     public required convenience init(stringLiteral value: String) {
@@ -38,8 +42,12 @@ public final class ThemeColorPicker: ThemePicker {
         return ThemeColorPicker(keyPath: keyPath)
     }
     
+    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIColor?) -> ThemeColorPicker {
+        return ThemeColorPicker(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
     public class func pickerWithColors(_ colors: [String]) -> ThemeColorPicker {
-        return ThemeColorPicker(v: { ThemeManager.colorForArray(colors) })
+        return ThemeColorPicker(v: { ThemeManager.colorElement(for: colors) })
     }
     
 }

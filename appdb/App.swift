@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import RealmSwift
-import ObjectMapper
 import SwiftyJSON
 
 class App: Object, Meta {

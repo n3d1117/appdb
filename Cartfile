@@ -1,7 +1,5 @@
 github "Alamofire/Alamofire"
-github "Alamofire/AlamofireNetworkActivityIndicator"
-github "Alamofire/AlamofireImage"
 github "realm/realm-cocoa"
-github "Hearst-DD/ObjectMapper"
 github "robb/Cartography"
 github "SwiftyJSON/SwiftyJSON"
+github "tid-kijyun/Kanna"

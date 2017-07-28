@@ -49,6 +49,11 @@ extension NSObject {
             setBarStyle(self, sel, value as! UIBarStyle)
         }
             
+        else if picker is ThemeKeyboardAppearancePicker {
+            let setKeyboard = unsafeBitCast(method(for: sel), to: setKeyboardValueIMP.self)
+            setKeyboard(self, sel, value as! UIKeyboardAppearance)
+        }
+            
         else if picker is ThemeActivityIndicatorViewStylePicker {
             let setActivityStyle = unsafeBitCast(method(for: sel), to: setActivityStyleValueIMP.self)
             setActivityStyle(self, sel, value as! UIActivityIndicatorViewStyle)
@@ -70,6 +75,7 @@ extension NSObject {
     fileprivate typealias setCGColorValueIMP        = @convention(c) (NSObject, Selector, CGColor) -> Void
     fileprivate typealias setCGFloatValueIMP        = @convention(c) (NSObject, Selector, CGFloat) -> Void
     fileprivate typealias setValueForStateIMP       = @convention(c) (NSObject, Selector, AnyObject, UIControlState) -> Void
+    fileprivate typealias setKeyboardValueIMP       = @convention(c) (NSObject, Selector, UIKeyboardAppearance) -> Void
     fileprivate typealias setActivityStyleValueIMP  = @convention(c) (NSObject, Selector, UIActivityIndicatorViewStyle) -> Void
     fileprivate typealias setBarStyleValueIMP       = @convention(c) (NSObject, Selector, UIBarStyle) -> Void
     fileprivate typealias setStatusBarStyleValueIMP = @convention(c) (NSObject, Selector, UIStatusBarStyle, Bool) -> Void

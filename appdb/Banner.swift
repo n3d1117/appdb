@@ -8,11 +8,10 @@
 
 import UIKit
 import Cartography
-import AlamofireImage
 
 class Banner: UITableViewCell {
 
-    var slideshow: ImageSlideshow!
+    //var slideshow: ImageSlideshow!
     
     let height: CGFloat = {
         let w: Double = Double(UIScreen.main.bounds.width)
@@ -54,6 +53,7 @@ class Banner: UITableViewCell {
         })*/
         
         
+        /*
         // Initialize Slideshow
         slideshow = ImageSlideshow()
         setImageInputs()
@@ -76,8 +76,12 @@ class Banner: UITableViewCell {
         constrain(slideshow) { slideshow in
             slideshow.edges == slideshow.superview!.edges
         }
+ 
+        */
         
     }
+    
+    /*
     
     /* Should be called only when view is loaded */
     func startTimer() {
@@ -97,5 +101,7 @@ class Banner: UITableViewCell {
     func didTap() {
         print("did tap on \(slideshow.currentPage)") /* TODO: redirect to app page */
     }
+    
+    */
 
 }

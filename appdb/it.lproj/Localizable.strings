@@ -7,26 +7,20 @@
 */
 
 //////////////////////
-//                  //
 //  TAB BAR TITLES  //
-//                  //
 //////////////////////
 
 "Featured" = "Primo piano";
 
 //////////////////////
-//                  //
 //    NETWORKING    //
-//                  //
 //////////////////////
 
 "Cannot connect" = "Impossibile connettersi";
 "Retry" = "Riprova";
 
 //////////////////////
-//                  //
 //    CATEGORIES    //
-//                  //
 //////////////////////
 
 "All Categories" = "Tutte le categorie";
@@ -38,9 +32,7 @@
 "Cancel" = "Annulla";
 
 /////////////////////////////
-//                         //
 //    FEATURED SECTIONS    //
-//                         //
 /////////////////////////////
 
 "Custom Apps" = "App di terze parti";
@@ -52,17 +44,13 @@
 "See All" = "Vedi tutto";
 
 ////////////////////
-//                //
 //     ERRORS     //
-//                //
 ////////////////////
 
-"Maintenance mode. We will be back soon." = "Modalità manutenzione attiva. Torniamo subito!";
+"Maintenance mode active. We will be back soon!" = "Modalità manutenzione attiva. Torniamo subito!";
 
 ///////////////////
-//               //
 //     OTHER     //
-//               //
 ///////////////////
 
 "We do not host any prohibited content. All data is publicly available via iTunes API." = "Non disponiamo di alcun contenuto proibito. Tutti i dati sono disponibili pubblicamente attraverso le API di iTunes.";

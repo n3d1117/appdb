@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Cartography
 import RealmSwift
-import ObjectMapper
 
 // Class to handle response correctly from Featured
 struct ItemResponse {
@@ -213,17 +212,20 @@ class ItemCollection: FeaturedCell {
     }
     
     func getItems <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") -> Void where T:Mappable, T:Meta {
-        API.search(type: type, order: order, price: price, genre: genre, success: { array in  
+        API.search(type: type, order: order, price: price, genre: genre, success: { array in
             
-            let diff = self.items.diff(array)
-            if diff.results.count > 0 {
+            let diff = Dwifft.diff(self.items, array)
+            if diff.count > 0 {
                 self.collectionView.performBatchUpdates({
                     self.items = array
-                    self.collectionView.deleteItems(at: diff.deletions.map({ IndexPath(item: $0.idx, section: 0) }))
-                    self.collectionView.insertItems(at: diff.insertions.map({ IndexPath(item: $0.idx, section: 0) }))
+                    for result in diff {
+                        switch result {
+                            case let .delete(row, _): self.collectionView.deleteItems(at: [IndexPath(row: row, section: 0)])
+                            case let .insert(row, _): self.collectionView.insertItems(at: [IndexPath(row: row, section: 0)])
+                        }
+                    }
                 }, completion: nil)
-                
-            } else { print("diff is empty... wtf?") }
+            }
             
             // Fix rare issue where first three Cydia items would not load category text - probs not fixed
             if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }

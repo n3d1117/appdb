@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import AlamofireImage
 import RealmSwift
 import Cartography
-import ObjectMapper
 
 protocol ChangeCategory {
     func reloadViewAfterCategoryChange(id: String, type: ItemType)
@@ -117,7 +115,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             // Retry all network operations
             API.listGenres()
             for cell in self.cells.flatMap({$0 as? ItemCollection}) { cell.requestItems() }
-            self.banner.setImageInputs()
+            //self.banner.setImageInputs()
             self.reloadTableWhenReady()
         }
     }

@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import ObjectMapper
 
 class Promotion: Object, Mappable {
     

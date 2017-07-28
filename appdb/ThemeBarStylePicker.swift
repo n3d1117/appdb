@@ -11,15 +11,19 @@ import UIKit
 public final class ThemeBarStylePicker: ThemePicker {
     
     public convenience init(keyPath: String) {
-        self.init(v: { ThemeBarStylePicker.getStyle(stringStyle: ThemeManager.stringForKeyPath(keyPath) ?? "") })
+        self.init(v: { ThemeBarStylePicker.getStyle(stringStyle: ThemeManager.string(for: keyPath) ?? "") })
+    }
+    
+    public convenience init(keyPath: String, map: @escaping (Any?) -> UIBarStyle?) {
+        self.init(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
     public convenience init(styles: UIBarStyle...) {
-        self.init(v: { ThemeManager.elementForArray(styles) })
+        self.init(v: { ThemeManager.element(for: styles) })
     }
     
     public required convenience init(arrayLiteral elements: UIBarStyle...) {
-        self.init(v: { ThemeManager.elementForArray(elements) })
+        self.init(v: { ThemeManager.element(for: elements) })
     }
     
     public required convenience init(stringLiteral value: String) {
@@ -38,12 +42,16 @@ public final class ThemeBarStylePicker: ThemePicker {
         return ThemeBarStylePicker(keyPath: keyPath)
     }
     
+    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIBarStyle?) -> ThemeBarStylePicker {
+        return ThemeBarStylePicker(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
     public class func pickerWithStyles(_ styles: [UIBarStyle]) -> ThemeBarStylePicker {
-        return ThemeBarStylePicker(v: { ThemeManager.elementForArray(styles) })
+        return ThemeBarStylePicker(v: { ThemeManager.element(for: styles) })
     }
     
     public class func pickerWithStringStyles(_ styles: [String]) -> ThemeBarStylePicker {
-        return ThemeBarStylePicker(v: { ThemeManager.elementForArray(styles.map(getStyle)) })
+        return ThemeBarStylePicker(v: { ThemeManager.element(for: styles.map(getStyle)) })
     }
     
     class func getStyle(stringStyle: String) -> UIBarStyle {

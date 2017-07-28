@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Cartography
+import Kanna
 
 // Common corner radius (ios app icon)
 func cornerRadius(from width: CGFloat) -> CGFloat { return (width / 4.2) /* around 23% */ }
@@ -87,7 +88,7 @@ extension String {
     }
 }
 
-// Add self made separator (Thanks, Apple)
+// Add self made separator (Thanks, Apple...)
 extension DetailsCell {
     func addSeparator(full: Bool = false) {
         let line = UIView()

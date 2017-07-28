@@ -10,16 +10,24 @@ import UIKit
 
 public final class ThemeFontPicker: ThemePicker {
     
+    public convenience init(keyPath: String, map: @escaping (Any?) -> UIFont?) {
+        self.init(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
     public convenience init(fonts: UIFont...) {
-        self.init(v: { ThemeManager.elementForArray(fonts) })
+        self.init(v: { ThemeManager.element(for: fonts) })
     }
     
     public required convenience init(arrayLiteral elements: UIFont...) {
-        self.init(v: { ThemeManager.elementForArray(elements) })
+        self.init(v: { ThemeManager.element(for: elements) })
+    }
+    
+    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIFont?) -> ThemeFontPicker {
+        return ThemeFontPicker(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
     public class func pickerWithFonts(_ fonts: [UIFont]) -> ThemeFontPicker {
-        return ThemeFontPicker(v: { ThemeManager.elementForArray(fonts) })
+        return ThemeFontPicker(v: { ThemeManager.element(for: fonts) })
     }
     
 }

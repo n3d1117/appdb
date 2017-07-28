@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import AlamofireImage
 import RealmSwift
 
 class FeaturedApp: UICollectionViewCell {

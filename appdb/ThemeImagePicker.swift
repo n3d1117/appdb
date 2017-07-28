@@ -11,19 +11,23 @@ import UIKit
 public final class ThemeImagePicker: ThemePicker {
     
     public convenience init(keyPath: String) {
-        self.init(v: { ThemeManager.imageForKeyPath(keyPath) })
+        self.init(v: { ThemeManager.image(for: keyPath) })
+    }
+    
+    public convenience init(keyPath: String, map: @escaping (Any?) -> UIImage?) {
+        self.init(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
     public convenience init(names: String...) {
-        self.init(v: { ThemeManager.imageForArray(names) })
+        self.init(v: { ThemeManager.imageElement(for: names) })
     }
     
     public convenience init(images: UIImage...) {
-        self.init(v: { ThemeManager.elementForArray(images) })
+        self.init(v: { ThemeManager.element(for: images) })
     }
     
     public required convenience init(arrayLiteral elements: String...) {
-        self.init(v: { ThemeManager.imageForArray(elements) })
+        self.init(v: { ThemeManager.imageElement(for: elements) })
     }
     
     public required convenience init(stringLiteral value: String) {
@@ -42,12 +46,16 @@ public final class ThemeImagePicker: ThemePicker {
         return ThemeImagePicker(keyPath: keyPath)
     }
     
+    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIImage?) -> ThemeImagePicker {
+        return ThemeImagePicker(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
     public class func pickerWithNames(_ names: [String]) -> ThemeImagePicker {
-        return ThemeImagePicker(v: { ThemeManager.imageForArray(names) })
+        return ThemeImagePicker(v: { ThemeManager.imageElement(for: names) })
     }
     
     public class func pickerWithImages(_ images: [UIImage]) -> ThemeImagePicker {
-        return ThemeImagePicker(v: { ThemeManager.elementForArray(images) })
+        return ThemeImagePicker(v: { ThemeManager.element(for: images) })
     }
     
 }

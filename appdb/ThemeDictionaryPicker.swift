@@ -10,16 +10,24 @@ import Foundation
 
 public final class ThemeDictionaryPicker: ThemePicker {
     
+    public convenience init(keyPath: String, map: @escaping (Any?) -> [String: AnyObject]?) {
+        self.init(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
     public convenience init(dicts: [String: AnyObject]...) {
-        self.init(v: { ThemeManager.elementForArray(dicts) })
+        self.init(v: { ThemeManager.element(for: dicts) })
     }
     
     public required convenience init(arrayLiteral elements: [String: AnyObject]...) {
-        self.init(v: { ThemeManager.elementForArray(elements) })
+        self.init(v: { ThemeManager.element(for: elements) })
+    }
+    
+    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> [String: AnyObject]?) -> ThemeDictionaryPicker {
+        return ThemeDictionaryPicker(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
     public class func pickerWithDicts(_ dicts: [[String: AnyObject]]) -> ThemeDictionaryPicker {
-        return ThemeDictionaryPicker(v: { ThemeManager.elementForArray(dicts) })
+        return ThemeDictionaryPicker(v: { ThemeManager.element(for: dicts) })
     }
     
 }

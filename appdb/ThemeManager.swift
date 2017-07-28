@@ -24,8 +24,11 @@ public enum ThemePath {
     
     public func plistPath(name: String) -> String? {
         switch self {
-        case .mainBundle:        return Bundle.main.path(forResource: name, ofType: "plist")
-        case .sandbox(let path): return Foundation.URL(string: name + ".plist", relativeTo: path)?.path
+        case .mainBundle:
+            return Bundle.main.path(forResource: name, ofType: "plist")
+        case .sandbox(let path):
+            let name = name.hasSuffix(".plist") ? name : name + ".plist"
+            return Foundation.URL(string: name, relativeTo: path)?.path
         }
     }
 }

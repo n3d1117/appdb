@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 import UIKit
 import Cartography
-import ObjectMapper
 
 // Details cell template
 class DetailsCell: UITableViewCell {

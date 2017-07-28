@@ -13,15 +13,19 @@ public final class ThemeStatusBarStylePicker: ThemePicker {
     var animated = true
     
     public convenience init(keyPath: String) {
-        self.init(v: { ThemeStatusBarStylePicker.getStyle(stringStyle: ThemeManager.stringForKeyPath(keyPath) ?? "") })
+        self.init(v: { ThemeStatusBarStylePicker.getStyle(stringStyle: ThemeManager.string(for: keyPath) ?? "") })
+    }
+    
+    public convenience init(keyPath: String, map: @escaping (Any?) -> UIStatusBarStyle?) {
+        self.init(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
     public convenience init(styles: UIStatusBarStyle...) {
-        self.init(v: { ThemeManager.elementForArray(styles) })
+        self.init(v: { ThemeManager.element(for: styles) })
     }
     
     public required convenience init(arrayLiteral elements: UIStatusBarStyle...) {
-        self.init(v: { ThemeManager.elementForArray(elements) })
+        self.init(v: { ThemeManager.element(for: elements) })
     }
     
     public required convenience init(stringLiteral value: String) {
@@ -40,12 +44,16 @@ public final class ThemeStatusBarStylePicker: ThemePicker {
         return ThemeStatusBarStylePicker(keyPath: keyPath)
     }
     
+    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIStatusBarStyle?) -> ThemeStatusBarStylePicker {
+        return ThemeStatusBarStylePicker(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
     public class func pickerWithStyles(_ styles: [UIStatusBarStyle]) -> ThemeStatusBarStylePicker {
-        return ThemeStatusBarStylePicker(v: { ThemeManager.elementForArray(styles) })
+        return ThemeStatusBarStylePicker(v: { ThemeManager.element(for: styles) })
     }
     
     public class func pickerWithStringStyles(_ styles: [String]) -> ThemeStatusBarStylePicker {
-        return ThemeStatusBarStylePicker(v: { ThemeManager.elementForArray(styles.map(getStyle)) })
+        return ThemeStatusBarStylePicker(v: { ThemeManager.element(for: styles.map(getStyle)) })
     }
     
     class func getStyle(stringStyle: String) -> UIStatusBarStyle {

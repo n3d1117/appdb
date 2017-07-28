@@ -90,7 +90,7 @@ extension Featured {
     // Add Banner
     func addBanner(_ banner: Banner) {
         tableView.tableHeaderView = banner
-        banner.startTimer()
+        //banner.startTimer()
         if let headerView = tableView.tableHeaderView {
             let height: CGFloat = banner.height
             var headerFrame = headerView.frame

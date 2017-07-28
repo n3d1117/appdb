@@ -9,7 +9,6 @@
 import UIKit
 import Cartography
 import RealmSwift
-import AlamofireImage
 
 class DetailsHeader: DetailsCell {
     

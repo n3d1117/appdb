@@ -8,7 +8,6 @@
 
 import Foundation
 import Cartography
-import AlamofireImage
 
 protocol ScreenshotRedirectionDelegate {
     func screenshotImageSelected(with index: Int)

@@ -103,6 +103,10 @@ extension UITextField
         get { return getThemePicker(self, "setFont:") as? ThemeFontPicker }
         set { setThemePicker(self, "setFont:", newValue) }
     }
+    public var theme_keyboardAppearance: ThemeKeyboardAppearancePicker? {
+        get { return getThemePicker(self, "setKeyboardAppearance:") as? ThemeKeyboardAppearancePicker }
+        set { setThemePicker(self, "setKeyboardAppearance:", newValue) }
+    }
     public var theme_textColor: ThemeColorPicker? {
         get { return getThemePicker(self, "setTextColor:") as? ThemeColorPicker }
         set { setThemePicker(self, "setTextColor:", newValue) }
@@ -113,6 +117,10 @@ extension UITextView
     public var theme_font: ThemeFontPicker? {
         get { return getThemePicker(self, "setFont:") as? ThemeFontPicker }
         set { setThemePicker(self, "setFont:", newValue) }
+    }
+    public var theme_keyboardAppearance: ThemeKeyboardAppearancePicker? {
+        get { return getThemePicker(self, "setKeyboardAppearance:") as? ThemeKeyboardAppearancePicker }
+        set { setThemePicker(self, "setKeyboardAppearance:", newValue) }
     }
     public var theme_textColor: ThemeColorPicker? {
         get { return getThemePicker(self, "setTextColor:") as? ThemeColorPicker }
@@ -161,6 +169,10 @@ extension UISearchBar
     public var theme_barStyle: ThemeBarStylePicker? {
         get { return getThemePicker(self, "setBarStyle:") as? ThemeBarStylePicker }
         set { setThemePicker(self, "setBarStyle:", newValue) }
+    }
+    public var theme_keyboardAppearance: ThemeKeyboardAppearancePicker? {
+        get { return getThemePicker(self, "setKeyboardAppearance:") as? ThemeKeyboardAppearancePicker }
+        set { setThemePicker(self, "setKeyboardAppearance:", newValue) }
     }
     public var theme_barTintColor: ThemeColorPicker? {
         get { return getThemePicker(self, "setBarTintColor:") as? ThemeColorPicker }
@@ -239,26 +251,26 @@ extension CALayer
 }
 
 private func getThemePicker(
-    _ object: NSObject,
-    _ selector: String
+    _ object : NSObject,
+    _ selector : String
 ) -> ThemePicker? {
     return object.themePickers[selector]
 }
 
 private func setThemePicker(
-    _ object: NSObject,
-    _ selector: String,
-    _ picker: ThemePicker?
+    _ object : NSObject,
+    _ selector : String,
+    _ picker : ThemePicker?
 ) {
     object.themePickers[selector] = picker
     object.performThemePicker(selector: selector, picker: picker)
 }
 
 private func makeStatePicker(
-    _ object: NSObject,
-    _ selector: String,
-    _ picker: ThemePicker?,
-    _ state: UIControlState
+    _ object : NSObject,
+    _ selector : String,
+    _ picker : ThemePicker?,
+    _ state : UIControlState
 ) -> ThemePicker? {
     
     var picker = picker
