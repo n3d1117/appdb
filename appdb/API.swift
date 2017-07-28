@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import ObjectMapper
 import RealmSwift
 import SwiftyJSON
 
@@ -47,7 +46,7 @@ enum Actions: String {
 struct API {
     
     static let realm = try! Realm()
-    static let endpoint = "https://appdb.cc/API/v1.2/"
+    static let endpoint = "https://api.appdb.store/v1.2/"
     static let languageCode = Locale.current.languageCode ?? "en"
     
 }
