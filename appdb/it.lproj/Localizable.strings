@@ -6,6 +6,12 @@
   Copyright © 2017 ned. All rights reserved.
 */
 
+/////////////////////
+//  APPDB RELATED  //
+/////////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "Non disponiamo di alcun contenuto proibito. Tutti i dati sono disponibili pubblicamente attraverso le API di iTunes.";
+
 //////////////////////
 //  TAB BAR TITLES  //
 //////////////////////
@@ -29,7 +35,6 @@
 "iOS" = "iOS";
 "Cydia" = "Cydia";
 "Books" = "Libri";
-"Cancel" = "Annulla";
 
 /////////////////////////////
 //    FEATURED SECTIONS    //
@@ -43,54 +48,61 @@
 "Top Books" = "Libri più scaricati";
 "See All" = "Vedi tutto";
 
+//////////////////////////
+//     APPS & BOOKS     //
+//////////////////////////
+
+"Description" = "Descrizione";
+"What's New" = "Novità";
+"Tweaked Version Notice" = "App Modificata";
+"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "Questa app è stata modificata per aggiungere ulteriori caratteristiche. Assicurati di scaricarla soltanto da cracker verificati, nessuno tranne loro può garantire l'assenza di codice pericoloso.";
+"iPad only" = "Solo per iPad";
+"Information" = "Informazioni";
+"Seller" = "Sviluppatore";
+"Developer" = "Sviluppatore";
+"Category" = "Categoria";
+"Price" = "Prezzo";
+"Updated" = "Aggiornato";
+"Version" = "Versione";
+"Compatibility" = "Compatibilità";
+"Size" = "Dimensione";
+"Language" = "Lingua";
+"Languages" = "Lingue";
+"Bundle ID" = "Bundle ID";
+"Author" = "Autore";
+"Print Length" = "Pagine";
+"Requirements" = "Requisiti";
+"Rating" = "Valutazioni";
+"Developer Apps" = "App di questo sviluppatore";
+"Developer Website" = "Sito di questo sviluppatore";
+"Developer Support" = "Sito di supporto";
+"More by this author" = "Altri di questo autore";
+"Unknown" = "Sconosciuto";
+"See Original" = "Vedi originale";
+"Details" = "Dettagli";
+"Reviews" = "Recensioni";
+"Download" = "Download";
+"Install" = "Installa";
+"by" = "di";
+"Related Apps" = "App correlate";
+"Related Books" = "Libri correlati";
+
 ////////////////////
 //     ERRORS     //
 ////////////////////
 
 "Maintenance mode active. We will be back soon!" = "Modalità manutenzione attiva. Torniamo subito!";
+"No links found." = "Nessun link trovato.";
+"Not found" = "Contenuto non trovato";
+"Couldn't find content with id %@ in our database" = "Nessun risultato trovato con id %@ nel nostro database";
+"An error has occurred" = "Errore";
 
 ///////////////////
 //     OTHER     //
 ///////////////////
 
-"We do not host any prohibited content. All data is publicly available via iTunes API." = "Non disponiamo di alcun contenuto proibito. Tutti i dati sono disponibili pubblicamente attraverso le API di iTunes.";
+"Cancel" = "Annulla";
 "Dismiss" = "Chiudi";
-"Description" = "Descrizione";
-"What's New" = "Novità";
-"Tweaked Version Notice" = "App Modificata";
-"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "Questa app è stata modificata per aggiungere ulteriori caratteristiche. Assicurati di scaricarla soltanto da cracker verificati, nessuno tranne loro può garantire l'assenza di codice pericoloso.";
-"iPad only"="Solo per iPad";
-"Information"="Informazioni";
-"Developer"="Sviluppatore";
-"Seller"="Sviluppatore";
-"Category"="Categoria";
-"Price"="Prezzo";
-"Updated"="Aggiornato";
-"Version"="Versione";
-"Compatibility"="Compatibilità";
-"Size"="Dimensione";
-"Rating"="Valutazioni";
-"Language"="Lingua";
-"Languages"="Lingue";
-"Bundle ID"="Bundle ID";
-"Author"="Autore";
-"Print Length"="Pagine";
-"Requirements"="Requisiti";
-"Developer Apps"="App di questo sviluppatore";
-"Developer Website"="Sito di questo sviluppatore";
-"Developer Support"="Sito di supporto";
-"More by this author"="Altri di questo autore";
-"Unknown"="Sconosciuto";
-"See Original"="Vedi originale";
-"Details"="Dettagli";
-"Reviews"="Recensioni";
-"Download"="Download";
-"Install"="Installa";
-"by"="di";
-"Related Apps"="App correlate";
-"Related Books"="Libri correlati";
-"Done"="Fatto";
-"No links found."="Nessun link trovato.";
-"Not found"="Contenuto non trovato";
-"Couldn't find content with id %@ in our database"="Nessun risultato trovato con id %@ nel nostro database";
-"An error has occurred"="Errore";
+"Yes" = "Si";
+"No" = "No";
+"Done" = "Fatto";

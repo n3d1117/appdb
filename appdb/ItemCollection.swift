@@ -88,6 +88,8 @@ class ItemCollection: FeaturedCell {
     
     // Redirect to Details view
     var delegate: ContentRedirection? = nil
+    
+    // Open Featured's Categories view controller
     var delegateCategory: ChangeCategory? = nil
     
     deinit { NotificationCenter.default.removeObserver(self, name: Notification.Name.UIContentSizeCategoryDidChange, object: nil) }
@@ -157,7 +159,7 @@ class ItemCollection: FeaturedCell {
 
     }
     
-    func openFeaturedCategories(_ sender: AnyObject) { delegateCategory?.openCategories(sender) }
+    @objc fileprivate func openFeaturedCategories(_ sender: AnyObject) { delegateCategory?.openCategories(sender) }
     
     // MARK: - Change Content Size
     

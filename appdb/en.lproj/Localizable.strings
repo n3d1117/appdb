@@ -6,6 +6,12 @@
   Copyright © 2017 ned. All rights reserved.
 */
 
+/////////////////////
+//  APPDB RELATED  //
+/////////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "We do not host any prohibited content. All data is publicly available via iTunes API.";
+
 //////////////////////
 //  TAB BAR TITLES  //
 //////////////////////
@@ -29,12 +35,10 @@
 "iOS" = "iOS";
 "Cydia" = "Cydia";
 "Books" = "Books";
-"Cancel" = "Cancel";
 
 /////////////////////////////
 //    FEATURED SECTIONS    //
 /////////////////////////////
-
 
 "Custom Apps" = "Custom Apps";
 "New and Noteworthy" = "New and Noteworthy";
@@ -44,58 +48,61 @@
 "Top Books" = "Top Books";
 "See All" = "See All";
 
+//////////////////////////
+//     APPS & BOOKS     //
+//////////////////////////
+
+"Description" = "Description";
+"What's New" = "What's New";
+"Tweaked Version Notice" = "Tweaked Version Notice";
+"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code.";
+"iPad only" = "iPad only";
+"Information" = "Information";
+"Seller" = "Seller";
+"Developer" = "Developer";
+"Category" = "Category";
+"Price" = "Price";
+"Updated" = "Updated";
+"Version" = "Version";
+"Compatibility" = "Compatibility";
+"Size" = "Size";
+"Language" = "Language";
+"Languages" = "Languages";
+"Bundle ID" = "Bundle ID";
+"Author" = "Author";
+"Print Length" = "Print Length";
+"Requirements" = "Requirements";
+"Rating" = "Rating";
+"Developer Apps" = "Developer Apps";
+"Developer Website" = "Developer Website";
+"Developer Support" = "Developer Support";
+"More by this author" = "More by this author";
+"Unknown" = "Unknown";
+"See Original" = "See Original";
+"Details" = "Details";
+"Reviews" = "Reviews";
+"Download" = "Download";
+"Install" = "Install";
+"by" = "by";
+"Related Apps" = "Related Apps";
+"Related Books" = "Related Books";
+
 ////////////////////
 //     ERRORS     //
 ////////////////////
 
-
 "Maintenance mode active. We will be back soon!" = "Maintenance mode active. We will be back soon!";
+"No links found." = "No links found.";
+"Not found" = "Not found";
+"Couldn't find content with id %@ in our database" = "Couldn't find content with id %@ in our database";
+"An error has occurred" = "An error has occurred";
 
 ///////////////////
 //     OTHER     //
 ///////////////////
 
-"We do not host any prohibited content. All data is publicly available via iTunes API." = "We do not host any prohibited content. All data is publicly available via iTunes API.";
-
+"Cancel" = "Cancel";
 "Dismiss" = "Dismiss";
-"Description" = "Description";
-"What's New" = "What's New";
-"Tweaked Version Notice" = "Tweaked Version Notice";
-"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code.";
-"iPad only"="iPad only";
-"Information"="Information";
-"Seller"="Seller";
-"Developer"="Developer";
-"Category"="Category";
-"Price"="Price";
-"Updated"="Updated";
-"Version"="Version";
-"Compatibility"="Compatibility";
-"Size"="Size";
-"Language"="Language";
-"Languages"="Languages";
-"Bundle ID"="Bundle ID";
-"Author"="Author";
-"Print Length"="Print Length";
-"Requirements"="Requirements";
-"Rating"="Rating";
-"Developer Apps"="Developer Apps";
-"Developer Website"="Developer Website";
-"Developer Support"="Developer Support";
-"More by this author"="More by this author";
-"Yes"="Yes";
-"No"="No";
-"Unknown"="Unknown";
-"See Original"="See Original";
-"Details"="Details";
-"Reviews"="Reviews";
-"Download"="Download";
-"Install"="Install";
-"by"="by";
-"Related Apps"="Related Apps";
-"Related Books"="Related Books";
-"Done"="Done";
-"No links found."="No links found.";
-"Not found"="Not found";
-"Couldn't find content with id %@ in our database"="Couldn't find content with id %@ in our database";
-"An error has occurred"="An error has occurred";
+"Yes" = "Yes";
+"No" = "No";
+"Done" = "Done";
