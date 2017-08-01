@@ -141,9 +141,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 }
 
 ////////////////////////////////
-//                            //
 //  PROTOCOL IMPLEMENTATIONS  //
-//                            //
 ////////////////////////////////
 
 // MARK: - Reload view after category change

@@ -59,7 +59,7 @@ class CategoryCell: UITableViewCell {
         setConstraints()
     }
     
-    func setConstraints() {
+    fileprivate func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(icon, name) { icon, name in
                 

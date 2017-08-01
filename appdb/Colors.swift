@@ -16,9 +16,7 @@ struct Color {
     static func get(from picker: ThemeColorPicker) -> UIColor { return picker.value() as? UIColor ?? UIColor.blue }
     
     /////////////////
-    //             //
     //  UI COLORS  //
-    //             //
     /////////////////
     
     /* Blue main tint, may not be final */
@@ -62,9 +60,7 @@ struct Color {
     
     
     /////////////////
-    //             //
     //  CG COLORS  //
-    //             //
     /////////////////
     
     /* CG version of copyrightText */

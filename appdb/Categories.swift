@@ -130,7 +130,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Constraints
     
-    func setConstraints() {
+    fileprivate func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(view, tableView, headerView, control, line, replace: group) { view, tableView, header, control, line in
 

@@ -58,7 +58,7 @@ class FeaturedApp: UICollectionViewCell {
         setConstraints()
     }
     
-    func setConstraints() {
+    fileprivate func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(icon, title, category, dim) { icon, title, category, dim in
                 icon.left == icon.superview!.left

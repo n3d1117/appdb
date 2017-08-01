@@ -50,7 +50,7 @@ class FeaturedBook: UICollectionViewCell {
         setConstraints()
     }
     
-    func setConstraints() {        
+    fileprivate func setConstraints() {        
         if !didSetupConstraints { didSetupConstraints = true
             constrain(cover, title, author, dim) { cover, title, author, dim in
                 cover.left == cover.superview!.left

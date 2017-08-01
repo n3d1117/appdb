@@ -157,7 +157,7 @@ class ItemCollection: FeaturedCell {
     
     // MARK: - Change Content Size
     
-    func updateTextSize(notification: NSNotification) {
+    @objc fileprivate func updateTextSize(notification: NSNotification) {
         
         let preferredSize : CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize
         let fontSizeToSet = preferredSize > 26.0 ? 24.0 : preferredSize
@@ -169,7 +169,7 @@ class ItemCollection: FeaturedCell {
         setConstraints()
     }
     
-    func setConstraints() {
+    fileprivate func setConstraints() {
         if !didSetConstraints { didSetConstraints = true
             constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
                 collection.left == collection.superview!.left
@@ -250,7 +250,7 @@ class ItemCollection: FeaturedCell {
     // Fixes rare issue where first three Cydia items would not load category text.
     // Reloading text after 0.3 seconds, seems to work (tested on iPad Mini 2)
     
-    private func dirtyFixEmptyCategory() {
+    fileprivate func dirtyFixEmptyCategory() {
         if self.items[0] is CydiaApp {
             delay(0.3) { for i in 0..<3 {
                 if let cell = self.collectionView.cellForItem(at: IndexPath(row: i, section: 0)) as? FeaturedApp {

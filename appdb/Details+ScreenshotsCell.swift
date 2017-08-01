@@ -35,7 +35,7 @@ class DetailsScreenshotCell: UICollectionViewCell {
         setConstraints()
     }
     
-    func setConstraints() {
+    fileprivate func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(image, dim) { image, dim in
                 

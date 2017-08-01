@@ -101,7 +101,7 @@ class DetailsFullScreenshots: UIViewController {
         setConstraints()
     }
     
-    func setConstraints() {
+    fileprivate func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(collectionView) { collection in
                 collection.edges == collection.superview!.edges

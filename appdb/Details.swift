@@ -163,9 +163,7 @@ class Details: LoadingTableView {
 }
 
 ////////////////////////////////
-//                            //
 //  PROTOCOL IMPLEMENTATIONS  //
-//                            //
 ////////////////////////////////
 
 //
