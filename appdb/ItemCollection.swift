@@ -88,6 +88,7 @@ class ItemCollection: FeaturedCell {
     
     // Redirect to Details view
     var delegate: ContentRedirection? = nil
+    var delegateCategory: ChangeCategory? = nil
     
     deinit { NotificationCenter.default.removeObserver(self, name: Notification.Name.UIContentSizeCategoryDidChange, object: nil) }
 
@@ -142,6 +143,7 @@ class ItemCollection: FeaturedCell {
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 6
         categoryLabel.isHidden = true
+        categoryLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.openFeaturedCategories)))
         
         seeAllButton = ButtonFactory.createChevronButton(text: "See All".localized(), color: Color.darkGray)
 
@@ -154,6 +156,8 @@ class ItemCollection: FeaturedCell {
         requestItems()
 
     }
+    
+    func openFeaturedCategories(_ sender: AnyObject) { delegateCategory?.openCategories(sender) }
     
     // MARK: - Change Content Size
     
@@ -234,6 +238,7 @@ class ItemCollection: FeaturedCell {
             if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
                 self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
                 self.categoryLabel.isHidden = false
+                self.categoryLabel.isUserInteractionEnabled = true
             } else {
                 self.categoryLabel.text = ""
                 self.categoryLabel.isHidden = true

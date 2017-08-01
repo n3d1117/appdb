@@ -11,6 +11,7 @@ import RealmSwift
 import Cartography
 
 protocol ChangeCategory {
+    func openCategories(_ sender: AnyObject)
     func reloadViewAfterCategoryChange(id: String, type: ItemType)
 }
 
@@ -148,7 +149,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 extension Featured: ChangeCategory {
     
     // Open categories
-    func openCategories(_ sender: UIBarButtonItem) {
+    func openCategories(_ sender: AnyObject) {
         let categoriesViewController = Categories()
         categoriesViewController.delegate = self
         let nav = UINavigationController(rootViewController: categoriesViewController)
@@ -156,9 +157,11 @@ extension Featured: ChangeCategory {
         nav.preferredContentSize = CGSize(width: 350, height: 500)
         if let popover = nav.popoverPresentationController {
             popover.delegate = self
-            popover.sourceView = sender.value(forKey: "view") as! UIView?
-            popover.sourceRect = (sender.value(forKey: "view") as! UIView!).bounds
             popover.theme_backgroundColor = Color.popoverArrowColor
+            if let view = sender.value(forKey: "view") as? UIView {
+                popover.sourceView = view
+                popover.sourceRect = view.bounds
+            }
         }
         present(nav, animated: true, completion: nil)
     }

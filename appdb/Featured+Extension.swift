@@ -71,7 +71,7 @@ extension Featured {
         tableView.register(Banner.self, forCellReuseIdentifier: CellType.banner.rawValue)
         tableView.register(Copyright.self, forCellReuseIdentifier: CellType.copyright.rawValue)
         
-        for cell in cells.flatMap({$0 as? ItemCollection}) { cell.delegate = self } /* content redirection delegate */
+        for cell in cells.flatMap({$0 as? ItemCollection}) { cell.delegate = self; cell.delegateCategory = self }
         
         //Register for 3D Touch
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
