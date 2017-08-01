@@ -42,7 +42,7 @@ extension Featured {
     enum size {
         case spacing      // The spacing between items
         case margin       // Left margin
-        case itemWidth    // The width of th items in the collectionView
+        case itemWidth    // The width of the items in the collectionView
         case heightIos    // Height of collectionView for ios (add 40 for height of cell)
         case heightBooks  // Height of collectionView for books
         

@@ -169,7 +169,6 @@
 		8173E8D41F2B80AE004CCDE1 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
 		8173E8D51F2B80AE004CCDE1 /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		8173E8D61F2B80AE004CCDE1 /* NSDecimalNumberTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDecimalNumberTransform.swift; sourceTree = "<group>"; };
-		8173E8D71F2B80AE004CCDE1 /* ObjectMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectMapper.h; sourceTree = "<group>"; };
 		8173E8D81F2B80AE004CCDE1 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		8173E8D91F2B80AE004CCDE1 /* ToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToJSON.swift; sourceTree = "<group>"; };
 		8173E8DA1F2B80AE004CCDE1 /* TransformOf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformOf.swift; sourceTree = "<group>"; };
@@ -398,7 +397,6 @@
 				8173E8D41F2B80AE004CCDE1 /* Mappable.swift */,
 				8173E8D51F2B80AE004CCDE1 /* Mapper.swift */,
 				8173E8D61F2B80AE004CCDE1 /* NSDecimalNumberTransform.swift */,
-				8173E8D71F2B80AE004CCDE1 /* ObjectMapper.h */,
 				8173E8D81F2B80AE004CCDE1 /* Operators.swift */,
 				8173E8D91F2B80AE004CCDE1 /* ToJSON.swift */,
 				8173E8DA1F2B80AE004CCDE1 /* TransformOf.swift */,
