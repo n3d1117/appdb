@@ -19,7 +19,7 @@ extension API {
                         success:@escaping (_ items: [T]) -> Void, fail:@escaping (_ error: String) -> Void) where T:Mappable, T:Meta {
         var shouldContinue: Bool = true
         
-        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre, "trackid": trackid, "lang": languageCode])
+        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre, "trackid": trackid, "lang": languageCode], headers: headers)
             .responseJSON { response in
                 if let value = response.result.value {
                     let json = JSON(value)

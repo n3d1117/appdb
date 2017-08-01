@@ -32,6 +32,8 @@ struct Global {
         return realm.objects(Preferences.self).first!.isFirstLaunch
     }
     
+    static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "~"
+    
     static let bulletPoint = " • "
     static let tilde = "~"
 }

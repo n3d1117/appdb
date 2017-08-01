@@ -17,7 +17,7 @@ extension API {
     
     static func listGenres() {
         
-        Alamofire.request(endpoint, parameters: ["action": Actions.listGenres.rawValue, "lang": languageCode])
+        Alamofire.request(endpoint, parameters: ["action": Actions.listGenres.rawValue, "lang": languageCode], headers: headers)
             .responseJSON { response in
                 
                 switch response.result {
@@ -84,7 +84,7 @@ extension API {
     
     static func getIcon(id: String, type: ItemType) {
         if let cat = realm.objects(Genre.self).filter("category = %@ AND id = %@", type.rawValue, id).first {
-            Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue])
+            Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue], headers: headers)
                 .responseJSON { response in
                     switch response.result {
                     case .success(let value):
