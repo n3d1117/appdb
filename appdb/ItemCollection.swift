@@ -28,7 +28,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             if let cat = app.category { cell.category.text  = cat.name.isEmpty ? "Unknown".localized() : cat.name
             } else { cell.category.text = "Unknown".localized() }
             if let url = URL(string: app.image) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: Featured.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: Global.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }
@@ -39,7 +39,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
             cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
             if let url = URL(string: cydiaApp.image) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: Featured.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: Global.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }
@@ -104,12 +104,12 @@ class ItemCollection: FeaturedCell {
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
         
-        let layout = SnappableFlowLayout(width: Featured.size.itemWidth.value, spacing: Featured.size.spacing.value)
+        let layout = SnappableFlowLayout(width: Global.size.itemWidth.value, spacing: Global.size.spacing.value)
         if let id = Featured.CellType(rawValue: reuseIdentifier!) {
-            if Featured.iosTypes.contains(id) { layout.itemSize = Featured.sizeIos } else { layout.itemSize = Featured.sizeBooks }
+            if Featured.iosTypes.contains(id) { layout.itemSize = Global.sizeIos } else { layout.itemSize = Global.sizeBooks }
         }
-        layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
-        layout.minimumLineSpacing = Featured.size.spacing.value
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Global.size.margin.value, bottom: 0, right: Global.size.margin.value)
+        layout.minimumLineSpacing = Global.size.spacing.value
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(FeaturedApp.self, forCellWithReuseIdentifier: "app")
@@ -168,7 +168,12 @@ class ItemCollection: FeaturedCell {
         let preferredSize : CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize
         let fontSizeToSet = preferredSize > 26.0 ? 24.0 : preferredSize
         
-        sectionLabel.font = UIFont.systemFont(ofSize: fontSizeToSet)
+        if #available(iOS 8.2, *) {
+            sectionLabel.font = .systemFont(ofSize: fontSizeToSet, weight: UIFontWeightMedium)
+        } else {
+            sectionLabel.font = .systemFont(ofSize: fontSizeToSet)
+        }
+        
         sectionLabel.sizeToFit()
         
         didSetConstraints = false
@@ -183,19 +188,19 @@ class ItemCollection: FeaturedCell {
                 collection.top == collection.superview!.top + (44~~39)
                 collection.bottom == collection.superview!.bottom
             
-                section.left == section.superview!.left + Featured.size.margin.value
+                section.left == section.superview!.left + Global.size.margin.value
                 section.right == section.left + sectionLabel.frame.size.width ~ 999
                 section.bottom == collection.top - (44~~39 - section.height.view.bounds.height) / 2
         
-                seeAll.right == seeAll.superview!.right - Featured.size.margin.value
+                seeAll.right == seeAll.superview!.right - Global.size.margin.value
                 seeAll.centerY == section.centerY
                 
                 category.left == section.right + 8
                 category.right <= seeAll.left - 8
                 category.centerY == section.centerY
             }
-            separatorInset.left = showFullSeparator ? 0 : Featured.size.margin.value
-            layoutMargins.left = showFullSeparator ? 0 : Featured.size.margin.value
+            separatorInset.left = showFullSeparator ? 0 : Global.size.margin.value
+            layoutMargins.left = showFullSeparator ? 0 : Global.size.margin.value
         }
     }
     
@@ -255,7 +260,7 @@ class ItemCollection: FeaturedCell {
     }
     
     // Fixes rare issue where first three Cydia items would not load category text.
-    // Reloading text after 0.3 seconds, seems to work (tested on iPad Mini 2)
+    // Reloading text after 0.3 seconds, seems to work (tested on iPad Mini 2) - not working for all devices
     
     fileprivate func dirtyFixEmptyCategory() {
         if self.items[0] is CydiaApp {

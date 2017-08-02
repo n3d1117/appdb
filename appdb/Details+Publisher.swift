@@ -36,8 +36,8 @@ class DetailsPublisher: DetailsCell {
         contentView.addSubview(label)
         
         constrain(label) { label in
-            label.left == label.superview!.left + Featured.size.margin.value
-            label.right == label.superview!.right - Featured.size.margin.value
+            label.left == label.superview!.left + Global.size.margin.value
+            label.right == label.superview!.right - Global.size.margin.value
             label.top == label.superview!.top + 15
             label.bottom == label.superview!.bottom - (20~~15)
         }

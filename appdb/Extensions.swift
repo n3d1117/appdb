@@ -11,9 +11,6 @@ import UIKit
 import Cartography
 import Kanna
 
-// Common corner radius (ios app icon)
-func cornerRadius(from width: CGFloat) -> CGFloat { return (width / 4.2) /* around 23% */ }
-
 // Delay function
 func delay(_ delay: Double, closure: @escaping ()->()) {
     let when = DispatchTime.now() + delay
@@ -100,7 +97,7 @@ extension DetailsCell {
         addSubview(line)
         constrain(line) { line in
             line.height == 1/UIScreen.main.scale
-            line.left == line.superview!.left + (full ? 0 : Featured.size.margin.value)
+            line.left == line.superview!.left + (full ? 0 : Global.size.margin.value)
             line.right == line.superview!.right
             line.top == line.superview!.bottom - 1/UIScreen.main.scale
         }
@@ -113,7 +110,7 @@ class TableViewHeader: UITableViewHeaderFooterView {
         addSubview(line)
         constrain(line) { line in
             line.height == 1/UIScreen.main.scale
-            line.left == line.superview!.left + (full ? 0 : Featured.size.margin.value)
+            line.left == line.superview!.left + (full ? 0 : Global.size.margin.value)
             line.right == line.superview!.right
             line.top == line.superview!.bottom - 1/UIScreen.main.scale
         }

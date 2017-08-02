@@ -52,7 +52,7 @@ class DetailsTweakedNotice: DetailsCell {
             content = UILabel()
             content.theme_textColor = Color.darkGray
             content.text = "This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code.".localized()
-            content.font = .systemFont(ofSize: (13~~12))
+            content.font = .systemFont(ofSize: (13.5~~12.5))
             content.numberOfLines = 0
             
             seeOriginal = ButtonFactory.createChevronButton(text: "See Original".localized(), color: Color.darkGray, bold: false)
@@ -79,15 +79,15 @@ class DetailsTweakedNotice: DetailsCell {
             constrain(title, content, seeOriginal) { title, content, seeOriginal in
                 
                 title.top == title.superview!.top + 12
-                title.left == title.superview!.left + Featured.size.margin.value
-                title.right == title.superview!.right - Featured.size.margin.value
+                title.left == title.superview!.left + Global.size.margin.value
+                title.right == title.superview!.right - Global.size.margin.value
                 
                 content.top == title.bottom + 8
                 content.left == title.left
                 content.right == title.right
                 content.bottom == content.superview!.bottom - 15
                 
-                seeOriginal.right == seeOriginal.superview!.right - Featured.size.margin.value
+                seeOriginal.right == seeOriginal.superview!.right - Global.size.margin.value
                 seeOriginal.centerY == title.centerY
                 
             }

@@ -76,16 +76,16 @@ class DetailsDownloadCell: DetailsCell {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(host, cracker, button) { host, cracker, button in
                 
-                button.right == button.superview!.right - Featured.size.margin.value
+                button.right == button.superview!.right - Global.size.margin.value
                 button.left == button.right - self.button.frame.size.width
                 button.centerY == button.superview!.centerY
                 
                 host.top == host.superview!.top + 10
-                host.left == host.superview!.left + Featured.size.margin.value
+                host.left == host.superview!.left + Global.size.margin.value
                 host.right <= button.left - 10
                 
                 cracker.left == host.left
-                cracker.right <= button.left - Featured.size.margin.value
+                cracker.right <= button.left - Global.size.margin.value
                 cracker.bottom == cracker.superview!.bottom - 10
             }
         }

@@ -63,8 +63,8 @@ class DetailsChangelog: DetailsCell {
             constrain(title, date, desc) { title, date, desc in
                 
                 title.top == title.superview!.top + 12
-                title.left == title.superview!.left + Featured.size.margin.value
-                title.right == title.superview!.right - Featured.size.margin.value
+                title.left == title.superview!.left + Global.size.margin.value
+                title.right == title.superview!.right - Global.size.margin.value
                 
                 date.top == title.bottom - 1
                 date.left == title.left

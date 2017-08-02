@@ -29,7 +29,7 @@ class ElasticLabel: UILabel {
         self.text = text
         if let delegate = delegate { self.delegated = delegate }
         
-        font = .systemFont(ofSize: (13~~12))
+        font = .systemFont(ofSize: (13.5~~12.5))
         textAlignment = .left
         lineBreakMode = .byTruncatingTail
         isUserInteractionEnabled = true

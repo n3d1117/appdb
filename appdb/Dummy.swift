@@ -11,7 +11,7 @@ import UIKit
 class Dummy: FeaturedCell {
     
     override var height: CGFloat {
-        return Featured.size.spacing.value
+        return Global.size.spacing.value
     }
     
     convenience init() {

@@ -26,8 +26,8 @@ class CategoryCell: UITableViewCell {
         // Margins
         contentView.preservesSuperviewLayoutMargins = false
         preservesSuperviewLayoutMargins = false
-        layoutMargins.left = Featured.size.margin.value
-        separatorInset.left = Featured.size.margin.value
+        layoutMargins.left = Global.size.margin.value
+        separatorInset.left = Global.size.margin.value
         
         // UI
         contentView.theme_backgroundColor = Color.veryVeryLightGray
@@ -39,7 +39,7 @@ class CategoryCell: UITableViewCell {
         // Icon
         icon = UIImageView()
         if reuseIdentifier == "category_ios" {
-            icon.layer.cornerRadius = cornerRadius(from: 30)
+            icon.layer.cornerRadius = Global.cornerRadius(from: 30)
             icon.image = #imageLiteral(resourceName: "placeholderIcon")
         } else {
             icon.layer.cornerRadius = 0
@@ -68,7 +68,7 @@ class CategoryCell: UITableViewCell {
                 if reuseIdentifier == "category_ios" { icon.height == icon.width }
                 else if reuseIdentifier == "category_books" { icon.height == icon.width * 1.542 }
                 
-                icon.left == icon.superview!.left + Featured.size.margin.value
+                icon.left == icon.superview!.left + Global.size.margin.value
                 icon.centerY == icon.superview!.centerY
                 
                 name.left == icon.right + 10

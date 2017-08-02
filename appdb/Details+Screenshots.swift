@@ -29,9 +29,9 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if screenshots[indexPath.row].class_ == "landscape" {
-            return CGSize(width: widthIfLandscape, height: (230~~176)-(Featured.size.margin.value*2)-1)
+            return CGSize(width: widthIfLandscape, height: (230~~176)-(Global.size.margin.value*2)-1)
         } else {
-            return CGSize(width: widthIfPortrait, height: height-(Featured.size.margin.value*2)-1)
+            return CGSize(width: widthIfPortrait, height: height-(Global.size.margin.value*2)-1)
         }
     }
     
@@ -60,8 +60,8 @@ class DetailsScreenshots: DetailsCell {
         return 0
     }
 
-    var widthIfPortrait: CGFloat { return round(((300~~280)-(Featured.size.margin.value * 2)) / magic) }
-    var widthIfLandscape: CGFloat { return round(((230~~176)-(Featured.size.margin.value * 2)) * magic) }
+    var widthIfPortrait: CGFloat { return round(((300~~280)-(Global.size.margin.value * 2)) / magic) }
+    var widthIfLandscape: CGFloat { return round(((230~~176)-(Global.size.margin.value * 2)) * magic) }
     var allLandscape: Bool { return (screenshots.filter({$0.class_=="portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
     var mixedClasses: Bool { return !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
     var spacing: CGFloat = 15
@@ -81,8 +81,8 @@ class DetailsScreenshots: DetailsCell {
             
             let proposedWidth = allLandscape ? widthIfLandscape : widthIfPortrait
             let layout = SnappableFlowLayout(width: mixedClasses ? 0 : proposedWidth, spacing: spacing)
-            layout.sectionInset = UIEdgeInsets(top: Featured.size.margin.value, left: Featured.size.margin.value,
-                                               bottom: Featured.size.margin.value, right: Featured.size.margin.value)
+            layout.sectionInset = UIEdgeInsets(top: Global.size.margin.value, left: Global.size.margin.value,
+                                               bottom: Global.size.margin.value, right: Global.size.margin.value)
             layout.minimumLineSpacing = spacing
             layout.scrollDirection = .horizontal
             

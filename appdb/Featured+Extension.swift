@@ -15,10 +15,10 @@ class FeaturedCell: UITableViewCell {
         guard let id = Featured.CellType(rawValue: reuseIdentifier ?? "") else { return 0 }
         
         // iOS Height
-        if Featured.iosTypes.contains(id) { return Featured.size.heightIos.value + (45~~40) }
+        if Featured.iosTypes.contains(id) { return Global.size.heightIos.value + (45~~40) }
         
         // Books Height
-        if id == .books { return Featured.size.heightBooks.value + (45~~40) }
+        if id == .books { return Global.size.heightBooks.value + (45~~40) }
         return 0
     }
 }
@@ -38,28 +38,6 @@ extension Featured {
     }
     
     static let iosTypes: [CellType] = [.iosNew, .iosPaid, .iosPopular, .cydia]
-    
-    enum size {
-        case spacing      // The spacing between items
-        case margin       // Left margin
-        case itemWidth    // The width of the items in the collectionView
-        case heightIos    // Height of collectionView for ios (add 40 for height of cell)
-        case heightBooks  // Height of collectionView for books
-        
-        var value: CGFloat {
-            switch self {
-            case .spacing: return (25~~15)
-            case .margin: return (20~~15)
-            case .itemWidth: return (83~~73)
-            case .heightIos: return (150~~135)
-            case .heightBooks: return (190~~180)
-            }
-        }
-    }
-    
-    // Featured's collection view item sizes
-    static let sizeIos: CGSize = CGSize(width: Featured.size.itemWidth.value, height: Featured.size.heightIos.value)
-    static let sizeBooks: CGSize = CGSize(width: Featured.size.itemWidth.value, height: Featured.size.heightBooks.value)
     
     // Set up
     func setUp() {

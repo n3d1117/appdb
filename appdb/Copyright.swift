@@ -39,8 +39,8 @@ class Copyright: FeaturedCell {
         contentView.addSubview(copyrightNotice)
         
         constrain(copyrightNotice) { notice in
-            notice.left == notice.superview!.left + Featured.size.margin.value
-            notice.right == notice.superview!.right - Featured.size.margin.value
+            notice.left == notice.superview!.left + Global.size.margin.value
+            notice.right == notice.superview!.right - Global.size.margin.value
             notice.top == notice.superview!.top + 15
             notice.bottom == notice.superview!.bottom - (25~~15)
         }

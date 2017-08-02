@@ -86,8 +86,8 @@ class DetailsSegmentControl: TableViewHeader {
                 if IS_IPAD {
                     segment.width == 380
                 } else {
-                    segment.left == segment.superview!.left + Featured.size.margin.value + 5 ~ 999.0
-                    segment.right == segment.superview!.right - Featured.size.margin.value - 5 ~ 999.0
+                    segment.left == segment.superview!.left + Global.size.margin.value + 5 ~ 999.0
+                    segment.right == segment.superview!.right - Global.size.margin.value - 5 ~ 999.0
                 }
             } else {
                 segment.width == (280~~250)

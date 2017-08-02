@@ -20,8 +20,8 @@ class DetailsHeader: DetailsCell {
     var stars: CosmosView?
     var additionalInfo: UILabel?
     
-    private var _height = (132~~102) + Featured.size.margin.value
-    private var _heightBooks = round((132~~102) * 1.542) + Featured.size.margin.value
+    private var _height = (132~~102) + Global.size.margin.value
+    private var _heightBooks = round((132~~102) * 1.542) + Global.size.margin.value
     override var height: CGFloat {
         switch type {
             case .ios, .cydia: return _height
@@ -48,7 +48,7 @@ class DetailsHeader: DetailsCell {
         // Name
         name = UILabel()
         name.theme_textColor = Color.title
-        name.font = .systemFont(ofSize: 18~~16)
+        name.font = .systemFont(ofSize: 18.5~~16.5)
         name.numberOfLines = type == .books ? 4 : 3
         
         // Icon
@@ -60,7 +60,7 @@ class DetailsHeader: DetailsCell {
             case .ios: if let app = content as? App {
                 name.text = app.name
                 seller = ButtonFactory.createChevronButton(text: app.seller.isEmpty ? "Unknown".localized() : app.seller, color: Color.darkGray, size: (15~~13), bold: false)
-                icon.layer.cornerRadius = cornerRadius(from: (130~~100))
+                icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
                 
                 if !app.numberOfStars.isZero {
                     stars = buildStars()
@@ -74,7 +74,7 @@ class DetailsHeader: DetailsCell {
                 } else { ipadOnly = nil }
                 
                 if let url = URL(string: app.image) {
-                    icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: 100),
+                    icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: 100),
                                  imageTransition: .crossDissolve(0.2))
                 }
             }
@@ -94,10 +94,9 @@ class DetailsHeader: DetailsCell {
                     ipadOnly!.text = "iPad only".localized().uppercased()
                 } else { ipadOnly = nil }
                 
-                icon.layer.cornerRadius = cornerRadius(from: (130~~100))
+                icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
                 if let url = URL(string: cydiaApp.image) {
-                    icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: 100),
-                                 imageTransition: .crossDissolve(0.2))
+                    icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: 100), imageTransition: .crossDissolve(0.2))
                 }
             }
             case .books: if let book = content as? Book {
@@ -156,23 +155,23 @@ class DetailsHeader: DetailsCell {
                     case .books: icon.height == icon.width * 1.542
                 }
                 
-                icon.left == icon.superview!.left + Featured.size.margin.value
-                icon.top == icon.superview!.top + Featured.size.margin.value
+                icon.left == icon.superview!.left + Global.size.margin.value
+                icon.top == icon.superview!.top + Global.size.margin.value
                 
                 name.left == icon.right + (15~~12)
-                name.right == name.superview!.right - Featured.size.margin.value
+                name.right == name.superview!.right - Global.size.margin.value
                 name.top == icon.top + 3
                 
                 seller.left == name.left
                 seller.top == name.bottom + 3
-                seller.right <= seller.superview!.right - Featured.size.margin.value
+                seller.right <= seller.superview!.right - Global.size.margin.value
             }
             }
             
             if let tweaked = tweaked, type == .cydia {
                 constrain(tweaked, seller) { tweaked, seller in
                     tweaked.left == seller.left
-                    tweaked.right <= tweaked.superview!.right - Featured.size.margin.value
+                    tweaked.right <= tweaked.superview!.right - Global.size.margin.value
                     tweaked.top == seller.bottom + (7~~6)
                 }
             }
@@ -180,12 +179,12 @@ class DetailsHeader: DetailsCell {
             if let stars = stars, (type == .ios || type == .books) {
                 constrain(stars, seller) { stars, seller in
                     stars.left == seller.left
-                    stars.right <= stars.superview!.right - Featured.size.margin.value
+                    stars.right <= stars.superview!.right - Global.size.margin.value
                     
                     if type == .books, let additional = additionalInfo {
                         constrain(additional) { additional in
                             additional.left == seller.left
-                            additional.right <= additional.superview!.right - Featured.size.margin.value
+                            additional.right <= additional.superview!.right - Global.size.margin.value
                             additional.top == seller.bottom + (7~~6)
                             stars.top == additional.bottom + (7~~6)
                         }
@@ -200,14 +199,14 @@ class DetailsHeader: DetailsCell {
                     if let stars = stars {
                         constrain(ipadOnly, stars) { ipadOnly, stars in
                             ipadOnly.left == stars.left
-                            ipadOnly.right <= ipadOnly.superview!.right - Featured.size.margin.value
+                            ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
                             ipadOnly.top == stars.bottom + (7~~6)
                             ipadOnly.bottom <= ipadOnly.superview!.bottom
                         }
                     } else {
                         constrain(ipadOnly, seller) { ipadOnly, seller in
                             ipadOnly.left == seller.left
-                            ipadOnly.right <= ipadOnly.superview!.right - Featured.size.margin.value
+                            ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
                             ipadOnly.top == seller.bottom + (7~~6)
                         }
                     }
@@ -215,14 +214,14 @@ class DetailsHeader: DetailsCell {
                     if let tweaked = tweaked {
                         constrain(ipadOnly, tweaked) { ipadOnly, tweaked in
                             ipadOnly.left == tweaked.left
-                            ipadOnly.right <= ipadOnly.superview!.right - Featured.size.margin.value
+                            ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
                             ipadOnly.top == tweaked.bottom + (7~~6)
                             ipadOnly.bottom <= ipadOnly.superview!.bottom
                         }
                     } else {
                         constrain(ipadOnly, seller) { ipadOnly, seller in
                             ipadOnly.left == seller.left
-                            ipadOnly.right <= ipadOnly.superview!.right - Featured.size.margin.value
+                            ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
                             ipadOnly.top == seller.bottom + (7~~6)
                         }
                     }

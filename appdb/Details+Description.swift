@@ -65,8 +65,8 @@ class DetailsDescription: DetailsCell {
             constrain(title, desc) { title, desc in
                 
                 title.top == title.superview!.top + 12
-                title.left == title.superview!.left + Featured.size.margin.value
-                title.right == title.superview!.right - Featured.size.margin.value
+                title.left == title.superview!.left + Global.size.margin.value
+                title.right == title.superview!.right - Global.size.margin.value
                 
                 desc.top == title.bottom + 8
                 desc.left == title.left

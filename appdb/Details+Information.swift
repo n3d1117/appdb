@@ -205,7 +205,7 @@ class DetailsInformation: DetailsCell {
             constrain(title) { title in
                 
                 title.top == title.superview!.top + 12
-                title.left == title.superview!.left + Featured.size.margin.value
+                title.left == title.superview!.left + Global.size.margin.value
                 
                 switch type {
                 case .ios:
@@ -213,10 +213,10 @@ class DetailsInformation: DetailsCell {
                     
                         seller.top == title.bottom + 9
                         seller.left == title.left
-                        seller.right == seller.left + 86
+                        seller.right == seller.left + (90~~86)
                         
                         sellerText.left == seller.right + (20~~15)
-                        sellerText.right == sellerText.superview!.right - Featured.size.margin.value
+                        sellerText.right == sellerText.superview!.right - Global.size.margin.value
                         sellerText.top == seller.top
                         
                         constrain(bundleId, bundleIdText) { bundleId, bundleIdText in
@@ -226,7 +226,7 @@ class DetailsInformation: DetailsCell {
                             bundleId.right == seller.right
                             
                             bundleIdText.left == bundleId.right + (20~~15)
-                            bundleIdText.right == bundleIdText.superview!.right - Featured.size.margin.value
+                            bundleIdText.right == bundleIdText.superview!.right - Global.size.margin.value
                             bundleIdText.top == bundleId.top
                         
                             constrain(category, categoryText) { category, categoryText in
@@ -236,7 +236,7 @@ class DetailsInformation: DetailsCell {
                                 category.right == bundleId.right
                             
                                 categoryText.left == category.right + (20~~15)
-                                categoryText.right == categoryText.superview!.right - Featured.size.margin.value
+                                categoryText.right == categoryText.superview!.right - Global.size.margin.value
                                 categoryText.top == category.top
                             
                                 constrain(price, priceText) { price, priceText in
@@ -246,7 +246,7 @@ class DetailsInformation: DetailsCell {
                                     price.right == category.right
                                 
                                     priceText.left == price.right + (20~~15)
-                                    priceText.right == priceText.superview!.right - Featured.size.margin.value
+                                    priceText.right == priceText.superview!.right - Global.size.margin.value
                                     priceText.top == price.top
                                 
                                     constrain(updated, updatedText) { updated, updatedText in
@@ -256,7 +256,7 @@ class DetailsInformation: DetailsCell {
                                         updated.right == price.right
                                     
                                         updatedText.left == updated.right + (20~~15)
-                                        updatedText.right == updatedText.superview!.right - Featured.size.margin.value
+                                        updatedText.right == updatedText.superview!.right - Global.size.margin.value
                                         updatedText.top == updated.top
                                     
                                         constrain(version, versionText) { version, versionText in
@@ -266,7 +266,7 @@ class DetailsInformation: DetailsCell {
                                             version.right == updated.right
                                         
                                             versionText.left == version.right + (20~~15)
-                                            versionText.right == versionText.superview!.right - Featured.size.margin.value
+                                            versionText.right == versionText.superview!.right - Global.size.margin.value
                                             versionText.top == version.top
                                         
                                             constrain(size, sizeText) { size, sizeText in
@@ -276,7 +276,7 @@ class DetailsInformation: DetailsCell {
                                                 size.right == version.right
                                             
                                                 sizeText.left == size.right + (20~~15)
-                                                sizeText.right == sizeText.superview!.right - Featured.size.margin.value
+                                                sizeText.right == sizeText.superview!.right - Global.size.margin.value
                                                 sizeText.top == size.top
                                             
                                                 constrain(rating, ratingText) { rating, ratingText in
@@ -286,7 +286,7 @@ class DetailsInformation: DetailsCell {
                                                     rating.right == size.right
                                                 
                                                     ratingText.left == rating.right + (20~~15)
-                                                    ratingText.right == ratingText.superview!.right - Featured.size.margin.value
+                                                    ratingText.right == ratingText.superview!.right - Global.size.margin.value
                                                     ratingText.top == rating.top
                                                 
                                                     constrain(compatibility, compatibilityText) { compatibility, compatibilityText in
@@ -296,7 +296,7 @@ class DetailsInformation: DetailsCell {
                                                         compatibility.right == rating.right
                                                     
                                                         compatibilityText.left == compatibility.right + (20~~15)
-                                                        compatibilityText.right == compatibilityText.superview!.right - Featured.size.margin.value
+                                                        compatibilityText.right == compatibilityText.superview!.right - Global.size.margin.value
                                                         compatibilityText.top == compatibility.top
                                                         
                                                         if contentView.subviews.contains(watch) {
@@ -308,7 +308,7 @@ class DetailsInformation: DetailsCell {
                                                                 watch.right == compatibility.right
                                                         
                                                                 watchText.left == watch.right + (20~~15)
-                                                                watchText.right == watchText.superview!.right - Featured.size.margin.value
+                                                                watchText.right == watchText.superview!.right - Global.size.margin.value
                                                                 watchText.top == watch.top
                                                         
                                                                 constrain(languages, languagesText) { languages, languagesText in
@@ -318,7 +318,7 @@ class DetailsInformation: DetailsCell {
                                                                     languages.right == watch.right
                                                             
                                                                     languagesText.left == languages.right + (20~~15)
-                                                                    languagesText.right == languagesText.superview!.right - Featured.size.margin.value
+                                                                    languagesText.right == languagesText.superview!.right - Global.size.margin.value
                                                                     languagesText.top == languages.top
                                                                     languagesText.bottom == languagesText.superview!.bottom - 15
                                                             
@@ -335,7 +335,7 @@ class DetailsInformation: DetailsCell {
                                                                 languages.right == compatibility.right
                                                                 
                                                                 languagesText.left == languages.right + (20~~15)
-                                                                languagesText.right == languagesText.superview!.right - Featured.size.margin.value
+                                                                languagesText.right == languagesText.superview!.right - Global.size.margin.value
                                                                 languagesText.top == languages.top
                                                                 languagesText.bottom == languagesText.superview!.bottom - 15
                                                                 
@@ -364,10 +364,10 @@ class DetailsInformation: DetailsCell {
                         
                         seller.top == title.bottom + 9
                         seller.left == title.left
-                        seller.right == seller.left + 86
+                        seller.right == seller.left + (90~~86)
                         
                         sellerText.left == seller.right + (20~~15)
-                        sellerText.right == sellerText.superview!.right - Featured.size.margin.value
+                        sellerText.right == sellerText.superview!.right - Global.size.margin.value
                         sellerText.top == seller.top
                         
                         constrain(bundleId, bundleIdText) { bundleId, bundleIdText in
@@ -377,7 +377,7 @@ class DetailsInformation: DetailsCell {
                             bundleId.right == seller.right
                             
                             bundleIdText.left == bundleId.right + (20~~15)
-                            bundleIdText.right == bundleIdText.superview!.right - Featured.size.margin.value
+                            bundleIdText.right == bundleIdText.superview!.right - Global.size.margin.value
                             bundleIdText.top == bundleId.top
                             
                             constrain(category, categoryText) { category, categoryText in
@@ -387,7 +387,7 @@ class DetailsInformation: DetailsCell {
                                 category.right == bundleId.right
                                 
                                 categoryText.left == category.right + (20~~15)
-                                categoryText.right == categoryText.superview!.right - Featured.size.margin.value
+                                categoryText.right == categoryText.superview!.right - Global.size.margin.value
                                 categoryText.top == category.top
                                 
                                 constrain(updated, updatedText) { updated, updatedText in
@@ -397,7 +397,7 @@ class DetailsInformation: DetailsCell {
                                     updated.right == category.right
                                     
                                     updatedText.left == updated.right + (20~~15)
-                                    updatedText.right == updatedText.superview!.right - Featured.size.margin.value
+                                    updatedText.right == updatedText.superview!.right - Global.size.margin.value
                                     updatedText.top == updated.top
                                     
                                     constrain(version, versionText) { version, versionText in
@@ -407,7 +407,7 @@ class DetailsInformation: DetailsCell {
                                         version.right == updated.right
                                         
                                         versionText.left == version.right + (20~~15)
-                                        versionText.right == versionText.superview!.right - Featured.size.margin.value
+                                        versionText.right == versionText.superview!.right - Global.size.margin.value
                                         versionText.top == version.top
                                         versionText.bottom == versionText.superview!.bottom - 15
                                     
@@ -424,10 +424,10 @@ class DetailsInformation: DetailsCell {
                         
                         seller.top == title.bottom + 9
                         seller.left == title.left
-                        seller.right == seller.left + 86
+                        seller.right == seller.left + (90~~86)
                         
                         sellerText.left == seller.right + (20~~15)
-                        sellerText.right == sellerText.superview!.right - Featured.size.margin.value
+                        sellerText.right == sellerText.superview!.right - Global.size.margin.value
                         sellerText.top == seller.top
                         
                         constrain(category, categoryText) { category, categoryText in
@@ -437,7 +437,7 @@ class DetailsInformation: DetailsCell {
                             category.right == seller.right
                             
                             categoryText.left == category.right + (20~~15)
-                            categoryText.right == categoryText.superview!.right - Featured.size.margin.value
+                            categoryText.right == categoryText.superview!.right - Global.size.margin.value
                             categoryText.top == category.top
                             
                             constrain(updated, updatedText) { updated, updatedText in
@@ -447,7 +447,7 @@ class DetailsInformation: DetailsCell {
                                 updated.right == category.right
                                 
                                 updatedText.left == updated.right + (20~~15)
-                                updatedText.right == updatedText.superview!.right - Featured.size.margin.value
+                                updatedText.right == updatedText.superview!.right - Global.size.margin.value
                                 updatedText.top == updated.top
                                 
                                 constrain(price, priceText) { price, priceText in
@@ -457,7 +457,7 @@ class DetailsInformation: DetailsCell {
                                     price.right == updated.right
                                     
                                     priceText.left == price.right + (20~~15)
-                                    priceText.right == priceText.superview!.right - Featured.size.margin.value
+                                    priceText.right == priceText.superview!.right - Global.size.margin.value
                                     priceText.top == price.top
                                     
                                     constrain(printLength, printLengthText) { printLength, printLengthText in
@@ -467,7 +467,7 @@ class DetailsInformation: DetailsCell {
                                         printLength.right == price.right
                                         
                                         printLengthText.left == printLength.right + (20~~15)
-                                        printLengthText.right == printLength.superview!.right - Featured.size.margin.value
+                                        printLengthText.right == printLength.superview!.right - Global.size.margin.value
                                         printLengthText.top == printLength.top
                                         
                                         constrain(languages, languagesText) { languages, languagesText in
@@ -477,7 +477,7 @@ class DetailsInformation: DetailsCell {
                                             languages.right == printLength.right
                                             
                                             languagesText.left == languages.right + (20~~15)
-                                            languagesText.right == languagesText.superview!.right - Featured.size.margin.value
+                                            languagesText.right == languagesText.superview!.right - Global.size.margin.value
                                             languagesText.top == languages.top
                                             
                                             constrain(compatibility, compatibilityText) { compatibility, compatibilityText in
@@ -487,7 +487,7 @@ class DetailsInformation: DetailsCell {
                                                 compatibility.right == languages.right
                                                 
                                                 compatibilityText.left == compatibility.right + (20~~15)
-                                                compatibilityText.right == compatibilityText.superview!.right - Featured.size.margin.value
+                                                compatibilityText.right == compatibilityText.superview!.right - Global.size.margin.value
                                                 compatibilityText.top == compatibility.top
                                                 compatibilityText.bottom == compatibilityText.superview!.bottom - 15
                                                 
@@ -512,7 +512,7 @@ class DetailsInformation: DetailsCell {
         let label = UILabel()
         label.theme_textColor = isContent ? Color.darkGray : Color.informationParameter
         if let text = text?.localized() { label.text = (text.isEmpty || text==" ") ? "Unknown".localized() : text }
-        label.font = .systemFont(ofSize: (13~~12))
+        label.font = .systemFont(ofSize: (13.5~~12.5))
         label.textAlignment = isContent ? .left : .right
         label.numberOfLines = isContent ? 0 : 1
         return label

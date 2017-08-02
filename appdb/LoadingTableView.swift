@@ -77,7 +77,11 @@ class LoadingTableView: UITableViewController {
                 //Set up Error Message
                 errorMessage = UILabel()
                 errorMessage.theme_textColor = Color.copyrightText
-                errorMessage.font = .systemFont(ofSize: (26~~22))
+                if #available(iOS 8.2, *) {
+                    errorMessage.font = .systemFont(ofSize: (26~~24), weight: UIFontWeightSemibold)
+                } else {
+                    errorMessage.font = .systemFont(ofSize: (26~~24))
+                }
                 errorMessage.numberOfLines = 0
                 errorMessage.textAlignment = .center
                 errorMessage.isHidden = false
@@ -85,7 +89,7 @@ class LoadingTableView: UITableViewController {
                 //Set up Secondary Error Message
                 secondaryErrorMessage = UILabel()
                 secondaryErrorMessage.theme_textColor = Color.copyrightText
-                secondaryErrorMessage.font = .systemFont(ofSize: (19~~15))
+                secondaryErrorMessage.font = .systemFont(ofSize: (19~~17))
                 secondaryErrorMessage.numberOfLines = 0
                 secondaryErrorMessage.textAlignment = .center
                 secondaryErrorMessage.isHidden = false

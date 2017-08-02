@@ -24,7 +24,7 @@ extension DetailsRelated: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.title.text = item.name
                 cell.category.text = item.artist
                 if let url = URL(string: item.icon) {
-                    cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Filters.getFilter(from: (75~~65)), imageTransition: .crossDissolve(0.2))
+                    cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: (75~~65)), imageTransition: .crossDissolve(0.2))
                 }
                 return cell
             case .books:
@@ -81,10 +81,10 @@ class DetailsRelated: DetailsCell {
             title.text = type == .books ? "Related Books".localized() : "Related Apps".localized()
             title.font = .systemFont(ofSize: (17~~16))
             
-            let layout = SnappableFlowLayout(width: (75~~65), spacing: Featured.size.spacing.value)
+            let layout = SnappableFlowLayout(width: (75~~65), spacing: Global.size.spacing.value)
             layout.itemSize = type == .books ? CGSize(width: (75~~65), height: (175~~165)) : CGSize(width: (75~~65), height: (140~~130))
-            layout.sectionInset = UIEdgeInsets(top: 0, left: Featured.size.margin.value, bottom: 0, right: Featured.size.margin.value)
-            layout.minimumLineSpacing = Featured.size.spacing.value
+            layout.sectionInset = UIEdgeInsets(top: 0, left: Global.size.margin.value, bottom: 0, right: Global.size.margin.value)
+            layout.minimumLineSpacing = Global.size.spacing.value
             layout.scrollDirection = .horizontal
             
             collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -108,8 +108,8 @@ class DetailsRelated: DetailsCell {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(title, collectionView) { title, collection in
                 title.top == title.superview!.top + 12
-                title.left == title.superview!.left + Featured.size.margin.value
-                title.right == title.superview!.right - Featured.size.margin.value
+                title.left == title.superview!.left + Global.size.margin.value
+                title.right == title.superview!.right - Global.size.margin.value
                 
                 collection.left == collection.superview!.left
                 collection.right == collection.superview!.right

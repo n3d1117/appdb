@@ -55,8 +55,8 @@ class DetailsFullScreenshots: UIViewController {
         return 0
     }
     
-    var widthIfPortrait: CGFloat { return round(((300~~280)-(Featured.size.margin.value * 2)) / magic) }
-    var widthIfLandscape: CGFloat { return round(((230~~176)-(Featured.size.margin.value * 2)) * magic) }
+    var widthIfPortrait: CGFloat { return round(((300~~280)-(Global.size.margin.value * 2)) / magic) }
+    var widthIfLandscape: CGFloat { return round(((230~~176)-(Global.size.margin.value * 2)) * magic) }
     var allLandscape: Bool { return screenshots.filter({$0.class_=="portrait"}).isEmpty }
     var spacing: CGFloat = 25
     

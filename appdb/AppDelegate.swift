@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         let titleAttributes: [[String: AnyObject]] = ["#121212", "#F8F8F8"].map { hexString in
             return [
                 NSForegroundColorAttributeName: UIColor(rgba: hexString),
-                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)
+                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16.5)
             ]
         }
         
