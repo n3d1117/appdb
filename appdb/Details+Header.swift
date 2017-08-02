@@ -58,7 +58,7 @@ class DetailsHeader: DetailsCell {
         
         switch type {
             case .ios: if let app = content as? App {
-                name.text = app.name
+                name.text = app.name.decoded
                 seller = ButtonFactory.createChevronButton(text: app.seller.isEmpty ? "Unknown".localized() : app.seller, color: Color.darkGray, size: (15~~13), bold: false)
                 icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
                 
@@ -79,7 +79,7 @@ class DetailsHeader: DetailsCell {
                 }
             }
             case .cydia: if let cydiaApp = content as? CydiaApp {
-                name.text = cydiaApp.name
+                name.text = cydiaApp.name.decoded
                 if !cydiaApp.developer.isEmpty {
                     seller = ButtonFactory.createChevronButton(text: cydiaApp.developer, color: Color.darkGray, size: (15~~13), bold: false)
                 }
@@ -100,7 +100,7 @@ class DetailsHeader: DetailsCell {
                 }
             }
             case .books: if let book = content as? Book {
-                name.text = book.name
+                name.text = book.name.decoded
                 if !book.author.isEmpty {
                     seller = ButtonFactory.createChevronButton(text: book.author, color: Color.darkGray, size: (15~~13), bold: false)
                 }

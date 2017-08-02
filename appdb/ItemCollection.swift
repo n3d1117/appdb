@@ -24,7 +24,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
         
         if let app = item as? App {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "app", for: indexPath) as! FeaturedApp
-            cell.title.text = app.name
+            cell.title.text = app.name.decoded
             if let cat = app.category { cell.category.text  = cat.name.isEmpty ? "Unknown".localized() : cat.name
             } else { cell.category.text = "Unknown".localized() }
             if let url = URL(string: app.image) {
@@ -34,7 +34,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         if let cydiaApp = item as? CydiaApp {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cydia", for: indexPath) as! FeaturedApp
-            cell.title.text = cydiaApp.name
+            cell.title.text = cydiaApp.name.decoded
             cell.tweaked = cydiaApp.isTweaked
             cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
             cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
@@ -45,7 +45,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         if let book = item as? Book {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "book", for: indexPath) as! FeaturedBook
-            cell.title.text = book.name
+            cell.title.text = book.name.decoded
             cell.author.text = book.author
             if let url = URL(string: book.image) {
                 cell.cover.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))

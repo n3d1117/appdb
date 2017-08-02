@@ -68,7 +68,7 @@ extension String {
         let regex = "(?:(?:(?:\\<br\\ \\/\\>))|(?:(?:\\<br\\/\\>))|(?:(?:\\<p\\/\\>)))"
         var newString: String =  self.replacingOccurrences(of: regex, with: "\n", options: .regularExpression, range: nil)
         while newString.hasSuffix("\n</p>") { // fixes ugly new lines at the end
-            newString = newString.substring(to: newString.index(newString.endIndex, offsetBy: -6));
+            newString = newString.substring(to: newString.index(newString.endIndex, offsetBy: -6))
             newString = newString.appending("</p>")
         }
         return HTML(html: newString, encoding: .utf8)?.text ?? ""
