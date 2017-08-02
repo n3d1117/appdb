@@ -13,7 +13,7 @@ import RealmSwift
 
 class DetailsDownloadCell: DetailsCell {
     
-    static var height: CGFloat { return 50 }
+    static var height: CGFloat { return 55 }
     
     var host: UILabel!
     var cracker: UILabel!
@@ -80,13 +80,13 @@ class DetailsDownloadCell: DetailsCell {
                 button.left == button.right - self.button.frame.size.width
                 button.centerY == button.superview!.centerY
                 
-                host.top == host.superview!.top + 8
+                host.top == host.superview!.top + 10
                 host.left == host.superview!.left + Featured.size.margin.value
                 host.right <= button.left - 10
                 
                 cracker.left == host.left
                 cracker.right <= button.left - Featured.size.margin.value
-                cracker.bottom == cracker.superview!.bottom - 8
+                cracker.bottom == cracker.superview!.bottom - 10
             }
         }
     }

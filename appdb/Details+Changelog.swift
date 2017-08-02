@@ -44,7 +44,7 @@ class DetailsChangelog: DetailsCell {
             date.theme_textColor = Color.copyrightText
             date.text = type == .cydia ? updated.unixToString : updated
             date.font = .systemFont(ofSize: (14~~13))
-        
+            
             desc = ElasticLabel(text: changelog.decoded, delegate: delegate)
             desc.theme_textColor = Color.darkGray
             desc.theme_backgroundColor = Color.veryVeryLightGray
