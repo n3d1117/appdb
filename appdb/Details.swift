@@ -12,7 +12,9 @@ import RealmSwift
 class Details: LoadingTableView {
     
     var content: Object!
-    var collapsedForIndexPath : [IndexPath: Bool] = [:]
+    var descriptionCollapsed: Bool = true
+    var changelogCollapsed: Bool = true
+    var reviewCollapsedForIndexPath : [IndexPath: Bool] = [:]
     var heightForIndexPath : [IndexPath: CGFloat] = [:]
     var indexForSegment: detailsSelectedSegmentState = .details
     var versions: [Version] = []
@@ -117,12 +119,33 @@ class Details: LoadingTableView {
             case 0: return header[indexPath.row]
             case 1:
                 switch indexForSegment {
-                    case .details: return details[indexPath.row]
+                    case .details:
+                        // DetailsDescription and DetailsChangelog need to be dynamic to have smooth expand
+                        if details[indexPath.row] is DetailsDescription {
+                            if let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as? DetailsDescription {
+                                cell.configure(with: description_)
+                                cell.desc.delegated = self
+                                cell.desc.collapsed = descriptionCollapsed
+                                details[indexPath.row] = cell // ugly but needed to update height correctly
+                                return cell
+                            } else { return UITableViewCell() }
+                        }
+                        if details[indexPath.row] is DetailsChangelog {
+                            if let cell = tableView.dequeueReusableCell(withIdentifier: "changelog", for: indexPath) as? DetailsChangelog {
+                                cell.configure(type: contentType, changelog: changelog, updated: updatedDate)
+                                cell.desc.delegated = self
+                                cell.desc.collapsed = changelogCollapsed
+                                details[indexPath.row] = cell // ugly but needed to update height correctly
+                                return cell
+                            } else { return UITableViewCell() }
+                        }
+                        // Otherwise, just return static cells
+                        return details[indexPath.row]
                     case .reviews:
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "detailsreviewcell", for: indexPath) as? DetailsReviewCell {
                             cell.configure(with: reviews[indexPath.row])
                             cell.desc.delegated = self
-                            cell.desc.collapsed = collapsedForIndexPath[indexPath] ?? true
+                            cell.desc.collapsed = reviewCollapsedForIndexPath[indexPath] ?? true
                             return cell
                         } else { return UITableViewCell() }
                     case .download: return UITableViewCell()
@@ -177,29 +200,32 @@ extension Details: SwitchDetailsSegmentDelegate {
     }
 }
 
+/* OLD WAY, probably need to use this on ios 8
+ UIView.setAnimationsEnabled(false)
+ tableView.beginUpdates()
+ tableView.endUpdates()
+ UIView.setAnimationsEnabled(true)
+ */
+
 //
+//   MARK: - ElasticLabelDelegate
 //   Expand cell when 'more' button is pressed
-//
-//   Can't reload smooth with reloadRows if cell is static, hence the switch :(
-//   TODO workaround?
 //
 extension Details: ElasticLabelDelegate {
     func expand(_ label: ElasticLabel) {
         if label.collapsed {
-            switch indexForSegment {
-                case .details:
-                    label.collapsed = false
-                    UIView.setAnimationsEnabled(false)
-                    tableView.beginUpdates()
-                    tableView.endUpdates()
-                    UIView.setAnimationsEnabled(true)
-                case .reviews:
-                    let point = label.convert(CGPoint.zero, to: tableView)
-                    if let indexPath = tableView.indexPathForRow(at: point) as IndexPath? {
-                        collapsedForIndexPath[indexPath] = false
-                        tableView.reloadRows(at: [indexPath], with: .none)
-                    }
-                case .download: break
+            let point = label.convert(CGPoint.zero, to: tableView)
+            if let indexPath = tableView.indexPathForRow(at: point) as IndexPath? {
+                switch indexForSegment {
+                    case .details:
+                        if details[indexPath.row] is DetailsDescription { print("expanded desc"); descriptionCollapsed = false }
+                        else if details[indexPath.row] is DetailsChangelog { print("expanded chang"); changelogCollapsed = false }
+                    case .reviews:
+                        print("expanded rev");
+                        reviewCollapsedForIndexPath[indexPath] = false
+                    case .download: break
+                }
+                tableView.reloadRows(at: [indexPath], with: .none)
             }
         }
     }

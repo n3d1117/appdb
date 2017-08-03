@@ -21,42 +21,49 @@ class DetailsChangelog: DetailsCell {
     override var height: CGFloat { return changelog.isEmpty ? 0 : UITableViewAutomaticDimension }
     override var identifier: String { return "changelog" }
     
-    convenience init(type: ItemType, changelog: String, updated: String, delegate: ElasticLabelDelegate) {
-        self.init(style: .default, reuseIdentifier: "changelog")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func configure(type: ItemType, changelog: String, updated: String) {
+        self.changelog = changelog
+        desc.text = changelog.decoded
+        date.text = type == .cydia ? updated.unixToString : updated
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
         addSeparator()
         
-        self.type = type
-        self.changelog = changelog
+        theme_backgroundColor = Color.veryVeryLightGray
+        contentView.theme_backgroundColor = Color.veryVeryLightGray
         
-        if !changelog.isEmpty {
-            theme_backgroundColor = Color.veryVeryLightGray
-            contentView.theme_backgroundColor = Color.veryVeryLightGray
+        title = UILabel()
+        title.theme_textColor = Color.title
+        title.text = "What's New".localized()
+        title.font = .systemFont(ofSize: (17~~16))
         
-            title = UILabel()
-            title.theme_textColor = Color.title
-            title.text = "What's New".localized()
-            title.font = .systemFont(ofSize: (17~~16))
-            
-            date = UILabel()
-            date.theme_textColor = Color.copyrightText
-            date.text = type == .cydia ? updated.unixToString : updated
-            date.font = .systemFont(ofSize: (14~~13))
-            
-            desc = ElasticLabel(text: changelog.decoded, delegate: delegate)
-            desc.theme_textColor = Color.darkGray
-            desc.theme_backgroundColor = Color.veryVeryLightGray
-            desc.collapsed = true
+        date = UILabel()
+        date.theme_textColor = Color.copyrightText
+        date.font = .systemFont(ofSize: (14~~13))
         
-            contentView.addSubview(title)
-            contentView.addSubview(date)
-            contentView.addSubview(desc)
+        desc = ElasticLabel()
+        desc.theme_textColor = Color.darkGray
+        desc.theme_backgroundColor = Color.veryVeryLightGray
+        desc.collapsed = true
         
-            setConstraints()
-        }
+        contentView.addSubview(title)
+        contentView.addSubview(date)
+        contentView.addSubview(desc)
+        
+        setConstraints()
     }
+    
+    // Just a placeholder
+    convenience init() { self.init(style: .default, reuseIdentifier: "changelog") }
     
     override func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true

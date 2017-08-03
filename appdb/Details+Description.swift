@@ -12,53 +12,48 @@ import Cartography
 
 class DetailsDescription: DetailsCell {
     
-    var descriptionText: String! = ""
-    
     var title: UILabel!
     var desc: ElasticLabel!
+    
+    var descriptionText: String! = ""
     
     override var height: CGFloat { return descriptionText.isEmpty ? 0 : UITableViewAutomaticDimension }
     override var identifier: String { return "description" }
     
-    convenience init(description: String, delegate: ElasticLabelDelegate) {
-        self.init(style: .default, reuseIdentifier: "description")
-        
-        self.descriptionText = description
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func configure(with description: String) {
+        descriptionText = description
+        desc.text = descriptionText.decoded
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
         addSeparator()
         
-        if !descriptionText.isEmpty {
+        theme_backgroundColor = Color.veryVeryLightGray
+        contentView.theme_backgroundColor = Color.veryVeryLightGray
         
-            theme_backgroundColor = Color.veryVeryLightGray
-            contentView.theme_backgroundColor = Color.veryVeryLightGray
+        title = UILabel()
+        title.theme_textColor = Color.title
+        title.text = "Description".localized()
+        title.font = .systemFont(ofSize: (17~~16))
         
-            title = UILabel()
-            title.theme_textColor = Color.title
-            title.text = "Description".localized()
-            title.font = .systemFont(ofSize: (17~~16))
+        desc = ElasticLabel()
+        desc.theme_textColor = Color.darkGray
+        desc.theme_backgroundColor = Color.veryVeryLightGray
+        desc.collapsed = true
         
-            desc = ElasticLabel(text: descriptionText.decoded, delegate: delegate)
-            desc.theme_textColor = Color.darkGray
-            desc.theme_backgroundColor = Color.veryVeryLightGray
-            desc.collapsed = true
+        contentView.addSubview(title)
+        contentView.addSubview(desc)
         
-            contentView.addSubview(title)
-            contentView.addSubview(desc)
-
-            setConstraints()
-            
-        }
+        setConstraints()
     }
-    
-    /*override var frame: CGRect {
-        didSet {
-            if #available(iOS 10, *) {
-                UIView.animate(withDuration: 0.3) { self.contentView.layoutIfNeeded() }
-            }
-        }
-    }*/
     
     override func setConstraints() {
         if !didSetupConstraints { didSetupConstraints = true
@@ -76,4 +71,7 @@ class DetailsDescription: DetailsCell {
             }
         }
     }
+    
+    // Just a placeholder
+    convenience init() { self.init(style: .default, reuseIdentifier: "description") }
 }

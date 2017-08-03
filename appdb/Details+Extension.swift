@@ -44,6 +44,8 @@ extension Details {
         // Register cells
         for cell in header { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
         for cell in details { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
+        tableView.register(DetailsDescription.self, forCellReuseIdentifier: "description")
+        tableView.register(DetailsChangelog.self, forCellReuseIdentifier: "changelog")
         tableView.register(DetailsReviewCell.self, forCellReuseIdentifier: "detailsreviewcell")
         tableView.register(DetailsDownloadCell.self, forCellReuseIdentifier: "detailsdownloadcell")
         
@@ -117,8 +119,8 @@ extension Details {
         details = [
             DetailsTweakedNotice(originalTrackId: originalTrackid, originalSection: originalSection, delegate: self),
             DetailsScreenshots(type: contentType, screenshots: screenshots, delegate: self),
-            DetailsDescription(description: description_, delegate: self),
-            DetailsChangelog(type: contentType, changelog: changelog, updated: updatedDate, delegate: self),
+            DetailsDescription(), // dynamic
+            DetailsChangelog(), // dynamic
             DetailsRelated(type: contentType, related: relatedContent, delegate: self),
             DetailsInformation(type: contentType, content: content)
         ]
