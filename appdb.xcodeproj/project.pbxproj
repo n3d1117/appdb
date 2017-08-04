@@ -142,7 +142,6 @@
 		81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		812E97871E57730300C1379F /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		8138538B1F2B7EA300DC7C54 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = Carthage/Build/iOS/Kanna.framework; sourceTree = "<group>"; };
-		813DD7EB1E5C97D500BE411F /* Hero.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hero.framework; path = Carthage/Build/iOS/Hero.framework; sourceTree = "<group>"; };
 		814AEBF11E68312C00A207CC /* Details+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Information.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8167A60F1DAC246000F96AC2 /* appdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8167A6121DAC246000F96AC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,7 +184,6 @@
 		8173E8FD1F2B83B8004CCDE1 /* UIImage+AlamofireImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+AlamofireImage.swift"; sourceTree = "<group>"; };
 		8173E8FE1F2B83B8004CCDE1 /* UIImageView+AlamofireImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIImageView+AlamofireImage.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8173E9091F2B841B004CCDE1 /* NetworkActivityIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NetworkActivityIndicatorManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		81759D221E8FD0C600588001 /* KMNavigationBarTransition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KMNavigationBarTransition.framework; path = Carthage/Build/iOS/KMNavigationBarTransition.framework; sourceTree = "<group>"; };
 		817A40E01E5E27EB003FD6F1 /* Details+Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Screenshots.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		817A40E31E5E2FB2003FD6F1 /* SnappableFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnappableFlowLayout.swift; sourceTree = "<group>"; };
 		817A40E61E5E393A003FD6F1 /* Details+ScreenshotsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+ScreenshotsCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -198,22 +196,14 @@
 		8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticLabel.swift; sourceTree = "<group>"; };
 		8188E8D71DB198B800462256 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8188E8D81DB198B800462256 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/iOS/Cartography.framework; sourceTree = "<group>"; };
-		8188E8D91DB198B800462256 /* Log.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Log.framework; path = Carthage/Build/iOS/Log.framework; sourceTree = "<group>"; };
-		8188E8DA1DB198B800462256 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		8188E8DB1DB198B800462256 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		8188E8DC1DB198B800462256 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		8188E8EB1DB25F6B00462256 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = API.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8188E8ED1DB2AD4B00462256 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
-		8188E8EE1DB2AD4B00462256 /* AlamofireNetworkActivityIndicator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireNetworkActivityIndicator.framework; path = Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework; sourceTree = "<group>"; };
-		8188E8F21DB3B66700462256 /* ReactiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveKit.framework; path = Carthage/Build/iOS/ReactiveKit.framework; sourceTree = "<group>"; };
-		8188E8F31DB3B66700462256 /* ReactiveUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveUIKit.framework; path = Carthage/Build/iOS/ReactiveUIKit.framework; sourceTree = "<group>"; };
-		8188E8F61DB3B9E000462256 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
 		818CB5D41E787AB400A69213 /* Details+FullScreenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+FullScreenshots.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		818DE6351E87F4E700E41B51 /* Details+FullScreenshotsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+FullScreenshotsCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81939B461E3BA98D00179615 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Themes.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81939B4A1E3BAA9A00179615 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Preferences.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		81939B4C1E3BB4DB00179615 /* SwiftTheme.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftTheme.framework; path = Carthage/Build/iOS/SwiftTheme.framework; sourceTree = "<group>"; };
 		819ACE5A1E7D3FEC008DDF65 /* API+Links.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Links.swift"; sourceTree = "<group>"; };
 		819ACE5C1E7D4569008DDF65 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		819AE78B1E63135A009D6AF3 /* Details+Changelog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Changelog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -225,14 +215,10 @@
 		819EC2C91E40FF4400BA7A50 /* String+LocalizeTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeTableName.swift"; sourceTree = "<group>"; };
 		819EC2D11E41013D00BA7A50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
 		819EC2D31E41016D00BA7A50 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
-		81A065841E394D5E00398102 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
 		81AB37AD1DAC30BD003A586F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabBarController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		81B3CE0C1E623E2B0082A764 /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTAttributedLabel.framework; path = Carthage/Build/iOS/TTTAttributedLabel.framework; sourceTree = "<group>"; };
-		81B6F6B01E212B2B000AD47C /* ImageSlideshow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageSlideshow.framework; path = Carthage/Build/iOS/ImageSlideshow.framework; sourceTree = "<group>"; };
 		81BE066B1E6C2EA500AD9827 /* Details+ExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+ExternalLink.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81BE066E1E6C52FE00AD9827 /* Details+Publisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+Publisher.swift"; sourceTree = "<group>"; };
 		81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+SegmentControl.swift"; sourceTree = "<group>"; };
-		81C0727C1DB78BB4007266A9 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		81C114C11E60699A00EE17A6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		81C5BAAA1F2B4F0000CA10D4 /* Dwifft+SectionedValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dwifft+SectionedValues.swift"; sourceTree = "<group>"; };
@@ -609,25 +595,11 @@
 			isa = PBXGroup;
 			children = (
 				8138538B1F2B7EA300DC7C54 /* Kanna.framework */,
-				81759D221E8FD0C600588001 /* KMNavigationBarTransition.framework */,
-				81B3CE0C1E623E2B0082A764 /* TTTAttributedLabel.framework */,
 				81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */,
 				81C114C11E60699A00EE17A6 /* libxml2.tbd */,
-				813DD7EB1E5C97D500BE411F /* Hero.framework */,
-				81939B4C1E3BB4DB00179615 /* SwiftTheme.framework */,
-				81A065841E394D5E00398102 /* Diff.framework */,
-				81B6F6B01E212B2B000AD47C /* ImageSlideshow.framework */,
-				81C0727C1DB78BB4007266A9 /* Dwifft.framework */,
-				8188E8F61DB3B9E000462256 /* Bond.framework */,
-				8188E8F21DB3B66700462256 /* ReactiveKit.framework */,
-				8188E8F31DB3B66700462256 /* ReactiveUIKit.framework */,
-				8188E8ED1DB2AD4B00462256 /* AlamofireImage.framework */,
-				8188E8EE1DB2AD4B00462256 /* AlamofireNetworkActivityIndicator.framework */,
 				8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */,
 				8188E8D71DB198B800462256 /* Alamofire.framework */,
 				8188E8D81DB198B800462256 /* Cartography.framework */,
-				8188E8D91DB198B800462256 /* Log.framework */,
-				8188E8DA1DB198B800462256 /* ObjectMapper.framework */,
 				8188E8DB1DB198B800462256 /* Realm.framework */,
 				8188E8DC1DB198B800462256 /* RealmSwift.framework */,
 			);

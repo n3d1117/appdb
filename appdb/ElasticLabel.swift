@@ -21,6 +21,8 @@ class ElasticLabel: UILabel {
     var recognizer: UITapGestureRecognizer!
     var expandedText: String! = ""
     
+    var moreTextColor: ThemeColorPicker = ["#4E7DD0", "#649EE6"]
+    
     open override var text: String? {
         didSet {
             if let text = text, text != "", collapsed, willBeTruncated {
@@ -55,7 +57,7 @@ class ElasticLabel: UILabel {
         if attributed.length > 0 {
             if !((self.gestureRecognizers ?? []).contains(self.recognizer)) { self.addGestureRecognizer(self.recognizer) }
             expandedText = text
-            self.attributedText = getCollapsedText(for: NSAttributedString(string: text!), moreText: "more".localized(), moreTextColor: Color.mainTint)
+            self.attributedText = getCollapsedText(for: NSAttributedString(string: text!), moreText: "more".localized(), moreTextColor: moreTextColor)
         }
     }
     
@@ -89,7 +91,7 @@ extension ElasticLabel {
     // Returns collapsed text that fits in maxNumberOfCollapsedLines
     fileprivate func getCollapsedText(for text: NSAttributedString?, moreText: String, moreTextColor: ThemeColorPicker) -> NSAttributedString? {
         guard let text = text else { return nil }
-        let link = NSAttributedString(string: moreText, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: font.pointSize), NSForegroundColorAttributeName: Color.get(from: moreTextColor)])
+        let link = NSAttributedString(string: moreText, attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: Color.get(from: moreTextColor)])
         let lines = text.lines(for: bounds.width)
         if numberOfLines > 0 && numberOfLines < lines.count {
             collapsed = true
