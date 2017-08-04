@@ -1,5 +1,5 @@
 //
-//  Details+DownloadCell.swift
+//  Details+Download.swift
 //  appdb
 //
 //  Created by ned on 18/03/2017.
@@ -11,7 +11,7 @@ import UIKit
 import Cartography
 import RealmSwift
 
-class DetailsDownloadCell: DetailsCell {
+class DetailsDownload: DetailsCell {
     
     static var height: CGFloat { return 55 }
     

@@ -46,8 +46,8 @@ extension Details {
         for cell in details { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
         tableView.register(DetailsDescription.self, forCellReuseIdentifier: "description")
         tableView.register(DetailsChangelog.self, forCellReuseIdentifier: "changelog")
-        tableView.register(DetailsReviewCell.self, forCellReuseIdentifier: "detailsreviewcell")
-        tableView.register(DetailsDownloadCell.self, forCellReuseIdentifier: "detailsdownloadcell")
+        tableView.register(DetailsReview.self, forCellReuseIdentifier: "review")
+        tableView.register(DetailsDownload.self, forCellReuseIdentifier: "download")
         
         // Add 'Dismiss' button for iPad
         if IS_IPAD {

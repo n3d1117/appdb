@@ -211,7 +211,7 @@ class DetailsInformation: DetailsCell {
                 case .ios:
                     constrain(seller, sellerText) { seller, sellerText in
                     
-                        seller.top == title.bottom + 9
+                        seller.top == title.bottom + 9 ~ 999.0
                         seller.left == title.left
                         seller.right == seller.left + (90~~86)
                         
@@ -362,7 +362,7 @@ class DetailsInformation: DetailsCell {
                 case .cydia:
                     constrain(seller, sellerText) { seller, sellerText in
                         
-                        seller.top == title.bottom + 9
+                        seller.top == title.bottom + 9 ~ 999.0
                         seller.left == title.left
                         seller.right == seller.left + (90~~86)
                         
@@ -422,7 +422,7 @@ class DetailsInformation: DetailsCell {
                 case .books:
                     constrain(seller, sellerText) { seller, sellerText in
                         
-                        seller.top == title.bottom + 9
+                        seller.top == title.bottom + 9 ~ 999.0
                         seller.left == title.left
                         seller.right == seller.left + (90~~86)
                         

@@ -27,8 +27,8 @@ class DetailsChangelog: DetailsCell {
     
     func configure(type: ItemType, changelog: String, updated: String) {
         self.changelog = changelog
-        desc.text = changelog.decoded
         date.text = type == .cydia ? updated.unixToString : updated
+        desc.text = changelog.decoded
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -53,7 +53,6 @@ class DetailsChangelog: DetailsCell {
         desc = ElasticLabel()
         desc.theme_textColor = Color.darkGray
         desc.theme_backgroundColor = Color.veryVeryLightGray
-        desc.collapsed = true
         
         contentView.addSubview(title)
         contentView.addSubview(date)

@@ -86,6 +86,7 @@
 "by" = "by";
 "Related Apps" = "Related Apps";
 "Related Books" = "Related Books";
+"Reviews are from Apple's iTunes Store ©" = "Reviews are from Apple's iTunes Store ©";
 
 ////////////////////
 //     ERRORS     //
@@ -106,3 +107,4 @@
 "Yes" = "Yes";
 "No" = "No";
 "Done" = "Done";
+"more" = "more";

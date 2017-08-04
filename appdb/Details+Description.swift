@@ -47,7 +47,6 @@ class DetailsDescription: DetailsCell {
         desc = ElasticLabel()
         desc.theme_textColor = Color.darkGray
         desc.theme_backgroundColor = Color.veryVeryLightGray
-        desc.collapsed = true
         
         contentView.addSubview(title)
         contentView.addSubview(desc)

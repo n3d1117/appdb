@@ -86,7 +86,7 @@ class Details: LoadingTableView {
             case 1:
                 switch indexForSegment {
                     case .details: return details.count
-                    case .reviews: return reviews.count
+                    case .reviews: return reviews.count + 1
                     case .download: return 0
                 }
             default:
@@ -103,13 +103,13 @@ class Details: LoadingTableView {
             case 1:
                 switch indexForSegment {
                     case .details: return details[indexPath.row].height
-                    case .reviews: return DetailsReviewCell.height
+                    case .reviews: return indexPath.row == reviews.count ? UITableViewAutomaticDimension : DetailsReview.height
                     case .download: return 0
                 }
             default:
                 switch indexForSegment {
                     case .details, .reviews: return 0
-                    case .download: return versions.isEmpty ? DetailsDownloadEmptyCell.height : DetailsDownloadCell.height
+                    case .download: return versions.isEmpty ? DetailsDownloadEmptyCell.height : DetailsDownload.height
                 }
         }
     }
@@ -123,18 +123,18 @@ class Details: LoadingTableView {
                         // DetailsDescription and DetailsChangelog need to be dynamic to have smooth expand
                         if details[indexPath.row] is DetailsDescription {
                             if let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as? DetailsDescription {
+                                cell.desc.collapsed = descriptionCollapsed
                                 cell.configure(with: description_)
                                 cell.desc.delegated = self
-                                cell.desc.collapsed = descriptionCollapsed
                                 details[indexPath.row] = cell // ugly but needed to update height correctly
                                 return cell
                             } else { return UITableViewCell() }
                         }
                         if details[indexPath.row] is DetailsChangelog {
                             if let cell = tableView.dequeueReusableCell(withIdentifier: "changelog", for: indexPath) as? DetailsChangelog {
+                                cell.desc.collapsed = changelogCollapsed
                                 cell.configure(type: contentType, changelog: changelog, updated: updatedDate)
                                 cell.desc.delegated = self
-                                cell.desc.collapsed = changelogCollapsed
                                 details[indexPath.row] = cell // ugly but needed to update height correctly
                                 return cell
                             } else { return UITableViewCell() }
@@ -142,10 +142,11 @@ class Details: LoadingTableView {
                         // Otherwise, just return static cells
                         return details[indexPath.row]
                     case .reviews:
-                        if let cell = tableView.dequeueReusableCell(withIdentifier: "detailsreviewcell", for: indexPath) as? DetailsReviewCell {
+                        if indexPath.row == reviews.count { return DetailsPublisher("Reviews are from Apple's iTunes Store ©".localized()) }
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "review", for: indexPath) as? DetailsReview {
+                            cell.desc.collapsed = reviewCollapsedForIndexPath[indexPath] ?? true
                             cell.configure(with: reviews[indexPath.row])
                             cell.desc.delegated = self
-                            cell.desc.collapsed = reviewCollapsedForIndexPath[indexPath] ?? true
                             return cell
                         } else { return UITableViewCell() }
                     case .download: return UITableViewCell()
@@ -155,7 +156,7 @@ class Details: LoadingTableView {
                     case .details, .reviews: return UITableViewCell()
                     case .download:
                         if !versions.isEmpty {
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "detailsdownloadcell", for: indexPath) as! DetailsDownloadCell
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as! DetailsDownload
                             cell.configure(with: versions[indexPath.section-2].links[indexPath.row])
                             return cell
                         } else {
@@ -213,23 +214,20 @@ extension Details: SwitchDetailsSegmentDelegate {
 //
 extension Details: ElasticLabelDelegate {
     func expand(_ label: ElasticLabel) {
-        if label.collapsed {
-            let point = label.convert(CGPoint.zero, to: tableView)
-            if let indexPath = tableView.indexPathForRow(at: point) as IndexPath? {
-                switch indexForSegment {
-                    case .details:
-                        if details[indexPath.row] is DetailsDescription { print("expanded desc"); descriptionCollapsed = false }
-                        else if details[indexPath.row] is DetailsChangelog { print("expanded chang"); changelogCollapsed = false }
-                    case .reviews:
-                        print("expanded rev");
-                        reviewCollapsedForIndexPath[indexPath] = false
-                    case .download: break
-                }
-                tableView.reloadRows(at: [indexPath], with: .none)
+        let point = label.convert(CGPoint.zero, to: tableView)
+        if let indexPath = tableView.indexPathForRow(at: point) as IndexPath? {
+            switch indexForSegment {
+            case .details:
+                if details[indexPath.row] is DetailsDescription { descriptionCollapsed = false }
+                else if details[indexPath.row] is DetailsChangelog { changelogCollapsed = false }
+            case .reviews: reviewCollapsedForIndexPath[indexPath] = false
+            case .download: break
             }
+            tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
 }
+
 
 //
 //   MARK: - RelatedRedirectionDelegate

@@ -82,7 +82,7 @@ class DetailsTweakedNotice: DetailsCell {
                 title.left == title.superview!.left + Global.size.margin.value
                 title.right == title.superview!.right - Global.size.margin.value
                 
-                content.top == title.bottom + 8
+                content.top == title.bottom + 8 ~ 999.0
                 content.left == title.left
                 content.right == title.right
                 content.bottom == content.superview!.bottom - 15

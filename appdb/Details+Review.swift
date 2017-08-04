@@ -1,5 +1,5 @@
 //
-//  Details+ReviewCell.swift
+//  Details+Review.swift
 //  appdb
 //
 //  Created by ned on 08/03/2017.
@@ -11,7 +11,7 @@ import UIKit
 import Cartography
 import RealmSwift
 
-class DetailsReviewCell: DetailsCell {
+class DetailsReview: DetailsCell {
     
     var title: UILabel!
     var stars: CosmosView!
@@ -60,7 +60,6 @@ class DetailsReviewCell: DetailsCell {
         // Desc
         desc = ElasticLabel()
         desc.theme_textColor = Color.darkGray
-        desc.collapsed = true
         
         contentView.addSubview(title)
         contentView.addSubview(stars)
