@@ -67,7 +67,7 @@ class Banner: UITableViewCell {
         slideshow.preload = .all
         
         // Add tap recognizer
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(Banner.didTap))
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTap))
         slideshow.addGestureRecognizer(tapRecognizer)
         
         contentView.addSubview(slideshow)

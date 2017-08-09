@@ -84,7 +84,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
         // Add cancel button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action:#selector(Categories.dismissAnimated))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action:#selector(self.dismissAnimated))
         
     }
     

@@ -42,13 +42,14 @@ class Copyright: FeaturedCell {
             notice.left == notice.superview!.left + Global.size.margin.value
             notice.right == notice.superview!.right - Global.size.margin.value
             notice.top == notice.superview!.top + 15
-            notice.bottom == notice.superview!.bottom - (25~~15)
+            notice.bottom == notice.superview!.bottom - (25~~15) ~ 999.0
         }
     }
     
     private var currentYear: String {
         let components = NSCalendar.current.dateComponents([.year], from: Date())
-        return "\(components.year!)"
+        guard let year = components.year else { return "???" }
+        return "\(year)"
     }
 
 }
