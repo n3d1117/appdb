@@ -15,10 +15,10 @@ class DetailsHeader: DetailsCell {
     var name : UILabel!
     var icon : UIImageView!
     var seller : UIButton!
-    var tweaked: UILabel?
-    var ipadOnly: UILabel?
-    var stars: CosmosView?
-    var additionalInfo: UILabel?
+    var tweaked: UILabel? = nil
+    var ipadOnly: UILabel? = nil
+    var stars: CosmosView? = nil
+    var additionalInfo: UILabel? = nil
     
     private var _height = (132~~102) + Global.size.margin.value
     private var _heightBooks = round((132~~102) * 1.542) + Global.size.margin.value
@@ -66,12 +66,12 @@ class DetailsHeader: DetailsCell {
                     stars = buildStars()
                     stars!.rating = app.numberOfStars
                     stars!.text = app.numberOfRating
-                } else { stars = nil }
+                }
                 
                 if app.screenshotsIphone.isEmpty && !app.screenshotsIpad.isEmpty {
                     ipadOnly = buildPaddingLabel()
                     ipadOnly!.text = "iPad only".localized().uppercased()
-                } else { ipadOnly = nil }
+                }
                 
                 if let url = URL(string: app.image) {
                     icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: 100),
@@ -87,12 +87,7 @@ class DetailsHeader: DetailsCell {
                 if cydiaApp.isTweaked {
                     tweaked  = buildPaddingLabel()
                     tweaked!.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia).uppercased()
-                } else { tweaked = nil }
-                
-                if cydiaApp.screenshotsIphone.isEmpty && !cydiaApp.screenshotsIpad.isEmpty {
-                    ipadOnly = buildPaddingLabel()
-                    ipadOnly!.text = "iPad only".localized().uppercased()
-                } else { ipadOnly = nil }
+                }
                 
                 icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
                 if let url = URL(string: cydiaApp.image) {
@@ -110,7 +105,7 @@ class DetailsHeader: DetailsCell {
                     stars = buildStars()
                     stars!.rating = book.numberOfStars
                     stars!.text = book.numberOfRating
-                } else { stars = nil }
+                }
                 
                 if !book.published.isEmpty {
                     additionalInfo = UILabel()
@@ -194,36 +189,19 @@ class DetailsHeader: DetailsCell {
                 }
             }
             
-            if let ipadOnly = ipadOnly, (type == .ios || type == .cydia) {
-                if type == .ios {
-                    if let stars = stars {
-                        constrain(ipadOnly, stars) { ipadOnly, stars in
-                            ipadOnly.left == stars.left
-                            ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
-                            ipadOnly.top == stars.bottom + (7~~6)
-                            ipadOnly.bottom <= ipadOnly.superview!.bottom
-                        }
-                    } else {
-                        constrain(ipadOnly, seller) { ipadOnly, seller in
-                            ipadOnly.left == seller.left
-                            ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
-                            ipadOnly.top == seller.bottom + (7~~6)
-                        }
+            if let ipadOnly = ipadOnly, type == .ios {
+                if let stars = stars {
+                    constrain(ipadOnly, stars) { ipadOnly, stars in
+                        ipadOnly.left == stars.left
+                        ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
+                        ipadOnly.top == stars.bottom + (7~~6)
+                        ipadOnly.bottom <= ipadOnly.superview!.bottom
                     }
-                } else if type == .cydia {
-                    if let tweaked = tweaked {
-                        constrain(ipadOnly, tweaked) { ipadOnly, tweaked in
-                            ipadOnly.left == tweaked.left
-                            ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
-                            ipadOnly.top == tweaked.bottom + (7~~6)
-                            ipadOnly.bottom <= ipadOnly.superview!.bottom
-                        }
-                    } else {
-                        constrain(ipadOnly, seller) { ipadOnly, seller in
-                            ipadOnly.left == seller.left
-                            ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
-                            ipadOnly.top == seller.bottom + (7~~6)
-                        }
+                } else {
+                    constrain(ipadOnly, seller) { ipadOnly, seller in
+                        ipadOnly.left == seller.left
+                        ipadOnly.right <= ipadOnly.superview!.right - Global.size.margin.value
+                        ipadOnly.top == seller.bottom + (7~~6)
                     }
                 }
             }
