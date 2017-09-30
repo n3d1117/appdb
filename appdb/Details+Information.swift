@@ -60,6 +60,7 @@ class DetailsInformation: DetailsCell {
         title.theme_textColor = Color.title
         title.text = "Information".localized()
         title.font = .systemFont(ofSize: (17~~16))
+        title.makeDynamicFont()
         contentView.addSubview(title)
         
         switch type {
@@ -513,6 +514,7 @@ class DetailsInformation: DetailsCell {
         label.theme_textColor = isContent ? Color.darkGray : Color.informationParameter
         if let text = text?.localized() { label.text = (text.isEmpty || text==" ") ? "Unknown".localized() : text }
         label.font = .systemFont(ofSize: (13.5~~12.5))
+        label.makeDynamicFont()
         label.textAlignment = isContent ? .left : .right
         label.numberOfLines = isContent ? 0 : 1
         return label

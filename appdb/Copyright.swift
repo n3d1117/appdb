@@ -35,6 +35,7 @@ class Copyright: FeaturedCell {
         copyrightNotice.text = "© 2012-\(currentYear) appdb.store.\(newLine)" +
         "We do not host any prohibited content. All data is publicly available via iTunes API.".localized()
         copyrightNotice.numberOfLines = 0
+        copyrightNotice.makeDynamicFont()
         
         contentView.addSubview(copyrightNotice)
         

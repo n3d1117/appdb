@@ -31,6 +31,7 @@ class DetailsDownloadEmptyCell: DetailsCell {
         
         error = UILabel()
         error.font = .systemFont(ofSize: (23~~22))
+        error.makeDynamicFont()
         error.numberOfLines = 0
         error.theme_textColor = Color.darkGray
         error.text = message.localized()

@@ -146,6 +146,7 @@ class ItemCollection: FeaturedCell {
         categoryLabel.layer.cornerRadius = 6
         categoryLabel.isHidden = true
         categoryLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.openFeaturedCategories)))
+        categoryLabel.makeDynamicFont()
         
         seeAllButton = ButtonFactory.createChevronButton(text: "See All".localized(), color: Color.darkGray)
 

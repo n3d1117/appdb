@@ -48,12 +48,14 @@ class DetailsTweakedNotice: DetailsCell {
             title.theme_textColor = Color.title
             title.text = "Tweaked Version Notice".localized()
             title.font = .systemFont(ofSize: (17~~16))
+            title.makeDynamicFont()
             
             content = UILabel()
             content.theme_textColor = Color.darkGray
             content.text = "This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code.".localized()
             content.font = .systemFont(ofSize: (13.5~~12.5))
             content.numberOfLines = 0
+            content.makeDynamicFont()
             
             seeOriginal = ButtonFactory.createChevronButton(text: "See Original".localized(), color: Color.darkGray, bold: false)
             seeOriginal.addTarget(self, action: #selector(self.originalSelected), for: .touchUpInside)

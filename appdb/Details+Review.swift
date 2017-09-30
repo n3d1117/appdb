@@ -44,6 +44,7 @@ class DetailsReview: DetailsCell {
         // Name
         title = UILabel()
         title.font = .systemFont(ofSize: (15~~14))
+        title.makeDynamicFont()
         title.numberOfLines = 0
         title.theme_textColor = Color.title
         

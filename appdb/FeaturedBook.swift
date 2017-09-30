@@ -35,12 +35,14 @@ class FeaturedBook: UICollectionViewCell {
         title.font = .systemFont(ofSize: 11.5)
         title.lineBreakMode = .byTruncatingTail
         title.numberOfLines = 2
+        title.makeDynamicFont()
         
         author = UILabel()
         author.theme_textColor = Color.darkGray
         author.font = .systemFont(ofSize: 11.5)
         author.lineBreakMode = .byTruncatingTail
         author.numberOfLines = 1
+        author.makeDynamicFont()
         
         contentView.addSubview(cover)
         contentView.addSubview(title)

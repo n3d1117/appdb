@@ -50,15 +50,18 @@ class DetailsDownload: DetailsCell {
         
         host = UILabel()
         host.font = .systemFont(ofSize: (16~~15))
+        host.makeDynamicFont()
         host.numberOfLines = 1
         
         cracker = UILabel()
         cracker.font = .systemFont(ofSize: (13~~12))
+        cracker.makeDynamicFont()
         cracker.numberOfLines = 1
         cracker.theme_textColor = Color.title
         
         button = RoundedButton()
         button.titleLabel?.font = .boldSystemFont(ofSize: 13)
+        button.makeDynamicFont()
         button.setTitle("Install".localized().uppercased(), for: .normal)
         button.theme_tintColor = Color.softGreen
         button.drawPlusIcon = false

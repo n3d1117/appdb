@@ -33,6 +33,7 @@ class DetailsVersionHeader: TableViewHeader {
         
         version = UILabel()
         version.font = UIFont.systemFont(ofSize: (17~~16))
+        version.makeDynamicFont()
         version.numberOfLines = 1
         version.theme_textColor = Color.title
         version.text = versionNumber

@@ -45,14 +45,17 @@ class DetailsChangelog: DetailsCell {
         title.theme_textColor = Color.title
         title.text = "What's New".localized()
         title.font = .systemFont(ofSize: (17~~16))
+        title.makeDynamicFont()
         
         date = UILabel()
         date.theme_textColor = Color.copyrightText
         date.font = .systemFont(ofSize: (14~~13))
+        date.makeDynamicFont()
         
         desc = ElasticLabel()
         desc.theme_textColor = Color.darkGray
         desc.theme_backgroundColor = Color.veryVeryLightGray
+        desc.makeDynamicFont()
         
         contentView.addSubview(title)
         contentView.addSubview(date)

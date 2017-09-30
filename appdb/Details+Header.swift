@@ -50,6 +50,7 @@ class DetailsHeader: DetailsCell {
         name.theme_textColor = Color.title
         name.font = .systemFont(ofSize: 18.5~~16.5)
         name.numberOfLines = type == .books ? 4 : 3
+        name.makeDynamicFont()
         
         // Icon
         icon = UIImageView()
@@ -113,6 +114,7 @@ class DetailsHeader: DetailsCell {
                     additionalInfo!.font = .systemFont(ofSize: (14~~12))
                     additionalInfo!.numberOfLines = 1
                     additionalInfo!.text = book.published
+                    additionalInfo!.makeDynamicFont()
                     
                     if !book.printLenght.isEmpty {
                         additionalInfo!.text = additionalInfo!.text! + Global.bulletPoint + book.printLenght
@@ -229,6 +231,7 @@ class DetailsHeader: DetailsCell {
         } else {
             label.font = .boldSystemFont(ofSize: 10.0)
         }
+        label.makeDynamicFont()
         label.layer.backgroundColor = UIColor.gray.cgColor
         label.layer.cornerRadius = 6
         return label

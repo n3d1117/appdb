@@ -80,6 +80,7 @@ class DetailsRelated: DetailsCell {
             title.theme_textColor = Color.title
             title.text = type == .books ? "Related Books".localized() : "Related Apps".localized()
             title.font = .systemFont(ofSize: (17~~16))
+            title.makeDynamicFont()
             
             let layout = SnappableFlowLayout(width: (75~~65), spacing: Global.size.spacing.value)
             layout.itemSize = type == .books ? CGSize(width: (75~~65), height: (175~~165)) : CGSize(width: (75~~65), height: (140~~130))

@@ -43,10 +43,12 @@ class DetailsDescription: DetailsCell {
         title.theme_textColor = Color.title
         title.text = "Description".localized()
         title.font = .systemFont(ofSize: (17~~16))
+        title.makeDynamicFont()
         
         desc = ElasticLabel()
         desc.theme_textColor = Color.darkGray
         desc.theme_backgroundColor = Color.veryVeryLightGray
+        desc.makeDynamicFont()
         
         contentView.addSubview(title)
         contentView.addSubview(desc)

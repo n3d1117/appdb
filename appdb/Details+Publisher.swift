@@ -29,6 +29,7 @@ class DetailsPublisher: DetailsCell {
         label = UILabel()
         label.theme_textColor = Color.copyrightText
         label.font = .systemFont(ofSize: 12)
+        label.makeDynamicFont()
         label.text = publisher
         label.numberOfLines = 0
         label.textAlignment = alignment

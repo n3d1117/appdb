@@ -24,6 +24,7 @@ struct ButtonFactory {
         } else {
             button.titleLabel?.font = .systemFont(ofSize: size)
         }
+        //button.makeDynamicFont()
         button.contentHorizontalAlignment = .left
         button.titleLabel?.lineBreakMode = .byTruncatingTail
         
@@ -51,6 +52,7 @@ struct ButtonFactory {
             button.titleLabel?.font = .systemFont(ofSize: (14~~13))
         }
         
+        button.makeDynamicFont()
         button.contentHorizontalAlignment = .left
         button.titleLabel?.lineBreakMode = .byTruncatingTail
         

@@ -91,6 +91,7 @@ class LoadingTableView: UITableViewController {
                 errorMessage.numberOfLines = 0
                 errorMessage.textAlignment = .center
                 errorMessage.isHidden = false
+                errorMessage.makeDynamicFont()
                 
                 //Set up Secondary Error Message
                 secondaryErrorMessage = UILabel()
@@ -99,6 +100,7 @@ class LoadingTableView: UITableViewController {
                 secondaryErrorMessage.numberOfLines = 0
                 secondaryErrorMessage.textAlignment = .center
                 secondaryErrorMessage.isHidden = false
+                secondaryErrorMessage.makeDynamicFont()
                 
                 // Set up 'Retry' button
                 if showsErrorButton {

@@ -52,6 +52,7 @@ class CategoryCell: UITableViewCell {
         name = UILabel()
         name.font = .systemFont(ofSize: (17~~16))
         name.numberOfLines = 1
+        name.makeDynamicFont()
         
         contentView.addSubview(icon)
         contentView.addSubview(name)

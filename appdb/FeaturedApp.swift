@@ -41,12 +41,14 @@ class FeaturedApp: UICollectionViewCell {
         title.font = .systemFont(ofSize: 11.5)
         title.lineBreakMode = .byTruncatingTail
         title.numberOfLines = 2
+        title.makeDynamicFont()
         
         category = UILabel()
         category.theme_textColor = Color.darkGray
         category.font = .systemFont(ofSize: 11.5)
         category.lineBreakMode = .byTruncatingTail
         category.numberOfLines = 1
+        category.makeDynamicFont()
 
         dim.layer.cornerRadius = icon.layer.cornerRadius
         
