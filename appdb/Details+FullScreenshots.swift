@@ -66,9 +66,6 @@ class DetailsFullScreenshots: UIViewController {
     var screenshots: [Screenshot] = []
     var index: Int = 0
     
-    var widthIfPortrait: CGFloat { return round(((300~~280)-(Global.size.margin.value * 2)) / magic) }
-    var widthIfLandscape: CGFloat { return round(((230~~176)-(Global.size.margin.value * 2)) * magic) }
-    var allLandscape: Bool { return screenshots.filter({$0.class_=="portrait"}).isEmpty }
     var spacing: CGFloat = 25
     
     var magic: CGFloat {
@@ -86,7 +83,11 @@ class DetailsFullScreenshots: UIViewController {
         return top > 60.0 ? 35 : 20
     }
     var effectiveHeight: CGFloat {
-        return view.bounds.height - top - bottomInset - topInset
+        if magic == 1.333 {
+            return view.bounds.height - top - bottomInset - topInset - (80~~55)
+        } else {
+            return view.bounds.height - top - bottomInset - topInset
+        }
     }
     var effectiveWidth: CGFloat {
         return round(effectiveHeight/magic)
@@ -121,7 +122,7 @@ class DetailsFullScreenshots: UIViewController {
         navigationItem.rightBarButtonItem = doneButton
         
         let insets = (view.bounds.width - effectiveWidth) / 2
-        let layout = SnappableFlowLayout(width: effectiveWidth, spacing: spacing, magic: 60)
+        let layout = SnappableFlowLayout(width: effectiveWidth, spacing: spacing)
         layout.sectionInset = UIEdgeInsets(top: top+topInset, left: insets, bottom: bottomInset, right: insets)
         layout.minimumLineSpacing = spacing
         layout.scrollDirection = .horizontal
@@ -172,12 +173,11 @@ class DetailsFullScreenshots: UIViewController {
         }
     }
     
-    /* Nah, let's not support rotation k?
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         if let layout = collectionView.collectionViewLayout as? SnappableFlowLayout {
             layout.invalidateLayout()
         }
-    }*/
+    }
     
     @objc func dismissAnimated() { dismiss(animated: true) }
     

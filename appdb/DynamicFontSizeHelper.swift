@@ -4,18 +4,18 @@ import UIKit
 
 private var fontSizeMultiplier : CGFloat {
     switch UIApplication.shared.preferredContentSizeCategory {
-    case UIContentSizeCategory.accessibilityExtraExtraExtraLarge: return 21 / 16
-    case UIContentSizeCategory.accessibilityExtraExtraLarge: return 21 / 16
-    case UIContentSizeCategory.accessibilityExtraLarge: return 21 / 16
-    case UIContentSizeCategory.accessibilityLarge: return 21 / 16
-    case UIContentSizeCategory.accessibilityMedium: return 21 / 16
-    case UIContentSizeCategory.extraExtraExtraLarge: return 20 / 16
-    case UIContentSizeCategory.extraExtraLarge: return 19 / 16
-    case UIContentSizeCategory.extraLarge: return 18 / 16
-    case UIContentSizeCategory.large: return 17 / 16
-    case UIContentSizeCategory.medium: return 1.0
-    case UIContentSizeCategory.small: return 15 / 16
-    case UIContentSizeCategory.extraSmall: return 14 / 16
+    case .accessibilityExtraExtraExtraLarge:  return 21 / 16
+    case .accessibilityExtraExtraLarge:       return 21 / 16
+    case .accessibilityExtraLarge:            return 21 / 16
+    case .accessibilityLarge:                 return 21 / 16
+    case .accessibilityMedium:                return 21 / 16
+    case .extraExtraExtraLarge:               return 21 / 16
+    case .extraExtraLarge:                    return 20 / 16
+    case .extraLarge:                         return 19 / 16
+    case .large:                              return 18 / 16
+    case .medium:                             return 17 / 16
+    case .small:                              return 1.0
+    case .extraSmall:                         return 15 / 16
     default: return 1.0
     }
 }

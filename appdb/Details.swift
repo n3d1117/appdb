@@ -11,7 +11,7 @@ import RealmSwift
 
 class Details: LoadingTableView {
     
-    weak var content: Object!
+    var content: Object!
     var descriptionCollapsed: Bool = true
     var changelogCollapsed: Bool = true
     var reviewCollapsedForIndexPath : [IndexPath: Bool] = [:]

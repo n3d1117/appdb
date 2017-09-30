@@ -217,7 +217,7 @@ class DetailsHeader: DetailsCell {
         stars.isUserInteractionEnabled = false
         stars.settings.totalStars = 5
         stars.settings.fillMode = .half
-        stars.textSize = 11
+        stars.textSize = 11.5
         stars.textMargin = 2
         stars.starMargin = 0
         return stars

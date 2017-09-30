@@ -27,7 +27,7 @@ class DetailsFullScreenshotCell: UICollectionViewCell {
         image.layer.borderWidth = 1 / UIScreen.main.scale
         image.layer.theme_borderColor = Color.borderCgColor
         image.image = #imageLiteral(resourceName: "placeholderCover")
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleToFill
         
         contentView.addSubview(image)
         

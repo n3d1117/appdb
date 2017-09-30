@@ -55,12 +55,13 @@ class DetailsReview: DetailsCell {
         stars.settings.totalStars = 5
         stars.settings.fillMode = .full
         stars.starMargin = 0
-        stars.textSize = 11
+        stars.textSize = 11.5
         stars.textMargin = 4
         
         // Desc
         desc = ElasticLabel()
         desc.theme_textColor = Color.darkGray
+        desc.makeDynamicFont()
         
         contentView.addSubview(title)
         contentView.addSubview(stars)

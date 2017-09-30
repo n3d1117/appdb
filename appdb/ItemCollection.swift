@@ -1,5 +1,5 @@
 //
-//  BBItemCollection.swift
+//  ItemCollection.swift
 //  appdb
 //
 //  Created by ned on 11/10/2016.
@@ -237,7 +237,7 @@ class ItemCollection: FeaturedCell {
             }
             
             // Fix rare issue where first three Cydia items would not load category text - probs not fixed
-            // if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }
+            if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }
             
             // Update category label
             if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
@@ -259,20 +259,18 @@ class ItemCollection: FeaturedCell {
     
     // Fixes rare issue where first three Cydia items would not load category text.
     // Reloading text after 0.3 seconds, seems to work (tested on iPad Mini 2) - not working for all devices
-    /*
+
     fileprivate func dirtyFixEmptyCategory() {
         if self.items[0] is CydiaApp {
             delay(0.3) { for i in 0..<3 {
                 if let cell = self.collectionView.cellForItem(at: IndexPath(row: i, section: 0)) as? FeaturedApp {
                     if cell.category.text == "", let cydiaApp = self.items[i] as? CydiaApp {
                         cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
-                        // cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
                     }
                 }
             } }
         }
     }
-    */
     
     // MARK: - Reload items after category change
     
