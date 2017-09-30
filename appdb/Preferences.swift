@@ -11,7 +11,7 @@ import RealmSwift
 
 class Preferences: Object {
 
-    dynamic var theme: Int = 0
-    dynamic var isFirstLaunch: Bool = false
+    @objc dynamic var theme: Int = 0
+    @objc dynamic var isFirstLaunch: Bool = false
     
 }

@@ -62,6 +62,12 @@ class DetailsSegmentControl: TableViewHeader {
         contentView.backgroundColor = .clear
         addSeparator(full: true)
         
+        // Setting the background color on UITableViewHeaderFooterView has been deprecated.
+        // So i set a custom UIView with desired background color to the backgroundView property.
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = .clear
+        backgroundView = bgColorView
+        
         segment = UISegmentedControl(items: self.items.flatMap{$0.rawValue.localized()})
         segment.selectedSegmentIndex = index(for: state)
         segment.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)
@@ -78,16 +84,22 @@ class DetailsSegmentControl: TableViewHeader {
         constrain(translucentView, segment) { translucentView, segment in
             translucentView.edges == translucentView.superview!.edges
             
+            // Ugly ass fix for iPhone X
+            if HAS_NOTCH {
+                translucentView.left == translucentView.superview!.left - 50
+                translucentView.right == translucentView.superview!.right + 50
+            }
+            
             segment.top == translucentView.top + 7
-            segment.bottom == translucentView.bottom - 7 ~ 999.0
+            segment.bottom == translucentView.bottom - 7 ~ Global.notMaxPriority
             segment.centerX == translucentView.centerX
             
             if items.contains(.reviews) {
                 if IS_IPAD {
                     segment.width == 380
                 } else {
-                    segment.left == segment.superview!.left + Global.size.margin.value + 5 ~ 999.0
-                    segment.right == segment.superview!.right - Global.size.margin.value - 5 ~ 999.0
+                    segment.left == segment.superview!.superview!.left + Global.size.margin.value + 5 ~ Global.notMaxPriority
+                    segment.right == segment.superview!.superview!.right - Global.size.margin.value - 5 ~ Global.notMaxPriority
                 }
             } else {
                 segment.width == (280~~250)
@@ -96,7 +108,7 @@ class DetailsSegmentControl: TableViewHeader {
         
     }
     
-    func indexDidChange() {
+    @objc func indexDidChange() {
         delegate?.segmentSelected(items[segment.selectedSegmentIndex])
     }
     

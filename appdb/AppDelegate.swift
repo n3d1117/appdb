@@ -17,23 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
-        window!.rootViewController = TabBarController()
-        window!.makeKeyAndVisible()
+        window?.rootViewController = TabBarController()
+        window?.makeKeyAndVisible()
         
         // Set main tint color
         self.window!.theme_backgroundColor = Color.tableViewBackgroundColor
         self.window!.theme_tintColor = Color.mainTint
         
-        //Theme Status Bar
+        // Theme Status Bar
         UIApplication.shared.theme_setStatusBarStyle([.default, .lightContent], animated: true)
         
         // Theme navigation bar
         let navigationBar = UINavigationBar.appearance()
-        let titleAttributes: [[String: AnyObject]] = ["#121212", "#F8F8F8"].map { hexString in
+        let titleAttributes = ["#121212", "#F8F8F8"].map { hexString in
             return [
-                NSForegroundColorAttributeName: UIColor(rgba: hexString),
-                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16.5)
+                NSAttributedStringKey.foregroundColor.rawValue: UIColor(rgba: hexString),
+                NSAttributedStringKey.font.rawValue: UIFont.systemFont(ofSize: 16.5),
             ]
         }
         
@@ -43,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         // Theme Tab Bar
         let tabBar = UITabBar.appearance()
-        tabBar.isTranslucent = true
         tabBar.theme_barStyle = [.default, .black]
         
         // Global Operations
@@ -63,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             }
         )
         Realm.Configuration.defaultConfiguration = config
-        
+
         //print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
 
         return true

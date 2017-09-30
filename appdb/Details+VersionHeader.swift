@@ -22,8 +22,14 @@ class DetailsVersionHeader: TableViewHeader {
         preservesSuperviewLayoutMargins = false
         layoutMargins.left = 0
         addSeparator(full: true)
-        
+
         contentView.theme_backgroundColor = backgroundGray
+        
+        // Setting the background color on UITableViewHeaderFooterView has been deprecated.
+        // So i set a custom UIView with desired background color to the backgroundView property.
+        let bgColorView = UIView()
+        bgColorView.theme_backgroundColor = backgroundGray
+        backgroundView = bgColorView
         
         version = UILabel()
         version.font = UIFont.systemFont(ofSize: (17~~16))

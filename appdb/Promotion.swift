@@ -17,12 +17,12 @@ class Promotion: Object, Mappable {
         return "id"
     }
     
-    dynamic var id = ""
-    dynamic var lead = ""
-    dynamic var type = ""
-    dynamic var trackid = ""
-    dynamic var name = ""
-    dynamic var image = ""
+    @objc dynamic var id = ""
+    @objc dynamic var lead = ""
+    @objc dynamic var type = ""
+    @objc dynamic var trackid = ""
+    @objc dynamic var name = ""
+    @objc dynamic var image = ""
     
     func mapping(map: Map) {
         

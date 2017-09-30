@@ -42,7 +42,7 @@ class Copyright: FeaturedCell {
             notice.left == notice.superview!.left + Global.size.margin.value
             notice.right == notice.superview!.right - Global.size.margin.value
             notice.top == notice.superview!.top + 15
-            notice.bottom == notice.superview!.bottom - (25~~15) ~ 999.0
+            notice.bottom == notice.superview!.bottom - (25~~15) ~ Global.notMaxPriority
         }
     }
     

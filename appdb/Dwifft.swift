@@ -13,7 +13,7 @@ public enum DiffStep<Value> : CustomDebugStringConvertible {
     case insert(Int, Value)
     /// A deletion.
     case delete(Int, Value)
-    
+
     public var debugDescription: String {
         switch(self) {
         case let .insert(i, j):
@@ -22,7 +22,7 @@ public enum DiffStep<Value> : CustomDebugStringConvertible {
             return "-\(j)@\(i)"
         }
     }
-    
+
     /// The index to be inserted or deleted.
     public var idx: Int {
         switch(self) {
@@ -32,7 +32,7 @@ public enum DiffStep<Value> : CustomDebugStringConvertible {
             return i
         }
     }
-    
+
     /// The value to be inserted or deleted.
     public var value: Value {
         switch(self) {
@@ -55,7 +55,7 @@ public enum SectionedDiffStep<Section, Value>: CustomDebugStringConvertible {
     case sectionInsert(Int, Section)
     /// A section deletion, at a given section.
     case sectionDelete(Int, Section)
-    
+
     internal var section: Int {
         switch self {
         case let .insert(s, _, _): return s
@@ -64,7 +64,7 @@ public enum SectionedDiffStep<Section, Value>: CustomDebugStringConvertible {
         case let .sectionDelete(s, _): return s
         }
     }
-    
+
     public var debugDescription: String {
         switch self {
         case let .sectionDelete(s, _): return "ds(\(s))"
@@ -77,7 +77,7 @@ public enum SectionedDiffStep<Section, Value>: CustomDebugStringConvertible {
 
 /// Namespace for the `diff` and `apply` functions.
 public enum Dwifft {
-    
+
     /// Returns the sequence of `DiffStep`s required to transform one array into another.
     ///
     /// - Parameters:
@@ -90,7 +90,7 @@ public enum Dwifft {
         } else if rhs.isEmpty {
             return lhs.enumerated().map(DiffStep.delete).reversed()
         }
-        
+
         let table = MemoizedSequenceComparison.buildTable(lhs, rhs, lhs.count, rhs.count)
         var result = diffInternal(table, lhs, rhs, lhs.count, rhs.count, ([], []))
         while case let .call(f) = result {
@@ -99,7 +99,7 @@ public enum Dwifft {
         guard case let .done(accum) = result else { fatalError("unreachable code") }
         return accum.1 + accum.0
     }
-    
+
     /// Applies a diff to an array. The following should always be true:
     /// Given `x: [T], y: [T]`, `Dwifft.apply(Dwifft.diff(x, y), toArray: x) == y`
     ///
@@ -121,14 +121,14 @@ public enum Dwifft {
         }
         return copy
     }
-    
+
     /// Returns the sequence of `SectionedDiffStep`s required to transform one `SectionedValues` into another.
     ///
     /// - Parameters:
     ///   - lhs: a `SectionedValues`
     ///   - rhs: another, uh, `SectionedValues`
     /// - Returns: the series of transformations that, when applied to `lhs`, will yield `rhs`.
-    public static func diff<Section: Equatable, Value: Equatable>(lhs: SectionedValues<Section, Value>, rhs: SectionedValues<Section, Value>) -> [SectionedDiffStep<Section, Value>] {
+    public static func diff<Section, Value>(lhs: SectionedValues<Section, Value>, rhs: SectionedValues<Section, Value>) -> [SectionedDiffStep<Section, Value>] {
         if lhs.sections == rhs.sections {
             let allResults: [[SectionedDiffStep<Section, Value>]] = (0..<lhs.sections.count).map { i in
                 let lValues = lhs.sectionsAndValues[i].1
@@ -152,7 +152,7 @@ public enum Dwifft {
                 return false
             }
             return deletions + insertions
-            
+
         } else {
             var middleSectionsAndValues = lhs.sectionsAndValues
             let sectionDiff = Dwifft.diff(lhs.sections, rhs.sections)
@@ -168,10 +168,10 @@ public enum Dwifft {
                     middleSectionsAndValues.remove(at: i)
                 }
             }
-            
+
             let middle = SectionedValues(middleSectionsAndValues)
             let rowResults = Dwifft.diff(lhs: middle, rhs: rhs)
-            
+
             // we need to calculate a mapping from the final section indices to the original
             // section indices. This lets us perform the deletions before the section deletions,
             // which makes UITableView + UICollectionView happy. See https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/TableView_iPhone/ManageInsertDeleteRow/ManageInsertDeleteRow.html#//apple_ref/doc/uid/TP40007451-CH10-SW9
@@ -186,32 +186,32 @@ public enum Dwifft {
             for (i, j) in indexMapping.enumerated() {
                 mapping[i] = j
             }
-            
+
             let deletions = rowResults.filter { result in
                 if case .delete = result {
                     return true
                 }
                 return false
             }
-            
+
             let insertions = rowResults.filter { result in
                 if case .insert = result {
                     return true
                 }
                 return false
             }
-            
+
             let mappedDeletions: [SectionedDiffStep<Section, Value>] = deletions.map { deletion in
                 guard case let .delete(section, row, val) = deletion else { fatalError("not possible") }
                 guard let newIndex = mapping[section], newIndex != -1 else { fatalError("not possible") }
                 return .delete(newIndex, row, val)
             }
-            
+
             return mappedDeletions + sectionDeletions + sectionInsertions + insertions
-            
+
         }
     }
-    
+
     /// Applies a diff to a `SectionedValues`. The following should always be true:
     /// Given `x: SectionedValues<S,T>, y: SectionedValues<S,T>`,
     /// `Dwifft.apply(Dwifft.diff(lhs: x, rhs: y), toSectionedValues: x) == y`
@@ -238,7 +238,7 @@ public enum Dwifft {
         }
         return SectionedValues(sectionsAndValues)
     }
-    
+
     private static func diffInternal<Value: Equatable>(
         _ table: [[Int]],
         _ x: [Value],
@@ -294,7 +294,7 @@ fileprivate struct MemoizedSequenceComparison<T: Equatable> {
                             }
                         }
                     }
-                    
+
                 }
             }
         }
@@ -305,17 +305,17 @@ fileprivate struct MemoizedSequenceComparison<T: Equatable> {
 
 // MARK: - Deprecated
 public extension Array where Element: Equatable {
-    
+
     /// Deprecated in favor of `Dwifft.diff`.
     @available(*, deprecated)
     public func diff(_ other: [Element]) -> [DiffStep<Element>] {
         return Dwifft.diff(self, other)
     }
-    
+
     /// Deprecated in favor of `Dwifft.apply`.
     @available(*, deprecated)
     public func apply(_ diff: [DiffStep<Element>]) -> [Element] {
         return Dwifft.apply(diff: diff, toArray: self)
     }
-    
+
 }

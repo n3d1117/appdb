@@ -11,7 +11,7 @@ import RealmSwift
 
 
 class Version: Object {
-    dynamic var number = ""
+    @objc dynamic var number = ""
     let links = List<Link>()
     
     convenience init(number: String) {
@@ -21,14 +21,14 @@ class Version: Object {
 }
 
 class Link: Object {
-    dynamic var link = ""
-    dynamic var cracker = ""
-    dynamic var host = ""
-    dynamic var id = ""
-    dynamic var verified = false
-    dynamic var di_compatible = false
-    dynamic var hidden = false
-    dynamic var universal = false
+    @objc dynamic var link = ""
+    @objc dynamic var cracker = ""
+    @objc dynamic var host = ""
+    @objc dynamic var id = ""
+    @objc dynamic var verified = false
+    @objc dynamic var di_compatible = false
+    @objc dynamic var hidden = false
+    @objc dynamic var universal = false
     
     convenience init(link: String, cracker: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool) {
         self.init()
@@ -41,6 +41,6 @@ class Link: Object {
         self.hidden = hidden
         self.universal = universal
         
-        while self.cracker.hasPrefix(" ") { self.cracker = String(self.cracker.characters.dropFirst()) }
+        while self.cracker.hasPrefix(" ") { self.cracker = String(self.cracker.dropFirst()) }
     }
 }

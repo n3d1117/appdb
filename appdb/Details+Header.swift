@@ -225,7 +225,7 @@ class DetailsHeader: DetailsCell {
         let label = PaddingLabel()
         label.theme_textColor = Color.invertedTitle
         if #available(iOS 8.2, *) {
-            label.font = .systemFont(ofSize: 10.0, weight: UIFontWeightSemibold)
+            label.font = .systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
         } else {
             label.font = .boldSystemFont(ofSize: 10.0)
         }

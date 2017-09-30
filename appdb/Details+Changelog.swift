@@ -76,7 +76,7 @@ class DetailsChangelog: DetailsCell {
                 date.left == title.left
                 date.right == title.right
                 
-                desc.top == date.bottom + 8 ~ 999.0
+                desc.top == date.bottom + 8 ~ Global.notMaxPriority
                 desc.left == title.left
                 desc.right == title.right
                 desc.bottom == desc.superview!.bottom - 15

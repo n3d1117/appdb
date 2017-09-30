@@ -11,7 +11,7 @@ import RealmSwift
 
 class Details: LoadingTableView {
     
-    var content: Object!
+    weak var content: Object!
     var descriptionCollapsed: Bool = true
     var changelogCollapsed: Bool = true
     var reviewCollapsedForIndexPath : [IndexPath: Bool] = [:]
@@ -236,7 +236,7 @@ extension Details: ElasticLabelDelegate {
 extension Details: RelatedRedirectionDelegate {
     func relatedItemSelected(trackid: String) {
         let vc = Details(type: contentType, trackid: trackid)
-        navigationController?.navigationBar.isTranslucent = false /* God damnit, Apple */
+        // navigationController?.navigationBar.isTranslucent = false /* God damnit, Apple */
         navigationController?.pushViewController(vc, animated: true)
     }
 }

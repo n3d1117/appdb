@@ -25,34 +25,34 @@ class Book: Object, Meta {
     // iTunes data
     var lastParseItunes = ""
     
-    dynamic var name = ""
-    dynamic var id = ""
-    dynamic var image = ""
+    @objc dynamic var name = ""
+    @objc dynamic var id = ""
+    @objc dynamic var image = ""
     
     // General
-    dynamic var categoryId = ""
-    dynamic var printLenght = ""
-    dynamic var published = ""
-    dynamic var author = ""
+    @objc dynamic var categoryId = ""
+    @objc dynamic var printLenght = ""
+    @objc dynamic var published = ""
+    @objc dynamic var author = ""
     
     // Text
-    dynamic var description_ = ""
+    @objc dynamic var description_ = ""
     
     // Ratings
-    dynamic var numberOfRating = ""
-    dynamic var numberOfStars: Double = 0.0
+    @objc dynamic var numberOfRating = ""
+    @objc dynamic var numberOfStars: Double = 0.0
     
     // Information
-    dynamic var updated = ""
-    dynamic var price = ""
-    dynamic var requirements = ""
-    dynamic var language = ""
+    @objc dynamic var updated = ""
+    @objc dynamic var price = ""
+    @objc dynamic var requirements = ""
+    @objc dynamic var language = ""
     
     // Artist ID
-    dynamic var artistId = ""
+    @objc dynamic var artistId = ""
     
     // Copyright
-    dynamic var publisher = ""
+    @objc dynamic var publisher = ""
     
     // Related Books
     var relatedBooks = List<RelatedContent>()

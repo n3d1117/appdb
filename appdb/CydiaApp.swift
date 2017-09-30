@@ -24,28 +24,28 @@ class CydiaApp: Object, Meta {
     
     var screenshots: String = ""
     
-    dynamic var name = ""
-    dynamic var id = ""
-    dynamic var image = ""
+    @objc dynamic var name = ""
+    @objc dynamic var id = ""
+    @objc dynamic var image = ""
     
     // General
-    dynamic var categoryId = ""
-    dynamic var developer = ""
+    @objc dynamic var categoryId = ""
+    @objc dynamic var developer = ""
     
     // Text
-    dynamic var description_ = ""
-    dynamic var whatsnew = ""
+    @objc dynamic var description_ = ""
+    @objc dynamic var whatsnew = ""
     
     // Information
-    dynamic var bundleId = ""
-    dynamic var version = ""
-    dynamic var price = ""
-    dynamic var updated = ""
+    @objc dynamic var bundleId = ""
+    @objc dynamic var version = ""
+    @objc dynamic var price = ""
+    @objc dynamic var updated = ""
     
     // Tweaked
-    dynamic var originalTrackid = ""
-    dynamic var originalSection = ""
-    dynamic var isTweaked = false
+    @objc dynamic var originalTrackid = ""
+    @objc dynamic var originalSection = ""
+    @objc dynamic var isTweaked = false
     
     // Screenshots
     var screenshotsIphone = List<Screenshot>()

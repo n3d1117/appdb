@@ -20,7 +20,7 @@ struct ButtonFactory {
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if #available(iOS 8.2, *), bold {
-            button.titleLabel?.font = .systemFont(ofSize: size, weight: UIFontWeightSemibold)
+            button.titleLabel?.font = .systemFont(ofSize: size, weight: UIFont.Weight.semibold)
         } else {
             button.titleLabel?.font = .systemFont(ofSize: size)
         }
@@ -30,7 +30,7 @@ struct ButtonFactory {
         button.imageView!.contentMode = .center
         button.sizeToFit()
 
-        // (bold ? 5 : 0) (im lazy) is actually to add 5 just for see all in featured - TODO make it better
+        // (bold ? 5 : 0) is actually to add 5 just for see all in featured (im lazy) - TODO make it better
         button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageRect(forContentRect: button.bounds).size.width + (bold ? 3 : 0), 0, 0)
         button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleRect(forContentRect: button.bounds).size.width + (bold ? 5 : 0), 0, 0)
 
@@ -46,7 +46,7 @@ struct ButtonFactory {
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if #available(iOS 8.2, *) {
-            button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: UIFontWeightSemibold)
+            button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: UIFont.Weight.semibold)
         } else {
             button.titleLabel?.font = .systemFont(ofSize: (14~~13))
         }

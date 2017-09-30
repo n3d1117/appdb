@@ -66,11 +66,7 @@ extension String {
     //
     var decoded: String {
         let regex = "(?:(?:(?:\\<br\\ \\/\\>))|(?:(?:\\<br\\/\\>))|(?:(?:\\<p\\/\\>)))"
-        var newString: String =  self.replacingOccurrences(of: regex, with: "\n", options: .regularExpression, range: nil)
-        while newString.hasSuffix("\n</p>") { // fixes ugly new lines at the end
-            newString = newString.substring(to: newString.index(newString.endIndex, offsetBy: -6))
-            newString = newString.appending("</p>")
-        }
+        let newString: String =  self.replacingOccurrences(of: regex, with: "\n", options: .regularExpression, range: nil)
         return HTML(html: newString, encoding: .utf8)?.text ?? ""
     }
     
@@ -81,7 +77,7 @@ extension String {
         if let unixTime = Double(self) {
             let date = Date(timeIntervalSince1970: unixTime)
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = NSLocale(localeIdentifier: Localize.currentLanguage()) as Locale!
+            dateFormatter.locale = Locale(identifier: Localize.currentLanguage())
             dateFormatter.dateStyle = .medium
             return dateFormatter.string(from: date)
         }

@@ -10,10 +10,10 @@ import Foundation
 import RealmSwift
 
 class Review: Object {
-    dynamic var author = ""
-    dynamic var text = ""
-    dynamic var title = ""
-    dynamic var rating = 0.0
+    @objc dynamic var author = ""
+    @objc dynamic var text = ""
+    @objc dynamic var title = ""
+    @objc dynamic var rating = 0.0
     
     convenience init(author: String, text: String, title: String, rating: Double) {
         self.init()
@@ -25,9 +25,9 @@ class Review: Object {
 }
 
 class Screenshot: Object {
-    dynamic var image = ""
-    dynamic var class_ = ""
-    dynamic var type = ""
+    @objc dynamic var image = ""
+    @objc dynamic var class_ = ""
+    @objc dynamic var type = ""
     
     convenience init(src: String, class_: String, type: String) {
         self.init()
@@ -38,10 +38,10 @@ class Screenshot: Object {
 }
 
 class RelatedContent: Object {
-    dynamic var icon = ""
-    dynamic var id = ""
-    dynamic var name = ""
-    dynamic var artist = ""
+    @objc dynamic var icon = ""
+    @objc dynamic var id = ""
+    @objc dynamic var name = ""
+    @objc dynamic var artist = ""
     
     convenience init(icon: String, id: String, name: String, artist: String) {
         self.init()
@@ -63,11 +63,11 @@ class Category {
 }
 
 class Genre: Object {
-    dynamic var category = ""
-    dynamic var id = ""
-    dynamic var name = ""
-    dynamic var icon = ""
-    dynamic var compound: String = ""
+    @objc dynamic var category = ""
+    @objc dynamic var id = ""
+    @objc dynamic var name = ""
+    @objc dynamic var icon = ""
+    @objc dynamic var compound: String = ""
     
     convenience init(category: String, id: String, name: String) {
         self.init()

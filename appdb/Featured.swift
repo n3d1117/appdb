@@ -65,7 +65,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     }
     
     /* DEBUG */
-    func tmpSwitch() { Themes.switchTo(theme: Themes.isNight ? .Light : .Dark) }
+    @objc func tmpSwitch() { Themes.switchTo(theme: Themes.isNight ? .Light : .Dark) }
     /* DEBUG */
     
     // MARK: - Load Initial Data
@@ -108,7 +108,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     
     // MARK: - Retry Loading
     
-    func retry() {
+    @objc func retry() {
         
         state = .loading
         
@@ -149,7 +149,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 extension Featured: ChangeCategory {
     
     // Open categories
-    func openCategories(_ sender: AnyObject) {
+    @objc func openCategories(_ sender: AnyObject) {
         let categoriesViewController = Categories()
         categoriesViewController.delegate = self
         let nav = UINavigationController(rootViewController: categoriesViewController)

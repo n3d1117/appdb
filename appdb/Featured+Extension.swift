@@ -83,7 +83,7 @@ extension Featured {
     // Stick banner to top
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let headerView = tableView.tableHeaderView as? Banner, let nav = navigationController {
-            let minOff: CGFloat = -nav.navigationBar.frame.height - UIApplication.shared.statusBarFrame.size.height
+            let minOff: CGFloat = -nav.navigationBar.frame.height - UIApplication.shared.statusBarFrame.height
             if scrollView.contentOffset.y < minOff {
                 headerView.subviews[0].bounds.origin.y = minOff - scrollView.contentOffset.y
             } else {

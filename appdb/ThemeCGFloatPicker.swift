@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class ThemeCGFloatPicker: ThemePicker{
+public final class ThemeCGFloatPicker: ThemePicker {
     
     public convenience init(keyPath: String) {
         self.init(v: { CGFloat(ThemeManager.number(for: keyPath) ?? 0) })

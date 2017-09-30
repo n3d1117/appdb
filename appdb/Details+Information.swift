@@ -211,7 +211,7 @@ class DetailsInformation: DetailsCell {
                 case .ios:
                     constrain(seller, sellerText) { seller, sellerText in
                     
-                        seller.top == title.bottom + 9 ~ 999.0
+                        seller.top == title.bottom + 9 ~ Global.notMaxPriority
                         seller.left == title.left
                         seller.right == seller.left + (90~~86)
                         
@@ -221,7 +221,7 @@ class DetailsInformation: DetailsCell {
                         
                         constrain(bundleId, bundleIdText) { bundleId, bundleIdText in
                             
-                            bundleId.top == sellerText.bottom + (5~~4)
+                            bundleId.top == sellerText.bottom + (5~~4) ~ Global.notMaxPriority
                             bundleId.left == seller.left
                             bundleId.right == seller.right
                             
@@ -362,7 +362,7 @@ class DetailsInformation: DetailsCell {
                 case .cydia:
                     constrain(seller, sellerText) { seller, sellerText in
                         
-                        seller.top == title.bottom + 9 ~ 999.0
+                        seller.top == title.bottom + 9 ~ Global.notMaxPriority
                         seller.left == title.left
                         seller.right == seller.left + (90~~86)
                         
@@ -422,7 +422,7 @@ class DetailsInformation: DetailsCell {
                 case .books:
                     constrain(seller, sellerText) { seller, sellerText in
                         
-                        seller.top == title.bottom + 9 ~ 999.0
+                        seller.top == title.bottom + 9 ~ Global.notMaxPriority
                         seller.left == title.left
                         seller.right == seller.left + (90~~86)
                         

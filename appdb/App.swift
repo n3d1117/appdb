@@ -23,9 +23,9 @@ class App: Object, Meta {
         return .ios
     }
     
-    dynamic var name = ""
-    dynamic var id = ""
-    dynamic var image = ""
+    @objc dynamic var name = ""
+    @objc dynamic var id = ""
+    @objc dynamic var image = ""
 
     // iTunes data
     var lastParseItunes = ""
@@ -33,37 +33,37 @@ class App: Object, Meta {
     
     // General
     var category: Category?
-    dynamic var seller = ""
+    @objc dynamic var seller = ""
     
     // Text cells
-    dynamic var description_ = ""
-    dynamic var whatsnew = ""
+    @objc dynamic var description_ = ""
+    @objc dynamic var whatsnew = ""
     
     // Dev apps
-    dynamic var artistId = ""
+    @objc dynamic var artistId = ""
     
     // Copyright notice
-    dynamic var publisher = ""
+    @objc dynamic var publisher = ""
     
     // Information
-    dynamic var bundleId = ""
-    dynamic var updated = ""
-    dynamic var published = ""
-    dynamic var version = ""
-    dynamic var price = ""
-    dynamic var size = ""
-    dynamic var rated = ""
-    dynamic var compatibility = ""
-    dynamic var appleWatch = ""
-    dynamic var languages = ""
+    @objc dynamic var bundleId = ""
+    @objc dynamic var updated = ""
+    @objc dynamic var published = ""
+    @objc dynamic var version = ""
+    @objc dynamic var price = ""
+    @objc dynamic var size = ""
+    @objc dynamic var rated = ""
+    @objc dynamic var compatibility = ""
+    @objc dynamic var appleWatch = ""
+    @objc dynamic var languages = ""
     
     // Support links
-    dynamic var website = ""
-    dynamic var support = ""
+    @objc dynamic var website = ""
+    @objc dynamic var support = ""
     
     // Ratings
-    dynamic var numberOfRating = ""
-    dynamic var numberOfStars: Double = 0.0
+    @objc dynamic var numberOfRating = ""
+    @objc dynamic var numberOfStars: Double = 0.0
     
     // Screenshots
     var screenshotsIphone = List<Screenshot>()

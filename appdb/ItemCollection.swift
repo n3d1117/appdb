@@ -37,7 +37,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.title.text = cydiaApp.name.decoded
             cell.tweaked = cydiaApp.isTweaked
             cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
-            cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
+            // cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
             if let url = URL(string: cydiaApp.image) {
                 cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: Global.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }
@@ -127,9 +127,9 @@ class ItemCollection: FeaturedCell {
         sectionLabel.theme_textColor = Color.title
         
         if #available(iOS 8.2, *) {
-            sectionLabel.font = .systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: UIFontWeightMedium)
+            sectionLabel.font = .systemFont(ofSize: 16.5, weight: UIFont.Weight.medium)
         } else {
-            sectionLabel.font = .systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
+            sectionLabel.font = .systemFont(ofSize: 16.5)
         }
         
         sectionLabel.text = title
@@ -138,7 +138,7 @@ class ItemCollection: FeaturedCell {
         categoryLabel  = PaddingLabel()
         categoryLabel.theme_textColor = Color.invertedTitle
         if #available(iOS 8.2, *) {
-            categoryLabel.font = UIFont.systemFont(ofSize: 10.0, weight: UIFontWeightSemibold)
+            categoryLabel.font = UIFont.systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
         } else {
             categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
         }
@@ -161,24 +161,21 @@ class ItemCollection: FeaturedCell {
     
     @objc fileprivate func openFeaturedCategories(_ sender: AnyObject) { delegateCategory?.openCategories(sender) }
     
-    // MARK: - Change Content Size
-    
+    // MARK: - Change Content Size for sectionLabel
     @objc fileprivate func updateTextSize(notification: NSNotification) {
-        
-        let preferredSize : CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize
-        let fontSizeToSet = preferredSize > 26.0 ? 24.0 : preferredSize
-        
+        let preferredSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize
+        let fontSizeToSet = preferredSize > 24.0 ? 24.0 : preferredSize
         if #available(iOS 8.2, *) {
-            sectionLabel.font = .systemFont(ofSize: fontSizeToSet, weight: UIFontWeightMedium)
+            sectionLabel.font = .systemFont(ofSize: fontSizeToSet, weight: UIFont.Weight.medium)
         } else {
             sectionLabel.font = .systemFont(ofSize: fontSizeToSet)
         }
-        
         sectionLabel.sizeToFit()
-        
         didSetConstraints = false
         setConstraints()
     }
+    
+    // MARK: - Constraints
     
     fileprivate func setConstraints() {
         if !didSetConstraints { didSetConstraints = true
@@ -189,7 +186,7 @@ class ItemCollection: FeaturedCell {
                 collection.bottom == collection.superview!.bottom
             
                 section.left == section.superview!.left + Global.size.margin.value
-                section.right == section.left + sectionLabel.frame.size.width ~ 999
+                section.right == section.left + sectionLabel.frame.size.width ~ Global.notMaxPriority
                 section.bottom == collection.top - (44~~39 - section.height.view.bounds.height) / 2
         
                 seeAll.right == seeAll.superview!.right - Global.size.margin.value
@@ -239,7 +236,7 @@ class ItemCollection: FeaturedCell {
             }
             
             // Fix rare issue where first three Cydia items would not load category text - probs not fixed
-            if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }
+            // if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }
             
             // Update category label
             if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
@@ -261,19 +258,20 @@ class ItemCollection: FeaturedCell {
     
     // Fixes rare issue where first three Cydia items would not load category text.
     // Reloading text after 0.3 seconds, seems to work (tested on iPad Mini 2) - not working for all devices
-    
+    /*
     fileprivate func dirtyFixEmptyCategory() {
         if self.items[0] is CydiaApp {
             delay(0.3) { for i in 0..<3 {
                 if let cell = self.collectionView.cellForItem(at: IndexPath(row: i, section: 0)) as? FeaturedApp {
                     if cell.category.text == "", let cydiaApp = self.items[i] as? CydiaApp {
                         cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
-                        cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
+                        // cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
                     }
                 }
             } }
         }
     }
+    */
     
     // MARK: - Reload items after category change
     

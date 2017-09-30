@@ -11,7 +11,7 @@
 /// If you are diffing a multidimensional structure of values (what might normally be,
 /// for example, a 2D array), you will want to use this.
 public struct SectionedValues<Section: Equatable, Value: Equatable>: Equatable {
-    
+
     /// Initializes the struct with an array of key-pairs.
     ///
     /// - Parameter sectionsAndValues: An array of tuples. The first element in the tuple is
@@ -21,16 +21,16 @@ public struct SectionedValues<Section: Equatable, Value: Equatable>: Equatable {
     public init(_ sectionsAndValues: [(Section, [Value])] = []) {
         self.sectionsAndValues = sectionsAndValues
     }
-    
+
     /// The underlying tuples contained in the receiver
     public let sectionsAndValues: [(Section, [Value])]
-    
+
     internal var sections: [Section] { get { return self.sectionsAndValues.map { $0.0 } } }
     internal subscript(i: Int) -> (Section, [Value]) {
         return self.sectionsAndValues[i]
     }
-    
-    
+
+
     /// Returns a new SectionedValues appending a new key-value pair. I think this might be useful
     /// if you're building up a SectionedValues conditionally? (Well, I hope it is, anyway.)
     ///
@@ -39,7 +39,7 @@ public struct SectionedValues<Section: Equatable, Value: Equatable>: Equatable {
     public func appending(sectionAndValue: (Section, [Value])) -> SectionedValues<Section, Value> {
         return SectionedValues(self.sectionsAndValues + [sectionAndValue])
     }
-    
+
     /// Compares two `SectionedValues` instances
     public static func ==(lhs: SectionedValues<Section, Value>, rhs: SectionedValues<Section, Value>) -> Bool {
         guard lhs.sectionsAndValues.count == rhs.sectionsAndValues.count else { return false }
@@ -56,7 +56,7 @@ public struct SectionedValues<Section: Equatable, Value: Equatable>: Equatable {
 
 // MARK: - Custom grouping
 public extension SectionedValues where Section: Hashable {
-    
+
     /// This is a convenience initializer of sorts for `SectionedValues`. It acknowledges
     /// that sometimes you have an array of things that are naturally "groupable" - maybe
     /// a list of names in an address book, that can be grouped into their first initial,

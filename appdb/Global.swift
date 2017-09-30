@@ -1,5 +1,5 @@
 //
-//  Initializers.swift
+//  Global.swift
 //  appdb
 //
 //  Created by ned on 11/10/2016.
@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 import RealmSwift
+import Cartography
 
 //Utils
 let IS_IPAD = UIDevice.current.userInterfaceIdiom == .pad
+let HAS_NOTCH = UIDevice().userInterfaceIdiom == .phone && UIScreen.main.nativeBounds.height == 2436
 
 struct Global {
     
@@ -35,11 +37,12 @@ struct Global {
     }
     
     // Returns App Version
-    static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "~"
+    static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? tilde
     
     // Utils
     static let bulletPoint = " • "
     static let tilde = "~"
+    static let notMaxPriority = LayoutPriority(rawValue: UILayoutPriority.RawValue(999.0))
     
     // Global sizes used throughout the app
     enum size {

@@ -81,7 +81,7 @@ class DetailsReview: DetailsCell {
                 
                 desc.left == title.left
                 desc.right == title.right
-                desc.top == stars.bottom + 8 ~ 999.0
+                desc.top == stars.bottom + 8 ~ Global.notMaxPriority
                 desc.bottom == desc.superview!.bottom - 15
             }
         }

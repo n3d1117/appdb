@@ -25,7 +25,7 @@ import Cartography
  */
 
 class LoadingTableView: UITableViewController {
-    
+
     var animated: Bool = false
     var showsErrorButton: Bool = true
     
@@ -34,6 +34,12 @@ class LoadingTableView: UITableViewController {
         case loading
         case error
     }
+    
+    var activityIndicator: UIActivityIndicatorView!
+    var errorMessage: UILabel!
+    var secondaryErrorMessage: UILabel!
+    var refreshButton: UIButton!
+    var group = ConstraintGroup()
     
     var state: State = .done {
         didSet {
@@ -78,7 +84,7 @@ class LoadingTableView: UITableViewController {
                 errorMessage = UILabel()
                 errorMessage.theme_textColor = Color.copyrightText
                 if #available(iOS 8.2, *) {
-                    errorMessage.font = .systemFont(ofSize: (26~~24), weight: UIFontWeightSemibold)
+                    errorMessage.font = .systemFont(ofSize: (26~~24), weight: UIFont.Weight.semibold)
                 } else {
                     errorMessage.font = .systemFont(ofSize: (26~~24))
                 }
@@ -109,18 +115,6 @@ class LoadingTableView: UITableViewController {
                 setConstraints(.error)
             }
         }
-    }
-    
-    var activityIndicator: UIActivityIndicatorView!
-    var errorMessage: UILabel!
-    var secondaryErrorMessage: UILabel!
-    var refreshButton: UIButton!
-    var group = ConstraintGroup()
-    
-    // MARK: - ViewDidLoad
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     // MARK: - Orientation

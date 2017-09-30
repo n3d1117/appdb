@@ -21,6 +21,7 @@ class Dummy: FeaturedCell {
         preservesSuperviewLayoutMargins = false
         separatorInset.left = 0
         layoutMargins.left = 0
+        theme_backgroundColor = Color.tableViewBackgroundColor
         contentView.theme_backgroundColor = Color.tableViewBackgroundColor
     }
 

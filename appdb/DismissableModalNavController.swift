@@ -59,7 +59,7 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
     }
     
     // Dismiss view if tapped outside
-    func handleTapBehind(sender: UIGestureRecognizer) {
+    @objc func handleTapBehind(sender: UIGestureRecognizer) {
         
         if IS_IPAD, sender.state == .ended {
             

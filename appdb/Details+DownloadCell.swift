@@ -77,12 +77,11 @@ class DetailsDownload: DetailsCell {
             constrain(host, cracker, button) { host, cracker, button in
                 
                 button.right == button.superview!.right - Global.size.margin.value
-                button.left == button.right - self.button.frame.size.width
                 button.centerY == button.superview!.centerY
                 
-                host.top == host.superview!.top + 10
+                host.top == host.superview!.top + 9
                 host.left == host.superview!.left + Global.size.margin.value
-                host.right <= button.left - 10
+                host.right <= button.left - 9
                 
                 cracker.left == host.left
                 cracker.right <= button.left - Global.size.margin.value

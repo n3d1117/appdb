@@ -11,6 +11,7 @@
 		8117DDAA1F3B05BD00E817C5 /* String+Truncation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117DDA91F3B05BD00E817C5 /* String+Truncation.swift */; };
 		81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236AC81E3B6899009748E0 /* ButtonFactory.swift */; };
 		81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */; };
+		812BE0081F7EB6CE00E581C6 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812BE0071F7EB6CE00E581C6 /* CosmosDistrib.swift */; };
 		812E97881E57730300C1379F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812E97871E57730300C1379F /* Search.swift */; };
 		8138538C1F2B7EA300DC7C54 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8138538B1F2B7EA300DC7C54 /* Kanna.framework */; };
 		814AEBF21E68312C00A207CC /* Details+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814AEBF11E68312C00A207CC /* Details+Information.swift */; };
@@ -19,29 +20,6 @@
 		8167A61F1DAC246000F96AC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8167A61D1DAC246000F96AC2 /* LaunchScreen.storyboard */; };
 		816CEED91DBCE8A2002CFF6E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816CEED81DBCE8A2002CFF6E /* Categories.swift */; };
 		816CEEDB1DBD00E5002CFF6E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */; };
-		8173E8DE1F2B80AE004CCDE1 /* CustomDateFormatTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8C61F2B80AE004CCDE1 /* CustomDateFormatTransform.swift */; };
-		8173E8DF1F2B80AE004CCDE1 /* DataTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8C71F2B80AE004CCDE1 /* DataTransform.swift */; };
-		8173E8E01F2B80AE004CCDE1 /* DateFormatterTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8C81F2B80AE004CCDE1 /* DateFormatterTransform.swift */; };
-		8173E8E11F2B80AE004CCDE1 /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8C91F2B80AE004CCDE1 /* DateTransform.swift */; };
-		8173E8E21F2B80AE004CCDE1 /* DictionaryTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8CA1F2B80AE004CCDE1 /* DictionaryTransform.swift */; };
-		8173E8E31F2B80AE004CCDE1 /* EnumOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8CB1F2B80AE004CCDE1 /* EnumOperators.swift */; };
-		8173E8E41F2B80AE004CCDE1 /* EnumTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8CC1F2B80AE004CCDE1 /* EnumTransform.swift */; };
-		8173E8E51F2B80AE004CCDE1 /* FromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8CD1F2B80AE004CCDE1 /* FromJSON.swift */; };
-		8173E8E61F2B80AE004CCDE1 /* HexColorTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8CE1F2B80AE004CCDE1 /* HexColorTransform.swift */; };
-		8173E8E71F2B80AE004CCDE1 /* ImmutableMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8CF1F2B80AE004CCDE1 /* ImmutableMappable.swift */; };
-		8173E8E81F2B80AE004CCDE1 /* IntegerOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D01F2B80AE004CCDE1 /* IntegerOperators.swift */; };
-		8173E8E91F2B80AE004CCDE1 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D11F2B80AE004CCDE1 /* ISO8601DateTransform.swift */; };
-		8173E8EA1F2B80AE004CCDE1 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D21F2B80AE004CCDE1 /* Map.swift */; };
-		8173E8EB1F2B80AE004CCDE1 /* MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D31F2B80AE004CCDE1 /* MapError.swift */; };
-		8173E8EC1F2B80AE004CCDE1 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D41F2B80AE004CCDE1 /* Mappable.swift */; };
-		8173E8ED1F2B80AE004CCDE1 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D51F2B80AE004CCDE1 /* Mapper.swift */; };
-		8173E8EE1F2B80AE004CCDE1 /* NSDecimalNumberTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D61F2B80AE004CCDE1 /* NSDecimalNumberTransform.swift */; };
-		8173E8EF1F2B80AE004CCDE1 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D81F2B80AE004CCDE1 /* Operators.swift */; };
-		8173E8F01F2B80AE004CCDE1 /* ToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8D91F2B80AE004CCDE1 /* ToJSON.swift */; };
-		8173E8F11F2B80AE004CCDE1 /* TransformOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8DA1F2B80AE004CCDE1 /* TransformOf.swift */; };
-		8173E8F21F2B80AE004CCDE1 /* TransformOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8DB1F2B80AE004CCDE1 /* TransformOperators.swift */; };
-		8173E8F31F2B80AE004CCDE1 /* TransformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8DC1F2B80AE004CCDE1 /* TransformType.swift */; };
-		8173E8F41F2B80AE004CCDE1 /* URLTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8DD1F2B80AE004CCDE1 /* URLTransform.swift */; };
 		8173E8FF1F2B83B8004CCDE1 /* AFIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8F61F2B83B8004CCDE1 /* AFIError.swift */; };
 		8173E9001F2B83B8004CCDE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8F71F2B83B8004CCDE1 /* Image.swift */; };
 		8173E9011F2B83B8004CCDE1 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E8F81F2B83B8004CCDE1 /* ImageCache.swift */; };
@@ -79,41 +57,47 @@
 		819AF4EA1E82CB8700B4D2EF /* Details+Related.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AF4E91E82CB8700B4D2EF /* Details+Related.swift */; };
 		819EC2CA1E40FF4400BA7A50 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC2C61E40FF4400BA7A50 /* Localize.swift */; };
 		819EC2D01E41013D00BA7A50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 819EC2D21E41013D00BA7A50 /* Localizable.strings */; };
+		81A1038E1F7FCA030011F4B3 /* DynamicFontSizeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8112C35B1F7FC6E30014EDB2 /* DynamicFontSizeHelper.swift */; };
+		81AAE8131F8027130068ACB3 /* CustomDateFormatTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE7FF1F80270B0068ACB3 /* CustomDateFormatTransform.swift */; };
+		81AAE8141F8027130068ACB3 /* DataTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8091F80270D0068ACB3 /* DataTransform.swift */; };
+		81AAE8151F8027130068ACB3 /* DateFormatterTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8101F80270E0068ACB3 /* DateFormatterTransform.swift */; };
+		81AAE8161F8027130068ACB3 /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE7FC1F80270B0068ACB3 /* DateTransform.swift */; };
+		81AAE8171F8027130068ACB3 /* DictionaryTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE80B1F80270D0068ACB3 /* DictionaryTransform.swift */; };
+		81AAE8181F8027130068ACB3 /* EnumOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8031F80270C0068ACB3 /* EnumOperators.swift */; };
+		81AAE8191F8027130068ACB3 /* EnumTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8111F80270E0068ACB3 /* EnumTransform.swift */; };
+		81AAE81A1F8027130068ACB3 /* FromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE7FE1F80270B0068ACB3 /* FromJSON.swift */; };
+		81AAE81B1F8027130068ACB3 /* HexColorTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8041F80270C0068ACB3 /* HexColorTransform.swift */; };
+		81AAE81C1F8027130068ACB3 /* ImmutableMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE80F1F80270E0068ACB3 /* ImmutableMappable.swift */; };
+		81AAE81D1F8027130068ACB3 /* IntegerOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE80C1F80270D0068ACB3 /* IntegerOperators.swift */; };
+		81AAE81E1F8027130068ACB3 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE80A1F80270D0068ACB3 /* ISO8601DateTransform.swift */; };
+		81AAE81F1F8027130068ACB3 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE80E1F80270D0068ACB3 /* Map.swift */; };
+		81AAE8201F8027130068ACB3 /* MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8051F80270C0068ACB3 /* MapError.swift */; };
+		81AAE8211F8027130068ACB3 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8061F80270C0068ACB3 /* Mappable.swift */; };
+		81AAE8221F8027130068ACB3 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE80D1F80270D0068ACB3 /* Mapper.swift */; };
+		81AAE8231F8027130068ACB3 /* NSDecimalNumberTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8071F80270C0068ACB3 /* NSDecimalNumberTransform.swift */; };
+		81AAE8241F8027130068ACB3 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE7FD1F80270B0068ACB3 /* Operators.swift */; };
+		81AAE8251F8027130068ACB3 /* ToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8081F80270D0068ACB3 /* ToJSON.swift */; };
+		81AAE8261F8027130068ACB3 /* TransformOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8121F80270E0068ACB3 /* TransformOf.swift */; };
+		81AAE8271F8027130068ACB3 /* TransformOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8021F80270C0068ACB3 /* TransformOperators.swift */; };
+		81AAE8281F8027130068ACB3 /* TransformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8011F80270C0068ACB3 /* TransformType.swift */; };
+		81AAE8291F8027130068ACB3 /* URLTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AAE8001F80270C0068ACB3 /* URLTransform.swift */; };
 		81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB37AD1DAC30BD003A586F /* TabBarController.swift */; };
 		81BE066C1E6C2EA500AD9827 /* Details+ExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE066B1E6C2EA500AD9827 /* Details+ExternalLink.swift */; };
 		81BE066F1E6C52FE00AD9827 /* Details+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE066E1E6C52FE00AD9827 /* Details+Publisher.swift */; };
 		81BE06721E6CB6DE00AD9827 /* Details+SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */; };
-		81C5BAAB1F2B4F0000CA10D4 /* Dwifft+SectionedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAAA1F2B4F0000CA10D4 /* Dwifft+SectionedValues.swift */; };
-		81C5BAAD1F2B506400CA10D4 /* Cosmos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAAC1F2B506400CA10D4 /* Cosmos.swift */; };
-		81C5BAC11F2B565900CA10D4 /* NSObject+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAAE1F2B565900CA10D4 /* NSObject+Theme.swift */; };
-		81C5BAC21F2B565900CA10D4 /* ThemeActivityIndicatorViewStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAAF1F2B565900CA10D4 /* ThemeActivityIndicatorViewStylePicker.swift */; };
-		81C5BAC31F2B565900CA10D4 /* ThemeBarStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB01F2B565900CA10D4 /* ThemeBarStylePicker.swift */; };
-		81C5BAC41F2B565900CA10D4 /* ThemeCGColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB11F2B565900CA10D4 /* ThemeCGColorPicker.swift */; };
-		81C5BAC51F2B565900CA10D4 /* ThemeCGFloatPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB21F2B565900CA10D4 /* ThemeCGFloatPicker.swift */; };
-		81C5BAC61F2B565900CA10D4 /* ThemeColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB31F2B565900CA10D4 /* ThemeColorPicker.swift */; };
-		81C5BAC71F2B565900CA10D4 /* ThemeDictionaryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB41F2B565900CA10D4 /* ThemeDictionaryPicker.swift */; };
-		81C5BAC81F2B565900CA10D4 /* ThemeFontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB51F2B565900CA10D4 /* ThemeFontPicker.swift */; };
-		81C5BAC91F2B565900CA10D4 /* ThemeImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB61F2B565900CA10D4 /* ThemeImagePicker.swift */; };
-		81C5BACA1F2B565900CA10D4 /* ThemeKeyboardAppearancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB71F2B565900CA10D4 /* ThemeKeyboardAppearancePicker.swift */; };
-		81C5BACB1F2B565900CA10D4 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB81F2B565900CA10D4 /* ThemeManager.swift */; };
-		81C5BACC1F2B565900CA10D4 /* ThemeManager+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAB91F2B565900CA10D4 /* ThemeManager+Index.swift */; };
-		81C5BACD1F2B565900CA10D4 /* ThemeManager+OC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BABA1F2B565900CA10D4 /* ThemeManager+OC.swift */; };
-		81C5BACE1F2B565900CA10D4 /* ThemeManager+Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BABB1F2B565900CA10D4 /* ThemeManager+Plist.swift */; };
-		81C5BACF1F2B565900CA10D4 /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BABC1F2B565900CA10D4 /* ThemePicker.swift */; };
-		81C5BAD01F2B565900CA10D4 /* ThemeStatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BABD1F2B565900CA10D4 /* ThemeStatePicker.swift */; };
-		81C5BAD11F2B565900CA10D4 /* ThemeStatusBarStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BABE1F2B565900CA10D4 /* ThemeStatusBarStylePicker.swift */; };
-		81C5BAD21F2B565900CA10D4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BABF1F2B565900CA10D4 /* UIColorExtension.swift */; };
-		81C5BAD31F2B565900CA10D4 /* UIKit+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5BAC01F2B565900CA10D4 /* UIKit+Theme.swift */; };
 		81D661761E5A0B6C00BB6461 /* Details+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D661751E5A0B6C00BB6461 /* Details+Extension.swift */; };
 		81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DEB2A81E7DD03100A94B26 /* Details+DownloadCell.swift */; };
 		81DEB2AC1E7DD4A900A94B26 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DEB2AB1E7DD4A900A94B26 /* RoundedButton.swift */; };
 		81DEB2AE1E7DDF3200A94B26 /* Details+VersionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DEB2AD1E7DDF3200A94B26 /* Details+VersionHeader.swift */; };
 		81E48B101E707C46005FBBEC /* Details+Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E48B0F1E707C46005FBBEC /* Details+Review.swift */; };
+		81E48CBA1F7FDF2000B28069 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E48CB91F7FDF1C00B28069 /* Dwifft.swift */; };
+		81E48CBB1F7FDF2000B28069 /* Dwifft+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E48CB71F7FDF1B00B28069 /* Dwifft+UIKit.swift */; };
+		81E48CBC1F7FDF2000B28069 /* SectionedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E48CB81F7FDF1B00B28069 /* SectionedValues.swift */; };
 		81E7CBFB1E1FC0F2004AF156 /* LoadingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E7CBFA1E1FC0F2004AF156 /* LoadingTableView.swift */; };
 		81EC00651DAD7514009EEFFA /* Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00641DAD7514009EEFFA /* Featured.swift */; };
 		81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00671DAD76EC009EEFFA /* Extensions.swift */; };
 		81EC006A1DAD7704009EEFFA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00691DAD7704009EEFFA /* Colors.swift */; };
-		81EC006C1DAD7728009EEFFA /* Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC006B1DAD7728009EEFFA /* Initializers.swift */; };
+		81EC006C1DAD7728009EEFFA /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC006B1DAD7728009EEFFA /* Global.swift */; };
 		81EC006E1DAD7915009EEFFA /* ItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC006D1DAD7915009EEFFA /* ItemCollection.swift */; };
 		81EC00711DAD7979009EEFFA /* FeaturedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00701DAD7979009EEFFA /* FeaturedApp.swift */; };
 		81EC00731DAD79A8009EEFFA /* FeaturedBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00721DAD79A8009EEFFA /* FeaturedBook.swift */; };
@@ -128,20 +112,40 @@
 		81F1FE7F1E5AF12400C1CD44 /* DismissableModalNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE7E1E5AF12400C1CD44 /* DismissableModalNavController.swift */; };
 		81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE821E5B123A00C1CD44 /* Details+Header.swift */; };
 		81F1FEA41E5B7DEF00C1CD44 /* AlamofireObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE941E5B73C700C1CD44 /* AlamofireObjectMapper.swift */; };
-		81F1FEA51E5B7DF900C1CD44 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FEA01E5B7C1700C1CD44 /* Dwifft.swift */; };
-		81F1FEA61E5B7DF900C1CD44 /* Dwifft+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FEA11E5B7C1700C1CD44 /* Dwifft+UIKit.swift */; };
 		81F1FEBB1E5B7E2B00C1CD44 /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC2C71E40FF4400BA7A50 /* String+LocalizeBundle.swift */; };
 		81F1FEBC1E5B7E2B00C1CD44 /* String+LocalizedBundleTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC2C81E40FF4400BA7A50 /* String+LocalizedBundleTableName.swift */; };
 		81F1FEBD1E5B7E2B00C1CD44 /* String+LocalizeTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC2C91E40FF4400BA7A50 /* String+LocalizeTableName.swift */; };
 		81F3D6581E1310BA003CD808 /* ILTranslucentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3D6571E1310BA003CD808 /* ILTranslucentView.swift */; };
 		81F504E61E5CE4F70000FACC /* DimmableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F504E51E5CE4F70000FACC /* DimmableView.swift */; };
+		81F986A31F7ECD690032C3FB /* NSObject+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986931F7ECCCC0032C3FB /* NSObject+Theme.swift */; };
+		81F986A41F7ECD690032C3FB /* ThemeActivityIndicatorViewStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986901F7ECCCC0032C3FB /* ThemeActivityIndicatorViewStylePicker.swift */; };
+		81F986A51F7ECD690032C3FB /* ThemeBarStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9869C1F7ECCCD0032C3FB /* ThemeBarStylePicker.swift */; };
+		81F986A61F7ECD690032C3FB /* ThemeCGColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986A21F7ECCCE0032C3FB /* ThemeCGColorPicker.swift */; };
+		81F986A71F7ECD690032C3FB /* ThemeCGFloatPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986911F7ECCCC0032C3FB /* ThemeCGFloatPicker.swift */; };
+		81F986A81F7ECD690032C3FB /* ThemeColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986921F7ECCCC0032C3FB /* ThemeColorPicker.swift */; };
+		81F986A91F7ECD690032C3FB /* ThemeDictionaryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986961F7ECCCD0032C3FB /* ThemeDictionaryPicker.swift */; };
+		81F986AA1F7ECD690032C3FB /* ThemeFontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986991F7ECCCD0032C3FB /* ThemeFontPicker.swift */; };
+		81F986AB1F7ECD690032C3FB /* ThemeImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986951F7ECCCD0032C3FB /* ThemeImagePicker.swift */; };
+		81F986AC1F7ECD690032C3FB /* ThemeKeyboardAppearancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986971F7ECCCD0032C3FB /* ThemeKeyboardAppearancePicker.swift */; };
+		81F986AD1F7ECD690032C3FB /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9869B1F7ECCCD0032C3FB /* ThemeManager.swift */; };
+		81F986AE1F7ECD690032C3FB /* ThemeManager+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9869F1F7ECCCD0032C3FB /* ThemeManager+Index.swift */; };
+		81F986AF1F7ECD690032C3FB /* ThemeManager+OC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9869E1F7ECCCD0032C3FB /* ThemeManager+OC.swift */; };
+		81F986B01F7ECD690032C3FB /* ThemeManager+Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986941F7ECCCD0032C3FB /* ThemeManager+Plist.swift */; };
+		81F986B11F7ECD690032C3FB /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986981F7ECCCD0032C3FB /* ThemePicker.swift */; };
+		81F986B21F7ECD690032C3FB /* ThemeStatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9869A1F7ECCCD0032C3FB /* ThemeStatePicker.swift */; };
+		81F986B31F7ECD690032C3FB /* ThemeStatusBarStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9869D1F7ECCCD0032C3FB /* ThemeStatusBarStylePicker.swift */; };
+		81F986B41F7ECD690032C3FB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986A11F7ECCCD0032C3FB /* UIColorExtension.swift */; };
+		81F986B51F7ECD690032C3FB /* UIKit+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F986A01F7ECCCD0032C3FB /* UIKit+Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		810811D21E8D008E008C6EDB /* Details+DownloadEmptyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+DownloadEmptyCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		8112C34B1F7FACDC0014EDB2 /* LifetimeTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LifetimeTracker.framework; path = Carthage/Build/iOS/LifetimeTracker.framework; sourceTree = "<group>"; };
+		8112C35B1F7FC6E30014EDB2 /* DynamicFontSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontSizeHelper.swift; sourceTree = "<group>"; };
 		8117DDA91F3B05BD00E817C5 /* String+Truncation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Truncation.swift"; sourceTree = "<group>"; };
 		81236AC81E3B6899009748E0 /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ButtonFactory.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		812BE0071F7EB6CE00E581C6 /* CosmosDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		812E97871E57730300C1379F /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		8138538B1F2B7EA300DC7C54 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = Carthage/Build/iOS/Kanna.framework; sourceTree = "<group>"; };
 		814AEBF11E68312C00A207CC /* Details+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Information.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -153,29 +157,6 @@
 		8167A6261DAC24F700F96AC2 /* appdb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appdb.entitlements; sourceTree = "<group>"; };
 		816CEED81DBCE8A2002CFF6E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Categories.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8173E8C61F2B80AE004CCDE1 /* CustomDateFormatTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDateFormatTransform.swift; sourceTree = "<group>"; };
-		8173E8C71F2B80AE004CCDE1 /* DataTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransform.swift; sourceTree = "<group>"; };
-		8173E8C81F2B80AE004CCDE1 /* DateFormatterTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterTransform.swift; sourceTree = "<group>"; };
-		8173E8C91F2B80AE004CCDE1 /* DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTransform.swift; sourceTree = "<group>"; };
-		8173E8CA1F2B80AE004CCDE1 /* DictionaryTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTransform.swift; sourceTree = "<group>"; };
-		8173E8CB1F2B80AE004CCDE1 /* EnumOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumOperators.swift; sourceTree = "<group>"; };
-		8173E8CC1F2B80AE004CCDE1 /* EnumTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumTransform.swift; sourceTree = "<group>"; };
-		8173E8CD1F2B80AE004CCDE1 /* FromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromJSON.swift; sourceTree = "<group>"; };
-		8173E8CE1F2B80AE004CCDE1 /* HexColorTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColorTransform.swift; sourceTree = "<group>"; };
-		8173E8CF1F2B80AE004CCDE1 /* ImmutableMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmutableMappable.swift; sourceTree = "<group>"; };
-		8173E8D01F2B80AE004CCDE1 /* IntegerOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IntegerOperators.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8173E8D11F2B80AE004CCDE1 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
-		8173E8D21F2B80AE004CCDE1 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Map.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8173E8D31F2B80AE004CCDE1 /* MapError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapError.swift; sourceTree = "<group>"; };
-		8173E8D41F2B80AE004CCDE1 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
-		8173E8D51F2B80AE004CCDE1 /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
-		8173E8D61F2B80AE004CCDE1 /* NSDecimalNumberTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDecimalNumberTransform.swift; sourceTree = "<group>"; };
-		8173E8D81F2B80AE004CCDE1 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
-		8173E8D91F2B80AE004CCDE1 /* ToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToJSON.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8173E8DA1F2B80AE004CCDE1 /* TransformOf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformOf.swift; sourceTree = "<group>"; };
-		8173E8DB1F2B80AE004CCDE1 /* TransformOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TransformOperators.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8173E8DC1F2B80AE004CCDE1 /* TransformType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformType.swift; sourceTree = "<group>"; };
-		8173E8DD1F2B80AE004CCDE1 /* URLTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTransform.swift; sourceTree = "<group>"; };
 		8173E8F61F2B83B8004CCDE1 /* AFIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFIError.swift; sourceTree = "<group>"; };
 		8173E8F71F2B83B8004CCDE1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		8173E8F81F2B83B8004CCDE1 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -217,43 +198,48 @@
 		819EC2C91E40FF4400BA7A50 /* String+LocalizeTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeTableName.swift"; sourceTree = "<group>"; };
 		819EC2D11E41013D00BA7A50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
 		819EC2D31E41016D00BA7A50 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
+		81AAE7FC1F80270B0068ACB3 /* DateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTransform.swift; sourceTree = "<group>"; };
+		81AAE7FD1F80270B0068ACB3 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		81AAE7FE1F80270B0068ACB3 /* FromJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromJSON.swift; sourceTree = "<group>"; };
+		81AAE7FF1F80270B0068ACB3 /* CustomDateFormatTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatTransform.swift; sourceTree = "<group>"; };
+		81AAE8001F80270C0068ACB3 /* URLTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTransform.swift; sourceTree = "<group>"; };
+		81AAE8011F80270C0068ACB3 /* TransformType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformType.swift; sourceTree = "<group>"; };
+		81AAE8021F80270C0068ACB3 /* TransformOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformOperators.swift; sourceTree = "<group>"; };
+		81AAE8031F80270C0068ACB3 /* EnumOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumOperators.swift; sourceTree = "<group>"; };
+		81AAE8041F80270C0068ACB3 /* HexColorTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColorTransform.swift; sourceTree = "<group>"; };
+		81AAE8051F80270C0068ACB3 /* MapError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapError.swift; sourceTree = "<group>"; };
+		81AAE8061F80270C0068ACB3 /* Mappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		81AAE8071F80270C0068ACB3 /* NSDecimalNumberTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDecimalNumberTransform.swift; sourceTree = "<group>"; };
+		81AAE8081F80270D0068ACB3 /* ToJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToJSON.swift; sourceTree = "<group>"; };
+		81AAE8091F80270D0068ACB3 /* DataTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransform.swift; sourceTree = "<group>"; };
+		81AAE80A1F80270D0068ACB3 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
+		81AAE80B1F80270D0068ACB3 /* DictionaryTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTransform.swift; sourceTree = "<group>"; };
+		81AAE80C1F80270D0068ACB3 /* IntegerOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerOperators.swift; sourceTree = "<group>"; };
+		81AAE80D1F80270D0068ACB3 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		81AAE80E1F80270D0068ACB3 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		81AAE80F1F80270E0068ACB3 /* ImmutableMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableMappable.swift; sourceTree = "<group>"; };
+		81AAE8101F80270E0068ACB3 /* DateFormatterTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTransform.swift; sourceTree = "<group>"; };
+		81AAE8111F80270E0068ACB3 /* EnumTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTransform.swift; sourceTree = "<group>"; };
+		81AAE8121F80270E0068ACB3 /* TransformOf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformOf.swift; sourceTree = "<group>"; };
 		81AB37AD1DAC30BD003A586F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabBarController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81BE066B1E6C2EA500AD9827 /* Details+ExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+ExternalLink.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81BE066E1E6C52FE00AD9827 /* Details+Publisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+Publisher.swift"; sourceTree = "<group>"; };
 		81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+SegmentControl.swift"; sourceTree = "<group>"; };
 		81C114C11E60699A00EE17A6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
-		81C5BAAA1F2B4F0000CA10D4 /* Dwifft+SectionedValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dwifft+SectionedValues.swift"; sourceTree = "<group>"; };
-		81C5BAAC1F2B506400CA10D4 /* Cosmos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Cosmos.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		81C5BAAE1F2B565900CA10D4 /* NSObject+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "NSObject+Theme.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		81C5BAAF1F2B565900CA10D4 /* ThemeActivityIndicatorViewStylePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeActivityIndicatorViewStylePicker.swift; sourceTree = "<group>"; };
-		81C5BAB01F2B565900CA10D4 /* ThemeBarStylePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeBarStylePicker.swift; sourceTree = "<group>"; };
-		81C5BAB11F2B565900CA10D4 /* ThemeCGColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeCGColorPicker.swift; sourceTree = "<group>"; };
-		81C5BAB21F2B565900CA10D4 /* ThemeCGFloatPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeCGFloatPicker.swift; sourceTree = "<group>"; };
-		81C5BAB31F2B565900CA10D4 /* ThemeColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColorPicker.swift; sourceTree = "<group>"; };
-		81C5BAB41F2B565900CA10D4 /* ThemeDictionaryPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeDictionaryPicker.swift; sourceTree = "<group>"; };
-		81C5BAB51F2B565900CA10D4 /* ThemeFontPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeFontPicker.swift; sourceTree = "<group>"; };
-		81C5BAB61F2B565900CA10D4 /* ThemeImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImagePicker.swift; sourceTree = "<group>"; };
-		81C5BAB71F2B565900CA10D4 /* ThemeKeyboardAppearancePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeKeyboardAppearancePicker.swift; sourceTree = "<group>"; };
-		81C5BAB81F2B565900CA10D4 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
-		81C5BAB91F2B565900CA10D4 /* ThemeManager+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThemeManager+Index.swift"; sourceTree = "<group>"; };
-		81C5BABA1F2B565900CA10D4 /* ThemeManager+OC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThemeManager+OC.swift"; sourceTree = "<group>"; };
-		81C5BABB1F2B565900CA10D4 /* ThemeManager+Plist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThemeManager+Plist.swift"; sourceTree = "<group>"; };
-		81C5BABC1F2B565900CA10D4 /* ThemePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemePicker.swift; sourceTree = "<group>"; };
-		81C5BABD1F2B565900CA10D4 /* ThemeStatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeStatePicker.swift; sourceTree = "<group>"; };
-		81C5BABE1F2B565900CA10D4 /* ThemeStatusBarStylePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeStatusBarStylePicker.swift; sourceTree = "<group>"; };
-		81C5BABF1F2B565900CA10D4 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		81C5BAC01F2B565900CA10D4 /* UIKit+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIKit+Theme.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81D661751E5A0B6C00BB6461 /* Details+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81DEB2A81E7DD03100A94B26 /* Details+DownloadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+DownloadCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81DEB2AB1E7DD4A900A94B26 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RoundedButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81DEB2AD1E7DDF3200A94B26 /* Details+VersionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+VersionHeader.swift"; sourceTree = "<group>"; };
 		81E48B0F1E707C46005FBBEC /* Details+Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Review.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		81E48CB71F7FDF1B00B28069 /* Dwifft+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dwifft+UIKit.swift"; sourceTree = "<group>"; };
+		81E48CB81F7FDF1B00B28069 /* SectionedValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedValues.swift; sourceTree = "<group>"; };
+		81E48CB91F7FDF1C00B28069 /* Dwifft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dwifft.swift; sourceTree = "<group>"; };
 		81E7CBFA1E1FC0F2004AF156 /* LoadingTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoadingTableView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC00641DAD7514009EEFFA /* Featured.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Featured.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC00671DAD76EC009EEFFA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Extensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC00691DAD7704009EEFFA /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		81EC006B1DAD7728009EEFFA /* Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Initializers.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		81EC006B1DAD7728009EEFFA /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Global.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC006D1DAD7915009EEFFA /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ItemCollection.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC00701DAD7979009EEFFA /* FeaturedApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FeaturedApp.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC00721DAD79A8009EEFFA /* FeaturedBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FeaturedBook.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -268,10 +254,29 @@
 		81F1FE7E1E5AF12400C1CD44 /* DismissableModalNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DismissableModalNavController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F1FE821E5B123A00C1CD44 /* Details+Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Header.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F1FE941E5B73C700C1CD44 /* AlamofireObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireObjectMapper.swift; sourceTree = "<group>"; };
-		81F1FEA01E5B7C1700C1CD44 /* Dwifft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Dwifft.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		81F1FEA11E5B7C1700C1CD44 /* Dwifft+UIKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Dwifft+UIKit.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F3D6571E1310BA003CD808 /* ILTranslucentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ILTranslucentView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F504E51E5CE4F70000FACC /* DimmableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmableView.swift; sourceTree = "<group>"; };
+		81F9868C1F7EC9790032C3FB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		81F9868E1F7EC9800032C3FB /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
+		81F986901F7ECCCC0032C3FB /* ThemeActivityIndicatorViewStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeActivityIndicatorViewStylePicker.swift; sourceTree = "<group>"; };
+		81F986911F7ECCCC0032C3FB /* ThemeCGFloatPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCGFloatPicker.swift; sourceTree = "<group>"; };
+		81F986921F7ECCCC0032C3FB /* ThemeColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorPicker.swift; sourceTree = "<group>"; };
+		81F986931F7ECCCC0032C3FB /* NSObject+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Theme.swift"; sourceTree = "<group>"; };
+		81F986941F7ECCCD0032C3FB /* ThemeManager+Plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeManager+Plist.swift"; sourceTree = "<group>"; };
+		81F986951F7ECCCD0032C3FB /* ThemeImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeImagePicker.swift; sourceTree = "<group>"; };
+		81F986961F7ECCCD0032C3FB /* ThemeDictionaryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDictionaryPicker.swift; sourceTree = "<group>"; };
+		81F986971F7ECCCD0032C3FB /* ThemeKeyboardAppearancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeKeyboardAppearancePicker.swift; sourceTree = "<group>"; };
+		81F986981F7ECCCD0032C3FB /* ThemePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePicker.swift; sourceTree = "<group>"; };
+		81F986991F7ECCCD0032C3FB /* ThemeFontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFontPicker.swift; sourceTree = "<group>"; };
+		81F9869A1F7ECCCD0032C3FB /* ThemeStatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStatePicker.swift; sourceTree = "<group>"; };
+		81F9869B1F7ECCCD0032C3FB /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		81F9869C1F7ECCCD0032C3FB /* ThemeBarStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeBarStylePicker.swift; sourceTree = "<group>"; };
+		81F9869D1F7ECCCD0032C3FB /* ThemeStatusBarStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStatusBarStylePicker.swift; sourceTree = "<group>"; };
+		81F9869E1F7ECCCD0032C3FB /* ThemeManager+OC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeManager+OC.swift"; sourceTree = "<group>"; };
+		81F9869F1F7ECCCD0032C3FB /* ThemeManager+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeManager+Index.swift"; sourceTree = "<group>"; };
+		81F986A01F7ECCCD0032C3FB /* UIKit+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Theme.swift"; sourceTree = "<group>"; };
+		81F986A11F7ECCCD0032C3FB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		81F986A21F7ECCCE0032C3FB /* ThemeCGColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCGColorPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +296,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8112C35A1F7FC6D40014EDB2 /* DynamicFontSizeHelper */ = {
+			isa = PBXGroup;
+			children = (
+				8112C35B1F7FC6E30014EDB2 /* DynamicFontSizeHelper.swift */,
+			);
+			name = DynamicFontSizeHelper;
+			sourceTree = "<group>";
+		};
 		81236AC71E3B6870009748E0 /* • ButtonFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,36 +376,6 @@
 				816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		8173E8C51F2B804E004CCDE1 /* ObjectMapper */ = {
-			isa = PBXGroup;
-			children = (
-				8173E8C61F2B80AE004CCDE1 /* CustomDateFormatTransform.swift */,
-				8173E8C71F2B80AE004CCDE1 /* DataTransform.swift */,
-				8173E8C81F2B80AE004CCDE1 /* DateFormatterTransform.swift */,
-				8173E8C91F2B80AE004CCDE1 /* DateTransform.swift */,
-				8173E8CA1F2B80AE004CCDE1 /* DictionaryTransform.swift */,
-				8173E8CB1F2B80AE004CCDE1 /* EnumOperators.swift */,
-				8173E8CC1F2B80AE004CCDE1 /* EnumTransform.swift */,
-				8173E8CD1F2B80AE004CCDE1 /* FromJSON.swift */,
-				8173E8CE1F2B80AE004CCDE1 /* HexColorTransform.swift */,
-				8173E8CF1F2B80AE004CCDE1 /* ImmutableMappable.swift */,
-				8173E8D01F2B80AE004CCDE1 /* IntegerOperators.swift */,
-				8173E8D11F2B80AE004CCDE1 /* ISO8601DateTransform.swift */,
-				8173E8D21F2B80AE004CCDE1 /* Map.swift */,
-				8173E8D31F2B80AE004CCDE1 /* MapError.swift */,
-				8173E8D41F2B80AE004CCDE1 /* Mappable.swift */,
-				8173E8D51F2B80AE004CCDE1 /* Mapper.swift */,
-				8173E8D61F2B80AE004CCDE1 /* NSDecimalNumberTransform.swift */,
-				8173E8D81F2B80AE004CCDE1 /* Operators.swift */,
-				8173E8D91F2B80AE004CCDE1 /* ToJSON.swift */,
-				8173E8DA1F2B80AE004CCDE1 /* TransformOf.swift */,
-				8173E8DB1F2B80AE004CCDE1 /* TransformOperators.swift */,
-				8173E8DC1F2B80AE004CCDE1 /* TransformType.swift */,
-				8173E8DD1F2B80AE004CCDE1 /* URLTransform.swift */,
-			);
-			name = ObjectMapper;
 			sourceTree = "<group>";
 		};
 		8173E8F51F2B82DD004CCDE1 /* AlamofireImage */ = {
@@ -498,10 +481,11 @@
 				8173E9081F2B83EA004CCDE1 /* AlamofireNetworkActivityIndicator */,
 				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
 				81F504C31E5CAE840000FACC /* Cosmos */,
-				81F1FE9F1E5B7C0300C1CD44 /* Dwifft */,
+				81E48CB61F7FDEED00B28069 /* Dwifft */,
+				8112C35A1F7FC6D40014EDB2 /* DynamicFontSizeHelper */,
 				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
 				819EC2C51E40FF3600BA7A50 /* Localize-Swift */,
-				8173E8C51F2B804E004CCDE1 /* ObjectMapper */,
+				81AAE7FB1F8026EB0068ACB3 /* ObjectMapper */,
 				81939B4E1E3BC74400179615 /* SwiftTheme */,
 			);
 			name = Resources;
@@ -536,25 +520,25 @@
 		81939B4E1E3BC74400179615 /* SwiftTheme */ = {
 			isa = PBXGroup;
 			children = (
-				81C5BAAE1F2B565900CA10D4 /* NSObject+Theme.swift */,
-				81C5BAAF1F2B565900CA10D4 /* ThemeActivityIndicatorViewStylePicker.swift */,
-				81C5BAB01F2B565900CA10D4 /* ThemeBarStylePicker.swift */,
-				81C5BAB11F2B565900CA10D4 /* ThemeCGColorPicker.swift */,
-				81C5BAB21F2B565900CA10D4 /* ThemeCGFloatPicker.swift */,
-				81C5BAB31F2B565900CA10D4 /* ThemeColorPicker.swift */,
-				81C5BAB41F2B565900CA10D4 /* ThemeDictionaryPicker.swift */,
-				81C5BAB51F2B565900CA10D4 /* ThemeFontPicker.swift */,
-				81C5BAB61F2B565900CA10D4 /* ThemeImagePicker.swift */,
-				81C5BAB71F2B565900CA10D4 /* ThemeKeyboardAppearancePicker.swift */,
-				81C5BAB81F2B565900CA10D4 /* ThemeManager.swift */,
-				81C5BAB91F2B565900CA10D4 /* ThemeManager+Index.swift */,
-				81C5BABA1F2B565900CA10D4 /* ThemeManager+OC.swift */,
-				81C5BABB1F2B565900CA10D4 /* ThemeManager+Plist.swift */,
-				81C5BABC1F2B565900CA10D4 /* ThemePicker.swift */,
-				81C5BABD1F2B565900CA10D4 /* ThemeStatePicker.swift */,
-				81C5BABE1F2B565900CA10D4 /* ThemeStatusBarStylePicker.swift */,
-				81C5BABF1F2B565900CA10D4 /* UIColorExtension.swift */,
-				81C5BAC01F2B565900CA10D4 /* UIKit+Theme.swift */,
+				81F986931F7ECCCC0032C3FB /* NSObject+Theme.swift */,
+				81F986901F7ECCCC0032C3FB /* ThemeActivityIndicatorViewStylePicker.swift */,
+				81F9869C1F7ECCCD0032C3FB /* ThemeBarStylePicker.swift */,
+				81F986A21F7ECCCE0032C3FB /* ThemeCGColorPicker.swift */,
+				81F986911F7ECCCC0032C3FB /* ThemeCGFloatPicker.swift */,
+				81F986921F7ECCCC0032C3FB /* ThemeColorPicker.swift */,
+				81F986961F7ECCCD0032C3FB /* ThemeDictionaryPicker.swift */,
+				81F986991F7ECCCD0032C3FB /* ThemeFontPicker.swift */,
+				81F986951F7ECCCD0032C3FB /* ThemeImagePicker.swift */,
+				81F986971F7ECCCD0032C3FB /* ThemeKeyboardAppearancePicker.swift */,
+				81F9869B1F7ECCCD0032C3FB /* ThemeManager.swift */,
+				81F9869F1F7ECCCD0032C3FB /* ThemeManager+Index.swift */,
+				81F9869E1F7ECCCD0032C3FB /* ThemeManager+OC.swift */,
+				81F986941F7ECCCD0032C3FB /* ThemeManager+Plist.swift */,
+				81F986981F7ECCCD0032C3FB /* ThemePicker.swift */,
+				81F9869A1F7ECCCD0032C3FB /* ThemeStatePicker.swift */,
+				81F9869D1F7ECCCD0032C3FB /* ThemeStatusBarStylePicker.swift */,
+				81F986A11F7ECCCD0032C3FB /* UIColorExtension.swift */,
+				81F986A01F7ECCCD0032C3FB /* UIKit+Theme.swift */,
 			);
 			name = SwiftTheme;
 			sourceTree = "<group>";
@@ -594,9 +578,42 @@
 			name = "Localize-Swift";
 			sourceTree = "<group>";
 		};
+		81AAE7FB1F8026EB0068ACB3 /* ObjectMapper */ = {
+			isa = PBXGroup;
+			children = (
+				81AAE7FF1F80270B0068ACB3 /* CustomDateFormatTransform.swift */,
+				81AAE8091F80270D0068ACB3 /* DataTransform.swift */,
+				81AAE8101F80270E0068ACB3 /* DateFormatterTransform.swift */,
+				81AAE7FC1F80270B0068ACB3 /* DateTransform.swift */,
+				81AAE80B1F80270D0068ACB3 /* DictionaryTransform.swift */,
+				81AAE8031F80270C0068ACB3 /* EnumOperators.swift */,
+				81AAE8111F80270E0068ACB3 /* EnumTransform.swift */,
+				81AAE7FE1F80270B0068ACB3 /* FromJSON.swift */,
+				81AAE8041F80270C0068ACB3 /* HexColorTransform.swift */,
+				81AAE80F1F80270E0068ACB3 /* ImmutableMappable.swift */,
+				81AAE80C1F80270D0068ACB3 /* IntegerOperators.swift */,
+				81AAE80A1F80270D0068ACB3 /* ISO8601DateTransform.swift */,
+				81AAE80E1F80270D0068ACB3 /* Map.swift */,
+				81AAE8051F80270C0068ACB3 /* MapError.swift */,
+				81AAE8061F80270C0068ACB3 /* Mappable.swift */,
+				81AAE80D1F80270D0068ACB3 /* Mapper.swift */,
+				81AAE8071F80270C0068ACB3 /* NSDecimalNumberTransform.swift */,
+				81AAE7FD1F80270B0068ACB3 /* Operators.swift */,
+				81AAE8081F80270D0068ACB3 /* ToJSON.swift */,
+				81AAE8121F80270E0068ACB3 /* TransformOf.swift */,
+				81AAE8021F80270C0068ACB3 /* TransformOperators.swift */,
+				81AAE8011F80270C0068ACB3 /* TransformType.swift */,
+				81AAE8001F80270C0068ACB3 /* URLTransform.swift */,
+			);
+			name = ObjectMapper;
+			sourceTree = "<group>";
+		};
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8112C34B1F7FACDC0014EDB2 /* LifetimeTracker.framework */,
+				81F9868E1F7EC9800032C3FB /* Dwifft.framework */,
+				81F9868C1F7EC9790032C3FB /* ObjectMapper.framework */,
 				8138538B1F2B7EA300DC7C54 /* Kanna.framework */,
 				81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */,
 				81C114C11E60699A00EE17A6 /* libxml2.tbd */,
@@ -658,6 +675,16 @@
 			name = Reviews;
 			sourceTree = "<group>";
 		};
+		81E48CB61F7FDEED00B28069 /* Dwifft */ = {
+			isa = PBXGroup;
+			children = (
+				81E48CB91F7FDF1C00B28069 /* Dwifft.swift */,
+				81E48CB71F7FDF1B00B28069 /* Dwifft+UIKit.swift */,
+				81E48CB81F7FDF1B00B28069 /* SectionedValues.swift */,
+			);
+			name = Dwifft;
+			sourceTree = "<group>";
+		};
 		81E7CBF91E1FC0DE004AF156 /* • LoadingTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,7 +719,7 @@
 			children = (
 				8167A6121DAC246000F96AC2 /* AppDelegate.swift */,
 				81AB37AD1DAC30BD003A586F /* TabBarController.swift */,
-				81EC006B1DAD7728009EEFFA /* Initializers.swift */,
+				81EC006B1DAD7728009EEFFA /* Global.swift */,
 				81EC00671DAD76EC009EEFFA /* Extensions.swift */,
 				81EC00691DAD7704009EEFFA /* Colors.swift */,
 				81939B461E3BA98D00179615 /* Themes.swift */,
@@ -764,16 +791,6 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		81F1FE9F1E5B7C0300C1CD44 /* Dwifft */ = {
-			isa = PBXGroup;
-			children = (
-				81F1FEA01E5B7C1700C1CD44 /* Dwifft.swift */,
-				81F1FEA11E5B7C1700C1CD44 /* Dwifft+UIKit.swift */,
-				81C5BAAA1F2B4F0000CA10D4 /* Dwifft+SectionedValues.swift */,
-			);
-			name = Dwifft;
-			sourceTree = "<group>";
-		};
 		81F3D6591E1310C1003CD808 /* ILTranslucentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,7 +802,7 @@
 		81F504C31E5CAE840000FACC /* Cosmos */ = {
 			isa = PBXGroup;
 			children = (
-				81C5BAAC1F2B506400CA10D4 /* Cosmos.swift */,
+				812BE0071F7EB6CE00E581C6 /* CosmosDistrib.swift */,
 			);
 			name = Cosmos;
 			sourceTree = "<group>";
@@ -826,7 +843,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = ned;
 				TargetAttributes = {
 					8167A60E1DAC246000F96AC2 = {
@@ -901,124 +918,125 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81AAE8251F8027130068ACB3 /* ToJSON.swift in Sources */,
 				81EC00651DAD7514009EEFFA /* Featured.swift in Sources */,
+				81F986A81F7ECD690032C3FB /* ThemeColorPicker.swift in Sources */,
 				81DEB2AC1E7DD4A900A94B26 /* RoundedButton.swift in Sources */,
 				8173E9021F2B83B8004CCDE1 /* ImageDownloader.swift in Sources */,
 				8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */,
 				8187B4EF1E3A795800F251CD /* Promotion.swift in Sources */,
 				81EC006A1DAD7704009EEFFA /* Colors.swift in Sources */,
-				8173E8E01F2B80AE004CCDE1 /* DateFormatterTransform.swift in Sources */,
-				81C5BAD11F2B565900CA10D4 /* ThemeStatusBarStylePicker.swift in Sources */,
-				81C5BAC91F2B565900CA10D4 /* ThemeImagePicker.swift in Sources */,
 				81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */,
 				8173E9001F2B83B8004CCDE1 /* Image.swift in Sources */,
+				81F986AB1F7ECD690032C3FB /* ThemeImagePicker.swift in Sources */,
 				81F1FEA41E5B7DEF00C1CD44 /* AlamofireObjectMapper.swift in Sources */,
 				81EC00891DAE88D3009EEFFA /* App.swift in Sources */,
 				81EC008B1DAE8D1A009EEFFA /* CydiaApp.swift in Sources */,
-				8173E8F11F2B80AE004CCDE1 /* TransformOf.swift in Sources */,
 				81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */,
-				81F1FEA51E5B7DF900C1CD44 /* Dwifft.swift in Sources */,
-				8173E8E21F2B80AE004CCDE1 /* DictionaryTransform.swift in Sources */,
-				8173E8E41F2B80AE004CCDE1 /* EnumTransform.swift in Sources */,
 				817A53D81E5F24540081ED26 /* Details+Description.swift in Sources */,
-				81F1FEA61E5B7DF900C1CD44 /* Dwifft+UIKit.swift in Sources */,
-				8173E8EF1F2B80AE004CCDE1 /* Operators.swift in Sources */,
 				81F3D6581E1310BA003CD808 /* ILTranslucentView.swift in Sources */,
 				817A40E11E5E27EB003FD6F1 /* Details+Screenshots.swift in Sources */,
+				81F986B51F7ECD690032C3FB /* UIKit+Theme.swift in Sources */,
 				818CB5D51E787AB400A69213 /* Details+FullScreenshots.swift in Sources */,
-				81C5BAAB1F2B4F0000CA10D4 /* Dwifft+SectionedValues.swift in Sources */,
-				8173E8E61F2B80AE004CCDE1 /* HexColorTransform.swift in Sources */,
+				81AAE8291F8027130068ACB3 /* URLTransform.swift in Sources */,
+				81F986A71F7ECD690032C3FB /* ThemeCGFloatPicker.swift in Sources */,
+				81AAE81A1F8027130068ACB3 /* FromJSON.swift in Sources */,
 				8173E9051F2B83B8004CCDE1 /* UIButton+AlamofireImage.swift in Sources */,
+				81F986A31F7ECD690032C3FB /* NSObject+Theme.swift in Sources */,
+				81F986AA1F7ECD690032C3FB /* ThemeFontPicker.swift in Sources */,
 				818DE6361E87F4E700E41B51 /* Details+FullScreenshotsCell.swift in Sources */,
 				812E97881E57730300C1379F /* Search.swift in Sources */,
-				81C5BACD1F2B565900CA10D4 /* ThemeManager+OC.swift in Sources */,
-				81EC006C1DAD7728009EEFFA /* Initializers.swift in Sources */,
-				81C5BACF1F2B565900CA10D4 /* ThemePicker.swift in Sources */,
-				8173E8EE1F2B80AE004CCDE1 /* NSDecimalNumberTransform.swift in Sources */,
-				8173E8E71F2B80AE004CCDE1 /* ImmutableMappable.swift in Sources */,
+				81EC006C1DAD7728009EEFFA /* Global.swift in Sources */,
 				81EC007F1DAE6680009EEFFA /* Items.swift in Sources */,
-				81C5BAAD1F2B506400CA10D4 /* Cosmos.swift in Sources */,
-				81C5BAC81F2B565900CA10D4 /* ThemeFontPicker.swift in Sources */,
 				8180EE631E26D75E001C04B5 /* API+Search.swift in Sources */,
+				81F986B41F7ECD690032C3FB /* UIColorExtension.swift in Sources */,
+				81F986AD1F7ECD690032C3FB /* ThemeManager.swift in Sources */,
 				81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */,
 				81939B471E3BA98D00179615 /* Themes.swift in Sources */,
 				8117DDAA1F3B05BD00E817C5 /* String+Truncation.swift in Sources */,
 				81EC007B1DAD92A2009EEFFA /* Featured+Extension.swift in Sources */,
-				81C5BAC11F2B565900CA10D4 /* NSObject+Theme.swift in Sources */,
 				8167A6131DAC246000F96AC2 /* AppDelegate.swift in Sources */,
 				819ACE5B1E7D3FEC008DDF65 /* API+Links.swift in Sources */,
-				81C5BAC51F2B565900CA10D4 /* ThemeCGFloatPicker.swift in Sources */,
-				8173E8E51F2B80AE004CCDE1 /* FromJSON.swift in Sources */,
 				8173E8FF1F2B83B8004CCDE1 /* AFIError.swift in Sources */,
-				8173E8F31F2B80AE004CCDE1 /* TransformType.swift in Sources */,
+				81AAE81B1F8027130068ACB3 /* HexColorTransform.swift in Sources */,
 				81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */,
+				81AAE81F1F8027130068ACB3 /* Map.swift in Sources */,
 				81F1FE7F1E5AF12400C1CD44 /* DismissableModalNavController.swift in Sources */,
 				8173E9031F2B83B8004CCDE1 /* ImageFilter.swift in Sources */,
+				81AAE8211F8027130068ACB3 /* Mappable.swift in Sources */,
 				81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */,
-				81C5BAC61F2B565900CA10D4 /* ThemeColorPicker.swift in Sources */,
 				81BE066C1E6C2EA500AD9827 /* Details+ExternalLink.swift in Sources */,
+				81F986A91F7ECD690032C3FB /* ThemeDictionaryPicker.swift in Sources */,
 				81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */,
+				81AAE8201F8027130068ACB3 /* MapError.swift in Sources */,
+				81AAE81E1F8027130068ACB3 /* ISO8601DateTransform.swift in Sources */,
 				81D661761E5A0B6C00BB6461 /* Details+Extension.swift in Sources */,
 				8180EE651E26D7B7001C04B5 /* API+Genres.swift in Sources */,
-				8173E8DF1F2B80AE004CCDE1 /* DataTransform.swift in Sources */,
+				81F986A51F7ECD690032C3FB /* ThemeBarStylePicker.swift in Sources */,
 				819AE78F1E637361009D6AF3 /* Details+TweakedNotice.swift in Sources */,
-				8173E8DE1F2B80AE004CCDE1 /* CustomDateFormatTransform.swift in Sources */,
-				81C5BACE1F2B565900CA10D4 /* ThemeManager+Plist.swift in Sources */,
-				8173E8E91F2B80AE004CCDE1 /* ISO8601DateTransform.swift in Sources */,
-				81C5BAD21F2B565900CA10D4 /* UIColorExtension.swift in Sources */,
+				81E48CBA1F7FDF2000B28069 /* Dwifft.swift in Sources */,
 				8187B4ED1E3A789000F251CD /* API+Promotions.swift in Sources */,
+				81F986AF1F7ECD690032C3FB /* ThemeManager+OC.swift in Sources */,
 				8188E8EC1DB25F6B00462256 /* API.swift in Sources */,
+				81F986B21F7ECD690032C3FB /* ThemeStatePicker.swift in Sources */,
 				8173E9071F2B83B8004CCDE1 /* UIImageView+AlamofireImage.swift in Sources */,
+				81F986AC1F7ECD690032C3FB /* ThemeKeyboardAppearancePicker.swift in Sources */,
+				81AAE8191F8027130068ACB3 /* EnumTransform.swift in Sources */,
 				81EC00791DAD8B5A009EEFFA /* Copyright.swift in Sources */,
+				81AAE81C1F8027130068ACB3 /* ImmutableMappable.swift in Sources */,
 				81F504E61E5CE4F70000FACC /* DimmableView.swift in Sources */,
-				81C5BAC31F2B565900CA10D4 /* ThemeBarStylePicker.swift in Sources */,
 				819EC2CA1E40FF4400BA7A50 /* Localize.swift in Sources */,
 				81F1FEBB1E5B7E2B00C1CD44 /* String+LocalizeBundle.swift in Sources */,
+				81E48CBC1F7FDF2000B28069 /* SectionedValues.swift in Sources */,
 				81F1FEBC1E5B7E2B00C1CD44 /* String+LocalizedBundleTableName.swift in Sources */,
+				81F986B01F7ECD690032C3FB /* ThemeManager+Plist.swift in Sources */,
 				81F1FEBD1E5B7E2B00C1CD44 /* String+LocalizeTableName.swift in Sources */,
+				81F986A61F7ECD690032C3FB /* ThemeCGColorPicker.swift in Sources */,
 				819ACE5D1E7D4569008DDF65 /* Link.swift in Sources */,
 				8173E9061F2B83B8004CCDE1 /* UIImage+AlamofireImage.swift in Sources */,
 				81BE066F1E6C52FE00AD9827 /* Details+Publisher.swift in Sources */,
-				8173E8F01F2B80AE004CCDE1 /* ToJSON.swift in Sources */,
+				81E48CBB1F7FDF2000B28069 /* Dwifft+UIKit.swift in Sources */,
+				81AAE8171F8027130068ACB3 /* DictionaryTransform.swift in Sources */,
 				819AE78C1E63135A009D6AF3 /* Details+Changelog.swift in Sources */,
-				81C5BACA1F2B565900CA10D4 /* ThemeKeyboardAppearancePicker.swift in Sources */,
+				81AAE8151F8027130068ACB3 /* DateFormatterTransform.swift in Sources */,
 				817A40E71E5E393A003FD6F1 /* Details+ScreenshotsCell.swift in Sources */,
-				81C5BACB1F2B565900CA10D4 /* ThemeManager.swift in Sources */,
 				819AF4EA1E82CB8700B4D2EF /* Details+Related.swift in Sources */,
-				81C5BAD01F2B565900CA10D4 /* ThemeStatePicker.swift in Sources */,
-				81C5BAC41F2B565900CA10D4 /* ThemeCGColorPicker.swift in Sources */,
-				8173E8ED1F2B80AE004CCDE1 /* Mapper.swift in Sources */,
-				81C5BAC21F2B565900CA10D4 /* ThemeActivityIndicatorViewStylePicker.swift in Sources */,
 				81EC00711DAD7979009EEFFA /* FeaturedApp.swift in Sources */,
+				81AAE8161F8027130068ACB3 /* DateTransform.swift in Sources */,
 				810811D31E8D008E008C6EDB /* Details+DownloadEmptyCell.swift in Sources */,
 				8173E9011F2B83B8004CCDE1 /* ImageCache.swift in Sources */,
-				81C5BACC1F2B565900CA10D4 /* ThemeManager+Index.swift in Sources */,
-				81C5BAC71F2B565900CA10D4 /* ThemeDictionaryPicker.swift in Sources */,
+				81F986B11F7ECD690032C3FB /* ThemePicker.swift in Sources */,
+				81AAE81D1F8027130068ACB3 /* IntegerOperators.swift in Sources */,
+				812BE0081F7EB6CE00E581C6 /* CosmosDistrib.swift in Sources */,
 				81EC00731DAD79A8009EEFFA /* FeaturedBook.swift in Sources */,
 				814AEBF21E68312C00A207CC /* Details+Information.swift in Sources */,
-				8173E8EA1F2B80AE004CCDE1 /* Map.swift in Sources */,
-				8173E8E11F2B80AE004CCDE1 /* DateTransform.swift in Sources */,
 				81E7CBFB1E1FC0F2004AF156 /* LoadingTableView.swift in Sources */,
-				8173E8E31F2B80AE004CCDE1 /* EnumOperators.swift in Sources */,
+				81F986A41F7ECD690032C3FB /* ThemeActivityIndicatorViewStylePicker.swift in Sources */,
+				81AAE8261F8027130068ACB3 /* TransformOf.swift in Sources */,
 				81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */,
 				8173E90A1F2B841B004CCDE1 /* NetworkActivityIndicatorManager.swift in Sources */,
+				81AAE8181F8027130068ACB3 /* EnumOperators.swift in Sources */,
+				81AAE8221F8027130068ACB3 /* Mapper.swift in Sources */,
 				8173E9041F2B83B8004CCDE1 /* Request+AlamofireImage.swift in Sources */,
 				81DEB2AE1E7DDF3200A94B26 /* Details+VersionHeader.swift in Sources */,
-				8173E8F41F2B80AE004CCDE1 /* URLTransform.swift in Sources */,
 				817FF9EF1E59CCE60056960F /* Details.swift in Sources */,
-				81C5BAD31F2B565900CA10D4 /* UIKit+Theme.swift in Sources */,
 				81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */,
-				8173E8EB1F2B80AE004CCDE1 /* MapError.swift in Sources */,
+				81AAE8231F8027130068ACB3 /* NSDecimalNumberTransform.swift in Sources */,
+				81F986B31F7ECD690032C3FB /* ThemeStatusBarStylePicker.swift in Sources */,
 				817A40E41E5E2FB2003FD6F1 /* SnappableFlowLayout.swift in Sources */,
-				8173E8EC1F2B80AE004CCDE1 /* Mappable.swift in Sources */,
+				81A1038E1F7FCA030011F4B3 /* DynamicFontSizeHelper.swift in Sources */,
 				81E48B101E707C46005FBBEC /* Details+Review.swift in Sources */,
 				816CEEDB1DBD00E5002CFF6E /* CategoryCell.swift in Sources */,
+				81F986AE1F7ECD690032C3FB /* ThemeManager+Index.swift in Sources */,
 				816CEED91DBCE8A2002CFF6E /* Categories.swift in Sources */,
-				8173E8F21F2B80AE004CCDE1 /* TransformOperators.swift in Sources */,
 				81EC006E1DAD7915009EEFFA /* ItemCollection.swift in Sources */,
+				81AAE8131F8027130068ACB3 /* CustomDateFormatTransform.swift in Sources */,
 				81939B4B1E3BAA9A00179615 /* Preferences.swift in Sources */,
+				81AAE8241F8027130068ACB3 /* Operators.swift in Sources */,
+				81AAE8271F8027130068ACB3 /* TransformOperators.swift in Sources */,
+				81AAE8281F8027130068ACB3 /* TransformType.swift in Sources */,
 				81BE06721E6CB6DE00AD9827 /* Details+SegmentControl.swift in Sources */,
-				8173E8E81F2B80AE004CCDE1 /* IntegerOperators.swift in Sources */,
+				81AAE8141F8027130068ACB3 /* DataTransform.swift in Sources */,
 				81EC008D1DAE8F1F009EEFFA /* Book.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1056,7 +1074,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1064,7 +1084,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1092,7 +1116,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
@@ -1117,7 +1141,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1125,7 +1151,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1147,7 +1177,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-lxml2";
 				PROVISIONING_PROFILE = "";
@@ -1186,7 +1216,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1214,7 +1244,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

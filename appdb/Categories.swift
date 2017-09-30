@@ -84,13 +84,13 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
         // Add cancel button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action:#selector(self.dismissAnimated))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action: #selector(self.dismissAnimated))
         
     }
     
     // MARK: - Index changed
     
-    func indexDidChange(sender: UISegmentedControl) {
+    @objc func indexDidChange(sender: UISegmentedControl) {
         selected = sender.selectedSegmentIndex
         reloadAfterIndexChange(index: selected)
     }
@@ -138,9 +138,10 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 var height: CGFloat = 0
                 if let nav = navigationController {
                     // If it's inside a popover, we don't need to add statusBar height
-                    height = (nav.navigationBar.frame.height)~~(nav.navigationBar.frame.height +
-                        (UIApplication.shared.statusBarFrame.height > 20.0 ? 20.0 : UIApplication.shared.statusBarFrame.height)) /* dirty fix hotspot status bar */
+                    height = (nav.navigationBar.frame.height)~~(nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height)
                 }
+                
+                // TODO: fix status bar changing height for hotspot/in-call for older devices (works fine on iphone x)
 
                 header.top == view.top + height
                 header.left == view.left
@@ -176,7 +177,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Dismiss animated
     
-    func dismissAnimated() { dismiss(animated: true) }
+    @objc func dismissAnimated() { dismiss(animated: true) }
 
     // MARK: - Table view data source
 
