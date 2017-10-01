@@ -26,8 +26,12 @@ class DetailsScreenshotCell: UICollectionViewCell {
         
         image = UIImageView()
         image.layer.borderWidth = 1 / UIScreen.main.scale
+        image.layer.cornerRadius = 7
+        image.layer.masksToBounds = true
         image.layer.theme_borderColor = Color.borderCgColor
         image.image = #imageLiteral(resourceName: "placeholderCover")
+        
+        dim.layer.cornerRadius = image.layer.cornerRadius
         
         contentView.addSubview(image)
         contentView.addSubview(dim)
