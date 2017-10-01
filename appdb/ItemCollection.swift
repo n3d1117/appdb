@@ -165,7 +165,7 @@ class ItemCollection: FeaturedCell {
     // MARK: - Change Content Size for sectionLabel
     @objc fileprivate func updateTextSize(notification: NSNotification) {
         let preferredSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize
-        let fontSizeToSet = preferredSize > 24.0 ? 24.0 : preferredSize
+        let fontSizeToSet = preferredSize > 20.0 ? 20.0 : preferredSize
         if #available(iOS 8.2, *) {
             sectionLabel.font = .systemFont(ofSize: fontSizeToSet, weight: UIFont.Weight.medium)
         } else {

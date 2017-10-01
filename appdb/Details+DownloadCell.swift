@@ -36,7 +36,7 @@ class DetailsDownload: DetailsCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         preservesSuperviewLayoutMargins = false
-        accessoryType = .none
+        accessoryType = .disclosureIndicator
         
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
@@ -79,7 +79,7 @@ class DetailsDownload: DetailsCell {
         if !didSetupConstraints { didSetupConstraints = true
             constrain(host, cracker, button) { host, cracker, button in
                 
-                button.right == button.superview!.right - Global.size.margin.value
+                button.right == button.superview!.right - 10
                 button.centerY == button.superview!.centerY
                 
                 host.top == host.superview!.top + 9

@@ -24,16 +24,15 @@ struct ButtonFactory {
         } else {
             button.titleLabel?.font = .systemFont(ofSize: size)
         }
-        //button.makeDynamicFont()
+        button.makeDynamicFont()
         button.contentHorizontalAlignment = .left
         button.titleLabel?.lineBreakMode = .byTruncatingTail
         
         button.imageView!.contentMode = .center
         button.sizeToFit()
 
-        // (bold ? 5 : 0) is actually to add 5 just for see all in featured (im lazy) - TODO make it better
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageRect(forContentRect: button.bounds).size.width + (bold ? 3 : 0), 0, 0)
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleRect(forContentRect: button.bounds).size.width + (bold ? 5 : 0), 0, 0)
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageRect(forContentRect: button.bounds).size.width, 0, 0)
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleRect(forContentRect: button.bounds).size.width, 0, 0)
 
         return button
     }

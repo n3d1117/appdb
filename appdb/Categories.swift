@@ -204,7 +204,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         cell.name.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.title
-        cell.name.font = checked[selected]![indexPath.row] ? .boldSystemFont(ofSize: (17~~16)) : .systemFont(ofSize: (17~~16))
+        cell.name.font = checked[selected]![indexPath.row] ? .boldSystemFont(ofSize: cell.name.font.pointSize) : .systemFont(ofSize: cell.name.font.pointSize)
         cell.accessoryType = checked[selected]![indexPath.row] ? .checkmark : .none
         
         return cell
