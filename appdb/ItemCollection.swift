@@ -28,7 +28,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             if let cat = app.category { cell.category.text  = cat.name.isEmpty ? "Unknown".localized() : cat.name
             } else { cell.category.text = "Unknown".localized() }
             if let url = URL(string: app.image) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: Global.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }
@@ -37,9 +37,8 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.title.text = cydiaApp.name.decoded
             cell.tweaked = cydiaApp.isTweaked
             cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
-            // cell.category.adjustsFontSizeToFitWidth = cell.category.text!.characters.count < 13 /* fit 'tweaked apps' */
             if let url = URL(string: cydiaApp.image) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: Global.size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }

@@ -122,7 +122,7 @@ class DetailsFullScreenshots: UIViewController {
         navigationItem.rightBarButtonItem = doneButton
         
         let insets = (view.bounds.width - effectiveWidth) / 2
-        let layout = SnappableFlowLayout(width: effectiveWidth, spacing: spacing)
+        let layout = SnappableFlowLayout(width: effectiveWidth, spacing: spacing, magic: 60)
         layout.sectionInset = UIEdgeInsets(top: top+topInset, left: insets, bottom: bottomInset, right: insets)
         layout.minimumLineSpacing = spacing
         layout.scrollDirection = .horizontal

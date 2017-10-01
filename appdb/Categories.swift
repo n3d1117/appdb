@@ -200,7 +200,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.name.text = categories[indexPath.row].name
 
         if let url = URL(string: categories[indexPath.row].icon) {
-            cell.icon.af_setImage(withURL: url, placeholderImage: placeholder, filter: isBookCell ? nil : Global.getFilter(from: 30), imageTransition: .crossDissolve(0.2))
+            cell.icon.af_setImage(withURL: url, placeholderImage: placeholder, imageTransition: .crossDissolve(0.2))
         }
 
         cell.name.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.title

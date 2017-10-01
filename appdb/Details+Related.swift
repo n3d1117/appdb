@@ -24,7 +24,7 @@ extension DetailsRelated: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.title.text = item.name
                 cell.category.text = item.artist
                 if let url = URL(string: item.icon) {
-                    cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.getFilter(from: (75~~65)), imageTransition: .crossDissolve(0.2))
+                    cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), imageTransition: .crossDissolve(0.2))
                 }
                 return cell
             case .books:
