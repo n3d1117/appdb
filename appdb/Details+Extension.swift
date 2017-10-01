@@ -32,12 +32,6 @@ extension Details {
         return .ios
     }
     
-    /* // Fix delay in navigation bar blur updated on push
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isTranslucent = true /* God damnit, Apple */
-    } */
-    
     // Set up
     func setUp() {
 
@@ -49,10 +43,16 @@ extension Details {
         tableView.register(DetailsReview.self, forCellReuseIdentifier: "review")
         tableView.register(DetailsDownload.self, forCellReuseIdentifier: "download")
         
-        // Add 'Dismiss' button for iPad
+        // Initialize 'Share' button
+        shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
+        shareButton.isEnabled = false
+        
         if IS_IPAD {
+            // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
-            self.navigationItem.rightBarButtonItem = dismissButton
+            self.navigationItem.rightBarButtonItems = [dismissButton, shareButton]
+        } else {
+            self.navigationItem.rightBarButtonItems = [shareButton]
         }
         
         // Hide separator for empty cells
@@ -140,6 +140,7 @@ extension Details {
             if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) }
             }
         }
+        shareButton.isEnabled = true
     }
     
     // Get links
@@ -197,6 +198,14 @@ extension Details {
         case .ios: if let app = content as? App { return app.id }
         case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.id }
         case .books: if let book = content as? Book { return book.id }
+        }; return ""
+    }
+    
+    var name: String {
+        switch contentType {
+        case .ios: if let app = content as? App { return app.name.decoded }
+        case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.name.decoded }
+        case .books: if let book = content as? Book { return book.name.decoded }
         }; return ""
     }
     

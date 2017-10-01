@@ -28,6 +28,10 @@ class Details: LoadingTableView {
         }}
     }
     
+    // I'm initializing this here because i need its
+    // reference later when i enable it
+    var shareButton: UIBarButtonItem!
+    
     // Properties for dynamic load
     var loadDynamically: Bool = false
     var dynamicType: ItemType = .ios
@@ -69,6 +73,17 @@ class Details: LoadingTableView {
             fetchInfo(type: dynamicType, trackid: dynamicTrackid)
         }
 
+    }
+    
+    // MARK: - Share
+    @objc func share(sender: UIBarButtonItem) {
+        let text = "Check out '\(name)' on appdb!"
+        let urlString = "\(Global.mainSite)view.php?trackid=\(id)&type=\(contentType.rawValue)"
+        guard let url = URL(string: urlString) else { return }
+        let activity = UIActivityViewController(activityItems: [text, url], applicationActivities: [SafariActivity()])
+        activity.excludedActivityTypes = [.airDrop]
+        activity.popoverPresentationController?.barButtonItem = sender
+        present(activity, animated: true)
     }
     
     // MARK: - Table view data source
