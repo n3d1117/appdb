@@ -27,7 +27,7 @@ class DetailsFullScreenshotCell: UICollectionViewCell {
         image.layer.borderWidth = 1 / UIScreen.main.scale
         image.layer.theme_borderColor = Color.borderCgColor
         image.layer.cornerRadius = 7
-        image.layer.masksToBounds = true
+        image.layer.masksToBounds = true // i am way too lazy to do the filter thing, so i'll leave this
         image.image = #imageLiteral(resourceName: "placeholderCover")
         image.contentMode = .scaleToFill
         

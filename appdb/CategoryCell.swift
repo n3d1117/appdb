@@ -40,7 +40,6 @@ class CategoryCell: UITableViewCell {
         icon = UIImageView()
         if reuseIdentifier == "category_ios" {
             icon.layer.cornerRadius = Global.cornerRadius(from: 30)
-            icon.layer.masksToBounds = true
             icon.image = #imageLiteral(resourceName: "placeholderIcon")
         } else {
             icon.layer.cornerRadius = 0

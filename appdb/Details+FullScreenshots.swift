@@ -66,13 +66,17 @@ class DetailsFullScreenshots: UIViewController {
     var screenshots: [Screenshot] = []
     var index: Int = 0
     
-    var spacing: CGFloat = 25
+    var spacing: CGFloat = (35~~25)
     
     var magic: CGFloat {
         if screenshots.filter({$0.type=="ipad"}).isEmpty { return 1.775 }
         if screenshots.filter({$0.type=="iphone"}).isEmpty { return 1.333 }
         return 0
     }
+    var mixedClasses: Bool { return !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
+    
+    var allLandscape: Bool { return (screenshots.filter({$0.class_=="portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
+    
     var top: CGFloat {
         return (navigationController?.navigationBar.frame.size.height ?? 0) + UIApplication.shared.statusBarFrame.height
     }
@@ -122,7 +126,7 @@ class DetailsFullScreenshots: UIViewController {
         navigationItem.rightBarButtonItem = doneButton
         
         let insets = (view.bounds.width - effectiveWidth) / 2
-        let layout = SnappableFlowLayout(width: effectiveWidth, spacing: spacing, magic: 60)
+        let layout = SnappableFlowLayout(width: mixedClasses ? 0 : effectiveWidth, spacing: spacing, magic: 60)
         layout.sectionInset = UIEdgeInsets(top: top+topInset, left: insets, bottom: bottomInset, right: insets)
         layout.minimumLineSpacing = spacing
         layout.scrollDirection = .horizontal

@@ -62,7 +62,6 @@ class DetailsHeader: DetailsCell {
                 name.text = app.name.decoded
                 seller = ButtonFactory.createChevronButton(text: app.seller.isEmpty ? "Unknown".localized() : app.seller, color: Color.darkGray, size: (15~~13), bold: false)
                 icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
-                icon.layer.masksToBounds = true
                 
                 if !app.numberOfStars.isZero {
                     stars = buildStars()
@@ -76,7 +75,7 @@ class DetailsHeader: DetailsCell {
                 }
                 
                 if let url = URL(string: app.image) {
-                    icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), imageTransition: .crossDissolve(0.2))
+                    icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: 100), imageTransition: .crossDissolve(0.2))
                 }
             }
             case .cydia: if let cydiaApp = content as? CydiaApp {
@@ -91,9 +90,8 @@ class DetailsHeader: DetailsCell {
                 }
                 
                 icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
-                icon.layer.masksToBounds = true
                 if let url = URL(string: cydiaApp.image) {
-                    icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), imageTransition: .crossDissolve(0.2))
+                    icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: 100), imageTransition: .crossDissolve(0.2))
                 }
             }
             case .books: if let book = content as? Book {

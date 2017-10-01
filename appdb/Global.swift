@@ -72,4 +72,14 @@ struct Global {
     // Common corner radius for ios app icons
     static func cornerRadius(from width: CGFloat) -> CGFloat { return (width / 4.2) /* around 23% */ }
     
+    // Returns appropriate ios app icon filter based on width
+    static func roundedFilter(from width: CGFloat) -> ImageFilter {
+        return AspectScaledToFillSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: cornerRadius(from: width))
+    }
+    
+    // Returns appropriate screenshot filter base on size and radius
+    static func screenshotRoundedFilter(size: CGSize, radius: CGFloat) -> ImageFilter {
+        return AspectScaledToFillSizeWithRoundedCornersFilter(size: size, radius: radius)
+    }
+    
 }

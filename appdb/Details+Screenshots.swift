@@ -18,7 +18,8 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshot", for: indexPath) as! DetailsScreenshotCell
         if let url = URL(string: screenshots[indexPath.row].image) {
-            cell.image.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: nil, imageTransition: .crossDissolve(0.2))
+            let filter = Global.screenshotRoundedFilter(size: sizeAtIndex(indexPath.row), radius: 7)
+            cell.image.af_setImage(withURL: url, placeholderImage: filter.filter(#imageLiteral(resourceName: "placeholderCover")), filter: filter, imageTransition: .crossDissolve(0.2))
         }
         return cell
     }
@@ -28,11 +29,7 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if screenshots[indexPath.row].class_ == "landscape" {
-            return CGSize(width: widthIfLandscape, height: (230~~176)-(Global.size.margin.value*2)-1)
-        } else {
-            return CGSize(width: widthIfPortrait, height: height-(Global.size.margin.value*2)-1)
-        }
+        return sizeAtIndex(indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -65,6 +62,14 @@ class DetailsScreenshots: DetailsCell {
     var allLandscape: Bool { return (screenshots.filter({$0.class_=="portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
     var mixedClasses: Bool { return !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
     var spacing: CGFloat = 15
+    
+    func sizeAtIndex(_ index: Int) -> CGSize {
+        if screenshots[index].class_ == "landscape" {
+            return CGSize(width: widthIfLandscape, height: (230~~176)-(Global.size.margin.value*2)-1)
+        } else {
+            return CGSize(width: widthIfPortrait, height: height-(Global.size.margin.value*2)-1)
+        }
+    }
     
     convenience init(type: ItemType, screenshots: [Screenshot], delegate: ScreenshotRedirectionDelegate) {
         self.init(style: .default, reuseIdentifier: "screenshots")
