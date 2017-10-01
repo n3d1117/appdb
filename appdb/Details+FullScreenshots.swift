@@ -133,9 +133,7 @@ class DetailsFullScreenshots: UIViewController {
         collectionView.dataSource = self
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
-        
-        collectionView.theme_backgroundColor = Color.veryVeryLightGray
-        view.theme_backgroundColor = Color.veryVeryLightGray
+        collectionView.backgroundColor = .clear
         
         view.addSubview(collectionView)
         view.addSubview(pageControl)
