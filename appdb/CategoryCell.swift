@@ -13,8 +13,6 @@ class CategoryCell: UITableViewCell {
     
     var name: UILabel!
     var icon: UIImageView!
-    
-    var didSetupConstraints = false
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -61,21 +59,19 @@ class CategoryCell: UITableViewCell {
     }
     
     fileprivate func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(icon, name) { icon, name in
-                
-                icon.width == 30
-                
-                if reuseIdentifier == "category_ios" { icon.height == icon.width }
-                else if reuseIdentifier == "category_books" { icon.height == icon.width * 1.542 }
-                
-                icon.left == icon.superview!.left + Global.size.margin.value
-                icon.centerY == icon.superview!.centerY
-                
-                name.left == icon.right + 10
-                name.centerY == icon.centerY
-                
-            }
+        constrain(icon, name) { icon, name in
+            
+            icon.width == 30
+            
+            if reuseIdentifier == "category_ios" { icon.height == icon.width }
+            else if reuseIdentifier == "category_books" { icon.height == icon.width * 1.542 }
+            
+            icon.left == icon.superview!.left + Global.size.margin.value
+            icon.centerY == icon.superview!.centerY
+            
+            name.left == icon.right + 10
+            name.centerY == icon.centerY
+            
         }
     }
 

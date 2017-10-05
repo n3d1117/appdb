@@ -71,21 +71,19 @@ class DetailsReview: DetailsCell {
     }
     
     override func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(title, stars, desc) { title, stars, desc in
-                title.top == title.superview!.top + 15
-                title.left == title.superview!.left + Global.size.margin.value
-                title.right == title.superview!.right - Global.size.margin.value
-                
-                stars.left == title.left
-                stars.right <= stars.superview!.right - Global.size.margin.value
-                stars.top == title.bottom + (5~~4)
-                
-                desc.left == title.left
-                desc.right == title.right
-                desc.top == stars.bottom + 8 ~ Global.notMaxPriority
-                desc.bottom == desc.superview!.bottom - 15
-            }
+        constrain(title, stars, desc) { title, stars, desc in
+            title.top == title.superview!.top + 15
+            title.left == title.superview!.left + Global.size.margin.value
+            title.right == title.superview!.right - Global.size.margin.value
+            
+            stars.left == title.left
+            stars.right <= stars.superview!.right - Global.size.margin.value
+            stars.top == title.bottom + (5~~4)
+            
+            desc.left == title.left
+            desc.right == title.right
+            desc.top == stars.bottom + 8 ~ Global.notMaxPriority
+            desc.bottom == desc.superview!.bottom - 15
         }
     }
 }

@@ -61,8 +61,7 @@ extension DetailsFullScreenshots: UICollectionViewDelegate, UICollectionViewData
 }
 
 class DetailsFullScreenshots: UIViewController {
-    var didSetupConstraints: Bool = false
-    
+
     // The array of screenshot to use as a data source
     var screenshots: [Screenshot] = []
     
@@ -211,12 +210,10 @@ class DetailsFullScreenshots: UIViewController {
     }
     
     fileprivate func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(collectionView, pageControl) { collection, pageControl in
-                collection.edges == collection.superview!.edges
-                pageControl.bottom == pageControl.superview!.bottom + 3 - ((HAS_NOTCH && isPortrait) ? 10 : 0)
-                pageControl.centerX == pageControl.superview!.centerX
-            }
+        constrain(collectionView, pageControl) { collection, pageControl in
+            collection.edges == collection.superview!.edges
+            pageControl.bottom == pageControl.superview!.bottom + 3 - ((HAS_NOTCH && isPortrait) ? 10 : 0)
+            pageControl.centerX == pageControl.superview!.centerX
         }
     }
     

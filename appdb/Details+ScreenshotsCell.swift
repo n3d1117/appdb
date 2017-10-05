@@ -12,8 +12,7 @@ import Cartography
 import Alamofire
 
 class DetailsScreenshotCell: UICollectionViewCell {
-    
-    var didSetupConstraints: Bool = false
+
     var image: UIImageView!
     var dim: UIView = DimmableView.get()
     
@@ -40,13 +39,11 @@ class DetailsScreenshotCell: UICollectionViewCell {
     }
     
     fileprivate func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(image, dim) { image, dim in
-                
-                image.edges == image.superview!.edges
-                dim.edges == image.edges
-                
-            }
+        constrain(image, dim) { image, dim in
+            
+            image.edges == image.superview!.edges
+            dim.edges == image.edges
+            
         }
     }
     

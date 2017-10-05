@@ -13,7 +13,6 @@ import Alamofire
 
 class DetailsFullScreenshotCell: UICollectionViewCell {
     
-    var didSetupConstraints: Bool = false
     var image: UIImageView!
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,10 +36,8 @@ class DetailsFullScreenshotCell: UICollectionViewCell {
     }
     
     fileprivate func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(image) { image in
-                image.edges == image.superview!.edges
-            }
+        constrain(image) { image in
+            image.edges == image.superview!.edges
         }
     }
 }

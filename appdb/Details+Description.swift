@@ -57,19 +57,16 @@ class DetailsDescription: DetailsCell {
     }
     
     override func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(title, desc) { title, desc in
-                
-                title.top == title.superview!.top + 12
-                title.left == title.superview!.left + Global.size.margin.value
-                title.right == title.superview!.right - Global.size.margin.value
-                
-                desc.top == title.bottom + 8 ~ Global.notMaxPriority
-                desc.left == title.left
-                desc.right == title.right
-                desc.bottom == desc.superview!.bottom - 15
-                
-            }
+        constrain(title, desc) { title, desc in
+            
+            title.top == title.superview!.top + 12
+            title.left == title.superview!.left + Global.size.margin.value
+            title.right == title.superview!.right - Global.size.margin.value
+            
+            desc.top == title.bottom + 8 ~ Global.notMaxPriority
+            desc.left == title.left
+            desc.right == title.right
+            desc.bottom == desc.superview!.bottom - 15
         }
     }
     

@@ -76,20 +76,18 @@ class DetailsDownload: DetailsCell {
     }
     
     override func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(host, cracker, button) { host, cracker, button in
-                
-                button.right == button.superview!.right - 10
-                button.centerY == button.superview!.centerY
-                
-                host.top == host.superview!.top + 9
-                host.left == host.superview!.left + Global.size.margin.value
-                host.right <= button.left - 9
-                
-                cracker.left == host.left
-                cracker.right <= button.left - Global.size.margin.value
-                cracker.bottom == cracker.superview!.bottom - 10
-            }
+        constrain(host, cracker, button) { host, cracker, button in
+            
+            button.right == button.superview!.right - 10
+            button.centerY == button.superview!.centerY
+            
+            host.top == host.superview!.top + 9
+            host.left == host.superview!.left + Global.size.margin.value
+            host.right <= button.left - 9
+            
+            cracker.left == host.left
+            cracker.right <= button.left - Global.size.margin.value
+            cracker.bottom == cracker.superview!.bottom - 10
         }
     }
 }

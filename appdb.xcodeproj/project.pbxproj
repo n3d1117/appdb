@@ -370,7 +370,7 @@
 				819EC2D21E41013D00BA7A50 /* Localizable.strings */,
 				81EC00621DAD74D9009EEFFA /* Other */,
 				8180EE611E26D72D001C04B5 /* API */,
-				81EC007D1DAE666B009EEFFA /* Models */,
+				81EC007D1DAE666B009EEFFA /* Object Models */,
 				8188E8E31DB1993700462256 /* Resources */,
 				81EC00661DAD76BE009EEFFA /* Startup */,
 				81EC00631DAD74EC009EEFFA /* FEATURED */,
@@ -759,7 +759,7 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		81EC007D1DAE666B009EEFFA /* Models */ = {
+		81EC007D1DAE666B009EEFFA /* Object Models */ = {
 			isa = PBXGroup;
 			children = (
 				81EC007E1DAE6680009EEFFA /* Items.swift */,
@@ -770,7 +770,7 @@
 				81939B4A1E3BAA9A00179615 /* Preferences.swift */,
 				819ACE5C1E7D4569008DDF65 /* Link.swift */,
 			);
-			name = Models;
+			name = "Object Models";
 			sourceTree = "<group>";
 		};
 		81F1FE7D1E5AF0E700C1CD44 /* • Dismissable Modal Nav Controller */ = {

@@ -13,8 +13,7 @@ import Cartography
 
 // Details cell template
 class DetailsCell: UITableViewCell {
-    
-    var didSetupConstraints: Bool = false
+
     var type: ItemType = .ios
     var identifier: String { return "" }
     var height: CGFloat { return 0 }

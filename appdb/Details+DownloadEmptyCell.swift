@@ -42,12 +42,8 @@ class DetailsDownloadEmptyCell: DetailsCell {
     }
     
     override func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(error) { error in
-                
-                error.center == error.superview!.center
-                
-            }
+        constrain(error) { error in
+            error.center == error.superview!.center
         }
     }
 }

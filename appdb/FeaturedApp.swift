@@ -17,8 +17,6 @@ class FeaturedApp: UICollectionViewCell {
     var icon: UIImageView!
     var dim: UIView = DimmableView.get()
     
-    var didSetupConstraints = false
-    
     var tweaked: Bool = false {
         didSet { title.theme_textColor = tweaked ? Color.mainTint: Color.title }
     }
@@ -62,25 +60,23 @@ class FeaturedApp: UICollectionViewCell {
     }
     
     fileprivate func setConstraints() {
-        if !didSetupConstraints { didSetupConstraints = true
-            constrain(icon, title, category, dim) { icon, title, category, dim in
-                icon.left == icon.superview!.left
-                icon.top == icon.superview!.top
-                icon.right == icon.superview!.right
-                icon.height == frame.size.width
-                icon.width == icon.height
-                
-                title.left == title.superview!.left
-                title.right == title.superview!.right
-                title.top == icon.bottom + 5
-                
-                category.left == category.superview!.left
-                category.right == category.superview!.right
-                category.top == title.bottom + (2~~1)
-                
-                dim.edges == icon.edges
-                
-            }
+        constrain(icon, title, category, dim) { icon, title, category, dim in
+            icon.left == icon.superview!.left
+            icon.top == icon.superview!.top
+            icon.right == icon.superview!.right
+            icon.height == frame.size.width
+            icon.width == icon.height
+            
+            title.left == title.superview!.left
+            title.right == title.superview!.right
+            title.top == icon.bottom + 5
+            
+            category.left == category.superview!.left
+            category.right == category.superview!.right
+            category.top == title.bottom + (2~~1)
+            
+            dim.edges == icon.edges
+            
         }
     }
     
