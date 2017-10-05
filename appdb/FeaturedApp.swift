@@ -34,6 +34,7 @@ class FeaturedApp: UICollectionViewCell {
         icon.layer.cornerRadius = Global.cornerRadius(from: frame.size.width)
         icon.layer.borderWidth = 1 / UIScreen.main.scale
         icon.layer.theme_borderColor = Color.borderCgColor
+        icon.translatesAutoresizingMaskIntoConstraints = false
         icon.image = #imageLiteral(resourceName: "placeholderIcon")
         
         title = UILabel()

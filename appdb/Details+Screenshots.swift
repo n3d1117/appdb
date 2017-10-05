@@ -10,7 +10,7 @@ import Foundation
 import Cartography
 
 protocol ScreenshotRedirectionDelegate {
-    func screenshotImageSelected(with index: Int)
+    func screenshotImageSelected(with index: Int, _ allLandscape: Bool, _ mixedClasses: Bool, _ magic: CGFloat)
 }
 
 extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -33,7 +33,7 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.screenshotImageSelected(with: indexPath.row)
+        delegate?.screenshotImageSelected(with: indexPath.row, allLandscape, mixedClasses, magic)
     }
     
 }
@@ -43,7 +43,7 @@ class DetailsScreenshots: DetailsCell {
     override var identifier: String { return "screenshots" }
     override var height: CGFloat {
         if screenshots.isEmpty { return 0 }
-        return allLandscape ? (230~~176) : (300~~280)
+        return allLandscape ? (230~~176) : (314~~280)
     }
     
     var delegate: ScreenshotRedirectionDelegate? = nil
@@ -57,7 +57,7 @@ class DetailsScreenshots: DetailsCell {
         return 0
     }
 
-    var widthIfPortrait: CGFloat { return round(((300~~280)-(Global.size.margin.value * 2)) / magic) }
+    var widthIfPortrait: CGFloat { return round(((314~~280)-(Global.size.margin.value * 2)) / magic) }
     var widthIfLandscape: CGFloat { return round(((230~~176)-(Global.size.margin.value * 2)) * magic) }
     var allLandscape: Bool { return (screenshots.filter({$0.class_=="portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
     var mixedClasses: Bool { return !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }

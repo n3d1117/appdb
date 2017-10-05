@@ -22,6 +22,10 @@ class SnappableFlowLayout: UICollectionViewFlowLayout {
         self.magic = magic
     }
     
+    func updateWidth(_ width: CGFloat) {
+        self.width = width
+    }
+    
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
 
         if width > 0 {

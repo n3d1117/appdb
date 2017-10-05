@@ -261,8 +261,8 @@ extension Details: RelatedRedirectionDelegate {
 //   Present Full screenshots view controller with given index
 //
 extension Details: ScreenshotRedirectionDelegate {
-    func screenshotImageSelected(with index: Int) {
-        let vc = DetailsFullScreenshots(screenshots: screenshots, index: index)
+    func screenshotImageSelected(with index: Int, _ allLandscape: Bool, _ mixedClasses: Bool, _ magic: CGFloat) {
+        let vc = DetailsFullScreenshots(screenshots, index, allLandscape, mixedClasses, magic)
         let nav = DetailsFullScreenshotsNavController(rootViewController: vc)
         present(nav, animated: true)
     }
