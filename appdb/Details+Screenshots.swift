@@ -18,8 +18,7 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshot", for: indexPath) as! DetailsScreenshotCell
         if let url = URL(string: screenshots[indexPath.row].image) {
-            let filter = Global.screenshotRoundedFilter(size: sizeAtIndex(indexPath.row), radius: 7)
-            cell.image.af_setImage(withURL: url, placeholderImage: filter.filter(#imageLiteral(resourceName: "placeholderCover")), filter: filter, imageTransition: .crossDissolve(0.2))
+            cell.image.af_setImage(withURL: url, filter: filterAtIndex(indexPath.row), imageTransition: .crossDissolve(0.2))
         }
         return cell
     }
@@ -69,6 +68,10 @@ class DetailsScreenshots: DetailsCell {
         } else {
             return CGSize(width: widthIfPortrait, height: height-(Global.size.margin.value*2)-1)
         }
+    }
+    
+    func filterAtIndex(_ index: Int) -> ImageFilter {
+        return Global.screenshotRoundedFilter(size: sizeAtIndex(index), radius: 7)
     }
     
     convenience init(type: ItemType, screenshots: [Screenshot], delegate: ScreenshotRedirectionDelegate) {

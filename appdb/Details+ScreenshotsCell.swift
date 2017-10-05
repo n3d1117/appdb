@@ -28,6 +28,8 @@ class DetailsScreenshotCell: UICollectionViewCell {
         image.layer.borderWidth = 1 / UIScreen.main.scale
         image.layer.cornerRadius = 7
         image.layer.theme_borderColor = Color.borderCgColor
+        let filter = Global.screenshotRoundedFilter(size: contentView.frame.size, radius: 7)
+        image.image = filter.filter(#imageLiteral(resourceName: "placeholderCover"))
         
         dim.layer.cornerRadius = image.layer.cornerRadius
         
