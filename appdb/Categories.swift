@@ -141,7 +141,10 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     height = (nav.navigationBar.frame.height)~~(nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height)
                 }
                 
-                // TODO: fix status bar changing height for hotspot/in-call for older devices (works fine on iphone x)
+                // Fixes hotspot status bar on non X devices
+                if !HAS_NOTCH, UIApplication.shared.statusBarFrame.height > 20.0 {
+                    height -= (UIApplication.shared.statusBarFrame.height - 20.0)
+                }
 
                 header.top == view.top + height
                 header.left == view.left

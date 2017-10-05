@@ -82,12 +82,15 @@ class DetailsSegmentControl: TableViewHeader {
         contentView.addSubview(translucentView)
         
         constrain(translucentView, segment) { translucentView, segment in
-            translucentView.edges == translucentView.superview!.edges
             
             // Ugly ass fix for iPhone X
             if HAS_NOTCH {
+                translucentView.top == translucentView.superview!.top
+                translucentView.bottom == translucentView.superview!.bottom
                 translucentView.left == translucentView.superview!.left - 50
                 translucentView.right == translucentView.superview!.right + 50
+            } else {
+                translucentView.edges == translucentView.superview!.edges
             }
             
             segment.top == translucentView.top + 7
