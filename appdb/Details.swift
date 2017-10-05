@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SafariServices
 
 class Details: LoadingTableView {
     
@@ -197,6 +198,18 @@ class Details: LoadingTableView {
         if section == 1 { return DetailsSegmentControl.height }
         if section > 1, indexForSegment == .download, !versions.isEmpty { return DetailsVersionHeader.height }
         return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = details[indexPath.row] as? DetailsExternalLink  else { return }
+        guard let url = URL(string: cell.url) else { return }
+        if #available(iOS 9.0, *) {
+            let svc = SFSafariViewController(url: url)
+            present(svc, animated: true)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
     
 }

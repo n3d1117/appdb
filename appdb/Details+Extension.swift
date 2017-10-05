@@ -126,16 +126,16 @@ extension Details {
         
         switch contentType {
         case .ios: if let app = content as? App {
-            details.append(DetailsExternalLink(text: "Developer Apps"))
-            if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website")) }
-            if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support")) }
+            details.append(DetailsExternalLink(text: "Developer Apps", url: ""/* TODO */))
+            if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website", url: website)) }
+            if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support", url: support)) }
             if !app.publisher.isEmpty { details.append(DetailsPublisher(app.publisher)) }
             }
         case .cydia: if let app = content as? CydiaApp {
             details.append(DetailsPublisher("© " + app.developer))
             }
         case .books: if let book = content as? Book {
-            details.append(DetailsExternalLink(text: "More by this author"))
+            details.append(DetailsExternalLink(text: "More by this author", url: ""/* TODO */))
             if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) }
             }
         }
@@ -282,6 +282,18 @@ extension Details {
             case .books: if let book = content as? Book { return Array(book.reviews) }
             default: break
         }; return []
+    }
+    
+    var website: String {
+        if contentType == .ios, let app = content as? App {
+            return app.website
+        }; return ""
+    }
+    
+    var support: String {
+        if contentType == .ios, let app = content as? App {
+            return app.support
+        }; return ""
     }
     
 }

@@ -17,14 +17,17 @@ class DetailsExternalLink: DetailsCell {
     override var identifier: String { return "link" }
     
     var label: UILabel!
+    var url: String!
     
-    convenience init(text: String) {
+    convenience init(text: String, url: String) {
         self.init(style: .default, reuseIdentifier: "link")
 
         preservesSuperviewLayoutMargins = false
         addSeparator()
         
         accessoryType = .disclosureIndicator
+        
+        self.url = url
         
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
