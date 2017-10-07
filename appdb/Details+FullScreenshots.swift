@@ -240,15 +240,19 @@ class DetailsFullScreenshots: UIViewController {
     // This sucks - attempts at a smooth rotation with layout invalidation
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        UIView.animate(withDuration: 0.1) {
+            self.collectionView.alpha = 0
+        }
+        guard let layout =  self.collectionView?.collectionViewLayout as? SnappableFlowLayout else { return }
         coordinator.animate(alongsideTransition: nil) { _ in
-            for cell in self.collectionView.visibleCells { cell.alpha = 0 }
-            guard let layout =  self.collectionView?.collectionViewLayout as? SnappableFlowLayout else { return }
             self.calculateAllSizes()
             layout.invalidateLayout()
             layout.updateWidth(self.width)
-            self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
+            self.collectionView.scrollToItem(at: IndexPath(row: self.pageControl.currentPage, section: 0), at: .centeredHorizontally, animated: false)
+            UIView.animate(withDuration: 0.3) {
+                self.collectionView.alpha = 1
+            }
         }
-        for cell in self.collectionView.visibleCells { cell.alpha = 1 }
     }
     
     @objc func dismissAnimated() { dismiss(animated: true) }

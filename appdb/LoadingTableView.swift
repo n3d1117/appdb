@@ -41,6 +41,18 @@ class LoadingTableView: UITableViewController {
     var refreshButton: UIButton!
     var group = ConstraintGroup()
     
+    fileprivate func animate() {
+        // Bounce animation
+        self.view.transform = CGAffineTransform.identity.scaledBy(x: 0.96, y: 0.96)
+        UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.01, y: 1.01)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.1, animations: {
+                self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+            }, completion: nil)
+        })
+    }
+    
     var state: State = .done {
         didSet {
             switch state {
@@ -49,17 +61,8 @@ class LoadingTableView: UITableViewController {
                 tableView.isScrollEnabled = true
                 tableView.reloadData()
                 
-                if animated {
-                    // Bounce animation
-                    self.view.transform = CGAffineTransform.identity.scaledBy(x: 0.96, y: 0.96)
-                    UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                        self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.01, y: 1.01)
-                    }, completion: { _ in
-                        UIView.animate(withDuration: 0.1, animations: {
-                            self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
-                        }, completion: nil)
-                    })
-                }
+                if animated { animate() }
+                
             case .loading:
                 // Set Up
                 tableView.isScrollEnabled = false
@@ -79,6 +82,7 @@ class LoadingTableView: UITableViewController {
                 view.addSubview(activityIndicator)
                 
                 setConstraints(.loading)
+                
             case .error:
                 //Set up Error Message
                 errorMessage = UILabel()
@@ -114,6 +118,8 @@ class LoadingTableView: UITableViewController {
                 view.addSubview(errorMessage)
                 view.addSubview(secondaryErrorMessage)
                 
+                if animated { animate() }
+                
                 setConstraints(.error)
             }
         }
@@ -123,13 +129,13 @@ class LoadingTableView: UITableViewController {
 
     func setConstraints(_ state: State) {
 
-        let offset = (navigationController?.navigationBar.frame.size.height ?? 0) + UIApplication.shared.statusBarFrame.height + (tabBarController?.tabBar.frame.height ?? 0)
+        let offset = (navigationController?.navigationBar.frame.size.height ?? 0) + UIApplication.shared.statusBarFrame.height
         
         switch state {
         case .loading:
             constrain(activityIndicator, replace: group) { indicator in
                 indicator.centerX == indicator.superview!.centerX
-                indicator.centerY == indicator.superview!.centerY - (offset / 2.0)
+                indicator.centerY == indicator.superview!.centerY - offset
             }
         case .error:
             if showsErrorButton {
@@ -137,7 +143,7 @@ class LoadingTableView: UITableViewController {
                     message.left == message.superview!.left + 30
                     message.right == message.superview!.right - 30
                     message.centerX == message.superview!.centerX
-                    message.centerY == message.superview!.centerY - (offset / 2.0) - 35
+                    message.centerY == message.superview!.centerY - offset - 35
                     
                     secondaryMessage.left == message.left
                     secondaryMessage.right == message.right
@@ -152,7 +158,7 @@ class LoadingTableView: UITableViewController {
                     message.left == message.superview!.left + 30
                     message.right == message.superview!.right - 30
                     message.centerX == message.superview!.centerX
-                    message.centerY == message.superview!.centerY - (offset / 2.0) - 20
+                    message.centerY == message.superview!.centerY - offset - 20
                     
                     secondaryMessage.left == message.left
                     secondaryMessage.right == message.right
@@ -167,7 +173,7 @@ class LoadingTableView: UITableViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+        coordinator.animate(alongsideTransition: { _ in
             if self.state != .done { self.setConstraints(self.state) }
         }, completion: nil)
     }

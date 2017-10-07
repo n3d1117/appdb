@@ -100,7 +100,7 @@ class DetailsScreenshots: DetailsCell {
             collectionView.dataSource = self
             collectionView.showsHorizontalScrollIndicator = false
             collectionView.scrollsToTop = false
-            collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+            if !mixedClasses { collectionView.decelerationRate = UIScrollViewDecelerationRateFast }
             
             collectionView.theme_backgroundColor = Color.veryVeryLightGray
             theme_backgroundColor = Color.veryVeryLightGray
