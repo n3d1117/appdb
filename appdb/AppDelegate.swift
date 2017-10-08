@@ -31,14 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         let navigationBar = UINavigationBar.appearance()
         let titleAttributes = ["#121212", "#F8F8F8"].map { hexString in
             return [
-                NSAttributedStringKey.foregroundColor.rawValue: UIColor(rgba: hexString),
-                NSAttributedStringKey.font.rawValue: UIFont.systemFont(ofSize: 16.5),
+                NSAttributedStringKey.foregroundColor: UIColor(rgba: hexString),
+                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16.5),
             ]
         }
         
         navigationBar.theme_barStyle = [.default, .black]
         navigationBar.theme_tintColor = Color.mainTint
-        navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithDicts(titleAttributes)
+        navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithAttributes(titleAttributes)
         
         // Theme Tab Bar
         let tabBar = UITabBar.appearance()

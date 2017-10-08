@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class ThemeImagePicker: ThemePicker {
+@objc public final class ThemeImagePicker: ThemePicker {
     
     public convenience init(keyPath: String) {
         self.init(v: { ThemeManager.image(for: keyPath) })
@@ -42,19 +42,23 @@ public final class ThemeImagePicker: ThemePicker {
         self.init(keyPath: value)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String) -> ThemeImagePicker {
+}
+
+@objc public extension ThemeImagePicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String) -> ThemeImagePicker {
         return ThemeImagePicker(keyPath: keyPath)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIImage?) -> ThemeImagePicker {
+    class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIImage?) -> ThemeImagePicker {
         return ThemeImagePicker(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
-    public class func pickerWithNames(_ names: [String]) -> ThemeImagePicker {
+    class func pickerWithNames(_ names: [String]) -> ThemeImagePicker {
         return ThemeImagePicker(v: { ThemeManager.imageElement(for: names) })
     }
     
-    public class func pickerWithImages(_ images: [UIImage]) -> ThemeImagePicker {
+    class func pickerWithImages(_ images: [UIImage]) -> ThemeImagePicker {
         return ThemeImagePicker(v: { ThemeManager.element(for: images) })
     }
     

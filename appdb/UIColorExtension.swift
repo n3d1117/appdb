@@ -19,7 +19,7 @@ public enum UIColorInputError : Error {
     mismatchedHexStringLength
 }
 
-extension UIColor {
+@objc extension UIColor {
     /**
      The shorthand three-digit hexadecimal representation of color.
      #RGB defines to the color #RRGGBB.
@@ -87,7 +87,7 @@ extension UIColor {
             throw UIColorInputError.missingHashMarkAsPrefix
         }
         
-        let hexString: String = String(rgba.dropFirst())
+        let hexString: String = String(rgba[rgba.characters.index(rgba.startIndex, offsetBy: 1)...])
         var hexValue:  UInt32 = 0
         
         guard Scanner(string: hexString).scanHexInt32(&hexValue) else {

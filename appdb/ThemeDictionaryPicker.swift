@@ -8,13 +8,13 @@
 
 import Foundation
 
-public final class ThemeDictionaryPicker: ThemePicker {
+@objc public final class ThemeDictionaryPicker: ThemePicker {
     
-    public convenience init(keyPath: String, map: @escaping (Any?) -> [String: AnyObject]?) {
+    public convenience init<T>(keyPath: String, map: @escaping (Any?) -> [T: AnyObject]?) {
         self.init(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
-    public convenience init(dicts: [String: AnyObject]...) {
+    public convenience init<T>(dicts: [T: AnyObject]...) {
         self.init(v: { ThemeManager.element(for: dicts) })
     }
     
@@ -22,12 +22,24 @@ public final class ThemeDictionaryPicker: ThemePicker {
         self.init(v: { ThemeManager.element(for: elements) })
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> [String: AnyObject]?) -> ThemeDictionaryPicker {
+}
+
+@objc public extension ThemeDictionaryPicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> [String: AnyObject]?) -> ThemeDictionaryPicker {
         return ThemeDictionaryPicker(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
-    public class func pickerWithDicts(_ dicts: [[String: AnyObject]]) -> ThemeDictionaryPicker {
+    class func pickerWithKeyPath(_ keyPath: String, mapAttributes: @escaping (Any?) -> [NSAttributedStringKey: AnyObject]?) -> ThemeDictionaryPicker {
+        return ThemeDictionaryPicker(v: { mapAttributes(ThemeManager.value(for: keyPath)) })
+    }
+    
+    class func pickerWithDicts(_ dicts: [[String: AnyObject]]) -> ThemeDictionaryPicker {
         return ThemeDictionaryPicker(v: { ThemeManager.element(for: dicts) })
+    }
+    
+    class func pickerWithAttributes(_ attributes: [[NSAttributedStringKey: AnyObject]]) -> ThemeDictionaryPicker {
+        return ThemeDictionaryPicker(v: { ThemeManager.element(for: attributes) })
     }
     
 }

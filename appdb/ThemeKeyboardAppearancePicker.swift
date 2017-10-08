@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class ThemeKeyboardAppearancePicker: ThemePicker {
+@objc public final class ThemeKeyboardAppearancePicker: ThemePicker {
     
     public convenience init(keyPath: String) {
         self.init(v: { ThemeKeyboardAppearancePicker.getStyle(stringStyle: ThemeManager.string(for: keyPath) ?? "") })
@@ -38,22 +38,6 @@ public final class ThemeKeyboardAppearancePicker: ThemePicker {
         self.init(keyPath: value)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String) -> ThemeKeyboardAppearancePicker {
-        return ThemeKeyboardAppearancePicker(keyPath: keyPath)
-    }
-    
-    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIKeyboardAppearance?) -> ThemeKeyboardAppearancePicker {
-        return ThemeKeyboardAppearancePicker(v: { map(ThemeManager.value(for: keyPath)) })
-    }
-    
-    public class func pickerWithStyles(_ styles: [UIKeyboardAppearance]) -> ThemeKeyboardAppearancePicker {
-        return ThemeKeyboardAppearancePicker(v: { ThemeManager.element(for: styles) })
-    }
-    
-    public class func pickerWithStringStyles(_ styles: [String]) -> ThemeKeyboardAppearancePicker {
-        return ThemeKeyboardAppearancePicker(v: { ThemeManager.element(for: styles.map(getStyle)) })
-    }
-    
     class func getStyle(stringStyle: String) -> UIKeyboardAppearance {
         switch stringStyle.lowercased() {
         case "default"  : return .default
@@ -61,6 +45,30 @@ public final class ThemeKeyboardAppearancePicker: ThemePicker {
         case "light"    : return .light
         default: return .default
         }
+    }
+    
+}
+
+public extension ThemeKeyboardAppearancePicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIKeyboardAppearance?) -> ThemeKeyboardAppearancePicker {
+        return ThemeKeyboardAppearancePicker(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
+    class func pickerWithStyles(_ styles: [UIKeyboardAppearance]) -> ThemeKeyboardAppearancePicker {
+        return ThemeKeyboardAppearancePicker(v: { ThemeManager.element(for: styles) })
+    }
+    
+}
+
+@objc public extension ThemeKeyboardAppearancePicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String) -> ThemeKeyboardAppearancePicker {
+        return ThemeKeyboardAppearancePicker(keyPath: keyPath)
+    }
+    
+    class func pickerWithStringStyles(_ styles: [String]) -> ThemeKeyboardAppearancePicker {
+        return ThemeKeyboardAppearancePicker(v: { ThemeManager.element(for: styles.map(getStyle)) })
     }
     
 }

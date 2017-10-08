@@ -9,7 +9,7 @@
 import Foundation
 import CoreGraphics.CGColor
 
-public final class ThemeCGColorPicker: ThemePicker {
+@objc public final class ThemeCGColorPicker: ThemePicker {
     
     public convenience init(keyPath: String) {
         self.init(v: { ThemeManager.color(for: keyPath)?.cgColor })
@@ -39,15 +39,19 @@ public final class ThemeCGColorPicker: ThemePicker {
         self.init(keyPath: value)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String) -> ThemeCGColorPicker {
+}
+
+@objc public extension ThemeCGColorPicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String) -> ThemeCGColorPicker {
         return ThemeCGColorPicker(keyPath: keyPath)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> CGColor?) -> ThemeCGColorPicker {
+    class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> CGColor?) -> ThemeCGColorPicker {
         return ThemeCGColorPicker(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
-    public class func pickerWithColors(_ colors: [String]) -> ThemeCGColorPicker {
+    class func pickerWithColors(_ colors: [String]) -> ThemeCGColorPicker {
         return ThemeCGColorPicker(v: { ThemeManager.colorElement(for: colors)?.cgColor })
     }
     

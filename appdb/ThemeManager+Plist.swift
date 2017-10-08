@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ThemeManager {
+@objc extension ThemeManager {
     
     public class func value(for keyPath: String) -> Any? {
         return currentTheme?.value(forKeyPath: keyPath)

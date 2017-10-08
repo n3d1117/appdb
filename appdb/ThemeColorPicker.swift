@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class ThemeColorPicker: ThemePicker {
+@objc public final class ThemeColorPicker: ThemePicker {
     
     public convenience init(keyPath: String) {
         self.init(v: { ThemeManager.color(for: keyPath) })
@@ -38,15 +38,19 @@ public final class ThemeColorPicker: ThemePicker {
         self.init(keyPath: value)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String) -> ThemeColorPicker {
+}
+
+@objc public extension ThemeColorPicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String) -> ThemeColorPicker {
         return ThemeColorPicker(keyPath: keyPath)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIColor?) -> ThemeColorPicker {
+    class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIColor?) -> ThemeColorPicker {
         return ThemeColorPicker(v: { map(ThemeManager.value(for: keyPath)) })
     }
     
-    public class func pickerWithColors(_ colors: [String]) -> ThemeColorPicker {
+    class func pickerWithColors(_ colors: [String]) -> ThemeColorPicker {
         return ThemeColorPicker(v: { ThemeManager.colorElement(for: colors) })
     }
     

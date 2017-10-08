@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class ThemeBarStylePicker: ThemePicker {
+@objc public final class ThemeBarStylePicker: ThemePicker {
     
     public convenience init(keyPath: String) {
         self.init(v: { ThemeBarStylePicker.getStyle(stringStyle: ThemeManager.string(for: keyPath) ?? "") })
@@ -38,28 +38,36 @@ public final class ThemeBarStylePicker: ThemePicker {
         self.init(keyPath: value)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String) -> ThemeBarStylePicker {
-        return ThemeBarStylePicker(keyPath: keyPath)
-    }
-    
-    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIBarStyle?) -> ThemeBarStylePicker {
-        return ThemeBarStylePicker(v: { map(ThemeManager.value(for: keyPath)) })
-    }
-    
-    public class func pickerWithStyles(_ styles: [UIBarStyle]) -> ThemeBarStylePicker {
-        return ThemeBarStylePicker(v: { ThemeManager.element(for: styles) })
-    }
-    
-    public class func pickerWithStringStyles(_ styles: [String]) -> ThemeBarStylePicker {
-        return ThemeBarStylePicker(v: { ThemeManager.element(for: styles.map(getStyle)) })
-    }
-    
     class func getStyle(stringStyle: String) -> UIBarStyle {
         switch stringStyle.lowercased() {
         case "default"  : return .default
         case "black"    : return .black
         default: return .default
         }
+    }
+    
+}
+
+public extension ThemeBarStylePicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIBarStyle?) -> ThemeBarStylePicker {
+        return ThemeBarStylePicker(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
+    class func pickerWithStyles(_ styles: [UIBarStyle]) -> ThemeBarStylePicker {
+        return ThemeBarStylePicker(v: { ThemeManager.element(for: styles) })
+    }
+    
+}
+
+@objc public extension ThemeBarStylePicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String) -> ThemeBarStylePicker {
+        return ThemeBarStylePicker(keyPath: keyPath)
+    }
+    
+    class func pickerWithStringStyles(_ styles: [String]) -> ThemeBarStylePicker {
+        return ThemeBarStylePicker(v: { ThemeManager.element(for: styles.map(getStyle)) })
     }
     
 }

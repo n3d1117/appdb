@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension ThemeManager {
+@objc extension ThemeManager {
     
     /**
         extension for Objective-C, Use setTheme(plistName: String, path: ThemePath) in Swift

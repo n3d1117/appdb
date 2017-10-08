@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class ThemeActivityIndicatorViewStylePicker: ThemePicker {
+@objc public final class ThemeActivityIndicatorViewStylePicker: ThemePicker {
     
     public convenience init(keyPath: String) {
         self.init(v: { ThemeActivityIndicatorViewStylePicker.getStyle(stringStyle: ThemeManager.string(for: keyPath) ?? "") })
@@ -38,22 +38,6 @@ public final class ThemeActivityIndicatorViewStylePicker: ThemePicker {
         self.init(keyPath: value)
     }
     
-    public class func pickerWithKeyPath(_ keyPath: String) -> ThemeActivityIndicatorViewStylePicker {
-        return ThemeActivityIndicatorViewStylePicker(keyPath: keyPath)
-    }
-    
-    public class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIActivityIndicatorViewStyle?) -> ThemeActivityIndicatorViewStylePicker {
-        return ThemeActivityIndicatorViewStylePicker(v: { map(ThemeManager.value(for: keyPath)) })
-    }
-    
-    public class func pickerWithStyles(_ styles: [UIActivityIndicatorViewStyle]) -> ThemeActivityIndicatorViewStylePicker {
-        return ThemeActivityIndicatorViewStylePicker(v: { ThemeManager.element(for: styles) })
-    }
-    
-    public class func pickerWithStringStyles(_ styles: [String]) -> ThemeActivityIndicatorViewStylePicker {
-        return ThemeActivityIndicatorViewStylePicker(v: { ThemeManager.element(for: styles.map(getStyle)) })
-    }
-    
     class func getStyle(stringStyle: String) -> UIActivityIndicatorViewStyle {
         switch stringStyle.lowercased() {
         case "gray"         : return .gray
@@ -61,6 +45,30 @@ public final class ThemeActivityIndicatorViewStylePicker: ThemePicker {
         case "whitelarge"   : return .whiteLarge
         default: return .gray
         }
+    }
+    
+}
+
+public extension ThemeActivityIndicatorViewStylePicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String, map: @escaping (Any?) -> UIActivityIndicatorViewStyle?) -> ThemeActivityIndicatorViewStylePicker {
+        return ThemeActivityIndicatorViewStylePicker(v: { map(ThemeManager.value(for: keyPath)) })
+    }
+    
+    class func pickerWithStyles(_ styles: [UIActivityIndicatorViewStyle]) -> ThemeActivityIndicatorViewStylePicker {
+        return ThemeActivityIndicatorViewStylePicker(v: { ThemeManager.element(for: styles) })
+    }
+    
+}
+
+@objc public extension ThemeActivityIndicatorViewStylePicker {
+    
+    class func pickerWithKeyPath(_ keyPath: String) -> ThemeActivityIndicatorViewStylePicker {
+        return ThemeActivityIndicatorViewStylePicker(keyPath: keyPath)
+    }
+    
+    class func pickerWithStringStyles(_ styles: [String]) -> ThemeActivityIndicatorViewStylePicker {
+        return ThemeActivityIndicatorViewStylePicker(v: { ThemeManager.element(for: styles.map(getStyle)) })
     }
     
 }
