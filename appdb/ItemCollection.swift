@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 import Cartography
 import RealmSwift
+import Dwifft
+import AlamofireImage
+import ObjectMapper
 
 // Class to handle response correctly from Featured
 struct ItemResponse {

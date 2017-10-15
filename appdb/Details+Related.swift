@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Cartography
 import RealmSwift
+import AlamofireImage
 
 protocol RelatedRedirectionDelegate {
     func relatedItemSelected(trackid: String)

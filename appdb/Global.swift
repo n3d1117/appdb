@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 import Cartography
+import AlamofireImage
 
 //Utils
 let IS_IPAD = UIDevice.current.userInterfaceIdiom == .pad

@@ -9,6 +9,8 @@
 import UIKit
 import Cartography
 import RealmSwift
+import Cosmos
+import AlamofireImage
 
 class DetailsHeader: DetailsCell {
     
@@ -208,13 +210,13 @@ class DetailsHeader: DetailsCell {
 
     private func buildStars() -> CosmosView {
         let stars = CosmosView()
-        stars.starSize = 12
+        stars.settings.starSize = 12
         stars.isUserInteractionEnabled = false
         stars.settings.totalStars = 5
         stars.settings.fillMode = .half
-        stars.textSize = 11.5
-        stars.textMargin = 2
-        stars.starMargin = 0
+        //stars.settings.textSize = 11.5
+        stars.settings.textMargin = 2
+        stars.settings.starMargin = 0
         return stars
     }
     

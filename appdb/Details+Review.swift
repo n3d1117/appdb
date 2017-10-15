@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Cartography
 import RealmSwift
+import Cosmos
 
 class DetailsReview: DetailsCell {
     
@@ -50,13 +51,13 @@ class DetailsReview: DetailsCell {
         
         // Rating
         stars = CosmosView()
-        stars.starSize = 11
+        stars.settings.starSize = 11
         stars.isUserInteractionEnabled = false
         stars.settings.totalStars = 5
         stars.settings.fillMode = .full
-        stars.starMargin = 0
-        stars.textSize = 11.5
-        stars.textMargin = 4
+        stars.settings.starMargin = 0
+        //stars.settings.textSize = 11.5
+        stars.settings.textMargin = 4
         
         // Desc
         desc = ElasticLabel()

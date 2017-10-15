@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import SwiftyJSON
+import ObjectMapper
 
 class CydiaApp: Object, Meta {
     

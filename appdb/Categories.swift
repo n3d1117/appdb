@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Cartography
+import AlamofireImage
 
 private var categories: [Genre] = []
 private var checked: [Int:[Bool]] = [0:[true], 1:[true], 2:[true]]

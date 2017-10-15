@@ -8,6 +8,7 @@
 //
 import Foundation
 import UIKit
+import SwiftTheme
 
 protocol ElasticLabelDelegate {
     func expand(_ label: ElasticLabel)
@@ -21,7 +22,7 @@ class ElasticLabel: UILabel {
     var recognizer: UITapGestureRecognizer!
     var expandedText: String! = ""
     
-    var moreTextColor: ThemeColorPicker = ["#4E7DD0", "#649EE6"]
+    var moreTextColor = ["#4E7DD0", "#649EE6"]
     
     open override var text: String? {
         didSet {
@@ -62,7 +63,7 @@ class ElasticLabel: UILabel {
         
         let size = CGSize(width: bounds.size.width, height: ceil(font!.lineHeight * CGFloat(maxNumberOfCollapsedLines)))
         let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.foregroundColor: textColor!, NSAttributedStringKey.font: font!]
-        let trailingAttributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.foregroundColor: Color.get(from: moreTextColor), NSAttributedStringKey.font: font!]
+        let trailingAttributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.foregroundColor: (Themes.isNight ? UIColor(rgba: moreTextColor[0]) : UIColor(rgba: moreTextColor[1])), NSAttributedStringKey.font: font!]
         
         self.attributedText = text.truncateToSize(size: size, ellipses: ellipses, trailingText: trailing, attributes: attributes, trailingAttributes: trailingAttributes)
     }

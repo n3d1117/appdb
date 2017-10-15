@@ -8,13 +8,12 @@
 
 import Foundation
 import UIKit
+import SwiftTheme
 
 /* First is light theme, second is Dark theme hex. */
 
 struct Color {
-    
-    static func get(from picker: ThemeColorPicker) -> UIColor { return picker.value() as? UIColor ?? UIColor.blue }
-    
+
     /////////////////
     //  UI COLORS  //
     /////////////////

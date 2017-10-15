@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Cartography
 import Kanna
+import Localize_Swift
 
 // Delay function
 func delay(_ delay: Double, closure: @escaping ()->()) {

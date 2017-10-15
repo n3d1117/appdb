@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Cartography
+import Localize_Swift
 
 protocol ChangeCategory {
     func openCategories(_ sender: AnyObject)

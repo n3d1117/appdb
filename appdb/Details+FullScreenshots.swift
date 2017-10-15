@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Cartography
+import AlamofireImage
 
 class DetailsFullScreenshotsNavController: UINavigationController {
     override func viewDidLoad() {

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Cartography
+import SwiftTheme
 
 class DetailsVersionHeader: TableViewHeader {
     

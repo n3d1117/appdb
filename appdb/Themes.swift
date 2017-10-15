@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import SwiftTheme
 
 enum Themes: Int {
     
