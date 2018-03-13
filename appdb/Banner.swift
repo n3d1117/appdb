@@ -31,6 +31,14 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
         return 4
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        pauseTimer()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        setTimerIfNeeded()
+    }
+    
 }
 
 class Banner: UITableViewCell {
