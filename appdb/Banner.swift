@@ -73,7 +73,6 @@ class Banner: UITableViewCell {
         didSet {
             self.slideshowTimer?.invalidate()
             self.slideshowTimer = nil
-            setTimerIfNeeded()
         }
     }
     
@@ -105,8 +104,7 @@ class Banner: UITableViewCell {
             collectionView.height == height
         }
         
-        slideshowInterval = 5.0
-        setTimerIfNeeded()
+        slideshowInterval = 4.5
         
         //
         // Get Promotions
@@ -127,7 +125,7 @@ class Banner: UITableViewCell {
         
     }
     
-    fileprivate func setTimerIfNeeded() {
+    open func setTimerIfNeeded() {
         if slideshowInterval > 0 && slideshowTimer == nil {
             slideshowTimer = Timer.scheduledTimer(timeInterval: slideshowInterval, target: self, selector: #selector(self.slideshowTick(_:)), userInfo: nil, repeats: true)
         }
