@@ -11,8 +11,20 @@ import Alamofire
 import RealmSwift
 import SwiftyJSON
 
+struct API {
+    static let realm = try! Realm()
+    static let endpoint = "https://api.appdb.store/v1.2/"
+    static let languageCode = Locale.current.languageCode ?? "en"
+    static let headers: HTTPHeaders = ["User-Agent": "appdb iOS Client v\(Global.appVersion)"]
+}
+
 protocol Meta {
     static func type() -> ItemType
+}
+
+enum DeviceType: String {
+    case iphone = "iphone"
+    case ipad = "ipad"
 }
 
 enum ItemType: String {
@@ -41,13 +53,5 @@ enum Actions: String {
     case listGenres = "list_genres"
     case promotions = "promotions"
     case getLinks = "get_links"
-}
-
-struct API {
-    
-    static let realm = try! Realm()
-    static let endpoint = "https://api.appdb.store/v1.2/"
-    static let languageCode = Locale.current.languageCode ?? "en"
-    static let headers: HTTPHeaders = ["User-Agent": "appdb iOS Client v\(Global.appVersion)"]
-    
+    case getNews = "get_news"
 }

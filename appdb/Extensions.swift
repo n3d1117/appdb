@@ -68,7 +68,11 @@ extension String {
     var decoded: String {
         let regex = "(?:(?:(?:\\<br\\ \\/\\>))|(?:(?:\\<br\\/\\>))|(?:(?:\\<p\\/\\>)))"
         let newString: String =  self.replacingOccurrences(of: regex, with: "\n", options: .regularExpression, range: nil)
-        return HTML(html: newString, encoding: .utf8)?.text ?? ""
+        do {
+            return try HTML(html: newString, encoding: .utf8).text ?? ""
+        } catch {
+            return ""
+        }
     }
     
     //
@@ -124,6 +128,6 @@ extension Character {
 
 extension String {
     var removedEmoji: String {
-        return String(self.characters.filter { !$0.isEmoji() })
+        return String(self.filter { !$0.isEmoji() })
     }
 }

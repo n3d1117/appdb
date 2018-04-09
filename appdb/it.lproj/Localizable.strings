@@ -51,6 +51,7 @@
 "Best Games" = "Giochi fantastici";
 "Top Books" = "Libri più scaricati";
 "See All" = "Vedi tutto";
+"News" = "Notizie";
 
 //////////////////////////
 //     APPS & BOOKS     //
@@ -91,6 +92,7 @@
 "Related Apps" = "App correlate";
 "Related Books" = "Libri correlati";
 "Reviews are from Apple's iTunes Store ©" = "Le recensioni fanno parte di iTunes Store ©";
+"Check out '%@' on appdb!" = "Guarda '%@' su appdb!";
 
 ////////////////////
 //     ERRORS     //
@@ -113,3 +115,4 @@
 "Done" = "Fatto";
 "more" = "altro";
 "Open in Safari" = "Apri in Safari";
+"Dark Mode" = "Tema scuro";

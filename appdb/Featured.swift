@@ -52,11 +52,6 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         // Fix random separator margin issues
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
         
-        /* DEBUG */
-        let tmpButton = UIBarButtonItem(title: "switch".localized(), style: .plain, target: self, action:#selector(self.tmpSwitch))
-        navigationItem.rightBarButtonItem = tmpButton
-        /* DEBUG */
-        
         // List Genres and enable button on completion
         API.listGenres()
 
@@ -65,15 +60,11 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         
     }
     
-    /* DEBUG */
-    @objc func tmpSwitch() { Themes.switchTo(theme: Themes.isNight ? .Light : .Dark) }
-    /* DEBUG */
-    
     // MARK: - Load Initial Data
     
     func reloadTableWhenReady() {
         
-        let itemCells = cells.flatMap{$0 as? ItemCollection}
+        let itemCells = cells.compactMap{$0 as? ItemCollection}
         if itemCells.count != (itemCells.filter{$0.response.success == true}.count) {
             if !(itemCells.filter{$0.response.errorDescription != ""}.isEmpty) {
                 
@@ -90,7 +81,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         } else {
             
             // If i don't do this here, stuff breaks :(
-            for layout in itemCells.flatMap({$0.collectionView.collectionViewLayout as? SnappableFlowLayout}) { layout.scrollDirection = .horizontal }
+            for layout in itemCells.compactMap({$0.collectionView.collectionViewLayout as? SnappableFlowLayout}) { layout.scrollDirection = .horizontal }
             
             // Add banner
             addBanner(self.banner)
@@ -116,7 +107,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         delay(0.3) {
             // Retry all network operations
             API.listGenres()
-            for cell in self.cells.flatMap({$0 as? ItemCollection}) { cell.requestItems() }
+            for cell in self.cells.compactMap({$0 as? ItemCollection}) { cell.requestItems() }
             //self.banner.setImageInputs()
             self.reloadTableWhenReady()
         }

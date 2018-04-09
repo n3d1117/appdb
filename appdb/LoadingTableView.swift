@@ -28,6 +28,7 @@ class LoadingTableView: UITableViewController {
 
     var animated: Bool = false
     var showsErrorButton: Bool = true
+    var showsSpinner: Bool = true
     
     enum State {
         case done
@@ -57,7 +58,10 @@ class LoadingTableView: UITableViewController {
         didSet {
             switch state {
             case .done:
-                activityIndicator.stopAnimating()
+                if let indicator = activityIndicator {
+                    indicator.stopAnimating()
+                }
+                
                 tableView.isScrollEnabled = true
                 tableView.reloadData()
                 
@@ -68,10 +72,15 @@ class LoadingTableView: UITableViewController {
                 tableView.isScrollEnabled = false
                 
                 //Set up Activity Indicator View
-                activityIndicator = UIActivityIndicatorView()
-                activityIndicator.theme_activityIndicatorViewStyle = [.gray, .white]
-                activityIndicator.hidesWhenStopped = true
-                activityIndicator.startAnimating()
+                
+                if activityIndicator == nil, showsSpinner {
+                    activityIndicator = UIActivityIndicatorView()
+                    activityIndicator.theme_activityIndicatorViewStyle = [.gray, .white]
+                    activityIndicator.hidesWhenStopped = true
+                    activityIndicator.startAnimating()
+                
+                    view.addSubview(activityIndicator)
+                }
                 
                 if let refreshButton = refreshButton, let error = errorMessage, let secondary = secondaryErrorMessage {
                     refreshButton.isHidden = true
@@ -79,44 +88,55 @@ class LoadingTableView: UITableViewController {
                     secondary.isHidden = true
                 }
                 
-                view.addSubview(activityIndicator)
-                
                 setConstraints(.loading)
                 
             case .error:
                 //Set up Error Message
-                errorMessage = UILabel()
-                errorMessage.theme_textColor = Color.copyrightText
-                if #available(iOS 8.2, *) {
-                    errorMessage.font = .systemFont(ofSize: (26~~24), weight: UIFont.Weight.semibold)
+                
+                if let e = errorMessage {
+                    e.isHidden = false
                 } else {
-                    errorMessage.font = .systemFont(ofSize: (26~~24))
+                    errorMessage = UILabel()
+                    errorMessage.theme_textColor = Color.copyrightText
+                    if #available(iOS 8.2, *) {
+                        errorMessage.font = .systemFont(ofSize: (26~~24), weight: UIFont.Weight.semibold)
+                    } else {
+                        errorMessage.font = .systemFont(ofSize: (26~~24))
+                    }
+                    errorMessage.numberOfLines = 0
+                    errorMessage.textAlignment = .center
+                    errorMessage.isHidden = false
+                    errorMessage.makeDynamicFont()
+                    view.addSubview(errorMessage)
                 }
-                errorMessage.numberOfLines = 0
-                errorMessage.textAlignment = .center
-                errorMessage.isHidden = false
-                errorMessage.makeDynamicFont()
                 
                 //Set up Secondary Error Message
-                secondaryErrorMessage = UILabel()
-                secondaryErrorMessage.theme_textColor = Color.copyrightText
-                secondaryErrorMessage.font = .systemFont(ofSize: (19~~17))
-                secondaryErrorMessage.numberOfLines = 0
-                secondaryErrorMessage.textAlignment = .center
-                secondaryErrorMessage.isHidden = false
-                secondaryErrorMessage.makeDynamicFont()
                 
-                // Set up 'Retry' button
-                if showsErrorButton {
-                    refreshButton = ButtonFactory.createRetryButton(text: "Retry".localized(), color: Color.copyrightText)
-                    refreshButton.isHidden = false
+                if let s = secondaryErrorMessage {
+                    s.isHidden = false
+                } else {
+                    secondaryErrorMessage = UILabel()
+                    secondaryErrorMessage.theme_textColor = Color.copyrightText
+                    secondaryErrorMessage.font = .systemFont(ofSize: (19~~17))
+                    secondaryErrorMessage.numberOfLines = 0
+                    secondaryErrorMessage.textAlignment = .center
+                    secondaryErrorMessage.isHidden = false
+                    secondaryErrorMessage.makeDynamicFont()
+                    view.addSubview(secondaryErrorMessage)
                 }
                 
-                activityIndicator.stopAnimating()
+                // Set up 'Retry' button
+                if let r = refreshButton {
+                    r.isHidden = false
+                } else {
+                    if showsErrorButton {
+                        refreshButton = ButtonFactory.createRetryButton(text: "Retry".localized(), color: Color.copyrightText)
+                        refreshButton.isHidden = false
+                        view.addSubview(refreshButton)
+                    }
+                }
                 
-                if showsErrorButton { view.addSubview(refreshButton) }
-                view.addSubview(errorMessage)
-                view.addSubview(secondaryErrorMessage)
+                if let a = activityIndicator { a.stopAnimating() }
                 
                 if animated { animate() }
                 
@@ -133,7 +153,8 @@ class LoadingTableView: UITableViewController {
         
         switch state {
         case .loading:
-            constrain(activityIndicator, replace: group) { indicator in
+            guard let indicator = activityIndicator else { return }
+            constrain(indicator, replace: group) { indicator in
                 indicator.centerX == indicator.superview!.centerX
                 indicator.centerY == indicator.superview!.centerY - offset
             }
@@ -179,10 +200,13 @@ class LoadingTableView: UITableViewController {
     }
     
     // MARK: - error Screen
-    func showErrorMessage(text: String = "", secondaryText: String = "") {
+    func showErrorMessage(text: String = "", secondaryText: String = "", animated: Bool = true) {
+        let shouldAnimate: Bool = self.animated
+        if animated { self.animated = true }
         state = .error
         secondaryErrorMessage.text = secondaryText
         errorMessage.text = text
+        if animated { self.animated = shouldAnimate }
     }
 
 }

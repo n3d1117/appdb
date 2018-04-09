@@ -51,6 +51,7 @@
 "Best Games" = "Best Games";
 "Top Books" = "Top Books";
 "See All" = "See All";
+"News" = "News";
 
 //////////////////////////
 //     APPS & BOOKS     //
@@ -91,6 +92,7 @@
 "Related Apps" = "Related Apps";
 "Related Books" = "Related Books";
 "Reviews are from Apple's iTunes Store ©" = "Reviews are from Apple's iTunes Store ©";
+"Check out '%@' on appdb!" = "Check out '%@' on appdb!";
 
 ////////////////////
 //     ERRORS     //
@@ -113,3 +115,4 @@
 "Done" = "Done";
 "more" = "more";
 "Open in Safari" = "Open in Safari";
+"Dark Mode" = "Dark Mode";
