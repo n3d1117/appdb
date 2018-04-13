@@ -94,6 +94,28 @@
 "Reviews are from Apple's iTunes Store ©" = "Le recensioni fanno parte di iTunes Store ©";
 "Check out '%@' on appdb!" = "Guarda '%@' su appdb!";
 
+//////////////////////////////////
+//     DEVICE LINK TUTORIAL     //
+//////////////////////////////////
+
+"Authorization" = "Autorizzazione";
+"Authorize App" = "Autorizza App";
+"Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles." = "Il tuo dispositivo è già collegato ad appdb? Puoi controllare se hai il profilo di appdb installato da Impostazioni -> Generali -> Profili.";
+"Continue" = "Continua";
+"Enter Link Code" = "Inserisci codice";
+"Enter link code here" = "Inserisci qui il codice";
+"Please enter a valid email address." = "Inserisci un indirizzo email valido.";
+"Paste the 8 digits case sensitive link code you see on this page:" = "Incolla qui il codice di otto cifre che trovi su questa pagina:";
+"Go Back" = "Indietro";
+"Enter Email" = "Inserisci email";
+"Please enter your email address below" = "Inserisci qui il tuo indirizzo email";
+"Success" = "Fatto";
+"Well done! This app is now authorized to install apps on your device." = "Perfetto! L'app è stata autorizzata correttamente e può installare app sul tuo dispositivo tramite appdb.";
+"Start using appdb!" = "Comincia a usare appdb!";
+"Unable to complete" = "Impossibile completare";
+"Yes, already linked" = "Sì, è già collegato";
+"No, not yet linked" = "No, non è collegato";
+
 ////////////////////
 //     ERRORS     //
 ////////////////////
@@ -103,6 +125,11 @@
 "Not found" = "Contenuto non trovato";
 "Couldn't find content with id %@ in our database" = "Nessun risultato trovato con id %@ nel nostro database";
 "An error has occurred" = "Errore";
+"Invalid link code." = "Codice non valido.";
+"Invalid email address." = "Indirizzo email non valido.";
+"Link code cannot be empty." = "Il codice deve essere di otto cifre.";
+"Please enter a valid email address." = "Inserisci un indirizzo email valido.";
+"No device linked." = "Nessun dispositivo collegator.";
 
 ///////////////////
 //     OTHER     //

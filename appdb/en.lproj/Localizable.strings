@@ -94,6 +94,28 @@
 "Reviews are from Apple's iTunes Store ©" = "Reviews are from Apple's iTunes Store ©";
 "Check out '%@' on appdb!" = "Check out '%@' on appdb!";
 
+//////////////////////////////////
+//     DEVICE LINK TUTORIAL     //
+//////////////////////////////////
+
+"Authorization" = "Authorization";
+"Authorize App" = "Authorize App";
+"Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles." = "Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles.";
+"Continue" = "Continue";
+"Enter Link Code" = "Enter Link Code";
+"Enter link code here" = "Enter link code here";
+"Please enter a valid email address." = "Please enter a valid email address.";
+"Paste the 8 digits case sensitive link code you see on this page:" = "Paste the 8 digits case sensitive link code you see on this page:";
+"Go Back" = "Go Back";
+"Enter Email" = "Enter Email";
+"Please enter your email address below" = "Please enter your email address below";
+"Success" = "Success";
+"Well done! This app is now authorized to install apps on your device." = "Well done! This app is now authorized to install apps on your device.";
+"Start using appdb!" = "Start using appdb!";
+"Unable to complete" = "Unable to complete";
+"Yes, already linked" = "Yes, already linked";
+"No, not yet linked" = "No, not yet linked";
+
 ////////////////////
 //     ERRORS     //
 ////////////////////
@@ -103,6 +125,11 @@
 "Not found" = "Not found";
 "Couldn't find content with id %@ in our database" = "Couldn't find content with id %@ in our database";
 "An error has occurred" = "An error has occurred";
+"Invalid link code." = "Invalid link code.";
+"Invalid email address." = "Invalid email.";
+"Link code cannot be empty." = "Link code cannot be empty.";
+"Please enter a valid email address." = "Please enter a valid email address.";
+"No device linked." = "No device linked.";
 
 ///////////////////
 //     OTHER     //
