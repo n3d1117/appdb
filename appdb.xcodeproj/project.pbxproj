@@ -12,6 +12,9 @@
 		81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236AC81E3B6899009748E0 /* ButtonFactory.swift */; };
 		81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */; };
 		8127F3A41F88FEF10030A804 /* LoadingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127F3A31F88FEF10030A804 /* LoadingCollectionView.swift */; };
+		812C3540207CECDB00D39748 /* API+DeviceLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812C353F207CECDB00D39748 /* API+DeviceLink.swift */; };
+		812C3542207D235300D39748 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812C3541207D235300D39748 /* Swifter.framework */; };
+		812C3544207D237300D39748 /* ConfigServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812C3543207D237300D39748 /* ConfigServer.swift */; };
 		812E97881E57730300C1379F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812E97871E57730300C1379F /* Search.swift */; };
 		81324068205BD86000945CE9 /* SimpleStaticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81324067205BD86000945CE9 /* SimpleStaticCell.swift */; };
 		8132406B205BE50000945CE9 /* News+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132406A205BE50000945CE9 /* News+Detail.swift */; };
@@ -40,6 +43,11 @@
 		816D1F1F1F9143C800172094 /* MixedScreenshotsSearchCell_P->L.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D1F1E1F9143C800172094 /* MixedScreenshotsSearchCell_P->L.swift */; };
 		816D1F231F9165C700172094 /* SearchCells~iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D1F221F9165C700172094 /* SearchCells~iPad.swift */; };
 		816D1F251F91679000172094 /* SearchCells~iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D1F241F91679000172094 /* SearchCells~iPhone.swift */; };
+		8173FBED207BC90200EF779F /* BulletinDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBEC207BC90200EF779F /* BulletinDataSource.swift */; };
+		8173FBF0207BCAE200EF779F /* SelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */; };
+		8173FBF2207BCE6500EF779F /* BulletinBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8173FBF1207BCE6500EF779F /* BulletinBoard.framework */; };
+		8173FBF4207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBF3207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift */; };
+		8173FBF6207BE8BE00EF779F /* EnterEmailBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBF5207BE8BE00EF779F /* EnterEmailBulletinPage.swift */; };
 		8177B60C1F81992F0014A944 /* Details+FullScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818CB5D41E787AB400A69213 /* Details+FullScreenshots.swift */; };
 		817A40E11E5E27EB003FD6F1 /* Details+Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A40E01E5E27EB003FD6F1 /* Details+Screenshots.swift */; };
 		817A40E41E5E2FB2003FD6F1 /* SnappableFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A40E31E5E2FB2003FD6F1 /* SnappableFlowLayout.swift */; };
@@ -128,6 +136,9 @@
 		81236AC81E3B6899009748E0 /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ButtonFactory.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		8127F3A31F88FEF10030A804 /* LoadingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionView.swift; sourceTree = "<group>"; };
+		812C353F207CECDB00D39748 /* API+DeviceLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+DeviceLink.swift"; sourceTree = "<group>"; };
+		812C3541207D235300D39748 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
+		812C3543207D237300D39748 /* ConfigServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServer.swift; sourceTree = "<group>"; };
 		812E97871E57730300C1379F /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		81324067205BD86000945CE9 /* SimpleStaticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStaticCell.swift; sourceTree = "<group>"; };
 		8132406A205BE50000945CE9 /* News+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail.swift"; sourceTree = "<group>"; };
@@ -160,6 +171,11 @@
 		816D1F1E1F9143C800172094 /* MixedScreenshotsSearchCell_P->L.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixedScreenshotsSearchCell_P->L.swift"; sourceTree = "<group>"; };
 		816D1F221F9165C700172094 /* SearchCells~iPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchCells~iPad.swift"; sourceTree = "<group>"; };
 		816D1F241F91679000172094 /* SearchCells~iPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchCells~iPhone.swift"; sourceTree = "<group>"; };
+		8173FBEC207BC90200EF779F /* BulletinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinDataSource.swift; sourceTree = "<group>"; };
+		8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
+		8173FBF1207BCE6500EF779F /* BulletinBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BulletinBoard.framework; path = Carthage/Build/iOS/BulletinBoard.framework; sourceTree = "<group>"; };
+		8173FBF3207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLinkCodeBulletinPage.swift; sourceTree = "<group>"; };
+		8173FBF5207BE8BE00EF779F /* EnterEmailBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailBulletinPage.swift; sourceTree = "<group>"; };
 		817A40E01E5E27EB003FD6F1 /* Details+Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Screenshots.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		817A40E31E5E2FB2003FD6F1 /* SnappableFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnappableFlowLayout.swift; sourceTree = "<group>"; };
 		817A40E61E5E393A003FD6F1 /* Details+ScreenshotsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+ScreenshotsCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -258,11 +274,13 @@
 				81FF1C541F9211B00086EEE0 /* SwiftTheme.framework in Frameworks */,
 				81FF1C551F9211B00086EEE0 /* Localize_Swift.framework in Frameworks */,
 				81FF1C561F9211B00086EEE0 /* Cosmos.framework in Frameworks */,
+				8173FBF2207BCE6500EF779F /* BulletinBoard.framework in Frameworks */,
 				81FF1C571F9211B00086EEE0 /* AlamofireImage.framework in Frameworks */,
 				81FF1C4C1F9211B00086EEE0 /* Dwifft.framework in Frameworks */,
 				81FF1C4D1F9211B00086EEE0 /* ObjectMapper.framework in Frameworks */,
 				817D2EE11E8EBBE500B8AE0D /* SwiftyJSON.framework in Frameworks */,
 				814B76F8205ADB63004D46DD /* Static.framework in Frameworks */,
+				812C3542207D235300D39748 /* Swifter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +364,16 @@
 			name = SwiftPullToRefresh;
 			sourceTree = "<group>";
 		};
+		814FF02C207B9B5F0049DF9A /* Device Link */ = {
+			isa = PBXGroup;
+			children = (
+				8173FBEC207BC90200EF779F /* BulletinDataSource.swift */,
+				812C3543207D237300D39748 /* ConfigServer.swift */,
+				8173FBEE207BC9F600EF779F /* Bulletins */,
+			);
+			name = "Device Link";
+			sourceTree = "<group>";
+		};
 		815C4A9C1F9541330002AB08 /* DEBUG */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +443,16 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
+		8173FBEE207BC9F600EF779F /* Bulletins */ = {
+			isa = PBXGroup;
+			children = (
+				8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */,
+				8173FBF3207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift */,
+				8173FBF5207BE8BE00EF779F /* EnterEmailBulletinPage.swift */,
+			);
+			name = Bulletins;
+			sourceTree = "<group>";
+		};
 		81795CD61E60885600805B3A /* • ElasticLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +515,7 @@
 				8187B4EC1E3A789000F251CD /* API+Promotions.swift */,
 				819ACE5A1E7D3FEC008DDF65 /* API+Links.swift */,
 				814B76FD205AE1F9004D46DD /* API+News.swift */,
+				812C353F207CECDB00D39748 /* API+DeviceLink.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -529,6 +568,7 @@
 			children = (
 				818A559E20583D4600162E51 /* Settings.swift */,
 				81324067205BD86000945CE9 /* SimpleStaticCell.swift */,
+				814FF02C207B9B5F0049DF9A /* Device Link */,
 				81324069205BE4C700945CE9 /* News */,
 			);
 			name = SETTINGS;
@@ -615,6 +655,8 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				812C3541207D235300D39748 /* Swifter.framework */,
+				8173FBF1207BCE6500EF779F /* BulletinBoard.framework */,
 				814B76FF205AEE25004D46DD /* SwiftPullToRefresh.framework */,
 				814B76F7205ADB62004D46DD /* Static.framework */,
 				81896D361F9D106E00BF1FCD /* Highlighter.framework */,
@@ -907,6 +949,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Dwifft.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Static.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BulletinBoard.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Swifter.framework",
 			);
 			outputPaths = (
 			);
@@ -929,6 +973,7 @@
 				816D1F251F91679000172094 /* SearchCells~iPhone.swift in Sources */,
 				8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */,
 				818A559F20583D4600162E51 /* Settings.swift in Sources */,
+				8173FBF0207BCAE200EF779F /* SelectorBulletinPage.swift in Sources */,
 				8187B4EF1E3A795800F251CD /* Promotion.swift in Sources */,
 				81EC006A1DAD7704009EEFFA /* Colors.swift in Sources */,
 				81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */,
@@ -955,6 +1000,7 @@
 				814B770F205B2DCA004D46DD /* IndicatorView.swift in Sources */,
 				819E698D1F8E9DA500C4608F /* NoScreenshotsSearchCell.swift in Sources */,
 				81939B471E3BA98D00179615 /* Themes.swift in Sources */,
+				8173FBED207BC90200EF779F /* BulletinDataSource.swift in Sources */,
 				814B76FC205AE018004D46DD /* SingleNews.swift in Sources */,
 				8117DDAA1F3B05BD00E817C5 /* String+Truncation.swift in Sources */,
 				81EC007B1DAD92A2009EEFFA /* Featured+Extension.swift in Sources */,
@@ -972,6 +1018,7 @@
 				818A55AA20584D9100162E51 /* LNZInfiniteCollectionViewLayout.swift in Sources */,
 				819AE78F1E637361009D6AF3 /* Details+TweakedNotice.swift in Sources */,
 				819E698F1F8E9E4400C4608F /* Search+Extension.swift in Sources */,
+				8173FBF6207BE8BE00EF779F /* EnterEmailBulletinPage.swift in Sources */,
 				8187B4ED1E3A789000F251CD /* API+Promotions.swift in Sources */,
 				8188E8EC1DB25F6B00462256 /* API.swift in Sources */,
 				81EC00791DAD8B5A009EEFFA /* Copyright.swift in Sources */,
@@ -992,10 +1039,13 @@
 				819E698B1F8E8D3A00C4608F /* ETCollectionViewWaterFallLayout.swift in Sources */,
 				81EC00731DAD79A8009EEFFA /* FeaturedBook.swift in Sources */,
 				815C4AA21F9550340002AB08 /* Amirite.swift in Sources */,
+				812C3540207CECDB00D39748 /* API+DeviceLink.swift in Sources */,
 				814AEBF21E68312C00A207CC /* Details+Information.swift in Sources */,
 				81E7CBFB1E1FC0F2004AF156 /* LoadingTableView.swift in Sources */,
 				81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */,
 				819E69891F8E8C2700C4608F /* SearchCell.swift in Sources */,
+				8173FBF4207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift in Sources */,
+				812C3544207D237300D39748 /* ConfigServer.swift in Sources */,
 				814F34031F9394E800FF062B /* Search+Trending&Suggestions.swift in Sources */,
 				819E69921F8FCD0200C4608F /* TwoPortraitScreenshotsSearchCell.swift in Sources */,
 				81DEB2AE1E7DDF3200A94B26 /* Details+VersionHeader.swift in Sources */,

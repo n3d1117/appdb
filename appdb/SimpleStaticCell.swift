@@ -6,9 +6,14 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
-import Foundation
+
 import UIKit
 import Static
+
+/*
+    A simple cell for the 'Static' framework that adapts to theme changes
+    and has has dynamic text font size. Used for Settings cells.
+ */
 
 final class SimpleStaticCell: UITableViewCell, Cell {
     

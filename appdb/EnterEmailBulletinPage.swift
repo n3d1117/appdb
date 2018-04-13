@@ -40,6 +40,10 @@ class EnterEmailBulletinPage: PageBulletinItem {
         
     }
     
+    override func alternativeButtonTapped(sender: UIButton) {
+        self.manager?.popItem()
+    }
+    
 }
 
 // MARK: - UITextFieldDelegate

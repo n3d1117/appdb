@@ -52,6 +52,9 @@ extension String {
     var prettified: String {
         switch self {
             case "MAINTENANCE_MODE": return "Maintenance mode. We will be back soon.".localized()
+            case "INVALID_LINK_CODE": return "Invalid link code.".localized()
+            case "INVALID_EMAIL": return "Invalid email address.".localized()
+            case "NO_DEVICE_LINKED": return "No device linked.".localized()
             default: return self
         }
     }
@@ -130,4 +133,10 @@ extension String {
     var removedEmoji: String {
         return String(self.filter { !$0.isEmoji() })
     }
+}
+
+// MARK: - Notifications
+
+extension Notification.Name {
+    static let OpenSafari = Notification.Name("DidClickButtonSoPleaseOpenSafari")
 }
