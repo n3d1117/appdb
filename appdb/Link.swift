@@ -9,7 +9,6 @@
 import Foundation
 import RealmSwift
 
-
 class Version: Object {
     @objc dynamic var number = ""
     let links = List<Link>()

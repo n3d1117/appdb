@@ -2,7 +2,7 @@
 // String+Truncation.swift by PopcornTimeTV/PopcornTimeTV/
 //
 
-import Foundation
+
 import UIKit
 import SwiftTheme
 

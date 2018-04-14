@@ -15,6 +15,7 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as! BannerImage
         
+        // TODO: add more / fetch from APIs?
         switch indexPath.row {
             case 0: cell.image.image = #imageLiteral(resourceName: "banner")
             default: cell.image.image = #imageLiteral(resourceName: "placeholderBanner")
@@ -27,6 +28,7 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
         return 1
     }
     
+    // TODO dynamic
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
@@ -38,6 +40,7 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         setTimerIfNeeded()
         
+        // Update current index to the correct one
         let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         guard let indexPath = collectionView.indexPathForItem(at: visiblePoint) else { return }
@@ -50,6 +53,7 @@ class Banner: UITableViewCell {
 
     var collectionView: UICollectionView!
     
+    // Cell height
     let height: CGFloat = {
         let w: Double = Double(UIScreen.main.bounds.width)
         let h: Double = Double(UIScreen.main.bounds.height)
@@ -68,7 +72,12 @@ class Banner: UITableViewCell {
         
     }()
     
+    // Timer to scroll automatically
     fileprivate var slideshowTimer: Timer?
+    
+    // Keeps track of the current element's index
+    fileprivate var currentIndex: Int = 0
+    
     var slideshowInterval = 0.0 {
         didSet {
             self.slideshowTimer?.invalidate()
@@ -125,13 +134,14 @@ class Banner: UITableViewCell {
         
     }
     
+    // Set up timer if needed
     open func setTimerIfNeeded() {
         if slideshowInterval > 0 && slideshowTimer == nil {
             slideshowTimer = Timer.scheduledTimer(timeInterval: slideshowInterval, target: self, selector: #selector(self.slideshowTick(_:)), userInfo: nil, repeats: true)
         }
     }
     
-    fileprivate var currentIndex: Int = 0
+    // Increase current index & scroll
     @objc func slideshowTick(_ timer: Timer) {
         let n = collectionView.numberOfItems(inSection: 0)
         guard n != 0 else { return }
@@ -139,8 +149,8 @@ class Banner: UITableViewCell {
         if currentIndex == n { currentIndex = 0 }
         collectionView.scrollToItem(at: IndexPath(row: currentIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
-    
-    /// Stops slideshow timer
+
+    // Invalidate timer
     open func pauseTimer() {
         slideshowTimer?.invalidate()
         slideshowTimer = nil

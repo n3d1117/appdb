@@ -146,7 +146,8 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         }
         //This method is always called right after the prepare method, so at this point sectionInsetLeft + sectionInsetRight is already determined
         let w = sectionInsetLeft + sectionInsetRight - interitemSpacing + (itemSize.width + interitemSpacing) * CGFloat(itemCount ?? 0)
-        let h = (headerHeight ?? 0) + sectionInsetTop + sectionInsetBottom + itemSize.height + (footerHeight ?? 0)
+        let he = sectionInsetTop + sectionInsetBottom + itemSize.height
+        let h = (headerHeight ?? 0) + (footerHeight ?? 0) + he
         
         return CGSize(width: w, height: h)
     }

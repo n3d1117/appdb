@@ -6,7 +6,7 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
-import Foundation
+
 import UIKit
 
 class Updates: UIViewController {

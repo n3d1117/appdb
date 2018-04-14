@@ -6,7 +6,7 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
-import Foundation
+
 import UIKit
 import SwiftTheme
 
@@ -73,4 +73,7 @@ struct Color {
     
     /* Hardcoded Apple's UIButton selected color */
     static let buttonBorderCgColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#D0D0D4", "#272727")
+    
+    /* Arrow Layer Stroke Color */
+    static let arrowLayerStrokeCGColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#000000CC", "#FFFFFFCC")
 }

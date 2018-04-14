@@ -6,7 +6,7 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
-import Foundation
+
 import UIKit
 import RealmSwift
 import SwiftyJSON

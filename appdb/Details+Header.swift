@@ -14,9 +14,9 @@ import AlamofireImage
 
 class DetailsHeader: DetailsCell {
     
-    var name : UILabel!
-    var icon : UIImageView!
-    var seller : UIButton!
+    var name: UILabel!
+    var icon: UIImageView!
+    var seller: UIButton!
     var tweaked: UILabel? = nil
     var ipadOnly: UILabel? = nil
     var stars: CosmosView? = nil

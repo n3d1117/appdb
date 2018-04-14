@@ -78,7 +78,7 @@ class Details: LoadingTableView {
     
     // MARK: - Share
     @objc func share(sender: UIBarButtonItem) {
-        let text = "Check out '\(name)' on appdb!"
+        let text = "Check out '%@' on appdb!".localizedFormat(name)
         let urlString = "\(Global.mainSite)view.php?trackid=\(id)&type=\(contentType.rawValue)"
         guard let url = URL(string: urlString) else { return }
         let activity = UIActivityViewController(activityItems: [text, url], applicationActivities: [SafariActivity()])
@@ -176,7 +176,7 @@ class Details: LoadingTableView {
                             cell.configure(with: versions[indexPath.section-2].links[indexPath.row])
                             return cell
                         } else {
-                            return DetailsDownloadEmptyCell("No links found.")
+                            return DetailsDownloadEmptyCell("No links found.".localized())
                         }
                 }
         }
