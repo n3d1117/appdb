@@ -68,7 +68,7 @@ class DetailsSegmentControl: TableViewHeader {
         bgColorView.backgroundColor = .clear
         backgroundView = bgColorView
         
-        segment = UISegmentedControl(items: self.items.flatMap{$0.rawValue.localized()})
+        segment = UISegmentedControl(items: self.items.compactMap{$0.rawValue.localized()})
         segment.selectedSegmentIndex = index(for: state)
         segment.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)
         segment.theme_tintColor = Color.informationParameter

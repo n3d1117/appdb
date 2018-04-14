@@ -73,28 +73,33 @@ extension CydiaApp: Mappable {
         screenshots             <- map["screenshots"]
 
         isTweaked = originalTrackid != "0"
-        if developer.hasSuffix(" ") { developer = String(developer.characters.dropLast()) }
+        if developer.hasSuffix(" ") { developer = String(developer.dropLast()) }
         
-        let screenshotsParse = JSON(data: screenshots.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
+        do {
+            let screenshotsParse = try JSON(data: screenshots.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
         
-        // Screenshots
-        let tmpScreens = List<Screenshot>()
-        for i in 0..<screenshotsParse["iphone"].count {
-            tmpScreens.append(Screenshot(
-                src: screenshotsParse["iphone"][i]["src"].stringValue,
-                class_: screenshotsParse["iphone"][i]["class"].stringValue,
-                type: "iphone"
-            ))
-        }; screenshotsIphone = tmpScreens
+            // Screenshots
+            let tmpScreens = List<Screenshot>()
+            for i in 0..<screenshotsParse["iphone"].count {
+                tmpScreens.append(Screenshot(
+                    src: screenshotsParse["iphone"][i]["src"].stringValue,
+                    class_: screenshotsParse["iphone"][i]["class"].stringValue,
+                    type: "iphone"
+                ))
+            }; screenshotsIphone = tmpScreens
         
-        let tmpScreensIpad = List<Screenshot>()
-        for i in 0..<screenshotsParse["ipad"].count {
-            tmpScreensIpad.append(Screenshot(
-                src: screenshotsParse["ipad"][i]["src"].stringValue,
-                class_: screenshotsParse["ipad"][i]["class"].stringValue,
-                type: "ipad"
-            ))
-        }; screenshotsIpad = tmpScreensIpad
+            let tmpScreensIpad = List<Screenshot>()
+            for i in 0..<screenshotsParse["ipad"].count {
+                tmpScreensIpad.append(Screenshot(
+                    src: screenshotsParse["ipad"][i]["src"].stringValue,
+                    class_: screenshotsParse["ipad"][i]["class"].stringValue,
+                    type: "ipad"
+                ))
+            }; screenshotsIpad = tmpScreensIpad
+            
+        } catch {
+            // ...
+        }
         
     }
 }
