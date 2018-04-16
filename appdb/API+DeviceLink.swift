@@ -25,9 +25,17 @@ extension API {
                         fail(json["errors"][0].stringValue)
                     } else {
                         do {
+                            // Save token
                             guard let pref = realm.objects(Preferences.self).first else { return }
                             try realm.write { pref.token = json["data"]["link_token"].stringValue }
-                            success()
+                            
+                            // Update link code
+                            self.getLinkCode(success: {
+                                 success()
+                            }, fail: { error in
+                                fail(error)
+                            })
+                            
                         } catch let error as NSError {
                             fail(error.localizedDescription)
                         }
@@ -77,14 +85,12 @@ extension API {
                         case .success(let value):
                             
                             // Start http server
+                            // Also saves link code on success
                             let server = ConfigServer(configData: value, token: token)
                             server.start()
                             server.hasCompleted = { error in
-                                if let error = error {
-                                    fail(error)
-                                } else {
-                                    success()
-                                }
+                                if let error = error { fail(error) }
+                                else { success() }
                             }
                         case .failure(let error):
                             fail(error.localizedDescription)

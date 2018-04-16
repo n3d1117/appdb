@@ -30,7 +30,6 @@ enum DeviceLinkIntroBulletins {
         
         let page = EnterLinkCodeBulletinPage(title: "Enter Link Code".localized())
         page.isDismissable = true
-        //page.image = #imageLiteral(resourceName: "copy_link_code")
         page.descriptionText = "Paste the 8 digits case sensitive link code you see on this page:".localized()
         page.actionButtonTitle = "Continue".localized()
         page.alternativeButtonTitle = "Go Back".localized()
@@ -51,8 +50,15 @@ enum DeviceLinkIntroBulletins {
                 // On error, present error bulletin and provide a link to retry
                 
                 API.linkDevice(code: code, success: {
-                    let completionPage = self.makeCompletionPage()
-                    item.manager?.push(item: completionPage)
+                    
+                    API.getConfiguration(success: {
+                        let completionPage = self.makeCompletionPage()
+                        item.manager?.push(item: completionPage)
+                    }, fail: { error in
+                        let errorPage = self.makeErrorPage(with: error.prettified)
+                        item.manager?.push(item: errorPage)
+                    })
+                    
                 }, fail: { error in
                     let errorPage = self.makeErrorPage(with: error.prettified)
                     item.manager?.push(item: errorPage)
@@ -82,8 +88,15 @@ enum DeviceLinkIntroBulletins {
             item.manager?.displayActivityIndicator()
             
             API.linkNewDevice(email: email, success: {
-                let completionPage = self.makeCompletionPage()
-                item.manager?.push(item: completionPage)
+                
+                API.setConfiguration(params: [.appsync: "no" , .ignoreCompatibility: "no", .askForOptions: "no"], success: {
+                    let completionPage = self.makeCompletionPage()
+                    item.manager?.push(item: completionPage)
+                }, fail: { error in
+                    let errorPage = self.makeErrorPage(with: error.prettified)
+                    item.manager?.push(item: errorPage)
+                })
+                
             }, fail: { error in
                 let errorPage = self.makeErrorPage(with: error.prettified)
                 item.manager?.push(item: errorPage)
@@ -107,12 +120,7 @@ enum DeviceLinkIntroBulletins {
         page.actionButtonTitle = "Start using appdb!".localized()
         page.isDismissable = true
         
-        // todo page dismissal handler & refresh settings tableview
-        /*
-         page.dismissalHandler = { item in
-            NotificationCenter.default.post(name: .SetupDidComplete, object: item)
-         }
-         */
+        NotificationCenter.default.post(name: .RefreshSettings, object: self, userInfo: ["linked": true])
         
         page.actionHandler = { item in
             item.manager?.dismissBulletin(animated: true)

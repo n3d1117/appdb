@@ -17,4 +17,11 @@ class Preferences: Object {
     @objc dynamic var token: String = ""
     @objc dynamic var linkCode: String = ""
     
+    @objc dynamic var appsync: Bool = false
+    @objc dynamic var ignoreCompatibility: Bool = false
+    @objc dynamic var askForInstallationOptions: Bool = false
+    
+    @objc dynamic var pro: Bool = false
+    @objc dynamic var proUntil: String = ""
+    
 }

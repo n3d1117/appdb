@@ -64,4 +64,13 @@ enum Actions: String {
     case getNews = "get_news"
     case link = "link"
     case getLinkCode = "get_link_code"
+    case getConfiguration = "get_configuration"
+    case configure = "configure"
+}
+
+enum ConfigurationParameters: String {
+    case appsync = "params[appsync]"
+    case ignoreCompatibility = "params[ignore_compatibility]"
+    case askForOptions = "params[ask_for_installation_options]"
+    case clearDeveloperIdentity = "params[clear_developer_entity]"
 }

@@ -10,20 +10,30 @@ import UIKit
 import Static
 import BulletinBoard
 import SafariServices
+import RealmSwift
 
 class Settings: TableViewController {
     
     lazy var bulletinManager: BulletinManager = {
         let rootItem: BulletinItem = DeviceLinkIntroBulletins.makeSelectorPage()
         let manager = BulletinManager(rootItem: rootItem)
-        //todo add manual files and change property in BulletinManager.swift to automatically adapt to SwiftTheme
         manager.backgroundColor = .white
         return manager
     }()
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    var deviceIsLinked: Bool {
+        let realm = try! Realm()
+        guard let pref = realm.objects(Preferences.self).first else { return false }
+        return !pref.token.isEmpty
     }
+    
+    var linkCode: String {
+        let realm = try! Realm()
+        guard let pref = realm.objects(Preferences.self).first else { return "" }
+        return pref.linkCode
+    }
+    
+    deinit { NotificationCenter.default.removeObserver(self) }
     
     convenience init() {
         self.init(style: .grouped)
@@ -43,28 +53,32 @@ class Settings: TableViewController {
         
         tableView.rowHeight = 50
         
-        dataSource.sections = [
-            Section(header: "device", rows: [
-                // todo localize
-                Row(text: "Authorize App".localized(), selection: { [unowned self] in
-                    self.pushDeviceLink()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
-            ]),
-            Section(header: "ui", rows: [
-                Row(text: "Dark Mode".localized(), accessory: .switchToggle(value: Themes.isNight) { newValue in
-                    Themes.switchTo(theme: newValue ? .Dark : .Light)
-                }, cellClass: SimpleStaticCell.self)
-            ]),
-            Section(header: "...", rows: [
-                Row(text: "News".localized(), selection: { [unowned self] in
-                    self.pushNews()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
-            ])
-        ]
+        // Subscribe to notifications for device linked/unlinked so i can refresh sections
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshSettings(notification:)), name: .RefreshSettings, object: nil)
+        
+        setDataSources()
+    }
+    
+    func setDataSources() {
+        if deviceIsLinked {
+            dataSource.sections = deviceLinkedSections()
+        } else {
+            dataSource.sections = deviceNotLinkedSections()
+        }
+    }
+    
+    func deauthorize() {
+        let realm = try! Realm()
+        guard let pref = realm.objects(Preferences.self).first else { return }
+        do { try realm.write {
+            pref.token = ""
+            pref.linkCode = ""
+        } } catch { }
+        NotificationCenter.default.post(name: .RefreshSettings, object: self, userInfo: ["linked": false])
     }
     
     // Push news controller
-    fileprivate func pushNews() {
+    func pushNews() {
         let newsViewController = News()
         if IS_IPAD {
             let nav = DismissableModalNavController(rootViewController: newsViewController)
@@ -77,7 +91,7 @@ class Settings: TableViewController {
     
     // Device Link Bulletin intro
     // Also subscribes to notification requests to open Safari
-    fileprivate func pushDeviceLink() {
+    func pushDeviceLink() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(openSafari(notification:)), name: .OpenSafari, object: nil)
         
@@ -89,7 +103,7 @@ class Settings: TableViewController {
     @objc fileprivate func openSafari(notification: Notification) {
         guard let urlString = notification.userInfo?["URLString"] as? String else { return }
         guard let url = URL(string: urlString) else { return }
-
+        
         // NOTE: SVC causes all sorts of issues when presented from a bulletin
         // so let's just open Safari.app instead
         // 2lazy2fix
@@ -102,5 +116,15 @@ class Settings: TableViewController {
         } else {
             UIApplication.shared.openURL(url)
         }*/
+    }
+    
+    // Refresh sections when device links (userInfo["linked"] = true) or unlinks (userInfo["linked"] = false)
+    @objc fileprivate func refreshSettings(notification: Notification) {
+        guard let linked = notification.userInfo?["linked"] as? Bool else { return }
+        if linked {
+            dataSource.sections = deviceLinkedSections()
+        } else {
+            dataSource.sections = deviceNotLinkedSections()
+        }
     }
 }

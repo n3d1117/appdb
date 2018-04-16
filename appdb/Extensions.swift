@@ -139,4 +139,5 @@ extension String {
 
 extension Notification.Name {
     static let OpenSafari = Notification.Name("DidClickButtonSoPleaseOpenSafari")
+    static let RefreshSettings = Notification.Name("DidUpdateLinkStateSoPleaseRefreshSettings")
 }
