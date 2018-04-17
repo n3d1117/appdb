@@ -1,5 +1,5 @@
 //
-//  StaticCells.swift
+//  Settings+StaticCells.swift
 //  appdb
 //
 //  Created by ned on 16/03/2018.
@@ -49,7 +49,7 @@ final class SimpleStaticButtonCell: UITableViewCell, Cell {
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
         selectedBackgroundView = bgColorView
         
-        textLabel?.font = .boldSystemFont(ofSize: (17~~16))
+        textLabel?.font = .systemFont(ofSize: (17~~16))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.softRed
         textLabel?.textAlignment = .center

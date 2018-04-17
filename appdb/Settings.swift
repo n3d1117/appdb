@@ -8,9 +8,9 @@
 
 import UIKit
 import Static
-import BulletinBoard
 import SafariServices
 import RealmSwift
+import BulletinBoard
 
 class Settings: TableViewController {
     
@@ -20,18 +20,6 @@ class Settings: TableViewController {
         manager.backgroundColor = .white
         return manager
     }()
-    
-    var deviceIsLinked: Bool {
-        let realm = try! Realm()
-        guard let pref = realm.objects(Preferences.self).first else { return false }
-        return !pref.token.isEmpty
-    }
-    
-    var linkCode: String {
-        let realm = try! Realm()
-        guard let pref = realm.objects(Preferences.self).first else { return "" }
-        return pref.linkCode
-    }
     
     deinit { NotificationCenter.default.removeObserver(self) }
     
@@ -54,17 +42,11 @@ class Settings: TableViewController {
         tableView.rowHeight = 50
         
         // Subscribe to notifications for device linked/unlinked so i can refresh sections
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshSettings(notification:)), name: .RefreshSettings, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshSources), name: .RefreshSettings, object: nil)
         
-        setDataSources()
-    }
-    
-    func setDataSources() {
-        if deviceIsLinked {
-            dataSource.sections = deviceLinkedSections()
-        } else {
-            dataSource.sections = deviceNotLinkedSections()
-        }
+        refreshSources()
+        
+        API.getConfiguration(success: { [unowned self] in self.refreshSources() }) { _ in }
     }
     
     func deauthorize() {
@@ -118,13 +100,13 @@ class Settings: TableViewController {
         }*/
     }
     
-    // Refresh sections when device links (userInfo["linked"] = true) or unlinks (userInfo["linked"] = false)
-    @objc fileprivate func refreshSettings(notification: Notification) {
-        guard let linked = notification.userInfo?["linked"] as? Bool else { return }
-        if linked {
-            dataSource.sections = deviceLinkedSections()
+    // Reloads table view
+    
+    @objc func refreshSources() {
+        if deviceIsLinked {
+            dataSource.sections = deviceLinkedSections
         } else {
-            dataSource.sections = deviceNotLinkedSections()
+            dataSource.sections = deviceNotLinkedSections
         }
     }
 }

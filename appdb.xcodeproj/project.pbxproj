@@ -17,9 +17,10 @@
 		812C3542207D235300D39748 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812C3541207D235300D39748 /* Swifter.framework */; };
 		812C3544207D237300D39748 /* ConfigServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812C3543207D237300D39748 /* ConfigServer.swift */; };
 		812E97881E57730300C1379F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812E97871E57730300C1379F /* Search.swift */; };
-		81324068205BD86000945CE9 /* SimpleStaticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81324067205BD86000945CE9 /* SimpleStaticCell.swift */; };
+		81324068205BD86000945CE9 /* Settings+StaticCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81324067205BD86000945CE9 /* Settings+StaticCells.swift */; };
 		8132406B205BE50000945CE9 /* News+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132406A205BE50000945CE9 /* News+Detail.swift */; };
 		8138538C1F2B7EA300DC7C54 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8138538B1F2B7EA300DC7C54 /* Kanna.framework */; };
+		813D1E782084F9F800725AC0 /* Settings+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813D1E772084F9F800725AC0 /* Settings+Properties.swift */; };
 		8141CB631F817BD200DBDD89 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8141CB621F817BD200DBDD89 /* SafariActivity.swift */; };
 		814AEBF21E68312C00A207CC /* Details+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814AEBF11E68312C00A207CC /* Details+Information.swift */; };
 		814B76F8205ADB63004D46DD /* Static.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814B76F7205ADB62004D46DD /* Static.framework */; };
@@ -143,9 +144,10 @@
 		812C3541207D235300D39748 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		812C3543207D237300D39748 /* ConfigServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServer.swift; sourceTree = "<group>"; };
 		812E97871E57730300C1379F /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
-		81324067205BD86000945CE9 /* SimpleStaticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStaticCell.swift; sourceTree = "<group>"; };
+		81324067205BD86000945CE9 /* Settings+StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+StaticCells.swift"; sourceTree = "<group>"; };
 		8132406A205BE50000945CE9 /* News+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail.swift"; sourceTree = "<group>"; };
 		8138538B1F2B7EA300DC7C54 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = Carthage/Build/iOS/Kanna.framework; sourceTree = "<group>"; };
+		813D1E772084F9F800725AC0 /* Settings+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Properties.swift"; sourceTree = "<group>"; };
 		8141CB621F817BD200DBDD89 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		814AEBF11E68312C00A207CC /* Details+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Information.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		814B76F7205ADB62004D46DD /* Static.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Static.framework; path = Carthage/Build/iOS/Static.framework; sourceTree = "<group>"; };
@@ -573,7 +575,8 @@
 			children = (
 				818A559E20583D4600162E51 /* Settings.swift */,
 				8115465920826AA50031C9DA /* Settings+Sections.swift */,
-				81324067205BD86000945CE9 /* SimpleStaticCell.swift */,
+				813D1E772084F9F800725AC0 /* Settings+Properties.swift */,
+				81324067205BD86000945CE9 /* Settings+StaticCells.swift */,
 				814FF02C207B9B5F0049DF9A /* Device Link */,
 				81324069205BE4C700945CE9 /* News */,
 			);
@@ -1000,6 +1003,7 @@
 				812E97881E57730300C1379F /* Search.swift in Sources */,
 				818A559D20583D3D00162E51 /* Downloads.swift in Sources */,
 				81EC006C1DAD7728009EEFFA /* Global.swift in Sources */,
+				813D1E782084F9F800725AC0 /* Settings+Properties.swift in Sources */,
 				81EC007F1DAE6680009EEFFA /* Items.swift in Sources */,
 				8180EE631E26D75E001C04B5 /* API+Search.swift in Sources */,
 				81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */,
@@ -1015,7 +1019,7 @@
 				81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */,
 				8115465A20826AA50031C9DA /* Settings+Sections.swift in Sources */,
 				81F1FE7F1E5AF12400C1CD44 /* DismissableModalNavController.swift in Sources */,
-				81324068205BD86000945CE9 /* SimpleStaticCell.swift in Sources */,
+				81324068205BD86000945CE9 /* Settings+StaticCells.swift in Sources */,
 				81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */,
 				81BE066C1E6C2EA500AD9827 /* Details+ExternalLink.swift in Sources */,
 				81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */,

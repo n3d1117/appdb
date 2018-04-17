@@ -33,8 +33,6 @@ extension API {
                                 pref.pro = data["is_pro"].stringValue=="yes"
                                 pref.proUntil = data["pro_till"].stringValue
                                 
-                                print(pref)
-                                
                                 success()
                             }
                         } catch let error as NSError {
@@ -62,7 +60,22 @@ extension API {
                         guard !json["errors"].isEmpty else { return }
                         fail(json["errors"][0].stringValue)
                     } else {
-                        success()
+                        // Update values
+                        do {
+                            guard let pref = realm.objects(Preferences.self).first else { return }
+                            try realm.write {
+                                for (key, value) in params {
+                                    switch key {
+                                    case .appsync: pref.appsync = value == "yes" ? true : false
+                                    case .askForOptions: pref.askForInstallationOptions = value == "yes" ? true : false
+                                    case .ignoreCompatibility: pref.ignoreCompatibility = value == "yes" ? true : false
+                                    }
+                                }
+                                success()
+                            }
+                        } catch let error as NSError {
+                            fail(error.localizedDescription)
+                        }
                     }
                 case .failure(let error):
                     fail(error.localizedDescription)
