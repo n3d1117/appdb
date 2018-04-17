@@ -46,6 +46,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         let tabBar = UITabBar.appearance()
         tabBar.theme_barStyle = [.default, .black]
         
+        // Realm config
+        let config = Realm.Configuration(schemaVersion: 0)
+        Realm.Configuration.defaultConfiguration = config
+        //print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
+        
         // Global Operations
         Global.setFirstLaunch()
         Themes.restoreLastTheme()
@@ -54,17 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.startDelay = 0.3
         NetworkActivityIndicatorManager.shared.completionDelay = 0.3
-        
-        // Realm config
-        let config = Realm.Configuration(
-            schemaVersion: 0,
-            migrationBlock: { migration, oldSchemaVersion in
-                if oldSchemaVersion < 0 {}
-            }
-        )
-        Realm.Configuration.defaultConfiguration = config
-
-        //print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
 
         return true
     }
