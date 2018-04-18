@@ -115,6 +115,18 @@
 "Unable to complete" = "Impossibile completare";
 "Yes, already linked" = "Sì, è già collegato";
 "No, not yet linked" = "No, non è collegato";
+"name@example.com" = "nome@esempio.it";
+
+//////////////////////
+//     SETTINGS     //
+//////////////////////
+
+"Device Configuration" = "Configurazione";
+"Link Code" = "Codice Link";
+"Jailbroken w/ Appsync" = "Con Jailbreak e Appsync";
+"Compatibility Checks" = "Controlli di compatibilità";
+"Ask for installation options" = "Opzioni aggiuntive di installazione";
+"Deauthorize" = "Scollega app";
 
 ////////////////////
 //     ERRORS     //
@@ -129,7 +141,7 @@
 "Invalid email address." = "Indirizzo email non valido.";
 "Link code cannot be empty." = "Il codice deve essere di otto cifre.";
 "Please enter a valid email address." = "Inserisci un indirizzo email valido.";
-"No device linked." = "Nessun dispositivo collegator.";
+"No device linked." = "Nessun dispositivo collegato.";
 
 ///////////////////
 //     OTHER     //

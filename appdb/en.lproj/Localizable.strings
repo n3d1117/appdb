@@ -115,6 +115,18 @@
 "Unable to complete" = "Unable to complete";
 "Yes, already linked" = "Yes, already linked";
 "No, not yet linked" = "No, not yet linked";
+"name@example.com" = "name@example.com";
+
+//////////////////////
+//     SETTINGS     //
+//////////////////////
+
+"Device Configuration" = "Device Configuration";
+"Link Code" = "Link Code";
+"Jailbroken w/ Appsync" = "Jailbroken w/ Appsync";
+"Compatibility Checks" = "Compatibility Checks";
+"Ask for installation options" = "Ask for installation options";
+"Deauthorize" = "Deauthorize";
 
 ////////////////////
 //     ERRORS     //

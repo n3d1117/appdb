@@ -7,7 +7,6 @@
 //
 
 import Static
-import RealmSwift //todo remove
 
 extension Settings {
     
@@ -42,29 +41,29 @@ extension Settings {
         ] + commonSections
     }
     
-    // Sections exclusive for the 'linked' state
+    // Sections exclusive for the 'linked' state, todo localize
     
     var deviceLinkedSections: [Static.Section] {
         return [
-            Section(header: "device", rows: [
+            Section(header: .title("Device Configuration".localized()), rows: [
                 
                 Row(text: "Link Code".localized(), detailText: linkCode, selection: { [unowned self] in
                     API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Jailbroken w/ Appsync", accessory: .switchToggle(value: appsync) { newValue in
+                Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: appsync) { newValue in
                     API.setConfiguration(params: [.appsync: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Compatibility Checks", accessory: .switchToggle(value: !ignoresCompatibility) { newValue in
+                Row(text: "Compatibility Checks".localized(), accessory: .switchToggle(value: !ignoresCompatibility) { newValue in
                     API.setConfiguration(params: [.ignoreCompatibility: newValue ? "no" : "yes"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Ask for installation options", accessory: .switchToggle(value: askForInstallationOptions) { newValue in
+                Row(text: "Ask for installation options".localized(), accessory: .switchToggle(value: askForInstallationOptions) { newValue in
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Deauthorize", selection: { [unowned self] in
+                Row(text: "Deauthorize".localized(), selection: { [unowned self] in
                     self.deauthorize()
                 }, cellClass: SimpleStaticButtonCell.self)
                 
