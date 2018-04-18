@@ -45,6 +45,8 @@ class EnterLinkCodeBulletinPage: PageBulletinItem {
         
         textField = interfaceBuilder.makeTextField(placeholder: "Enter link code here".localized(), returnKey: .done, delegate: self)
         
+        descriptionLabel?.theme_textColor = Color.title
+        
         return [linkButton, textField]
     }
     

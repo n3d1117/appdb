@@ -23,7 +23,8 @@ class EnterEmailBulletinPage: PageBulletinItem {
     @objc public var textInputHandler: ((ActionBulletinItem, String?) -> Void)? = nil
     
     override func viewsUnderDescription(_ interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
-        textField = interfaceBuilder.makeTextField(placeholder: "name@example.com", returnKey: .done, delegate: self)
+        textField = interfaceBuilder.makeTextField(placeholder: "name@example.com".localized(), returnKey: .done, delegate: self)
+        descriptionLabel?.theme_textColor = Color.title
         return [textField]
     }
     

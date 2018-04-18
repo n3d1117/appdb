@@ -49,6 +49,8 @@ class SelectorBulletinPage: PageBulletinItem {
         stack.addArrangedSubview(secondButton)
         self.secondButton = secondButton
         
+        descriptionLabel?.theme_textColor = Color.title
+        
         return [stack]
         
     }

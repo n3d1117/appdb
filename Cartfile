@@ -9,7 +9,7 @@ github "evgenyneu/Cosmos"
 github "jflinter/Dwifft"
 github "marmelroy/Localize-Swift"
 github "Hearst-DD/ObjectMapper"
-github "jiecao-fm/SwiftTheme" "master"
+github "n3d1117/SwiftTheme" "master"
 github "venmo/Static"
 github "alexaubry/BulletinBoard" "master"
 github "glock45/swifter" == 1.4.0

@@ -17,7 +17,7 @@ class Settings: TableViewController {
     lazy var bulletinManager: BulletinManager = {
         let rootItem: BulletinItem = DeviceLinkIntroBulletins.makeSelectorPage()
         let manager = BulletinManager(rootItem: rootItem)
-        manager.backgroundColor = .white
+        manager.theme_backgroundColor = Color.invertedTitle
         return manager
     }()
     
@@ -46,9 +46,13 @@ class Settings: TableViewController {
         
         refreshSources()
         
-        API.getConfiguration(success: { [unowned self] in self.refreshSources() }) { _ in }
+        // Refresh link code & configuration parameters
+        API.getLinkCode(success: {
+            API.getConfiguration(success: { [unowned self] in self.refreshSources() }) { _ in }
+        }) { _ in }
     }
     
+    // Deauthorize app (clean link code, token & refresh settings)
     func deauthorize() {
         let realm = try! Realm()
         guard let pref = realm.objects(Preferences.self).first else { return }

@@ -9,8 +9,6 @@
 import UIKit
 import BulletinBoard
 
-// todo make it all work with swifttheme
-
 enum DeviceLinkIntroBulletins {
     
     static func makeSelectorPage() -> SelectorBulletinPage {
@@ -20,8 +18,8 @@ enum DeviceLinkIntroBulletins {
         page.descriptionText = "Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles.".localized()
         page.actionButtonTitle = "Continue".localized()
         page.appearance.titleFontSize = 27
-        page.appearance.actionButtonColor = Color.mainTint.value() as! UIColor // TODO FIX
-        page.appearance.alternativeButtonColor = page.appearance.actionButtonColor
+        page.appearance.theme_actionButtonColor = Color.mainTint
+        page.appearance.theme_alternativeButtonColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
         return page
     }
@@ -34,14 +32,15 @@ enum DeviceLinkIntroBulletins {
         page.actionButtonTitle = "Continue".localized()
         page.alternativeButtonTitle = "Go Back".localized()
         page.appearance.titleFontSize = 27
-        page.appearance.actionButtonColor = Color.mainTint.value() as! UIColor
+        page.appearance.theme_actionButtonColor = Color.mainTint
+        page.appearance.theme_alternativeButtonColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
 
         page.textInputHandler = { item, linkCode in
             
             guard let code = linkCode else { return }
             
-            item.manager?.displayActivityIndicator()
+            item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
             
             delay(0.6) {
                 
@@ -78,14 +77,15 @@ enum DeviceLinkIntroBulletins {
         page.descriptionText = "Please enter your email address below".localized()
         page.actionButtonTitle = "Continue".localized()
         page.appearance.titleFontSize = 27
-        page.appearance.actionButtonColor = Color.mainTint.value() as! UIColor
+        page.appearance.theme_actionButtonColor = Color.mainTint
+        page.appearance.theme_alternativeButtonColor = Color.mainTint
         page.alternativeButtonTitle = "Go Back".localized()
         page.appearance.shouldUseCompactDescriptionText = true
         page.textInputHandler = { item, email in
 
             guard let email = email else { return }
             
-            item.manager?.displayActivityIndicator()
+            item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
             
             API.linkNewDevice(email: email, success: {
                 
@@ -109,11 +109,11 @@ enum DeviceLinkIntroBulletins {
     
     static func makeCompletionPage() -> PageBulletinItem {
         
-        let page = PageBulletinItem(title: "Success".localized())
+        let page = DummyBulletinPage(title: "Success".localized())
         page.image = #imageLiteral(resourceName: "completed")
-        page.appearance.actionButtonColor = #colorLiteral(red: 0.2980392157, green: 0.8509803922, blue: 0.3921568627, alpha: 1)
-        page.appearance.imageViewTintColor = #colorLiteral(red: 0.2980392157, green: 0.8509803922, blue: 0.3921568627, alpha: 1)
-        page.appearance.actionButtonTitleColor = .white
+        page.appearance.theme_actionButtonColor = Color.softGreen
+        page.appearance.theme_imageViewTintColor = Color.softGreen
+        page.appearance.theme_actionButtonTitleColor = Color.invertedTitle
         page.appearance.titleFontSize = 27
         page.descriptionText = "Well done! This app is now authorized to install apps on your device.".localized()
         page.appearance.shouldUseCompactDescriptionText = true
@@ -132,14 +132,14 @@ enum DeviceLinkIntroBulletins {
     
     static func makeErrorPage(with error: String) -> PageBulletinItem {
         
-        let page = PageBulletinItem(title: "Unable to complete".localized())
+        let page = DummyBulletinPage(title: "Unable to complete".localized())
         page.image = #imageLiteral(resourceName: "error")
-        page.appearance.imageViewTintColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-        page.appearance.actionButtonTitleColor = .white
+        page.appearance.theme_imageViewTintColor = Color.softRed
+        page.appearance.theme_actionButtonColor = Color.softRed
         page.appearance.titleFontSize = 27
         page.descriptionText = "An error has occurred".localized() + ":\n" + error
         page.alternativeButtonTitle = "Go Back".localized()
-        page.appearance.alternativeButtonColor = Color.mainTint.value() as! UIColor
+        page.appearance.theme_alternativeButtonColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
         page.isDismissable = true
         page.alternativeHandler = { item in
@@ -150,4 +150,12 @@ enum DeviceLinkIntroBulletins {
         
     }
     
+}
+
+// Workaround to set descriptionLabel's theme color for error/completion page
+class DummyBulletinPage: PageBulletinItem {
+    override func viewsUnderDescription(_ interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+        descriptionLabel?.theme_textColor = Color.title
+        return []
+    }
 }
