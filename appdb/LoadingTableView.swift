@@ -73,15 +73,18 @@ class LoadingTableView: UITableViewController {
                 
                 //Set up Activity Indicator View
                 
-                if activityIndicator == nil, showsSpinner {
-                    activityIndicator = UIActivityIndicatorView()
-                    activityIndicator.theme_activityIndicatorViewStyle = [.gray, .white]
-                    activityIndicator.hidesWhenStopped = true
-                    activityIndicator.startAnimating()
-                
-                    view.addSubview(activityIndicator)
+                if showsSpinner {
+                    if activityIndicator == nil {
+                        activityIndicator = UIActivityIndicatorView()
+                        activityIndicator.theme_activityIndicatorViewStyle = [.gray, .white]
+                        activityIndicator.hidesWhenStopped = true
+                        activityIndicator.startAnimating()
+                    
+                        view.addSubview(activityIndicator)
+                    } else {
+                        activityIndicator.startAnimating()
+                    }
                 }
-                
                 if let refreshButton = refreshButton, let error = errorMessage, let secondary = secondaryErrorMessage {
                     refreshButton.isHidden = true
                     error.isHidden = true

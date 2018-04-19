@@ -158,7 +158,7 @@ extension Details {
             // Enable links segment
             self.loadedLinks = true
             
-        }, fail: { error in print(error) })
+        }, fail: { _ in })
     }
     
     @objc func dismissAnimated() { dismiss(animated: true) }

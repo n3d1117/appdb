@@ -89,7 +89,7 @@ enum DeviceLinkIntroBulletins {
             
             API.linkNewDevice(email: email, success: {
                 
-                API.setConfiguration(params: [.appsync: "no" , .ignoreCompatibility: "no", .askForOptions: "no"], success: {
+                API.setConfiguration(params: [.appsync: "no"], success: {
                     let completionPage = self.makeCompletionPage()
                     item.manager?.push(item: completionPage)
                 }, fail: { error in

@@ -108,9 +108,7 @@ class ConfigServer: NSObject {
                         // Serve the .mobileconfig file
                         try writer.write(self.configData)
                         self.currentState = .hopefullyInstalledConfig
-                    } catch {
-                        print(error)
-                    }
+                    } catch { }
                 })
             case .hopefullyInstalledConfig:
                 let page = self.buttonHTMLPage()
@@ -124,27 +122,21 @@ class ConfigServer: NSObject {
     
     private func returnedToApp() {
         
+        if currentState != .stopped {
+            currentState = .stopped
+            localServer.stop()
+        }
+        
         // Delete local mobileconfig
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let configFileUrl = documentsDirectory.appendingPathComponent("enroll.mobileconfig")
         if FileManager.default.fileExists(atPath: configFileUrl.path) {
             do {
                 try FileManager.default.removeItem(at: configFileUrl)
-            } catch {
-                print(error)
-            }
+            } catch { }
         }
-        
-        if currentState != .stopped {
-            currentState = .stopped
-            localServer.stop()
-            checkSuccess()
-        }
-    }
-    
-    private func checkSuccess() {
+
         API.getLinkCode(success: {
-            // worked! successfully got link code
             self.hasCompleted?(nil)
         }) { error in
             self.hasCompleted?(error)
