@@ -51,7 +51,7 @@ extension API {
         Alamofire.request(endpoint, parameters: ["action": Actions.link.rawValue, "type": "new", "email": email,
                                                  "lang": languageCode], headers: headers)
         .responseJSON { response in
-            
+
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -64,12 +64,24 @@ extension API {
                     let profile_service = json["data"]["profile_service"].stringValue
                     let token = json["data"]["link_token"].stringValue
                     
+                    guard !token.isEmpty else { fail("Unable to fetch device token.".localized()); return }
+                    
                     // Save token
                     do {
                         guard let pref = realm.objects(Preferences.self).first else { return }
                         try realm.write { pref.token = token }
                     } catch let error as NSError {
                         fail(error.localizedDescription)
+                    }
+                    
+                    // If profile_service is empty, device is already authorized
+                    guard !profile_service.isEmpty else {
+                        API.getLinkCode(success: {
+                            success()
+                        }) { error in
+                            fail(error)
+                        }
+                        return
                     }
                     
                     let destination: DownloadRequest.DownloadFileDestination = { _, _ in
@@ -107,7 +119,7 @@ extension API {
     }
     
     static func getLinkCode(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-
+        
         Alamofire.request(endpoint, parameters: ["action": Actions.getLinkCode.rawValue,
                                                  "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in

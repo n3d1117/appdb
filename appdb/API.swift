@@ -17,13 +17,13 @@ struct API {
     static let languageCode = Locale.current.languageCode ?? "en"
     static let headers: HTTPHeaders = ["User-Agent": "appdb iOS Client v\(Global.appVersion)"]
     
-    static let headersWithCookie: HTTPHeaders = {
-        guard let pref = realm.objects(Preferences.self).first else { return [:] }
+    static var headersWithCookie: HTTPHeaders {
+        guard let pref = realm.objects(Preferences.self).first, !pref.token.isEmpty else { return headers }
         return [
             "User-Agent": "appdb iOS Client v\(Global.appVersion)",
             "Cookie": "lt=\(pref.token)"
         ]
-    }()
+    }
 }
 
 protocol Meta {

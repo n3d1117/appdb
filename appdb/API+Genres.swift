@@ -75,8 +75,8 @@ extension API {
                         getIcon(id: genre.id, type: .books)
                     }
                     
-                case .failure(let error):
-                    print((error as NSError).localizedDescription)
+                case .failure:
+                    break
                 }
                 
         }
@@ -90,8 +90,8 @@ extension API {
                     case .success(let value):
                         let json = JSON(value)
                         try! realm.write { cat.icon = json["data"][0]["image"].stringValue }
-                    case .failure(let error):
-                        print(error.localizedDescription)
+                    case .failure:
+                        break
                     }
             }
         }
