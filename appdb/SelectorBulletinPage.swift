@@ -124,7 +124,44 @@ class SelectorBulletinPage: PageBulletinItem {
     }
     
     override func actionButtonTapped(sender: UIButton) {
-        manager?.displayNextItem()
+        
+        manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
+        
+        if nextItem is EnterLinkCodeBulletinPage {
+            
+            // If device was authorized before, linkDevice will succeed with any code given
+            // So there's no need to ask the user to paste the code!
+            // If it fails, just show nextItem
+            delay(0.4) {
+                API.linkDevice(code: "anything", success: {
+                    API.getConfiguration(success: { [unowned self] in
+                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
+                        self.manager?.push(item: completionPage)
+                    }, fail: { _ in
+                        self.manager?.displayNextItem()
+                    })
+                }, fail: { _ in
+                    self.manager?.displayNextItem()
+                })
+            }
+        } else {
+            
+            // If device was authorized before, linkNewDevice will succeed with any email given
+            // So there's no need to ask the user to enter his email!
+            // If it fails, just show nextItem
+            delay(0.4) {
+                API.linkNewDevice(email: "anything", success: {
+                    API.getConfiguration(success: { [unowned self] in
+                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
+                        self.manager?.push(item: completionPage)
+                        }, fail: { _ in
+                            self.manager?.displayNextItem()
+                    })
+                }, fail: { _ in
+                    self.manager?.displayNextItem()
+                })
+            }
+        }
     }
     
 }

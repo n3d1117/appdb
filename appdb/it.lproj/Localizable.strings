@@ -142,6 +142,9 @@
 "Link code cannot be empty." = "Il codice deve essere di otto cifre.";
 "Please enter a valid email address." = "Inserisci un indirizzo email valido.";
 "No device linked." = "Nessun dispositivo collegato.";
+"Unable to fetch device token." = "Impossibile estrarre il token del dispositivo.";
+"Use link code instead." = "Usa il codice link per collegare il dispositivo.";
+"Oops! Something went wrong. Please try again later." = "Ops! Qualcosa è andato storto. Riprova più tardi.";
 
 ///////////////////
 //     OTHER     //

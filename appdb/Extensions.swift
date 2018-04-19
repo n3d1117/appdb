@@ -55,6 +55,8 @@ extension String {
             case "INVALID_LINK_CODE": return "Invalid link code.".localized()
             case "INVALID_EMAIL": return "Invalid email address.".localized()
             case "NO_DEVICE_LINKED": return "No device linked.".localized()
+            case "USE_LINK_CODE_INSTEAD": return "Use link code instead.".localized()
+            case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
             default: return self
         }
     }

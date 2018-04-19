@@ -142,6 +142,9 @@
 "Link code cannot be empty." = "Link code cannot be empty.";
 "Please enter a valid email address." = "Please enter a valid email address.";
 "No device linked." = "No device linked.";
+"Unable to fetch device token." = "Unable to fetch device token.";
+"Use link code instead." = "Use link code instead.";
+"Oops! Something went wrong. Please try again later." = "Oops! Something went wrong. Please try again later.";
 
 ///////////////////
 //     OTHER     //

@@ -47,9 +47,16 @@ class Settings: TableViewController {
         refreshSources()
         
         // Refresh link code & configuration parameters
-        API.getLinkCode(success: {
-            API.getConfiguration(success: { [unowned self] in self.refreshSources() }) { _ in }
-        }) { _ in }
+        if deviceIsLinked {
+            API.getLinkCode(success: {
+                API.getConfiguration(success: { [unowned self] in
+                    self.refreshSources()
+                }) { _ in }
+            }) { error in
+                // Profile has been removed, so let's deauthorize the app as well
+                if error == "NO_DEVICE_LINKED" { self.deauthorize() }
+            }
+        }
     }
     
     // Deauthorize app (clean link code, token & refresh settings)

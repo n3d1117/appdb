@@ -51,6 +51,9 @@ extension Settings {
                     API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
+                // todo localize
+                Row(text: "PRO Status".localized(), detailText: pro ? "ok, until \(proUntil)" : "Inactive", cellClass: SimpleStaticCell.self),
+                
                 Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: appsync) { newValue in
                     API.setConfiguration(params: [.appsync: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),

@@ -16,6 +16,18 @@ extension Settings {
         return !pref.token.isEmpty
     }
     
+    var pro: Bool {
+        let realm = try! Realm()
+        guard let pref = realm.objects(Preferences.self).first else { return false }
+        return pref.pro
+    }
+    
+    var proUntil: String {
+        let realm = try! Realm()
+        guard let pref = realm.objects(Preferences.self).first else { return "" }
+        return pref.proUntil
+    }
+    
     var linkCode: String {
         let realm = try! Realm()
         guard let pref = realm.objects(Preferences.self).first else { return "~" }
