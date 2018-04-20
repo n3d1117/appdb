@@ -21,6 +21,24 @@ enum DeviceLinkIntroBulletins {
         page.appearance.theme_actionButtonColor = Color.mainTint
         page.appearance.theme_alternativeButtonColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
+        
+        // If device was authorized before, linkDevice will succeed with any code given
+        // So there's no need to ask the user to paste the code/enter email!
+        // If it fails, just show the item itself
+        page.shouldStartWithActivityIndicator = true
+        page.presentationHandler = { item in
+            API.linkDevice(code: "anything", success: {
+                API.getConfiguration(success: {
+                    let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
+                    item.manager?.push(item: completionPage)
+                }, fail: { _ in
+                    item.manager?.hideActivityIndicator()
+                })
+            }, fail: { _ in
+                item.manager?.hideActivityIndicator()
+            })
+        }
+        
         return page
     }
     
@@ -154,7 +172,7 @@ enum DeviceLinkIntroBulletins {
 
 // Workaround to set descriptionLabel's theme color for error/completion page
 class DummyBulletinPage: PageBulletinItem {
-    override func viewsUnderDescription(_ interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
         descriptionLabel?.theme_textColor = Color.title
         return []
     }

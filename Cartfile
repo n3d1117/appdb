@@ -10,6 +10,6 @@ github "jflinter/Dwifft"
 github "marmelroy/Localize-Swift"
 github "Hearst-DD/ObjectMapper"
 github "n3d1117/SwiftTheme" "master"
-github "venmo/Static"
-github "alexaubry/BulletinBoard" "master"
+github "venmo/Static" "master"
+github "alexaubry/BulletinBoard" "v2"
 github "glock45/swifter" == 1.4.0

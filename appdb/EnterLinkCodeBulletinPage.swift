@@ -30,7 +30,7 @@ class EnterLinkCodeBulletinPage: PageBulletinItem {
         linkButton?.removeTarget(self, action: nil, for: .touchUpInside)
     }
     
-    override func viewsUnderDescription(_ interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
         
         let button = UIButton(type: .system)
         button.setTitle("\(Global.mainSite)link.php", for: .normal)

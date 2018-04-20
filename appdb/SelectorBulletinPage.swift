@@ -33,12 +33,11 @@ class SelectorBulletinPage: PageBulletinItem {
      * `BulletinInterfaceFactory` to generate standard views, such as title labels and buttons.
      */
     
-    override func viewsUnderDescription(_ interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
         
         // We add choice cells to a group stack because they need less spacing
         let stack = interfaceBuilder.makeGroupStack(spacing: 15)
 
-        // todo localize
         let firstButton = createChoiceCell(title: "Yes, already linked".localized(), isSelected: true)
         firstButton.addTarget(self, action: #selector(linkedButtonTapped), for: .touchUpInside)
         stack.addArrangedSubview(firstButton)
@@ -83,7 +82,7 @@ class SelectorBulletinPage: PageBulletinItem {
         button.layer.borderColor = buttonColor.cgColor
         
         if isSelected {
-            nextItem = DeviceLinkIntroBulletins.makeLinkCodeTextFieldPage()
+            next = DeviceLinkIntroBulletins.makeLinkCodeTextFieldPage()
         }
         
         return button
@@ -103,7 +102,7 @@ class SelectorBulletinPage: PageBulletinItem {
         secondButton?.setTitleColor(secondColor, for: .normal)
         
         // Set the next item
-        nextItem = DeviceLinkIntroBulletins.makeLinkCodeTextFieldPage()
+        next = DeviceLinkIntroBulletins.makeLinkCodeTextFieldPage()
         
     }
     
@@ -119,49 +118,12 @@ class SelectorBulletinPage: PageBulletinItem {
         firstButton?.setTitleColor(secondColor, for: .normal)
         
         // Set the next item
-        nextItem = DeviceLinkIntroBulletins.makeEmailTextFieldPage()
+        next = DeviceLinkIntroBulletins.makeEmailTextFieldPage()
         
     }
     
     override func actionButtonTapped(sender: UIButton) {
-        
-        manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
-        
-        if nextItem is EnterLinkCodeBulletinPage {
-            
-            // If device was authorized before, linkDevice will succeed with any code given
-            // So there's no need to ask the user to paste the code!
-            // If it fails, just show nextItem
-            delay(0.4) {
-                API.linkDevice(code: "anything", success: {
-                    API.getConfiguration(success: { [unowned self] in
-                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
-                        self.manager?.push(item: completionPage)
-                    }, fail: { _ in
-                        self.manager?.displayNextItem()
-                    })
-                }, fail: { _ in
-                    self.manager?.displayNextItem()
-                })
-            }
-        } else {
-            
-            // If device was authorized before, linkNewDevice will succeed with any email given
-            // So there's no need to ask the user to enter his email!
-            // If it fails, just show nextItem
-            delay(0.4) {
-                API.linkNewDevice(email: "anything", success: {
-                    API.getConfiguration(success: { [unowned self] in
-                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
-                        self.manager?.push(item: completionPage)
-                        }, fail: { _ in
-                            self.manager?.displayNextItem()
-                    })
-                }, fail: { _ in
-                    self.manager?.displayNextItem()
-                })
-            }
-        }
+        manager?.displayNextItem()
     }
     
 }
