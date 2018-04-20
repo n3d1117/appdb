@@ -46,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         let tabBar = UITabBar.appearance()
         tabBar.theme_barStyle = [.default, .black]
         
+        // Theme UISwitch
+        UISwitch.appearance().theme_onTintColor = Color.mainTint
+        
         // Realm config
         let config = Realm.Configuration(schemaVersion: 0)
         Realm.Configuration.defaultConfiguration = config
