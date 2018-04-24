@@ -10,7 +10,10 @@ import UIKit
 import Cartography
 import RealmSwift
 import Cosmos
-import AlamofireImage
+
+protocol DetailsSellerRedirectionDelegate {
+    func sellerSelected(title: String, type: ItemType, devId: String)
+}
 
 class DetailsHeader: DetailsCell {
     
@@ -21,6 +24,9 @@ class DetailsHeader: DetailsCell {
     var ipadOnly: UILabel? = nil
     var stars: CosmosView? = nil
     var additionalInfo: UILabel? = nil
+    
+    var devId: String = ""
+    var delegate: DetailsSellerRedirectionDelegate?
     
     private var _height = (132~~102) + Global.size.margin.value
     private var _heightBooks = round((132~~102) * 1.542) + Global.size.margin.value
@@ -33,10 +39,11 @@ class DetailsHeader: DetailsCell {
     
     override var identifier: String { return "header" }
     
-    convenience init(type: ItemType, content: Object) {
+    convenience init(type: ItemType, content: Object, delegate: DetailsSellerRedirectionDelegate) {
         self.init(style: .default, reuseIdentifier: "header")
 
         self.type = type
+        self.delegate = delegate
         
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
@@ -63,6 +70,7 @@ class DetailsHeader: DetailsCell {
             case .ios: if let app = content as? App {
                 name.text = app.name.decoded
                 seller = ButtonFactory.createChevronButton(text: app.seller.isEmpty ? "Unknown".localized() : app.seller, color: Color.darkGray, size: (15~~13), bold: false)
+                seller.addTarget(self, action: #selector(self.sellerTapped), for: .touchUpInside)
                 icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
                 
                 if !app.numberOfStars.isZero {
@@ -79,11 +87,14 @@ class DetailsHeader: DetailsCell {
                 if let url = URL(string: app.image) {
                     icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: 100), imageTransition: .crossDissolve(0.2))
                 }
+                
+                self.devId = app.artistId
             }
             case .cydia: if let cydiaApp = content as? CydiaApp {
                 name.text = cydiaApp.name.decoded
                 if !cydiaApp.developer.isEmpty {
                     seller = ButtonFactory.createChevronButton(text: cydiaApp.developer, color: Color.darkGray, size: (15~~13), bold: false)
+                    seller.addTarget(self, action: #selector(self.sellerTapped), for: .touchUpInside)
                 }
                 
                 if cydiaApp.isTweaked {
@@ -95,11 +106,14 @@ class DetailsHeader: DetailsCell {
                 if let url = URL(string: cydiaApp.image) {
                     icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: 100), imageTransition: .crossDissolve(0.2))
                 }
+                
+                self.devId = cydiaApp.developerId
             }
             case .books: if let book = content as? Book {
                 name.text = book.name.decoded
                 if !book.author.isEmpty {
                     seller = ButtonFactory.createChevronButton(text: book.author, color: Color.darkGray, size: (15~~13), bold: false)
+                    seller.addTarget(self, action: #selector(self.sellerTapped), for: .touchUpInside)
                 }
                 icon.layer.cornerRadius = 0
                 
@@ -125,6 +139,8 @@ class DetailsHeader: DetailsCell {
                 if let url = URL(string: book.image) {
                     icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
                 }
+                
+                self.devId = book.artistId
             }
         }
         
@@ -138,6 +154,10 @@ class DetailsHeader: DetailsCell {
         
         setConstraints()
         
+    }
+    
+    @objc func sellerTapped() {
+        delegate?.sellerSelected(title: seller.titleLabel?.text ?? "", type: self.type, devId: self.devId)
     }
 
     override func setConstraints() {
@@ -211,10 +231,9 @@ class DetailsHeader: DetailsCell {
     private func buildStars() -> CosmosView {
         let stars = CosmosView()
         stars.settings.starSize = 12
-        stars.isUserInteractionEnabled = false
+        stars.settings.updateOnTouch = false
         stars.settings.totalStars = 5
         stars.settings.fillMode = .half
-        //stars.settings.textSize = 11.5
         stars.settings.textMargin = 2
         stars.settings.starMargin = 0
         return stars

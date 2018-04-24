@@ -86,7 +86,7 @@ class ItemCollection: FeaturedCell {
     var showFullSeparator: Bool = false
     
     // Response object
-    var response : ItemResponse = ItemResponse()
+    var response: ItemResponse = ItemResponse()
     
     // Redirect to Details view
     var delegate: ContentRedirection? = nil
@@ -152,7 +152,8 @@ class ItemCollection: FeaturedCell {
         categoryLabel.makeDynamicFont()
         
         seeAllButton = ButtonFactory.createChevronButton(text: "See All".localized(), color: Color.darkGray)
-
+        seeAllButton.addTarget(self, action: #selector(self.openSeeAll), for: .touchUpInside)
+        
         contentView.addSubview(categoryLabel)
         contentView.addSubview(sectionLabel)
         contentView.addSubview(seeAllButton)
@@ -203,6 +204,10 @@ class ItemCollection: FeaturedCell {
             separatorInset.left = showFullSeparator ? 0 : Global.size.margin.value
             layoutMargins.left = showFullSeparator ? 0 : Global.size.margin.value
         }
+    }
+    
+    @objc fileprivate func openSeeAll() {
+        delegate?.pushSeeAllController(title: sectionLabel.text!, type: currentType, category: currentCategory, price: currentPrice, order: currentOrder)
     }
     
     // MARK: - Networking
@@ -281,6 +286,7 @@ class ItemCollection: FeaturedCell {
         if let identifier = reuseIdentifier {
             switch type {
             case .ios:
+                currentIosCategory = id
                 switch Featured.CellType(rawValue: identifier)! {
                     case .iosNew: getItems(type: App.self, order: .added, genre: id)
                     case .iosPaid: getItems(type: App.self, order: .month, price: .paid, genre: id)
@@ -288,16 +294,63 @@ class ItemCollection: FeaturedCell {
                     default: break
                 }
             case .cydia:
+                currentCydiaCategory = id
                 switch Featured.CellType(rawValue: identifier)! {
                     case .cydia: getItems(type: CydiaApp.self, order: .added, genre: id)
                     default: break
                 }
             case .books:
+                currentBooksCategory = id
                 switch Featured.CellType(rawValue: identifier)! {
                     case .books: getItems(type: Book.self, order: .month, genre: id)
                     default: break
                 }
             }
+        }
+    }
+    
+    // Current parameters
+    
+    fileprivate var currentIosCategory: String! = "0"
+    fileprivate var currentCydiaCategory: String! = "0"
+    fileprivate var currentBooksCategory: String! = "0"
+    
+    fileprivate var currentCategory: String {
+        switch currentType {
+            case .cydia: return currentCydiaCategory
+            case .books: return currentBooksCategory
+            default: return currentIosCategory
+        }
+    }
+    
+    fileprivate var currentType: ItemType! {
+        guard let identifier = reuseIdentifier else { return .ios }
+        guard let type = Featured.CellType(rawValue: identifier) else { return .ios }
+        switch type {
+        case .cydia: return .cydia
+        case .books: return .books
+        default: return .ios
+        }
+    }
+    
+    fileprivate var currentPrice: Price! {
+        guard let identifier = reuseIdentifier else { return .all }
+        guard let type = Featured.CellType(rawValue: identifier) else { return .all }
+        switch type {
+        case .iosPaid: return .paid
+        case .iosPopular: return .free
+        default: return .all
+        }
+    }
+    
+    fileprivate var currentOrder: Order! {
+        guard let identifier = reuseIdentifier else { return .added }
+        guard let type = Featured.CellType(rawValue: identifier) else { return .added }
+        switch type {
+        case .iosPaid: return .month
+        case .iosPopular: return .week
+        case .books: return .month
+        default: return .added
         }
     }
 

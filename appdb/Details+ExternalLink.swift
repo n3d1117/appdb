@@ -18,8 +18,10 @@ class DetailsExternalLink: DetailsCell {
     
     var label: UILabel!
     var url: String!
+    var devId: String!
+    var devName: String!
     
-    convenience init(text: String, url: String) {
+    convenience init(text: String, url: String = "", devId: String = "", devName: String = "") {
         self.init(style: .default, reuseIdentifier: "link")
 
         preservesSuperviewLayoutMargins = false
@@ -28,6 +30,8 @@ class DetailsExternalLink: DetailsCell {
         accessoryType = .disclosureIndicator
         
         self.url = url
+        self.devId = devId
+        self.devName = devName
         
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray

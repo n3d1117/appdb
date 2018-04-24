@@ -32,6 +32,7 @@ class CydiaApp: Object, Meta {
     // General
     @objc dynamic var categoryId = ""
     @objc dynamic var developer = ""
+    @objc dynamic var developerId = ""
     
     // Text
     @objc dynamic var description_ = ""
@@ -62,6 +63,7 @@ extension CydiaApp: Mappable {
         image                   <- map["image"]
         bundleId                <- map["bundle_id"]
         developer               <- map["pname"]
+        developerId             <- map["artist_id"]
         version                 <- map["version"]
         price                   <- map["price"]
         categoryId              <- map["genre_id"]
@@ -76,7 +78,7 @@ extension CydiaApp: Mappable {
         if developer.hasSuffix(" ") { developer = String(developer.dropLast()) }
         
         do {
-            let screenshotsParse = try JSON(data: screenshots.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
+            let screenshotsParse = try JSON(data: screenshots.data(using: .utf8, allowLossyConversion: false)!)
         
             // Screenshots
             let tmpScreens = List<Screenshot>()

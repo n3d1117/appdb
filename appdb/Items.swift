@@ -29,7 +29,7 @@ class Screenshot: Object {
     @objc dynamic var class_ = ""
     @objc dynamic var type = ""
     
-    convenience init(src: String, class_: String, type: String) {
+    convenience init(src: String, class_: String = "", type: String) {
         self.init()
         self.image = src
         self.class_ = class_

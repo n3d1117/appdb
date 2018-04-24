@@ -114,7 +114,7 @@ extension Details {
     
     // Initialize cells
     func initializeCells() {
-        header = [DetailsHeader(type: contentType, content: content)]
+        header = [DetailsHeader(type: contentType, content: content, delegate: self)]
         
         details = [
             DetailsTweakedNotice(originalTrackId: originalTrackid, originalSection: originalSection, delegate: self),
@@ -127,17 +127,18 @@ extension Details {
         
         switch contentType {
         case .ios: if let app = content as? App {
-            details.append(DetailsExternalLink(text: "Developer Apps", url: ""/* TODO */))
-            if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website", url: website)) }
-            if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support", url: support)) }
+            details.append(DetailsExternalLink(text: "Developer Apps".localized(), devId: app.artistId, devName: app.seller))
+            if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website".localized(), url: website)) }
+            if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support".localized(), url: support)) }
             if !app.publisher.isEmpty { details.append(DetailsPublisher(app.publisher)) }
             }
         case .cydia: if let app = content as? CydiaApp {
             details.append(DetailsPublisher("© " + app.developer))
             }
         case .books: if let book = content as? Book {
-            details.append(DetailsExternalLink(text: "More by this author", url: ""/* TODO */))
+            details.append(DetailsExternalLink(text: "More by this author".localized(), devId: book.artistId, devName: book.author))
             if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) }
+            else if !book.author.isEmpty { details.append(DetailsPublisher("© " + book.author)) }
             }
         }
         shareButton.isEnabled = true
@@ -151,7 +152,8 @@ extension Details {
             // Ensure latest version is always at the top
             if let latest = self.versions.filter({$0.number==self.version}).first {
                 if let index = self.versions.index(of: latest) {
-                    self.versions.remove(at: index); self.versions.insert(latest, at: 0)
+                    self.versions.remove(at: index)
+                    self.versions.insert(latest, at: 0)
                 }
             }
             
@@ -178,10 +180,6 @@ extension Details {
     // Details/Reviews for details segment
     var itemsForSegmentedControl: [detailsSelectedSegmentState] {
         switch contentType {
-            case .ios: if let app = content as? App {
-                if !app.reviews.isEmpty { return  [.details, .reviews, .download] }
-                return [.details, .download]
-            }
             case .books: if let book = content as? Book {
                 if !book.reviews.isEmpty { return [.details, .reviews, .download] }
                 return [.details, .download]
@@ -235,7 +233,6 @@ extension Details {
     
     var relatedContent: [RelatedContent] {
         switch contentType {
-            case .ios: if let app = content as? App { return Array(app.relatedApps) }
             case .books: if let book = content as? Book { return Array(book.relatedBooks) }
             default: break
         }; return []
@@ -279,7 +276,6 @@ extension Details {
     
     var reviews: [Review] {
         switch contentType {
-            case .ios: if let app = content as? App { return Array(app.reviews) }
             case .books: if let book = content as? Book { return Array(book.reviews) }
             default: break
         }; return []

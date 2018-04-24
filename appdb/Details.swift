@@ -29,7 +29,7 @@ class Details: LoadingTableView {
         }}
     }
     
-    // I'm initializing this here because i need its
+    // I'm declaring this here because i need its
     // reference later when i enable it
     var shareButton: UIBarButtonItem!
     
@@ -203,12 +203,16 @@ class Details: LoadingTableView {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = details[indexPath.row] as? DetailsExternalLink  else { return }
-        guard let url = URL(string: cell.url) else { return }
-        if #available(iOS 9.0, *) {
-            let svc = SFSafariViewController(url: url)
-            present(svc, animated: true)
-        } else {
-            UIApplication.shared.openURL(url)
+        if !cell.url.isEmpty, let url = URL(string: cell.url) {
+            if #available(iOS 9.0, *) {
+                let svc = SFSafariViewController(url: url)
+                present(svc, animated: true)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        } else if !cell.devId.isEmpty {
+            let vc = SeeAll(title: cell.devName, type: contentType, devId: cell.devId)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -288,6 +292,17 @@ extension Details: ScreenshotRedirectionDelegate {
 extension Details: DynamicContentRedirection {
     func dynamicContentSelected(type: ItemType, id: String) {
         let vc = Details(type: type, trackid: id)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+//
+//   MARK: - DetailsSellerRedirectionDelegate
+//   Push seeAll view controller when user taps seller button
+//
+extension Details: DetailsSellerRedirectionDelegate {
+    func sellerSelected(title: String, type: ItemType, devId: String) {
+        let vc = SeeAll(title: title, type: type, devId: devId)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

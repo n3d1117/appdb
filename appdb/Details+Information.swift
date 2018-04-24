@@ -34,8 +34,6 @@ class DetailsInformation: DetailsCell {
     var ratingText: UILabel!
     var compatibility: UILabel!
     var compatibilityText: UILabel!
-    var watch: UILabel!
-    var watchText: UILabel!
     var languages: UILabel!
     var languagesText: UILabel!
     var printLength: UILabel!
@@ -93,9 +91,6 @@ class DetailsInformation: DetailsCell {
             compatibility = buildLabel(text: "Compatibility")
             compatibilityText = buildLabel(text: app.compatibility, isContent: true)
             
-            watch = buildLabel(text: "Apple Watch")
-            watchText = buildLabel(text: app.appleWatch, isContent: true)
-            
             languages = buildLabel(text: "Languages")
             languagesText = buildLabel(text: app.languages, isContent: true)
             
@@ -117,10 +112,6 @@ class DetailsInformation: DetailsCell {
             contentView.addSubview(ratingText)
             contentView.addSubview(compatibility)
             contentView.addSubview(compatibilityText)
-            if app.appleWatch == "Yes".localized() {
-                contentView.addSubview(watch)
-                contentView.addSubview(watchText)
-            }
             contentView.addSubview(languages)
             contentView.addSubview(languagesText)
         
@@ -213,7 +204,7 @@ class DetailsInformation: DetailsCell {
                     
                     seller.top == title.bottom + 9 ~ Global.notMaxPriority
                     seller.left == title.left
-                    seller.right == seller.left + (90~~86)
+                    seller.right == seller.left + (100~~86)
                     
                     sellerText.left == seller.right + (20~~15)
                     sellerText.right == sellerText.superview!.right - Global.size.margin.value
@@ -299,47 +290,16 @@ class DetailsInformation: DetailsCell {
                                                     compatibilityText.right == compatibilityText.superview!.right - Global.size.margin.value
                                                     compatibilityText.top == compatibility.top
                                                     
-                                                    if contentView.subviews.contains(watch) {
+                                                    constrain(languages, languagesText) { languages, languagesText in
                                                         
-                                                        constrain(watch, watchText) { watch, watchText in
-                                                            
-                                                            watch.top == compatibilityText.bottom + (5~~4)
-                                                            watch.left == compatibility.left
-                                                            watch.right == compatibility.right
-                                                            
-                                                            watchText.left == watch.right + (20~~15)
-                                                            watchText.right == watchText.superview!.right - Global.size.margin.value
-                                                            watchText.top == watch.top
-                                                            
-                                                            constrain(languages, languagesText) { languages, languagesText in
-                                                                
-                                                                languages.top == watchText.bottom + (5~~4)
-                                                                languages.left == watch.left
-                                                                languages.right == watch.right
-                                                                
-                                                                languagesText.left == languages.right + (20~~15)
-                                                                languagesText.right == languagesText.superview!.right - Global.size.margin.value
-                                                                languagesText.top == languages.top
-                                                                languagesText.bottom == languagesText.superview!.bottom - 15
-                                                                
-                                                            }
-                                                            
-                                                        }
+                                                        languages.top == compatibilityText.bottom + (5~~4)
+                                                        languages.left == compatibility.left
+                                                        languages.right == compatibility.right
                                                         
-                                                    } else {
-                                                        
-                                                        constrain(languages, languagesText) { languages, languagesText in
-                                                            
-                                                            languages.top == compatibilityText.bottom + (5~~4)
-                                                            languages.left == compatibility.left
-                                                            languages.right == compatibility.right
-                                                            
-                                                            languagesText.left == languages.right + (20~~15)
-                                                            languagesText.right == languagesText.superview!.right - Global.size.margin.value
-                                                            languagesText.top == languages.top
-                                                            languagesText.bottom == languagesText.superview!.bottom - 15
-                                                            
-                                                        }
+                                                        languagesText.left == languages.right + (20~~15)
+                                                        languagesText.right == languagesText.superview!.right - Global.size.margin.value
+                                                        languagesText.top == languages.top
+                                                        languagesText.bottom == languagesText.superview!.bottom - 15
                                                         
                                                     }
                                                     
@@ -364,7 +324,7 @@ class DetailsInformation: DetailsCell {
                     
                     seller.top == title.bottom + 9 ~ Global.notMaxPriority
                     seller.left == title.left
-                    seller.right == seller.left + (90~~86)
+                    seller.right == seller.left + (100~~86)
                     
                     sellerText.left == seller.right + (20~~15)
                     sellerText.right == sellerText.superview!.right - Global.size.margin.value
@@ -424,7 +384,7 @@ class DetailsInformation: DetailsCell {
                     
                     seller.top == title.bottom + 9 ~ Global.notMaxPriority
                     seller.left == title.left
-                    seller.right == seller.left + (90~~86)
+                    seller.right == seller.left + (100~~86)
                     
                     sellerText.left == seller.right + (20~~15)
                     sellerText.right == sellerText.superview!.right - Global.size.margin.value

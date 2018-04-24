@@ -47,22 +47,20 @@ extension UINavigationBar {
     }    
 }
 
-// Prettify errors
 extension String {
+    
+    // Prettify errors
     var prettified: String {
         switch self {
-            case "MAINTENANCE_MODE": return "Maintenance mode. We will be back soon.".localized()
-            case "INVALID_LINK_CODE": return "Invalid link code.".localized()
-            case "INVALID_EMAIL": return "Invalid email address.".localized()
-            case "NO_DEVICE_LINKED": return "No device linked.".localized()
-            case "USE_LINK_CODE_INSTEAD": return "Use link code instead.".localized()
-            case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
-            default: return self
+        case "MAINTENANCE_MODE": return "Maintenance mode. We will be back soon.".localized()
+        case "INVALID_LINK_CODE": return "Invalid link code.".localized()
+        case "INVALID_EMAIL": return "Invalid email address.".localized()
+        case "NO_DEVICE_LINKED": return "No device linked.".localized()
+        case "USE_LINK_CODE_INSTEAD": return "Use link code instead.".localized()
+        case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
+        default: return self
         }
     }
-}
-
-extension String {
     
     //
     // Decode from HTML using Kanna and keep new line

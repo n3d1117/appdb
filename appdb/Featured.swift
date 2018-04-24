@@ -18,6 +18,7 @@ protocol ChangeCategory {
 
 protocol ContentRedirection {
     func pushDetailsController(with content: Object)
+    func pushSeeAllController(title: String, type: ItemType, category: String, price: Price, order: Order)
 }
 
 class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
@@ -171,6 +172,7 @@ extension Featured: ChangeCategory {
 
 // MARK: - Push Details controller
 extension Featured: ContentRedirection {
+    
     func pushDetailsController(with content: Object) {
         let detailsViewController = Details(content: content)
         if IS_IPAD {
@@ -179,6 +181,17 @@ extension Featured: ContentRedirection {
             navigationController?.present(nav, animated: true)
         } else {
             navigationController?.pushViewController(detailsViewController, animated: true)
+        }
+    }
+    
+    func pushSeeAllController(title: String, type: ItemType, category: String, price: Price, order: Order) {
+        let seeAllViewController = SeeAll(title: title, type: type, category: category, price: price, order: order)
+        if IS_IPAD {
+            let nav = DismissableModalNavController(rootViewController: seeAllViewController)
+            nav.modalPresentationStyle = .formSheet
+            navigationController?.present(nav, animated: true)
+        } else {
+            navigationController?.pushViewController(seeAllViewController, animated: true)
         }
     }
 }

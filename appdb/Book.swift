@@ -77,7 +77,7 @@ extension Book: Mappable {
         lastParseItunes         <- map["last_parse_itunes"]
         
         do {
-            let itunesParse: JSON = try JSON(data: lastParseItunes.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
+            let itunesParse: JSON = try JSON(data: lastParseItunes.data(using: .utf8, allowLossyConversion: false)!)
             
             // Information
             printLenght = itunesParse["printlength"].stringValue
@@ -86,7 +86,12 @@ extension Book: Mappable {
             published = itunesParse["published"].stringValue
             language = itunesParse["languages"].stringValue
             
+            // Dirty fixes
             while published.hasPrefix(" ") { published = String(published.dropFirst()) }
+            if published == "01.01.1970" { published = "" }
+            if language.hasPrefix("Language: ") { language = String(language.dropFirst(10)) }
+            if language.hasPrefix("Requirements") { language = "" }
+            if printLenght.hasPrefix("Language") { printLenght = "" }
             
             // Ratings
             if !itunesParse["ratings"]["current"].stringValue.isEmpty {
@@ -104,6 +109,14 @@ extension Book: Mappable {
                 if let tmpStars = Double(array3[0]) {
                     numberOfStars = itunesParse["ratings"]["current"].stringValue.contains("half") ? tmpStars + 0.5 : tmpStars
                 }
+            } else if !itunesParse["ratings"]["count"].stringValue.isEmpty {
+                    
+                    //numberOfRating
+                    let count = itunesParse["ratings"]["count"].intValue
+                    numberOfRating = "(" + NumberFormatter.localizedString(from: NSNumber(value: count), number: .decimal) + ")"
+                    
+                    //numberOfStars
+                    numberOfStars = itunesParse["ratings"]["stars"].doubleValue
             }
             
             //Related Books
