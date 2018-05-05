@@ -20,10 +20,20 @@ extension Settings {
                 }, cellClass: SimpleStaticCell.self)
             ]),
             
-            Section(header: "...", rows: [
+            Section(header: "support", rows: [
                 Row(text: "News".localized(), selection: { [unowned self] in
                     self.pushNews()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                Row(text: "System Status", selection: { [unowned self] in
+                    self.pushSystemStatus()
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                Row(text: "contact dev", accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                Row(text: "appdb forums", accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+            ]),
+            
+            Section(header: "about", rows: [
+                Row(text: "Acknowledgements", accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                Row(text: "Version", detailText: "\(Global.appVersion)", cellClass: SimpleStaticCell.self)
             ])
         ]
     }
@@ -32,10 +42,15 @@ extension Settings {
     
     var deviceNotLinkedSections: [Static.Section] {
         return [
-            Section(header: "device", rows: [
+            
+            Section(header: "general", rows: [
+                Row(text: "Device", detailText: "todo", cellClass: SimpleStaticCell.self),
+            ]),
+            
+            Section(rows: [
                 Row(text: "Authorize App".localized(), selection: { [unowned self] in
                     self.pushDeviceLink()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.mainTint])
             ])
         
         ] + commonSections
@@ -45,15 +60,20 @@ extension Settings {
     
     var deviceLinkedSections: [Static.Section] {
         return [
-            Section(header: .title("Device Configuration".localized()), rows: [
+            // todo localize
+            Section(header: .title("Device".localized()), rows: [
+                
+                Row(text: "Device", detailText: "todo", cellClass: SimpleStaticCell.self),
+                
+                Row(text: "PRO Status".localized(), detailText: pro ? "ok, until \(proUntil)" : "Inactive",
+                    cellClass: SimpleStaticCell.self),
                 
                 Row(text: "Link Code".localized(), detailText: linkCode, selection: { [unowned self] in
                     API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-                
-                // todo localize
-                Row(text: "PRO Status".localized(), detailText: pro ? "ok, until \(proUntil)" : "Inactive", cellClass: SimpleStaticCell.self),
-                
+                }, cellClass: SimpleStaticCell.self)
+            ]),
+            
+            Section(header: .title("Device Configuration".localized()), rows: [
                 Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: appsync) { newValue in
                     API.setConfiguration(params: [.appsync: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
@@ -64,15 +84,22 @@ extension Settings {
                 
                 Row(text: "Ask for installation options".localized(), accessory: .switchToggle(value: askForInstallationOptions) { newValue in
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-                
+                }, cellClass: SimpleStaticCell.self)
+            ]),
+            
+            Section(rows: [
+                Row(text: "Device Status".localized(), accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+            ]),
+            
+        ] + commonSections + [
+            
+            Section(rows: [
                 Row(text: "Deauthorize".localized(), selection: { [unowned self] in
                     self.deauthorize()
-                }, cellClass: SimpleStaticButtonCell.self)
-                
-            ])
+                }, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.softRed])
+            ], footer: "deauth_footer_text")
             
-        ] + commonSections
+        ]
     }
     
 }

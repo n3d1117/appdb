@@ -57,6 +57,7 @@ extension String {
         case "INVALID_EMAIL": return "Invalid email address.".localized()
         case "NO_DEVICE_LINKED": return "No device linked.".localized()
         case "USE_LINK_CODE_INSTEAD": return "Use link code instead.".localized()
+        case "MISSING_LINK_CODE_OR_EMAIL": return "Missing link code or email.".localized()
         case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
         default: return self
         }
@@ -88,6 +89,22 @@ extension String {
             dateFormatter.locale = Locale(identifier: Localize.currentLanguage())
             dateFormatter.dateStyle = .medium
             return dateFormatter.string(from: date)
+        }
+        return ""
+    }
+    
+    //
+    // Returns formatted string from rfc2822 date
+    // E.G. "Sat, 05 May 2018 13:42:01 -0400" -> "May 5, 2018 at 10.07 PM"
+    //
+    var rfc2822decoded: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
+        if let date = formatter.date(from: self) {
+            formatter.locale = NSLocale.current
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            return formatter.string(from: date)
         }
         return ""
     }

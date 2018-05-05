@@ -14,6 +14,7 @@ import SwiftyJSON
 struct API {
     static let realm = try! Realm()
     static let endpoint = "https://api.appdb.store/v1.2/"
+    static let statusEndpoint = "https://status.appdb.store/API/v1.0/"
     static let languageCode = Locale.current.languageCode ?? "en"
     static let headers: HTTPHeaders = ["User-Agent": "appdb iOS Client v\(Global.appVersion)"]
     

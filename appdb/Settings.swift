@@ -82,6 +82,18 @@ class Settings: TableViewController {
         }
     }
     
+    // Push system status controller
+    func pushSystemStatus() {
+        let statusViewController = SystemStatus()
+        if IS_IPAD {
+            let nav = DismissableModalNavController(rootViewController: statusViewController)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.pushViewController(statusViewController, animated: true)
+        }
+    }
+    
     // Device Link Bulletin intro
     // Also subscribes to notification requests to open Safari
     func pushDeviceLink() {

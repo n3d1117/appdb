@@ -9,6 +9,7 @@
 
 import UIKit
 import Static
+import SwiftTheme
 
 // A simple cell for the 'Static' framework that adapts to theme changes
 // and has has dynamic text font size. Used for Settings cells.
@@ -42,17 +43,16 @@ final class SimpleStaticButtonCell: UITableViewCell, Cell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
-        theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
-        
-        let bgColorView = UIView()
-        bgColorView.theme_backgroundColor = Color.cellSelectionColor
-        selectedBackgroundView = bgColorView
-        
         textLabel?.font = .systemFont(ofSize: (17~~16))
         textLabel?.makeDynamicFont()
-        textLabel?.theme_textColor = Color.softRed
+        textLabel?.theme_textColor = Color.invertedTitle
         textLabel?.textAlignment = .center
+    }
+    
+    func configure(row: Row) {
+        textLabel?.text = row.text
+        theme_backgroundColor = row.context?["bgColor"] as? ThemeColorPicker
+        contentView.theme_backgroundColor = row.context?["bgColor"] as? ThemeColorPicker
     }
     
     required init?(coder aDecoder: NSCoder) {

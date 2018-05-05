@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81004A12209E2545002414F1 /* SystemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81004A11209E2545002414F1 /* SystemStatus.swift */; };
+		81004A14209E25C7002414F1 /* API+SystemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81004A13209E25C7002414F1 /* API+SystemStatus.swift */; };
+		81004A16209E264A002414F1 /* ServiceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81004A15209E264A002414F1 /* ServiceStatus.swift */; };
 		810811D31E8D008E008C6EDB /* Details+DownloadEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810811D21E8D008E008C6EDB /* Details+DownloadEmptyCell.swift */; };
 		8115465A20826AA50031C9DA /* Settings+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8115465920826AA50031C9DA /* Settings+Sections.swift */; };
 		8117DDAA1F3B05BD00E817C5 /* String+Truncation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117DDA91F3B05BD00E817C5 /* String+Truncation.swift */; };
@@ -136,6 +139,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		81004A11209E2545002414F1 /* SystemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemStatus.swift; sourceTree = "<group>"; };
+		81004A13209E25C7002414F1 /* API+SystemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+SystemStatus.swift"; sourceTree = "<group>"; };
+		81004A15209E264A002414F1 /* ServiceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStatus.swift; sourceTree = "<group>"; };
 		810811D21E8D008E008C6EDB /* Details+DownloadEmptyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+DownloadEmptyCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8112C35B1F7FC6E30014EDB2 /* DynamicFontSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontSizeHelper.swift; sourceTree = "<group>"; };
 		8115465920826AA50031C9DA /* Settings+Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Sections.swift"; sourceTree = "<group>"; };
@@ -299,6 +305,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81004A10209E2502002414F1 /* System Status */ = {
+			isa = PBXGroup;
+			children = (
+				81004A11209E2545002414F1 /* SystemStatus.swift */,
+			);
+			name = "System Status";
+			sourceTree = "<group>";
+		};
 		8112C35A1F7FC6D40014EDB2 /* DynamicFontSizeHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +553,7 @@
 				814B76FD205AE1F9004D46DD /* API+News.swift */,
 				812C353F207CECDB00D39748 /* API+DeviceLink.swift */,
 				8186B3052082A65800A22805 /* API+Configuration.swift */,
+				81004A13209E25C7002414F1 /* API+SystemStatus.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -594,6 +609,7 @@
 				813D1E772084F9F800725AC0 /* Settings+Properties.swift */,
 				81324067205BD86000945CE9 /* Settings+StaticCells.swift */,
 				814FF02C207B9B5F0049DF9A /* Device Link */,
+				81004A10209E2502002414F1 /* System Status */,
 				81324069205BE4C700945CE9 /* News */,
 			);
 			name = SETTINGS;
@@ -828,6 +844,7 @@
 				81939B4A1E3BAA9A00179615 /* Preferences.swift */,
 				819ACE5C1E7D4569008DDF65 /* Link.swift */,
 				814B76FB205AE018004D46DD /* SingleNews.swift */,
+				81004A15209E264A002414F1 /* ServiceStatus.swift */,
 			);
 			name = "Object Models";
 			sourceTree = "<group>";
@@ -992,6 +1009,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				819E69941F8FCD1000C4608F /* LandscapeScreenshotSearchCell.swift in Sources */,
+				81004A14209E25C7002414F1 /* API+SystemStatus.swift in Sources */,
 				81EC00651DAD7514009EEFFA /* Featured.swift in Sources */,
 				81DEB2AC1E7DD4A900A94B26 /* RoundedButton.swift in Sources */,
 				814B770E205B2DCA004D46DD /* TextView.swift in Sources */,
@@ -1027,6 +1045,7 @@
 				8180EE631E26D75E001C04B5 /* API+Search.swift in Sources */,
 				81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */,
 				814B770F205B2DCA004D46DD /* IndicatorView.swift in Sources */,
+				81004A16209E264A002414F1 /* ServiceStatus.swift in Sources */,
 				819E698D1F8E9DA500C4608F /* NoScreenshotsSearchCell.swift in Sources */,
 				81939B471E3BA98D00179615 /* Themes.swift in Sources */,
 				8173FBED207BC90200EF779F /* BulletinDataSource.swift in Sources */,
@@ -1089,6 +1108,7 @@
 				81A1038E1F7FCA030011F4B3 /* DynamicFontSizeHelper.swift in Sources */,
 				814B770C205B2DCA004D46DD /* IndicatorAutoFooter.swift in Sources */,
 				81E48B101E707C46005FBBEC /* Details+Review.swift in Sources */,
+				81004A12209E2545002414F1 /* SystemStatus.swift in Sources */,
 				816CEEDB1DBD00E5002CFF6E /* CategoryCell.swift in Sources */,
 				816CEED91DBCE8A2002CFF6E /* Categories.swift in Sources */,
 				818A55A920584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift in Sources */,
