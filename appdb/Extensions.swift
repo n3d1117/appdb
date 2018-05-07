@@ -108,6 +108,22 @@ extension String {
         }
         return ""
     }
+    
+    //
+    // Returns short formatted string from rfc2822 date
+    // E.G. "Sat, 05 May 2018 13:42:01 -0400" -> "May 5, 2018"
+    //
+    var rfc2822decodedShort: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
+        if let date = formatter.date(from: self) {
+            formatter.locale = NSLocale.current
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            return formatter.string(from: date)
+        }
+        return ""
+    }
 }
 
 // Add self made separator (Thanks, Apple...)

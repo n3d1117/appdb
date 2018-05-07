@@ -7,18 +7,31 @@
 //
 
 import Static
+import UIKit
 
 extension Settings {
     
-    // Common sections shared between linked/non linked settings view
+    // Device info string, e.g. "iPhone 6s (10.2, JB)"
+    var deviceInfoString: String {
+        let device = UIDevice.current
+        let jb = FileManager.default.fileExists(atPath: "/bin/bash")
+        return device.deviceType.displayName + " (" + device.systemVersion + ", \(jb ? "JB" : "Non-JB")" + ")"
+    }
     
-    var commonSections: [Static.Section] {
+    var themeSection: [Static.Section] {
         return [
             Section(header: "ui", rows: [
                 Row(text: "Dark Mode".localized(), accessory: .switchToggle(value: Themes.isNight) { newValue in
                     Themes.switchTo(theme: newValue ? .Dark : .Light)
                 }, cellClass: SimpleStaticCell.self)
-            ]),
+            ])
+        ]
+    }
+    
+    // Common sections shared between linked/non linked settings view
+    
+    var commonSections: [Static.Section] {
+        return [
             
             Section(header: "support", rows: [
                 Row(text: "News".localized(), selection: { [unowned self] in
@@ -41,10 +54,10 @@ extension Settings {
     // Sections exclusive for the 'not linked' state
     
     var deviceNotLinkedSections: [Static.Section] {
-        return [
+        return themeSection + [
             
             Section(header: "general", rows: [
-                Row(text: "Device", detailText: "todo", cellClass: SimpleStaticCell.self),
+                Row(text: "Device", detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
             ]),
             
             Section(rows: [
@@ -59,14 +72,14 @@ extension Settings {
     // Sections exclusive for the 'linked' state, todo localize
     
     var deviceLinkedSections: [Static.Section] {
-        return [
-            // todo localize
+        return themeSection + [
+
             Section(header: .title("Device".localized()), rows: [
                 
-                Row(text: "Device", detailText: "todo", cellClass: SimpleStaticCell.self),
+                Row(text: "Device", detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "PRO Status".localized(), detailText: pro ? "ok, until \(proUntil)" : "Inactive",
-                    cellClass: SimpleStaticCell.self),
+                Row(text: "PRO Status".localized(), cellClass: SimpleStaticPROStatusCell.self,
+                    context: ["active": pro, "expire": proUntil]),
                 
                 Row(text: "Link Code".localized(), detailText: linkCode, selection: { [unowned self] in
                     API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
