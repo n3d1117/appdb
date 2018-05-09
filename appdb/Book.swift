@@ -76,8 +76,7 @@ extension Book: Mappable {
         artistId                <- map["artist_id"]
         lastParseItunes         <- map["last_parse_itunes"]
         
-        do {
-            let itunesParse: JSON = try JSON(data: lastParseItunes.data(using: .utf8, allowLossyConversion: false)!)
+        if let data = lastParseItunes.data(using: .utf8), let itunesParse = try? JSON(data: data) {
             
             // Information
             printLenght = itunesParse["printlength"].stringValue
@@ -96,7 +95,7 @@ extension Book: Mappable {
             // Ratings
             if !itunesParse["ratings"]["current"].stringValue.isEmpty {
                 
-                //numberOfRating
+                // numberOfRating
                 let array = itunesParse["ratings"]["current"].stringValue.components(separatedBy: ", ")
                 let array2 = "\(array[1])".components(separatedBy: " ")
                 if let tmpNumber = Int(array2[0]) {
@@ -104,22 +103,22 @@ extension Book: Mappable {
                     numberOfRating = "(" + NumberFormatter.localizedString(from: num, number: .decimal) + ")"
                 }
                 
-                //numberOfStars
+                // numberOfStars
                 let array3 = itunesParse["ratings"]["current"].stringValue.components(separatedBy: " ")
                 if let tmpStars = Double(array3[0]) {
                     numberOfStars = itunesParse["ratings"]["current"].stringValue.contains("half") ? tmpStars + 0.5 : tmpStars
                 }
             } else if !itunesParse["ratings"]["count"].stringValue.isEmpty {
-                    
-                    //numberOfRating
-                    let count = itunesParse["ratings"]["count"].intValue
-                    numberOfRating = "(" + NumberFormatter.localizedString(from: NSNumber(value: count), number: .decimal) + ")"
-                    
-                    //numberOfStars
-                    numberOfStars = itunesParse["ratings"]["stars"].doubleValue
+                
+                // numberOfRating
+                let count = itunesParse["ratings"]["count"].intValue
+                numberOfRating = "(" + NumberFormatter.localizedString(from: NSNumber(value: count), number: .decimal) + ")"
+                
+                // numberOfStars
+                numberOfStars = itunesParse["ratings"]["stars"].doubleValue
             }
             
-            //Related Books
+            // Related Books
             let tmpRelated = List<RelatedContent>()
             for i in 0..<itunesParse["relatedapps"].count {
                 let item = itunesParse["relatedapps"][i]
@@ -133,7 +132,7 @@ extension Book: Mappable {
                 }
             }
             
-            //Also Bought
+            // Also Bought
             for i in 0..<itunesParse["alsobought"].count {
                 let item = itunesParse["alsobought"][i]
                 if !item["type"].stringValue.isEmpty, !item["trackid"].stringValue.isEmpty, !item["artist"]["name"].stringValue.isEmpty {
@@ -157,8 +156,6 @@ extension Book: Mappable {
                     rating: item["rating"].doubleValue
                 ))
             }; reviews = tmpReviews
-        } catch {
-            // ...
         }
 
     }

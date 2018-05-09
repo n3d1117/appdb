@@ -77,9 +77,7 @@ extension CydiaApp: Mappable {
         isTweaked = originalTrackid != "0"
         if developer.hasSuffix(" ") { developer = String(developer.dropLast()) }
         
-        do {
-            let screenshotsParse = try JSON(data: screenshots.data(using: .utf8, allowLossyConversion: false)!)
-        
+        if let data = screenshots.data(using: .utf8), let screenshotsParse = try? JSON(data: data) {
             // Screenshots
             let tmpScreens = List<Screenshot>()
             for i in 0..<screenshotsParse["iphone"].count {
@@ -89,7 +87,7 @@ extension CydiaApp: Mappable {
                     type: "iphone"
                 ))
             }; screenshotsIphone = tmpScreens
-        
+            
             let tmpScreensIpad = List<Screenshot>()
             for i in 0..<screenshotsParse["ipad"].count {
                 tmpScreensIpad.append(Screenshot(
@@ -98,9 +96,6 @@ extension CydiaApp: Mappable {
                     type: "ipad"
                 ))
             }; screenshotsIpad = tmpScreensIpad
-            
-        } catch {
-            // ...
         }
         
     }

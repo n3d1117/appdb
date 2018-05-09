@@ -42,9 +42,11 @@ class App: Object, Meta {
     
     // Dev apps
     @objc dynamic var artistId = ""
+    @objc dynamic var genreId = ""
     
     // Copyright notice
     @objc dynamic var publisher = ""
+    @objc dynamic var pname = ""
     
     // Information
     @objc dynamic var bundleId = ""
@@ -82,6 +84,7 @@ extension App: Mappable {
         version                 <- map["version"]
         price                   <- map["price"]
         updated                 <- map["added"]
+        genreId                 <- map["genre_id"]
         artistId                <- map["artist_id"]
         description_            <- map["description"]
         whatsnew                <- map["whatsnew"]
@@ -89,12 +92,12 @@ extension App: Mappable {
         lastParseItunes         <- map["last_parse_itunes"]
         website                 <- map["pwebsite"]
         support                 <- map["psupport"]
+        pname                   <- map["pname"]
         
-        do {
-            let screenshotsParse = try JSON(data: screenshots.data(using: .utf8, allowLossyConversion: false)!)
-            let itunesParse = try JSON(data: lastParseItunes.data(using: .utf8, allowLossyConversion: false)!)
+        // Information
+        
+        if let data = lastParseItunes.data(using: .utf8), let itunesParse = try? JSON(data: data) {
             
-            // Information
             seller = itunesParse["seller"].stringValue
             size = itunesParse["size"].stringValue
             publisher = itunesParse["publisher"].stringValue
@@ -109,17 +112,27 @@ extension App: Mappable {
             
             // Ratings
             if !itunesParse["ratings"]["count"].stringValue.isEmpty {
-                
-                //numberOfRating
                 let count = itunesParse["ratings"]["count"].intValue
                 numberOfRating = "(" + NumberFormatter.localizedString(from: NSNumber(value: count), number: .decimal) + ")"
-                
-                //numberOfStars
                 numberOfStars = itunesParse["ratings"]["stars"].doubleValue
             }
+        } else {
             
+            // Pulled app?
             
-            // Screenshots
+            // Fix categories not showing for pulled apps
+            let realm = try! Realm()
+            if let genre = realm.objects(Genre.self).filter("category = %@ AND id = %@", "ios", genreId).first {
+                category = Category(name: genre.name, id: genre.id)
+            }
+            seller = pname
+            publisher = "© " + pname
+        }
+        
+        // Screenshots
+        
+        if let data = screenshots.data(using: .utf8), let screenshotsParse = try? JSON(data: data) {
+            
             let tmpScreens = List<Screenshot>()
             for i in 0..<screenshotsParse["iphone"].count {
                 tmpScreens.append(Screenshot(
@@ -135,9 +148,6 @@ extension App: Mappable {
                     type: "ipad"
                 ))
             }; screenshotsIpad = tmpScreensIpad
-
-        } catch {
-            // ...
         }
             
     }

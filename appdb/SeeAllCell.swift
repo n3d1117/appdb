@@ -21,7 +21,7 @@ class SeeAllCell: UITableViewCell {
     // iOS
     func configure(name: String, category: String, version: String, iconUrl: String, size: String) {
         nameLabel.text = name
-        infoLabel.text = category + Global.bulletPoint + version + Global.bulletPoint + size
+        infoLabel.text = category + Global.bulletPoint + version + (!size.isEmpty ? Global.bulletPoint + size : "")
         if let url = URL(string: iconUrl) {
             icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
                              filter: Global.roundedFilter(from: 80~~60),
