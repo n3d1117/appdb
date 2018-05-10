@@ -82,9 +82,12 @@ extension Settings {
                     context: ["active": pro, "expire": proUntil]),
                 
                 Row(text: "Link Code".localized(), detailText: linkCode, selection: { [unowned self] in
-                    API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self)
-            ]),
+                        API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
+                    }, cellClass: SimpleStaticCell.self, context: ["disableSelection": true], copyAction: { row in
+                        UIPasteboard.general.string = row.detailText
+                    }
+                )
+            ], footer: "link_footer_text"),
             
             Section(header: .title("Device Configuration".localized()), rows: [
                 Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: appsync) { newValue in

@@ -23,13 +23,25 @@ final class SimpleStaticCell: UITableViewCell, Cell {
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
         
-        let bgColorView = UIView()
-        bgColorView.theme_backgroundColor = Color.cellSelectionColor
-        selectedBackgroundView = bgColorView
         
         textLabel?.font = .systemFont(ofSize: (17~~16))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
+    }
+    
+    func configure(row: Row) {
+        textLabel?.text = row.text
+        detailTextLabel?.text = row.detailText
+        imageView?.image = row.image
+        accessoryType = row.accessory.type
+        accessoryView = row.accessory.view
+        if let disableSelection = row.context?["disableSelection"] as? Bool, disableSelection {
+            selectionStyle = .none
+        } else {
+            let bgColorView = UIView()
+            bgColorView.theme_backgroundColor = Color.cellSelectionColor
+            selectedBackgroundView = bgColorView
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
