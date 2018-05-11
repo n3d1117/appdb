@@ -44,6 +44,11 @@ class Settings: TableViewController {
         // Subscribe to notifications for device linked/unlinked so i can refresh sections
         NotificationCenter.default.addObserver(self, selector: #selector(refreshSources), name: .RefreshSettings, object: nil)
         
+        // Register for 3d Touch
+        if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: tableView)
+        }
+        
         refreshSources()
         
         // Refresh link code & configuration parameters
@@ -130,6 +135,30 @@ class Settings: TableViewController {
             dataSource.sections = deviceLinkedSections
         } else {
             dataSource.sections = deviceNotLinkedSections
+        }
+    }
+}
+
+// MARK: - 3D Touch
+
+extension Settings: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        guard let row = dataSource.row(at: location) else { return nil }
+        previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+        
+        // Wrap it into a UINavigationController to see viewController's title on peek
+        switch row.text {
+            case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
+            case "News".localized(): return UINavigationController(rootViewController: News())
+            default: return nil
+        }
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        // Unwrap it when committing, to make sure it show back button and everything navigation-related
+        if let view = (viewControllerToCommit as? UINavigationController)?.viewControllers.first {
+            show(view, sender: self)
         }
     }
 }

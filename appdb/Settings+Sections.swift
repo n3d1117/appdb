@@ -37,7 +37,7 @@ extension Settings {
                 Row(text: "News".localized(), selection: { [unowned self] in
                     self.pushNews()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "System Status", selection: { [unowned self] in
+                Row(text: "System Status".localized(), selection: { [unowned self] in
                     self.pushSystemStatus()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "contact dev", accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),

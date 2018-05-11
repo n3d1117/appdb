@@ -23,7 +23,6 @@ final class SimpleStaticCell: UITableViewCell, Cell {
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
         
-        
         textLabel?.font = .systemFont(ofSize: (17~~16))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
