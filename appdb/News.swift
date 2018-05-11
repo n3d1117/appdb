@@ -18,6 +18,12 @@ class News: LoadingTableView {
     fileprivate var allLoaded: Bool = false
     fileprivate let arbitraryDelay: Double = 0.6
     
+    fileprivate var bgColorView: UIView = {
+        let bgColorView = UIView()
+        bgColorView.theme_backgroundColor = Color.cellSelectionColor
+        return bgColorView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,6 +120,7 @@ class News: LoadingTableView {
             cell.textLabel?.text = displayedNews[indexPath.row].title
             cell.textLabel?.numberOfLines = 0
             cell.accessoryType = .disclosureIndicator
+            cell.selectedBackgroundView = bgColorView
             return cell
         }
         return UITableViewCell()

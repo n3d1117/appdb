@@ -68,6 +68,9 @@ class SeeAllCellWithStars: UITableViewCell {
         //UI
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
+        let bgColorView = UIView()
+        bgColorView.theme_backgroundColor = Color.cellSelectionColor
+        selectedBackgroundView = bgColorView
         
         accessoryType = .disclosureIndicator
         
