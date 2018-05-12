@@ -99,6 +99,7 @@
 		819E69941F8FCD1000C4608F /* LandscapeScreenshotSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819E69931F8FCD1000C4608F /* LandscapeScreenshotSearchCell.swift */; };
 		819EC27320A72472007138CF /* Acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 819EC27220A72472007138CF /* Acknowledgements.plist */; };
 		819EC27620A724F2007138CF /* Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC27520A724F2007138CF /* Acknowledgements.swift */; };
+		819EC27A20A76EAD007138CF /* ThemeChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EC27920A76EAD007138CF /* ThemeChooser.swift */; };
 		819EC2D01E41013D00BA7A50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 819EC2D21E41013D00BA7A50 /* Localizable.strings */; };
 		81A1038E1F7FCA030011F4B3 /* DynamicFontSizeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8112C35B1F7FC6E30014EDB2 /* DynamicFontSizeHelper.swift */; };
 		81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB37AD1DAC30BD003A586F /* TabBarController.swift */; };
@@ -240,6 +241,7 @@
 		819E69931F8FCD1000C4608F /* LandscapeScreenshotSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeScreenshotSearchCell.swift; sourceTree = "<group>"; };
 		819EC27220A72472007138CF /* Acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Acknowledgements.plist; sourceTree = "<group>"; };
 		819EC27520A724F2007138CF /* Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowledgements.swift; sourceTree = "<group>"; };
+		819EC27920A76EAD007138CF /* ThemeChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChooser.swift; sourceTree = "<group>"; };
 		819EC2D11E41013D00BA7A50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
 		819EC2D31E41016D00BA7A50 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
 		81AB37AD1DAC30BD003A586F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabBarController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -623,6 +625,7 @@
 				8115465920826AA50031C9DA /* Settings+Sections.swift */,
 				813D1E772084F9F800725AC0 /* Settings+Properties.swift */,
 				81324067205BD86000945CE9 /* Settings+StaticCells.swift */,
+				819EC27C20A76EB6007138CF /* Theme Chooser */,
 				819EC27420A7249F007138CF /* Acknowledgements */,
 				814FF02C207B9B5F0049DF9A /* Device Link */,
 				81004A10209E2502002414F1 /* System Status */,
@@ -698,6 +701,14 @@
 				819EC27520A724F2007138CF /* Acknowledgements.swift */,
 			);
 			name = Acknowledgements;
+			sourceTree = "<group>";
+		};
+		819EC27C20A76EB6007138CF /* Theme Chooser */ = {
+			isa = PBXGroup;
+			children = (
+				819EC27920A76EAD007138CF /* ThemeChooser.swift */,
+			);
+			name = "Theme Chooser";
 			sourceTree = "<group>";
 		};
 		81A060241F8A24E9004EEEE1 /* Cells */ = {
@@ -1101,6 +1112,7 @@
 				81F504E61E5CE4F70000FACC /* DimmableView.swift in Sources */,
 				816D1F231F9165C700172094 /* SearchCells~iPad.swift in Sources */,
 				8127F3A41F88FEF10030A804 /* LoadingCollectionView.swift in Sources */,
+				819EC27A20A76EAD007138CF /* ThemeChooser.swift in Sources */,
 				819ACE5D1E7D4569008DDF65 /* Link.swift in Sources */,
 				81BE066F1E6C52FE00AD9827 /* Details+Publisher.swift in Sources */,
 				814B76FE205AE1F9004D46DD /* API+News.swift in Sources */,

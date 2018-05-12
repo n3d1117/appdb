@@ -111,6 +111,18 @@ class Settings: TableViewController {
         }
     }
     
+    // Push theme chooser controller
+    func pushThemeChooser() {
+        let themeViewController = ThemeChooser()
+        if IS_IPAD {
+            let nav = DismissableModalNavController(rootViewController: themeViewController)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.pushViewController(themeViewController, animated: true)
+        }
+    }
+    
     // Device Link Bulletin intro
     // Also subscribes to notification requests to open Safari
     func pushDeviceLink() {

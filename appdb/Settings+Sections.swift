@@ -20,10 +20,11 @@ extension Settings {
     
     var themeSection: [Static.Section] {
         return [
-            Section(header: "ui", rows: [
-                Row(text: "Dark Mode".localized(), accessory: .switchToggle(value: Themes.isNight) { newValue in
-                    Themes.switchTo(theme: newValue ? .Dark : .Light)
-                }, cellClass: SimpleStaticCell.self)
+            Section(header: "user interface", rows: [
+                Row(text: "Choose Theme".localized(),
+                    detailText: Themes.isNight ? "Dark".localized() : "Light".localized(), selection: { [unowned self] in
+                    self.pushThemeChooser()
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ])
         ]
     }
