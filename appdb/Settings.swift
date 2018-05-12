@@ -87,6 +87,18 @@ class Settings: TableViewController {
         }
     }
     
+    // Push acknowledgements controller
+    func pushAcknowledgements() {
+        let statusViewController = Acknowledgements()
+        if IS_IPAD {
+            let nav = DismissableModalNavController(rootViewController: statusViewController)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.pushViewController(statusViewController, animated: true)
+        }
+    }
+    
     // Push system status controller
     func pushSystemStatus() {
         let statusViewController = SystemStatus()
@@ -107,6 +119,33 @@ class Settings: TableViewController {
         
         bulletinManager.prepare()
         bulletinManager.presentBulletin(above: tabBarController ?? self)
+    }
+    
+    // Opens link to contact dev
+    func openTelegramLink() {
+        let username = "ne_do"
+        let link = "tg://resolve?domain=\(username)"
+        if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        } else if let url = URL(string: "https://t.me/\(username)") {
+            if #available(iOS 9.0, *) {
+                let svc = SFSafariViewController(url: url)
+                present(svc, animated: true)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
+    
+    // Opens Safari with given URL
+    func openInSafari(_ url: String) {
+        guard let url = URL(string: url) else { return }
+        if #available(iOS 9.0, *) {
+            let svc = SFSafariViewController(url: url)
+            present(svc, animated: true)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
     
     // Open Safari from given url via notification

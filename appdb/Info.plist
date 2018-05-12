@@ -34,6 +34,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>appdb</string>
+		<string>tg</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

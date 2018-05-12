@@ -98,4 +98,12 @@ class SystemStatus: LoadingTableView {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return services.isEmpty ? nil : (self.checkedAt ?? nil)
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if #available(iOS 11.0, *) {
+            return 20
+        } else {
+            return 40
+        }
+    }
 }

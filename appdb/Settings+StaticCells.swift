@@ -48,6 +48,33 @@ final class SimpleStaticCell: UITableViewCell, Cell {
     }
 }
 
+// Simple Subtitle cell
+
+final class SimpleSubtitleCell: UITableViewCell, Cell {
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        
+        theme_backgroundColor = Color.veryVeryLightGray
+        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        
+        let bgColorView = UIView()
+        bgColorView.theme_backgroundColor = Color.cellSelectionColor
+        selectedBackgroundView = bgColorView
+        
+        textLabel?.font = .systemFont(ofSize: (17~~16))
+        textLabel?.makeDynamicFont()
+        textLabel?.theme_textColor = Color.title
+        
+        detailTextLabel?.makeDynamicFont()
+        detailTextLabel?.theme_textColor = Color.darkGray
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 // Simple cell that shows a button in center
 
 final class SimpleStaticButtonCell: UITableViewCell, Cell {

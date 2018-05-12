@@ -104,6 +104,13 @@ public extension UIScrollView {
             self?.spr_footer = nil
         }
     }
+    
+    /// End refreshing with header and remove it
+    public func spr_endRefreshingAll() {
+        spr_header?.endRefreshing { [weak self] in
+            self?.spr_header = nil
+        }
+    }
 
     /// Reset footer which is set to no more data
     public func spr_resetNoMoreData() {

@@ -37,15 +37,21 @@ extension Settings {
                 Row(text: "News".localized(), selection: { [unowned self] in
                     self.pushNews()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "System Status".localized(), selection: { [unowned self] in
+                Row(text: "System Status".localized(), detailText: "https://status.appdb.store", selection: { [unowned self] in
                     self.pushSystemStatus()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "contact dev", accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "appdb forums", accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+                }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self),
+                Row(text: "Contact Developer", detailText: "https://t.me/ne_do", selection: { [unowned self] in
+                    self.openTelegramLink()
+                }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self),
+                Row(text: "Visit appdb forums", detailText: "https://forum.appdb.store/", selection: { [unowned self] in
+                    self.openInSafari("https://forum.appdb.store/")
+                }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self)
             ]),
             
             Section(header: "about", rows: [
-                Row(text: "Acknowledgements", accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                Row(text: "Acknowledgements", selection: { [unowned self] in
+                    self.pushAcknowledgements()
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Version", detailText: "\(Global.appVersion)", cellClass: SimpleStaticCell.self)
             ])
         ]
@@ -64,7 +70,7 @@ extension Settings {
                 Row(text: "Authorize App".localized(), selection: { [unowned self] in
                     self.pushDeviceLink()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.mainTint])
-            ])
+            ], footer: "Authorize app with link code from appdb website and enjoy unlimited app installs!")
         
         ] + commonSections
     }
@@ -87,7 +93,7 @@ extension Settings {
                         UIPasteboard.general.string = row.detailText
                     }
                 )
-            ], footer: "link_footer_text"),
+            ], footer: "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one."),
             
             Section(header: .title("Device Configuration".localized()), rows: [
                 Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: appsync) { newValue in
@@ -113,7 +119,9 @@ extension Settings {
                 Row(text: "Deauthorize".localized(), selection: { [unowned self] in
                     self.deauthorize()
                 }, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.softRed])
-            ], footer: "deauth_footer_text")
+            ], footer: "To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles."),
+            
+            Section()
             
         ]
     }

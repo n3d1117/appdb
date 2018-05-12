@@ -9,6 +9,7 @@
 
 import UIKit
 
+
 open class RefreshView: UIView {
     
     public enum Style {
@@ -55,25 +56,28 @@ open class RefreshView: UIView {
     private var sizeToken: NSKeyValueObservation?
     
     override open func didMoveToSuperview() {
-        offsetToken = scrollView?.observe(\.contentOffset) { scrollView, _ in
+        guard let scrollView = scrollView else { return }
+        
+        offsetToken = scrollView.observe(\.contentOffset) { _, _ in
             self.scrollViewDidScroll(scrollView)
         }
-        stateToken = scrollView?.observe(\.panGestureRecognizer.state) { scrollView, _ in
-            guard scrollView.panGestureRecognizer.state == .ended else { return }
+        stateToken = scrollView.panGestureRecognizer.observe(\.state) { pan, _ in
+            guard pan.state == .ended else { return }
             self.scrollViewDidEndDragging(scrollView)
         }
         
         translatesAutoresizingMaskIntoConstraints = false
-        autoresizingMask = [.flexibleWidth]
         
         if style == .header {
             frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
         } else {
-            sizeToken = scrollView?.observe(\.contentSize) { scrollView, _ in
+            sizeToken = scrollView.observe(\.contentSize) { _, _ in
                 self.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self.height)
                 self.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
             }
         }
+        
+        autoresizingMask = [.flexibleWidth]
     }
     
     private func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -140,4 +144,5 @@ open class RefreshView: UIView {
             })
         }
     }
+    
 }
