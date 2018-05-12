@@ -9,80 +9,76 @@
 
 import UIKit
 
-
 open class RefreshView: UIView {
-
+    
     public enum Style {
         case header, footer, autoFooter
     }
-
+    
     private let style: Style
     public let height: CGFloat
     private let action: () -> Void
-
+    
     public init(style: Style, height: CGFloat, action: @escaping () -> Void) {
         self.style = style
         self.height = height
         self.action = action
         super.init(frame: .zero)
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private var isRefreshing = false {
         didSet { didUpdateState(isRefreshing) }
     }
-
+    
     private var progress: CGFloat = 0 {
         didSet { didUpdateProgress(progress) }
     }
-
+    
     open func didUpdateState(_ isRefreshing: Bool) {
         fatalError("didUpdateState(_:) has not been implemented")
     }
-
+    
     open func didUpdateProgress(_ progress: CGFloat) {
         fatalError("didUpdateProgress(_:) has not been implemented")
     }
-
+    
     private var scrollView: UIScrollView? {
         return superview as? UIScrollView
     }
-
+    
     private var offsetToken: NSKeyValueObservation?
     private var stateToken: NSKeyValueObservation?
     private var sizeToken: NSKeyValueObservation?
-
+    
     override open func didMoveToSuperview() {
-        guard let scrollView = scrollView else { return }
-
-        offsetToken = scrollView.observe(\.contentOffset) { _, _ in
+        offsetToken = scrollView?.observe(\.contentOffset) { scrollView, _ in
             self.scrollViewDidScroll(scrollView)
         }
-        stateToken = scrollView.panGestureRecognizer.observe(\.state) { pan, _ in
-            guard pan.state == .ended else { return }
+        stateToken = scrollView?.observe(\.panGestureRecognizer.state) { scrollView, _ in
+            guard scrollView.panGestureRecognizer.state == .ended else { return }
             self.scrollViewDidEndDragging(scrollView)
         }
-
+        
         translatesAutoresizingMaskIntoConstraints = false
+        autoresizingMask = [.flexibleWidth]
         
         if style == .header {
             frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
         } else {
-            sizeToken = scrollView.observe(\.contentSize) { _, _ in
+            sizeToken = scrollView?.observe(\.contentSize) { scrollView, _ in
                 self.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self.height)
                 self.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
             }
         }
-        
-        autoresizingMask = [.flexibleWidth]
     }
-
+    
     private func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isRefreshing { return }
-
+        
         switch style {
         case .header:
             progress = min(1, max(0, -(scrollView.contentOffset.y + scrollView.contentInset.top) / height))
@@ -96,15 +92,15 @@ open class RefreshView: UIView {
             }
         }
     }
-
+    
     private func scrollViewDidEndDragging(_ scrollView: UIScrollView) {
         if isRefreshing || progress < 1 || style == .autoFooter { return }
         beginRefreshing()
     }
-
+    
     func beginRefreshing() {
         guard let scrollView = scrollView, !isRefreshing else { return }
-
+        
         progress = 1
         isRefreshing = true
         DispatchQueue.main.async {
@@ -124,11 +120,11 @@ open class RefreshView: UIView {
             })
         }
     }
-
+    
     func endRefreshing(completion: (() -> Void)? = nil) {
         guard let scrollView = scrollView else { return }
         guard isRefreshing else { completion?(); return }
-
+        
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.3, animations: {
                 switch self.style {
@@ -144,5 +140,4 @@ open class RefreshView: UIView {
             })
         }
     }
-
 }

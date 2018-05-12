@@ -153,6 +153,7 @@ class SeeAll: LoadingTableView {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        guard items.indices.contains(indexPath.row) else { return UITableViewCell() }
         let item = items[indexPath.row]
         
         if let app = item as? App {
