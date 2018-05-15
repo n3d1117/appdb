@@ -52,6 +52,8 @@
 "Top Books" = "Top Books";
 "See All" = "See All";
 "News" = "News";
+"Settings" = "Settings";
+"System Status" = "System Status";
 
 //////////////////////////
 //     APPS & BOOKS     //
@@ -125,8 +127,28 @@
 "Link Code" = "Link Code";
 "Jailbroken w/ Appsync" = "Jailbroken w/ Appsync";
 "Compatibility Checks" = "Compatibility Checks";
-"Ask for installation options" = "Ask for installation options";
+"Ask to duplicate app" = "Ask to duplicate app";
 "Deauthorize" = "Deauthorize";
+"User Interface" = "User Interface";
+"Choose Theme" = "Choose Theme";
+"Dark" = "Dark";
+"Light" = "Light";
+"Support" = "Support";
+"Contact Developer" = "Contact Developer";
+"Visit appdb forum" = "Visit appdb forums";
+"About" = "About";
+"Acknowledgements" = "Acknowledgements";
+"General" = "General";
+"Device" = "Device";
+"Authorize App" = "Authorize App";
+"Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Authorize app with link code from appdb website and enjoy unlimited app installs!";
+"PRO Status" = "PRO Status";
+"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.";
+"Device Status" = "Device Status";
+"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles.";
+"Active" = "Active";
+"Inactive" = "Inactive";
+"Expires on %@" = "Expires on %@";
 
 ////////////////////
 //     ERRORS     //
@@ -145,6 +167,8 @@
 "Unable to fetch device token." = "Unable to fetch device token.";
 "Use link code instead." = "Use link code instead.";
 "Oops! Something went wrong. Please try again later." = "Oops! Something went wrong. Please try again later.";
+"Missing link code or email." = "Missing link code or email.";
+"Could not parse plist file." = "Could not parse plist file.";
 
 ///////////////////
 //     OTHER     //
@@ -157,4 +181,3 @@
 "Done" = "Done";
 "more" = "more";
 "Open in Safari" = "Open in Safari";
-"Dark Mode" = "Dark Mode";

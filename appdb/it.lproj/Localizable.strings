@@ -52,6 +52,8 @@
 "Top Books" = "Libri più scaricati";
 "See All" = "Vedi tutto";
 "News" = "Notizie";
+"Settings" = "Impostazioni";
+"System Status" = "Stato del sistema";
 
 //////////////////////////
 //     APPS & BOOKS     //
@@ -122,11 +124,31 @@
 //////////////////////
 
 "Device Configuration" = "Configurazione";
-"Link Code" = "Codice Link";
+"Link Code" = "Codice link";
 "Jailbroken w/ Appsync" = "Con Jailbreak e Appsync";
 "Compatibility Checks" = "Controlli di compatibilità";
 "Ask for installation options" = "Opzioni aggiuntive di installazione";
 "Deauthorize" = "Scollega app";
+"User Interface" = "Interfaccia";
+"Choose Theme" = "Scegli tema";
+"Dark" = "Tema scuro";
+"Light" = "Tema chiaro";
+"Support" = "Supporto";
+"Contact Developer" = "Contatta sviluppatore";
+"Visit appdb forum" = "Visita il forum di appdb";
+"About" = "Info";
+"Acknowledgements" = "Riconoscimenti";
+"General" = "Generali";
+"Device" = "Dispositivo";
+"Authorize App" = "Autorizza app";
+"Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Autorizza l'app con il codice link di appdb e divertiti a scaricare app!";
+"PRO Status" = "Stato PRO";
+"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Usa questo codice per collegare nuovi dispositivi a appdb. Tieni premuto il codice per copiarlo, oppure toccalo per generarne uno nuovo.";
+"Device Status" = "Stato dispositivo";
+"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Per cancellare completamente il tuo dispositivo da appdb, rimuovi il profilo situato in Impostazioni -> Generali -> Profili.";
+"Active" = "Attivo";
+"Inactive" = "Non attivo";
+"Expires on %@" = "Scade il %@";
 
 ////////////////////
 //     ERRORS     //
@@ -145,6 +167,8 @@
 "Unable to fetch device token." = "Impossibile estrarre il token del dispositivo.";
 "Use link code instead." = "Usa il codice link per collegare il dispositivo.";
 "Oops! Something went wrong. Please try again later." = "Ops! Qualcosa è andato storto. Riprova più tardi.";
+"Missing link code or email." = "Codice o email mancanti.";
+"Could not parse plist file." = "Impossibile analizzare il file plist.";
 
 ///////////////////
 //     OTHER     //
@@ -157,4 +181,3 @@
 "Done" = "Fatto";
 "more" = "altro";
 "Open in Safari" = "Apri in Safari";
-"Dark Mode" = "Tema scuro";

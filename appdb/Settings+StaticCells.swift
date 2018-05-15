@@ -153,7 +153,7 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
                 expiration.top == active.bottom
                 expiration.trailing == active.trailing
             }
-            expirationLabel.text = "Expires on \(expirationDate)"
+            expirationLabel.text = "Expires on %@".localizedFormat(expirationDate)
         } else {
             activeLabel.theme_textColor = Color.softRed
             constrain(activeLabel) { active in
@@ -162,7 +162,7 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
             }
         }
     
-        activeLabel.text = pro ? "Active" : "Inactive"
+        activeLabel.text = pro ? "Active".localized() : "Inactive".localized()
     }
     
     required init?(coder aDecoder: NSCoder) {
