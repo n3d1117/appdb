@@ -100,6 +100,7 @@ extension String {
     var rfc2822decoded: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
+        formatter.locale = Locale(identifier: "en_US")
         if let date = formatter.date(from: self) {
             formatter.locale = NSLocale.current
             formatter.dateStyle = .medium
@@ -116,6 +117,7 @@ extension String {
     var rfc2822decodedShort: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
+        formatter.locale = Locale(identifier: "en_US")
         if let date = formatter.date(from: self) {
             formatter.locale = NSLocale.current
             formatter.dateStyle = .medium
