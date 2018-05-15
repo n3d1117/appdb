@@ -12,7 +12,7 @@ import Cartography
 import RealmSwift
 import AlamofireImage
 
-protocol RelatedRedirectionDelegate {
+protocol RelatedRedirectionDelegate: class {
     func relatedItemSelected(trackid: String)
 }
 
@@ -57,7 +57,7 @@ class DetailsRelated: DetailsCell {
     var collectionView: UICollectionView!
     var relatedContent: [RelatedContent] = []
     
-    var delegate: RelatedRedirectionDelegate? = nil
+    weak var delegate: RelatedRedirectionDelegate?
     
     override var height: CGFloat { return relatedContent.isEmpty ? 0 : (type == .books ? (175~~165) : (140~~130))+(44~~39) }
     override var identifier: String { return "related" }

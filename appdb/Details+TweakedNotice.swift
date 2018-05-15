@@ -10,7 +10,7 @@
 import UIKit
 import Cartography
 
-protocol DynamicContentRedirection {
+protocol DynamicContentRedirection: class {
     func dynamicContentSelected(type: ItemType, id: String)
 }
 
@@ -26,7 +26,7 @@ class DetailsTweakedNotice: DetailsCell {
     override var height: CGFloat { return (trackid.isEmpty || trackid == "0") ? 0 : UITableViewAutomaticDimension }
     override var identifier: String { return "tweakednotice" }
     
-    var delegate: DynamicContentRedirection? = nil
+    weak var delegate: DynamicContentRedirection?
     
     convenience init(originalTrackId: String, originalSection: String, delegate: DynamicContentRedirection) {
         self.init(style: .default, reuseIdentifier: "tweakednotice")

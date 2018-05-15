@@ -11,7 +11,7 @@ import Cartography
 import RealmSwift
 import Cosmos
 
-protocol DetailsSellerRedirectionDelegate {
+protocol DetailsSellerRedirectionDelegate: class {
     func sellerSelected(title: String, type: ItemType, devId: String)
 }
 
@@ -26,7 +26,7 @@ class DetailsHeader: DetailsCell {
     var additionalInfo: UILabel? = nil
     
     var devId: String = ""
-    var delegate: DetailsSellerRedirectionDelegate?
+    weak var delegate: DetailsSellerRedirectionDelegate?
     
     private var _height = (132~~102) + Global.size.margin.value
     private var _heightBooks = round((132~~102) * 1.542) + Global.size.margin.value

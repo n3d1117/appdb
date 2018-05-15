@@ -99,6 +99,10 @@ class Acknowledgements: LoadingTableView {
         let cell = tableView.dequeueReusableCell(withIdentifier: "license", for: indexPath)
         cell.textLabel?.text = licenses[indexPath.section].text
         cell.textLabel?.font = .systemFont(ofSize: (15~~14))
+        cell.textLabel?.theme_textColor = Color.darkGray
+        cell.textLabel?.makeDynamicFont()
+        cell.contentView.theme_backgroundColor = Color.veryVeryLightGray
+        cell.theme_backgroundColor = Color.veryVeryLightGray
         cell.textLabel?.numberOfLines = 0
         cell.selectionStyle = .none
         return cell

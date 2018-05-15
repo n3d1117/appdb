@@ -10,7 +10,7 @@
 import UIKit
 import Cartography
 
-protocol SwitchDetailsSegmentDelegate {
+protocol SwitchDetailsSegmentDelegate: class {
     func segmentSelected(_ state: detailsSelectedSegmentState)
 }
 
@@ -39,7 +39,7 @@ class DetailsSegmentControl: TableViewHeader {
     var translucentView: ILTranslucentView!
     var segment: UISegmentedControl!
     var items: [detailsSelectedSegmentState] = []
-    var delegate: SwitchDetailsSegmentDelegate? = nil
+    weak var delegate: SwitchDetailsSegmentDelegate?
     
     func index(for state: detailsSelectedSegmentState) -> Int {
         switch state {

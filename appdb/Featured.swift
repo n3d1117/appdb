@@ -11,12 +11,12 @@ import RealmSwift
 import Cartography
 import Localize_Swift
 
-protocol ChangeCategory {
+protocol ChangeCategory: class {
     func openCategories(_ sender: AnyObject)
     func reloadViewAfterCategoryChange(id: String, type: ItemType)
 }
 
-protocol ContentRedirection {
+protocol ContentRedirection: class {
     func pushDetailsController(with content: Object)
     func pushSeeAllController(title: String, type: ItemType, category: String, price: Price, order: Order)
 }

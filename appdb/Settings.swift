@@ -64,6 +64,15 @@ class Settings: TableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Refresh 'Dark/Light' in cell on appear, but only if theme has changed
+        if didPushThemeChooser { didPushThemeChooser = false
+            refreshSources()
+        }
+    }
+    
     // Deauthorize app (clean link code, token & refresh settings)
     func deauthorize() {
         let realm = try! Realm()
@@ -112,7 +121,9 @@ class Settings: TableViewController {
     }
     
     // Push theme chooser controller
+    fileprivate var didPushThemeChooser: Bool = false
     func pushThemeChooser() {
+        didPushThemeChooser = true
         let themeViewController = ThemeChooser()
         if IS_IPAD {
             let nav = DismissableModalNavController(rootViewController: themeViewController)

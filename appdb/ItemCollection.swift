@@ -89,10 +89,10 @@ class ItemCollection: FeaturedCell {
     var response: ItemResponse = ItemResponse()
     
     // Redirect to Details view
-    var delegate: ContentRedirection? = nil
+    weak var delegate: ContentRedirection?
     
     // Open Featured's Categories view controller
-    var delegateCategory: ChangeCategory? = nil
+    weak var delegateCategory: ChangeCategory?
     
     deinit { NotificationCenter.default.removeObserver(self, name: Notification.Name.UIContentSizeCategoryDidChange, object: nil) }
 

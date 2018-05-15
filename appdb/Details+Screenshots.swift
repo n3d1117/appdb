@@ -10,7 +10,7 @@
 import Cartography
 import AlamofireImage
 
-protocol ScreenshotRedirectionDelegate {
+protocol ScreenshotRedirectionDelegate: class {
     func screenshotImageSelected(with index: Int, _ allLandscape: Bool, _ mixedClasses: Bool, _ magic: CGFloat)
 }
 
@@ -46,7 +46,7 @@ class DetailsScreenshots: DetailsCell {
         return allLandscape ? (230~~176) : (314~~280)
     }
     
-    var delegate: ScreenshotRedirectionDelegate? = nil
+    weak var delegate: ScreenshotRedirectionDelegate?
     
     var collectionView: UICollectionView!
     var screenshots: [Screenshot] = []

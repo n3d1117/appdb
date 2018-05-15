@@ -23,7 +23,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var control: UISegmentedControl!
     var line: UIView!
     
-    var delegate: ChangeCategory? = nil
+    weak var delegate: ChangeCategory?
     
     // Constraints group, will be replaced when orientation changes
     var group = ConstraintGroup()
