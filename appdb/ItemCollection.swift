@@ -10,7 +10,7 @@
 import UIKit
 import Cartography
 import RealmSwift
-import Dwifft
+import DeepDiff
 import AlamofireImage
 import ObjectMapper
 
@@ -231,17 +231,13 @@ class ItemCollection: FeaturedCell {
     func getItems <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") -> Void where T:Mappable, T:Meta {
         API.search(type: type, order: order, price: price, genre: genre, success: { array in
             
-            let diff = Dwifft.diff(self.items, array)
-            if diff.count > 0 {
-                self.collectionView.performBatchUpdates({
-                    self.items = array
-                    for result in diff {
-                        switch result {
-                            case let .delete(row, _): self.collectionView.deleteItems(at: [IndexPath(row: row, section: 0)])
-                            case let .insert(row, _): self.collectionView.insertItems(at: [IndexPath(row: row, section: 0)])
-                        }
-                    }
-                }, completion: nil)
+            if self.items.isEmpty {
+                self.items = array
+                self.collectionView.reloadData()
+            } else {
+                let changes = diff(old: self.items, new: array)
+                self.items = array
+                self.collectionView.reload(changes: changes, section: 0, completion: { _ in })
             }
             
             // Fix rare issue where first three Cydia items would not load category text - probs not fixed
