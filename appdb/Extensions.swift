@@ -86,8 +86,23 @@ extension String {
         if let unixTime = Double(self) {
             let date = Date(timeIntervalSince1970: unixTime)
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: Localize.currentLanguage())
+            dateFormatter.locale = NSLocale.current
             dateFormatter.dateStyle = .medium
+            return dateFormatter.string(from: date)
+        }
+        return ""
+    }
+    
+    //
+    // Returns detailed string date from unix time
+    //
+    var unixToDetailedString: String {
+        if let unixTime = Double(self) {
+            let date = Date(timeIntervalSince1970: unixTime)
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateStyle = .long
+            dateFormatter.timeStyle = .long
             return dateFormatter.string(from: date)
         }
         return ""
