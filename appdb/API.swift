@@ -13,8 +13,8 @@ import SwiftyJSON
 
 struct API {
     static let realm = try! Realm()
-    static let endpoint = "https://api.appdb.store/v1.2/"
-    static let statusEndpoint = "https://status.appdb.store/API/v1.0/"
+    static let endpoint = "https://api.appdb.org/v1.2/"
+    static let statusEndpoint = "https://status.appdb.org/API/v1.0/"
     static let languageCode = Locale.current.languageCode ?? "en"
     static let headers: HTTPHeaders = ["User-Agent": "appdb iOS Client v\(Global.appVersion)"]
     
@@ -67,6 +67,7 @@ enum Actions: String {
     case getLinkCode = "get_link_code"
     case getConfiguration = "get_configuration"
     case configure = "configure"
+    case getStatus = "get_status"
 }
 
 enum ConfigurationParameters: String {
