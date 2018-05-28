@@ -55,9 +55,9 @@
 		816D1F1F1F9143C800172094 /* MixedScreenshotsSearchCell_P->L.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D1F1E1F9143C800172094 /* MixedScreenshotsSearchCell_P->L.swift */; };
 		816D1F231F9165C700172094 /* SearchCells~iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D1F221F9165C700172094 /* SearchCells~iPad.swift */; };
 		816D1F251F91679000172094 /* SearchCells~iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D1F241F91679000172094 /* SearchCells~iPhone.swift */; };
+		817236A620BB1F8F0014F61A /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 817236A520BB1F8E0014F61A /* BLTNBoard.framework */; };
 		8173FBED207BC90200EF779F /* BulletinDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBEC207BC90200EF779F /* BulletinDataSource.swift */; };
 		8173FBF0207BCAE200EF779F /* SelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */; };
-		8173FBF2207BCE6500EF779F /* BulletinBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8173FBF1207BCE6500EF779F /* BulletinBoard.framework */; };
 		8173FBF4207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBF3207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift */; };
 		8173FBF6207BE8BE00EF779F /* EnterEmailBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBF5207BE8BE00EF779F /* EnterEmailBulletinPage.swift */; };
 		8177B60C1F81992F0014A944 /* Details+FullScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818CB5D41E787AB400A69213 /* Details+FullScreenshots.swift */; };
@@ -200,6 +200,7 @@
 		816D1F1E1F9143C800172094 /* MixedScreenshotsSearchCell_P->L.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixedScreenshotsSearchCell_P->L.swift"; sourceTree = "<group>"; };
 		816D1F221F9165C700172094 /* SearchCells~iPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchCells~iPad.swift"; sourceTree = "<group>"; };
 		816D1F241F91679000172094 /* SearchCells~iPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchCells~iPhone.swift"; sourceTree = "<group>"; };
+		817236A520BB1F8E0014F61A /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
 		8173FBEC207BC90200EF779F /* BulletinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinDataSource.swift; sourceTree = "<group>"; };
 		8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
 		8173FBF1207BCE6500EF779F /* BulletinBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BulletinBoard.framework; path = Carthage/Build/iOS/BulletinBoard.framework; sourceTree = "<group>"; };
@@ -310,7 +311,7 @@
 				81FF1C541F9211B00086EEE0 /* SwiftTheme.framework in Frameworks */,
 				81FF1C551F9211B00086EEE0 /* Localize_Swift.framework in Frameworks */,
 				81FF1C561F9211B00086EEE0 /* Cosmos.framework in Frameworks */,
-				8173FBF2207BCE6500EF779F /* BulletinBoard.framework in Frameworks */,
+				817236A620BB1F8F0014F61A /* BLTNBoard.framework in Frameworks */,
 				81FF1C571F9211B00086EEE0 /* AlamofireImage.framework in Frameworks */,
 				81FF1C4D1F9211B00086EEE0 /* ObjectMapper.framework in Frameworks */,
 				817D2EE11E8EBBE500B8AE0D /* SwiftyJSON.framework in Frameworks */,
@@ -751,6 +752,7 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				817236A520BB1F8E0014F61A /* BLTNBoard.framework */,
 				816B343B20B727500019DE5C /* DeepDiff.framework */,
 				812C3541207D235300D39748 /* Swifter.framework */,
 				8173FBF1207BCE6500EF779F /* BulletinBoard.framework */,
@@ -1051,7 +1053,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/DeepDiff.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Static.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/BulletinBoard.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Swifter.framework",
 			);
 			outputPaths = (
@@ -1349,6 +1351,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9Y4562FZWB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1379,6 +1382,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9Y4562FZWB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -62,6 +62,9 @@ struct Color {
     //  CG COLORS  //
     /////////////////
     
+    /* CG version of mainTint */
+    static let mainTintCgColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#446CB3", "#6FACFA")
+    
     /* CG version of copyrightText */
     static let copyrightTextCgColor: ThemeCGColorPicker = ThemeCGColorPicker(colors: "#555555", "#7E7E7E")
     

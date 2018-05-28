@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
 
 /**
  * An item that displays a text field.
@@ -16,13 +16,13 @@ import BulletinBoard
  * when the keyboard is visible.
  */
 
-class EnterEmailBulletinPage: PageBulletinItem {
+class EnterEmailBulletinPage: BLTNPageItem {
     
     @objc public var textField: UITextField!
     
-    @objc public var textInputHandler: ((ActionBulletinItem, String?) -> Void)? = nil
+    @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
     
-    override func makeViewsUnderDescription(with interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         textField = interfaceBuilder.makeTextField(placeholder: "name@example.com".localized(), returnKey: .done, delegate: self)
         descriptionLabel?.theme_textColor = Color.title
         return [textField]
@@ -34,11 +34,8 @@ class EnterEmailBulletinPage: PageBulletinItem {
     }
     
     override func actionButtonTapped(sender: UIButton) {
-        if textFieldShouldReturn(self.textField) {
-            textInputHandler?(self, textField.text)
-            super.actionButtonTapped(sender: sender)
-        }
-        
+        textInputHandler?(self, textField.text)
+        super.actionButtonTapped(sender: sender)
     }
     
     override func alternativeButtonTapped(sender: UIButton) {
@@ -56,15 +53,22 @@ extension EnterEmailBulletinPage: UITextFieldDelegate {
         return text != nil && !text!.isEmpty
     }
     
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if isEmailValid(text: textField.text) {
-            textField.resignFirstResponder()
-            return true
+            textInputHandler?(self, textField.text)
         } else {
             descriptionLabel!.textColor = .red
             descriptionLabel!.text = "Please enter a valid email address.".localized()
             textField.backgroundColor = UIColor.red.withAlphaComponent(0.2)
-            return false
         }
         
     }

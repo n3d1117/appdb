@@ -10,13 +10,13 @@ import UIKit
 import Static
 import SafariServices
 import RealmSwift
-import BulletinBoard
+import BLTNBoard
 
 class Settings: TableViewController {
     
-    lazy var bulletinManager: BulletinManager = {
-        let rootItem: BulletinItem = DeviceLinkIntroBulletins.makeSelectorPage()
-        let manager = BulletinManager(rootItem: rootItem)
+    lazy var bulletinManager: BLTNItemManager = {
+        let rootItem: BLTNItem = DeviceLinkIntroBulletins.makeSelectorPage()
+        let manager = BLTNItemManager(rootItem: rootItem)
         manager.theme_backgroundColor = Color.invertedTitle
         return manager
     }()
@@ -140,8 +140,7 @@ class Settings: TableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(openSafari(notification:)), name: .OpenSafari, object: nil)
         
-        bulletinManager.prepare()
-        bulletinManager.presentBulletin(above: tabBarController ?? self)
+        bulletinManager.showBulletin(above: tabBarController ?? self)
     }
     
     // Opens link to contact dev

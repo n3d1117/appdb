@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
+import SwiftTheme
 
-class SelectorBulletinPage: PageBulletinItem {
+class SelectorBulletinPage: BLTNPageItem {
     
     private var firstButton: UIButton!
     private var secondButton: UIButton!
@@ -33,7 +34,7 @@ class SelectorBulletinPage: PageBulletinItem {
      * `BulletinInterfaceFactory` to generate standard views, such as title labels and buttons.
      */
     
-    override func makeViewsUnderDescription(with interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
         // We add choice cells to a group stack because they need less spacing
         let stack = interfaceBuilder.makeGroupStack(spacing: 15)
@@ -76,10 +77,10 @@ class SelectorBulletinPage: PageBulletinItem {
         heightConstraint.priority = .defaultHigh
         heightConstraint.isActive = true
         
-        let buttonColor = isSelected ? appearance.actionButtonColor : .lightGray
-        button.layer.borderColor = buttonColor.cgColor
-        button.setTitleColor(buttonColor, for: .normal)
-        button.layer.borderColor = buttonColor.cgColor
+        let buttonColor = isSelected ? appearance.theme_actionButtonColor : Color.copyrightText
+        let buttonCGColor = isSelected ? Color.mainTintCgColor : Color.copyrightTextCgColor
+        button.layer.theme_borderColor = buttonCGColor
+        button.theme_setTitleColor(buttonColor, forState: .normal)
         
         if isSelected {
             next = DeviceLinkIntroBulletins.makeLinkCodeTextFieldPage()
@@ -93,13 +94,11 @@ class SelectorBulletinPage: PageBulletinItem {
     @objc func linkedButtonTapped() {
         
         // Update UI
-        let firstColor = appearance.actionButtonColor
-        firstButton?.layer.borderColor = firstColor.cgColor
-        firstButton?.setTitleColor(firstColor, for: .normal)
+        firstButton.layer.theme_borderColor = Color.mainTintCgColor
+        firstButton.theme_setTitleColor(appearance.theme_actionButtonColor, forState:  .normal)
         
-        let secondColor = UIColor.lightGray
-        secondButton?.layer.borderColor = secondColor.cgColor
-        secondButton?.setTitleColor(secondColor, for: .normal)
+        secondButton.layer.theme_borderColor = Color.copyrightTextCgColor
+        secondButton.theme_setTitleColor(Color.copyrightText, forState: .normal)
         
         // Set the next item
         next = DeviceLinkIntroBulletins.makeLinkCodeTextFieldPage()
@@ -109,13 +108,12 @@ class SelectorBulletinPage: PageBulletinItem {
     @objc func notLinkedButtonTapped() {
         
         // Update UI
-        let firstColor = appearance.actionButtonColor
-        secondButton?.layer.borderColor = firstColor.cgColor
-        secondButton?.setTitleColor(firstColor, for: .normal)
         
-        let secondColor = UIColor.lightGray
-        firstButton?.layer.borderColor = secondColor.cgColor
-        firstButton?.setTitleColor(secondColor, for: .normal)
+        secondButton.layer.theme_borderColor = Color.mainTintCgColor
+        secondButton.theme_setTitleColor(appearance.theme_actionButtonColor, forState:  .normal)
+        
+        firstButton.layer.theme_borderColor = Color.copyrightTextCgColor
+        firstButton.theme_setTitleColor(Color.copyrightText, forState: .normal)
         
         // Set the next item
         next = DeviceLinkIntroBulletins.makeEmailTextFieldPage()

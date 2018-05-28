@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
 import SafariServices
 
 /**
@@ -17,12 +17,12 @@ import SafariServices
  * when the keyboard is visible.
  */
 
-class EnterLinkCodeBulletinPage: PageBulletinItem {
+class EnterLinkCodeBulletinPage: BLTNPageItem {
 
     @objc public var textField: UITextField!
     private var linkButton: UIButton!
     
-    @objc public var textInputHandler: ((ActionBulletinItem, String?) -> Void)? = nil
+    @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
     
     override func tearDown() {
         super.tearDown()
@@ -30,7 +30,7 @@ class EnterLinkCodeBulletinPage: PageBulletinItem {
         linkButton?.removeTarget(self, action: nil, for: .touchUpInside)
     }
     
-    override func makeViewsUnderDescription(with interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
         let button = UIButton(type: .system)
         button.setTitle("\(Global.mainSite)link.php", for: .normal)
@@ -56,10 +56,8 @@ class EnterLinkCodeBulletinPage: PageBulletinItem {
     }
     
     override func actionButtonTapped(sender: UIButton) {
-        if textFieldShouldReturn(self.textField) {
-            textInputHandler?(self, textField.text)
-            super.actionButtonTapped(sender: sender)
-        }
+        textInputHandler?(self, textField.text)
+        super.actionButtonTapped(sender: sender)
     }
     
     override func alternativeButtonTapped(sender: UIButton) {
@@ -76,15 +74,23 @@ extension EnterLinkCodeBulletinPage: UITextFieldDelegate {
         return text != nil && !text!.isEmpty
     }
     
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
         if isInputValid(text: textField.text) {
-            textField.resignFirstResponder()
-            return true
+            textInputHandler?(self, textField.text)
         } else {
             descriptionLabel!.textColor = .red
             descriptionLabel!.text = "Link code cannot be empty.".localized()
             textField.backgroundColor = UIColor.red.withAlphaComponent(0.2)
-            return false
         }
         
     }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
 
 enum DeviceLinkIntroBulletins {
     
@@ -125,7 +125,7 @@ enum DeviceLinkIntroBulletins {
         return page
     }
     
-    static func makeCompletionPage() -> PageBulletinItem {
+    static func makeCompletionPage() -> BLTNPageItem {
         
         let page = DummyBulletinPage(title: "Success".localized())
         page.image = #imageLiteral(resourceName: "completed")
@@ -148,7 +148,7 @@ enum DeviceLinkIntroBulletins {
         
     }
     
-    static func makeErrorPage(with error: String) -> PageBulletinItem {
+    static func makeErrorPage(with error: String) -> BLTNPageItem {
         
         let page = DummyBulletinPage(title: "Unable to complete".localized())
         page.image = #imageLiteral(resourceName: "error")
@@ -171,8 +171,8 @@ enum DeviceLinkIntroBulletins {
 }
 
 // Workaround to set descriptionLabel's theme color for error/completion page
-class DummyBulletinPage: PageBulletinItem {
-    override func makeViewsUnderDescription(with interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+class DummyBulletinPage: BLTNPageItem {
+    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         descriptionLabel?.theme_textColor = Color.title
         return []
     }
