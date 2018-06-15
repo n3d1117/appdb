@@ -18,7 +18,7 @@ let HAS_NOTCH = UIDevice().userInterfaceIdiom == .phone && UIScreen.main.nativeB
 
 struct Global {
     
-    static let mainSite: String = "https://appdb.org/"
+    static let mainSite: String = "https://appdb.to/"
     
     // Sets Bool is first launch
     static func setFirstLaunch() {

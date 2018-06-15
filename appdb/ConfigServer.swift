@@ -36,7 +36,7 @@ class ConfigServer: NSObject {
     // The .mobileconfig is passed as Data in the constructor
     private var configData: Data!
     
-    // The device appdb token, used to redirect to appdb.org/?lt=token on complete
+    // The device appdb token, used to redirect to appdb.to/?lt=token on complete
     private var token: String = ""
     
     // The current state
@@ -150,7 +150,7 @@ class ConfigServer: NSObject {
 extension ConfigServer {
     
     private func composeURL(ending: String?) -> String {
-        var base = "http://localhost:\(listeningPort)"
+        var base = "http://127.0.0.1:\(listeningPort)"
         if let e = ending { base += "/\(e)" }
         return base
     }
@@ -160,7 +160,7 @@ extension ConfigServer {
                 "<head><meta charset='utf-8'><title>appdb Profile Install</title>" +
                 "<style>.btn,.btn:hover{text-decoration:none}.center{width:345px;height:100px;margin:auto;position:absolute;top:0;bottom:0;left:0;right:0;max-width:100%;max-height:100%;overflow:auto}.btn{background:#62baf5;background-image:-webkit-linear-gradient(top,#62baf5,#358abf);background-image:-moz-linear-gradient(top,#62baf5,#358abf);background-image:-ms-linear-gradient(top,#62baf5,#358abf);background-image:-o-linear-gradient(top,#62baf5,#358abf);background-image:linear-gradient(to bottom,#62baf5,#358abf);-webkit-border-radius:60;-moz-border-radius:60;border-radius:60px;text-shadow:1px 1px 15px #666;color:#fff;font-size:45px;padding:15px 50px}.btn:hover{background:#1d89cc;background-image:-webkit-linear-gradient(top,#1d89cc,#3498db);background-image:-moz-linear-gradient(top,#1d89cc,#3498db);background-image:-ms-linear-gradient(top,#1d89cc,#3498db);background-image:-o-linear-gradient(top,#1d89cc,#3498db);background-image:linear-gradient(to bottom,#1d89cc,#3498db)}</style></head>" +
                 "<a href=\"appdb://\"><div class=\"center\"><button class=\"btn\" onclick=\"setTimeout(cleanup, 5000)\">Back to app</button></div></a>" +
-                "<script>function cleanup() { window.location.href = 'https://appdb.org/?lt=\(self.token)'; }</script>" +
+                "<script>function cleanup() { window.location.href = 'https://appdb.to/?lt=\(self.token)'; }</script>" +
                 "<body></body></html>"
     }
 
