@@ -68,6 +68,7 @@ enum Actions: String {
     case getConfiguration = "get_configuration"
     case configure = "configure"
     case getStatus = "get_status"
+    case clear = "clear"
 }
 
 enum ConfigurationParameters: String {
