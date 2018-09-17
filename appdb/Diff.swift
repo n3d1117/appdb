@@ -51,7 +51,7 @@ public struct DiffMatch: Hashable, CustomDebugStringConvertible {
 }
 
 /// Diff between two collections
-public struct Diff<T: Collection> where T.Index == DiffMatch.Index, T.IndexDistance == DiffMatch.Index
+public struct Diff<T: Collection> where T.Index == DiffMatch.Index
 {
     /// Inserted indexes in destination
     public let inserted: IndexSet

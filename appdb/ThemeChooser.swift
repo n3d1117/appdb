@@ -70,8 +70,8 @@ class ThemeChooser: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 0: if Themes.isNight { Themes.switchTo(theme: .Light) }
-        default: if !Themes.isNight { Themes.switchTo(theme: .Dark) }
+            case 0: if Themes.isNight { Themes.switchTo(theme: .Light) }
+            default: if !Themes.isNight { Themes.switchTo(theme: .Dark) }
         }
         tableView.reloadData()
     }

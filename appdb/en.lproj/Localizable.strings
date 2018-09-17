@@ -134,7 +134,6 @@
 "Dark" = "Dark";
 "Light" = "Light";
 "Support" = "Support";
-"Contact Developer" = "Contact Developer";
 "Visit appdb forum" = "Visit appdb forums";
 "About" = "About";
 "Acknowledgements" = "Acknowledgements";
@@ -149,6 +148,8 @@
 "Active" = "Active";
 "Inactive" = "Inactive";
 "Expires on %@" = "Expires on %@";
+"Clear command queue?" = "Clear command queue?";
+"Clear" = "Clear";
 
 ////////////////////
 //     ERRORS     //
@@ -169,6 +170,7 @@
 "Oops! Something went wrong. Please try again later." = "Oops! Something went wrong. Please try again later.";
 "Missing link code or email." = "Missing link code or email.";
 "Could not parse plist file." = "Could not parse plist file.";
+"Device status is empty." = "Device status is empty.";
 
 ///////////////////
 //     OTHER     //

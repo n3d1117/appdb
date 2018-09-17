@@ -19,7 +19,7 @@ enum DeviceLinkIntroBulletins {
         page.actionButtonTitle = "Continue".localized()
         page.appearance.titleFontSize = 27
         page.appearance.theme_actionButtonColor = Color.mainTint
-        page.appearance.theme_alternativeButtonColor = Color.mainTint
+        page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
         
         // If device was authorized before, linkDevice will succeed with any code given
@@ -51,7 +51,7 @@ enum DeviceLinkIntroBulletins {
         page.alternativeButtonTitle = "Go Back".localized()
         page.appearance.titleFontSize = 27
         page.appearance.theme_actionButtonColor = Color.mainTint
-        page.appearance.theme_alternativeButtonColor = Color.mainTint
+        page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
 
         page.textInputHandler = { item, linkCode in
@@ -96,7 +96,7 @@ enum DeviceLinkIntroBulletins {
         page.actionButtonTitle = "Continue".localized()
         page.appearance.titleFontSize = 27
         page.appearance.theme_actionButtonColor = Color.mainTint
-        page.appearance.theme_alternativeButtonColor = Color.mainTint
+        page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.alternativeButtonTitle = "Go Back".localized()
         page.appearance.shouldUseCompactDescriptionText = true
         page.textInputHandler = { item, email in
@@ -157,7 +157,7 @@ enum DeviceLinkIntroBulletins {
         page.appearance.titleFontSize = 27
         page.descriptionText = "An error has occurred".localized() + ":\n" + error
         page.alternativeButtonTitle = "Go Back".localized()
-        page.appearance.theme_alternativeButtonColor = Color.mainTint
+        page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
         page.isDismissable = true
         page.alternativeHandler = { item in

@@ -1,8 +1,8 @@
 github "Alamofire/Alamofire"
 github "realm/realm-cocoa"
-github "robb/Cartography"
+github "robb/Cartography" "master"
 github "SwiftyJSON/SwiftyJSON"
-github "tid-kijyun/Kanna"
+github "tid-kijyun/Kanna" ~> 4.0.0
 github "Alamofire/AlamofireImage"
 github "Alamofire/AlamofireNetworkActivityIndicator"
 github "evgenyneu/Cosmos"
@@ -11,5 +11,5 @@ github "marmelroy/Localize-Swift"
 github "Hearst-DD/ObjectMapper"
 github "n3d1117/SwiftTheme" "master"
 github "n3d1117/Static" "master"
-github "alexaubry/BulletinBoard" "v2"
-github "glock45/swifter" == 1.4.0
+github "alexaubry/BulletinBoard"
+github "glock45/swifter" == 1.4.2

@@ -141,6 +141,15 @@ extension String {
         }
         return ""
     }
+    
+    // Returns string without ending \n
+    func trimTrailingWhitespace() -> String {
+        if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
+            return self.replacingCharacters(in: trailingWs, with: "")
+        } else {
+            return self
+        }
+    }
 }
 
 // Add self made separator (Thanks, Apple...)

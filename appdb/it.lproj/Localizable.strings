@@ -107,12 +107,12 @@
 "Enter Link Code" = "Inserisci codice";
 "Enter link code here" = "Inserisci qui il codice";
 "Please enter a valid email address." = "Inserisci un indirizzo email valido.";
-"Paste the 8 digits case sensitive link code you see on this page:" = "Incolla qui il codice di otto cifre che trovi su questa pagina:";
+"Paste the 8 digits case sensitive link code you see on this page:" = "Incolla qui il codice di otto caratteri che trovi su questa pagina:";
 "Go Back" = "Indietro";
 "Enter Email" = "Inserisci email";
 "Please enter your email address below" = "Inserisci qui il tuo indirizzo email";
 "Success" = "Fatto";
-"Well done! This app is now authorized to install apps on your device." = "Perfetto! L'app è stata autorizzata correttamente e può installare app sul tuo dispositivo tramite appdb.";
+"Well done! This app is now authorized to install apps on your device." = "Perfetto! L'app è stata autorizzata correttamente ad installare app sul tuo dispositivo tramite appdb.";
 "Start using appdb!" = "Comincia a usare appdb!";
 "Unable to complete" = "Impossibile completare";
 "Yes, already linked" = "Sì, è già collegato";
@@ -134,7 +134,6 @@
 "Dark" = "Tema scuro";
 "Light" = "Tema chiaro";
 "Support" = "Supporto";
-"Contact Developer" = "Contatta sviluppatore";
 "Visit appdb forum" = "Visita il forum di appdb";
 "About" = "Info";
 "Acknowledgements" = "Riconoscimenti";
@@ -145,10 +144,12 @@
 "PRO Status" = "Stato PRO";
 "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Usa questo codice per collegare nuovi dispositivi a appdb. Tieni premuto il codice per copiarlo, oppure toccalo per generarne uno nuovo.";
 "Device Status" = "Stato dispositivo";
-"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Per cancellare completamente il tuo dispositivo da appdb, rimuovi il profilo situato in Impostazioni -> Generali -> Profili.";
+"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Per cancellare completamente il tuo dispositivo da appdb, rimuovi il profilo da Impostazioni -> Generali -> Profili.";
 "Active" = "Attivo";
 "Inactive" = "Non attivo";
 "Expires on %@" = "Scade il %@";
+"Clear command queue?" = "Cancellare la coda dei comandi?";
+"Clear" = "Cancella";
 
 ////////////////////
 //     ERRORS     //
@@ -161,7 +162,7 @@
 "An error has occurred" = "Errore";
 "Invalid link code." = "Codice non valido.";
 "Invalid email address." = "Indirizzo email non valido.";
-"Link code cannot be empty." = "Il codice deve essere di otto cifre.";
+"Link code cannot be empty." = "Il codice deve essere di otto caratteri.";
 "Please enter a valid email address." = "Inserisci un indirizzo email valido.";
 "No device linked." = "Nessun dispositivo collegato.";
 "Unable to fetch device token." = "Impossibile estrarre il token del dispositivo.";
@@ -169,6 +170,7 @@
 "Oops! Something went wrong. Please try again later." = "Ops! Qualcosa è andato storto. Riprova più tardi.";
 "Missing link code or email." = "Codice o email mancanti.";
 "Could not parse plist file." = "Impossibile analizzare il file plist.";
+"Device status is empty." = "Lo stato del dispositivo è vuoto.";
 
 ///////////////////
 //     OTHER     //

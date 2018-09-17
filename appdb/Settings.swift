@@ -85,6 +85,18 @@ class Settings: TableViewController {
     }
     
     // Push news controller
+    func pushDeviceStatus() {
+        let deviceStatusController = DeviceStatus()
+        if IS_IPAD {
+            let nav = DismissableModalNavController(rootViewController: deviceStatusController)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.pushViewController(deviceStatusController, animated: true)
+        }
+    }
+    
+    // Push news controller
     func pushNews() {
         let newsViewController = News()
         if IS_IPAD {
@@ -144,8 +156,8 @@ class Settings: TableViewController {
     }
     
     // Opens link to contact dev
-    func openTelegramLink() {
-        let username = "ne_do"
+    /*func openTelegramLink() {
+        let username = "MY_TG_USERNAME"
         let link = "tg://resolve?domain=\(username)"
         if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.openURL(url)
@@ -157,7 +169,7 @@ class Settings: TableViewController {
                 UIApplication.shared.openURL(url)
             }
         }
-    }
+    }*/
     
     // Opens Safari with given URL
     func openInSafari(_ url: String) {
@@ -175,15 +187,11 @@ class Settings: TableViewController {
         guard let urlString = notification.userInfo?["URLString"] as? String else { return }
         guard let url = URL(string: urlString) else { return }
         
-        // NOTE: SVC causes all sorts of issues when presented from a bulletin
-        // so let's just open Safari.app instead
-        // 2lazy2fix
-        
         UIApplication.shared.openURL(url)
         
         /*if #available(iOS 9.0, *) {
             let svc = SFSafariViewController(url: url)
-            bulletinManager.presentAboveBulletin(svc, animated: true, completion: nil)
+            bulletinManager.present(svc, animated: true, completion: nil)
         } else {
             UIApplication.shared.openURL(url)
         }*/
@@ -212,6 +220,7 @@ extension Settings: UIViewControllerPreviewingDelegate {
         switch row.text {
             case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
             case "News".localized(): return UINavigationController(rootViewController: News())
+            case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
             default: return nil
         }
     }

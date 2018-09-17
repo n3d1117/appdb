@@ -38,11 +38,8 @@ extension Settings {
                 Row(text: "News".localized(), selection: { [unowned self] in
                     self.pushNews()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "System Status".localized(), detailText: "https://status.dbservices.to/", selection: { [unowned self] in
+                Row(text: "System Status".localized(), selection: { [unowned self] in
                     self.pushSystemStatus()
-                }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self),
-                Row(text: "Contact Developer".localized(), detailText: "https://t.me/ne_do/", selection: { [unowned self] in
-                    self.openTelegramLink()
                 }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self),
                 Row(text: "Visit appdb forum".localized(), detailText: "https://forum.appdb.to/", selection: { [unowned self] in
                     self.openInSafari("https://forum.appdb.to/")
