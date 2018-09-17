@@ -47,16 +47,19 @@ class DeviceStatus: LoadingTableView {
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
+        // Add trash icon to clear command queue
+        let trash = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.emptyCommandQueue))
+        
         if IS_IPAD {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             self.navigationItem.rightBarButtonItem = dismissButton
+            self.navigationItem.leftBarButtonItem = trash
+            self.navigationItem.leftBarButtonItem?.isEnabled = false
+        } else {
+            self.navigationItem.rightBarButtonItem = trash
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
-        
-        // Add trash icon to clear command queue
-        let trash = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.emptyCommandQueue))
-        self.navigationItem.leftBarButtonItem = trash
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
         
         // Refresh action
         tableView.spr_setIndicatorHeader{ [weak self] in
