@@ -192,7 +192,7 @@ class ItemCollection: FeaturedCell {
             
                 section.left == section.superview!.left + Global.size.margin.value
                 section.right == section.left + sectionLabel.frame.size.width ~ Global.notMaxPriority
-                section.bottom == collection.top - (44~~39 - section.height.item.bounds.height) / 2
+                section.bottom == collection.top - (44~~39 - section.height.view.bounds.height) / 2
         
                 seeAll.right == seeAll.superview!.right - Global.size.margin.value
                 seeAll.centerY == section.centerY
@@ -312,7 +312,7 @@ class ItemCollection: FeaturedCell {
     fileprivate var currentBooksCategory: String! = "0"
     
     fileprivate var currentCategory: String {
-        switch currentType {
+        switch currentType! {
             case .cydia: return currentCydiaCategory
             case .books: return currentBooksCategory
             default: return currentIosCategory

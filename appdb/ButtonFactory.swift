@@ -14,7 +14,7 @@ struct ButtonFactory {
     // Returns a button with arrow on the right (such as 'See All' button)
     static func createChevronButton(text: String, color: ThemeColorPicker, size: CGFloat = 11.5, bold: Bool = true) -> UIButton {
         
-        let button = UIButton(type: .system) as UIButton /* Type is system to keep nice highlighting features */
+        let button = UIButton(type: .system) /* Type is system to keep nice highlighting features */
         
         button.setTitle(text, for: .normal)
         button.setImage(#imageLiteral(resourceName: "rightArrow").withRenderingMode(.alwaysTemplate), for: .normal)
@@ -32,15 +32,15 @@ struct ButtonFactory {
         button.imageView!.contentMode = .center
         button.sizeToFit()
 
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageRect(forContentRect: button.bounds).size.width, 0, 0)
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleRect(forContentRect: button.bounds).size.width, 0, 0)
+        button.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -button.imageRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: button.titleRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
 
         return button
     }
     
     // Returns a Retry button with a bolt on the left (used in No Internet view)
     static func createRetryButton(text: String, color: ThemeColorPicker) -> UIButton {
-        let button = ButtonWithColoredBorder(type: .system) as UIButton /* Type is system to keep nice highlighting features */
+        let button = ButtonWithColoredBorder() /* Type is system to keep nice highlighting features */
         
         button.setTitle(text, for: .normal)
         button.theme_setImage(["bolt_dark", "bolt_light"], forState: .normal)

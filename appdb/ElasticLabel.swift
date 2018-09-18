@@ -35,8 +35,8 @@ class ElasticLabel: UILabel {
     
     convenience init() { self.init(text: "", delegate: nil) }
     
-    convenience init(text: String, delegate: ElasticLabelDelegate? = nil) {
-        self.init(frame: .zero)
+    convenience init(text: String = "", delegate: ElasticLabelDelegate? = nil) {
+        self.init()
         
         self.text = text
         if let delegate = delegate { self.delegated = delegate }

@@ -9,7 +9,6 @@
 
 import UIKit
 
-
 open class RefreshView: UIView {
     
     public enum Style {
@@ -55,29 +54,30 @@ open class RefreshView: UIView {
     private var stateToken: NSKeyValueObservation?
     private var sizeToken: NSKeyValueObservation?
     
-    override open func didMoveToSuperview() {
-        guard let scrollView = scrollView else { return }
-        
-        offsetToken = scrollView.observe(\.contentOffset) { _, _ in
-            self.scrollViewDidScroll(scrollView)
-        }
-        stateToken = scrollView.panGestureRecognizer.observe(\.state) { pan, _ in
-            guard pan.state == .ended else { return }
-            self.scrollViewDidEndDragging(scrollView)
-        }
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        if style == .header {
-            frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
+    open override func willMove(toWindow newWindow: UIWindow?) {
+        if newWindow == nil {
+            offsetToken?.invalidate()
+            stateToken?.invalidate()
+            sizeToken?.invalidate()
         } else {
-            sizeToken = scrollView.observe(\.contentSize) { _, _ in
-                self.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self.height)
-                self.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
+            guard let scrollView = scrollView else { return }
+            offsetToken = scrollView.observe(\.contentOffset) { [weak self] scrollView, _ in
+                self?.scrollViewDidScroll(scrollView)
             }
+            stateToken = scrollView.observe(\.panGestureRecognizer.state) { [weak self] scrollView, _ in
+                guard scrollView.panGestureRecognizer.state == .ended else { return }
+                self?.scrollViewDidEndDragging(scrollView)
+            }
+            if style == .header {
+                frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
+            } else {
+                sizeToken = scrollView.observe(\.contentSize) { [weak self] scrollView, _ in
+                    self?.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self?.height ?? 0)
+                    self?.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
+                }
+            }
+            autoresizingMask = [.flexibleWidth]
         }
-        
-        autoresizingMask = [.flexibleWidth]
     }
     
     private func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -146,3 +146,4 @@ open class RefreshView: UIView {
     }
     
 }
+

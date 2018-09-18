@@ -38,7 +38,7 @@ public class RoundedButton: UIButton {
         
         layer.cornerRadius = 3.5
         layer.borderWidth = 1
-        contentEdgeInsets = UIEdgeInsetsMake(5, 10, 5, 10)
+        contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 10, bottom: 5, right: 10)
         
         refreshBorderColor()
     }
