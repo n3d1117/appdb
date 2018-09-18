@@ -200,7 +200,6 @@
 		814AEBF11E68312C00A207CC /* Details+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Information.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		814B76F7205ADB62004D46DD /* Static.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Static.framework; path = Carthage/Build/iOS/Static.framework; sourceTree = "<group>"; };
 		814B76F9205ADE6D004D46DD /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
-		814B76FF205AEE25004D46DD /* SwiftPullToRefresh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPullToRefresh.framework; path = Carthage/Build/iOS/SwiftPullToRefresh.framework; sourceTree = "<group>"; };
 		814B7704205B2DCA004D46DD /* IndicatorAutoFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorAutoFooter.swift; sourceTree = "<group>"; };
 		814B7705205B2DCA004D46DD /* ScrollViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewExtension.swift; sourceTree = "<group>"; };
 		814B7706205B2DCA004D46DD /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -226,7 +225,6 @@
 		817236A520BB1F8E0014F61A /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
 		8173FBEC207BC90200EF779F /* BulletinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinDataSource.swift; sourceTree = "<group>"; };
 		8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
-		8173FBF1207BCE6500EF779F /* BulletinBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BulletinBoard.framework; path = Carthage/Build/iOS/BulletinBoard.framework; sourceTree = "<group>"; };
 		8173FBF3207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLinkCodeBulletinPage.swift; sourceTree = "<group>"; };
 		8173FBF5207BE8BE00EF779F /* EnterEmailBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailBulletinPage.swift; sourceTree = "<group>"; };
 		817610E521515A3100602FF2 /* API+SystemStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+SystemStatus.swift"; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 		8188E8DB1DB198B800462256 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		8188E8DC1DB198B800462256 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		81896D361F9D106E00BF1FCD /* Highlighter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Highlighter.framework; path = Carthage/Build/iOS/Highlighter.framework; sourceTree = "<group>"; };
 		818A559C20583D3D00162E51 /* Downloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloads.swift; sourceTree = "<group>"; };
 		818A559E20583D4600162E51 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		818A55A020583D4F00162E51 /* Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updates.swift; sourceTree = "<group>"; };
@@ -308,7 +305,6 @@
 		81F3D6571E1310BA003CD808 /* ILTranslucentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ILTranslucentView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F504E51E5CE4F70000FACC /* DimmableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmableView.swift; sourceTree = "<group>"; };
 		81F9868C1F7EC9790032C3FB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
-		81F9868E1F7EC9800032C3FB /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		81FF1C4E1F9211B00086EEE0 /* AlamofireNetworkActivityIndicator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireNetworkActivityIndicator.framework; path = Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework; sourceTree = "<group>"; };
 		81FF1C4F1F9211B00086EEE0 /* SwiftTheme.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftTheme.framework; path = Carthage/Build/iOS/SwiftTheme.framework; sourceTree = "<group>"; };
 		81FF1C501F9211B00086EEE0 /* Localize_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localize_Swift.framework; path = Carthage/Build/iOS/Localize_Swift.framework; sourceTree = "<group>"; };
@@ -770,16 +766,12 @@
 				817236A520BB1F8E0014F61A /* BLTNBoard.framework */,
 				816B343B20B727500019DE5C /* DeepDiff.framework */,
 				812C3541207D235300D39748 /* Swifter.framework */,
-				8173FBF1207BCE6500EF779F /* BulletinBoard.framework */,
-				814B76FF205AEE25004D46DD /* SwiftPullToRefresh.framework */,
 				814B76F7205ADB62004D46DD /* Static.framework */,
-				81896D361F9D106E00BF1FCD /* Highlighter.framework */,
 				81FF1C521F9211B00086EEE0 /* AlamofireImage.framework */,
 				81FF1C4E1F9211B00086EEE0 /* AlamofireNetworkActivityIndicator.framework */,
 				81FF1C511F9211B00086EEE0 /* Cosmos.framework */,
 				81FF1C501F9211B00086EEE0 /* Localize_Swift.framework */,
 				81FF1C4F1F9211B00086EEE0 /* SwiftTheme.framework */,
-				81F9868E1F7EC9800032C3FB /* Dwifft.framework */,
 				81F9868C1F7EC9790032C3FB /* ObjectMapper.framework */,
 				8138538B1F2B7EA300DC7C54 /* Kanna.framework */,
 				81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */,
