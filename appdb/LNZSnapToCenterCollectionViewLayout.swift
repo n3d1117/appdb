@@ -284,7 +284,7 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
                 continue
             }
             
-            if fabs(attributes.frame.midX - proposedContentOffsetCenterX) < fabs(candidate.frame.midX - proposedContentOffsetCenterX) {
+            if abs(attributes.frame.midX - proposedContentOffsetCenterX) < abs(candidate.frame.midX - proposedContentOffsetCenterX) {
                 candidateAttributes = attributes
             }
         }
