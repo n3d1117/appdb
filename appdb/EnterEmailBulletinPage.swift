@@ -24,6 +24,9 @@ class EnterEmailBulletinPage: BLTNPageItem {
     
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         textField = interfaceBuilder.makeTextField(placeholder: "name@example.com".localized(), returnKey: .done, delegate: self)
+        textField.theme_backgroundColor = Color.invertedTitle
+        textField.theme_textColor = Color.title
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: UIColor(rgba: "#AAAAAA")])
         descriptionLabel?.theme_textColor = Color.title
         return [textField]
     }

@@ -27,32 +27,37 @@ class SelectorBulletinPage: BLTNPageItem {
         secondButton?.removeTarget(self, action: nil, for: .touchUpInside)
     }
     
-    /**
-     * Called by the manager to build the view hierachy of the bulletin.
-     *
-     * We need to return the view in the order we want them displayed. You should use a
-     * `BulletinInterfaceFactory` to generate standard views, such as title labels and buttons.
-     */
-    
-    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
+    // Add image, descriptions and buttons to bulletin
+    override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
-        // We add choice cells to a group stack because they need less spacing
-        let stack = interfaceBuilder.makeGroupStack(spacing: 15)
-
+        let imageStack = interfaceBuilder.makeGroupStack(spacing: 10)
+        
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        image.image = #imageLiteral(resourceName: "mdm_installed")
+        imageStack.addArrangedSubview(image)
+        
+        let description = UILabel()
+        description.text = "Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles.".localized()
+        description.font = .systemFont(ofSize: (16~~15))
+        description.textAlignment = .center
+        description.numberOfLines = 0
+        description.theme_textColor = Color.title
+        imageStack.addArrangedSubview(description)
+        
+        let stack = interfaceBuilder.makeGroupStack(spacing: 12)
+        
         let firstButton = createChoiceCell(title: "Yes, already linked".localized(), isSelected: true)
         firstButton.addTarget(self, action: #selector(linkedButtonTapped), for: .touchUpInside)
         stack.addArrangedSubview(firstButton)
         self.firstButton = firstButton
-
+        
         let secondButton = createChoiceCell(title: "No, not yet linked".localized(), isSelected: false)
         secondButton.addTarget(self, action: #selector(notLinkedButtonTapped), for: .touchUpInside)
         stack.addArrangedSubview(secondButton)
         self.secondButton = secondButton
         
-        descriptionLabel?.theme_textColor = Color.title
-        
-        return [stack]
-        
+        return [imageStack, stack]
     }
     
     // MARK: - Custom Views
@@ -108,7 +113,6 @@ class SelectorBulletinPage: BLTNPageItem {
     @objc func notLinkedButtonTapped() {
         
         // Update UI
-        
         secondButton.layer.theme_borderColor = Color.mainTintCgColor
         secondButton.theme_setTitleColor(appearance.theme_actionButtonColor, forState:  .normal)
         

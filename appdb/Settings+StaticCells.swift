@@ -82,16 +82,20 @@ final class SimpleStaticButtonCell: UITableViewCell, Cell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
-        textLabel?.font = .systemFont(ofSize: (17~~16))
+        textLabel?.font = .boldSystemFont(ofSize: (16~~15))
         textLabel?.makeDynamicFont()
-        textLabel?.theme_textColor = Color.invertedTitle
+        textLabel?.theme_textColor = ["#F8F8F8", "#F8F8F8"]
         textLabel?.textAlignment = .center
     }
     
     func configure(row: Row) {
-        textLabel?.text = row.text
+        textLabel?.text = row.text?.uppercased()
         theme_backgroundColor = row.context?["bgColor"] as? ThemeColorPicker
         contentView.theme_backgroundColor = row.context?["bgColor"] as? ThemeColorPicker
+        
+        let bgColorView = UIView()
+        bgColorView.theme_backgroundColor = row.context?["bgHover"] as? ThemeColorPicker
+        selectedBackgroundView = bgColorView
     }
     
     required init?(coder aDecoder: NSCoder) {

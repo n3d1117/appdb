@@ -17,7 +17,10 @@ class Settings: TableViewController {
     lazy var bulletinManager: BLTNItemManager = {
         let rootItem: BLTNItem = DeviceLinkIntroBulletins.makeSelectorPage()
         let manager = BLTNItemManager(rootItem: rootItem)
-        manager.theme_backgroundColor = Color.invertedTitle
+        manager.theme_backgroundColor = Color.easyBulletinBackground
+        if #available(iOS 10, *) {
+            manager.backgroundViewStyle = .blurredDark
+        }
         return manager
     }()
     

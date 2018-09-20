@@ -9,6 +9,7 @@
 import UIKit
 import BLTNBoard
 import SafariServices
+import SwiftTheme
 
 /**
  * An item that displays a text field.
@@ -44,6 +45,9 @@ class EnterLinkCodeBulletinPage: BLTNPageItem {
         self.linkButton = button
         
         textField = interfaceBuilder.makeTextField(placeholder: "Enter link code here".localized(), returnKey: .done, delegate: self)
+        textField.theme_backgroundColor = Color.invertedTitle
+        textField.theme_textColor = Color.title
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: UIColor(rgba: "#AAAAAA")])
         
         descriptionLabel?.theme_textColor = Color.title
         

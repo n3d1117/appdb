@@ -67,7 +67,7 @@ extension Settings {
             Section(rows: [
                 Row(text: "Authorize App".localized(), selection: { [unowned self] in
                     self.pushDeviceLink()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.mainTint])
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.mainTint, "bgHover": Color.darkMainTint])
             ], footer: .title("Authorize app with link code from appdb website and enjoy unlimited app installs!".localized()))
         
         ] + commonSections
@@ -118,7 +118,7 @@ extension Settings {
             Section(rows: [
                 Row(text: "Deauthorize".localized(), selection: { [unowned self] in
                     self.deauthorize()
-                }, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.softRed])
+                    }, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
             ], footer: .title("To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles.".localized())),
             
             Section()

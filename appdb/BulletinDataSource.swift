@@ -14,10 +14,8 @@ enum DeviceLinkIntroBulletins {
     static func makeSelectorPage() -> SelectorBulletinPage {
         let page = SelectorBulletinPage(title: "Authorization".localized())
         page.isDismissable = true
-        page.image = #imageLiteral(resourceName: "mdm_installed")
-        page.descriptionText = "Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles.".localized()
         page.actionButtonTitle = "Continue".localized()
-        page.appearance.titleFontSize = 27
+        page.appearance.titleFontSize = 25
         page.appearance.theme_actionButtonColor = Color.mainTint
         page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
@@ -25,7 +23,10 @@ enum DeviceLinkIntroBulletins {
         // If device was authorized before, linkDevice will succeed with any code given
         // So there's no need to ask the user to paste the code/enter email!
         // If it fails, just show the item itself
-        page.shouldStartWithActivityIndicator = true
+        
+        // TODO FIX
+        // CURRENTLY COMMENTED BECAUSE WAITING FOR https://github.com/alexaubry/BulletinBoard/issues/112
+        /*page.shouldStartWithActivityIndicator = true
         page.presentationHandler = { item in
             API.linkDevice(code: "anything", success: {
                 API.getConfiguration(success: {
@@ -37,7 +38,7 @@ enum DeviceLinkIntroBulletins {
             }, fail: { _ in
                 item.manager?.hideActivityIndicator()
             })
-        }
+        }*/
         
         return page
     }
@@ -92,7 +93,7 @@ enum DeviceLinkIntroBulletins {
         
         let page = EnterEmailBulletinPage(title: "Enter Email".localized())
         page.isDismissable = true
-        page.descriptionText = "Please enter your email address below".localized()
+        page.descriptionText = "Please enter your email address below:".localized()
         page.actionButtonTitle = "Continue".localized()
         page.appearance.titleFontSize = 27
         page.appearance.theme_actionButtonColor = Color.mainTint

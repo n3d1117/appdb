@@ -16,7 +16,7 @@ class News: LoadingTableView {
     fileprivate var allNews: [SingleNews] = []
     fileprivate var displayedNews: [SingleNews] = []
     fileprivate var allLoaded: Bool = false
-    fileprivate let arbitraryDelay: Double = 0.6
+    fileprivate let arbitraryDelay: Double = 0.4
     
     fileprivate var bgColorView: UIView = {
         let bgColorView = UIView()

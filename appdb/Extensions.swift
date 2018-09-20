@@ -94,6 +94,16 @@ extension String {
     }
     
     //
+    // Returns date from unix time
+    //
+    var unixToDate: Date {
+        if let unixTime = Double(self) {
+            return Date(timeIntervalSince1970: unixTime)
+        }
+        return Date()
+    }
+    
+    //
     // Returns detailed string date from unix time
     //
     var unixToDetailedString: String {
@@ -102,7 +112,7 @@ extension String {
             let dateFormatter = DateFormatter()
             dateFormatter.locale = NSLocale.current
             dateFormatter.dateStyle = .long
-            dateFormatter.timeStyle = .long
+            dateFormatter.timeStyle = .medium
             return dateFormatter.string(from: date)
         }
         return ""

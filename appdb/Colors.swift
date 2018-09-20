@@ -21,6 +21,9 @@ struct Color {
     /* Blue main tint, may not be final */
     static let mainTint: ThemeColorPicker = ["#446CB3", "#6FACFA"]
     
+    /* Darker main tint for pressed state 'Authorize' cell */
+    static let darkMainTint: ThemeColorPicker = ["#486A92", "#507DB8"]
+    
     /* Category, author, seeAll button */
     static let darkGray: ThemeColorPicker = ["#6F7179", "#9c9c9c"]
     
@@ -54,8 +57,17 @@ struct Color {
     /* Green for INSTALL button and verified crackers */
     static let softGreen: ThemeColorPicker = ["#00B600", "#00B600"]
     
-    /* Red for non verified crackers button */
+    /* Red for non verified crackers button and 'Deauthorize' cell */
     static let softRed: ThemeColorPicker = ["#D32F2F", "#D32F2F"]
+    
+    /* Dark red for pressed 'Deauthorize' cell state */
+    static let darkRed: ThemeColorPicker = ["#A32F2F", "#A32F2F"]
+    
+    /* Gray for timestamp in device status cell */
+    static let timestampGray: ThemeColorPicker = ["#AAAAAA", "#AAAAAA"]
+    
+    /* Background for bulletins */
+    static let easyBulletinBackground: ThemeColorPicker = ["#EDEFEF", "#242424"]
     
     
     /////////////////

@@ -110,7 +110,7 @@
 "Paste the 8 digits case sensitive link code you see on this page:" = "Incolla qui il codice di otto caratteri che trovi su questa pagina:";
 "Go Back" = "Indietro";
 "Enter Email" = "Inserisci email";
-"Please enter your email address below" = "Inserisci qui il tuo indirizzo email";
+"Please enter your email address below:" = "Inserisci qui il tuo indirizzo email:";
 "Success" = "Fatto";
 "Well done! This app is now authorized to install apps on your device." = "Perfetto! L'app è stata autorizzata correttamente ad installare app sul tuo dispositivo tramite appdb.";
 "Start using appdb!" = "Comincia a usare appdb!";
