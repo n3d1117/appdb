@@ -150,6 +150,7 @@
 "Expires on %@" = "Expires on %@";
 "Clear command queue?" = "Clear command queue?";
 "Clear" = "Clear";
+"Fix" = "Fix"; //as in fix command from device status
 
 ////////////////////
 //     ERRORS     //
@@ -183,3 +184,5 @@
 "Done" = "Done";
 "more" = "more";
 "Open in Safari" = "Open in Safari";
+"%@ ago" = "%@ ago";
+"now" = "now";

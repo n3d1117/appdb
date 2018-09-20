@@ -96,4 +96,22 @@ struct Global {
         return randomString
     }
     
+    // Returns a short string (e.g '15s ago') that represents the distance between input date and now
+    static func formattedTimeFromNow(from startDate: Date) -> String {
+        let calendar = Calendar.current
+        let difference = calendar.dateComponents([.day, .hour, .minute, .second], from: startDate, to: Date())
+        
+        guard let s = difference.second, let m = difference.minute, let h = difference.hour, let d = difference.day else { return "" }
+        
+        let seconds = "%@s ago".localizedFormat(String(s)), minutes = "%@m ago".localizedFormat(String(m))
+        let hours = "%@h ago".localizedFormat(String(h)), days = "%@d ago".localizedFormat(String(d))
+        
+        if d > 0 { return days }
+        if h > 0 { return hours }
+        if m > 0 { return minutes }
+        if s > 0 { return seconds }
+        
+        return "now".localized()
+    }
+    
 }

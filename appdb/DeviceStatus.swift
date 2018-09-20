@@ -12,7 +12,7 @@ class DeviceStatus: LoadingTableView {
     
     var didEndRefreshing: Bool = false
     var timer: Timer?
-    let refreshEvery: Double = 2.2
+    let refreshEvery: Double = 2.0
     
     var statuses: [DeviceStatusItem] = [] {
         didSet {
@@ -26,6 +26,8 @@ class DeviceStatus: LoadingTableView {
             }
         }
     }
+    
+    let retriableCommands: [String] = ["ok, UserRejected", "ok, PromptingForUpdate", "ok, Installing", "ok, Prompting", "ok, ManagedButUninstalled"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,21 +102,25 @@ class DeviceStatus: LoadingTableView {
         alertController.addAction(cancelAction)
         if let popover = alertController.popoverPresentationController {
             popover.barButtonItem = sender
+            popover.theme_backgroundColor = Color.popoverArrowColor
         }
         self.present(alertController, animated: true)
     }
     
     @objc fileprivate func fetchStatus() {
+        
+        let trashItem = (self.navigationItem.leftBarButtonItem ~~ self.navigationItem.rightBarButtonItem)
+        
         API.getDeviceStatus(success: { results in
             let diff = Diff(from: self.statuses, to: results)
             self.statuses = results
             self.handleUpdates(from: diff)
             
             if self.statuses.isEmpty {
-                self.navigationItem.leftBarButtonItem?.isEnabled = false
+                trashItem?.isEnabled = false
                 self.showErrorMessage(text: "Device status is empty.".localized(), animated: false)
             } else {
-                self.navigationItem.leftBarButtonItem?.isEnabled = true
+                trashItem?.isEnabled = true
             }
 
         }) { error in
@@ -122,7 +128,7 @@ class DeviceStatus: LoadingTableView {
             self.statuses = []
             self.handleUpdates(from: diff)
             self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
-            self.navigationItem.leftBarButtonItem?.isEnabled = false
+            trashItem?.isEnabled = false
         }
     }
     
@@ -133,10 +139,7 @@ class DeviceStatus: LoadingTableView {
             for index in diff.deleted { tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic) }
             for index in diff.inserted { tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic) }
             for match in diff.matches {
-                if match.changed {
-                    // Why both? TODO check indexes
-                    print("MATCH CHANGED: from: \(match.from), to: \(match.to)")
-                    tableView.reloadRows(at: [IndexPath(row: match.to, section: 0)], with: .none)
+                if match.changed && match.from == match.to {
                     tableView.reloadRows(at: [IndexPath(row: match.from, section: 0)], with: .none)
                 }
             }
@@ -165,9 +168,50 @@ class DeviceStatus: LoadingTableView {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "status", for: indexPath) as? DeviceStatusCell {
-            cell.updateContent(with: statuses[indexPath.row])
+            let item = statuses[indexPath.row]
+            cell.updateContent(with: item)
+            cell.moreImageButton.isHidden = item.status != "failed_fixable" && !retriableCommands.contains(item.status)
             return cell
         }
         return UITableViewCell()
+    }
+    
+    // Option to Fix or Retry command with given UUID
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if statuses[indexPath.row].status == "failed_fixable" {
+            presentControllerToRetryOrFixCommand(index: indexPath, canFix: true)
+        } else if retriableCommands.contains(statuses[indexPath.row].status) {
+            presentControllerToRetryOrFixCommand(index: indexPath)
+        }
+    }
+    
+    fileprivate func presentControllerToRetryOrFixCommand(index: IndexPath, canFix: Bool = false) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        if canFix {
+            let fix = UIAlertAction(title: "Fix".localized(), style: .default) { _ in
+                API.fixCommand(uuid: self.statuses[index.row].uuid)
+            }
+            alertController.addAction(fix)
+        }
+        
+        let retry = UIAlertAction(title: "Retry".localized(), style: .default) { _ in
+            API.retryCommand(uuid: self.statuses[index.row].uuid)
+        }
+        let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
+
+        alertController.addAction(retry)
+        alertController.addAction(cancel)
+        
+        if let presenter = alertController.popoverPresentationController {
+            presenter.theme_backgroundColor = Color.popoverArrowColor
+            presenter.sourceView = self.view
+            presenter.sourceRect = tableView.rectForRow(at: index)
+            presenter.permittedArrowDirections = [.up, .down]
+        }
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+        }
     }
 }

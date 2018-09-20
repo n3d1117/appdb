@@ -150,6 +150,7 @@
 "Expires on %@" = "Scade il %@";
 "Clear command queue?" = "Cancellare la coda dei comandi?";
 "Clear" = "Cancella";
+"Fix" = "Aggiusta"; //as in fix command from device status
 
 ////////////////////
 //     ERRORS     //
@@ -183,3 +184,5 @@
 "Done" = "Fatto";
 "more" = "altro";
 "Open in Safari" = "Apri in Safari";
+"%@ ago" = "%@ fa";
+"now" = "adesso";

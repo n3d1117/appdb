@@ -17,7 +17,7 @@ class DeviceStatusItem: Mappable, Matchable {
     @objc dynamic var acknowledged = ""
     @objc dynamic var status = ""
     @objc dynamic var type = ""
-    
+    @objc dynamic var timestamp = ""
     @objc dynamic var title = ""
     @objc dynamic var bundleId = ""
     @objc dynamic var purpose = ""
@@ -34,8 +34,8 @@ class DeviceStatusItem: Mappable, Matchable {
         status           <- map["status"]
         type             <- map["type"]
         
-        added = added.unixToDetailedString
         acknowledged = acknowledged.unixToDetailedString
+        timestamp = Global.formattedTimeFromNow(from: added.unixToDate)
         
         if let data = params.data(using: .utf8), let params = try? JSON(data: data) {
             title = params["link_data"]["title"].stringValue
@@ -52,10 +52,10 @@ class DeviceStatusItem: Mappable, Matchable {
         guard let status = object as? DeviceStatusItem else { return .none }
         
         if uuid == status.uuid {
-            if statusText == status.statusText {
+            if statusText == status.statusText && timestamp == status.timestamp {
                 return .equal
             } else {
-                return .change // Same uuid, but not statusText
+                return .change // Same uuid, but not statusText or timestamp
             }
         } else {
             return .none
