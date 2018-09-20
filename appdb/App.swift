@@ -137,6 +137,7 @@ extension App: Mappable {
             for i in 0..<screenshotsParse["iphone"].count {
                 tmpScreens.append(Screenshot(
                     src: screenshotsParse["iphone"][i]["src"].stringValue,
+                    class_: guessScreenshotOrientation(from: screenshotsParse["iphone"][i]["src"].stringValue),
                     type: "iphone"
                 ))
             }; screenshotsIphone = tmpScreens
@@ -145,10 +146,31 @@ extension App: Mappable {
             for i in 0..<screenshotsParse["ipad"].count {
                 tmpScreensIpad.append(Screenshot(
                     src: screenshotsParse["ipad"][i]["src"].stringValue,
+                    class_: guessScreenshotOrientation(from: screenshotsParse["ipad"][i]["src"].stringValue),
                     type: "ipad"
                 ))
             }; screenshotsIpad = tmpScreensIpad
         }
             
+    }
+    
+    // Detect screenshot orientation from URL string
+    fileprivate func guessScreenshotOrientation(from absoluteUrl: String) -> String {
+        guard let ending = absoluteUrl.components(separatedBy: "/").last else { return  "portrait" }
+        if ending.contains("bb."), let endingFilename = ending.components(separatedBy: "bb.").first {
+            // e.g https://is4-ssl.mzstatic.com/image/.../source/406x228bb.jpg
+            let size = endingFilename.components(separatedBy: "x")
+            guard let width = Int(size[0]), let height = Int(size[1]) else { return "portrait" }
+            if width == height { print("ohey! --> " + absoluteUrl) }
+            return width >= height ? "landscape" : "portrait"
+        } else if let endingFilename = ending.components(separatedBy: ".").first {
+            // e.g. http://a1.mzstatic.com/us/r30/Purple2/.../screen568x568.jpeg
+            guard let size = endingFilename.components(separatedBy: "screen").last?.components(separatedBy: "x") else { return "portrait" }
+            guard let width = Int(size[0]), let height = Int(size[1]) else { return "portrait" }
+            return width >= height ? "landscape" : "portrait"
+        } else {
+            print("WARNING: New filename convention detected! Please take a look")
+            return "portrait"
+        }
     }
 }
