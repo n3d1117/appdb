@@ -8,21 +8,11 @@
 
 
 import UIKit
-import Kanna
 
 class NewsDetail: LoadingTableView {
     
     fileprivate var item: SingleNews!
     var partialItem: SingleNews!
-    
-    fileprivate func decodeNews(from string: String) -> String {
-        let newString: String =  string.replacingOccurrences(of: "</p>", with: "\n", options: .regularExpression, range: nil)
-        do {
-            return try HTML(html: newString, encoding: .utf8).text ?? ""
-        } catch {
-            return ""
-        }
-    }
     
     convenience init(with item: SingleNews) {
         self.init(style: .plain)
@@ -87,7 +77,7 @@ class NewsDetail: LoadingTableView {
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "htmlcell", for: indexPath)
                 as? NewsDetailHTMLCell else { return UITableViewCell() }
-            cell.htmlText.text = decodeNews(from: item.text)
+            cell.htmlText.transform(using: item.text)
             return cell
         }
     }
@@ -102,6 +92,76 @@ class NewsDetail: LoadingTableView {
         switch indexPath.row {
         case 0: return 90
         default: return 300
+        }
+    }
+    
+}
+
+extension AttributedLabel {
+    func transform(using text: String) {
+        var counter = 0
+        var isOrdered = false
+        
+        // Supports <ul>, <ol>, <li>, <p>, <br>
+        let transformers: [TagTransformer] = [
+            .brTransformer,
+            TagTransformer(tagName: "ul", tagType: .start) { _ in
+                isOrdered = false
+                return ""
+            },
+            TagTransformer(tagName: "ol", tagType: .start) { _ in
+                isOrdered = true
+                return ""
+            },
+            TagTransformer(tagName: "li", tagType: .start) { _ in
+                counter += 1
+                return isOrdered ? "\(counter). " : "• "
+            },
+            TagTransformer(tagName: "li", tagType: .end) { _ in
+                return "\n"
+            },
+            TagTransformer(tagName: "p", tagType: .end) { _ in
+                return "\n"
+            }
+            
+        ]
+        // Supports <b>
+        let b = Style("b").font(.boldSystemFont(ofSize: font.pointSize))
+        
+        // Supports <i>
+        let i = Style("i").font(.italicSystemFont(ofSize: font.pointSize))
+        
+        // Supports <strong>
+        let strong = Style("strong").font(.boldSystemFont(ofSize: font.pointSize))
+        
+        // Supports <u>
+        let u = Style("u").underlineStyle(.styleSingle)
+        
+        let link = Style("a").foregroundColor(UIColor(rgba: "#446CB3"), .normal).foregroundColor(UIColor(rgba: "#486A92"), .highlighted)
+            .underlineStyle(.styleSingle)
+        
+        attributedText = text.style(tags: [b, i, strong, u, link], transformers: transformers).styleLinks(link)
+        onClick = { label, detection in
+            switch detection.type {
+            case .link(let url):
+                var partialUrl = url.absoluteString.replacingOccurrences(of: "&amp;", with: "&")
+                if !partialUrl.hasPrefix("http") { partialUrl = "http://" + partialUrl }
+                guard let fullUrl = URL(string: partialUrl) else { return }
+                UIApplication.shared.openURL(fullUrl)
+            case .tag(let tag):
+                if tag.name == "a", let href = tag.attributes["href"] {
+                    if href.hasPrefix("http") {
+                        guard let url = URL(string: href.replacingOccurrences(of: "&amp;", with: "&")) else { return }
+                        UIApplication.shared.openURL(url)
+                    } else {
+                        let urlString: String = "\(Global.mainSite)\(href)".replacingOccurrences(of: "&amp;", with: "&")
+                        guard let url = URL(string: urlString) else { return }
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+            default:
+                break
+            }
         }
     }
 }

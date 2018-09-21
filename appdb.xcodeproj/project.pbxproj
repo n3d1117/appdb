@@ -28,6 +28,12 @@
 		811E181720B48778003CECC0 /* DeviceStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811E181620B48778003CECC0 /* DeviceStatusCell.swift */; };
 		81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236AC81E3B6899009748E0 /* ButtonFactory.swift */; };
 		81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */; };
+		81262019215444A400B06F88 /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262013215444A300B06F88 /* AttributedLabel.swift */; };
+		8126201A215444A400B06F88 /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262014215444A300B06F88 /* AttributedText.swift */; };
+		8126201B215444A400B06F88 /* NSScanner+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262015215444A300B06F88 /* NSScanner+Swift.swift */; };
+		8126201C215444A400B06F88 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262016215444A400B06F88 /* Style.swift */; };
+		8126201D215444A400B06F88 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262017215444A400B06F88 /* NSAttributedString+Utils.swift */; };
+		8126201E215444A400B06F88 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262018215444A400B06F88 /* String+Detection.swift */; };
 		8127F3A41F88FEF10030A804 /* LoadingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127F3A31F88FEF10030A804 /* LoadingCollectionView.swift */; };
 		812C3542207D235300D39748 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812C3541207D235300D39748 /* Swifter.framework */; };
 		812C3544207D237300D39748 /* ConfigServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812C3543207D237300D39748 /* ConfigServer.swift */; };
@@ -185,6 +191,12 @@
 		811E181620B48778003CECC0 /* DeviceStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatusCell.swift; sourceTree = "<group>"; };
 		81236AC81E3B6899009748E0 /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ButtonFactory.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		81262013215444A300B06F88 /* AttributedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabel.swift; sourceTree = "<group>"; };
+		81262014215444A300B06F88 /* AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
+		81262015215444A300B06F88 /* NSScanner+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSScanner+Swift.swift"; sourceTree = "<group>"; };
+		81262016215444A400B06F88 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		81262017215444A400B06F88 /* NSAttributedString+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Utils.swift"; sourceTree = "<group>"; };
+		81262018215444A400B06F88 /* String+Detection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Detection.swift"; sourceTree = "<group>"; };
 		8127F3A31F88FEF10030A804 /* LoadingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionView.swift; sourceTree = "<group>"; };
 		812C3541207D235300D39748 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		812C3543207D237300D39748 /* ConfigServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServer.swift; sourceTree = "<group>"; };
@@ -360,7 +372,6 @@
 		810C71FC20ACDA9800D6310E /* Device Status */ = {
 			isa = PBXGroup;
 			children = (
-				8105175520D0282500B3E1FB /* muccy/Ferrara */,
 				810C71FD20ACDAA900D6310E /* DeviceStatus.swift */,
 				811E181620B48778003CECC0 /* DeviceStatusCell.swift */,
 			);
@@ -390,6 +401,19 @@
 				81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */,
 			);
 			name = "• PaddingLabel";
+			sourceTree = "<group>";
+		};
+		812620122154449500B06F88 /* Atributika */ = {
+			isa = PBXGroup;
+			children = (
+				81262013215444A300B06F88 /* AttributedLabel.swift */,
+				81262014215444A300B06F88 /* AttributedText.swift */,
+				81262017215444A400B06F88 /* NSAttributedString+Utils.swift */,
+				81262015215444A300B06F88 /* NSScanner+Swift.swift */,
+				81262018215444A400B06F88 /* String+Detection.swift */,
+				81262016215444A400B06F88 /* Style.swift */,
+			);
+			name = Atributika;
 			sourceTree = "<group>";
 		};
 		812E97861E5772BD00C1379F /* SEARCH */ = {
@@ -616,8 +640,10 @@
 				8141CB601F817B5F00DBDD89 /* • SafariActivity */,
 				817A40E21E5E2F97003FD6F1 /* • SnappableFlowLayout */,
 				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
+				812620122154449500B06F88 /* Atributika */,
 				8112C35A1F7FC6D40014EDB2 /* DynamicFontSizeHelper */,
 				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
+				8105175520D0282500B3E1FB /* muccy/Ferrara */,
 				814B7701205B2DB1004D46DD /* SwiftPullToRefresh */,
 				81431A9F20A0CBFC00C830BE /* UIDeviceExtension */,
 			);
@@ -1103,9 +1129,12 @@
 				816D1F251F91679000172094 /* SearchCells~iPhone.swift in Sources */,
 				8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */,
 				818A559F20583D4600162E51 /* Settings.swift in Sources */,
+				81262019215444A400B06F88 /* AttributedLabel.swift in Sources */,
 				8173FBF0207BCAE200EF779F /* SelectorBulletinPage.swift in Sources */,
 				81DBDB56208CD67F00BDE600 /* SeeAllCell+WithStars.swift in Sources */,
 				81EC006A1DAD7704009EEFFA /* Colors.swift in Sources */,
+				8126201E215444A400B06F88 /* String+Detection.swift in Sources */,
+				8126201B215444A400B06F88 /* NSScanner+Swift.swift in Sources */,
 				8105175B20D0283300B3E1FB /* Identifiable.swift in Sources */,
 				8133C45E208B874600F2F9F5 /* SeeAllCell.swift in Sources */,
 				81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */,
@@ -1113,6 +1142,7 @@
 				818A55AC20584F2B00162E51 /* BannerImage.swift in Sources */,
 				81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */,
 				818A55A120583D4F00162E51 /* Updates.swift in Sources */,
+				8126201D215444A400B06F88 /* NSAttributedString+Utils.swift in Sources */,
 				817A53D81E5F24540081ED26 /* Details+Description.swift in Sources */,
 				8132406B205BE50000945CE9 /* News+Detail.swift in Sources */,
 				81F3D6581E1310BA003CD808 /* ILTranslucentView.swift in Sources */,
@@ -1144,6 +1174,7 @@
 				81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */,
 				817610EF21515A3200602FF2 /* API+SystemStatus.swift in Sources */,
 				81BE066C1E6C2EA500AD9827 /* Details+ExternalLink.swift in Sources */,
+				8126201C215444A400B06F88 /* Style.swift in Sources */,
 				81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */,
 				811BEE2D2151538600F1F56A /* App.swift in Sources */,
 				81D661761E5A0B6C00BB6461 /* Details+Extension.swift in Sources */,
@@ -1212,6 +1243,7 @@
 				81EC006E1DAD7915009EEFFA /* ItemCollection.swift in Sources */,
 				8141CB631F817BD200DBDD89 /* SafariActivity.swift in Sources */,
 				814F34011F9350F000FF062B /* ThreePortraitScreenshotsSearchCell.swift in Sources */,
+				8126201A215444A400B06F88 /* AttributedText.swift in Sources */,
 				81BE06721E6CB6DE00AD9827 /* Details+SegmentControl.swift in Sources */,
 				811E181720B48778003CECC0 /* DeviceStatusCell.swift in Sources */,
 				8105175920D0283300B3E1FB /* Match.swift in Sources */,

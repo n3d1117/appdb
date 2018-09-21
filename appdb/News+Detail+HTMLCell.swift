@@ -12,7 +12,7 @@ import Cartography
 
 class NewsDetailHTMLCell: UITableViewCell {
     
-    var htmlText: UILabel!
+    var htmlText: AttributedLabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,11 +28,10 @@ class NewsDetailHTMLCell: UITableViewCell {
         selectionStyle = .none
         
         // Title
-        htmlText = UILabel()
+        htmlText = AttributedLabel()
         htmlText.font = .systemFont(ofSize: (17~~16))
         htmlText.theme_textColor = Color.title
         htmlText.numberOfLines = 0
-        htmlText.makeDynamicFont()
         
         contentView.addSubview(htmlText)
         
