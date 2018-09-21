@@ -13,10 +13,10 @@ import Foundation
 
 #if os(macOS)
     public typealias Font = NSFont
-    public typealias Color = NSColor
+    public typealias AtkColor = NSColor
 #else
     public typealias Font = UIFont
-    public typealias Color = UIColor
+    public typealias AtkColor = UIColor
 #endif
 
 public enum StyleType {
@@ -115,11 +115,11 @@ public struct Style {
         return merged(with: Style.paragraphStyle(value, type))
     }
     
-    public func foregroundColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public func foregroundColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return merged(with: Style.foregroundColor(value, type))
     }
     
-    public func backgroundColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public func backgroundColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return merged(with: Style.backgroundColor(value, type))
     }
     
@@ -135,7 +135,7 @@ public struct Style {
         return merged(with: Style.strikethroughStyle(value, type))
     }
     
-    public func strikethroughColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public func strikethroughColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return merged(with: Style.strikethroughColor(value, type))
     }
     
@@ -143,11 +143,11 @@ public struct Style {
         return merged(with: Style.underlineStyle(value, type))
     }
     
-    func underlineColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    func underlineColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return merged(with: Style.underlineColor(value, type))
     }
     
-    public func strokeColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public func strokeColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return merged(with: Style.strokeColor(value, type))
     }
     
@@ -204,11 +204,11 @@ public struct Style {
         return Style("", [AttributedStringKey.paragraphStyle: value], type)
     }
     
-    public static func foregroundColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public static func foregroundColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return Style("", [AttributedStringKey.foregroundColor: value], type)
     }
     
-    public static func backgroundColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public static func backgroundColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return Style("", [AttributedStringKey.backgroundColor: value], type)
     }
     
@@ -224,7 +224,7 @@ public struct Style {
         return Style("", [AttributedStringKey.strikethroughStyle : value.rawValue], type)
     }
     
-    public static func strikethroughColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public static func strikethroughColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return Style("", [AttributedStringKey.strikethroughColor: value], type)
     }
     
@@ -232,11 +232,11 @@ public struct Style {
         return Style("", [AttributedStringKey.underlineStyle : value.rawValue], type)
     }
     
-    public static func underlineColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public static func underlineColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return Style("", [AttributedStringKey.underlineColor: value], type)
     }
     
-    public static func strokeColor(_ value: Color, _ type: StyleType = .normal) -> Style {
+    public static func strokeColor(_ value: AtkColor, _ type: StyleType = .normal) -> Style {
         return Style("", [AttributedStringKey.strokeColor: value], type)
     }
     

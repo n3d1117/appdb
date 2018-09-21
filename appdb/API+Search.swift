@@ -26,10 +26,8 @@ extension API {
                                   page: Int = 0,
                                   success:@escaping (_ items: [T]) -> Void,
                                   fail:@escaping (_ error: String) -> Void) where T:Mappable, T:Meta {
-        
-        var shouldContinue: Bool = true
-        
-        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue,
+
+        let request = Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue,
                                                  "type": T.type().rawValue,
                                                  "order": order.rawValue,
                                                  "price": price.rawValue,
@@ -39,31 +37,26 @@ extension API {
                                                  "q": q,
                                                  "page": page,
                                                  "lang": languageCode], headers: headers)
-            
-            // todo speed this up and get rid of 'shouldContinue'
-            
-            .responseJSON { response in
-                if let value = response.result.value {
-                    let json = JSON(value)
-                    if !json["success"].boolValue, !json["errors"].isEmpty {
-                        fail(json["errors"][0].stringValue); shouldContinue = false
+        
+        quickCheckForErrors(request, completion: { ok, hasError in
+            if ok {
+                request.responseArray(keyPath: "data") { (response: DataResponse<[T]>) in
+                    switch response.result {
+                        case .success(let items):
+                            do {
+                                try realm.write { realm.add(items, update: true) }
+                                success(items)
+                            } catch let error as NSError {
+                                fail(error.localizedDescription)
+                            }
+                        case .failure(let error):
+                            fail(error.localizedDescription)
                     }
                 }
+            } else {
+                fail((hasError ?? "An error has occurred").localized())
             }
-            
-            .responseArray(keyPath: "data") { (response: DataResponse<[T]>) in
-                if shouldContinue { switch response.result {
-                    case .success(let items):
-                        do {
-                            try realm.write { realm.add(items, update: true) }
-                            success(items)
-                        } catch let error as NSError {
-                            fail(error.localizedDescription)
-                        }
-                    case .failure(let error):
-                        fail(error.localizedDescription)
-                } }
-            }
+        })
     }
     
     static func fastSearch(type: ItemType, query: String, maxResults: Int = 8,
@@ -88,6 +81,25 @@ extension API {
                     fail("")
                 }
             }
+    }
+    
+    static func quickCheckForErrors(_ request: DataRequest, completion: @escaping (_ ok: Bool, _ hasError: String?) -> Void) {
+        request.responseJSON { response in
+            if let value = response.result.value {
+                let json = JSON(value)
+                if !json["success"].boolValue {
+                    if !json["errors"].isEmpty {
+                        completion(false, json["errors"][0].stringValue)
+                    } else {
+                        completion(false, "An error has occurred".localized())
+                    }
+                } else {
+                    completion(true, nil)
+                }
+            } else {
+                completion(false, "An error has occurred".localized())
+            }
+        }
     }
 
 }
