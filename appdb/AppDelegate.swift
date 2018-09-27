@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.startDelay = 0.3
         NetworkActivityIndicatorManager.shared.completionDelay = 0.3
-
+        
         return true
     }
 
