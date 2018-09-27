@@ -94,13 +94,13 @@ class ItemCollection: FeaturedCell {
     // Open Featured's Categories view controller
     weak var delegateCategory: ChangeCategory?
     
-    deinit { NotificationCenter.default.removeObserver(self, name: Notification.Name.UIContentSizeCategoryDidChange, object: nil) }
+    deinit { NotificationCenter.default.removeObserver(self, name: UIContentSizeCategory.didChangeNotification, object: nil) }
 
     convenience init(id: Featured.CellType, title: String, fullSeparator: Bool = false) {
         
         self.init(style: .default, reuseIdentifier: id.rawValue)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(ItemCollection.updateTextSize), name: Notification.Name.UIContentSizeCategoryDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ItemCollection.updateTextSize), name: UIContentSizeCategory.didChangeNotification, object: nil)
         
         showFullSeparator = fullSeparator
         selectionStyle = .none
@@ -121,7 +121,7 @@ class ItemCollection: FeaturedCell {
         collectionView.dataSource = self
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
-        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         
         collectionView.theme_backgroundColor = Color.veryVeryLightGray
         theme_backgroundColor = Color.veryVeryLightGray
@@ -192,7 +192,7 @@ class ItemCollection: FeaturedCell {
             
                 section.left == section.superview!.left + Global.size.margin.value
                 section.right == section.left + sectionLabel.frame.size.width ~ Global.notMaxPriority
-                section.bottom == collection.top - (44~~39 - section.height.view.bounds.height) / 2
+                section.bottom == collection.top - (44~~39 - section.height.item.bounds.height) / 2
         
                 seeAll.right == seeAll.superview!.right - Global.size.margin.value
                 seeAll.centerY == section.centerY

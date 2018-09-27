@@ -62,8 +62,8 @@ class ElasticLabel: UILabel {
         guard let text = text, !text.isEmpty else { return }
         
         let size = CGSize(width: bounds.size.width, height: ceil(font!.lineHeight * CGFloat(maxNumberOfCollapsedLines)))
-        let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.foregroundColor: textColor!, NSAttributedStringKey.font: font!]
-        let trailingAttributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.foregroundColor: (Themes.isNight ? UIColor(rgba: moreTextColor[0]) : UIColor(rgba: moreTextColor[1])), NSAttributedStringKey.font: font!]
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: textColor!, NSAttributedString.Key.font: font!]
+        let trailingAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: (Themes.isNight ? UIColor(rgba: moreTextColor[0]) : UIColor(rgba: moreTextColor[1])), NSAttributedString.Key.font: font!]
         
         self.attributedText = text.truncateToSize(size: size, ellipses: ellipses, trailingText: trailing, attributes: attributes, trailingAttributes: trailingAttributes)
     }

@@ -92,7 +92,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             
             // Works around crazy cell bugs on rotation, enables preloading
             tableView.estimatedRowHeight = 32
-            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.rowHeight = UITableView.automaticDimension
             
             // Reload tableView (animated), hide spinner
             state = .done

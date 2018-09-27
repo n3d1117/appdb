@@ -84,7 +84,7 @@ class NewsDetail: LoadingTableView {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard state == .done else { return 0 }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -135,10 +135,10 @@ extension AttributedLabel {
         let strong = Style("strong").font(.boldSystemFont(ofSize: font.pointSize))
         
         // Supports <u>
-        let u = Style("u").underlineStyle(.styleSingle)
+        let u = Style("u").underlineStyle(.single)
         
         let link = Style("a").foregroundColor(UIColor(rgba: "#446CB3"), .normal).foregroundColor(UIColor(rgba: "#486A92"), .highlighted)
-            .underlineStyle(.styleSingle)
+            .underlineStyle(.single)
         
         attributedText = text.style(tags: [b, i, strong, u, link], transformers: transformers).styleLinks(link)
         onClick = { label, detection in

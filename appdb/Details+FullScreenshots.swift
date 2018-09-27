@@ -17,7 +17,7 @@ class DetailsFullScreenshotsNavController: UINavigationController {
         modalPresentationStyle = .overFullScreen
     }
     // Let's hide home indicator on iPhone X
-    override func prefersHomeIndicatorAutoHidden() -> Bool {
+    override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
 }
@@ -81,7 +81,7 @@ class DetailsFullScreenshots: UIViewController {
         imageCache: AutoPurgingImageCache()
     )
     
-    var isPortrait: Bool { return  UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation) }
+    var isPortrait: Bool { return UIApplication.shared.statusBarOrientation.isPortrait }
     
     // We get these from previous view
     var mixedClasses, allLandscape: Bool!
@@ -202,7 +202,7 @@ class DetailsFullScreenshots: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
         collectionView.backgroundColor = .clear
-        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         
         view.addSubview(collectionView)
         view.addSubview(pageControl)

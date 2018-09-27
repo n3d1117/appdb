@@ -17,7 +17,7 @@ class DetailsDescription: DetailsCell {
     
     var descriptionText: String! = ""
     
-    override var height: CGFloat { return descriptionText.isEmpty ? 0 : UITableViewAutomaticDimension }
+    override var height: CGFloat { return descriptionText.isEmpty ? 0 : UITableView.automaticDimension }
     override var identifier: String { return "description" }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +29,7 @@ class DetailsDescription: DetailsCell {
         desc.text = descriptionText.decoded
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none

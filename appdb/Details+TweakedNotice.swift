@@ -23,7 +23,7 @@ class DetailsTweakedNotice: DetailsCell {
     var content: UILabel!
     var seeOriginal: UIButton!
     
-    override var height: CGFloat { return (trackid.isEmpty || trackid == "0") ? 0 : UITableViewAutomaticDimension }
+    override var height: CGFloat { return (trackid.isEmpty || trackid == "0") ? 0 : UITableView.automaticDimension }
     override var identifier: String { return "tweakednotice" }
     
     weak var delegate: DynamicContentRedirection?

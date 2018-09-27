@@ -66,7 +66,7 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
             var location: CGPoint = sender.location(in: nil)
             
             // in landscape view you will have to swap the location coordinates
-            if UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) {
+            if UIApplication.shared.statusBarOrientation.isLandscape {
                 location = CGPoint(x: location.y, y: location.x)
             }
             

@@ -119,7 +119,7 @@ class Details: LoadingTableView {
             case 1:
                 switch indexForSegment {
                     case .details: return details[indexPath.row].height
-                    case .reviews: return indexPath.row == reviews.count ? UITableViewAutomaticDimension : DetailsReview.height
+                    case .reviews: return indexPath.row == reviews.count ? UITableView.automaticDimension : DetailsReview.height
                     case .download: return 0
                 }
             default:

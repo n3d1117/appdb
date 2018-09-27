@@ -29,7 +29,7 @@ class Acknowledgements: LoadingTableView {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "license")
         tableView.estimatedRowHeight = 500
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor

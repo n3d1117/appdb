@@ -31,7 +31,7 @@ class News: LoadingTableView {
         
         tableView.register(SimpleStaticCell.self, forCellReuseIdentifier: "news")
         tableView.estimatedRowHeight = 50
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor

@@ -72,7 +72,7 @@ extension Details {
         
         // Works around crazy cell bugs on rotation, enables preloading
         tableView.estimatedRowHeight = 32
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
 
     }
 

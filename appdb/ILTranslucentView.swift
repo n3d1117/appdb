@@ -237,11 +237,11 @@ extension ILTranslucentView {
         }
     }
 
-    override open func sendSubview(toBack view: UIView)  {
+    override open func sendSubviewToBack(_ view: UIView)  {
         if self.initComplete {
             self.insertSubview(view, aboveSubview: self.toolbarContainerClipView!)
         } else {
-            super.sendSubview(toBack: view)
+            super.sendSubviewToBack(view)
         }
     }
 

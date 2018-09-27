@@ -10,8 +10,8 @@
 import SafariServices
 import UIKit
 
-public extension UIActivityType {
-    static let openInSafari = UIActivityType(rawValue: "it.ned.appdb.openInSafari")
+public extension UIActivity.ActivityType {
+    static let openInSafari = UIActivity.ActivityType(rawValue: "it.ned.appdb.openInSafari")
 }
 
 public class SafariActivity: UIActivity {
@@ -28,8 +28,8 @@ public class SafariActivity: UIActivity {
         return "Open in Safari".localized()
     }
     
-    public override var activityType: UIActivityType? {
-        return UIActivityType.openInSafari
+    public override var activityType: UIActivity.ActivityType? {
+        return UIActivity.ActivityType.openInSafari
     }
     
     public override var activityImage: UIImage? {

@@ -28,7 +28,7 @@ public enum StyleType {
 #if swift(>=4.2)
     public typealias AttributedStringKey = NSAttributedString.Key
 #else
-    public typealias AttributedStringKey = NSAttributedStringKey
+    public typealias AttributedStringKey = NSAttributedString.Key
 #endif
 
 public struct Style {

@@ -47,7 +47,7 @@ class ConfigServer: NSObject {
     let randomString = Global.randomString(length: 8)
     
     // Background task
-    private var backgroundTask = UIBackgroundTaskInvalid
+    private var backgroundTask = UIBackgroundTaskIdentifier.invalid
     
     // Initialization
     init(configData: Data, token: String) {
@@ -186,9 +186,9 @@ extension ConfigServer {
     private func registerForNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didEnterBackground),
-                                       name: .UIApplicationDidEnterBackground, object: nil)
+                                       name: UIApplication.didEnterBackgroundNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(willEnterForeground),
-                                       name: .UIApplicationWillEnterForeground, object: nil)
+                                       name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     @objc internal func didEnterBackground(notification: NSNotification) {
@@ -198,7 +198,7 @@ extension ConfigServer {
     }
     
     @objc internal func willEnterForeground(notification: NSNotification) {
-        if backgroundTask != UIBackgroundTaskInvalid {
+        if backgroundTask != UIBackgroundTaskIdentifier.invalid {
             stopBackgroundTask()
             returnedToApp()
         }
@@ -213,9 +213,9 @@ extension ConfigServer {
     }
     
     private func stopBackgroundTask() {
-        if backgroundTask != UIBackgroundTaskInvalid {
+        if backgroundTask != UIBackgroundTaskIdentifier.invalid {
             UIApplication.shared.endBackgroundTask(self.backgroundTask)
-            backgroundTask = UIBackgroundTaskInvalid
+            backgroundTask = UIBackgroundTaskIdentifier.invalid
         }
     }
 }

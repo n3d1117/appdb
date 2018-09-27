@@ -97,7 +97,7 @@ class DetailsRelated: DetailsCell {
             collectionView.showsHorizontalScrollIndicator = false
             collectionView.scrollsToTop = false
             collectionView.theme_backgroundColor = Color.veryVeryLightGray
-            collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+            collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         
             contentView.addSubview(title)
             contentView.addSubview(collectionView)

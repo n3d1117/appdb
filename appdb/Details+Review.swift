@@ -18,7 +18,7 @@ class DetailsReview: DetailsCell {
     var stars: CosmosView!
     var desc: ElasticLabel!
     
-    static var height: CGFloat { return UITableViewAutomaticDimension }
+    static var height: CGFloat { return UITableView.automaticDimension }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,7 +31,7 @@ class DetailsReview: DetailsCell {
         desc.text = review.text.decoded
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         preservesSuperviewLayoutMargins = false

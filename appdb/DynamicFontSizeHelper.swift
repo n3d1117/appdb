@@ -38,7 +38,7 @@ private class ContentSizeCategoryChangeManager {
     fileprivate var observerPool: [Observer] = []
     
     fileprivate init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)), name: UIContentSizeCategory.didChangeNotification, object: nil)
     }
     
     func addCallback(_ observer: AnyObject, block: @escaping ContentSizeCategoryDidChangeCallback) {

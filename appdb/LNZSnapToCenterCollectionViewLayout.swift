@@ -156,7 +156,7 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         super.prepare()
         
         guard let collection = collectionView else { return }
-        collection.decelerationRate = UIScrollViewDecelerationRateFast
+        collection.decelerationRate = UIScrollView.DecelerationRate.fast
         
         sectionInsetLeft = centerFirstItem ? max(minimumSectionInsetLeft, collection.bounds.width/2.0 - itemSize.width/2.0) : minimumSectionInsetLeft
         sectionInsetRight = centerFirstItem ? max(minimumSectionInsetRight, sectionInsetLeft) : minimumSectionInsetRight
@@ -213,13 +213,13 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
         
-        if elementKind == UICollectionElementKindSectionFooter,
+        if elementKind == UICollectionView.elementKindSectionFooter,
             let height = footerHeight,
             height != 0 {
             
             frame = CGRect(x: collection.contentOffset.x, y: collectionViewContentSize.height - height, width: collection.bounds.width, height: height)
             footerAttributes = attributes
-        } else if elementKind == UICollectionElementKindSectionHeader,
+        } else if elementKind == UICollectionView.elementKindSectionHeader,
             let height = headerHeight,
             height != 0 {
             
@@ -251,12 +251,12 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
     
     internal func attributesForHeaderAndFooter() -> [UICollectionViewLayoutAttributes] {
         var result = [UICollectionViewLayoutAttributes]()
-        if let header = headerAttributes ?? layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: IndexPath(item: 0, section: 0)) {
+        if let header = headerAttributes ?? layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) {
             header.frame.origin.x = collectionView?.contentOffset.x ?? 0
             result.append(header)
         }
         
-        if let footer = footerAttributes ?? layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionFooter, at: IndexPath(item: 0, section: 0)) {
+        if let footer = footerAttributes ?? layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, at: IndexPath(item: 0, section: 0)) {
             footer.frame.origin.x = collectionView?.contentOffset.x ?? 0
             result.append(footer)
         }

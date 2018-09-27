@@ -35,7 +35,7 @@ class DeviceStatus: LoadingTableView {
         title = "Device Status".localized()
         
         tableView.register(DeviceStatusCell.self, forCellReuseIdentifier: "status")
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 180
         
         tableView.theme_separatorColor = Color.borderColor

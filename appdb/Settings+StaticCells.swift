@@ -17,7 +17,7 @@ import Cartography
 
 final class SimpleStaticCell: UITableViewCell, Cell {
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         
         theme_backgroundColor = Color.veryVeryLightGray
@@ -52,7 +52,7 @@ final class SimpleStaticCell: UITableViewCell, Cell {
 
 final class SimpleSubtitleCell: UITableViewCell, Cell {
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
         theme_backgroundColor = Color.veryVeryLightGray
@@ -79,7 +79,7 @@ final class SimpleSubtitleCell: UITableViewCell, Cell {
 
 final class SimpleStaticButtonCell: UITableViewCell, Cell {
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
         textLabel?.font = .boldSystemFont(ofSize: (16~~15))
@@ -124,7 +124,7 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         return label
     }()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
         preservesSuperviewLayoutMargins = true
