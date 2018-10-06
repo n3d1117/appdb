@@ -15,7 +15,7 @@ import AlamofireImage
 import ObjectMapper
 
 // Class to handle response correctly from Featured
-struct ItemResponse {
+struct FeaturedItemCollectionResponse {
     var success : Bool = false
     var errorDescription : String = ""
 }
@@ -86,7 +86,7 @@ class ItemCollection: FeaturedCell {
     var showFullSeparator: Bool = false
     
     // Response object
-    var response: ItemResponse = ItemResponse()
+    var response: FeaturedItemCollectionResponse = FeaturedItemCollectionResponse()
     
     // Redirect to Details view
     weak var delegate: ContentRedirection?
@@ -129,22 +129,14 @@ class ItemCollection: FeaturedCell {
         sectionLabel = UILabel()
         sectionLabel.theme_textColor = Color.title
         
-        if #available(iOS 8.2, *) {
-            sectionLabel.font = .systemFont(ofSize: 16.5, weight: UIFont.Weight.medium)
-        } else {
-            sectionLabel.font = .systemFont(ofSize: 16.5)
-        }
+        sectionLabel.font = .systemFont(ofSize: 16.5, weight: UIFont.Weight.medium)
         
         sectionLabel.text = title
         sectionLabel.sizeToFit()
         
         categoryLabel  = PaddingLabel()
         categoryLabel.theme_textColor = Color.invertedTitle
-        if #available(iOS 8.2, *) {
-            categoryLabel.font = UIFont.systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
-        } else {
-            categoryLabel.font = UIFont.boldSystemFont(ofSize: 10.0)
-        }
+        categoryLabel.font = UIFont.systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 6
         categoryLabel.isHidden = true
@@ -170,11 +162,7 @@ class ItemCollection: FeaturedCell {
     @objc fileprivate func updateTextSize(notification: NSNotification) {
         let preferredSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize
         let fontSizeToSet = preferredSize > 20.0 ? 20.0 : preferredSize
-        if #available(iOS 8.2, *) {
-            sectionLabel.font = .systemFont(ofSize: fontSizeToSet, weight: UIFont.Weight.medium)
-        } else {
-            sectionLabel.font = .systemFont(ofSize: fontSizeToSet)
-        }
+        sectionLabel.font = .systemFont(ofSize: fontSizeToSet, weight: UIFont.Weight.medium)
         sectionLabel.sizeToFit()
         didSetConstraints = false
         setConstraints()

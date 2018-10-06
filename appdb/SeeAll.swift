@@ -90,7 +90,7 @@ class SeeAll: LoadingTableView {
         tableView.spr_beginRefreshing()
     }
     
-    // Called when user reaches top, loads 25 more
+    // Called when user reaches bottom, loads 25 more
     fileprivate func setFooter() {
         tableView.spr_setIndicatorFooter{ [weak self] in
             self?.currentPage += 1
@@ -126,12 +126,7 @@ class SeeAll: LoadingTableView {
                 self.tableView.spr_endRefreshing()
             }
             
-            if let error = self.errorMessage, let secondary = self.secondaryErrorMessage {
-                error.isHidden = true
-                secondary.isHidden = true
-            }
-            
-            self.tableView.reloadData()
+            self.state = .done
             
         }, fail: { error in
             self.tableView.spr_endRefreshing()

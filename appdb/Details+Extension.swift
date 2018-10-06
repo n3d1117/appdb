@@ -117,19 +117,19 @@ extension Details {
         header = [DetailsHeader(type: contentType, content: content, delegate: self)]
         
         details = [
-            DetailsTweakedNotice(originalTrackId: originalTrackid, originalSection: originalSection, delegate: self),
-            DetailsScreenshots(type: contentType, screenshots: screenshots, delegate: self),
+            DetailsTweakedNotice(originalTrackId: content.itemOriginalTrackid, originalSection: content.itemOriginalSection, delegate: self),
+            DetailsScreenshots(type: contentType, screenshots: content.itemScreenshots, delegate: self),
             DetailsDescription(), // dynamic
             DetailsChangelog(), // dynamic
-            DetailsRelated(type: contentType, related: relatedContent, delegate: self),
+            DetailsRelated(type: contentType, related: content.itemRelatedContent, delegate: self),
             DetailsInformation(type: contentType, content: content)
         ]
         
         switch contentType {
         case .ios: if let app = content as? App {
             details.append(DetailsExternalLink(text: "Developer Apps".localized(), devId: app.artistId, devName: app.seller))
-            if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website".localized(), url: website)) }
-            if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support".localized(), url: support)) }
+            if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website".localized(), url: content.itemWebsite)) }
+            if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support".localized(), url: content.itemSupport)) }
             if !app.publisher.isEmpty { details.append(DetailsPublisher(app.publisher)) }
             }
         case .cydia: if let app = content as? CydiaApp {
@@ -146,11 +146,11 @@ extension Details {
     
     // Get links
     func getLinks() {
-        API.getLinks(type: contentType, trackid: id, success: { items in
+        API.getLinks(type: contentType, trackid: content.itemId, success: { items in
             self.versions = items
             
             // Ensure latest version is always at the top
-            if let latest = self.versions.filter({$0.number==self.version}).first {
+            if let latest = self.versions.filter({$0.number==self.content.itemVersion}).first {
                 if let index = self.versions.index(of: latest) {
                     self.versions.remove(at: index)
                     self.versions.insert(latest, at: 0)
@@ -187,112 +187,6 @@ extension Details {
             default: break
         }; return [.details, .download]
     }
-    
-    //
-    // Content Properties
-    //
-    var id: String {
-        switch contentType {
-        case .ios: if let app = content as? App { return app.id }
-        case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.id }
-        case .books: if let book = content as? Book { return book.id }
-        }; return ""
-    }
-    
-    var name: String {
-        switch contentType {
-        case .ios: if let app = content as? App { return app.name.decoded }
-        case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.name.decoded }
-        case .books: if let book = content as? Book { return book.name.decoded }
-        }; return ""
-    }
-    
-    var version: String {
-        switch contentType {
-        case .ios: if let app = content as? App { return app.version }
-        case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.version }
-        default: return ""
-        }; return ""
-    }
-    
-    var screenshots: [Screenshot] {
-        switch contentType {
-            case .ios: if let app = content as? App {
-                if app.screenshotsIpad.isEmpty { return Array(app.screenshotsIphone) }
-                if app.screenshotsIphone.isEmpty { return Array(app.screenshotsIpad) }
-                return Array((app.screenshotsIpad~~app.screenshotsIphone))
-            }
-            case .cydia: if let cydiaApp = content as? CydiaApp {
-                if cydiaApp.screenshotsIpad.isEmpty { return Array(cydiaApp.screenshotsIphone) }
-                if cydiaApp.screenshotsIphone.isEmpty { return Array(cydiaApp.screenshotsIpad) }
-                return Array((cydiaApp.screenshotsIpad~~cydiaApp.screenshotsIphone))
-            }
-            default: break
-        }; return []
-    }
-    
-    var relatedContent: [RelatedContent] {
-        switch contentType {
-            case .books: if let book = content as? Book { return Array(book.relatedBooks) }
-            default: break
-        }; return []
-    }
-    
-    var description_: String {
-        switch contentType {
-            case .ios: if let app = content as? App { return app.description_ }
-            case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.description_ }
-            case .books: if let book = content as? Book { return book.description_ }
-        }; return ""
-    }
-    
-    var changelog: String {
-        switch contentType {
-            case .ios: if let app = content as? App { return app.whatsnew }
-            case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.whatsnew }
-            default: break
-        }; return ""
-    }
-    
-    var updatedDate: String {
-        switch contentType {
-            case .ios: if let app = content as? App { return app.published }
-            case .cydia: if let cydiaApp = content as? CydiaApp { return cydiaApp.updated }
-            default: break
-        }; return ""
-    }
-    
-    var originalTrackid: String {
-        if contentType == .cydia, let cydiaApp = content as? CydiaApp {
-            return cydiaApp.originalTrackid
-        }; return ""
-    }
-    
-    var originalSection: String {
-        if contentType == .cydia, let cydiaApp = content as? CydiaApp {
-            return cydiaApp.originalSection
-        }; return ""
-    }
-    
-    var reviews: [Review] {
-        switch contentType {
-            case .books: if let book = content as? Book { return Array(book.reviews) }
-            default: break
-        }; return []
-    }
-    
-    var website: String {
-        if contentType == .ios, let app = content as? App {
-            return app.website
-        }; return ""
-    }
-    
-    var support: String {
-        if contentType == .ios, let app = content as? App {
-            return app.support
-        }; return ""
-    }
-    
 }
 
 // MARK: - 3D Touch Peek and Pop on icons

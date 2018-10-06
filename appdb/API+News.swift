@@ -11,10 +11,7 @@ import Alamofire
 
 extension API {
     
-    static func getNews(limit: Int = 10,
-                        success:@escaping (_ items: [SingleNews]) -> Void,
-                        fail:@escaping (_ error: NSError) -> Void) {
-        
+    static func getNews(limit: Int = 10, success:@escaping (_ items: [SingleNews]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.getNews.rawValue, "lang": languageCode, "limit": String(limit)], headers: headers)
             .responseArray(keyPath: "data") { (response: DataResponse<[SingleNews]>) in
                 

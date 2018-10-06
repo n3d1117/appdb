@@ -59,6 +59,7 @@ extension String {
         case "USE_LINK_CODE_INSTEAD": return "Use link code instead.".localized()
         case "MISSING_LINK_CODE_OR_EMAIL": return "Missing link code or email.".localized()
         case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
+        case "TOO_SHORT_SEARCH_STRING": return "Please search at least two characters".localized() // todo localize
         default: return self
         }
     }
@@ -209,4 +210,17 @@ extension String {
 extension Notification.Name {
     static let OpenSafari = Notification.Name("DidClickButtonSoPleaseOpenSafari")
     static let RefreshSettings = Notification.Name("DidUpdateLinkStateSoPleaseRefreshSettings")
+}
+
+// MARK: - Textfield in SearchBar
+
+extension UISearchBar {
+    var textField: UITextField? {
+        for subview in subviews.first?.subviews ?? [] {
+            if let textField = subview as? UITextField {
+                return textField
+            }
+        }
+        return nil
+    }
 }

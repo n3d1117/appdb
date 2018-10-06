@@ -14,7 +14,15 @@ import AlamofireImage
 
 //Utils
 let IS_IPAD = UIDevice.current.userInterfaceIdiom == .pad
-let HAS_NOTCH = UIDevice().userInterfaceIdiom == .phone && UIScreen.main.nativeBounds.height == 2436
+var HAS_NOTCH: Bool {
+    if #available(iOS 11, *) {
+        guard let window = UIApplication.shared.keyWindow else { return false }
+        let insets = window.safeAreaInsets
+        return insets.top > 0 || insets.bottom > 0
+    } else {
+        return false
+    }
+}
 
 struct Global {
     

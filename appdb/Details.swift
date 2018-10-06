@@ -78,8 +78,8 @@ class Details: LoadingTableView {
     
     // MARK: - Share
     @objc func share(sender: UIBarButtonItem) {
-        let text = "Check out '%@' on appdb!".localizedFormat(name)
-        let urlString = "\(Global.mainSite)view.php?trackid=\(id)&type=\(contentType.rawValue)"
+        let text = "Check out '%@' on appdb!".localizedFormat(content.itemName)
+        let urlString = "\(Global.mainSite)view.php?trackid=\(content.itemId)&type=\(contentType.rawValue)"
         guard let url = URL(string: urlString) else { return }
         let activity = UIActivityViewController(activityItems: [text, url], applicationActivities: [SafariActivity()])
         activity.excludedActivityTypes = [.airDrop]
@@ -102,7 +102,7 @@ class Details: LoadingTableView {
             case 1:
                 switch indexForSegment {
                     case .details: return details.count
-                    case .reviews: return reviews.count + 1
+                    case .reviews: return content.itemReviews.count + 1
                     case .download: return 0
                 }
             default:
@@ -119,7 +119,7 @@ class Details: LoadingTableView {
             case 1:
                 switch indexForSegment {
                     case .details: return details[indexPath.row].height
-                    case .reviews: return indexPath.row == reviews.count ? UITableView.automaticDimension : DetailsReview.height
+                    case .reviews: return indexPath.row == content.itemReviews.count ? UITableView.automaticDimension : DetailsReview.height
                     case .download: return 0
                 }
             default:
@@ -140,7 +140,7 @@ class Details: LoadingTableView {
                         if details[indexPath.row] is DetailsDescription {
                             if let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as? DetailsDescription {
                                 cell.desc.collapsed = descriptionCollapsed
-                                cell.configure(with: description_)
+                                cell.configure(with: content.itemDescription)
                                 cell.desc.delegated = self
                                 details[indexPath.row] = cell // ugly but needed to update height correctly
                                 return cell
@@ -149,7 +149,7 @@ class Details: LoadingTableView {
                         if details[indexPath.row] is DetailsChangelog {
                             if let cell = tableView.dequeueReusableCell(withIdentifier: "changelog", for: indexPath) as? DetailsChangelog {
                                 cell.desc.collapsed = changelogCollapsed
-                                cell.configure(type: contentType, changelog: changelog, updated: updatedDate)
+                                cell.configure(type: contentType, changelog: content.itemChangelog, updated: content.itemUpdatedDate)
                                 cell.desc.delegated = self
                                 details[indexPath.row] = cell // ugly but needed to update height correctly
                                 return cell
@@ -158,10 +158,10 @@ class Details: LoadingTableView {
                         // Otherwise, just return static cells
                         return details[indexPath.row]
                     case .reviews:
-                        if indexPath.row == reviews.count { return DetailsPublisher("Reviews are from Apple's iTunes Store ©".localized()) }
+                        if indexPath.row == content.itemReviews.count { return DetailsPublisher("Reviews are from Apple's iTunes Store ©".localized()) }
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "review", for: indexPath) as? DetailsReview {
                             cell.desc.collapsed = reviewCollapsedForIndexPath[indexPath] ?? true
-                            cell.configure(with: reviews[indexPath.row])
+                            cell.configure(with: content.itemReviews[indexPath.row])
                             cell.desc.delegated = self
                             return cell
                         } else { return UITableViewCell() }
@@ -174,6 +174,7 @@ class Details: LoadingTableView {
                         if !versions.isEmpty {
                             let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as! DetailsDownload
                             cell.configure(with: versions[indexPath.section-2].links[indexPath.row])
+                            cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                             return cell
                         } else {
                             return DetailsDownloadEmptyCell("No links found.".localized())
@@ -188,7 +189,7 @@ class Details: LoadingTableView {
             return DetailsSegmentControl(itemsForSegmentedControl, state: indexForSegment, enabled: loadedLinks, delegate: self)
         }
         if section > 1, indexForSegment == .download, !versions.isEmpty {
-            return DetailsVersionHeader(versions[section-2].number, isLatest: versions[section-2].number == version)
+            return DetailsVersionHeader(versions[section-2].number, isLatest: versions[section-2].number == content.itemVersion)
         }
         return nil
     }
@@ -213,6 +214,17 @@ class Details: LoadingTableView {
         } else if !cell.devId.isEmpty {
             let vc = SeeAll(title: cell.devName, type: contentType, devId: cell.devId)
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    // MARK: - Install app
+    @objc fileprivate func install(sender: RoundedButton) {
+        API.install(id: sender.linkId, type: contentType) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("success")
+            }
         }
     }
     
@@ -279,7 +291,7 @@ extension Details: RelatedRedirectionDelegate {
 //
 extension Details: ScreenshotRedirectionDelegate {
     func screenshotImageSelected(with index: Int, _ allLandscape: Bool, _ mixedClasses: Bool, _ magic: CGFloat) {
-        let vc = DetailsFullScreenshots(screenshots, index, allLandscape, mixedClasses, magic)
+        let vc = DetailsFullScreenshots(content.itemScreenshots, index, allLandscape, mixedClasses, magic)
         let nav = DetailsFullScreenshotsNavController(rootViewController: vc)
         present(nav, animated: true)
     }

@@ -38,6 +38,7 @@ class Settings: TableViewController {
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         view.theme_backgroundColor = Color.tableViewBackgroundColor
+        tableView.cellLayoutMarginsFollowReadableWidth = true
         
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
@@ -70,6 +71,7 @@ class Settings: TableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // todo: this doesn't seem to work on iPad (popover issue?)
         // Refresh 'Dark/Light' in cell on appear, but only if theme has changed
         if didPushThemeChooser { didPushThemeChooser = false
             refreshSources()

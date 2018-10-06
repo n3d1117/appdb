@@ -57,10 +57,9 @@ class ThemeChooser: UITableViewController {
         cell.textLabel?.text = indexPath.row == 0 ? "Light".localized() : "Dark".localized()
         cell.textLabel?.font = .systemFont(ofSize: (17~~16))
         cell.textLabel?.theme_textColor = Color.title
-        cell.textLabel?.makeDynamicFont()
         switch indexPath.row {
-        case 0: cell.accessoryType = lightTheme ? .checkmark : .none
-        default: cell.accessoryType = !lightTheme ? .checkmark : .none
+            case 0: cell.accessoryType = lightTheme ? .checkmark : .none
+            default: cell.accessoryType = !lightTheme ? .checkmark : .none
         }
         cell.contentView.theme_backgroundColor = Color.veryVeryLightGray
         cell.theme_backgroundColor = Color.veryVeryLightGray

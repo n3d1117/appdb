@@ -73,7 +73,7 @@ class DetailsHeader: DetailsCell {
                 seller.addTarget(self, action: #selector(self.sellerTapped), for: .touchUpInside)
                 icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
                 
-                if !app.numberOfStars.isZero {
+                if app.itemHasStars {
                     stars = buildStars()
                     stars!.rating = app.numberOfStars
                     stars!.text = app.numberOfRating
@@ -117,7 +117,7 @@ class DetailsHeader: DetailsCell {
                 }
                 icon.layer.cornerRadius = 0
                 
-                if !book.numberOfStars.isZero {
+                if book.itemHasStars {
                     stars = buildStars()
                     stars!.rating = book.numberOfStars
                     stars!.text = book.numberOfRating
@@ -242,11 +242,7 @@ class DetailsHeader: DetailsCell {
     private func buildPaddingLabel() -> PaddingLabel {
         let label = PaddingLabel()
         label.theme_textColor = Color.invertedTitle
-        if #available(iOS 8.2, *) {
-            label.font = .systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
-        } else {
-            label.font = .boldSystemFont(ofSize: 10.0)
-        }
+        label.font = .systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
         label.makeDynamicFont()
         label.layer.backgroundColor = UIColor.gray.cgColor
         label.layer.cornerRadius = 6

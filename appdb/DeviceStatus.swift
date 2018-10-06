@@ -20,10 +20,8 @@ class DeviceStatus: LoadingTableView {
                 didEndRefreshing = true
                 tableView.spr_endRefreshingAll()
             }
-            if !self.statuses.isEmpty, let error = self.errorMessage, let secondary = self.secondaryErrorMessage {
-                error.isHidden = true
-                secondary.isHidden = true
-            }
+            self.errorMessage.isHidden = true
+            self.secondaryErrorMessage.isHidden = true
         }
     }
     

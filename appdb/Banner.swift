@@ -64,6 +64,7 @@ class Banner: UITableViewCell {
             case 667: return 150
             case 736: return 165
             case 812: return 150
+            case 896: return 170
             case 1024: return 220
             case 1112: return 225
             case 1366: return 250

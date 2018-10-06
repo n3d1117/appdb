@@ -93,12 +93,7 @@ class News: LoadingTableView {
                 self.tableView.spr_endRefreshing()
             }
             
-            if let error = self.errorMessage, let secondary = self.secondaryErrorMessage {
-                error.isHidden = true
-                secondary.isHidden = true
-            }
-            
-            self.tableView.reloadData()
+            self.state = .done
         }
     }
     

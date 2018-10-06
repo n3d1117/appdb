@@ -95,6 +95,7 @@ extension Featured {
 
 
 // MARK: - 3D Touch Peek and Pop on icons
+
 extension Featured: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         

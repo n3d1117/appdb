@@ -15,7 +15,7 @@ class SystemStatus: LoadingTableView {
     var services: [ServiceStatus] = [] {
         didSet {
             self.tableView.spr_endRefreshing()
-            self.tableView.reloadData()
+            self.state = .done
         }
     }
     
@@ -62,11 +62,6 @@ class SystemStatus: LoadingTableView {
         
         API.getSystemStatus(success: { services in
             self.services = services.sorted{ $0.name.lowercased() < $1.name.lowercased() }
-            if let error = self.errorMessage, let secondary = self.secondaryErrorMessage {
-                error.isHidden = true
-                secondary.isHidden = true
-            }
-            
         }, fail: { error in
             self.services = []
             self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
