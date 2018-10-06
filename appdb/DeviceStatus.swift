@@ -25,7 +25,7 @@ class DeviceStatus: LoadingTableView {
         }
     }
     
-    let retriableCommands: [String] = ["ok, UserRejected", "ok, PromptingForUpdate", "ok, Installing", "ok, Prompting", "ok, ManagedButUninstalled"]
+    let retriableCommands: [String] = ["ok, UserRejected", "ok, UpdateRejected", "ok, PromptingForUpdate", "ok, Installing", "ok, Prompting", "ok, ManagedButUninstalled"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

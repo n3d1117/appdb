@@ -6,7 +6,6 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
-
 import UIKit
 import Cartography
 
@@ -27,7 +26,5 @@ class NoScreenshotsSearchCell: SearchCell {
         constrain(icon) { icon in
             icon.bottom == icon.superview!.bottom - margin
         }
-        
-        //name.text = "you can do this"
     }
 }

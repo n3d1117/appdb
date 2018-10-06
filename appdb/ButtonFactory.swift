@@ -20,7 +20,7 @@ struct ButtonFactory {
         button.setImage(#imageLiteral(resourceName: "rightArrow").withRenderingMode(.alwaysTemplate), for: .normal)
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
-        if #available(iOS 8.2, *), bold {
+        if bold {
             button.titleLabel?.font = .systemFont(ofSize: size, weight: UIFont.Weight.semibold)
         } else {
             button.titleLabel?.font = .systemFont(ofSize: size)
@@ -46,11 +46,7 @@ struct ButtonFactory {
         button.theme_setImage(["bolt_dark", "bolt_light"], forState: .normal)
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
-        if #available(iOS 8.2, *) {
-            button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: UIFont.Weight.semibold)
-        } else {
-            button.titleLabel?.font = .systemFont(ofSize: (14~~13))
-        }
+        button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: UIFont.Weight.semibold)
         
         button.makeDynamicFont()
         button.contentHorizontalAlignment = .left

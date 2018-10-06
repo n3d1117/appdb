@@ -152,7 +152,7 @@ class SeeAll: LoadingTableView {
         let item = items[indexPath.row]
         
         if let app = item as? App {
-            if !app.numberOfStars.isZero, !app.numberOfRating.isEmpty {
+            if app.itemHasStars {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "seeallcellwithstars",
                                                                for: indexPath) as? SeeAllCellWithStars else { return UITableViewCell() }
                 cell.configure(name: app.name, category: app.category?.name ?? "", version: app.version, iconUrl: app.image,
@@ -166,7 +166,7 @@ class SeeAll: LoadingTableView {
                 return cell
             }
         } else if let book = item as? Book {
-            if !book.numberOfStars.isZero, !book.numberOfRating.isEmpty {
+            if book.itemHasStars {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "seeallcellwithstars_book",
                                                                for: indexPath) as? SeeAllCellWithStars else { return UITableViewCell() }
                 cell.configure(name: book.name, author: book.author, language: book.language, categoryId: book.categoryId,
