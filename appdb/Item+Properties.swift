@@ -48,6 +48,23 @@ extension Object {
         return []
     }
     
+    var itemScreenshotsIphone: [Screenshot] {
+        if let app = self as? App { return Array(app.screenshotsIphone) }
+        if let cydiaApp = self as? CydiaApp { return Array(cydiaApp.screenshotsIphone) }
+        return []
+    }
+    
+    var itemScreenshotsIpad: [Screenshot] {
+        if let app = self as? App { return Array(app.screenshotsIpad) }
+        if let cydiaApp = self as? CydiaApp { return Array(cydiaApp.screenshotsIpad) }
+        return []
+    }
+    
+    var itemCydiaCategoryId: String {
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.categoryId }
+        return ""
+    }
+    
     var itemRelatedContent: [RelatedContent] {
         if let book = self as? Book { return Array(book.relatedBooks) }
         return []

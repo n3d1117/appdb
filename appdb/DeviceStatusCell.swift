@@ -54,7 +54,6 @@ class DeviceStatusCell: UITableViewCell {
         
         selectionStyle = .none
 
-        // todo localize?
         status = generateLabel(); status_left = generateLabel(text: "Status")
         type = generateLabel(); type_left = generateLabel(text: "Type")
         title = generateLabel(); title_left = generateLabel(text: "Title")

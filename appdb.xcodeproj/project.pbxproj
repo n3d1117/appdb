@@ -15,6 +15,12 @@
 		810C71FE20ACDAA900D6310E /* DeviceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C71FD20ACDAA900D6310E /* DeviceStatus.swift */; };
 		8115465A20826AA50031C9DA /* Settings+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8115465920826AA50031C9DA /* Settings+Sections.swift */; };
 		8117DDAA1F3B05BD00E817C5 /* String+Truncation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117DDA91F3B05BD00E817C5 /* String+Truncation.swift */; };
+		81190B3D21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B3C21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift */; };
+		81190B43216A2FC800C81BEB /* TwoPortraitScreenshotsSearchCell+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B42216A2FC800C81BEB /* TwoPortraitScreenshotsSearchCell+Stars.swift */; };
+		81190B45216A2FF200C81BEB /* ThreePortraitScreenshotsSearchCell+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B44216A2FF200C81BEB /* ThreePortraitScreenshotsSearchCell+Stars.swift */; };
+		81190B47216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B46216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift */; };
+		81190B49216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B48216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift */; };
+		81190B4B216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B4A216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift */; };
 		811BEE282151538600F1F56A /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BEE1E2151538500F1F56A /* Items.swift */; };
 		811BEE292151538600F1F56A /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BEE1F2151538600F1F56A /* Link.swift */; };
 		811BEE2A2151538600F1F56A /* DeviceStatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BEE202151538600F1F56A /* DeviceStatusItem.swift */; };
@@ -181,6 +187,12 @@
 		8112C35B1F7FC6E30014EDB2 /* DynamicFontSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontSizeHelper.swift; sourceTree = "<group>"; };
 		8115465920826AA50031C9DA /* Settings+Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Sections.swift"; sourceTree = "<group>"; };
 		8117DDA91F3B05BD00E817C5 /* String+Truncation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Truncation.swift"; sourceTree = "<group>"; };
+		81190B3C21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortraitScreenshotSearchCell+Stars.swift"; sourceTree = "<group>"; };
+		81190B42216A2FC800C81BEB /* TwoPortraitScreenshotsSearchCell+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwoPortraitScreenshotsSearchCell+Stars.swift"; sourceTree = "<group>"; };
+		81190B44216A2FF200C81BEB /* ThreePortraitScreenshotsSearchCell+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreePortraitScreenshotsSearchCell+Stars.swift"; sourceTree = "<group>"; };
+		81190B46216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LandscapeScreenshotSearchCell+Stars.swift"; sourceTree = "<group>"; };
+		81190B48216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixedScreenshotsSearchCell_L->P+Stars.swift"; sourceTree = "<group>"; };
+		81190B4A216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixedScreenshotsSearchCell_P->L+Stars.swift"; sourceTree = "<group>"; };
 		811BEE1E2151538500F1F56A /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 		811BEE1F2151538600F1F56A /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		811BEE202151538600F1F56A /* DeviceStatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceStatusItem.swift; sourceTree = "<group>"; };
@@ -781,11 +793,17 @@
 				81485A78216777230004184F /* NoScreenshotsSearchCell~Book.swift */,
 				81F271E121690B97005C7314 /* NoScreenshotsSearchCell~Book+Stars.swift */,
 				816010CE1F8FEFF5003BA61E /* PortraitScreenshotSearchCell.swift */,
+				81190B3C21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift */,
 				819E69911F8FCD0200C4608F /* TwoPortraitScreenshotsSearchCell.swift */,
+				81190B42216A2FC800C81BEB /* TwoPortraitScreenshotsSearchCell+Stars.swift */,
 				814F34001F9350F000FF062B /* ThreePortraitScreenshotsSearchCell.swift */,
+				81190B44216A2FF200C81BEB /* ThreePortraitScreenshotsSearchCell+Stars.swift */,
 				819E69931F8FCD1000C4608F /* LandscapeScreenshotSearchCell.swift */,
+				81190B46216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift */,
 				816D1F1C1F913BDB00172094 /* MixedScreenshotsSearchCell_L->P.swift */,
+				81190B48216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift */,
 				816D1F1E1F9143C800172094 /* MixedScreenshotsSearchCell_P->L.swift */,
+				81190B4A216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift */,
 				816D1F211F91656E00172094 /* iPad */,
 				816D1F201F91655F00172094 /* iPhone */,
 			);
@@ -1130,6 +1148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81190B43216A2FC800C81BEB /* TwoPortraitScreenshotsSearchCell+Stars.swift in Sources */,
 				819E69941F8FCD1000C4608F /* LandscapeScreenshotSearchCell.swift in Sources */,
 				81EC00651DAD7514009EEFFA /* Featured.swift in Sources */,
 				817610F421515A3200602FF2 /* API+DeviceLink.swift in Sources */,
@@ -1138,6 +1157,7 @@
 				8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */,
 				818A559F20583D4600162E51 /* Settings.swift in Sources */,
 				81262019215444A400B06F88 /* AttributedLabel.swift in Sources */,
+				81190B45216A2FF200C81BEB /* ThreePortraitScreenshotsSearchCell+Stars.swift in Sources */,
 				8173FBF0207BCAE200EF779F /* SelectorBulletinPage.swift in Sources */,
 				81DBDB56208CD67F00BDE600 /* SeeAllCell+WithStars.swift in Sources */,
 				81EC006A1DAD7704009EEFFA /* Colors.swift in Sources */,
@@ -1146,6 +1166,7 @@
 				817418A52165368A00BB70EB /* LoadingCollectionView.swift in Sources */,
 				8105175B20D0283300B3E1FB /* Identifiable.swift in Sources */,
 				81F271E221690B97005C7314 /* NoScreenshotsSearchCell~Book+Stars.swift in Sources */,
+				81190B3D21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift in Sources */,
 				8133C45E208B874600F2F9F5 /* SeeAllCell.swift in Sources */,
 				81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */,
 				81F1FEA41E5B7DEF00C1CD44 /* AlamofireObjectMapper.swift in Sources */,
@@ -1185,6 +1206,7 @@
 				81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */,
 				817610EF21515A3200602FF2 /* API+SystemStatus.swift in Sources */,
 				81BE066C1E6C2EA500AD9827 /* Details+ExternalLink.swift in Sources */,
+				81190B47216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift in Sources */,
 				81485A77216617980004184F /* Search+Extension.swift in Sources */,
 				8126201C215444A400B06F88 /* Style.swift in Sources */,
 				81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */,
@@ -1230,8 +1252,10 @@
 				81AF3532215115B200A798D7 /* RoundedButton.swift in Sources */,
 				81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */,
 				819E69891F8E8C2700C4608F /* SearchCell.swift in Sources */,
+				81190B4B216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift in Sources */,
 				811BEE282151538600F1F56A /* Items.swift in Sources */,
 				817610F621515A3200602FF2 /* API+DeviceStatus.swift in Sources */,
+				81190B49216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift in Sources */,
 				8173FBF4207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift in Sources */,
 				812C3544207D237300D39748 /* ConfigServer.swift in Sources */,
 				819E69921F8FCD0200C4608F /* TwoPortraitScreenshotsSearchCell.swift in Sources */,

@@ -161,13 +161,12 @@ extension App: Mappable {
             // e.g https://is4-ssl.mzstatic.com/image/.../source/406x228bb.jpg
             let size = endingFilename.components(separatedBy: "x")
             guard let width = Int(size[0]), let height = Int(size[1]) else { return "portrait" }
-            if width == height { print("ohey! --> " + absoluteUrl) }
-            return width >= height ? "landscape" : "portrait"
+            return width > height ? "landscape" : "portrait"
         } else if let endingFilename = ending.components(separatedBy: ".").first {
             // e.g. http://a1.mzstatic.com/us/r30/Purple2/.../screen568x568.jpeg
             guard let size = endingFilename.components(separatedBy: "screen").last?.components(separatedBy: "x") else { return "portrait" }
             guard let width = Int(size[0]), let height = Int(size[1]) else { return "portrait" }
-            return width >= height ? "landscape" : "portrait"
+            return width > height ? "landscape" : "portrait"
         } else {
             print("WARNING: New filename convention detected! Please take a look")
             return "portrait"

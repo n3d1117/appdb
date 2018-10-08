@@ -50,7 +50,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         
         // Fix random separator margin issues
-        if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
+        tableView.cellLayoutMarginsFollowReadableWidth = false
         
         tableView.theme_separatorColor = Color.borderColor
         
@@ -123,7 +123,8 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func putCategoriesAtTheTop(compound: String) {
         if categories.first?.compound != compound, let top = categories.filter({$0.compound == compound}).first {
             if let index = categories.index(of: top) {
-                categories.remove(at: index); categories.insert(top, at: 0)
+                categories.remove(at: index)
+                categories.insert(top, at: 0)
             }
         }
     }

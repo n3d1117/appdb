@@ -1,5 +1,5 @@
 //
-//  Amirite.swift
+//  SuggestionsWhileTyping.swift
 //  appdb
 //
 //  Created by ned on 16/10/2017.
@@ -11,16 +11,24 @@ import Cartography
 import RealmSwift
 import ObjectMapper
 
-class Amirite: UITableViewController, UISearchResultsUpdating {
+protocol SearcherDelegate: class {
+    func didClickSuggestion(_ text: String)
+}
+
+class SuggestionsWhileTyping: UITableViewController, UISearchResultsUpdating {
     
-    var text: String!
-    var results: [String] = [] {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    var searcherDelegate: SearcherDelegate? = nil
+    
+    var text: String = ""
+    var results: [String] = []
     
     var type: ItemType = .ios
+    
+    lazy var bgColorView: UIView = {
+        let view = UIView()
+        view.theme_backgroundColor = Color.cellSelectionColor
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,38 +37,30 @@ class Amirite: UITableViewController, UISearchResultsUpdating {
         tableView.theme_backgroundColor = Color.veryVeryLightGray
         view.theme_backgroundColor = Color.veryVeryLightGray
         tableView.theme_separatorColor = Color.borderColor
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ida")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "suggestion")
+        tableView.cellLayoutMarginsFollowReadableWidth = true
     }
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        searchController.searchBar.textField?.theme_textColor = Color.title
-        if !text.isEmpty {
+        if text.count > 1 {
             self.text = text
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: nil)
             self.perform(#selector(self.reload), with: nil, afterDelay: 0.25)
+        } else {
+            if results.isEmpty {
+                results = []
+                tableView.reloadData()
+            }
         }
     }
     
     @objc func reload() {
         API.fastSearch(type: self.type, query: self.text, maxResults: 7, success: { results in
             self.results = results
+            self.tableView.reloadData()
         }, fail: { _ in })
     }
-    
-    /*func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("cancel")
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("search button clicked")
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        if let searchText = searchBar.text {
-            print("Scoped changed: \(searchText) - selected scope: \(selectedScope)")
-        }
-    }*/
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
@@ -71,17 +71,22 @@ class Amirite: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ida", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "suggestion", for: indexPath)
         cell.contentView.theme_backgroundColor = Color.veryVeryLightGray
         cell.theme_backgroundColor = Color.veryVeryLightGray
         cell.textLabel?.theme_textColor = Color.title
-        cell.textLabel?.text = results[indexPath.row]
+        if results.indices.contains(indexPath.row) {
+            var result = results[indexPath.row]
+            while result.hasPrefix(" ") { result = String(result.dropFirst()) }
+            cell.textLabel?.text = result
+        }
+        cell.selectedBackgroundView = bgColorView
         //cell.highlight(text: text, normal: nil, highlight: [NSBackgroundColorAttributeName: .yellow], type: UILabel.self)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("\(indexPath.row) selected")
+        searcherDelegate?.didClickSuggestion(results[indexPath.row])
     }
 }

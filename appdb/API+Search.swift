@@ -23,7 +23,7 @@ extension API {
                                   dev: String = "0",
                                   trackid: String = "0",
                                   q: String = "",
-                                  page: Int = 0,
+                                  page: Int = 1,
                                   success:@escaping (_ items: [T]) -> Void,
                                   fail:@escaping (_ error: String) -> Void) where T:Mappable, T:Meta {
 
@@ -85,19 +85,20 @@ extension API {
     
     static func quickCheckForErrors(_ request: DataRequest, completion: @escaping (_ ok: Bool, _ hasError: String?) -> Void) {
         request.responseJSON { response in
-            if let value = response.result.value {
+            switch response.result {
+            case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
                     if !json["errors"].isEmpty {
                         completion(false, json["errors"][0].stringValue)
                     } else {
-                        completion(false, "An error has occurred".localized())
+                        completion(false, "Oops! Something went wrong. Please try again later.".localized())
                     }
                 } else {
                     completion(true, nil)
                 }
-            } else {
-                completion(false, "An error has occurred".localized())
+            case .failure(let error):
+                completion(false, error.localizedDescription)
             }
         }
     }

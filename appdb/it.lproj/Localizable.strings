@@ -119,6 +119,15 @@
 "No, not yet linked" = "No, non è collegato";
 "name@example.com" = "nome@esempio.it";
 
+////////////////////
+//     SEARCH     //
+////////////////////
+"Search iOS Apps" = "Cerca app iOS";
+"Search Cydia Apps" = "Cerca app Cydia";
+"Search Books" = "Cerca libri";
+"No results were found for '%@'" = "Nessun risultato trovato per '%@'";
+"Please search at least two characters" = "Please search at least two characters";
+
 //////////////////////
 //     SETTINGS     //
 //////////////////////

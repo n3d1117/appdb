@@ -9,11 +9,44 @@
 
 import UIKit
 import Cartography
+import AlamofireImage
+import RealmSwift
 
 class SearchCell: UICollectionViewCell {
     
     func setConstraints() {}
     
+    var tweaked: Bool = false {
+        didSet {
+            if oldValue != tweaked {
+                name.theme_textColor = tweaked ? Color.mainTint: Color.title
+                if tweaked {
+                    name.numberOfLines = 1
+                    paddingLabel.isHidden = false
+                    constrain(paddingLabel, seller) { tweaked, seller in
+                        tweaked.left == seller.left
+                        tweaked.right <= tweaked.superview!.right - Global.size.margin.value
+                        tweaked.top == seller.bottom + (7~~6)
+                    }
+                } else {
+                    paddingLabel.isHidden = true
+                    name.numberOfLines = 2
+                }
+            }
+        }
+    }
+    
+    lazy var paddingLabel: PaddingLabel = {
+        let label = PaddingLabel()
+        label.theme_textColor = Color.invertedTitle
+        label.font = .systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
+        label.makeDynamicFont()
+        label.layer.backgroundColor = UIColor.gray.cgColor
+        label.layer.cornerRadius = 6
+        label.isHidden = true
+        return label
+    }()
+
     var magic: CGFloat { return 0 }
 
     var identifier: String { return "" }
@@ -24,7 +57,8 @@ class SearchCell: UICollectionViewCell {
     var mixedPortraitSize: CGFloat { return 0 }
     
     var landscapeSize: CGFloat = (150~~140)
-    var iconSize: CGFloat = (85~~70)
+    var iconSize: CGFloat = (80~~70)
+    var coverHeight: CGFloat = (80~~70) * 1.542
     var spaceFromIcon: CGFloat = (15~~12)
     
     var margin: CGFloat = Global.size.margin.value
@@ -33,40 +67,49 @@ class SearchCell: UICollectionViewCell {
     var icon: UIImageView!
     var seller: UILabel!
     
+    func configure(with item: Object) {
+        self.name.text = item.itemName
+        self.seller.text = item.itemSeller
+        self.tweaked = item.itemIsTweaked
+        if self.tweaked { paddingLabel.text = API.categoryFromId(id: item.itemCydiaCategoryId, type: .cydia).uppercased() }
+        guard let url = URL(string: item.itemIconUrl) else { return }
+        icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize), imageTransition: .crossDissolve(0.2))
+    }
+    
     func sharedSetup() {
-        theme_backgroundColor = Color.softGreen
-        contentView.theme_backgroundColor = Color.softGreen
+        theme_backgroundColor = Color.veryVeryLightGray
+        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        
+        contentView.layer.cornerRadius = 6
+        layer.backgroundColor = UIColor.clear.cgColor
         
         // Name
         name = UILabel()
         name.theme_textColor = Color.title
         name.font = .systemFont(ofSize: 18.5~~16.5)
-        name.numberOfLines = 3
-        name.text = "fuck"
+        name.numberOfLines = 2
         name.makeDynamicFont()
         
         // Icon
         icon = UIImageView()
         icon.layer.borderWidth = 1 / UIScreen.main.scale
         icon.layer.theme_borderColor = Color.borderCgColor
-        icon.image = #imageLiteral(resourceName: "placeholderIcon")
-        icon.layer.cornerRadius = Global.cornerRadius(from: iconSize)
+        icon.contentMode = .scaleToFill
         
         // Seller
         seller = UILabel()
         seller.theme_textColor = Color.darkGray
-        seller.font = .systemFont(ofSize: 15~~13)
+        seller.font = .systemFont(ofSize: 14~~13)
         seller.numberOfLines = 1
-        seller.text = "fuck2"
         seller.makeDynamicFont()
         
         contentView.addSubview(name)
         contentView.addSubview(icon)
         contentView.addSubview(seller)
+        contentView.addSubview(paddingLabel)
         
         constrain(name, seller, icon) { name, seller, icon in
-            icon.height == iconSize
-            icon.width == icon.height
+            icon.width == iconSize
             icon.left == icon.superview!.left + margin
             icon.top == icon.superview!.top + margin
             
