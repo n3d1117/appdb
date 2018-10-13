@@ -59,6 +59,12 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         // Wait for data to be fetched, reload tableView on completion
         reloadTableWhenReady()
         
+        // Preload view controllers
+        for viewController in tabBarController?.viewControllers ?? [] {
+            if let navigationVC = viewController as? UINavigationController, let rootVC = navigationVC.viewControllers.first {
+                let _ = rootVC.view
+            }
+        }
     }
     
     // MARK: - Load Initial Data

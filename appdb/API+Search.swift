@@ -102,5 +102,27 @@ extension API {
             }
         }
     }
+    
+    static func getTrending(type: ItemType, order: Order = .all, maxResults: Int = 8,
+                           success:@escaping (_ results: [String]) -> Void) {
+        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue,
+                                                 "type": type.rawValue,
+                                                 "order": order.rawValue,
+                                                 "lang": languageCode,
+                                                 "perpage": maxResults], headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let data = json["data"]
+                    var results: [String] = []
+                    let max = data.count > maxResults ? maxResults : data.count
+                    for i in 0..<max { results.append(data[i]["name"].stringValue) }
+                    success(results)
+                default:
+                    break
+                }
+        }
+    }
 
 }

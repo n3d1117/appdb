@@ -22,6 +22,7 @@ func delay(_ delay: Double, closure: @escaping ()->()) {
 infix operator ~~ : AdditionPrecedence
 func ~~<T>(left: T, right: T) -> T { return IS_IPAD ? left : right }
 
+// MARK: - UINavigationBar
 // UINavigationBar extension to hide/show bottom hairline. Useful for segmented control under Navigation Bar
 extension UINavigationBar {
     
@@ -46,6 +47,8 @@ extension UINavigationBar {
         return nil
     }    
 }
+
+// MARK: - String
 
 extension String {
     
@@ -161,7 +164,10 @@ extension String {
             return self
         }
     }
+    
 }
+
+// MARK: - Separators
 
 // Add self made separator (Thanks, Apple...)
 extension DetailsCell {
@@ -177,6 +183,7 @@ extension DetailsCell {
         }
     }
 }
+
 class TableViewHeader: UITableViewHeaderFooterView {
     func addSeparator(full: Bool = false) {
         let line = UIView()
@@ -190,6 +197,8 @@ class TableViewHeader: UITableViewHeaderFooterView {
         }
     }
 }
+
+// MARK: - Emoji
 
 // FUCK EMOJIS
 extension Character {

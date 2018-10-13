@@ -112,7 +112,8 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     }
     
     // Called when user reaches bottom, loads 25 more
-    func setFooter() {
+    
+    fileprivate func setFooter() {
         collectionView.spr_setIndicatorFooter { [weak self] in
             self?.currentPage += 1
             // start search
@@ -125,6 +126,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             case .books: self?.searchAndUpdate(text, page: page, type: Book.self)
             }
         }
+        collectionView.spr_endRefreshingWithNoMoreData()
     }
     
     // MARK: - Search bar
@@ -149,7 +151,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        if currentPhase == .showResults || currentPhase == .loading {
+        if currentPhase != .showTrending {
             switchLayout(phase: .showTrending, reload: true)
         }
     }
@@ -227,7 +229,6 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         case .showResults:
             self.collectionView.collectionViewLayout.invalidateLayout()
             collectionView.collectionViewLayout = resultsLayout
-            
             state = .done(animated: animated)
         }
     }
@@ -235,7 +236,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     // Fix bug on iOS 11+ where the scroll indicator would follow first cell when scrolled up
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if #available(iOS 11.0, *), let nav = navigationController {
+        if #available(iOS 11.0, *), currentPhase == .showResults, let nav = navigationController {
             let minOff: CGFloat = -nav.navigationBar.frame.height - UIApplication.shared.statusBarFrame.height - searchController.searchBar.frame.size.height
             collectionView.showsVerticalScrollIndicator = scrollView.contentOffset.y > minOff
         }

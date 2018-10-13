@@ -21,7 +21,7 @@ extension Search {
     }
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape  && HAS_NOTCH ? 50 : 15
+        return UIApplication.shared.statusBarOrientation.isLandscape && HAS_NOTCH ? 50 : 15
     }
     
     func pushDetailsController(with content: Object) {
@@ -104,6 +104,7 @@ extension Search {
                     }
                 }
             }
+            
         }) { error in
             delay(0.3) {
                 self.state = .error(first: "An error has occurred".localized(), second: error, animated: true)
