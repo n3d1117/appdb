@@ -41,8 +41,6 @@ class TagButton: UIButton {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        setupView()
     }
     
     public init(title: String) {
@@ -50,11 +48,12 @@ class TagButton: UIButton {
         
         setTitle(title, for: .normal)
         
-        setupView()
-    }
-    
-    private func setupView() {
         frame.size = intrinsicContentSize
+        
+        addTarget(self, action: #selector(self.pressed), for: .touchDown)
+        addTarget(self, action: #selector(self.pressed), for: .touchDragEnter)
+        addTarget(self, action: #selector(self.released), for: .touchDragExit)
+        
     }
     
     // MARK: - Layout
@@ -67,5 +66,19 @@ class TagButton: UIButton {
             size.width = size.height
         }
         return size
+    }
+    
+    // MARK: - Animations
+    
+    @objc fileprivate func pressed() {
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: [.allowUserInteraction, .curveEaseIn], animations: {
+            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+        }, completion: nil)
+    }
+    
+    @objc fileprivate func released() {
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: [.allowUserInteraction, .curveEaseOut], animations: {
+            self.transform = CGAffineTransform.identity
+        }, completion: nil)
     }
 }

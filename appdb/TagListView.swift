@@ -76,6 +76,8 @@ class TagListView: UIView {
         rearrangeViews()
     }
     
+    // Source: https://github.com/ElaWorkshop/TagListView
+    
     private func rearrangeViews() {
         let views = tagViews as [UIView] + tagBackgroundViews + rowViews
         for view in views {
