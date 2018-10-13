@@ -15,6 +15,14 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     
     fileprivate var currentPage: Int = 1
     
+    fileprivate var trendingItems: [String] = [] {
+        didSet {
+            if !trendingItems.isEmpty {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
     var searchController = UISearchController()
     
     var resultCells: [SearchCell] = [] {
@@ -33,7 +41,11 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     
     var trendingLayout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: view.bounds.width - 2 * margin, height: 60)
+        var offset: CGFloat = 0
+        if let nav = navigationController, let tab = tabBarController {
+            offset = nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height + tab.tabBar.frame.height + (0~~20)
+        }
+        layout.itemSize = CGSize(width: view.bounds.width - (4~~3) * margin, height: view.bounds.height - offset)
         layout.sectionInset = UIEdgeInsets(top: topInset, left: 0, bottom: topInset, right: 0)
         return layout
     }
@@ -64,7 +76,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         collectionView.collectionViewLayout = trendingLayout
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         collectionView.theme_backgroundColor = Color.tableViewBackgroundColor
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "id")
+        collectionView.register(TrendingCollectionViewCell.self, forCellWithReuseIdentifier: "trendingcell")
 
         //Register for 3D Touch
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
@@ -107,8 +119,15 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         
         setFooter()
         
-        // Intially hide footer spinner
-        self.collectionView.spr_endRefreshingWithNoMoreData()
+        getTrending()
+    }
+    
+    // Fetch trending apps
+    
+    func getTrending(type: ItemType = .ios) {
+        API.getTrending(type: type, order: .day, maxResults: 12, success: { results in
+            self.trendingItems = results
+        })
     }
     
     // Called when user reaches bottom, loads 25 more
@@ -170,6 +189,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
                 searchController.searchBar.placeholder = "Search Books".localized()
             default: break
         }
+        getTrending(type: updateSuggestions.type)
         guard let text = searchBar.text, text.count > 1  else { return }
         updateSuggestions.reload()
     }
@@ -183,7 +203,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch currentPhase {
             case .showResults: return resultCells.count
-            case .showTrending: return 10
+            case .showTrending: return trendingItems.count > 0 ? 1 : 0
             case .loading: return 0
         }
     }
@@ -195,12 +215,20 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             (cell as? SearchCell)?.configure(with: results[indexPath.row])
             return cell
         case .showTrending:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "id", for: indexPath)
-            cell.contentView.theme_backgroundColor = Color.veryVeryLightGray
-            cell.theme_backgroundColor = Color.veryVeryLightGray
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "trendingcell", for: indexPath)
+            (cell as? TrendingCollectionViewCell)?.configure(with: trendingTitle(), delegate: self, tags: trendingItems)
             return cell
         default:
             return UICollectionViewCell()
+        }
+    }
+    
+    fileprivate func trendingTitle() -> String {
+        guard let updateSuggestions = self.searchController.searchResultsController as? SuggestionsWhileTyping else { return "" }
+        switch updateSuggestions.type {
+        case .ios: return "Trending iOS Apps".localized().uppercased().replacingOccurrences(of: "IOS", with: "iOS")
+        case .cydia: return "Trending Cydia Apps".localized().uppercased()
+        case .books: return "Trending Books".localized().uppercased()
         }
     }
     

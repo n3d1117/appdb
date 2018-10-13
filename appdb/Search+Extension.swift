@@ -286,6 +286,16 @@ extension Search: UIViewControllerPreviewingDelegate {
     }
 }
 
+// MARK: - Tapped on a tag
+
+extension Search: TagListViewDelegate {
+    
+    func tagPressed(_ title: String) {
+        actuallySearch(with: title)
+    }
+    
+}
+
 // MARK: - Redirect to results after clicking a suggestion
 
 extension Search: SearcherDelegate {

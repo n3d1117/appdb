@@ -59,9 +59,7 @@ extension API {
         })
     }
     
-    static func fastSearch(type: ItemType, query: String, maxResults: Int = 8,
-                                     success:@escaping (_ results: [String]) -> Void,
-                                     fail:@escaping (_ error: String) -> Void) {
+    static func fastSearch(type: ItemType, query: String, maxResults: Int = 10, success:@escaping (_ results: [String]) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue,
                                                  "type": type.rawValue,
                                                  "order": Order.all.rawValue,
@@ -77,8 +75,6 @@ extension API {
                     let max = data.count > maxResults ? maxResults : data.count
                     for i in 0..<max { results.append(data[i]["name"].stringValue) }
                     success(results)
-                } else {
-                    fail("")
                 }
             }
     }

@@ -125,6 +125,9 @@
 "Search iOS Apps" = "Search iOS Apps";
 "Search Cydia Apps" = "Search Cydia Apps";
 "Search Books" = "Search Books";
+"Trending iOS Apps" = "Trending iOS Apps";
+"Trending Cydia Apps" = "Trending Cydia Apps";
+"Trending Books" = "Trending Books";
 "No results were found for '%@'" = "No results were found for '%@'";
 "Please search at least two characters" = "Please search at least two characters";
 

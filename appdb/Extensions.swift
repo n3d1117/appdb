@@ -233,3 +233,18 @@ extension UISearchBar {
         return nil
     }
 }
+
+// MARK: - UIColor
+
+public extension UIColor {
+    public var imageValue: UIImage {
+        let rect = CGRect(origin: .zero, size: CGSize(width: 1, height: 1))
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(self.cgColor)
+        context.fill(rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+}
