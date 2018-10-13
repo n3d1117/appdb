@@ -39,11 +39,19 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     
     var currentPhase: Phase = .showTrending
     
+    var shouldIncreaseHeight: Bool {
+        let type = InternalDeviceType.current
+        return type == .iPhone4S || type == .iPhone5 || type == .iPhone5C || type == .iPhone5S
+    }
+    
     var trendingLayout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         var offset: CGFloat = 0
         if let nav = navigationController, let tab = tabBarController {
-            offset = nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height + tab.tabBar.frame.height + (0~~20)
+            offset = nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height + tab.tabBar.frame.height + 80
+        }
+        if shouldIncreaseHeight {
+            offset -= 60
         }
         layout.itemSize = CGSize(width: view.bounds.width - (4~~3) * margin, height: view.bounds.height - offset)
         layout.sectionInset = UIEdgeInsets(top: topInset, left: 0, bottom: topInset, right: 0)

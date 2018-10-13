@@ -222,27 +222,3 @@ public extension UIDevice {
         return InternalDeviceType.current
     }
 }
-
-#if swift(>=4.2)
-#else
-
-// MARK: -
-
-internal protocol CaseIterable {
-    associatedtype AllCases: Collection where AllCases.Element == Self
-    static var allCases: AllCases { get }
-}
-
-internal extension CaseIterable where Self: Hashable {
-    static var allCases: [Self] {
-        return [Self](AnySequence { () -> AnyIterator<Self> in
-            var raw = -1
-            return AnyIterator {
-                raw += 1
-                return withUnsafeBytes(of: &raw) { $0.load(as: Self.self) }
-            }
-        })
-    }
-}
-
-#endif
