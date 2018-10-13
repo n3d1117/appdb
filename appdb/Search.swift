@@ -99,6 +99,9 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search iOS Apps".localized()
         searchController.searchBar.textField?.theme_textColor = Color.title
+        searchController.searchBar.textField?.enablesReturnKeyAutomatically = false
+        // Enable search button even if search bar text is empty
+        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
         definesPresentationContext = true
         
         if #available(iOS 11.0, *) {
@@ -113,16 +116,6 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             searchController.searchBar.showsBookmarkButton = true
             searchController.searchBar.setImage(#imageLiteral(resourceName: "filter"), for: .bookmark, state: .normal)
             navigationItem.titleView = searchController.searchBar
-        }
-        
-        // Enable search button even if search bar text is empty
-        for view in searchController.searchBar.subviews {
-            for subview in view.subviews {
-                if let subview = subview as? UITextField {
-                    subview.enablesReturnKeyAutomatically = false
-                    break
-                }
-            }
         }
         
         setFooter()
