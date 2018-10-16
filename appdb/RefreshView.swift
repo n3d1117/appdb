@@ -56,15 +56,16 @@ open class RefreshView: UIView {
     private var sizeToken: NSKeyValueObservation?
     
     open override func willMove(toWindow newWindow: UIWindow?) {
-        if newWindow == nil {
-            offsetToken?.invalidate()
-            stateToken?.invalidate()
-            sizeToken?.invalidate()
-        }
+        newWindow == nil ? clearObserver() : setupObserver()
     }
     
     open override func willMove(toSuperview newSuperview: UIView?) {
-        guard let scrollView = newSuperview as? UIScrollView else { return }
+        setupObserver()
+    }
+    
+    private func setupObserver() {
+        guard let scrollView = scrollView else { return }
+        
         offsetToken = scrollView.observe(\.contentOffset) { [weak self] scrollView, _ in
             self?.scrollViewDidScroll(scrollView)
         }
@@ -73,13 +74,19 @@ open class RefreshView: UIView {
             self?.scrollViewDidEndDragging(scrollView)
         }
         if style == .header {
-            frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
+            frame = CGRect(x: 0, y: -height, width: scrollView.contentSize.width, height: height)
         } else {
             sizeToken = scrollView.observe(\.contentSize) { [weak self] scrollView, _ in
                 self?.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: scrollView.contentSize.width, height: self?.height ?? 0)
                 self?.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
             }
         }
+    }
+    
+    private func clearObserver() {
+        offsetToken?.invalidate()
+        stateToken?.invalidate()
+        sizeToken?.invalidate()
     }
     
     private func scrollViewDidScroll(_ scrollView: UIScrollView) {

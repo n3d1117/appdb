@@ -61,7 +61,7 @@ enum DeviceLinkIntroBulletins {
             
             item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
             
-            delay(0.6) {
+            delay(0.4) {
                 
                 // Request device link with given code
                 // On success, store link token & present completion bulletin
@@ -109,8 +109,13 @@ enum DeviceLinkIntroBulletins {
             API.linkNewDevice(email: email, success: {
                 
                 API.setConfiguration(params: [.appsync: "no"], success: {
-                    let completionPage = self.makeCompletionPage()
-                    item.manager?.push(item: completionPage)
+                    API.getConfiguration(success: {
+                        let completionPage = self.makeCompletionPage()
+                        item.manager?.push(item: completionPage)
+                    }, fail: { error in
+                        let errorPage = self.makeErrorPage(with: error.prettified)
+                        item.manager?.push(item: errorPage)
+                    })
                 }, fail: { error in
                     let errorPage = self.makeErrorPage(with: error.prettified)
                     item.manager?.push(item: errorPage)

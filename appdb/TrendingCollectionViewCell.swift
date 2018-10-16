@@ -9,15 +9,6 @@
 import UIKit
 import Cartography
 
-extension UILabel {
-    func addCharactersSpacing(_ value: CGFloat = 1.15) {
-        if let textString = text {
-            let attrs: [NSAttributedString.Key : Any] = [.kern: value]
-            attributedText = NSAttributedString(string: textString, attributes: attrs)
-        }
-    }
-}
-
 class TrendingCollectionViewCell: UICollectionViewCell {
     
     lazy var title: UILabel = {
@@ -40,7 +31,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     
     func configure(with title: String, delegate: TagListViewDelegate, tags: [String]) {
         self.title.text = title
-        self.title.addCharactersSpacing(1.0)
+        self.title.addCharactersSpacing(1)
         tagView.delegate = delegate
         tagView.removeAllTags()
         tagView.addTags(tags)
