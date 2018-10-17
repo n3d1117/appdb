@@ -56,16 +56,20 @@ open class RefreshView: UIView {
     private var sizeToken: NSKeyValueObservation?
     
     open override func willMove(toWindow newWindow: UIWindow?) {
-        newWindow == nil ? clearObserver() : setupObserver()
+        if newWindow == nil {
+            clearObserver()
+        } else {
+            guard let scrollView = scrollView else { return }
+            setupObserver(scrollView)
+        }
     }
     
     open override func willMove(toSuperview newSuperview: UIView?) {
-        setupObserver()
+        guard let scrollView = newSuperview as? UIScrollView else { return }
+        setupObserver(scrollView)
     }
     
-    private func setupObserver() {
-        guard let scrollView = scrollView else { return }
-        
+    private func setupObserver(_ scrollView: UIScrollView) {
         offsetToken = scrollView.observe(\.contentOffset) { [weak self] scrollView, _ in
             self?.scrollViewDidScroll(scrollView)
         }
@@ -94,13 +98,13 @@ open class RefreshView: UIView {
         
         switch style {
         case .header:
-            progress = min(1, max(0, -(scrollView.contentOffset.y + scrollView.contentInset.top) / height))
+            progress = min(1, max(0, -(scrollView.contentOffset.y + scrollView.contentInsetTop) / height))
         case .footer:
             if scrollView.contentSize.height <= scrollView.bounds.height { break }
-            progress = min(1, max(0, (scrollView.contentOffset.y + scrollView.bounds.height - scrollView.contentSize.height - scrollView.contentInset.bottom) / height))
+            progress = min(1, max(0, (scrollView.contentOffset.y + scrollView.bounds.height - scrollView.contentSize.height - scrollView.contentInsetBottom) / height))
         case .autoFooter:
             if scrollView.contentSize.height <= scrollView.bounds.height { break }
-            if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom {
+            if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInsetBottom {
                 beginRefreshing()
             }
         }
@@ -120,12 +124,12 @@ open class RefreshView: UIView {
             UIView.animate(withDuration: 0.3, animations: {
                 switch self.style {
                 case .header:
-                    scrollView.contentOffset.y = -self.height - scrollView.contentInset.top
+                    scrollView.contentOffset.y = -self.height - scrollView.contentInsetTop
                     scrollView.contentInset.top += self.height
                 case .footer:
                     scrollView.contentInset.bottom += self.height
                 case .autoFooter:
-                    scrollView.contentOffset.y = self.height + scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom
+                    scrollView.contentOffset.y = self.height + scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInsetBottom
                     scrollView.contentInset.bottom += self.height
                 }
             }, completion: { _ in
@@ -154,5 +158,23 @@ open class RefreshView: UIView {
         }
     }
     
+}
+
+private extension UIScrollView {
+    var contentInsetTop: CGFloat {
+        if #available(iOS 11.0, *) {
+            return contentInset.top + adjustedContentInset.top
+        } else {
+            return contentInset.top
+        }
+    }
+    
+    var contentInsetBottom: CGFloat {
+        if #available(iOS 11.0, *) {
+            return contentInset.bottom + adjustedContentInset.bottom
+        } else {
+            return contentInset.bottom
+        }
+    }
 }
 
