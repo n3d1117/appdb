@@ -122,6 +122,7 @@
 ////////////////////
 //     SEARCH     //
 ////////////////////
+
 "Search iOS Apps" = "Search iOS Apps";
 "Search Cydia Apps" = "Search Cydia Apps";
 "Search Books" = "Search Books";
@@ -198,3 +199,7 @@
 "Open in Safari" = "Open in Safari";
 "%@ ago" = "%@ ago";
 "now" = "now";
+"Send" = "Send";
+"Report" = "Report";
+"Reporting a broken link for '%@'." = "Reporting a broken link for '%@'.";
+"Enter a reason for your report" = "Enter a reason for your report";

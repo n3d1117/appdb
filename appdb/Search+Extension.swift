@@ -101,6 +101,9 @@ extension Search {
                     delay(0.3) {
                         self.resultCells = tmp
                         self.switchLayout(phase: .showResults, animated: true, reload: true)
+                        if tmp.count < 25 {
+                             self.collectionView.spr_endRefreshingWithNoMoreData()
+                        }
                     }
                 }
             }

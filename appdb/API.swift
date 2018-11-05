@@ -72,6 +72,7 @@ enum Actions: String {
     case fix = "fix_command"
     case retry = "retry_command"
     case install = "install"
+    case report = "report"
 }
 
 enum ConfigurationParameters: String {

@@ -218,6 +218,7 @@ class Details: LoadingTableView {
     }
     
     // MARK: - Install app
+    
     @objc fileprivate func install(sender: RoundedButton) {
         API.install(id: sender.linkId, type: contentType) { error in
             if let error = error {
@@ -225,6 +226,59 @@ class Details: LoadingTableView {
             } else {
                 print("success")
             }
+        }
+    }
+    
+    // MARK: - Report link with reason
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexForSegment == .download && DeviceInfo.deviceIsLinked && !versions.isEmpty
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let report = UITableViewRowAction(style: .normal, title: "Report".localized()) { _, _ in
+            let id = self.versions[indexPath.section-2].links[indexPath.row].id
+            self.showReportAlert(id)
+        }
+        report.backgroundColor = .red
+        return [report]
+    }
+    
+    func showReportAlert(_ id: String) {
+        
+        let alert = UIAlertController(title: "Report".localized(), message: "Reporting a broken link for '%@'.".localizedFormat(content.itemName), preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: { textField -> Void in
+            textField.placeholder = "Enter a reason for your report".localized()
+            textField.addTarget(self, action: #selector(self.reportTextfieldTextChanged), for: .editingChanged)
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        
+        let reportAction = UIAlertAction(title: "Send".localized(), style: .destructive, handler: { _ -> Void in
+            if let textField = alert.textFields?.first, let text = textField.text {
+                API.reportLink(id: id, type: self.contentType, reason: text, completion: { error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("success!")
+                    }
+                })
+            }
+        })
+        
+        alert.addAction(reportAction)
+        reportAction.isEnabled = false
+        
+        self.present(alert, animated: true)
+    }
+    
+    // Only enable button if text is not empty
+    @objc func reportTextfieldTextChanged(sender: UITextField) {
+        var responder: UIResponder = sender
+        while !(responder is UIAlertController) { responder = responder.next! }
+        if let alert = responder as? UIAlertController {
+            (alert.actions[1] as UIAlertAction).isEnabled = sender.text != ""
         }
     }
     
