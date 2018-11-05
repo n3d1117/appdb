@@ -8,46 +8,41 @@
 
 import RealmSwift
 
-extension Settings {
+struct DeviceInfo {
     
-    var deviceIsLinked: Bool {
-        let realm = try! Realm()
+    static let realm = try! Realm()
+    
+    static var deviceIsLinked: Bool {
         guard let pref = realm.objects(Preferences.self).first else { return false }
         return !pref.token.isEmpty
     }
     
-    var pro: Bool {
-        let realm = try! Realm()
+    static var pro: Bool {
         guard let pref = realm.objects(Preferences.self).first else { return false }
         return pref.pro
     }
     
-    var proUntil: String {
-        let realm = try! Realm()
+    static var proUntil: String {
         guard let pref = realm.objects(Preferences.self).first else { return "" }
         return pref.proUntil
     }
     
-    var linkCode: String {
-        let realm = try! Realm()
+    static var linkCode: String {
         guard let pref = realm.objects(Preferences.self).first else { return "~" }
         return pref.linkCode
     }
     
-    var appsync: Bool {
-        let realm = try! Realm()
+    static var appsync: Bool {
         guard let pref = realm.objects(Preferences.self).first else { return false }
         return pref.appsync
     }
     
-    var ignoresCompatibility: Bool {
-        let realm = try! Realm()
+    static var ignoresCompatibility: Bool {
         guard let pref = realm.objects(Preferences.self).first else { return false }
         return pref.ignoreCompatibility
     }
     
-    var askForInstallationOptions: Bool {
-        let realm = try! Realm()
+    static var askForInstallationOptions: Bool {
         guard let pref = realm.objects(Preferences.self).first else { return false }
         return pref.askForInstallationOptions
     }

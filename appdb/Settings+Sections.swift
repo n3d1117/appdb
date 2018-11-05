@@ -11,11 +11,10 @@ import UIKit
 
 extension Settings {
     
-    // Device info string, e.g. "iPhone 6s (10.2, JB)"
+    // Device info string, e.g. "iPhone 6s (10.2)"
     var deviceInfoString: String {
         let device = UIDevice.current
-        let jb = FileManager.default.fileExists(atPath: "/bin/bash") // lazy check
-        return device.deviceType.displayName + " (" + device.systemVersion + ", \(jb ? "JB" : "Non-JB")" + ")"
+        return device.deviceType.displayName + " (" + device.systemVersion + ")"
     }
     
     var themeSection: [Static.Section] {
@@ -83,9 +82,9 @@ extension Settings {
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
                 
                 Row(text: "PRO Status".localized(), cellClass: SimpleStaticPROStatusCell.self,
-                    context: ["active": pro, "expire": proUntil]),
+                    context: ["active": DeviceInfo.pro, "expire": DeviceInfo.proUntil]),
                 
-                Row(text: "Link Code".localized(), detailText: linkCode, selection: { [unowned self] in
+                Row(text: "Link Code".localized(), detailText: DeviceInfo.linkCode, selection: { [unowned self] in
                         API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
                     }, cellClass: SimpleStaticCell.self, context: ["disableSelection": true], copyAction: { row in
                         UIPasteboard.general.string = row.detailText
@@ -94,15 +93,15 @@ extension Settings {
             ], footer: .title("Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.".localized())),
             
             Section(header: .title("Device Configuration".localized()), rows: [
-                Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: appsync) { newValue in
+                Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: DeviceInfo.appsync) { newValue in
                     API.setConfiguration(params: [.appsync: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Compatibility Checks".localized(), accessory: .switchToggle(value: !ignoresCompatibility) { newValue in
+                Row(text: "Compatibility Checks".localized(), accessory: .switchToggle(value: !DeviceInfo.ignoresCompatibility) { newValue in
                     API.setConfiguration(params: [.ignoreCompatibility: newValue ? "no" : "yes"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Ask to duplicate app".localized(), accessory: .switchToggle(value: askForInstallationOptions) { newValue in
+                Row(text: "Ask to duplicate app".localized(), accessory: .switchToggle(value: DeviceInfo.askForInstallationOptions) { newValue in
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self)
             ]),

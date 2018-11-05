@@ -56,7 +56,7 @@ class Settings: TableViewController {
         refreshSources()
         
         // Refresh link code & configuration parameters
-        if deviceIsLinked {
+        if DeviceInfo.deviceIsLinked {
             API.getLinkCode(success: {
                 API.getConfiguration(success: { [unowned self] in
                     self.refreshSources()
@@ -205,7 +205,7 @@ class Settings: TableViewController {
     // Reloads table view
     
     @objc func refreshSources() {
-        if deviceIsLinked {
+        if DeviceInfo.deviceIsLinked {
             dataSource.sections = deviceLinkedSections
         } else {
             dataSource.sections = deviceNotLinkedSections
