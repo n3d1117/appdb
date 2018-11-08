@@ -15,13 +15,6 @@ class SelectorBulletinPage: BLTNPageItem {
     private var firstButton: UIButton!
     private var secondButton: UIButton!
     
-    /**
-     * Called by the manager when the item is about to be removed from the bulletin.
-     *
-     * Use this function as an opportunity to do any clean up or remove tap gesture recognizers /
-     * button targets from your views to avoid retain cycles.
-     */
-    
     override func tearDown() {
         firstButton?.removeTarget(self, action: nil, for: .touchUpInside)
         secondButton?.removeTarget(self, action: nil, for: .touchUpInside)

@@ -11,13 +11,6 @@ import BLTNBoard
 import SafariServices
 import SwiftTheme
 
-/**
- * An item that displays a text field.
- *
- * This item demonstrates how to create a bulletin item with a text field and how it will behave
- * when the keyboard is visible.
- */
-
 class EnterLinkCodeBulletinPage: BLTNPageItem {
 
     @objc public var textField: UITextField!

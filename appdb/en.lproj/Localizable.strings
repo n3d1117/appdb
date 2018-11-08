@@ -163,7 +163,10 @@
 "Expires on %@" = "Expires on %@";
 "Clear command queue?" = "Clear command queue?";
 "Clear" = "Clear";
-"Fix" = "Fix"; //as in fix command from device status
+"Fix" = "Fix"; // as in fix command from device status
+"Disabled" = "Disabled"; // as in 'PRO disabled'
+"Revoked" = "Revoked";
+"Revoked on %@" = "Revoked on %@";
 
 ////////////////////
 //     ERRORS     //

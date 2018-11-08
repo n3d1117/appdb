@@ -82,11 +82,11 @@ class Settings: TableViewController {
     func deauthorize() {
         let realm = try! Realm()
         guard let pref = realm.objects(Preferences.self).first else { return }
-        do { try realm.write {
+        try! realm.write {
             pref.token = ""
             pref.linkCode = ""
-        } } catch { }
-        NotificationCenter.default.post(name: .RefreshSettings, object: self, userInfo: ["linked": false])
+        }
+        NotificationCenter.default.post(name: .RefreshSettings, object: self)
     }
     
     // Push news controller

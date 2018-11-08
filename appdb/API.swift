@@ -73,6 +73,7 @@ enum Actions: String {
     case retry = "retry_command"
     case install = "install"
     case report = "report"
+    case checkRevoke = "is_apple_fucking_serious"
 }
 
 enum ConfigurationParameters: String {

@@ -144,10 +144,13 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         
         textLabel?.text = row.text
         
-        guard let expirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
         guard let pro = row.context?["active"] as? Bool else { return }
-
-        if pro {
+        guard let proExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
+        guard let proDisabled = row.context?["disabled"] as? Bool else { return }
+        guard let proRevoked = row.context?["revoked"] as? Bool else { return }
+        guard let proRevokedOn = (row.context?["revokedOn"] as? String)?.rfc2822decodedShort else { return }
+        
+        if (pro && !proExpirationDate.isEmpty) || (proRevoked && !proRevokedOn.isEmpty) {
             activeLabel.theme_textColor = Color.softGreen
             contentView.addSubview(expirationLabel)
             constrain(activeLabel, expirationLabel) { active, expiration in
@@ -157,7 +160,11 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
                 expiration.top == active.bottom
                 expiration.trailing == active.trailing
             }
-            expirationLabel.text = "Expires on %@".localizedFormat(expirationDate)
+            if proRevoked {
+                expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
+            } else {
+                expirationLabel.text = "Expires on %@".localizedFormat(proExpirationDate)
+            }
         } else {
             activeLabel.theme_textColor = Color.softRed
             constrain(activeLabel) { active in
@@ -165,8 +172,14 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
                 active.trailing == active.superview!.trailingMargin
             }
         }
-    
-        activeLabel.text = pro ? "Active".localized() : "Inactive".localized()
+        
+        if proDisabled {
+            activeLabel.text = "Disabled".localized()
+        } else if proRevoked {
+            activeLabel.text = "Revoked".localized()
+        } else {
+            activeLabel.text = pro ? "Active".localized() : "Inactive".localized()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -144,7 +144,7 @@ enum DeviceLinkIntroBulletins {
         page.actionButtonTitle = "Start using appdb!".localized()
         page.isDismissable = true
         
-        NotificationCenter.default.post(name: .RefreshSettings, object: self, userInfo: ["linked": true])
+        NotificationCenter.default.post(name: .RefreshSettings, object: self)
         
         page.actionHandler = { item in
             item.manager?.dismissBulletin(animated: true)

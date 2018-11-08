@@ -23,20 +23,35 @@ extension API {
                         guard !json["errors"].isEmpty else { return }
                         fail(json["errors"][0].stringValue)
                     } else {
-                        do {
-                            guard let pref = realm.objects(Preferences.self).first else { return }
-                            let data = json["data"]
-                            try realm.write {
-                                pref.appsync = data["appsync"].stringValue=="yes"
-                                pref.ignoreCompatibility = data["ignore_compatibility"].stringValue=="yes"
-                                pref.askForInstallationOptions = data["ask_for_installation_options"].stringValue=="yes"
-                                pref.pro = data["is_pro"].stringValue=="yes"
-                                pref.proUntil = data["pro_till"].stringValue
+                        Alamofire.request(endpoint, parameters: ["action": Actions.checkRevoke.rawValue], headers: headersWithCookie)
+                            .responseJSON { r in
+                                switch r.result {
+                                case .success(let v):
+                                    let json2 = JSON(v)
+                                    
+                                    do {
+                                        guard let pref = realm.objects(Preferences.self).first else { return }
+                                        let data = json["data"]
+                                        try realm.write {
+                                            pref.appsync = data["appsync"].stringValue=="yes"
+                                            pref.ignoreCompatibility = data["ignore_compatibility"].stringValue=="yes"
+                                            pref.askForInstallationOptions = data["ask_for_installation_options"].stringValue=="yes"
+                                            pref.pro = data["is_pro"].stringValue=="yes"
+                                            pref.proDisabled = data["is_pro_disabled"].stringValue=="yes"
+                                            pref.proRevoked = !json2["success"].boolValue
+                                            pref.proRevokedOn = json2["data"].stringValue
+                                            pref.proUntil = data["pro_till"].stringValue
+                                            
+                                            success()
+                                        }
+                                    } catch(let error as NSError) {
+                                        fail(error.localizedDescription)
+                                    }
+                                    
+                                case .failure(let error):
+                                    fail(error.localizedDescription)
+                                }
                                 
-                                success()
-                            }
-                        } catch let error as NSError {
-                            fail(error.localizedDescription)
                         }
                     }
                 case .failure(let error):

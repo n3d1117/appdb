@@ -22,6 +22,9 @@ class Preferences: Object {
     @objc dynamic var askForInstallationOptions: Bool = false
     
     @objc dynamic var pro: Bool = false
+    @objc dynamic var proDisabled: Bool = false
     @objc dynamic var proUntil: String = ""
+    @objc dynamic var proRevoked: Bool = false
+    @objc dynamic var proRevokedOn: String = ""
     
 }

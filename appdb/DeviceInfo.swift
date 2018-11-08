@@ -27,6 +27,21 @@ struct DeviceInfo {
         return pref.proUntil
     }
     
+    static var proDisabled: Bool {
+        guard let pref = realm.objects(Preferences.self).first else { return false }
+        return pref.proDisabled
+    }
+    
+    static var proRevoked: Bool {
+        guard let pref = realm.objects(Preferences.self).first else { return false }
+        return pref.proRevoked
+    }
+    
+    static var proRevokedOn: String {
+        guard let pref = realm.objects(Preferences.self).first else { return "" }
+        return pref.proRevokedOn
+    }
+    
     static var linkCode: String {
         guard let pref = realm.objects(Preferences.self).first else { return "~" }
         return pref.linkCode

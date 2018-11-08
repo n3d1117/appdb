@@ -6,7 +6,6 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
-
 import UIKit
 
 class Updates: UIViewController {

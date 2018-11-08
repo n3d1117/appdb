@@ -12,8 +12,10 @@ import RealmSwift
 import Cartography
 import AlamofireImage
 
-//Utils
+// Utils
+
 let IS_IPAD = UIDevice.current.userInterfaceIdiom == .pad
+
 var HAS_NOTCH: Bool {
     if #available(iOS 11, *) {
         guard let window = UIApplication.shared.keyWindow else { return false }

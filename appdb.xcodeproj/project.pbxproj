@@ -49,7 +49,7 @@
 		8133C45C208B629600F2F9F5 /* SeeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133C45B208B629600F2F9F5 /* SeeAll.swift */; };
 		8133C45E208B874600F2F9F5 /* SeeAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133C45D208B874600F2F9F5 /* SeeAllCell.swift */; };
 		8138538C1F2B7EA300DC7C54 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8138538B1F2B7EA300DC7C54 /* Kanna.framework */; };
-		813D1E782084F9F800725AC0 /* Settings+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813D1E772084F9F800725AC0 /* Settings+Properties.swift */; };
+		813D1E782084F9F800725AC0 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813D1E772084F9F800725AC0 /* DeviceInfo.swift */; };
 		8141CB631F817BD200DBDD89 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8141CB621F817BD200DBDD89 /* SafariActivity.swift */; };
 		81431AA120A0CC1E00C830BE /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81431AA020A0CC1E00C830BE /* UIDeviceExtension.swift */; };
 		81485A77216617980004184F /* Search+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81485A76216617980004184F /* Search+Extension.swift */; };
@@ -222,7 +222,7 @@
 		8133C45B208B629600F2F9F5 /* SeeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAll.swift; sourceTree = "<group>"; };
 		8133C45D208B874600F2F9F5 /* SeeAllCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllCell.swift; sourceTree = "<group>"; };
 		8138538B1F2B7EA300DC7C54 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = Carthage/Build/iOS/Kanna.framework; sourceTree = "<group>"; };
-		813D1E772084F9F800725AC0 /* Settings+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Properties.swift"; sourceTree = "<group>"; };
+		813D1E772084F9F800725AC0 /* DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfo.swift; sourceTree = "<group>"; };
 		8141CB621F817BD200DBDD89 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		81431AA020A0CC1E00C830BE /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		81485A76216617980004184F /* Search+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search+Extension.swift"; sourceTree = "<group>"; };
@@ -697,7 +697,6 @@
 			children = (
 				818A559E20583D4600162E51 /* Settings.swift */,
 				8115465920826AA50031C9DA /* Settings+Sections.swift */,
-				813D1E772084F9F800725AC0 /* Settings+Properties.swift */,
 				81324067205BD86000945CE9 /* Settings+StaticCells.swift */,
 				810C71FC20ACDA9800D6310E /* Device Status */,
 				819EC27C20A76EB6007138CF /* Theme Chooser */,
@@ -968,6 +967,7 @@
 			children = (
 				8167A6121DAC246000F96AC2 /* AppDelegate.swift */,
 				81AB37AD1DAC30BD003A586F /* TabBarController.swift */,
+				813D1E772084F9F800725AC0 /* DeviceInfo.swift */,
 				81EC006B1DAD7728009EEFFA /* Global.swift */,
 				81EC00671DAD76EC009EEFFA /* Extensions.swift */,
 				81EC00691DAD7704009EEFFA /* Colors.swift */,
@@ -1198,7 +1198,7 @@
 				816D1F1D1F913BDB00172094 /* MixedScreenshotsSearchCell_L->P.swift in Sources */,
 				818A559D20583D3D00162E51 /* Downloads.swift in Sources */,
 				81EC006C1DAD7728009EEFFA /* Global.swift in Sources */,
-				813D1E782084F9F800725AC0 /* Settings+Properties.swift in Sources */,
+				813D1E782084F9F800725AC0 /* DeviceInfo.swift in Sources */,
 				81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */,
 				810C71FE20ACDAA900D6310E /* DeviceStatus.swift in Sources */,
 				814B770F205B2DCA004D46DD /* IndicatorView.swift in Sources */,

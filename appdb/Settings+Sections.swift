@@ -82,7 +82,8 @@ extension Settings {
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
                 
                 Row(text: "PRO Status".localized(), cellClass: SimpleStaticPROStatusCell.self,
-                    context: ["active": DeviceInfo.pro, "expire": DeviceInfo.proUntil]),
+                    context: ["active": DeviceInfo.pro, "expire": DeviceInfo.proUntil, "revoked": DeviceInfo.proRevoked,
+                              "revokedOn": DeviceInfo.proRevokedOn, "disabled": DeviceInfo.proDisabled]),
                 
                 Row(text: "Link Code".localized(), detailText: DeviceInfo.linkCode, selection: { [unowned self] in
                         API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })

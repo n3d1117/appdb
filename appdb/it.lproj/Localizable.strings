@@ -163,7 +163,10 @@
 "Expires on %@" = "Scade il %@";
 "Clear command queue?" = "Cancellare la coda dei comandi?";
 "Clear" = "Cancella";
-"Fix" = "Aggiusta"; //as in fix command from device status
+"Fix" = "Aggiusta"; // as in fix command from device status
+"Disabled" = "Disabilitato"; // as in 'PRO disabled'
+"Revoked" = "Revocato";
+"Revoked on %@" = "Revocato il %@";
 
 ////////////////////
 //     ERRORS     //
