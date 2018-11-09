@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol ChangedTheme: class {
+    func changedTheme()
+}
+
 class ThemeChooser: UITableViewController {
+    
+    weak var changedThemeDelegate: ChangedTheme?
     
     fileprivate var lightTheme: Bool {
         return !Themes.isNight
@@ -72,6 +78,7 @@ class ThemeChooser: UITableViewController {
             case 0: if Themes.isNight { Themes.switchTo(theme: .Light) }
             default: if !Themes.isNight { Themes.switchTo(theme: .Dark) }
         }
+        changedThemeDelegate?.changedTheme()
         tableView.reloadData()
     }
     

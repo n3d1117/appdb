@@ -61,14 +61,13 @@ class Banner: UITableViewCell {
 
         switch screenHeight { /* Are these numbers out of my ass? Probably. There should be a better way. */
             case 480, 568: return 128
-            case 667: return 150
+            case 667, 812: return 150
             case 736: return 165
-            case 812: return 150
             case 896: return 170
             case 1024: return 220
-            case 1112: return 225
+            case 1112, 1194: return 225
             case 1366: return 250
-            default: print("oh no, uncaught device height! (\(screenHeight))"); return 150
+            default: print("oh no, uncaught device height! (\(screenHeight))"); return 200~~160
         }
         
     }()
@@ -91,8 +90,11 @@ class Banner: UITableViewCell {
     convenience init() {
         self.init(style: .default, reuseIdentifier: Featured.CellType.banner.rawValue)
         
-        theme_backgroundColor = Color.tableViewBackgroundColor
-        contentView.theme_backgroundColor = Color.tableViewBackgroundColor
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
+        
+        //theme_backgroundColor = Color.tableViewBackgroundColor
+        //contentView.theme_backgroundColor = Color.tableViewBackgroundColor
         
         let layout = LNZInfiniteCollectionViewLayout()
         layout.itemSize = CGSize(width: height*2.5, height: height)
@@ -103,6 +105,7 @@ class Banner: UITableViewCell {
         collectionView.dataSource = self
         collectionView.scrollsToTop = false
         collectionView.alwaysBounceVertical = false
+        
         collectionView.theme_backgroundColor = Color.tableViewBackgroundColor
         contentView.addSubview(collectionView)
         

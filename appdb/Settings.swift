@@ -68,16 +68,6 @@ class Settings: TableViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // todo: this doesn't seem to work on iPad (popover issue?)
-        // Refresh 'Dark/Light' in cell on appear, but only if theme has changed
-        if didPushThemeChooser { didPushThemeChooser = false
-            refreshSources()
-        }
-    }
-    
     // Deauthorize app (clean link code, token & refresh settings)
     func deauthorize() {
         let realm = try! Realm()
@@ -138,10 +128,9 @@ class Settings: TableViewController {
     }
     
     // Push theme chooser controller
-    fileprivate var didPushThemeChooser: Bool = false
     func pushThemeChooser() {
-        didPushThemeChooser = true
         let themeViewController = ThemeChooser()
+        themeViewController.changedThemeDelegate = self
         if IS_IPAD {
             let nav = DismissableModalNavController(rootViewController: themeViewController)
             nav.modalPresentationStyle = .formSheet
@@ -154,9 +143,7 @@ class Settings: TableViewController {
     // Device Link Bulletin intro
     // Also subscribes to notification requests to open Safari
     func pushDeviceLink() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(openSafari(notification:)), name: .OpenSafari, object: nil)
-        
         bulletinManager.showBulletin(above: tabBarController ?? self)
     }
     
@@ -235,5 +222,13 @@ extension Settings: UIViewControllerPreviewingDelegate {
         if let view = (viewControllerToCommit as? UINavigationController)?.viewControllers.first {
             show(view, sender: self)
         }
+    }
+}
+
+// MARK: - Changed Theme protocol implementation
+
+extension Settings: ChangedTheme {
+    func changedTheme() {
+        refreshSources()
     }
 }

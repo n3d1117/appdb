@@ -60,6 +60,10 @@ extension Featured {
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         tableView.theme_separatorColor = Color.borderColor
         
+        if #available(iOS 11.0, *) {
+            tableView.insetsContentViewsToSafeArea = false
+        }
+        
         // Hide the 'Back' text on back button
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem

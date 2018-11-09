@@ -40,7 +40,11 @@ class Copyright: FeaturedCell {
         contentView.addSubview(copyrightNotice)
         
         constrain(copyrightNotice) { notice in
-            notice.left == notice.superview!.left + Global.size.margin.value
+            if #available(iOS 11.0, *) {
+                notice.left == notice.superview!.safeAreaLayoutGuide.left + Global.size.margin.value
+            } else {
+                notice.left == notice.superview!.left + Global.size.margin.value
+            }
             notice.right == notice.superview!.right - Global.size.margin.value
             notice.top == notice.superview!.top + 15
             notice.bottom == notice.superview!.bottom - (25~~15) ~ Global.notMaxPriority

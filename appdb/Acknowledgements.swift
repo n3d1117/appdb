@@ -95,6 +95,12 @@ class Acknowledgements: LoadingTableView {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.theme_textColor = Color.title
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "license", for: indexPath)
         cell.textLabel?.text = licenses[indexPath.section].text

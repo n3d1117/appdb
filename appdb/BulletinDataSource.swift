@@ -93,7 +93,7 @@ enum DeviceLinkIntroBulletins {
         
         let page = EnterEmailBulletinPage(title: "Enter Email".localized())
         page.isDismissable = true
-        page.descriptionText = "Please enter your email address below:".localized()
+        page.descriptionText = "Please enter your email address below and click Continue. You will be redirected to the Settings app where you can proceed with appdb profile installation.".localized()
         page.actionButtonTitle = "Continue".localized()
         page.appearance.titleFontSize = 27
         page.appearance.theme_actionButtonColor = Color.mainTint
