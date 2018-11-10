@@ -97,7 +97,7 @@ class DetailsFullScreenshots: UIViewController {
                 let w = round(view.bounds.width - (Global.size.margin.value-(-100~~0))*2)
                 return CGSize(width: w, height: w/magic)
             } else {
-                let off: CGFloat = (IS_IPAD && magic == 1.775) ? (180~~20) : (100~~20)
+                let off: CGFloat = (Global.isIpad && magic == 1.775) ? (180~~20) : (100~~20)
                 let w = round(view.bounds.width - (Global.size.margin.value+off)*2)
                 return CGSize(width: w, height: w*magic)
             }
@@ -122,7 +122,7 @@ class DetailsFullScreenshots: UIViewController {
                 top = round((view.bounds.height - (view.bounds.width - Global.size.margin.value/2)/magic)/2)
                 bottom = round((view.bounds.height - (view.bounds.width - Global.size.margin.value/2)/magic)/2 - (50~~0))
             } else {
-                let off: CGFloat = round((IS_IPAD && magic == 1.775) ? (180~~20) : (100~~20))
+                let off: CGFloat = round((Global.isIpad && magic == 1.775) ? (180~~20) : (100~~20))
                 width = round(view.bounds.width - (Global.size.margin.value+off)*2)
                 height = round(width*magic)
                 left = round((view.bounds.width-width)/2)
@@ -213,7 +213,7 @@ class DetailsFullScreenshots: UIViewController {
     fileprivate func setConstraints() {
         constrain(collectionView, pageControl) { collection, pageControl in
             collection.edges == collection.superview!.edges
-            pageControl.bottom == pageControl.superview!.bottom + 3 - ((HAS_NOTCH && isPortrait) ? 10 : 0)
+            pageControl.bottom == pageControl.superview!.bottom + 3 - ((Global.hasNotch && isPortrait) ? 10 : 0)
             pageControl.centerX == pageControl.superview!.centerX
         }
     }

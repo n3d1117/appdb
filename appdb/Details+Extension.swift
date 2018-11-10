@@ -47,7 +47,7 @@ extension Details {
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
         shareButton.isEnabled = false
         
-        if IS_IPAD {
+        if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             self.navigationItem.rightBarButtonItems = [dismissButton, shareButton]

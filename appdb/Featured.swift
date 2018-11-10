@@ -181,7 +181,7 @@ extension Featured: ContentRedirection {
     
     func pushDetailsController(with content: Object) {
         let detailsViewController = Details(content: content)
-        if IS_IPAD {
+        if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: detailsViewController)
             nav.modalPresentationStyle = .formSheet
             navigationController?.present(nav, animated: true)
@@ -192,7 +192,7 @@ extension Featured: ContentRedirection {
     
     func pushSeeAllController(title: String, type: ItemType, category: String, price: Price, order: Order) {
         let seeAllViewController = SeeAll(title: title, type: type, category: category, price: price, order: order)
-        if IS_IPAD {
+        if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: seeAllViewController)
             nav.modalPresentationStyle = .formSheet
             navigationController?.present(nav, animated: true)

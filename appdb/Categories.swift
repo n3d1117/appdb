@@ -142,7 +142,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             
             // Fixes hotspot status bar on non X devices
-            if !HAS_NOTCH, UIApplication.shared.statusBarFrame.height > 20.0 {
+            if !Global.hasNotch, UIApplication.shared.statusBarFrame.height > 20.0 {
                 height -= (UIApplication.shared.statusBarFrame.height - 20.0)
             }
             

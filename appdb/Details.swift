@@ -222,9 +222,9 @@ class Details: LoadingTableView {
     @objc fileprivate func install(sender: RoundedButton) {
         API.install(id: sender.linkId, type: contentType) { error in
             if let error = error {
-                print(error)
+                debugLog(error)
             } else {
-                print("success")
+                debugLog("success")
             }
         }
     }
@@ -259,9 +259,9 @@ class Details: LoadingTableView {
             if let textField = alert.textFields?.first, let text = textField.text {
                 API.reportLink(id: id, type: self.contentType, reason: text, completion: { error in
                     if let error = error {
-                        print(error)
+                        debugLog(error)
                     } else {
-                        print("success!")
+                        debugLog("success!")
                     }
                 })
             }

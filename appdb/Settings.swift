@@ -82,7 +82,7 @@ class Settings: TableViewController {
     // Push news controller
     func pushDeviceStatus() {
         let deviceStatusController = DeviceStatus()
-        if IS_IPAD {
+        if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: deviceStatusController)
             nav.modalPresentationStyle = .formSheet
             self.navigationController?.present(nav, animated: true)
@@ -94,7 +94,7 @@ class Settings: TableViewController {
     // Push news controller
     func pushNews() {
         let newsViewController = News()
-        if IS_IPAD {
+        if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: newsViewController)
             nav.modalPresentationStyle = .formSheet
             self.navigationController?.present(nav, animated: true)
@@ -106,7 +106,7 @@ class Settings: TableViewController {
     // Push acknowledgements controller
     func pushAcknowledgements() {
         let statusViewController = Acknowledgements()
-        if IS_IPAD {
+        if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: statusViewController)
             nav.modalPresentationStyle = .formSheet
             self.navigationController?.present(nav, animated: true)
@@ -118,7 +118,7 @@ class Settings: TableViewController {
     // Push system status controller
     func pushSystemStatus() {
         let statusViewController = SystemStatus()
-        if IS_IPAD {
+        if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: statusViewController)
             nav.modalPresentationStyle = .formSheet
             self.navigationController?.present(nav, animated: true)
@@ -131,7 +131,7 @@ class Settings: TableViewController {
     func pushThemeChooser() {
         let themeViewController = ThemeChooser()
         themeViewController.changedThemeDelegate = self
-        if IS_IPAD {
+        if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: themeViewController)
             nav.modalPresentationStyle = .formSheet
             self.navigationController?.present(nav, animated: true)

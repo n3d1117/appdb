@@ -50,7 +50,7 @@ class DeviceStatus: LoadingTableView {
         // Add trash icon to clear command queue
         let trash = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.emptyCommandQueue))
         
-        if IS_IPAD {
+        if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             self.navigationItem.rightBarButtonItem = dismissButton

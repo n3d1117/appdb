@@ -31,7 +31,7 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if IS_IPAD { self.preferredContentSize = popoverContentSize }
+        if Global.isIpad { self.preferredContentSize = popoverContentSize }
         
     }
     
@@ -39,7 +39,7 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if IS_IPAD, recognizer == nil {
+        if Global.isIpad, recognizer == nil {
             recognizer = UITapGestureRecognizer(target: self, action:#selector(self.handleTapBehind))
             recognizer.delegate = self
             recognizer.numberOfTapsRequired = 1
@@ -52,7 +52,7 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if IS_IPAD, recognizer != nil {
+        if Global.isIpad, recognizer != nil {
             view.window?.removeGestureRecognizer(recognizer)
             recognizer = nil
         }
@@ -61,7 +61,7 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
     // Dismiss view if tapped outside
     @objc func handleTapBehind(sender: UIGestureRecognizer) {
         
-        if IS_IPAD, sender.state == .ended {
+        if Global.isIpad, sender.state == .ended {
             
             var location: CGPoint = sender.location(in: nil)
             

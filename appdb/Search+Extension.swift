@@ -13,20 +13,20 @@ import RealmSwift
 extension Search {
     
     var leftInset: CGFloat {
-        return IS_IPAD ? 25 : 15
+        return Global.isIpad ? 25 : 15
     }
     
     var topInset: CGFloat {
-        return IS_IPAD ? 25 : 15
+        return Global.isIpad ? 25 : 15
     }
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && HAS_NOTCH ? 50 : 15
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 50 : 15
     }
     
     func pushDetailsController(with content: Object) {
         let detailsViewController = Details(content: content)
-        if IS_IPAD {
+        if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: detailsViewController)
             nav.modalPresentationStyle = .formSheet
             navigationController?.present(nav, animated: true)
@@ -142,7 +142,7 @@ extension Search {
                 isIpad = true
                 screenshots = item.itemScreenshotsIpad
             } else {
-                if IS_IPAD {
+                if Global.isIpad {
                     isIpad = true
                     screenshots = item.itemScreenshotsIpad
                 } else {
@@ -251,7 +251,7 @@ extension Search {
 extension Search: ETCollectionViewDelegateWaterfallLayout {
     
     var itemDimension: CGFloat {
-        if IS_IPAD {
+        if Global.isIpad {
             if UIDevice.current.orientation.isPortrait {
                 return (view.bounds.width / 2) - 30
             } else {
@@ -261,7 +261,7 @@ extension Search: ETCollectionViewDelegateWaterfallLayout {
             if UIDevice.current.orientation.isPortrait {
                 return view.bounds.width - 30
             } else {
-                return (view.bounds.width / 2) - (HAS_NOTCH ? 80 : 25)
+                return (view.bounds.width / 2) - (Global.hasNotch ? 80 : 25)
             }
         }
     }
@@ -327,7 +327,7 @@ extension Search: UIPopoverPresentationControllerDelegate, SearchDidSelectTypePr
             popover.delegate = self
             popover.sourceView = searchBar
             popover.theme_backgroundColor = Color.popoverArrowColor
-            let offset: CGFloat = !IS_IPAD && searchController.isActive ? 115 : 15
+            let offset: CGFloat = !Global.isIpad && searchController.isActive ? 115 : 15
             popover.sourceRect = CGRect(origin: CGPoint(x: searchBar.frame.size.width - offset, y: -20), size: CGSize(width: 50, height: 50))
         }
         present(vc, animated: true, completion: nil)

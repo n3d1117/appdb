@@ -41,7 +41,7 @@ class ThemeChooser: UITableViewController {
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
-        if IS_IPAD {
+        if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             self.navigationItem.rightBarButtonItems = [dismissButton]

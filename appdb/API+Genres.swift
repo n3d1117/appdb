@@ -61,7 +61,7 @@ extension API {
                             
                         }
                     } catch let e as NSError {
-                        print(e.localizedDescription)
+                        debugLog(e.localizedDescription)
                     }
                     
                     // Get icons for categories (only once)

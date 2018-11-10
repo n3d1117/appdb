@@ -67,7 +67,7 @@ class Banner: UITableViewCell {
             case 1024: return 220
             case 1112, 1194: return 225
             case 1366: return 250
-            default: print("oh no, uncaught device height! (\(screenHeight))"); return 200~~160
+            default: debugLog("oh no, uncaught device height! (\(screenHeight))"); return 200~~160
         }
         
     }()
@@ -127,13 +127,13 @@ class Banner: UITableViewCell {
         /*API.getPromotions( success: { items in
             
             if items.isEmpty {
-                print("no promotions to show")
+                debugLog("no promotions to show")
             } else {
-                print("found \(items.count) promotions.")
+                debugLog("found \(items.count) promotions.")
             }
             
         }, fail: { error in
-                print(error.localizedDescription)
+                debugLog(error.localizedDescription)
         })*/
         
     }

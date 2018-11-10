@@ -26,7 +26,7 @@ class NewsDetail: LoadingTableView {
         tableView.register(NewsDetailTitleDateCell.self, forCellReuseIdentifier: "titledatecell")
         tableView.register(NewsDetailHTMLCell.self, forCellReuseIdentifier: "htmlcell")
 
-        if IS_IPAD {
+        if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             self.navigationItem.rightBarButtonItems = [dismissButton]

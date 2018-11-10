@@ -20,7 +20,7 @@ func delay(_ delay: Double, closure: @escaping ()->()) {
 
 // Operator ~~ for quickly separating iphone/ipad sizes
 infix operator ~~ : AdditionPrecedence
-func ~~<T>(left: T, right: T) -> T { return IS_IPAD ? left : right }
+func ~~<T>(left: T, right: T) -> T { return Global.isIpad ? left : right }
 
 // MARK: - UINavigationBar
 // UINavigationBar extension to hide/show bottom hairline. Useful for segmented control under Navigation Bar

@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         // Realm config
         let config = Realm.Configuration(schemaVersion: 0)
         Realm.Configuration.defaultConfiguration = config
-        //print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
+        //debugLog(Realm.Configuration.defaultConfiguration.fileURL ?? "")
         
         // Global Operations
         Global.setFirstLaunch()

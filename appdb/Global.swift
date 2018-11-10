@@ -14,19 +14,25 @@ import AlamofireImage
 
 // Utils
 
-let IS_IPAD = UIDevice.current.userInterfaceIdiom == .pad
-
-var HAS_NOTCH: Bool {
-    if #available(iOS 11, *) {
-        guard let window = UIApplication.shared.keyWindow else { return false }
-        let insets = window.safeAreaInsets
-        return insets.top > 0 || insets.bottom > 0
-    } else {
-        return false
-    }
+func debugLog(_ text: String) {
+    #if DEBUG
+        print("** [LOG] \(text)")
+    #endif
 }
 
 struct Global {
+    
+    static let isIpad = UIDevice.current.userInterfaceIdiom == .pad
+    
+    static var hasNotch: Bool {
+        if #available(iOS 11, *) {
+            guard let window = UIApplication.shared.keyWindow else { return false }
+            let insets = window.safeAreaInsets
+            return insets.top > 0 || insets.bottom > 0
+        } else {
+            return false
+        }
+    }
     
     static let mainSite: String = "https://appdb.to/"
     

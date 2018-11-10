@@ -84,7 +84,7 @@ class DetailsSegmentControl: TableViewHeader {
         constrain(translucentView, segment) { translucentView, segment in
             
             // Ugly ass fix for iPhone X
-            if HAS_NOTCH {
+            if Global.hasNotch {
                 translucentView.top == translucentView.superview!.top
                 translucentView.bottom == translucentView.superview!.bottom
                 translucentView.left == translucentView.superview!.left - 50
@@ -98,7 +98,7 @@ class DetailsSegmentControl: TableViewHeader {
             segment.centerX == translucentView.centerX
             
             if items.contains(.reviews) {
-                if IS_IPAD {
+                if Global.isIpad {
                     segment.width == 380
                 } else {
                     segment.left == segment.superview!.superview!.left + Global.size.margin.value + 5 ~ Global.notMaxPriority

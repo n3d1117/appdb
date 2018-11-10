@@ -176,7 +176,7 @@ extension App: Mappable {
             }
             return width > height ? "landscape" : "portrait"
         } else {
-            print("WARNING: New filename convention detected! Please take a look")
+            debugLog("WARNING: New filename convention detected! Please take a look")
             return "portrait"
         }
     }
