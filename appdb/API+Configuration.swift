@@ -81,9 +81,9 @@ extension API {
                             try realm.write {
                                 for (key, value) in params {
                                     switch key {
-                                    case .appsync: pref.appsync = value == "yes" ? true : false
-                                    case .askForOptions: pref.askForInstallationOptions = value == "yes" ? true : false
-                                    case .ignoreCompatibility: pref.ignoreCompatibility = value == "yes" ? true : false
+                                    case .appsync: pref.appsync = value == "yes"
+                                    case .askForOptions: pref.askForInstallationOptions = value == "yes"
+                                    case .ignoreCompatibility: pref.ignoreCompatibility = value == "yes"
                                     }
                                 }
                                 success()

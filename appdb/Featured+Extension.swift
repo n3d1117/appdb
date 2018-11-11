@@ -51,7 +51,7 @@ extension Featured {
         
         for cell in cells.compactMap({$0 as? ItemCollection}) { cell.delegate = self; cell.delegateCategory = self }
         
-        //Register for 3D Touch
+        // Register for 3D Touch
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         }

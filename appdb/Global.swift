@@ -14,9 +14,9 @@ import AlamofireImage
 
 // Utils
 
-func debugLog(_ text: String) {
+func debugLog(_ arg: Any) {
     #if DEBUG
-        print("** [LOG] \(text)")
+        print("** [LOG] \(arg)")
     #endif
 }
 

@@ -74,7 +74,7 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
         }
     }
     
-    func gestureRecognizer(_ sender: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith shouldRecognizeSimultaneouslyWithGestureRecognizer:UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ sender: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith shouldRecognizeSimultaneouslyWithGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }

@@ -58,7 +58,7 @@ extension Details {
         // Hide separator for empty cells
         tableView.tableFooterView = UIView()
         
-        //Register for 3D Touch
+        // Register for 3D Touch
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         }

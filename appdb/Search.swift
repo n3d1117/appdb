@@ -86,7 +86,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         collectionView.theme_backgroundColor = Color.tableViewBackgroundColor
         collectionView.register(TrendingCollectionViewCell.self, forCellWithReuseIdentifier: "trendingcell")
 
-        //Register for 3D Touch
+        // Register for 3D Touch
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: collectionView)
         }

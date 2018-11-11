@@ -187,7 +187,7 @@
 "Oops! Something went wrong. Please try again later." = "Oops! Something went wrong. Please try again later.";
 "Missing link code or email." = "Missing link code or email.";
 "Could not parse plist file." = "Could not parse plist file.";
-"Device status is empty." = "Device status is empty.";
+"Device status is empty" = "Device status is empty";
 
 ///////////////////
 //     OTHER     //

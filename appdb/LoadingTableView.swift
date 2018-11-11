@@ -30,6 +30,8 @@ class LoadingTableView: UITableViewController {
     var showsErrorButton: Bool = true
     var showsSpinner: Bool = true
     
+    let group = ConstraintGroup()
+    
     enum State {
         case done
         case loading
@@ -124,6 +126,8 @@ class LoadingTableView: UITableViewController {
                 
                 activityIndicator.stopAnimating()
                 
+                tableView.isScrollEnabled = true
+                
                 setConstraints(.error)
             }
         }
@@ -143,7 +147,7 @@ class LoadingTableView: UITableViewController {
             }
         case .error:
             if showsErrorButton {
-                constrain(errorMessage, secondaryErrorMessage, refreshButton) { message, secondaryMessage, button in
+                constrain(errorMessage, secondaryErrorMessage, refreshButton, replace: group) { message, secondaryMessage, button in
                     message.left == message.superview!.left + 30
                     message.right == message.superview!.right - 30
                     message.centerX == message.superview!.centerX
@@ -157,8 +161,15 @@ class LoadingTableView: UITableViewController {
                     button.centerX == button.superview!.centerX
                     button.width == CGFloat(refreshButton.tag + 20)
                 }
+            } else if secondaryErrorMessage.text?.isEmpty ?? false {
+                constrain(errorMessage, replace: group) { message in
+                    message.left == message.superview!.left + 30
+                    message.right == message.superview!.right - 30
+                    message.centerX == message.superview!.centerX
+                    message.centerY == message.superview!.centerY - offset - 25
+                }
             } else {
-                constrain(errorMessage, secondaryErrorMessage) { message, secondaryMessage in
+                constrain(errorMessage, secondaryErrorMessage, replace: group) { message, secondaryMessage in
                     message.left == message.superview!.left + 30
                     message.right == message.superview!.right - 30
                     message.centerX == message.superview!.centerX
@@ -173,13 +184,24 @@ class LoadingTableView: UITableViewController {
         }
     }
     
-    // MARK: - error Screen
+    // MARK: - Display error message
+    
     func showErrorMessage(text: String = "", secondaryText: String = "", animated: Bool = true) {
-        state = .error
         errorMessage.text = text
         secondaryErrorMessage.text = secondaryText.prettified
+        state = .error
         
         if animated { animate() }
+    }
+    
+    // MARK: - Handle rotation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            if self.state != .done { self.setConstraints(self.state) }
+        }, completion: nil)
     }
 
 }

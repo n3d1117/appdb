@@ -116,7 +116,7 @@ class DeviceStatus: LoadingTableView {
             
             if self.statuses.isEmpty {
                 trashItem?.isEnabled = false
-                self.showErrorMessage(text: "Device status is empty.".localized(), animated: false)
+                self.showErrorMessage(text: "Device status is empty".localized(), animated: false)
             } else {
                 trashItem?.isEnabled = true
             }
