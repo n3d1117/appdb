@@ -12,7 +12,7 @@ import RealmSwift
 
 class DetailsDownload: DetailsCell {
     
-    static var height: CGFloat = 55
+    static var height: CGFloat = 60~~55
     
     var host: UILabel!
     var cracker: UILabel!

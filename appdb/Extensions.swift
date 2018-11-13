@@ -62,6 +62,7 @@ extension String {
         case "MISSING_LINK_CODE_OR_EMAIL": return "Missing link code or email.".localized()
         case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
         case "TOO_SHORT_SEARCH_STRING": return "Please search at least two characters".localized()
+        case "NOT_READY": return "The request timed out".localized()
         default: return self
         }
     }

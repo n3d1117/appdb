@@ -167,6 +167,26 @@
 "Disabled" = "Disabled"; // as in 'PRO disabled'
 "Revoked" = "Revoked";
 "Revoked on %@" = "Revoked on %@";
+"Show badge for updates" = "Show badge for updates";
+
+/////////////////////
+//     UPDATES     //
+/////////////////////
+
+"Ignore" = "Ignore";
+"No updates found" = "No updates found";
+"Please authorize app from Settings first" = "Please authorize app from Settings first";
+"%@ Updateable app" = "%@ Updateable app";  // e.g. 1 Updateable app
+"%@ Updateable apps" = "%@ Updateable apps"; // e.g. 6 Updateable apps
+"%@ Non updateable app" = "%@ Non updateable app";
+"%@ Non updateable apps" = "%@ Non updateable apps";
+"Non Updateable Apps" = "Non Updateable Apps";
+"Ignored" = "Ignored";
+"Ignored Updates" = "Ignored Updates";
+"No ignored updates" = "No ignored updates";
+"Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'." = "Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'.";
+"No ignored updates" = "No ignored updates";
+"Swipe left on any update to add it to this list" = "Swipe left on any update to add it to this list";
 
 ////////////////////
 //     ERRORS     //
@@ -188,6 +208,7 @@
 "Missing link code or email." = "Missing link code or email.";
 "Could not parse plist file." = "Could not parse plist file.";
 "Device status is empty" = "Device status is empty";
+"The request timed out" = "The request timed out";
 
 ///////////////////
 //     OTHER     //
@@ -196,6 +217,7 @@
 "Cancel" = "Cancel";
 "Dismiss" = "Dismiss";
 "Yes" = "Yes";
+"OK" = "OK";
 "No" = "No";
 "Done" = "Done";
 "more" = "more";

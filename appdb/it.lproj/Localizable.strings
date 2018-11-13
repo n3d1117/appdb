@@ -167,6 +167,26 @@
 "Disabled" = "Disabilitato"; // as in 'PRO disabled'
 "Revoked" = "Revocato";
 "Revoked on %@" = "Revocato il %@";
+"Show badge for updates" = "Mostra badge per aggiornamenti";
+
+/////////////////////
+//     UPDATES     //
+/////////////////////
+
+"Ignore" = "Ignora";
+"No updates found" = "Nessun aggiornamento trovato";
+"Please authorize app from Settings first" = "Devi prima autorizzare l'app da Impostazioni";
+"%@ Updateable app" = "%@ App aggiornabile";  // e.g. 1 Updateable app
+"%@ Updateable apps" = "%@ App aggiornabili"; // e.g. 6 Updateable apps
+"%@ Non updateable app" = "%@ App non aggiornabile";
+"%@ Non updateable apps" = "%@ App non aggiornabili";
+"Non Updateable Apps" = "App non aggiornabili";
+"Ignored" = "Ignorati";
+"Ignored Updates" = "Aggiornamenti ignorati";
+"No ignored updates" = "Nessun aggiornamento ignorato";
+"Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'." = "App installate da una sorgente esterna, tipo l'App Store o distribuzione OTA, non possono essere aggiornate da appdb per questioni di sicurezza. Lo rispettiamo!\n\nPer aggiornare queste app, rimuovile e reinstallale da appdb.\n\nPer nascondere questi aggiornamenti, invece, scorri a sinistra su uno di essi e premi 'Ignora'.";
+"No ignored updates" = "Nessun aggiornamento ignorato";
+"Swipe left on any update to add it to this list" = "Scorri a sinistra su un aggiornamento per aggiungerlo a questa lista";
 
 ////////////////////
 //     ERRORS     //
@@ -188,6 +208,7 @@
 "Missing link code or email." = "Codice o email mancanti.";
 "Could not parse plist file." = "Impossibile analizzare il file plist.";
 "Device status is empty" = "Lo stato del dispositivo è vuoto";
+"The request timed out" = "La richiesta è scaduta";
 
 ///////////////////
 //     OTHER     //
@@ -196,6 +217,7 @@
 "Cancel" = "Annulla";
 "Dismiss" = "Chiudi";
 "Yes" = "Si";
+"OK" = "OK";
 "No" = "No";
 "Done" = "Fatto";
 "more" = "altro";

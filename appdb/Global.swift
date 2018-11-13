@@ -45,6 +45,11 @@ struct Global {
             pref.isFirstLaunch = true
             try! realm.write { realm.add(pref) }
         }
+        
+        // Instantiate ignored apps list only once
+        if realm.objects(IgnoredUpdateableApps.self).isEmpty {
+            try! realm.write { realm.add(IgnoredUpdateableApps()) }
+        }
     }
     
     // Returns true if it's first launch

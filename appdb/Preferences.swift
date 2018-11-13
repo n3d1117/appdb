@@ -20,6 +20,7 @@ class Preferences: Object {
     @objc dynamic var appsync: Bool = false
     @objc dynamic var ignoreCompatibility: Bool = false
     @objc dynamic var askForInstallationOptions: Bool = false
+    @objc dynamic var showBadgeForUpdates: Bool = true
     
     @objc dynamic var pro: Bool = false
     @objc dynamic var proDisabled: Bool = false

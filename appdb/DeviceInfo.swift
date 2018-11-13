@@ -62,4 +62,9 @@ struct DeviceInfo {
         return pref.askForInstallationOptions
     }
     
+    static var showBadgeForUpdates: Bool {
+        guard let pref = realm.objects(Preferences.self).first else { return false }
+        return pref.showBadgeForUpdates
+    }
+    
 }

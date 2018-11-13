@@ -249,6 +249,7 @@ class Details: LoadingTableView {
         
         alert.addTextField(configurationHandler: { textField -> Void in
             textField.placeholder = "Enter a reason for your report".localized()
+            textField.theme_keyboardAppearance = [.light, .dark]
             textField.addTarget(self, action: #selector(self.reportTextfieldTextChanged), for: .editingChanged)
         })
         

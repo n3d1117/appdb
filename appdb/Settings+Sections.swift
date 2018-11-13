@@ -104,6 +104,10 @@ extension Settings {
                 
                 Row(text: "Ask to duplicate app".localized(), accessory: .switchToggle(value: DeviceInfo.askForInstallationOptions) { newValue in
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+                }, cellClass: SimpleStaticCell.self),
+
+                Row(text: "Show badge for updates".localized(), accessory: .switchToggle(value: DeviceInfo.showBadgeForUpdates) { newValue in
+                    self.setShowsBadgeForUpdates(newValue)
                 }, cellClass: SimpleStaticCell.self)
             ]),
             

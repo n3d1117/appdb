@@ -73,6 +73,8 @@ enum Actions: String {
     case install = "install"
     case report = "report"
     case checkRevoke = "is_apple_fucking_serious"
+    case getUpdatesTicket = "get_update_ticket"
+    case getUpdates = "get_updates"
 }
 
 enum ConfigurationParameters: String {

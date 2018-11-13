@@ -79,6 +79,14 @@ class Settings: TableViewController {
         NotificationCenter.default.post(name: .RefreshSettings, object: self)
     }
     
+    // Update badge for Updates tab
+
+    func setShowsBadgeForUpdates(_ show: Bool) {
+        let realm = try! Realm()
+        guard let pref = realm.objects(Preferences.self).first else { return }
+        try! realm.write { pref.showBadgeForUpdates = show }
+    }
+    
     // Push news controller
     func pushDeviceStatus() {
         let deviceStatusController = DeviceStatus()
