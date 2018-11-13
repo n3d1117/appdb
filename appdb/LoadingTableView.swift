@@ -30,7 +30,8 @@ class LoadingTableView: UITableViewController {
     var showsErrorButton: Bool = true
     var showsSpinner: Bool = true
     
-    let group = ConstraintGroup()
+    let group1 = ConstraintGroup()
+    let group2 = ConstraintGroup()
     
     enum State {
         case done
@@ -110,6 +111,7 @@ class LoadingTableView: UITableViewController {
                 tableView.isScrollEnabled = true
                 tableView.reloadData()
                 if animated { animate() }
+                
             case .loading:
                 if showsSpinner {
                     activityIndicator.startAnimating()
@@ -117,17 +119,13 @@ class LoadingTableView: UITableViewController {
                 tableView.isScrollEnabled = false
                 
             case .error:
-                
                 errorMessage.isHidden = false
                 secondaryErrorMessage.isHidden = false
                 if showsErrorButton {
                     refreshButton.isHidden = false
                 }
-                
                 activityIndicator.stopAnimating()
-                
                 tableView.isScrollEnabled = true
-                
                 setConstraints(.error)
             }
         }
@@ -141,13 +139,13 @@ class LoadingTableView: UITableViewController {
         
         switch state {
         case .loading:
-            constrain(activityIndicator) { indicator in
+            constrain(activityIndicator, replace: group1) { indicator in
                 indicator.centerX == indicator.superview!.centerX
-                indicator.centerY == indicator.superview!.centerY - offset
+                indicator.centerY == indicator.superview!.centerY - offset - 10
             }
         case .error:
             if showsErrorButton {
-                constrain(errorMessage, secondaryErrorMessage, refreshButton, replace: group) { message, secondaryMessage, button in
+                constrain(errorMessage, secondaryErrorMessage, refreshButton, replace: group2) { message, secondaryMessage, button in
                     message.left == message.superview!.left + 30
                     message.right == message.superview!.right - 30
                     message.centerX == message.superview!.centerX
@@ -162,14 +160,14 @@ class LoadingTableView: UITableViewController {
                     button.width == CGFloat(refreshButton.tag + 20)
                 }
             } else if secondaryErrorMessage.text?.isEmpty ?? false {
-                constrain(errorMessage, replace: group) { message in
+                constrain(errorMessage, replace: group2) { message in
                     message.left == message.superview!.left + 30
                     message.right == message.superview!.right - 30
                     message.centerX == message.superview!.centerX
-                    message.centerY == message.superview!.centerY - offset - 25
+                    message.centerY == message.superview!.centerY - offset - 15
                 }
             } else {
-                constrain(errorMessage, secondaryErrorMessage, replace: group) { message, secondaryMessage in
+                constrain(errorMessage, secondaryErrorMessage, replace: group2) { message, secondaryMessage in
                     message.left == message.superview!.left + 30
                     message.right == message.superview!.right - 30
                     message.centerX == message.superview!.centerX

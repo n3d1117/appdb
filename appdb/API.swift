@@ -6,7 +6,6 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
-
 import Alamofire
 import RealmSwift
 import SwiftyJSON

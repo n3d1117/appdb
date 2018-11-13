@@ -16,7 +16,6 @@ class Details: LoadingTableView {
     var descriptionCollapsed: Bool = true
     var changelogCollapsed: Bool = true
     var reviewCollapsedForIndexPath : [IndexPath: Bool] = [:]
-    var heightForIndexPath : [IndexPath: CGFloat] = [:]
     var indexForSegment: detailsSelectedSegmentState = .details
     var versions: [Version] = []
     

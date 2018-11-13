@@ -6,7 +6,6 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
-
 import RealmSwift
 import SwiftyJSON
 import ObjectMapper

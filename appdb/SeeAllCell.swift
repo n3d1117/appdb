@@ -121,7 +121,7 @@ class SeeAllCell: UITableViewCell {
             } else {
                 icon.height == icon.width
             }
-            icon.left == icon.superview!.left + Global.size.margin.value
+            icon.left == icon.superview!.layoutMarginsGuide.left
             icon.centerY == icon.superview!.centerY
             
             name.left == icon.right + (15~~12)

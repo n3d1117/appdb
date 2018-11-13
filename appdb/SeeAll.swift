@@ -50,7 +50,7 @@ class SeeAll: LoadingTableView {
         tableView.register(SeeAllCell.self, forCellReuseIdentifier: "seeallcell_book")
         tableView.register(SeeAllCellWithStars.self, forCellReuseIdentifier: "seeallcellwithstars")
         tableView.register(SeeAllCellWithStars.self, forCellReuseIdentifier: "seeallcellwithstars_book")
-        tableView.rowHeight = type == .books ? (130~~110) : (100~~80)
+        tableView.rowHeight = type == .books ? (130~~110) : (105~~85)
         
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor

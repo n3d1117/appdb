@@ -6,7 +6,6 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
-
 import UIKit
 import Cartography
 import Kanna
@@ -75,7 +74,8 @@ extension String {
     //
     var decoded: String {
         let regex = "(?:(?:(?:\\<br\\ \\/\\>))|(?:(?:\\<br\\/\\>))|(?:(?:\\<p\\/\\>)))"
-        let newString: String =  self.replacingOccurrences(of: regex, with: "\n", options: .regularExpression, range: nil)
+        var newString: String = self.replacingOccurrences(of: "\n", with: "")
+        newString = newString.replacingOccurrences(of: regex, with: "\n", options: .regularExpression)
         do {
             return try HTML(html: newString, encoding: .utf8).text ?? ""
         } catch {

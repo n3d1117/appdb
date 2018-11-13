@@ -40,7 +40,7 @@ class EnterLinkCodeBulletinPage: BLTNPageItem {
         textField = interfaceBuilder.makeTextField(placeholder: "Enter link code here".localized(), returnKey: .done, delegate: self)
         textField.theme_backgroundColor = Color.invertedTitle
         textField.theme_textColor = Color.title
-        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor(rgba: "#AAAAAA")])
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#AAAAAA")])
         textField.theme_keyboardAppearance = [.light, .dark]
         
         descriptionLabel?.theme_textColor = Color.title

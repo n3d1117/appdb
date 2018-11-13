@@ -6,7 +6,6 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
-
 import UIKit
 import Cartography
 import AlamofireImage
@@ -213,7 +212,7 @@ class DetailsFullScreenshots: UIViewController {
     fileprivate func setConstraints() {
         constrain(collectionView, pageControl) { collection, pageControl in
             collection.edges == collection.superview!.edges
-            pageControl.bottom == pageControl.superview!.bottom + 3 - ((Global.hasNotch && isPortrait) ? 10 : 0)
+            pageControl.bottom == pageControl.superview!.layoutMarginsGuide.bottom
             pageControl.centerX == pageControl.superview!.centerX
         }
     }

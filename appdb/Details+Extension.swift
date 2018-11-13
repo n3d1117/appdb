@@ -6,7 +6,6 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
-
 import RealmSwift
 import UIKit
 import Cartography
@@ -69,10 +68,6 @@ extension Details {
         
         // Fix random separator margin issues
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
-        
-        // Works around crazy cell bugs on rotation, enables preloading
-        tableView.estimatedRowHeight = 32
-        tableView.rowHeight = UITableView.automaticDimension
 
     }
 
@@ -186,6 +181,32 @@ extension Details {
             }
             default: break
         }; return [.details, .download]
+    }
+    
+    // Setting the right estimated height for rows with dynamic content helps with tableview jumping issues
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexForSegment {
+        case .details:
+            if details[indexPath.row] is DetailsDescription {
+                return 145~~135
+            } else if details[indexPath.row] is DetailsChangelog {
+                return 115~~105
+            } else {
+                return 32
+            }
+        case .reviews:
+            return indexPath.row == content.itemReviews.count ? 32 : 110~~150
+        default:
+            return 32
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            if self.indexForSegment != .download { self.tableView.reloadData() }
+        }, completion: nil)
     }
 }
 

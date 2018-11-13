@@ -187,7 +187,7 @@
 "Oops! Something went wrong. Please try again later." = "Ops! Qualcosa è andato storto. Riprova più tardi.";
 "Missing link code or email." = "Codice o email mancanti.";
 "Could not parse plist file." = "Impossibile analizzare il file plist.";
-"Device status is empty" = "Lo stato del dispositivo è vuoto.";
+"Device status is empty" = "Lo stato del dispositivo è vuoto";
 
 ///////////////////
 //     OTHER     //
