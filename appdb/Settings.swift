@@ -221,6 +221,11 @@ extension Settings: UIViewControllerPreviewingDelegate {
             case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
             case "News".localized(): return UINavigationController(rootViewController: News())
             case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
+            case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
+            case "Choose Theme".localized():
+                let vc = ThemeChooser()
+                vc.changedThemeDelegate = self
+                return UINavigationController(rootViewController: vc)
             default: return nil
         }
     }

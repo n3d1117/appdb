@@ -123,7 +123,11 @@ class SeeAll: LoadingTableView {
                 self.allLoaded = true
             } else {
                 self.items = self.items + array
-                self.tableView.spr_endRefreshing()
+                if self.items.count < 25 {
+                    self.tableView.spr_endRefreshingWithNoMoreData()
+                } else {
+                    self.tableView.spr_endRefreshing()
+                }
             }
             
             self.state = .done

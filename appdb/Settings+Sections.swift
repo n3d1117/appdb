@@ -93,6 +93,7 @@ extension Settings {
                 )
             ], footer: .title("Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.".localized())),
             
+            // todo: remove switchToggle, do SwitchCell instead
             Section(header: .title("Device Configuration".localized()), rows: [
                 Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: DeviceInfo.appsync) { newValue in
                     API.setConfiguration(params: [.appsync: newValue ? "yes" : "no"], success: {}, fail: { _ in })
@@ -106,7 +107,7 @@ extension Settings {
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
 
-                Row(text: "Show badge for updates".localized(), accessory: .switchToggle(value: DeviceInfo.showBadgeForUpdates) { newValue in
+                Row(text: "Show badge for updates".localized(), accessory: .switchToggle(value: DeviceInfo.showBadgeForUpdates) { [unowned self] newValue in
                     self.setShowsBadgeForUpdates(newValue)
                 }, cellClass: SimpleStaticCell.self)
             ]),
