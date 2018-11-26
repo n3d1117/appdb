@@ -10,6 +10,7 @@ import UIKit
 import Static
 import SwiftTheme
 import Cartography
+import RealmSwift
 
 // A simple cell for the 'Static' framework that adapts to theme changes
 // and has has dynamic text font size. Used for Settings cells.
@@ -185,4 +186,40 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+// No generic needed: i'm sure it will always be 'Preferences'
+// Also don't need the cell to update the property, i'd rather do that in 'valueChange' callback
+// https://github.com/venmo/Static/issues/135
+
+final class SwitchCell: UITableViewCell, Cell {
+    
+    var valueChange: ValueChange?
+    private let toggle = UISwitch()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        accessoryView = toggle
+        toggle.addTarget(self, action: #selector(change), for: .valueChanged)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func change() {
+        valueChange?(toggle.isOn)
+    }
+    
+    func configure(row: Row) {
+        textLabel?.text = row.text
+
+        if let vc = row.context?["valueChange"] as? ValueChange {
+            self.valueChange = vc
+        }
+        guard let pref = (try? Realm())?.objects(Preferences.self).first else { return }
+        guard let keyPath = row.context?["keyPath"] as? WritableKeyPath<Preferences, Bool> else { return }
+        toggle.isOn = pref[keyPath: keyPath]
+    }
 }

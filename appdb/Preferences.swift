@@ -22,13 +22,6 @@ class Preferences: Object {
     @objc dynamic var askForInstallationOptions: Bool = false
     @objc dynamic var showBadgeForUpdates: Bool = true
     
-    // TODO?
-    //    @objc dynamic var _showBadgeForUpdates: Bool = true
-    //    var showBadgeForUpdates: Bool {
-    //        get { return _showBadgeForUpdates }
-    //        set { try? realm?.write { _showBadgeForUpdates = newValue } }
-    //    }
-    
     @objc dynamic var pro: Bool = false
     @objc dynamic var proDisabled: Bool = false
     @objc dynamic var proUntil: String = ""
