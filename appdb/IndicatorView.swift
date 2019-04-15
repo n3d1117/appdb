@@ -24,14 +24,14 @@ class IndicatorView: RefreshView {
         layer.path = path.cgPath
         layer.theme_strokeColor = Color.arrowLayerStrokeCGColor
         layer.lineWidth = 2
-        layer.lineCap = CAShapeLayerLineCap.round
+        layer.lineCap = .round
         return layer
     }()
-
+    
     let indicator = UIActivityIndicatorView(style: .gray)
-
+    
     private let isHeader: Bool
-
+    
     init(isHeader: Bool, height: CGFloat, action: @escaping () -> Void) {
         self.isHeader = isHeader
         super.init(style: isHeader ? .header : .footer, height: height, action: action)
@@ -41,23 +41,23 @@ class IndicatorView: RefreshView {
         layer.addSublayer(arrowLayer)
         addSubview(indicator)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         arrowLayer.position = center
         indicator.center = center
     }
-
+    
     override func didUpdateState(_ isRefreshing: Bool) {
         arrowLayer.isHidden = isRefreshing
         isRefreshing ? indicator.startAnimating() : indicator.stopAnimating()
     }
-
+    
     override func didUpdateProgress(_ progress: CGFloat) {
         let rotation = CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
         if isHeader {
@@ -66,5 +66,6 @@ class IndicatorView: RefreshView {
             arrowLayer.transform = progress == 1 ? CATransform3DIdentity : rotation
         }
     }
-
+    
 }
+

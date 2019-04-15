@@ -230,8 +230,9 @@ class ItemCollection: FeaturedCell {
                 self.collectionView.reloadData()
             } else {
                 let changes = diff(old: self.items, new: array)
-                self.items = array
-                self.collectionView.reload(changes: changes, section: 0, completion: { _ in })
+                self.collectionView.reload(changes: changes, section: 0, updateData: {
+                    self.items = array
+                })
             }
             
             // Fix rare issue where first three Cydia items would not load category text - probs not fixed

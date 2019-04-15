@@ -21,7 +21,7 @@ public protocol Matchable {
 }
 
 public extension Matchable where Self: Equatable {
-    public func match(with object: Any) -> Match {
+    func match(with object: Any) -> Match {
         if let object = object as? Self {
             return self == object ? .equal : .none
         }
@@ -31,7 +31,7 @@ public extension Matchable where Self: Equatable {
 }
 
 public extension Equatable where Self: Matchable {
-    public static func ==(lhs: Self, rhs: Self) -> Bool {
+    static func ==(lhs: Self, rhs: Self) -> Bool {
         return lhs.match(with: rhs) == .equal
     }
 }

@@ -118,8 +118,11 @@ class DetailsFullScreenshots: UIViewController {
                 width = round(view.bounds.width - (Global.size.margin.value-(-100~~0))*2)
                 height = round(width/magic)
                 left = round((view.bounds.width-width)/2)
-                top = round((view.bounds.height - (view.bounds.width - Global.size.margin.value/2)/magic)/2)
-                bottom = round((view.bounds.height - (view.bounds.width - Global.size.margin.value/2)/magic)/2 - (50~~0))
+                
+                let w = (view.bounds.width - Global.size.margin.value/2) / magic
+                let topFull = round((view.bounds.height - w)/2)
+                top = topFull
+                bottom = topFull - (50~~0)
             } else {
                 let off: CGFloat = round((Global.isIpad && magic == 1.775) ? (180~~20) : (100~~20))
                 width = round(view.bounds.width - (Global.size.margin.value+off)*2)

@@ -227,7 +227,7 @@ public enum InternalDeviceType: String, CaseIterable {
 public extension UIDevice {
     
     /// The `InternalDeviceType` of the device in use
-    public var deviceType: InternalDeviceType {
+    var deviceType: InternalDeviceType {
         return InternalDeviceType.current
     }
 }

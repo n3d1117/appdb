@@ -36,8 +36,10 @@ public struct DiffMatch: Hashable, CustomDebugStringConvertible {
         self.to = fromAndTo
     }
     
-    public var hashValue: Int {
-        return 1575 ^ changed.hashValue ^ from.hashValue ^ to.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(changed)
+        hasher.combine(from)
+        hasher.combine(to)
     }
     
     public static func ==(lhs: DiffMatch, rhs: DiffMatch) -> Bool {
@@ -172,7 +174,7 @@ public extension Diff {
     ///   - source: Source collection
     ///   - destination: Destination collection
     /// - Returns: A tuple with source, destination and computed diff
-    public static func between(_ source: T, _ destination: T) -> (source: T, destination: T, diff: Diff<T>)
+    static func between(_ source: T, _ destination: T) -> (source: T, destination: T, diff: Diff<T>)
     {
         return (source: source, destination: destination, diff: Diff(from: source, to: destination))
     }

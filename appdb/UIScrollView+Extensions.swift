@@ -51,7 +51,7 @@ public extension UIScrollView {
     /// - Parameters:
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_setIndicatorHeader(height: CGFloat = 60,
+    func spr_setIndicatorHeader(height: CGFloat = 60,
                                        action: @escaping () -> Void) {
         spr_header = IndicatorView(isHeader: true, height: height, action: action)
     }
@@ -61,7 +61,7 @@ public extension UIScrollView {
     /// Update the presentation in 'didUpdateState(_:)' and 'didUpdateProgress(_:)' methods
     ///
     /// - Parameter header: your custom header inherited from RefreshView
-    public func spr_setCustomHeader(_ header: RefreshView) {
+    func spr_setCustomHeader(_ header: RefreshView) {
         self.spr_header = header
     }
 
@@ -70,23 +70,23 @@ public extension UIScrollView {
     /// Update the presentation in 'didUpdateState(_:)' and 'didUpdateProgress(_:)' methods
     ///
     /// - Parameter footer: your custom footer inherited from RefreshView
-    public func spr_setCustomFooter(_ footer: RefreshView) {
+    func spr_setCustomFooter(_ footer: RefreshView) {
         self.spr_footer = footer
     }
 
     /// Begin refreshing with header
-    public func spr_beginRefreshing() {
+    func spr_beginRefreshing() {
         spr_header?.beginRefreshing()
     }
 
     /// End refreshing with both header and footer
-    public func spr_endRefreshing() {
+    func spr_endRefreshing() {
         spr_header?.endRefreshing()
         spr_footer?.endRefreshing()
     }
 
     /// End refreshing with footer and remove it
-    public func spr_endRefreshingWithNoMoreData() {
+    func spr_endRefreshingWithNoMoreData() {
         spr_tempFooter = spr_footer
         spr_footer?.endRefreshing { [weak self] in
             self?.spr_footer = nil
@@ -94,14 +94,14 @@ public extension UIScrollView {
     }
     
     /// End refreshing with header and remove it
-    public func spr_endRefreshingAll() {
+    func spr_endRefreshingAll() {
         spr_header?.endRefreshing { [weak self] in
             self?.spr_header = nil
         }
     }
 
     /// Reset footer which is set to no more data
-    public func spr_resetNoMoreData() {
+    func spr_resetNoMoreData() {
         if spr_footer == nil {
             spr_footer = spr_tempFooter
         }
@@ -112,7 +112,7 @@ public extension UIScrollView {
     /// - Parameters:
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_setIndicatorFooter(height: CGFloat = 60,
+    func spr_setIndicatorFooter(height: CGFloat = 60,
                                        action: @escaping () -> Void) {
         spr_footer = IndicatorView(isHeader: false, height: height, action: action)
     }

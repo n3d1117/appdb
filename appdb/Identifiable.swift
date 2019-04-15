@@ -9,7 +9,7 @@ public protocol Identifiable {
 }
 
 public extension Matchable where Self: Identifiable & Equatable {
-    public func match(with object: Any) -> Match {
+    func match(with object: Any) -> Match {
         if let object = object as? Self  {
             if (self == object) {
                 return .equal
