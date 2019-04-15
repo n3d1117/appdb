@@ -115,7 +115,7 @@ class DetailsSegmentControl: TableViewHeader {
     }
     
     func setLinksEnabled(_ enabled: Bool) {
-        guard let index = items.index(of: .download) else { return }
+        guard let index = items.firstIndex(of: .download) else { return }
         segment.setEnabled(enabled, forSegmentAt: index)
     }
     

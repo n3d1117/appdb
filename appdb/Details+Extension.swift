@@ -146,7 +146,7 @@ extension Details {
             
             // Ensure latest version is always at the top
             if let latest = self.versions.filter({$0.number==self.content.itemVersion}).first {
-                if let index = self.versions.index(of: latest) {
+                if let index = self.versions.firstIndex(of: latest) {
                     self.versions.remove(at: index)
                     self.versions.insert(latest, at: 0)
                 }

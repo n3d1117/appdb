@@ -122,7 +122,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func putCategoriesAtTheTop(compound: String) {
         if categories.first?.compound != compound, let top = categories.filter({$0.compound == compound}).first {
-            if let index = categories.index(of: top) {
+            if let index = categories.firstIndex(of: top) {
                 categories.remove(at: index)
                 categories.insert(top, at: 0)
             }
