@@ -53,6 +53,10 @@ class Settings: TableViewController {
             registerForPreviewing(with: self, sourceView: tableView)
         }
         
+        // Hide the 'Back' text on back button
+        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
+        
         refreshSources()
         
         // Refresh link code & configuration parameters

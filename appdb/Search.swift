@@ -100,7 +100,6 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         searchController.searchBar.placeholder = "Search iOS Apps".localized()
         searchController.searchBar.textField?.theme_textColor = Color.title
         searchController.searchBar.textField?.enablesReturnKeyAutomatically = false
-        // Enable search button even if search bar text is empty
         searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
         definesPresentationContext = true
         

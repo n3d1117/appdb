@@ -23,6 +23,9 @@ class News: LoadingTableView {
         return bgColorView
     }()
     
+    fileprivate var filteredNews: [SingleNews] = []
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +54,25 @@ class News: LoadingTableView {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             self.navigationItem.rightBarButtonItems = [dismissButton]
+        }
+        
+        // Search Controller
+        searchController.searchResultsUpdater = self
+        if #available(iOS 9.1, *) {
+            searchController.obscuresBackgroundDuringPresentation = false
+        }
+        searchController.searchBar.placeholder = "Search News".localized()
+        searchController.searchBar.textField?.theme_textColor = Color.title
+        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
+        definesPresentationContext = true
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            searchController.searchBar.barStyle = .default
+            searchController.searchBar.searchBarStyle = .minimal
+            searchController.searchBar.showsScopeBar = false
+            searchController.hidesNavigationBarDuringPresentation = false
+            navigationItem.titleView = searchController.searchBar
         }
         
         // Refresh action
@@ -87,7 +109,7 @@ class News: LoadingTableView {
         delay(arbitraryDelay) {
             if self.allLoaded {
                 self.tableView.spr_endRefreshingWithNoMoreData()
-                self.allLoaded = false // todo explain this
+                self.allLoaded = false
             } else {
                 self.tableView.spr_endRefreshing()
             }
@@ -108,12 +130,12 @@ class News: LoadingTableView {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayedNews.count
+        return isFiltering() ? filteredNews.count : displayedNews.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "news", for: indexPath) as? SimpleStaticCell {
-            cell.textLabel?.text = displayedNews[indexPath.row].title
+            cell.textLabel?.text = isFiltering() ? filteredNews[indexPath.row].title : displayedNews[indexPath.row].title
             cell.textLabel?.numberOfLines = 0
             cell.accessoryType = .disclosureIndicator
             cell.selectedBackgroundView = bgColorView
@@ -123,10 +145,33 @@ class News: LoadingTableView {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = displayedNews[indexPath.row]
+        let item = isFiltering() ? filteredNews[indexPath.row] : displayedNews[indexPath.row]
         guard !item.id.isEmpty else { return }
         let newsDetailViewController = NewsDetail(with: item)
         navigationController?.pushViewController(newsDetailViewController, animated: true)
+    }
+}
+
+// MARK: - UISearchResultsUpdating Delegate
+
+extension News: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterNewsForSearchText(searchController.searchBar.text!)
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterNewsForSearchText(_ searchText: String) {
+        filteredNews = allNews.filter({( news: SingleNews) -> Bool in
+            return news.title.lowercased().contains(searchText.lowercased())
+        })
+        tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
     }
 }
 
@@ -137,7 +182,7 @@ extension News: UIViewControllerPreviewingDelegate {
         
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
-        let item = displayedNews[indexPath.row]
+        let item = isFiltering() ? filteredNews[indexPath.row] : displayedNews[indexPath.row]
         guard !item.id.isEmpty else { return nil }
         let newsDetailViewController = NewsDetail(with: item)
         return newsDetailViewController
