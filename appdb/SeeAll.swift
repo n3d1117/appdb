@@ -17,11 +17,15 @@ class SeeAll: LoadingTableView {
     var devId: String = ""
     var price: Price = .all
     var order: Order = .added
+    var query: String = ""
     
     fileprivate var currentPage: Int = 1
     fileprivate var allLoaded: Bool = false
     
     var items: [Object] = []
+    
+    fileprivate var filteredItems: [Object] = []
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
     
     // Called when 'See All' button is clicked
     convenience init(title: String, type: ItemType, category: String, price: Price, order: Order) {
@@ -70,6 +74,29 @@ class SeeAll: LoadingTableView {
         
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+        
+        // Search Controller
+        searchController.searchResultsUpdater = self
+        if #available(iOS 9.1, *) {
+            searchController.obscuresBackgroundDuringPresentation = false
+        }
+        switch type {
+            case .ios: searchController.searchBar.placeholder = "Search iOS Apps".localized()
+            case .cydia: searchController.searchBar.placeholder = "Search Cydia Apps".localized()
+            case .books: searchController.searchBar.placeholder = "Search Books".localized()
+        }
+        searchController.searchBar.textField?.theme_textColor = Color.title
+        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
+        definesPresentationContext = true
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            searchController.searchBar.barStyle = .default
+            searchController.searchBar.searchBarStyle = .minimal
+            searchController.searchBar.showsScopeBar = false
+            searchController.hidesNavigationBarDuringPresentation = false
+            navigationItem.titleView = searchController.searchBar
+        }
         
         if Global.isIpad {
             // Add 'Dismiss' button for iPad
@@ -147,13 +174,13 @@ class SeeAll: LoadingTableView {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return isFiltering() ? filteredItems.count : items.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard items.indices.contains(indexPath.row) else { return UITableViewCell() }
-        let item = items[indexPath.row]
+        guard (isFiltering() ? filteredItems : items).indices.contains(indexPath.row) else { return UITableViewCell() }
+        let item = isFiltering() ? filteredItems[indexPath.row] : items[indexPath.row]
         
         if let app = item as? App {
             if app.itemHasStars {
@@ -193,11 +220,50 @@ class SeeAll: LoadingTableView {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
+        let item = isFiltering() ? filteredItems[indexPath.row] : items[indexPath.row]
         let vc = Details(content: item)
         navigationController?.pushViewController(vc, animated: true)
     }
     
+}
+
+// MARK: - UISearchResultsUpdating Delegate
+
+extension SeeAll: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        if searchText.count <= 2 {
+            filteredItems = items.filter({( item: Object) -> Bool in
+                return item.itemName.lowercased().contains(searchText.lowercased())
+            })
+            self.tableView.reloadData()
+        } else {
+            query = searchText
+            switch type {
+                case .ios: quickSearch(type: App.self)
+                case .cydia: quickSearch(type: CydiaApp.self)
+                case .books: quickSearch(type: Book.self)
+            }
+        }
+    }
+    
+    func quickSearch<T:Object>(type: T.Type) -> Void where T:Mappable, T:Meta {
+        API.search(type: type, q: query, page: currentPage, success: { results in
+            self.filteredItems = results
+            self.tableView.reloadData()
+        }, fail: { _ in })
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
 }
 
 // MARK: - 3D Touch Peek and Pop
@@ -206,7 +272,7 @@ extension SeeAll: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
-        let item = items[indexPath.row]
+        let item = isFiltering() ? filteredItems[indexPath.row] : items[indexPath.row]
         let vc = Details(content: item)
         return vc
     }

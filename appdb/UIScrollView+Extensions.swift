@@ -88,6 +88,7 @@ public extension UIScrollView {
     /// End refreshing with footer and remove it
     func spr_endRefreshingWithNoMoreData() {
         spr_tempFooter = spr_footer
+        spr_header?.endRefreshing()
         spr_footer?.endRefreshing { [weak self] in
             self?.spr_footer = nil
         }
