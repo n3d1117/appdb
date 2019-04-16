@@ -10,8 +10,14 @@ import UIKit
 
 class NewsDetail: LoadingTableView {
     
-    fileprivate var item: SingleNews!
+    fileprivate var item: SingleNews! {
+        didSet {
+            shareButton.isEnabled = true
+        }
+    }
     var partialItem: SingleNews!
+    
+    fileprivate var shareButton: UIBarButtonItem!
     
     convenience init(with item: SingleNews) {
         self.init(style: .plain)
@@ -25,11 +31,16 @@ class NewsDetail: LoadingTableView {
         tableView.register(NewsDetailTitleDateCell.self, forCellReuseIdentifier: "titledatecell")
         tableView.register(NewsDetailHTMLCell.self, forCellReuseIdentifier: "htmlcell")
 
+        // Initialize 'Share' button
+        shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
+        shareButton.isEnabled = false
+        
         if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
-            self.navigationItem.rightBarButtonItems = [dismissButton]
-            // TODO add share button?
+            self.navigationItem.rightBarButtonItems = [dismissButton, shareButton]
+        } else {
+            self.navigationItem.rightBarButtonItems = [shareButton]
         }
         
         // Hide separator for empty cells
@@ -50,6 +61,18 @@ class NewsDetail: LoadingTableView {
         }, fail: { error in
             self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
         })
+    }
+    
+    @objc fileprivate func share(sender: UIBarButtonItem) {
+        let text = item.title
+        let urlString = "\(Global.mainSite)news.php?id=\(item.id)"
+        guard let url = URL(string: urlString) else { return }
+        let activity = UIActivityViewController(activityItems: [text, url], applicationActivities: [SafariActivity()])
+        if #available(iOS 11.0, *) {} else {
+            activity.excludedActivityTypes = [.airDrop]
+        }
+        activity.popoverPresentationController?.barButtonItem = sender
+        present(activity, animated: true)
     }
     
     @objc func dismissAnimated() { dismiss(animated: true) }
