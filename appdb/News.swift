@@ -101,6 +101,8 @@ class News: LoadingTableView {
         loadNews()
     }
     
+    // MARK: - Table View data source
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

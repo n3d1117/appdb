@@ -76,12 +76,15 @@ class Details: LoadingTableView {
     }
     
     // MARK: - Share
+    
     @objc func share(sender: UIBarButtonItem) {
         let text = "Check out '%@' on appdb!".localizedFormat(content.itemName)
         let urlString = "\(Global.mainSite)view.php?trackid=\(content.itemId)&type=\(contentType.rawValue)"
         guard let url = URL(string: urlString) else { return }
         let activity = UIActivityViewController(activityItems: [text, url], applicationActivities: [SafariActivity()])
-        activity.excludedActivityTypes = [.airDrop]
+        if #available(iOS 11.0, *) {} else {
+            activity.excludedActivityTypes = [.airDrop]
+        }
         activity.popoverPresentationController?.barButtonItem = sender
         present(activity, animated: true)
     }

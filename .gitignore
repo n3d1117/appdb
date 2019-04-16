@@ -21,3 +21,4 @@ Carthage/Build
 /.gitattributes
 /Cartfile.resolved
 /exportOptions.plist
+.DS_Store
