@@ -159,10 +159,33 @@ extension AttributedLabel {
         // Supports <u>
         let u = Style("u").underlineStyle(.single)
         
+        // Supports <a>
         let link = Style("a").foregroundColor(UIColor(rgba: "#446CB3"), .normal).foregroundColor(UIColor(rgba: "#486A92"), .highlighted)
             .underlineStyle(.single)
         
-        attributedText = text.style(tags: [b, i, strong, u, link], transformers: transformers).styleLinks(link)
+        // Supports <img>
+        let img = Style("img")
+        
+        // Close <img> tag manually (otherwise it's not detected)
+        var newText = text
+        if text.contains("<img src") {
+            let a = text.components(separatedBy: "<img src")[1].components(separatedBy: ">")[0]
+            newText = text.replacingOccurrences(of: a + ">", with: a + "></img>")
+        }
+        
+        // Apply styles
+        let str = newText.style(tags: [b, i, strong, u, img, link], transformers: transformers)
+        
+        // Create NSMutableAttributedString
+        let mutableAttrStr = NSMutableAttributedString(attributedString: str.attributedString)
+        
+        // Insert image if <img> tag is found
+        addImageSupport(mutableAttrStr: mutableAttrStr, detections: str.detections)
+
+        // Update text
+        attributedText = mutableAttrStr.styleLinks(link)
+        
+        // Click on url detection
         onClick = { label, detection in
             switch detection.type {
             case .link(let url):
@@ -183,6 +206,65 @@ extension AttributedLabel {
                 }
             default:
                 break
+            }
+        }
+    }
+    
+    func addImageSupport(mutableAttrStr: NSMutableAttributedString, detections: [Detection]) {
+        var locationShift = 0
+        for detection in detections {
+            switch detection.type {
+            case .tag(let tag):
+
+                if tag.name == "img", let imageSrc = tag.attributes["src"] {
+                
+                    if let url = URL(string: imageSrc) {
+                        let textAttachment = NSTextAttachment()
+                        
+                        // Load image synchronously
+                        if let data = try? Data(contentsOf: url) {
+                            let image = UIImage(data: data)
+                            textAttachment.image = image
+                            
+                            // Give it a fixed width
+                            var maxWidth = UIScreen.main.bounds.width - 100
+                            if maxWidth > 500 { maxWidth = 500 }
+                            textAttachment.setImageWidth(width: maxWidth)
+                            
+                            // Add image
+                            let imageAttrStr = NSAttributedString(attachment: textAttachment)
+                            let nsrange = NSRange.init(detection.range, in: mutableAttrStr.string)
+                            mutableAttrStr.insert(imageAttrStr, at: nsrange.location + locationShift)
+                            locationShift += 1
+                        }
+                    }
+                }
+            default:
+                break
+            }
+        }
+        
+        // Center the image
+        mutableAttrStr.setAttachmentsAlignment(.center)
+    }
+}
+
+extension NSTextAttachment {
+    func setImageWidth(width: CGFloat) {
+        guard let image = image else { return }
+        let ratio = image.size.width / image.size.height
+        bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: width, height: width / ratio)
+    }
+}
+
+extension NSMutableAttributedString {
+    func setAttachmentsAlignment(_ alignment: NSTextAlignment) {
+        self.enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: self.length), options: .longestEffectiveRangeNotRequired) { (attribute, range, stop) -> Void in
+            if attribute is NSTextAttachment {
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.alignment = alignment
+                paragraphStyle.lineBreakMode = .byTruncatingTail
+                self.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: range)
             }
         }
     }
