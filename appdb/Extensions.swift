@@ -260,3 +260,28 @@ extension UILabel {
         }
     }
 }
+
+// MARK: - NSMutableAttributedString
+
+extension NSMutableAttributedString {
+    func setAttachmentsAlignment(_ alignment: NSTextAlignment) {
+        self.enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: self.length), options: .longestEffectiveRangeNotRequired) { (attribute, range, stop) -> Void in
+            if attribute is NSTextAttachment {
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.alignment = alignment
+                paragraphStyle.lineBreakMode = .byTruncatingTail
+                self.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: range)
+            }
+        }
+    }
+}
+
+// MARK: - NSTextAttachment
+
+extension NSTextAttachment {
+    func setImageWidth(width: CGFloat) {
+        guard let image = image else { return }
+        let ratio = image.size.width / image.size.height
+        bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: width, height: width / ratio)
+    }
+}

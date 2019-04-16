@@ -16,6 +16,10 @@ extension Settings {
         let device = UIDevice.current
         return device.deviceType.displayName + " (" + device.systemVersion + ")"
     }
+
+    var forumSite: String {
+        return "https://forum." + Global.mainSite.components(separatedBy: "https://")[1]
+    }
     
     var themeSection: [Static.Section] {
         return [
@@ -40,8 +44,8 @@ extension Settings {
                 Row(text: "System Status".localized(), selection: { [unowned self] in
                     self.pushSystemStatus()
                 }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self),
-                Row(text: "Visit appdb forum".localized(), detailText: "https://forum.appdb.to/", selection: { [unowned self] in
-                    self.openInSafari("https://forum.appdb.to/")
+                Row(text: "Visit appdb forum".localized(), detailText: forumSite, selection: { [unowned self] in
+                    self.openInSafari(self.forumSite)
                 }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self)
             ]),
             
