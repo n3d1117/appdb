@@ -126,7 +126,7 @@ extension Settings {
             Section(rows: [
                 Row(text: "Deauthorize".localized(), selection: { [unowned self] in
                     self.deauthorize()
-                    }, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
+                }, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
             ], footer: .title("To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles.".localized())),
             
             Section()

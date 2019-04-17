@@ -15,7 +15,7 @@ import RealmSwift
 // A simple cell for the 'Static' framework that adapts to theme changes
 // and has has dynamic text font size. Used for Settings cells.
 
-final class SimpleStaticCell: UITableViewCell, Cell {
+class SimpleStaticCell: UITableViewCell, Cell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
@@ -192,7 +192,7 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
 // Also don't need the cell to update the property, i'd rather do that in 'valueChange' callback
 // https://github.com/venmo/Static/issues/135
 
-final class SwitchCell: UITableViewCell, Cell {
+final class SwitchCell: SimpleStaticCell {
     
     var valueChange: ValueChange?
     private let toggle = UISwitch()
@@ -212,7 +212,7 @@ final class SwitchCell: UITableViewCell, Cell {
         valueChange?(toggle.isOn)
     }
     
-    func configure(row: Row) {
+    override func configure(row: Row) {
         textLabel?.text = row.text
 
         if let vc = row.context?["valueChange"] as? ValueChange {
