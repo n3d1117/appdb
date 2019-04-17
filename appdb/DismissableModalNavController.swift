@@ -11,7 +11,8 @@ import UIKit
 /* TODO - use presentation controller instead? */
 class DismissableModalNavController: UINavigationController, UIGestureRecognizerDelegate {
     
-    private var recognizer: UITapGestureRecognizer!
+    fileprivate var recognizer: UITapGestureRecognizer!
+    fileprivate var keyboardShown: Bool = false
     
     // Content size for iPad popover
     var popoverContentSize: CGSize {
@@ -34,27 +35,43 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
         
     }
     
-    // Add gesture recognizer if needed
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Global.isIpad, recognizer == nil {
-            recognizer = UITapGestureRecognizer(target: self, action:#selector(self.handleTapBehind))
+        guard Global.isIpad else { return }
+        
+        // Add gesture recognizer if needed
+        if recognizer == nil {
+            recognizer = UITapGestureRecognizer(target: self, action:#selector(handleTapBehind))
             recognizer.delegate = self
             recognizer.numberOfTapsRequired = 1
             recognizer.cancelsTouchesInView = false
             self.view.window?.addGestureRecognizer(recognizer)
         }
+        
+        // Subscribe to keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    // Remove gesture recognizer if needed
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if Global.isIpad, recognizer != nil {
+        guard Global.isIpad else { return }
+        
+        // Remove gesture recognizer if needed
+        if recognizer != nil {
             view.window?.removeGestureRecognizer(recognizer)
             recognizer = nil
         }
+        
+        // Remove observer
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // Adjust content if keyboard is active
+    @objc func adjustForKeyboard(notification: Notification) {
+        keyboardShown = notification.name == UIResponder.keyboardWillShowNotification
     }
     
     // Dismiss view if tapped outside
@@ -67,8 +84,11 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
             // in landscape view you will have to swap the location coordinates
             if UIApplication.shared.statusBarOrientation.isLandscape {
                 location = CGPoint(x: location.y, y: location.x)
+                
+                // Increase height if keyboard is active, to avoid dismissing view by accident
+                if keyboardShown { location.y -= 120 }
             }
-            
+
             if !view.point(inside: view.convert(location, from: view.window), with: nil) {  dismiss(animated: true) }
         }
     }
