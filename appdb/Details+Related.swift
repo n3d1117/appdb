@@ -58,7 +58,7 @@ class DetailsRelated: DetailsCell {
     
     weak var delegate: RelatedRedirectionDelegate?
     
-    override var height: CGFloat { return relatedContent.isEmpty ? 0 : (type == .books ? (175~~165) : (140~~130))+(44~~39) }
+    override var height: CGFloat { return relatedContent.isEmpty ? 0 : (type == .books ? (190~~165) : (140~~130))+(44~~39) }
     override var identifier: String { return "related" }
 
     convenience init(type: ItemType, related: [RelatedContent], delegate: RelatedRedirectionDelegate) {

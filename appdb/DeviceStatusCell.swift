@@ -111,7 +111,7 @@ class DeviceStatusCell: UITableViewCell {
             sl.right == sl.left + (130~~95)
             
             s.left == sl.right + space
-            s.right == s.superview!.right - Global.size.margin.value  - (22~~20)
+            s.right == s.superview!.right - Global.size.margin.value  - (30~~25)
             s.top == sl.top
             
             constrain(type_left, type) { tl, t in

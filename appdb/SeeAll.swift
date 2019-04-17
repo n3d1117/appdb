@@ -239,7 +239,7 @@ extension SeeAll: UISearchResultsUpdating {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        if searchText.count <= 2 {
+        if searchText.count <= 1 {
             filteredItems = items.filter({( item: Object) -> Bool in
                 return item.itemName.lowercased().contains(searchText.lowercased())
             })
@@ -255,7 +255,7 @@ extension SeeAll: UISearchResultsUpdating {
     }
     
     func quickSearch<T:Object>(type: T.Type) -> Void where T:Mappable, T:Meta {
-        API.search(type: type, q: query, page: currentPage, success: { results in
+        API.search(type: type, q: query, success: { results in
             self.filteredItems = results
             self.tableView.reloadData()
         }, fail: { _ in })
