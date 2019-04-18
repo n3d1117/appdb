@@ -27,6 +27,9 @@ class SeeAll: LoadingTableView {
     fileprivate var filteredItems: [Object] = []
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     
+    // Store the result from registerForPreviewing(with:sourceView:)
+    var previewingContext: UIViewControllerPreviewing?
+    
     // Called when 'See All' button is clicked
     convenience init(title: String, type: ItemType, category: String, price: Price, order: Order) {
         self.init(style: .plain)
@@ -65,7 +68,7 @@ class SeeAll: LoadingTableView {
         showsSpinner = false
         
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: tableView)
+            previewingContext = registerForPreviewing(with: self, sourceView: tableView)
         }
         
         // Hide the 'Back' text on back button
@@ -77,6 +80,7 @@ class SeeAll: LoadingTableView {
         
         // Search Controller
         searchController.searchResultsUpdater = self
+        searchController.delegate = self
         if #available(iOS 9.1, *) {
             searchController.obscuresBackgroundDuringPresentation = false
         }
@@ -270,6 +274,7 @@ extension SeeAll: UISearchResultsUpdating {
 
 extension SeeAll: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let tableView = previewingContext.sourceView as? UITableView else { return nil }
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         let item = isFiltering() ? filteredItems[indexPath.row] : items[indexPath.row]
@@ -279,5 +284,22 @@ extension SeeAll: UIViewControllerPreviewingDelegate {
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
+    }
+}
+
+// Allow 3D touch on search results when search controller is active
+extension SeeAll: UISearchControllerDelegate {
+    func willPresentSearchController(_ searchController: UISearchController) {
+        if let context = previewingContext {
+            unregisterForPreviewing(withContext: context)
+            previewingContext = searchController.registerForPreviewing(with: self, sourceView: tableView)
+        }
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        if let context = previewingContext {
+            searchController.unregisterForPreviewing(withContext: context)
+            previewingContext = registerForPreviewing(with: self, sourceView: tableView)
+        }
     }
 }
