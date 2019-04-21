@@ -11,7 +11,7 @@ import Cartography
 
 /*
  *    USAGE FOR FUTURE NED
- *    subclass LoadingTableView, set state.
+ *      subclass LoadingTableView, set state.
  *
  *    STATES:
  *      .loading to make spinner appear in center (make sure to return 0 cells)
@@ -19,8 +19,9 @@ import Cartography
  *      use showErrorMessage() to trigger state .error, which will display error message in center
  *
  *    ADDITIONAL PROPERTIES:
- *      animated - enable/disable bounce on reload
- *      showsErrorButton - enable/disable retry button in .error
+ *      animated - enable/disable bounce on reload (default: false)
+ *      showsErrorButton - enable/disable retry button in .error (default: true)
+ *      showsSpinner - enable/disable spinner in center (disable if using SwiftPullToRefresh, default: true)
  *
  */
 

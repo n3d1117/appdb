@@ -49,6 +49,12 @@ extension Updates {
         // Observe changes for 'showBadgeForUpdates' in preferences
         
         let realm = try! Realm()
+        
+        // Instantiate ignored apps list only once
+        if realm.objects(IgnoredUpdateableApps.self).isEmpty {
+            try! realm.write { realm.add(IgnoredUpdateableApps()) }
+        }
+        
         if let pref = realm.objects(Preferences.self).first {
             token = pref.observe { change in
                 switch change {

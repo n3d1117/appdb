@@ -63,8 +63,6 @@ class DetailsDownload: DetailsCell {
         button.makeDynamicFont()
         button.setTitle("Install".localized().uppercased(), for: .normal)
         button.theme_tintColor = Color.softGreen
-        button.drawPlusIcon = false
-        button.sizeToFit()
         
         contentView.addSubview(host)
         contentView.addSubview(cracker)

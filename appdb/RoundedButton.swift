@@ -10,8 +10,7 @@ import UIKit
 
 public class RoundedButton: UIButton {
     
-    // MARK: Initializers
-    var drawPlusIcon = false
+    // Content id
     var linkId: String = ""
     
     public convenience init() {
@@ -23,9 +22,8 @@ public class RoundedButton: UIButton {
         setup()
     }
     
-    public required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        setup()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Setup
@@ -55,22 +53,6 @@ public class RoundedButton: UIButton {
             refreshBorderColor()
         }
         get { return super.tintColor }
-    }
-    
-    override public func draw(_ rect: CGRect) {
-        
-        if drawPlusIcon {
-            let contextRef = UIGraphicsGetCurrentContext()
-            contextRef!.setFillColor(self.tintColor!.cgColor);
-            
-            // Fill the vertical bar with the color.
-            let verticalBar = CGRect(x: 5, y: 3, width: 1, height: 5)
-            contextRef!.fill(verticalBar);
-            
-            // Fill the horizontal bar with the color.
-            let horizontalBar = CGRect(x: 3, y: 5, width: 5, height: 1)
-            contextRef!.fill(horizontalBar)
-        }
     }
     
     public override var isEnabled: Bool {
