@@ -22,29 +22,11 @@ infix operator ~~ : AdditionPrecedence
 func ~~<T>(left: T, right: T) -> T { return Global.isIpad ? left : right }
 
 // MARK: - UINavigationBar
-// UINavigationBar extension to hide/show bottom hairline. Useful for segmented control under Navigation Bar
+// UINavigationBar extension to hide bottom hairline. Useful for segmented control under Navigation Bar
 extension UINavigationBar {
-    
     func hideBottomHairline() {
-        if let navigationBarImageView = hairlineImageViewInNavigationBar(view: self) {
-            navigationBarImageView.isHidden = true
-        }
+        self.setValue(true, forKey: "hidesShadow")
     }
-    
-    func showBottomHairline() {
-        if let navigationBarImageView = hairlineImageViewInNavigationBar(view: self) {
-            navigationBarImageView.isHidden = false
-        }
-    }
-    
-    private func hairlineImageViewInNavigationBar(view: UIView) -> UIImageView? {
-        if view is UIImageView && view.bounds.height <= 1.0 { return (view as! UIImageView) }
-        let subviews = (view.subviews as [UIView])
-        for subview: UIView in subviews {
-            if let imageView: UIImageView = hairlineImageViewInNavigationBar(view: subview) { return imageView }
-        }
-        return nil
-    }    
 }
 
 // MARK: - String

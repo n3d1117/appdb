@@ -12,7 +12,7 @@ import Cartography
 import AlamofireImage
 
 private var categories: [Genre] = []
-private var checked: [Int:[Bool]] = [0:[true], 1:[true], 2:[true]]
+private var checked: [Int: [Bool]] = [0: [true], 1: [true], 2: [true]]
 private var selected: Int = 0
 private var savedScrollPosition: CGFloat = 0.0
 
