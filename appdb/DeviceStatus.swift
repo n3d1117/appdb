@@ -12,7 +12,7 @@ class DeviceStatus: LoadingTableView {
     
     var didEndRefreshing: Bool = false
     var timer: Timer?
-    let refreshEvery: Double = 2.0
+    let refreshEvery: Double = 1.5
     
     var statuses: [DeviceStatusItem] = [] {
         didSet {

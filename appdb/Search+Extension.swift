@@ -12,10 +12,6 @@ import RealmSwift
 
 extension Search {
     
-    var leftInset: CGFloat {
-        return Global.isIpad ? 25 : 15
-    }
-    
     var topInset: CGFloat {
         return Global.isIpad ? 25 : 15
     }

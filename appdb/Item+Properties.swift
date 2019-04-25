@@ -34,6 +34,12 @@ extension Object {
         return ""
     }
     
+    var itemBundleId: String {
+        if let app = self as? App { return app.bundleId }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.bundleId }
+        return ""
+    }
+    
     var itemScreenshots: [Screenshot] {
         if let app = self as? App {
             if app.screenshotsIpad.isEmpty { return Array(app.screenshotsIphone) }

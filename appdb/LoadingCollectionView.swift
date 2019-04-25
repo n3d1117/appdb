@@ -45,6 +45,8 @@ class LoadingCollectionView: UICollectionViewController {
         return secondaryErrorMessage
     }()
     
+    var hasSegment: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,12 +62,21 @@ class LoadingCollectionView: UICollectionViewController {
     
     fileprivate func setConstraints() {
         constrain(activityIndicator, errorMessage, secondaryErrorMessage) { a, e, s in
-            a.center == a.superview!.center
+            if !hasSegment {
+                a.center == a.superview!.center
+            } else {
+                a.centerX == a.superview!.centerX
+                a.centerY == a.superview!.centerY - 50
+            }
             
             e.left == e.superview!.left + 30
             e.right == e.superview!.right - 30
             e.centerX == e.superview!.centerX
-            e.centerY == e.superview!.centerY - 20
+            if !hasSegment {
+                e.centerY == e.superview!.centerY - 20
+            } else {
+                e.centerY == e.superview!.centerY - 60
+            }
             
             s.left == e.left
             s.right == e.right

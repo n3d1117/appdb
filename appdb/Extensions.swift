@@ -183,7 +183,6 @@ class TableViewHeader: UITableViewHeaderFooterView {
 
 // MARK: - Emoji
 
-// FUCK EMOJIS
 extension Character {
     fileprivate func isEmoji() -> Bool {
         return Character(UnicodeScalar(UInt32(0x1d000))!) <= self && self <= Character(UnicodeScalar(UInt32(0x1f77f))!)
