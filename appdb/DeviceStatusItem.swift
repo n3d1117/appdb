@@ -23,6 +23,7 @@ class DeviceStatusItem: Mappable, Matchable {
     @objc dynamic var purpose = ""
     @objc dynamic var statusShort = ""
     @objc dynamic var statusText = ""
+    @objc dynamic var linkId = ""
 
     convenience required init?(map: Map) { self.init() }
     
@@ -40,6 +41,7 @@ class DeviceStatusItem: Mappable, Matchable {
         if let data = params.data(using: .utf8), let params = try? JSON(data: data) {
             title = params["link_data"]["title"].stringValue
             bundleId = params["link_data"]["bundle_id"].stringValue
+            linkId = params["link_data"]["id"].stringValue
             purpose = params["purpose"].stringValue
             statusShort = params["sign"]["status"].stringValue
             statusText = params["sign"]["status_text"].stringValue

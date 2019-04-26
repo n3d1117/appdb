@@ -24,7 +24,7 @@ extension UIViewController: BadgeManager {
     // Set badge value
     func updateBadge(with text: Any? = nil, for tab: BadgeableTabs) {
         let badge = text == nil ? nil : "\(text!)"
-        tabBarController?.tabBar.items?[tab.rawValue].badgeValue = badge
+        (tabBarController ?? self as? UITabBarController)?.tabBar.items?[tab.rawValue].badgeValue = badge
     }
     
     // Badge += 1

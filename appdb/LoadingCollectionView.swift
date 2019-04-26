@@ -75,7 +75,7 @@ class LoadingCollectionView: UICollectionViewController {
             if !hasSegment {
                 e.centerY == e.superview!.centerY - 20
             } else {
-                e.centerY == e.superview!.centerY - 60
+                e.centerY == e.superview!.centerY - 50
             }
             
             s.left == e.left
