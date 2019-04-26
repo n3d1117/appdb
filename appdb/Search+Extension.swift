@@ -274,6 +274,7 @@ extension Search: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = collectionView?.indexPathForItem(at: location) else { return nil }
         guard  let cell = collectionView.cellForItem(at: indexPath) else { return nil }
+        guard results.indices.contains(indexPath.row) else { return nil }
         previewingContext.sourceRect = cell.frame
         let item = results[indexPath.row]
         let vc = Details(content: item)
