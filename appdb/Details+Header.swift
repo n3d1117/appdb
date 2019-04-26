@@ -34,6 +34,7 @@ class DetailsHeader: DetailsCell {
         switch type {
             case .ios, .cydia: return _height
             case .books: return _heightBooks
+            default: return 0
         }
     }
     
@@ -142,6 +143,8 @@ class DetailsHeader: DetailsCell {
                 
                 self.devId = book.artistId
             }
+            default:
+                break
         }
         
         contentView.addSubview(name)
@@ -169,6 +172,7 @@ class DetailsHeader: DetailsCell {
                 switch type {
                 case .ios, .cydia: icon.height == icon.width
                 case .books: icon.height == icon.width * 1.542
+                default: break
                 }
                 
                 icon.left == icon.superview!.left + Global.size.margin.value

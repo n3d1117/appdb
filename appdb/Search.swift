@@ -143,6 +143,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             case .ios: self?.searchAndUpdate(text, page: page, type: App.self)
             case .cydia: self?.searchAndUpdate(text, page: page, type: CydiaApp.self)
             case .books: self?.searchAndUpdate(text, page: page, type: Book.self)
+            default: break
             }
         }
         collectionView.spr_endRefreshingWithNoMoreData()
@@ -166,6 +167,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             case .ios: self.searchAndUpdate(text, type: App.self)
             case .cydia: self.searchAndUpdate(text, type: CydiaApp.self)
             case .books: self.searchAndUpdate(text, type: Book.self)
+            default: break
         }
     }
     
@@ -229,6 +231,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         case .ios: return "Trending iOS Apps".localized().uppercased().replacingOccurrences(of: "IOS", with: "iOS")
         case .cydia: return "Trending Cydia Apps".localized().uppercased()
         case .books: return "Trending Books".localized().uppercased()
+        default: return ""
         }
     }
     

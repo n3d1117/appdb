@@ -57,6 +57,9 @@ class LoadingCollectionView: UICollectionViewController {
         errorMessage.isHidden = true
         secondaryErrorMessage.isHidden = true
         
+        collectionView.bounces = true
+        collectionView.alwaysBounceVertical = true
+        
         setConstraints()
     }
     
@@ -92,17 +95,14 @@ class LoadingCollectionView: UICollectionViewController {
 
             switch state {
             case .hideIndicator:
-                collectionView.isScrollEnabled = true
                 activityIndicator.stopAnimating()
                 
             case .done(let animated):
                 activityIndicator.stopAnimating()
-                collectionView.isScrollEnabled = true
                 if animated { animate() }
                 
             case .loading:
                 activityIndicator.startAnimating()
-                collectionView.isScrollEnabled = false
                 
             case .error(let first, let second, let animated):
 
@@ -110,10 +110,8 @@ class LoadingCollectionView: UICollectionViewController {
                 secondaryErrorMessage.text = second.prettified
                 
                 errorMessage.isHidden = false
-                secondaryErrorMessage.isHidden = false
                 
                 activityIndicator.stopAnimating()
-                collectionView.isScrollEnabled = false
                 
                 if animated { animate() }
             }

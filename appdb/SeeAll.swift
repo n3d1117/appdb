@@ -88,6 +88,7 @@ class SeeAll: LoadingTableView {
             case .ios: searchController.searchBar.placeholder = "Search iOS Apps".localized()
             case .cydia: searchController.searchBar.placeholder = "Search Cydia Apps".localized()
             case .books: searchController.searchBar.placeholder = "Search Books".localized()
+            default: break
         }
         searchController.searchBar.textField?.theme_textColor = Color.title
         searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
@@ -143,6 +144,7 @@ class SeeAll: LoadingTableView {
             case .ios: loadItems(type: App.self)
             case .cydia: loadItems(type: CydiaApp.self)
             case .books: loadItems(type: Book.self)
+            default: break
         }
     }
     
@@ -254,6 +256,7 @@ extension SeeAll: UISearchResultsUpdating {
                 case .ios: quickSearch(type: App.self)
                 case .cydia: quickSearch(type: CydiaApp.self)
                 case .books: quickSearch(type: Book.self)
+                default: break
             }
         }
     }

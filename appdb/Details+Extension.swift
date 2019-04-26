@@ -104,6 +104,8 @@ extension Details {
                 self.state = .done
                 self.getLinks()
             })
+        default:
+            break
         }
     }
     
@@ -135,6 +137,8 @@ extension Details {
             if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) }
             else if !book.author.isEmpty { details.append(DetailsPublisher("© " + book.author)) }
             }
+        default:
+            break
         }
         shareButton.isEnabled = true
     }

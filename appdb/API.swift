@@ -39,6 +39,7 @@ enum ItemType: String {
     case ios = "ios"
     case books = "books"
     case cydia = "cydia"
+    case myAppstore = "MyAppStore"
 }
 
 enum Order: String {
@@ -75,6 +76,8 @@ enum Actions: String {
     case checkRevoke = "is_apple_fucking_serious"
     case getUpdatesTicket = "get_update_ticket"
     case getUpdates = "get_updates"
+    case getIpas = "get_ipas"
+    case deleteIpa = "delete_ipa"
 }
 
 enum ConfigurationParameters: String {

@@ -186,6 +186,8 @@ class DetailsInformation: DetailsCell {
             contentView.addSubview(compatibilityText)
         }
 
+        default: break
+
         }
         
         setConstraints()
@@ -461,6 +463,9 @@ class DetailsInformation: DetailsCell {
                         
                     }
                 }
+                
+            default:
+                break
             }
             
         }

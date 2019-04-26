@@ -140,4 +140,12 @@ struct Global {
         return s > 0
     }
     
+    // Human readable size from byte count
+    static func humanReadableSize(bytes: Double) -> String {
+        let bcf = ByteCountFormatter()
+        bcf.allowedUnits = [.useAll]
+        bcf.countStyle = .file
+        return bcf.string(fromByteCount: Int64(bytes))
+    }
+    
 }

@@ -76,9 +76,7 @@ class ObservableRequestedApps {
                 } else {
                     for item in items.filter({ Global.isSecondsAway(from: $0.added.unixToDate) }) {
                         if item.type == "install_app" {
-                            delay(2.0) {
-                                self.removeApp(linkId: item.linkId)
-                            }
+                            self.removeApp(linkId: item.linkId)
                         }
                         if item.type == "linked_device_info", (item.status == "new" || item.status == "ok") {
                             var newStatus: String = item.statusShort + "\n" + item.statusText

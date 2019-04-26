@@ -169,6 +169,9 @@
 		81F271E221690B97005C7314 /* NoScreenshotsSearchCell~Book+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F271E121690B97005C7314 /* NoScreenshotsSearchCell~Book+Stars.swift */; };
 		81F3D6581E1310BA003CD808 /* ILTranslucentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3D6571E1310BA003CD808 /* ILTranslucentView.swift */; };
 		81F504E61E5CE4F70000FACC /* DimmableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F504E51E5CE4F70000FACC /* DimmableView.swift */; };
+		81FC8B4122735E5E003788F3 /* API+MyAppstore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC8B4022735E5E003788F3 /* API+MyAppstore.swift */; };
+		81FC8B4322735EA8003788F3 /* MyAppstoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC8B4222735EA8003788F3 /* MyAppstoreApp.swift */; };
+		81FC8B4522736CC1003788F3 /* MyAppstoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC8B4422736CC1003788F3 /* MyAppstoreCell.swift */; };
 		81FCAFCE226E1028004FAFD6 /* QueuedDownloadsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FCAFCD226E1028004FAFD6 /* QueuedDownloadsCell.swift */; };
 		81FCAFD0226E1D0C004FAFD6 /* RequestedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FCAFCF226E1D0C004FAFD6 /* RequestedApp.swift */; };
 		81FF1C4D1F9211B00086EEE0 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F9868C1F7EC9790032C3FB /* ObjectMapper.framework */; };
@@ -363,6 +366,9 @@
 		81F3D6571E1310BA003CD808 /* ILTranslucentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ILTranslucentView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F504E51E5CE4F70000FACC /* DimmableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmableView.swift; sourceTree = "<group>"; };
 		81F9868C1F7EC9790032C3FB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		81FC8B4022735E5E003788F3 /* API+MyAppstore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+MyAppstore.swift"; sourceTree = "<group>"; };
+		81FC8B4222735EA8003788F3 /* MyAppstoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppstoreApp.swift; sourceTree = "<group>"; };
+		81FC8B4422736CC1003788F3 /* MyAppstoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppstoreCell.swift; sourceTree = "<group>"; };
 		81FCAFCD226E1028004FAFD6 /* QueuedDownloadsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuedDownloadsCell.swift; sourceTree = "<group>"; };
 		81FCAFCF226E1D0C004FAFD6 /* RequestedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedApp.swift; sourceTree = "<group>"; };
 		81FF1C4E1F9211B00086EEE0 /* AlamofireNetworkActivityIndicator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireNetworkActivityIndicator.framework; path = Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework; sourceTree = "<group>"; };
@@ -907,6 +913,7 @@
 				817610E721515A3100602FF2 /* API+Genres.swift */,
 				81207DB0215EC6AC00296D20 /* API+Install.swift */,
 				817610ED21515A3200602FF2 /* API+Links.swift */,
+				81FC8B4022735E5E003788F3 /* API+MyAppstore.swift */,
 				817610EE21515A3200602FF2 /* API+News.swift */,
 				817610E821515A3100602FF2 /* API+Promotions.swift */,
 				817610E921515A3200602FF2 /* API+Search.swift */,
@@ -976,6 +983,7 @@
 				811BEE202151538600F1F56A /* DeviceStatusItem.swift */,
 				811BEE1E2151538500F1F56A /* Items.swift */,
 				811BEE1F2151538600F1F56A /* Link.swift */,
+				81FC8B4222735EA8003788F3 /* MyAppstoreApp.swift */,
 				811BEE212151538600F1F56A /* Preferences.swift */,
 				811BEE222151538600F1F56A /* Promotion.swift */,
 				811BEE252151538600F1F56A /* ServiceStatus.swift */,
@@ -1113,6 +1121,7 @@
 			isa = PBXGroup;
 			children = (
 				8148D85D226DE9A5006AD9E0 /* Local+MyAppstore.swift */,
+				81FC8B4422736CC1003788F3 /* MyAppstoreCell.swift */,
 			);
 			name = "Local & MyAppstore";
 			sourceTree = "<group>";
@@ -1260,6 +1269,7 @@
 				8142FCD32198E1FE003CD6DE /* Updates+Extension.swift in Sources */,
 				8126201B215444A400B06F88 /* NSScanner+Swift.swift in Sources */,
 				817418A52165368A00BB70EB /* LoadingCollectionView.swift in Sources */,
+				81FC8B4122735E5E003788F3 /* API+MyAppstore.swift in Sources */,
 				814F4FB92196F5F9005A8111 /* API+Updates.swift in Sources */,
 				8105175B20D0283300B3E1FB /* Identifiable.swift in Sources */,
 				81F271E221690B97005C7314 /* NoScreenshotsSearchCell~Book+Stars.swift in Sources */,
@@ -1315,6 +1325,7 @@
 				811BEE2D2151538600F1F56A /* App.swift in Sources */,
 				81D661761E5A0B6C00BB6461 /* Details+Extension.swift in Sources */,
 				814B7710205B2DCA004D46DD /* RefreshView.swift in Sources */,
+				81FC8B4322735EA8003788F3 /* MyAppstoreApp.swift in Sources */,
 				81FCAFD0226E1D0C004FAFD6 /* RequestedApp.swift in Sources */,
 				818A55AA20584D9100162E51 /* LNZInfiniteCollectionViewLayout.swift in Sources */,
 				81F05AF3219A19120030E5AD /* UpdateCell.swift in Sources */,
@@ -1351,6 +1362,7 @@
 				81D3F72B2163E1DA001EC9F2 /* Item+Properties.swift in Sources */,
 				8177B60C1F81992F0014A944 /* Details+FullScreenshots.swift in Sources */,
 				819E698B1F8E8D3A00C4608F /* ETCollectionViewWaterFallLayout.swift in Sources */,
+				81FC8B4522736CC1003788F3 /* MyAppstoreCell.swift in Sources */,
 				8105175A20D0283300B3E1FB /* Diff.swift in Sources */,
 				817610F821515A3200602FF2 /* API+News.swift in Sources */,
 				81EC00731DAD79A8009EEFFA /* FeaturedBook.swift in Sources */,

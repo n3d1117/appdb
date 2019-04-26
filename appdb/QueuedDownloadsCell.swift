@@ -21,8 +21,8 @@ class QueuedDownloadsCell: UICollectionViewCell {
     var status: UILabel!
     
     func configure(with app: RequestedApp) {
-        self.name.text = app.name
-        self.status.text = app.status
+        name.text = app.name
+        status.text = app.status
         if let url = URL(string: app.image) {
             icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize),
                              imageTransition: .crossDissolve(0.2))

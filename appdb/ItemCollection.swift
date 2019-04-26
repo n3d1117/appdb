@@ -296,6 +296,8 @@ class ItemCollection: FeaturedCell {
                     case .books: getItems(type: Book.self, order: .month, genre: id)
                     default: break
                 }
+            default:
+                break
             }
         }
     }
