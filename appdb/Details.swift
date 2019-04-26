@@ -222,12 +222,37 @@ class Details: LoadingTableView {
     // MARK: - Install app
     
     @objc fileprivate func install(sender: RoundedButton) {
-        API.install(id: sender.linkId, type: contentType) { error in
-            if let error = error {
-                debugLog(error)
-            } else {
-                debugLog("success")
+        
+        func setButtonTitle(_ text: String) {
+            sender.setTitle(text.localized().uppercased(), for: .normal)
+        }
+        
+        if DeviceInfo.deviceIsLinked {
+            setButtonTitle("Requesting...")
+            
+            API.install(id: sender.linkId, type: self.contentType) { error in
+                if let error = error {
+                    debugLog(error)
+                    // todo NOT_COMPATIBLE_WITH_DEVICE
+                    delay(0.3) {
+                        setButtonTitle("Install")
+                    }
+                } else {
+                    setButtonTitle("Requested")
+                    
+                    if self.contentType != .books {
+                        ObservableRequestedApps.shared.addApp(linkId: sender.linkId, id: self.content.itemId, type: self.contentType,
+                                                              name: self.content.itemName, image: self.content.itemIconUrl,
+                                                              bundleId: self.content.itemBundleId)
+                    }
+                    
+                    delay(5) {
+                        setButtonTitle("Install")
+                    }
+                }
             }
+        } else {
+            // Install requested but device is not linked
         }
     }
     
