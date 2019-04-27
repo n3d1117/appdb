@@ -30,7 +30,7 @@ class ActiveDownloads: LoadingCollectionView {
         
         state = .loading
         
-        delay(3) {
+        delay(2) {
             self.collectionView.reloadData()
             self.state = .done(animated: true)
         }

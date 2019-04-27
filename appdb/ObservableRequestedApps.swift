@@ -27,11 +27,9 @@ class ObservableRequestedApps {
         timer = nil
     }
     
-    func addApp(linkId: String, id: String, type: ItemType, name: String, image: String, bundleId: String) {
+    func addApp(type: ItemType, linkId: String, name: String, image: String, bundleId: String) {
         
-        var app = RequestedApp(linkId: linkId, id: id, type: type, name: name, image: image, bundleId: bundleId)
-        app.status = "Waiting..." // todo localize, or remove?
-        
+        let app = RequestedApp(type: type, linkId: linkId, name: name, image: image, bundleId: bundleId)
         requestedApps.insert(app, at: 0)
         
         // Start timer
@@ -75,15 +73,21 @@ class ObservableRequestedApps {
                     self.removeAllApps()
                 } else {
                     for item in items.filter({ Global.isSecondsAway(from: $0.added.unixToDate) }) {
+                        
+                        // Remove app if install prompted
                         if item.type == "install_app" {
                             // todo handle failed_fixable
                             self.removeApp(linkId: item.linkId)
                         }
+                        
+                        // Track status progress
                         if item.type == "linked_device_info" {
                             var newStatus: String = item.statusShort + "\n" + item.statusText
                             if newStatus == "\n" { newStatus = "Waiting..." } // todo localize
                             self.updateStatus(linkId: item.linkId, status: newStatus)
                         }
+                        
+                        // Should books be supported?
                     }
                 }
                 

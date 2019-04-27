@@ -241,9 +241,9 @@ class Details: LoadingTableView {
                     setButtonTitle("Requested")
                     
                     if self.contentType != .books {
-                        ObservableRequestedApps.shared.addApp(linkId: sender.linkId, id: self.content.itemId, type: self.contentType,
-                                                              name: self.content.itemName, image: self.content.itemIconUrl,
-                                                              bundleId: self.content.itemBundleId)
+                        ObservableRequestedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
+                                                          name: self.content.itemName, image: self.content.itemIconUrl,
+                                                          bundleId: self.content.itemBundleId)
                     }
                     
                     delay(5) {

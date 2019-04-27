@@ -106,6 +106,7 @@ class LocalAndMyAppstore: LoadingCollectionView {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myappstorecell", for: indexPath) as! MyAppstoreCell
         cell.configure(with: ipas[indexPath.row])
         cell.installButton.addTarget(self, action: #selector(install), for: .touchUpInside)
+        cell.installButton.tag = indexPath.row
         return cell
     }
     
@@ -166,7 +167,8 @@ class LocalAndMyAppstore: LoadingCollectionView {
                 } else {
                     setButtonTitle("Requested") // todo localize
                     
-                    // todo addApp
+                    ObservableRequestedApps.shared.addApp(type: .myAppstore, linkId: sender.linkId, name: self.ipas[sender.tag].name,
+                                                          image: "", bundleId: self.ipas[sender.tag].bundleId)
                     
                     delay(5) { setButtonTitle("Install") }
                 }
