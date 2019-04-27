@@ -76,22 +76,6 @@ class ActiveDownloads: LoadingCollectionView {
 
 extension ActiveDownloads: ETCollectionViewDelegateWaterfallLayout {
     
-    var isLoading: Bool {
-        if case LoadingCollectionView.State.loading = state {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    var hasError: Bool {
-        if case LoadingCollectionView.State.error(_, _, _) = state {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     var margin: CGFloat {
         return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 50 : (20~~15)
     }

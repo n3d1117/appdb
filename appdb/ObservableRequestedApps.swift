@@ -76,9 +76,10 @@ class ObservableRequestedApps {
                 } else {
                     for item in items.filter({ Global.isSecondsAway(from: $0.added.unixToDate) }) {
                         if item.type == "install_app" {
+                            // todo handle failed_fixable
                             self.removeApp(linkId: item.linkId)
                         }
-                        if item.type == "linked_device_info", (item.status == "new" || item.status == "ok") {
+                        if item.type == "linked_device_info" {
                             var newStatus: String = item.statusShort + "\n" + item.statusText
                             if newStatus == "\n" { newStatus = "Waiting..." } // todo localize
                             self.updateStatus(linkId: item.linkId, status: newStatus)

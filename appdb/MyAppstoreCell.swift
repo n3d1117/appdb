@@ -14,7 +14,6 @@ class MyAppstoreCell: UICollectionViewCell {
     var name: UILabel!
     var bundleId: UILabel!
     var installButton: RoundedButton!
-    var moreImageButton: UIButton!
     
     func configure(with app: MyAppstoreApp) {
         name.text = app.name + " (\(app.size))"
@@ -62,34 +61,22 @@ class MyAppstoreCell: UICollectionViewCell {
         installButton.setTitle("Install".localized().uppercased(), for: .normal)
         installButton.theme_tintColor = Color.softGreen
         
-        // More button
-        moreImageButton = UIButton(type: .custom)
-        moreImageButton.setImage(#imageLiteral(resourceName: "more"), for: .normal)
-        moreImageButton.alpha = 0.9
-        moreImageButton.isUserInteractionEnabled = false
-        
         contentView.addSubview(name)
         contentView.addSubview(bundleId)
         contentView.addSubview(installButton)
-        contentView.addSubview(moreImageButton)
         
-        constrain(name, bundleId, installButton, moreImageButton) { name, bundleId, button, more in
-            
-            more.centerY == more.superview!.centerY
-            more.left == more.superview!.left + Global.size.margin.value
-            more.width == (22~~20)
-            more.height == more.width
+        constrain(name, bundleId, installButton) { name, bundleId, button in
             
             button.right == button.superview!.right - Global.size.margin.value
             button.centerY == button.superview!.centerY
 
-            name.left == more.right + Global.size.margin.value
+            name.left == name.superview!.left + Global.size.margin.value
             name.right == name.superview!.right - 100 - Global.size.margin.value
-            name.top == name.superview!.top + (18~~12)
+            name.top == name.superview!.top + (18~~14)
             
             bundleId.left == name.left
             bundleId.right == name.right
-            bundleId.bottom == bundleId.superview!.bottom - (18~~12)
+            bundleId.bottom == bundleId.superview!.bottom - (18~~14)
             
         }
     }

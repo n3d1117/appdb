@@ -130,3 +130,29 @@ class LoadingCollectionView: UICollectionViewController {
         })
     }
 }
+
+extension LoadingCollectionView {
+    var isLoading: Bool {
+        if case LoadingCollectionView.State.loading = state {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var isDone: Bool {
+        if case LoadingCollectionView.State.done(_) = state {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var hasError: Bool {
+        if case LoadingCollectionView.State.error(_, _, _) = state {
+            return true
+        } else {
+            return false
+        }
+    }
+}

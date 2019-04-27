@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import DeepDiff
 
 class LocalAndMyAppstore: LoadingCollectionView {
     
     fileprivate var ipas = [MyAppstoreApp]()
+    fileprivate var timer: Timer? = nil
     
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    deinit {
+        timer?.invalidate()
+        timer = nil
     }
     
     override func viewDidLoad() {
@@ -36,35 +43,36 @@ class LocalAndMyAppstore: LoadingCollectionView {
         super.viewWillAppear(animated)
         
         state = .loading
-        self.fetchIpas()
+        fetchIpas()
+        
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(fetchIpas), userInfo: nil, repeats: true)
+        }
     }
     
-    fileprivate func fetchIpas() {
+    @objc fileprivate func fetchIpas() {
         API.getIpas(success: { ipas in
+            
+            let changes = diff(old: self.ipas, new: ipas)
             let animated = self.ipas.isEmpty
-            self.ipas = ipas
-            self.collectionView.spr_endRefreshing()
+            
+            self.collectionView.reload(changes: changes, section: 0, updateData: {
+                self.ipas = ipas
+                if !self.isDone { self.state = .done(animated: animated) }
+            })
             
             if self.ipas.isEmpty {
-                self.setErrorMessageIfEmpty()
-            } else {
-                self.state = .done(animated: animated)
+                self.setErrorMessage()
             }
             
             self.collectionView.reloadData()
             
-            // Refresh action
-            self.collectionView.spr_setIndicatorHeader{ [weak self] in
-                self?.fetchIpas()
-            }
-            
         }) { error in
-            self.collectionView.spr_endRefreshing()
-            self.state = .error(first: error.localizedDescription, second: "", animated: true)
+            self.state = .error(first: "Unable to load apps", second: error.localizedDescription, animated: false) // todo localize
         }
     }
     
-    fileprivate func setErrorMessageIfEmpty() {
+    fileprivate func setErrorMessage() {
         let noAppsMessage = "No MyAppstore apps".localized() // todo localize
         if case LoadingCollectionView.State.error(noAppsMessage, _, _) = state {} else {
             state = .error(first: noAppsMessage, second: "", animated: false)
@@ -107,10 +115,10 @@ class LocalAndMyAppstore: LoadingCollectionView {
         let ipa = self.ipas[indexPath.row]
         
         let title = ipa.name
-        let message = "\(ipa.bundleId)\(Global.bulletPoint)\(ipa.size)\nUploaded on \(ipa.uploadedAt.unixToDetailedString)" // todo localize
+        let message = "\(ipa.bundleId)\(Global.bulletPoint)\(ipa.size)\n\nUploaded on \(ipa.uploadedAt.unixToDetailedString)" // todo localize
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
-        let delete = UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in
+        let delete = UIAlertAction(title: "Delete ipa".localized(), style: .destructive) { _ in // todo localize
             API.deleteIpa(id: ipa.id, completion: { error in
                 if let error = error {
                     debugLog(error)
@@ -118,7 +126,7 @@ class LocalAndMyAppstore: LoadingCollectionView {
                     self.ipas.remove(at: indexPath.row)
                     self.collectionView.deleteItems(at: [indexPath])
                     if self.ipas.isEmpty {
-                        self.setErrorMessageIfEmpty()
+                        self.setErrorMessage()
                     }
                 }
             })
@@ -173,22 +181,6 @@ class LocalAndMyAppstore: LoadingCollectionView {
 // MARK: - ETCollectionViewDelegateWaterfallLayout
 
 extension LocalAndMyAppstore: ETCollectionViewDelegateWaterfallLayout {
-    
-    var isLoading: Bool {
-        if case LoadingCollectionView.State.loading = state {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    var hasError: Bool {
-        if case LoadingCollectionView.State.error(_, _, _) = state {
-            return true
-        } else {
-            return false
-        }
-    }
     
     var margin: CGFloat {
         return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 50 : (20~~15)
