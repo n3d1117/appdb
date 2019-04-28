@@ -17,6 +17,8 @@ class News: LoadingTableView {
     fileprivate var allLoaded: Bool = false
     fileprivate let arbitraryDelay: Double = 0.2
     
+    var isPeeking: Bool = false
+    
     fileprivate var bgColorView: UIView = {
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
@@ -70,7 +72,12 @@ class News: LoadingTableView {
         searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
         definesPresentationContext = true
         if #available(iOS 11.0, *) {
-            navigationItem.searchController = searchController
+            if isPeeking {
+                // Fixes weird crash on peek
+                delay(2) { self.navigationItem.searchController = self.searchController }
+            } else {
+                navigationItem.searchController = searchController
+            }
         } else {
             searchController.searchBar.barStyle = .default
             searchController.searchBar.searchBarStyle = .minimal
