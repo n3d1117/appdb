@@ -16,8 +16,8 @@ class MyAppstoreCell: UICollectionViewCell {
     var installButton: RoundedButton!
     
     func configure(with app: MyAppstoreApp) {
-        name.text = app.name + " (\(app.size))"
-        bundleId.text = app.bundleId
+        name.text = app.name + " (\(app.version))"
+        bundleId.text = app.size + Global.bulletPoint + app.bundleId
         installButton.linkId = app.id
     }
     
@@ -57,9 +57,9 @@ class MyAppstoreCell: UICollectionViewCell {
         // Install button
         installButton = RoundedButton()
         installButton.titleLabel?.font = .boldSystemFont(ofSize: 13)
-        installButton.makeDynamicFont()
         installButton.setTitle("Install".localized().uppercased(), for: .normal)
         installButton.theme_tintColor = Color.softGreen
+        installButton.makeDynamicFont()
         
         contentView.addSubview(name)
         contentView.addSubview(bundleId)
@@ -71,7 +71,7 @@ class MyAppstoreCell: UICollectionViewCell {
             button.centerY == button.superview!.centerY
 
             name.left == name.superview!.left + Global.size.margin.value
-            name.right == name.superview!.right - 100 - Global.size.margin.value
+            name.right == name.superview!.right - 110 - Global.size.margin.value
             name.top == name.superview!.top + (18~~14)
             
             bundleId.left == name.left

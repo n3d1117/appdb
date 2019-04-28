@@ -21,7 +21,7 @@ class Downloads: UIViewController {
     var group = ConstraintGroup()
     
     lazy var viewControllersArray: [UIViewController] = {
-        return [QueuedDownloads(), LocalAndMyAppstore(), ActiveDownloads()]
+        return [QueuedDownloads(), Library(), ActiveDownloads()]
     }()
     
     override func viewDidLoad() {
@@ -33,7 +33,7 @@ class Downloads: UIViewController {
         headerView = ILTranslucentView(frame: .zero)
         headerView.translucentAlpha = 1
         
-        control = UISegmentedControl(items: ["Queued", "MyAppstore", "Active"]) // todo localize
+        control = UISegmentedControl(items: ["Queued", "Library", "Downloading"]) // todo localize
         control.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)
         control.selectedSegmentIndex = 0
         

@@ -66,7 +66,7 @@ public class RoundedButton: UIButton {
             if isHighlighted != newHighlighted {
                 super.isHighlighted = newHighlighted
                 
-                UIView.animate(withDuration: 0.25) {
+                UIView.animate(withDuration: 0.2) {
                     self.layer.backgroundColor = self.isHighlighted ? self.tintColor?.cgColor : UIColor.clear.cgColor
                 }
                 

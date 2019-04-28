@@ -84,14 +84,13 @@ class Settings: TableViewController {
     }
     
     // Update badge for Updates tab
-
     func setShowsBadgeForUpdates(_ show: Bool) {
         let realm = try! Realm()
         guard let pref = realm.objects(Preferences.self).first else { return }
         try! realm.write { pref.showBadgeForUpdates = show }
     }
     
-    // Push news controller
+    // Push device status controller
     func pushDeviceStatus() {
         let deviceStatusController = DeviceStatus()
         if Global.isIpad {
@@ -117,13 +116,13 @@ class Settings: TableViewController {
     
     // Push acknowledgements controller
     func pushAcknowledgements() {
-        let statusViewController = Acknowledgements()
+        let acknowledgementsViewController = Acknowledgements()
         if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: statusViewController)
+            let nav = DismissableModalNavController(rootViewController: acknowledgementsViewController)
             nav.modalPresentationStyle = .formSheet
             self.navigationController?.present(nav, animated: true)
         } else {
-            self.navigationController?.pushViewController(statusViewController, animated: true)
+            self.navigationController?.pushViewController(acknowledgementsViewController, animated: true)
         }
     }
     
@@ -223,7 +222,6 @@ extension Settings: UIViewControllerPreviewingDelegate {
         // Wrap it into a UINavigationController to see viewController's title on peek
         switch row.text {
             case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
-            case "News".localized(): return UINavigationController(rootViewController: News())
             case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
             case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
             case "News".localized():
