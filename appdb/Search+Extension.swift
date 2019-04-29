@@ -17,7 +17,7 @@ extension Search {
     }
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 50 : 15
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : 15
     }
     
     func pushDetailsController(with content: Object) {

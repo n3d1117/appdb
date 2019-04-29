@@ -15,7 +15,7 @@ import AlamofireImage
 
 func debugLog(_ arg: Any) {
     #if DEBUG
-        print("** [LOG] \(arg)")
+        NSLog("** [LOG] \(arg)")
     #endif
 }
 

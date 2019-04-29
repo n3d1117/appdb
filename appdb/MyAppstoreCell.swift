@@ -17,7 +17,7 @@ class MyAppstoreCell: UICollectionViewCell {
     
     func configure(with app: MyAppstoreApp) {
         name.text = app.name + " (\(app.version))"
-        bundleId.text = app.size + Global.bulletPoint + app.bundleId
+        bundleId.text = app.bundleId
         installButton.linkId = app.id
     }
     
@@ -72,11 +72,11 @@ class MyAppstoreCell: UICollectionViewCell {
 
             name.left == name.superview!.left + Global.size.margin.value
             name.right == name.superview!.right - 110 - Global.size.margin.value
-            name.top == name.superview!.top + (18~~14)
+            name.top == name.superview!.top + (18~~15)
             
             bundleId.left == name.left
             bundleId.right == name.right
-            bundleId.bottom == bundleId.superview!.bottom - (18~~14)
+            bundleId.bottom == bundleId.superview!.bottom - (18~~15)
             
         }
     }

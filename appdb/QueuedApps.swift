@@ -1,5 +1,5 @@
 //
-//  QueuedDownloads.swift
+//  QueuedApps.swift
 //  appdb
 //
 //  Created by ned on 22/04/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QueuedDownloads: LoadingCollectionView {
+class QueuedApps: LoadingCollectionView {
     
     fileprivate var requestedApps = [RequestedApp]()
  
@@ -32,7 +32,7 @@ class QueuedDownloads: LoadingCollectionView {
         
         setErrorMessageIfEmpty()
         
-        ObservableRequestedApps.shared.onUpdate = { [unowned self] apps in
+        ObserveQueuedApps.shared.onUpdate = { [unowned self] apps in
             self.updateCollection(with: apps)
         }
     }
@@ -110,10 +110,10 @@ class QueuedDownloads: LoadingCollectionView {
 
 // MARK: - ETCollectionViewDelegateWaterfallLayout
 
-extension QueuedDownloads: ETCollectionViewDelegateWaterfallLayout {
+extension QueuedApps: ETCollectionViewDelegateWaterfallLayout {
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 50 : (20~~15)
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
     }
     
     var topInset: CGFloat {

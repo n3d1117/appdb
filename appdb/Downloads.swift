@@ -21,7 +21,7 @@ class Downloads: UIViewController {
     var group = ConstraintGroup()
     
     lazy var viewControllersArray: [UIViewController] = {
-        return [QueuedDownloads(), Library(), ActiveDownloads()]
+        return [QueuedApps(), Library(), ActiveDownloads()]
     }()
     
     override func viewDidLoad() {
@@ -103,8 +103,19 @@ class Downloads: UIViewController {
     // Switch table view based on segment index
     @objc func indexDidChange(sender: UISegmentedControl) {
         let new: UIViewController = viewControllersArray[sender.selectedSegmentIndex]
-        self.cycleFromViewController(old: self.currentViewController!, to: new)
+        self.cycle(from: self.currentViewController!, to: new)
         self.currentViewController = new
+    }
+    
+    // Called from AppDelegate
+    func switchToIndex(i: Int) {
+        guard let control = control else { delay(0.8) { self.switchToIndex(i: i) }; return }
+        if control.selectedSegmentIndex != i {
+            control.selectedSegmentIndex = i
+            let new: UIViewController = viewControllersArray[i]
+            self.cycle(from: self.currentViewController!, to: new)
+            self.currentViewController = new
+        }
     }
 }
 
@@ -114,7 +125,8 @@ extension Downloads {
     // Switch between table views with fade animation
     // Credits: https://github.com/woelmer/SwitchChildViewControllersWithAutoLayout
     //
-    func cycleFromViewController(old: UIViewController, to new: UIViewController) {
+    func cycle(from old: UIViewController, to new: UIViewController) {
+        control.isUserInteractionEnabled = false
         old.willMove(toParent: nil)
         self.addChild(new)
         self.addSubview(subView: new.view)
@@ -127,6 +139,7 @@ extension Downloads {
             old.view.removeFromSuperview()
             old.removeFromParent()
             new.didMove(toParent: self)
+            self.control.isUserInteractionEnabled = true
         })
     }
     

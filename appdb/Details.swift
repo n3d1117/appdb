@@ -241,7 +241,7 @@ class Details: LoadingTableView {
                     setButtonTitle("Requested")
                     
                     if self.contentType != .books {
-                        ObservableRequestedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
+                        ObserveQueuedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
                                                           name: self.content.itemName, image: self.content.itemIconUrl,
                                                           bundleId: self.content.itemBundleId)
                     }
@@ -275,15 +275,16 @@ class Details: LoadingTableView {
         
         let alert = UIAlertController(title: "Report".localized(), message: "Reporting a broken link for '%@'.".localizedFormat(content.itemName), preferredStyle: .alert)
         
-        alert.addTextField(configurationHandler: { textField -> Void in
+        alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "Enter a reason for your report".localized()
             textField.theme_keyboardAppearance = [.light, .dark]
             textField.addTarget(self, action: #selector(self.reportTextfieldTextChanged), for: .editingChanged)
+            textField.clearButtonMode = .whileEditing
         })
         
         alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         
-        let reportAction = UIAlertAction(title: "Send".localized(), style: .destructive, handler: { _ -> Void in
+        let reportAction = UIAlertAction(title: "Send".localized(), style: .destructive, handler: { _ in
             if let textField = alert.textFields?.first, let text = textField.text {
                 API.reportLink(id: id, type: self.contentType, reason: text, completion: { error in
                     if let error = error {

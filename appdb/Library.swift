@@ -12,21 +12,21 @@ import DeepDiff
 class Library: LoadingCollectionView {
     
     enum Section: Int {
-        case local, myappstore
+        case local = 0
+        case myappstore = 1
     }
     
+    fileprivate var localIpas = [LocalIPAFile]()
     fileprivate var myAppstoreIpas = [MyAppstoreApp]()
     fileprivate var timer: Timer? = nil
+    fileprivate var documentController: UIDocumentInteractionController?
+    
+    fileprivate var useDiff: Bool = false
     
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
-    
-    deinit {
-        timer?.invalidate()
-        timer = nil
-    }
-    
+
     override func viewDidLoad() {
         self.hasSegment = true
         super.viewDidLoad()
@@ -40,41 +40,73 @@ class Library: LoadingCollectionView {
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         collectionView.theme_backgroundColor = Color.tableViewBackgroundColor
         
-        collectionView.register(LibrarySectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "librarySectionHeaderView")
+        collectionView.register(LibrarySectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "librarySectionHeaderViewOne")
+        collectionView.register(LibrarySectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "librarySectionHeaderViewTwo")
         collectionView.register(MyAppstoreCell.self, forCellWithReuseIdentifier: "myappstorecell")
+        collectionView.register(LocalIPACell.self, forCellWithReuseIdentifier: "localipacell")
+        
+        state = .loading
 
     }
     
-    var firstTimeOnly: Bool = false
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !firstTimeOnly {
-            firstTimeOnly = true
-            state = .loading
-        }
-        fetchIpas()
-        
+        loadContent()
         if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(fetchIpas), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(loadContent), userInfo: nil, repeats: true)
         }
     }
     
-    @objc fileprivate func fetchIpas() {
-        API.getIpas(success: { ipas in
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc fileprivate func loadContent() {
+        if useDiff {
+            let newLocalIpas = IPAFileManager.shared.listLocalIpas()
+            let localIpaChanges = diff(old: localIpas, new: newLocalIpas)
             
-            let changes = diff(old: self.myAppstoreIpas, new: ipas)
-            let animated = self.myAppstoreIpas.isEmpty
+            API.getIpas(success: { ipas in
+                let myappstoreChanges = diff(old: self.myAppstoreIpas, new: ipas)
+
+                self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
+                    self.localIpas = newLocalIpas
+                })
+                self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
+                    self.myAppstoreIpas = ipas
+                })
+                
+            }) { _ in
+                self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
+                    self.localIpas = newLocalIpas
+                })
+            }
             
-            self.collectionView.reload(changes: changes, section: Section.myappstore.rawValue, updateData: {
+        } else {
+            localIpas = IPAFileManager.shared.listLocalIpas()
+            API.getIpas(success: { ipas in
                 self.myAppstoreIpas = ipas
-                if !self.isDone { self.state = .done(animated: animated) }
-            })
-            
-            // todo handle empty
-            
-        }) { error in
-            // todo
+
+                self.state = .done(animated: true)
+                self.reloadHeaderViews()
+                self.collectionView.reloadData()
+                
+                self.useDiff = true
+                
+            }) { _ in }
+        }
+    }
+    
+    fileprivate func reloadHeaderViews() {
+        if let localIpasHeader = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: Section.local.rawValue)) as? LibrarySectionHeaderView {
+            localIpasHeader.configure("Local Files") // todo localize
+        }
+        if let myappstoreHeader = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: Section.myappstore.rawValue)) as? LibrarySectionHeaderView {
+            myappstoreHeader.configure("MyAppstore") // todo localize
         }
     }
     
@@ -97,20 +129,22 @@ class Library: LoadingCollectionView {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == Section.myappstore.rawValue { return isLoading ? 0 : myAppstoreIpas.count }
-        return 2
+        if section == Section.myappstore.rawValue { return myAppstoreIpas.count }
+        return localIpas.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == Section.myappstore.rawValue {
-            guard !isLoading, myAppstoreIpas.indices.contains(indexPath.row) else { return UICollectionViewCell() }
+            guard myAppstoreIpas.indices.contains(indexPath.row) else { return UICollectionViewCell() }
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myappstorecell", for: indexPath) as! MyAppstoreCell
             cell.configure(with: myAppstoreIpas[indexPath.row])
             cell.installButton.addTarget(self, action: #selector(install), for: .touchUpInside)
             cell.installButton.tag = indexPath.row
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myappstorecell", for: indexPath) as! MyAppstoreCell
+            guard localIpas.indices.contains(indexPath.row) else { return UICollectionViewCell() }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localipacell", for: indexPath) as! LocalIPACell
+            cell.configure(with: localIpas[indexPath.row])
             return cell
         }
     }
@@ -119,38 +153,122 @@ class Library: LoadingCollectionView {
         if indexPath.section == Section.myappstore.rawValue {
             
             guard self.myAppstoreIpas.indices.contains(indexPath.row) else { return }
-            let ipa = self.myAppstoreIpas[indexPath.row]
+            let app = self.myAppstoreIpas[indexPath.row]
+            presentOptionsForMyappstoreApp(app, indexPath)
             
-            let title = ipa.name + Global.bulletPoint + ipa.version
-            let message = "\(ipa.bundleId)\(Global.bulletPoint)\(ipa.size)\n\nUploaded on \(ipa.uploadedAt.unixToDetailedString)" // todo localize
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-            
-            let delete = UIAlertAction(title: "Delete ipa".localized(), style: .destructive) { _ in // todo localize
-                API.deleteIpa(id: ipa.id, completion: { error in
-                    if let error = error {
-                        debugLog(error)
-                    } else {
-                        self.myAppstoreIpas.remove(at: indexPath.row)
-                        self.collectionView.deleteItems(at: [indexPath])
-                        // todo handle empty
-                    }
-                })
+        } else {
+            guard self.localIpas.indices.contains(indexPath.row) else { return }
+            let ipa = self.localIpas[indexPath.row]
+            presentOptionsForLocalIpa(ipa, indexPath)
+        }
+    }
+    
+    fileprivate func presentOptionsForMyappstoreApp(_ app: MyAppstoreApp, _ indexPath: IndexPath) {
+        let title = app.name
+        // todo localize
+        let message = "\(app.bundleId)\(Global.bulletPoint)\(app.size)\(Global.bulletPoint)\(app.version)" +
+                      "\nUploaded on \(app.uploadedAt.unixToDetailedString)"
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        let delete = UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in // todo localize
+            API.deleteIpa(id: app.id, completion: { error in
+                if let error = error {
+                    debugLog(error)
+                } else {
+                    self.myAppstoreIpas.remove(at: indexPath.row)
+                    self.collectionView.deleteItems(at: [indexPath])
+                    // todo handle empty
+                }
+            })
+        }
+        let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
+        alertController.addAction(delete)
+        alertController.addAction(cancel)
+
+        if let presenter = alertController.popoverPresentationController, let attributes = collectionView.layoutAttributesForItem(at: indexPath) {
+            presenter.theme_backgroundColor = Color.popoverArrowColor
+            presenter.sourceView = self.view
+            presenter.sourceRect = collectionView.convert(attributes.frame, to: collectionView.superview)
+            presenter.permittedArrowDirections = [.up, .down]
+        }
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+        }
+    }
+    
+    fileprivate func presentOptionsForLocalIpa(_ ipa: LocalIPAFile, _ indexPath: IndexPath) {
+
+        let alertController = UIAlertController(title: "", message: ipa.filename, preferredStyle: .actionSheet)
+        
+        let openIn = UIAlertAction(title: "Open in...".localized(), style: .default) { _ in // todo localize
+            self.documentController = UIDocumentInteractionController(url: IPAFileManager.shared.url(for: ipa))
+            if let attributes = self.collectionView.layoutAttributesForItem(at: indexPath) {
+                let rect = self.collectionView.convert(attributes.frame, to: self.collectionView.superview)
+                self.documentController!.presentOpenInMenu(from: rect, in: self.collectionView, animated: true)
             }
-            let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
-            
-            alertController.addAction(delete)
-            alertController.addAction(cancel)
-            
-            if let presenter = alertController.popoverPresentationController, let attributes = collectionView.layoutAttributesForItem(at: indexPath) {
-                presenter.theme_backgroundColor = Color.popoverArrowColor
-                presenter.sourceView = self.view
-                presenter.sourceRect = collectionView.convert(attributes.frame, to: collectionView.superview)
-                presenter.permittedArrowDirections = [.up, .down]
-            }
-            
-            DispatchQueue.main.async {
-                self.present(alertController, animated: true)
-            }
+        }
+        let rename = UIAlertAction(title: "Rename".localized(), style: .default) { _ in // todo localize
+            self.handleRename(for: ipa, at: indexPath)
+        }
+        let delete = UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in // todo localize
+            IPAFileManager.shared.delete(file: ipa)
+            self.localIpas.remove(at: indexPath.row)
+            self.collectionView.deleteItems(at: [indexPath])
+        }
+        let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
+        
+        alertController.addAction(openIn)
+        alertController.addAction(rename)
+        alertController.addAction(delete)
+        alertController.addAction(cancel)
+        
+        if let presenter = alertController.popoverPresentationController, let attributes = collectionView.layoutAttributesForItem(at: indexPath) {
+            presenter.theme_backgroundColor = Color.popoverArrowColor
+            presenter.sourceView = self.view
+            presenter.sourceRect = collectionView.convert(attributes.frame, to: collectionView.superview)
+            presenter.permittedArrowDirections = [.up, .down]
+        }
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+        }
+    }
+    
+    // MARK: - Rename local ipa
+    
+    func handleRename(for file: LocalIPAFile, at indexPath: IndexPath) {
+        // todo localize
+        let alert = UIAlertController(title: "Rename File", message: nil, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { textField in
+            textField.addTarget(self, action: #selector(self.renameTextChanged), for: .editingChanged)
+            textField.placeholder = String(file.filename.dropLast(4))
+            textField.text = String(file.filename.dropLast(4))
+            textField.theme_keyboardAppearance = [.light, .dark]
+            textField.clearButtonMode = .whileEditing
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        
+        let rename = UIAlertAction(title: "OK".localized(), style: .default, handler: { _ in
+            guard let text = alert.textFields?[0].text else { return }
+            IPAFileManager.shared.rename(file: file, to: text + ".ipa")
+            self.loadContent()
+        })
+        
+        alert.addAction(rename)
+        rename.isEnabled = false
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    
+    @objc func renameTextChanged(sender: UITextField) {
+        var responder: UIResponder = sender
+        while !(responder is UIAlertController) { responder = responder.next! }
+        if let alert = responder as? UIAlertController {
+            (alert.actions[1] as UIAlertAction).isEnabled = sender.text != ""
         }
     }
     
@@ -172,8 +290,7 @@ class Library: LoadingCollectionView {
                 } else {
                     setButtonTitle("Requested") // todo localize
                     
-                    ObservableRequestedApps.shared.addApp(type: .myAppstore, linkId: sender.linkId, name: self.myAppstoreIpas[sender.tag].name,
-                                                          image: "", bundleId: self.myAppstoreIpas[sender.tag].bundleId)
+                    ObserveQueuedApps.shared.addApp(type: .myAppstore, linkId: sender.linkId, name: self.myAppstoreIpas[sender.tag].name, image: "", bundleId: self.myAppstoreIpas[sender.tag].bundleId)
                     
                     delay(5) { setButtonTitle("Install") }
                 }
@@ -190,23 +307,24 @@ class Library: LoadingCollectionView {
 extension Library: ETCollectionViewDelegateWaterfallLayout {
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 50 : (20~~15)
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
     }
     
     var topInset: CGFloat {
-        return Global.isIpad ? 25 : 15
+        return 25~~15
     }
     
     var layout: ETCollectionViewWaterfallLayout {
         let layout = ETCollectionViewWaterfallLayout()
         layout.minimumColumnSpacing = 20~~15
         layout.minimumInteritemSpacing = 15~~10
-        layout.headerHeight = 25~~20
-        layout.headerInset.top = 20
+        layout.headerHeight = 1
+        layout.headerInset.top = 38~~33
+        layout.headerInset.bottom = 4
         if #available(iOS 11.0, *) {
-            layout.headerInset.left = (UIDevice.current.orientation.isLandscape && Global.hasNotch ? 35 : 2)
+            layout.headerInset.left = (UIDevice.current.orientation.isLandscape && Global.hasNotch ? 45 : 2)
         }
-        layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: topInset, right: margin)
+        layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: 0, right: margin)
         if Global.isIpad {
             layout.columnCount = 2
         } else {
@@ -232,7 +350,7 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: (80~~70))
+        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (80~~70) : (50~~40))
     }
 }
 
@@ -240,9 +358,11 @@ extension Library: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderView", for: indexPath) as! LibrarySectionHeaderView
-            header.configure(indexPath.section == Section.myappstore.rawValue ? "MyAppstore" : "Local files") // todo localize
-            return header
+            if indexPath.section == Section.local.rawValue {
+                return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewOne", for: indexPath) as! LibrarySectionHeaderView
+            } else {
+                return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewTwo", for: indexPath) as! LibrarySectionHeaderView
+            }
         }
         return UICollectionReusableView()
     }

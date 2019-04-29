@@ -49,9 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         UISwitch.appearance().theme_onTintColor = Color.mainTint
         
         // Realm config
-        let config = Realm.Configuration(schemaVersion: 0)
+        let dbURL: URL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0].appendingPathComponent("db.realm")
+        let config = Realm.Configuration(fileURL: dbURL, schemaVersion: 0, migrationBlock: { migration, oldVersion in
+            if oldVersion < 1 {
+                // Migrate if needed
+            }
+        })
         Realm.Configuration.defaultConfiguration = config
-        //debugLog(Realm.Configuration.defaultConfiguration.fileURL ?? "")
+        debugLog(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "")
         
         // Global Operations
         Global.setFirstLaunch()
@@ -63,6 +68,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         NetworkActivityIndicatorManager.shared.completionDelay = 0.2
         
         return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        // Handle IPA
+        if url.isFileURL && url.pathExtension == "ipa" {
+            guard let tabController = self.window?.rootViewController as? TabBarController else { return false }
+            tabController.selectedIndex = 2
+            guard let nav = tabController.viewControllers?[2] as? UINavigationController else { return false }
+            guard let downloads = nav.viewControllers[0] as? Downloads else { return false }
+            downloads.switchToIndex(i: 1)
+            debugLog(url.absoluteString)
+            return true
+        }
+        
+        return false
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return application(app, open: url, sourceApplication: "", annotation: options)
     }
 
 }

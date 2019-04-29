@@ -58,7 +58,7 @@
 		81485A77216617980004184F /* Search+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81485A76216617980004184F /* Search+Extension.swift */; };
 		81485A79216777230004184F /* NoScreenshotsSearchCell~Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81485A78216777230004184F /* NoScreenshotsSearchCell~Book.swift */; };
 		8148D858226DD219006AD9E0 /* Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148D857226DD219006AD9E0 /* Downloads.swift */; };
-		8148D85A226DD230006AD9E0 /* QueuedDownloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148D859226DD230006AD9E0 /* QueuedDownloads.swift */; };
+		8148D85A226DD230006AD9E0 /* QueuedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148D859226DD230006AD9E0 /* QueuedApps.swift */; };
 		8148D85C226DE68E006AD9E0 /* ActiveDownloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148D85B226DE68E006AD9E0 /* ActiveDownloads.swift */; };
 		8148D85E226DE9A5006AD9E0 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148D85D226DE9A5006AD9E0 /* Library.swift */; };
 		814AEBF21E68312C00A207CC /* Details+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814AEBF11E68312C00A207CC /* Details+Information.swift */; };
@@ -73,6 +73,8 @@
 		814F4FBD21974A5B005A8111 /* Ignored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F4FBC21974A5B005A8111 /* Ignored.swift */; };
 		814F4FBF2197589E005A8111 /* IgnoredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F4FBE2197589E005A8111 /* IgnoredCell.swift */; };
 		8155094A22748F0E00509B20 /* LibrarySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8155094922748F0E00509B20 /* LibrarySectionHeaderView.swift */; };
+		815A438F2275E11000868949 /* IPAFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815A438E2275E11000868949 /* IPAFileManager.swift */; };
+		815A43922275F5EF00868949 /* LocalIPACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815A43912275F5EF00868949 /* LocalIPACell.swift */; };
 		815C4AA01F954FDA0002AB08 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C4A9F1F954FDA0002AB08 /* Search.swift */; };
 		815C4AA21F9550340002AB08 /* SuggestionsWhileTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C4AA11F9550340002AB08 /* SuggestionsWhileTyping.swift */; };
 		816010CF1F8FEFF5003BA61E /* PortraitScreenshotSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816010CE1F8FEFF5003BA61E /* PortraitScreenshotSearchCell.swift */; };
@@ -162,7 +164,7 @@
 		81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00761DAD89D7009EEFFA /* Banner.swift */; };
 		81EC00791DAD8B5A009EEFFA /* Copyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00781DAD8B5A009EEFFA /* Copyright.swift */; };
 		81EC007B1DAD92A2009EEFFA /* Featured+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */; };
-		81ED9A61226CB86100F45B75 /* ObservableRequestedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED9A60226CB86100F45B75 /* ObservableRequestedApps.swift */; };
+		81ED9A61226CB86100F45B75 /* ObserveQueuedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED9A60226CB86100F45B75 /* ObserveQueuedApps.swift */; };
 		81F05AF3219A19120030E5AD /* UpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F05AF2219A19120030E5AD /* UpdateCell.swift */; };
 		81F1FE7F1E5AF12400C1CD44 /* DismissableModalNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE7E1E5AF12400C1CD44 /* DismissableModalNavController.swift */; };
 		81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE821E5B123A00C1CD44 /* Details+Header.swift */; };
@@ -249,7 +251,7 @@
 		81485A76216617980004184F /* Search+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search+Extension.swift"; sourceTree = "<group>"; };
 		81485A78216777230004184F /* NoScreenshotsSearchCell~Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoScreenshotsSearchCell~Book.swift"; sourceTree = "<group>"; };
 		8148D857226DD219006AD9E0 /* Downloads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloads.swift; sourceTree = "<group>"; };
-		8148D859226DD230006AD9E0 /* QueuedDownloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuedDownloads.swift; sourceTree = "<group>"; };
+		8148D859226DD230006AD9E0 /* QueuedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuedApps.swift; sourceTree = "<group>"; };
 		8148D85B226DE68E006AD9E0 /* ActiveDownloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveDownloads.swift; sourceTree = "<group>"; };
 		8148D85D226DE9A5006AD9E0 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		814AEBF11E68312C00A207CC /* Details+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Information.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -264,6 +266,8 @@
 		814F4FBC21974A5B005A8111 /* Ignored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ignored.swift; sourceTree = "<group>"; };
 		814F4FBE2197589E005A8111 /* IgnoredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredCell.swift; sourceTree = "<group>"; };
 		8155094922748F0E00509B20 /* LibrarySectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarySectionHeaderView.swift; sourceTree = "<group>"; };
+		815A438E2275E11000868949 /* IPAFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAFileManager.swift; sourceTree = "<group>"; };
+		815A43912275F5EF00868949 /* LocalIPACell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalIPACell.swift; sourceTree = "<group>"; };
 		815C4A9F1F954FDA0002AB08 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		815C4AA11F9550340002AB08 /* SuggestionsWhileTyping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsWhileTyping.swift; sourceTree = "<group>"; };
 		816010CE1F8FEFF5003BA61E /* PortraitScreenshotSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitScreenshotSearchCell.swift; sourceTree = "<group>"; };
@@ -359,7 +363,7 @@
 		81EC00761DAD89D7009EEFFA /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Banner.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC00781DAD8B5A009EEFFA /* Copyright.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Copyright.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Featured+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		81ED9A60226CB86100F45B75 /* ObservableRequestedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableRequestedApps.swift; sourceTree = "<group>"; };
+		81ED9A60226CB86100F45B75 /* ObserveQueuedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveQueuedApps.swift; sourceTree = "<group>"; };
 		81F05AF2219A19120030E5AD /* UpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCell.swift; sourceTree = "<group>"; };
 		81F1FE7E1E5AF12400C1CD44 /* DismissableModalNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DismissableModalNavController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F1FE821E5B123A00C1CD44 /* Details+Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Header.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -563,7 +567,16 @@
 			isa = PBXGroup;
 			children = (
 				81FC8B4422736CC1003788F3 /* MyAppstoreCell.swift */,
+				815A43912275F5EF00868949 /* LocalIPACell.swift */,
 				8155094922748F0E00509B20 /* LibrarySectionHeaderView.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		815A438D2275E0EF00868949 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				81FCAFCD226E1028004FAFD6 /* QueuedDownloadsCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -708,7 +721,6 @@
 				81795CD61E60885600805B3A /* • ElasticLabel */,
 				81236ACA1E3B8A3E009748E0 /* • PaddingLabel */,
 				81E7CBF91E1FC0DE004AF156 /* • LoadingTableView */,
-				81ED9A5F226CB82100F45B75 /* • ObservableRequestedApps */,
 				8141CB601F817B5F00DBDD89 /* • SafariActivity */,
 				817A40E21E5E2F97003FD6F1 /* • SnappableFlowLayout */,
 				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
@@ -736,7 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				8148D857226DD219006AD9E0 /* Downloads.swift */,
-				81FCAFCA226E0FF9004FAFD6 /* Queued Downloads */,
+				81FCAFCA226E0FF9004FAFD6 /* Queued Apps */,
 				81FCAFCB226E1007004FAFD6 /* Local & MyAppstore */,
 				81FCAFCC226E1012004FAFD6 /* Active Downloads */,
 			);
@@ -1065,14 +1077,6 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		81ED9A5F226CB82100F45B75 /* • ObservableRequestedApps */ = {
-			isa = PBXGroup;
-			children = (
-				81ED9A60226CB86100F45B75 /* ObservableRequestedApps.swift */,
-			);
-			name = "• ObservableRequestedApps";
-			sourceTree = "<group>";
-		};
 		81F1FE7D1E5AF0E700C1CD44 /* • Dismissable Modal Nav Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1119,19 +1123,21 @@
 			name = "• DimmableView";
 			sourceTree = "<group>";
 		};
-		81FCAFCA226E0FF9004FAFD6 /* Queued Downloads */ = {
+		81FCAFCA226E0FF9004FAFD6 /* Queued Apps */ = {
 			isa = PBXGroup;
 			children = (
-				8148D859226DD230006AD9E0 /* QueuedDownloads.swift */,
-				81FCAFCD226E1028004FAFD6 /* QueuedDownloadsCell.swift */,
+				8148D859226DD230006AD9E0 /* QueuedApps.swift */,
+				81ED9A60226CB86100F45B75 /* ObserveQueuedApps.swift */,
+				815A438D2275E0EF00868949 /* Cells */,
 			);
-			name = "Queued Downloads";
+			name = "Queued Apps";
 			sourceTree = "<group>";
 		};
 		81FCAFCB226E1007004FAFD6 /* Local & MyAppstore */ = {
 			isa = PBXGroup;
 			children = (
 				8148D85D226DE9A5006AD9E0 /* Library.swift */,
+				815A438E2275E11000868949 /* IPAFileManager.swift */,
 				8155094B22748F5300509B20 /* Cells */,
 			);
 			name = "Local & MyAppstore";
@@ -1315,6 +1321,7 @@
 				814B770F205B2DCA004D46DD /* IndicatorView.swift in Sources */,
 				81603A6B216E63A400F18E34 /* TrendingCollectionViewCell.swift in Sources */,
 				817610F521515A3200602FF2 /* API+Configuration.swift in Sources */,
+				815A438F2275E11000868949 /* IPAFileManager.swift in Sources */,
 				8148D85E226DE9A5006AD9E0 /* Library.swift in Sources */,
 				819E698D1F8E9DA500C4608F /* NoScreenshotsSearchCell.swift in Sources */,
 				81939B471E3BA98D00179615 /* Themes.swift in Sources */,
@@ -1362,9 +1369,9 @@
 				817A40E71E5E393A003FD6F1 /* Details+ScreenshotsCell.swift in Sources */,
 				8133C45C208B629600F2F9F5 /* SeeAll.swift in Sources */,
 				819AF4EA1E82CB8700B4D2EF /* Details+Related.swift in Sources */,
-				8148D85A226DD230006AD9E0 /* QueuedDownloads.swift in Sources */,
+				8148D85A226DD230006AD9E0 /* QueuedApps.swift in Sources */,
 				81EC00711DAD7979009EEFFA /* FeaturedApp.swift in Sources */,
-				81ED9A61226CB86100F45B75 /* ObservableRequestedApps.swift in Sources */,
+				81ED9A61226CB86100F45B75 /* ObserveQueuedApps.swift in Sources */,
 				811BEE2A2151538600F1F56A /* DeviceStatusItem.swift in Sources */,
 				8182756620792464000E9F87 /* News+Detail+HTMLCell.swift in Sources */,
 				81E1702E2170D07400A38380 /* TagListView.swift in Sources */,
@@ -1394,6 +1401,7 @@
 				812C3544207D237300D39748 /* ConfigServer.swift in Sources */,
 				819E69921F8FCD0200C4608F /* TwoPortraitScreenshotsSearchCell.swift in Sources */,
 				81DEB2AE1E7DDF3200A94B26 /* Details+VersionHeader.swift in Sources */,
+				815A43922275F5EF00868949 /* LocalIPACell.swift in Sources */,
 				817FF9EF1E59CCE60056960F /* Details.swift in Sources */,
 				816010CF1F8FEFF5003BA61E /* PortraitScreenshotSearchCell.swift in Sources */,
 				81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */,

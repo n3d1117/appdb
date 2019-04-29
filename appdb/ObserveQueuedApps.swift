@@ -1,5 +1,5 @@
 //
-//  ObservableRequestedApp.swift
+//  ObserveQueuedApps.swift
 //  appdb
 //
 //  Created by ned on 21/04/2019.
@@ -11,9 +11,9 @@ import Alamofire
 import RealmSwift
 import SwiftyJSON
 
-class ObservableRequestedApps {
+class ObserveQueuedApps {
     
-    static var shared = ObservableRequestedApps()
+    static var shared = ObserveQueuedApps()
     private init() { }
     
     fileprivate var requestedApps = [RequestedApp]()

@@ -77,7 +77,7 @@ class ActiveDownloads: LoadingCollectionView {
 extension ActiveDownloads: ETCollectionViewDelegateWaterfallLayout {
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 50 : (20~~15)
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
     }
     
     var topInset: CGFloat {

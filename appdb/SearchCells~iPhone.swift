@@ -56,7 +56,7 @@ final class LandscapeScreenshotSearchCellWithStars_iPhone: LandscapeScreenshotSe
 
 final class MixedScreenshotsSearchCellOne_iPhone: MixedScreenshotsSearchCellOne {
     override var magic: CGFloat { return 1.775 }
-    override var mixedPortraitSize: CGFloat { return (125~~120) }
+    override var mixedPortraitSize: CGFloat { return (125~~130) }
     override var identifier: String { return "mixedscreenshotcelloneiphone" }
 }
 
