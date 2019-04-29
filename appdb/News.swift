@@ -72,10 +72,8 @@ class News: LoadingTableView {
         searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
         definesPresentationContext = true
         if #available(iOS 11.0, *) {
-            if isPeeking {
-                // Fixes weird crash on peek
-                delay(2) { self.navigationItem.searchController = self.searchController }
-            } else {
+            // Fixes weird crash on peek
+            if !isPeeking {
                 navigationItem.searchController = searchController
             }
         } else {
