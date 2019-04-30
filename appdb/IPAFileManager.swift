@@ -16,10 +16,10 @@ struct LocalIPAFile: Equatable, Hashable {
     var size: String = ""
 }
 
-class IPAFileManager: NSObject {
+struct IPAFileManager {
     
     static var shared = IPAFileManager()
-    private override init() { }
+    private init() { }
     
     fileprivate var localServer: HttpServer!
     fileprivate var backgroundTask: BackgroundTaskUtil? = nil
@@ -125,7 +125,7 @@ class IPAFileManager: NSObject {
 
 protocol LocalIPAServer {
     mutating func startServer()
-    func stopServer()
+    mutating func stopServer()
 }
 
 extension IPAFileManager: LocalIPAServer {
@@ -134,7 +134,7 @@ extension IPAFileManager: LocalIPAServer {
          return "http://127.0.0.1:8080/\(ipa.filename)"
     }
     
-    func startServer() {
+    mutating func startServer() {
         localServer = HttpServer()
         localServer["/:path"] = shareFilesFromDirectory(documentsDirectoryURL().path)
         do {
@@ -146,7 +146,7 @@ extension IPAFileManager: LocalIPAServer {
         }
     }
     
-    func stopServer() {
+    mutating func stopServer() {
         localServer.stop()
         backgroundTask = nil
     }
