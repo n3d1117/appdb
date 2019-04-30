@@ -47,7 +47,7 @@ class ConfigServer: NSObject {
     let randomString = Global.randomString(length: 8)
     
     // Background task
-    private var backgroundTask = UIBackgroundTaskIdentifier.invalid
+    fileprivate var backgroundTask: BackgroundTaskUtil? = nil
     
     // Initialization
     init(configData: Data, token: String) {
@@ -70,7 +70,13 @@ class ConfigServer: NSObject {
             do {
                 try localServer.start(listeningPort, forceIPv4: false, priority: .default)
                 currentState = .ready
-                registerForNotifications()
+                
+                backgroundTask = BackgroundTaskUtil()
+                backgroundTask?.start()
+                backgroundTask?.afterStopClosure = { [weak self] in
+                    self?.returnedToApp()
+                }
+                
                 UIApplication.shared.openURL(url)
             } catch {
                 self.stop()
@@ -83,6 +89,7 @@ class ConfigServer: NSObject {
             currentState = .stopped
             NotificationCenter.default.removeObserver(self)
             self.hasCompleted?("Oops! Something went wrong. Please try again later.".localized())
+            backgroundTask = nil
         }
     }
     
@@ -132,9 +139,7 @@ class ConfigServer: NSObject {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let configFileUrl = documentsDirectory.appendingPathComponent("enroll.mobileconfig")
         if FileManager.default.fileExists(atPath: configFileUrl.path) {
-            do {
-                try FileManager.default.removeItem(at: configFileUrl)
-            } catch { }
+            try! FileManager.default.removeItem(at: configFileUrl)
         }
 
         API.getLinkCode(success: {
@@ -178,45 +183,3 @@ extension ConfigServer {
         }
     }
 }
-
-// MARK: Background task logic
-
-extension ConfigServer {
-    
-    private func registerForNotifications() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(didEnterBackground),
-                                       name: UIApplication.didEnterBackgroundNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(willEnterForeground),
-                                       name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-    
-    @objc internal func didEnterBackground(notification: NSNotification) {
-        if currentState != .stopped {
-            startBackgroundTask()
-        }
-    }
-    
-    @objc internal func willEnterForeground(notification: NSNotification) {
-        if backgroundTask != UIBackgroundTaskIdentifier.invalid {
-            stopBackgroundTask()
-            returnedToApp()
-        }
-    }
-    
-    private func startBackgroundTask() {
-        backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
-            DispatchQueue.main.async {
-                self.stopBackgroundTask()
-            }
-        })
-    }
-    
-    private func stopBackgroundTask() {
-        if backgroundTask != UIBackgroundTaskIdentifier.invalid {
-            UIApplication.shared.endBackgroundTask(self.backgroundTask)
-            backgroundTask = UIBackgroundTaskIdentifier.invalid
-        }
-    }
-}
-
