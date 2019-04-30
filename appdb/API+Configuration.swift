@@ -20,7 +20,6 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        guard !json["errors"].isEmpty else { return }
                         fail(json["errors"][0].stringValue)
                     } else {
                         Alamofire.request(endpoint, parameters: ["action": Actions.checkRevoke.rawValue], headers: headersWithCookie)
@@ -72,8 +71,7 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        guard !json["errors"].isEmpty else { return }
-                        fail(json["errors"][0].stringValue)
+                       fail(json["errors"][0].stringValue)
                     } else {
                         // Update values
                         do {

@@ -21,7 +21,6 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        guard !json["errors"].isEmpty else { return }
                         fail(json["errors"][0].stringValue)
                     } else {
                         do {
@@ -57,7 +56,6 @@ extension API {
                 let json = JSON(value)
                 
                 if !json["success"].boolValue {
-                    guard !json["errors"].isEmpty else { return }
                     fail(json["errors"][0].stringValue)
                 } else {
                     
@@ -127,7 +125,6 @@ extension API {
             case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
-                    guard !json["errors"].isEmpty else { fail("An error has occurred".localized()); return }
                     fail(json["errors"][0].stringValue)
                 } else {
                     do {

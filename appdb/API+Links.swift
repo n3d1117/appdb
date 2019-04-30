@@ -91,7 +91,6 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        guard !json["errors"].isEmpty else { completion("An error has occurred".localized()); return }
                         completion(json["errors"][0].stringValue)
                     } else {
                         completion(nil)

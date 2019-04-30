@@ -72,12 +72,15 @@ enum Actions: String {
     case fix = "fix_command"
     case retry = "retry_command"
     case install = "install"
+    case customInstall = "custom_install"
     case report = "report"
     case checkRevoke = "is_apple_fucking_serious"
     case getUpdatesTicket = "get_update_ticket"
     case getUpdates = "get_updates"
     case getIpas = "get_ipas"
     case deleteIpa = "delete_ipa"
+    case addIpa = "add_ipa"
+    case analyzeIpa = "get_ipa_analyze_jobs"
 }
 
 enum ConfigurationParameters: String {

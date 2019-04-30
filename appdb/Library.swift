@@ -20,7 +20,7 @@ class Library: LoadingCollectionView {
     fileprivate var myAppstoreIpas = [MyAppstoreApp]()
     fileprivate var timer: Timer? = nil
     fileprivate var documentController: UIDocumentInteractionController?
-    
+    fileprivate var uploadBackgroundTask: BackgroundTaskUtil? = nil
     fileprivate var useDiff: Bool = false
     
     convenience init() {
@@ -91,7 +91,7 @@ class Library: LoadingCollectionView {
             API.getIpas(success: { ipas in
                 self.myAppstoreIpas = ipas
 
-                self.state = .done(animated: true)
+                self.state = .done(animated: false)
                 self.reloadHeaderViews()
                 self.collectionView.reloadData()
                 
@@ -199,8 +199,14 @@ class Library: LoadingCollectionView {
     
     fileprivate func presentOptionsForLocalIpa(_ ipa: LocalIPAFile, _ indexPath: IndexPath) {
 
-        let alertController = UIAlertController(title: "", message: ipa.filename, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: ipa.filename, message: nil, preferredStyle: .actionSheet)
         
+        let installJB = UIAlertAction(title: "Install without signing".localized(), style: .default) { _ in // todo localize
+            self.customInstall(ipa: ipa)
+        }
+        let addToMyAppstore = UIAlertAction(title: "Upload to MyAppstore".localized(), style: .default) { _ in // todo localize
+            self.addToMyAppstore(ipa: ipa)
+        }
         let openIn = UIAlertAction(title: "Open in...".localized(), style: .default) { _ in // todo localize
             self.documentController = UIDocumentInteractionController(url: IPAFileManager.shared.url(for: ipa))
             if let attributes = self.collectionView.layoutAttributesForItem(at: indexPath) {
@@ -218,6 +224,8 @@ class Library: LoadingCollectionView {
         }
         let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
         
+        alertController.addAction(installJB)
+        alertController.addAction(addToMyAppstore)
         alertController.addAction(openIn)
         alertController.addAction(rename)
         alertController.addAction(delete)
@@ -233,6 +241,61 @@ class Library: LoadingCollectionView {
         DispatchQueue.main.async {
             self.present(alertController, animated: true)
         }
+    }
+    
+    // MARK: - Add to MyAppstore
+    
+    func addToMyAppstore(ipa: LocalIPAFile) {
+        
+        let randomString = Global.randomString(length: 30)
+        guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
+        let url = IPAFileManager.shared.url(for: ipa)
+        
+        uploadBackgroundTask = BackgroundTaskUtil()
+        uploadBackgroundTask?.start()
+        
+        API.addToMyAppstore(jobId: jobId, fileURL: url, progress: { p in
+            debugLog("progress: \(p)")
+        }, completion: { error in
+            if let error = error {
+                debugLog("error: \(error)")
+                self.uploadBackgroundTask = nil
+            } else {
+                debugLog("success")
+                delay(1) {
+                    API.analyzeJob(jobId: jobId, completion: { error in
+                        self.uploadBackgroundTask = nil
+                        if let error = error {
+                            debugLog("error 2: \(error)")
+                        } else {
+                            debugLog("success 2")
+                        }
+                    })
+                }
+            }
+        })
+    }
+    
+    // MARK: - Custom install
+    
+    func customInstall(ipa: LocalIPAFile) {
+
+        IPAFileManager.shared.startServer()
+        
+        let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa)
+        let link = IPAFileManager.shared.getIpaLocalUrl(from: ipa)
+        
+        API.requestInstallJB(plist: plist, icon: " ", link: link, completion: { error in
+            
+            if let error = error {
+                debugLog(error)
+                IPAFileManager.shared.stopServer()
+            } else {
+                debugLog("success!")
+                // Allowing up to 3 mins for app to install...
+                delay(180) { IPAFileManager.shared.stopServer() }
+            }
+        })
     }
     
     // MARK: - Rename local ipa
@@ -350,7 +413,7 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (80~~70) : (50~~40))
+        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (70~~65) : (60~~55))
     }
 }
 

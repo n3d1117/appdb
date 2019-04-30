@@ -13,3 +13,4 @@ github "n3d1117/SwiftTheme" "master"
 github "n3d1117/Static" "master"
 github "alexaubry/BulletinBoard"
 github "glock45/swifter" ~> 1.4.3
+github "weichsel/ZIPFoundation"

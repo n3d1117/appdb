@@ -14,6 +14,7 @@ class MyAppstoreCell: UICollectionViewCell {
     var name: UILabel!
     var bundleId: UILabel!
     var installButton: RoundedButton!
+    var dummy: UIView!
     
     func configure(with app: MyAppstoreApp) {
         name.text = app.name + " (\(app.version))"
@@ -61,22 +62,28 @@ class MyAppstoreCell: UICollectionViewCell {
         installButton.theme_tintColor = Color.softGreen
         installButton.makeDynamicFont()
         
+        dummy = UIView()
+        
         contentView.addSubview(name)
         contentView.addSubview(bundleId)
         contentView.addSubview(installButton)
+        contentView.addSubview(dummy)
         
-        constrain(name, bundleId, installButton) { name, bundleId, button in
+        constrain(name, bundleId, installButton, dummy) { name, bundleId, button, d in
             
             button.right == button.superview!.right - Global.size.margin.value
             button.centerY == button.superview!.centerY
+            
+            d.height == 1
+            d.centerY == d.superview!.centerY
 
             name.left == name.superview!.left + Global.size.margin.value
             name.right == name.superview!.right - 110 - Global.size.margin.value
-            name.top == name.superview!.top + (18~~15)
+            name.bottom == d.top + 2
             
             bundleId.left == name.left
             bundleId.right == name.right
-            bundleId.bottom == bundleId.superview!.bottom - (18~~15)
+            bundleId.top == d.bottom + 3
             
         }
     }

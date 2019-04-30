@@ -72,6 +72,8 @@
 		814F4FBB2196FA35005A8111 /* UpdateableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F4FBA2196FA35005A8111 /* UpdateableApp.swift */; };
 		814F4FBD21974A5B005A8111 /* Ignored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F4FBC21974A5B005A8111 /* Ignored.swift */; };
 		814F4FBF2197589E005A8111 /* IgnoredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F4FBE2197589E005A8111 /* IgnoredCell.swift */; };
+		815234CF2278479000B1AE65 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 815234CE2278479000B1AE65 /* ZIPFoundation.framework */; };
+		815234D22278A6BF00B1AE65 /* SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815234D12278A6BF00B1AE65 /* SHA1.swift */; };
 		815234D52278C10A00B1AE65 /* BackgroundTaskUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815234D42278C10A00B1AE65 /* BackgroundTaskUtil.swift */; };
 		8155094A22748F0E00509B20 /* LibrarySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8155094922748F0E00509B20 /* LibrarySectionHeaderView.swift */; };
 		815A438F2275E11000868949 /* IPAFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815A438E2275E11000868949 /* IPAFileManager.swift */; };
@@ -266,6 +268,8 @@
 		814F4FBA2196FA35005A8111 /* UpdateableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateableApp.swift; sourceTree = "<group>"; };
 		814F4FBC21974A5B005A8111 /* Ignored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ignored.swift; sourceTree = "<group>"; };
 		814F4FBE2197589E005A8111 /* IgnoredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredCell.swift; sourceTree = "<group>"; };
+		815234CE2278479000B1AE65 /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZIPFoundation.framework; path = Carthage/Build/iOS/ZIPFoundation.framework; sourceTree = "<group>"; };
+		815234D12278A6BF00B1AE65 /* SHA1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA1.swift; sourceTree = "<group>"; };
 		815234D42278C10A00B1AE65 /* BackgroundTaskUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskUtil.swift; sourceTree = "<group>"; };
 		8155094922748F0E00509B20 /* LibrarySectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarySectionHeaderView.swift; sourceTree = "<group>"; };
 		815A438E2275E11000868949 /* IPAFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAFileManager.swift; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				815234CF2278479000B1AE65 /* ZIPFoundation.framework in Frameworks */,
 				817D2EDA1E8EBBE500B8AE0D /* Alamofire.framework in Frameworks */,
 				817D2EDD1E8EBBE500B8AE0D /* Cartography.framework in Frameworks */,
 				816B343C20B727500019DE5C /* DeepDiff.framework in Frameworks */,
@@ -565,6 +570,15 @@
 			name = "Device Link";
 			sourceTree = "<group>";
 		};
+		815234D02278A6AD00B1AE65 /* SHA1 */ = {
+			isa = PBXGroup;
+			children = (
+				815234D12278A6BF00B1AE65 /* SHA1.swift */,
+			);
+			name = SHA1;
+			sourceTree = "<group>";
+		};
+		815234D32278C0EE00B1AE65 /* • BackgroundTaskUtil */ = {
 			isa = PBXGroup;
 			children = (
 				815234D42278C10A00B1AE65 /* BackgroundTaskUtil.swift */,
@@ -724,6 +738,7 @@
 		8188E8E31DB1993700462256 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				815234D32278C0EE00B1AE65 /* • BackgroundTaskUtil */,
 				81236AC71E3B6870009748E0 /* • ButtonFactory */,
 				81F504E71E5CE6AB0000FACC /* • DimmableView */,
 				81F1FE7D1E5AF0E700C1CD44 /* • Dismissable Modal Nav Controller */,
@@ -737,6 +752,7 @@
 				8112C35A1F7FC6D40014EDB2 /* DynamicFontSizeHelper */,
 				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
 				8105175520D0282500B3E1FB /* muccy/Ferrara */,
+				815234D02278A6AD00B1AE65 /* SHA1 */,
 				814B7701205B2DB1004D46DD /* SwiftPullToRefresh */,
 				81E1702C2170D05D00A38380 /* TagView */,
 				81431A9F20A0CBFC00C830BE /* UIDeviceExtension */,
@@ -896,6 +912,7 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				815234CE2278479000B1AE65 /* ZIPFoundation.framework */,
 				81AA80B920D026DF00CC15AD /* Ferrara.framework */,
 				817236A520BB1F8E0014F61A /* BLTNBoard.framework */,
 				816B343B20B727500019DE5C /* DeepDiff.framework */,
@@ -1261,6 +1278,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Static.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Swifter.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ZIPFoundation.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
@@ -1352,6 +1370,7 @@
 				81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */,
 				811BEE2D2151538600F1F56A /* App.swift in Sources */,
 				81D661761E5A0B6C00BB6461 /* Details+Extension.swift in Sources */,
+				815234D22278A6BF00B1AE65 /* SHA1.swift in Sources */,
 				814B7710205B2DCA004D46DD /* RefreshView.swift in Sources */,
 				81FC8B4322735EA8003788F3 /* MyAppstoreApp.swift in Sources */,
 				81FCAFD0226E1D0C004FAFD6 /* RequestedApp.swift in Sources */,

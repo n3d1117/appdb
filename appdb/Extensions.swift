@@ -148,6 +148,11 @@ extension String {
         }
     }
     
+    // Convert string to Base 64
+    func toBase64() -> String {
+        return Data(self.utf8).base64EncodedString()
+    }
+    
 }
 
 // MARK: - Separators

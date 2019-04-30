@@ -17,10 +17,95 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        guard !json["errors"].isEmpty else { completion("An error has occurred".localized()); return }
                         completion(json["errors"][0].stringValue)
                     } else {
                         completion(nil)
+                    }
+                case .failure(let error):
+                    completion(error.localizedDescription)
+                }
+        }
+    }
+    
+    static func requestInstallJB(plist: String, icon: String, link: String, completion:@escaping (_ error: String?) -> Void) {
+        Alamofire.request(endpoint, method: .post, parameters: ["action": Actions.customInstall.rawValue, "plist": plist, "icon": icon, "link": link], headers: headersWithCookie)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    if !json["success"].boolValue {
+                        completion(json["errors"][0].stringValue)
+                    } else {
+                        completion(nil)
+                    }
+                case .failure(let error):
+                    completion(error.localizedDescription)
+                }
+        }
+    }
+    
+    static func addToMyAppstore(jobId: String, fileURL: URL, progress:@escaping (_ completed: Double) -> Void, completion:@escaping (_ error: String?) -> Void) {
+
+        let parameters = [
+            "action": Actions.addIpa.rawValue,
+            "job_id": jobId
+        ]
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(fileURL, withName: "ipa")
+            for (key, value) in parameters {
+                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+            }
+        }, to: endpoint, method: .post, headers: headersWithCookie,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    
+                    upload.uploadProgress { p in
+                        progress(p.fractionCompleted)
+                    }
+                    
+                    upload.responseJSON { response in
+                        switch response.result {
+                        case .success(let value):
+                            let json = JSON(value)
+                            if !json["success"].boolValue {
+                                completion(json["errors"][0].stringValue)
+                            } else {
+                                completion(nil)
+                            }
+                        case .failure(let error):
+                            completion(error.localizedDescription)
+                        }
+                    }
+                    
+                case .failure(let encodingError):
+                     completion(encodingError.localizedDescription)
+                }
+        })
+    }
+    
+    static func analyzeJob(jobId: String, completion:@escaping (_ error: String?) -> Void) {
+        Alamofire.request(endpoint, parameters: ["action": Actions.analyzeIpa.rawValue], headers: headersWithCookie)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+
+                    if !json["success"].boolValue {
+                        completion(json["errors"][0].stringValue)
+                    } else {
+                        for i in 0..<json["data"].count {
+                            let job = json["data"][i]
+                            if job["id"].stringValue == jobId {
+                                if job["status"].stringValue.contains("Success") {
+                                    completion(nil)
+                                } else {
+                                    completion(job["status"].stringValue)
+                                }
+                                break
+                            }
+                        }
                     }
                 case .failure(let error):
                     completion(error.localizedDescription)
