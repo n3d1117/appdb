@@ -272,6 +272,7 @@ extension Search: ETCollectionViewDelegateWaterfallLayout {
 
 extension Search: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard currentPhase == .showResults else { return nil }
         guard let indexPath = collectionView?.indexPathForItem(at: location) else { return nil }
         guard  let cell = collectionView.cellForItem(at: indexPath) else { return nil }
         guard results.indices.contains(indexPath.row) else { return nil }
