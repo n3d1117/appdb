@@ -35,6 +35,7 @@ class Library: LoadingCollectionView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = layout
+        collectionView.delaysContentTouches = false
         
         // UI
         view.theme_backgroundColor = Color.tableViewBackgroundColor

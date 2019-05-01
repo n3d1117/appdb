@@ -82,6 +82,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = trendingLayout
+        collectionView.delaysContentTouches = false
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         collectionView.theme_backgroundColor = Color.tableViewBackgroundColor
         collectionView.register(TrendingCollectionViewCell.self, forCellWithReuseIdentifier: "trendingcell")

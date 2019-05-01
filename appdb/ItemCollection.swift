@@ -118,6 +118,7 @@ class ItemCollection: FeaturedCell {
         collectionView.register(FeaturedBook.self, forCellWithReuseIdentifier: "book")
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.delaysContentTouches = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
         collectionView.decelerationRate = UIScrollView.DecelerationRate.fast

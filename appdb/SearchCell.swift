@@ -124,4 +124,19 @@ class SearchCell: UICollectionViewCell {
             
         }
     }
+    
+    // Hover animation
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                UIView.animate(withDuration: 0.1) {
+                    self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+                }
+            } else {
+                UIView.animate(withDuration: 0.1) {
+                    self.transform = .identity
+                }
+            }
+        }
+    }
 }
