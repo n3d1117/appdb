@@ -206,6 +206,7 @@ extension String {
 extension Notification.Name {
     static let OpenSafari = Notification.Name("DidClickButtonSoPleaseOpenSafari")
     static let RefreshSettings = Notification.Name("DidUpdateLinkStateSoPleaseRefreshSettings")
+    static let UpdateQueuedSegmentTitle = Notification.Name("DidUpdateNumberOfQueuedApps")
 }
 
 // MARK: - Textfield in SearchBar

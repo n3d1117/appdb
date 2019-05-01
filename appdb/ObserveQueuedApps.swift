@@ -17,8 +17,8 @@ class ObserveQueuedApps {
     private init() { }
     
     fileprivate var requestedApps = [RequestedApp]()
-    
     fileprivate var timer: Timer? = nil
+    fileprivate var numberOfQueuedApps: Int = 0
     
     var onUpdate: ((_ apps: [RequestedApp]) -> ())?
     
@@ -40,6 +40,11 @@ class ObserveQueuedApps {
         
         // Increase Downloads badge
         UIApplication.shared.keyWindow?.rootViewController?.badgeAddOne(for: .downloads)
+        
+        // Notify updates
+        numberOfQueuedApps += 1
+        let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps]
+        NotificationCenter.default.post(name: .UpdateQueuedSegmentTitle, object: self, userInfo: numberOfQueuedAppsDict)
     }
     
     func removeApp(linkId: String) {
@@ -48,6 +53,10 @@ class ObserveQueuedApps {
             
             // Decrease Downloads badge
             UIApplication.shared.keyWindow?.rootViewController?.badgeSubtractOne(for: .downloads)
+            
+            numberOfQueuedApps -= 1
+            let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps]
+            NotificationCenter.default.post(name: .UpdateQueuedSegmentTitle, object: self, userInfo: numberOfQueuedAppsDict)
         }
     }
     
@@ -56,6 +65,10 @@ class ObserveQueuedApps {
         
         // Reset badge
         UIApplication.shared.keyWindow?.rootViewController?.updateBadge(with: nil, for: .downloads)
+        
+        numberOfQueuedApps = 0
+        let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps]
+        NotificationCenter.default.post(name: .UpdateQueuedSegmentTitle, object: self, userInfo: numberOfQueuedAppsDict)
     }
     
     func updateStatus(linkId: String, status: String) {

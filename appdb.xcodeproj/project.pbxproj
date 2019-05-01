@@ -779,7 +779,7 @@
 				8148D857226DD219006AD9E0 /* Downloads.swift */,
 				81FCAFCA226E0FF9004FAFD6 /* Queued Apps */,
 				81FCAFCB226E1007004FAFD6 /* Library */,
-				81FCAFCC226E1012004FAFD6 /* Dowloading */,
+				81FCAFCC226E1012004FAFD6 /* Downloading */,
 			);
 			name = DOWNLOADS;
 			sourceTree = "<group>";
@@ -1180,12 +1180,12 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
-		81FCAFCC226E1012004FAFD6 /* Dowloading */ = {
+		81FCAFCC226E1012004FAFD6 /* Downloading */ = {
 			isa = PBXGroup;
 			children = (
 				8148D85B226DE68E006AD9E0 /* ActiveDownloads.swift */,
 			);
-			name = Dowloading;
+			name = Downloading;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -24,6 +24,10 @@ class Downloads: UIViewController {
         return [QueuedApps(), Library(), ActiveDownloads()]
     }()
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +52,9 @@ class Downloads: UIViewController {
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         title = "Downloads".localized()
         
+        // Subscribe to changes to the number of currently queued apps
+        NotificationCenter.default.addObserver(self, selector: #selector(updateQueuedAppsTitle(_:)), name: .UpdateQueuedSegmentTitle, object: nil)
+        
         // Set constraints
         setConstraints()
         
@@ -55,6 +62,17 @@ class Downloads: UIViewController {
         currentViewController = viewControllersArray[0]
         addChild(currentViewController!)
         addSubview(subView: currentViewController!.view)
+    }
+    
+    // Update queued apps title in segmented control
+    @objc fileprivate func updateQueuedAppsTitle(_ notification: NSNotification) {
+        if let number = notification.userInfo?["number"] as? Int {
+            if number == 0 {
+                control.setTitle("Queued (\(number))", forSegmentAt: 0) // todo localize
+            } else {
+                control.setTitle("Queued", forSegmentAt: 0) // todo localize
+            }
+        }
     }
     
     // MARK: - Constraints
