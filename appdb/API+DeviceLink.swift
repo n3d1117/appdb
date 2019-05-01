@@ -59,7 +59,7 @@ extension API {
                     fail(json["errors"][0].stringValue)
                 } else {
                     
-                    let profile_service = json["data"]["profile_service"].stringValue
+                    let profileService = json["data"]["profile_service"].stringValue
                     let token = json["data"]["link_token"].stringValue
                     
                     guard !token.isEmpty else { fail("Unable to fetch device token.".localized()); return }
@@ -73,11 +73,13 @@ extension API {
                     }
                     
                     // If profile_service is empty, device is already authorized
-                    guard !profile_service.isEmpty else {
+                    guard !profileService.isEmpty else {
                         API.getLinkCode(success: {
                             success()
+                            return
                         }) { error in
                             fail(error)
+                            return
                         }
                         return
                     }
@@ -90,7 +92,7 @@ extension API {
                     }
                     
                     // Download the mobileconfig file
-                    Alamofire.download(profile_service, to: destination).responseData { response in
+                    Alamofire.download(profileService, to: destination).responseData { response in
                         switch response.result {
                         case .success(let value):
                             
@@ -99,6 +101,7 @@ extension API {
                             let server = ConfigServer(configData: value, token: token)
                             server.start()
                             server.hasCompleted = { error in
+                                debugLog("success 4")
                                 if let error = error { fail(error) }
                                 else { success() }
                             }

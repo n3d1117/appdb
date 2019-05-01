@@ -30,7 +30,7 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // TODO dynamic
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 1
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

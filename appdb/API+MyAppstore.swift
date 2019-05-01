@@ -23,8 +23,8 @@ extension API {
                     } catch let error as NSError {
                         fail(error)
                     }
-                case .failure(let error):
-                    fail(error as NSError)
+                case .failure(let error as NSError):
+                    fail(error)
                 }
         }
     }
