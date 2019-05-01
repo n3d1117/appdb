@@ -34,14 +34,15 @@ class BackgroundTaskUtil {
     }
     
     @objc fileprivate func willEnterForeground(notification: NSNotification) {
-        stopBackgroundTask()
+        if backgroundTask != .invalid {
+            stopBackgroundTask()
+        }
     }
     
     fileprivate func startBackgroundTask() {
         backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
             DispatchQueue.main.async {
                 self.stopBackgroundTask()
-                self.afterStopClosure?()
             }
         })
     }
@@ -50,6 +51,7 @@ class BackgroundTaskUtil {
         if backgroundTask != .invalid {
             UIApplication.shared.endBackgroundTask(backgroundTask)
             backgroundTask = .invalid
+            self.afterStopClosure?()
         }
     }
     

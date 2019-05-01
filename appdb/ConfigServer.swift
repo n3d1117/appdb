@@ -141,6 +141,8 @@ class ConfigServer: NSObject {
         if FileManager.default.fileExists(atPath: configFileUrl.path) {
             try! FileManager.default.removeItem(at: configFileUrl)
         }
+        
+        backgroundTask = nil
 
         API.getLinkCode(success: {
             self.hasCompleted?(nil)
