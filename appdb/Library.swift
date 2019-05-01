@@ -35,14 +35,22 @@ class Library: LoadingCollectionView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = layout
+        collectionView.contentInset.bottom = 25~~15
         collectionView.delaysContentTouches = false
         
         // UI
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         collectionView.theme_backgroundColor = Color.tableViewBackgroundColor
         
+        // Header
         collectionView.register(LibrarySectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "librarySectionHeaderViewOne")
         collectionView.register(LibrarySectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "librarySectionHeaderViewTwo")
+        
+        // Footer
+        collectionView.register(LibrarySectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "librarySectionFooterViewOne")
+        collectionView.register(LibrarySectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "librarySectionFooterViewTwo")
+        
+        // Cells
         collectionView.register(MyAppstoreCell.self, forCellWithReuseIdentifier: "myappstorecell")
         collectionView.register(LocalIPACell.self, forCellWithReuseIdentifier: "localipacell")
         
@@ -80,11 +88,13 @@ class Library: LoadingCollectionView {
                 self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
                     self.myAppstoreIpas = ipas
                 })
+                self.reloadFooterViews()
                 
-            }) { _ in
+            }) { error in
                 self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
                     self.localIpas = newLocalIpas
                 })
+                self.reloadFooterViews()
             }
             
         } else {
@@ -94,11 +104,16 @@ class Library: LoadingCollectionView {
 
                 self.state = .done(animated: false)
                 self.reloadHeaderViews()
+                self.reloadFooterViews()
                 self.collectionView.reloadData()
                 
                 self.useDiff = true
                 
-            }) { _ in }
+            }) { error in
+                self.reloadHeaderViews()
+                self.state = .done(animated: false)
+                self.reloadFooterViews()
+            }
         }
     }
     
@@ -108,6 +123,23 @@ class Library: LoadingCollectionView {
         }
         if let myappstoreHeader = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: Section.myappstore.rawValue)) as? LibrarySectionHeaderView {
             myappstoreHeader.configure("MyAppstore") // todo localize
+        }
+    }
+    
+    fileprivate func reloadFooterViews() {
+        if let localIpasFooter = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(row: 0, section: Section.local.rawValue)) as? LibrarySectionFooterView {
+            if localIpas.isEmpty {
+                localIpasFooter.configure("No Local IPAs Found", secondaryText: "Use iTunes File Sharing or import them from other apps") // todo localize
+            } else {
+                localIpasFooter.configure("")
+            }
+        }
+        if let myappstoreFooter = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(row: 0, section: Section.myappstore.rawValue)) as? LibrarySectionFooterView {
+            if myAppstoreIpas.isEmpty {
+                myappstoreFooter.configure("No MyAppstore apps", secondaryText: "This is your personal IPA library! Apps you upload over time will appear here") // todo localize
+            } else {
+                myappstoreFooter.configure("")
+            }
         }
     }
     
@@ -178,7 +210,7 @@ class Library: LoadingCollectionView {
                 } else {
                     self.myAppstoreIpas.remove(at: indexPath.row)
                     self.collectionView.deleteItems(at: [indexPath])
-                    // todo handle empty
+                    self.reloadFooterViews()
                 }
             })
         }
@@ -222,6 +254,7 @@ class Library: LoadingCollectionView {
             IPAFileManager.shared.delete(file: ipa)
             self.localIpas.remove(at: indexPath.row)
             self.collectionView.deleteItems(at: [indexPath])
+            self.reloadFooterViews()
         }
         let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
         
@@ -380,15 +413,20 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
     
     var layout: ETCollectionViewWaterfallLayout {
         let layout = ETCollectionViewWaterfallLayout()
-        layout.minimumColumnSpacing = 20~~15
-        layout.minimumInteritemSpacing = 15~~10
+        layout.minimumColumnSpacing = 18~~13
+        layout.minimumInteritemSpacing = 13~~8
+        
+        // Header
         layout.headerHeight = 1
-        layout.headerInset.top = 38~~33
+        layout.headerInset.top = 36~~31
         layout.headerInset.bottom = 4
         if #available(iOS 11.0, *) {
             layout.headerInset.left = (UIDevice.current.orientation.isLandscape && Global.hasNotch ? 45 : 2)
         }
+
+        // Section Inset
         layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: 0, right: margin)
+        
         if Global.isIpad {
             layout.columnCount = 2
         } else {
@@ -413,8 +451,16 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, heightForFooterIn section: Int) -> CGFloat {
+        if section == Section.local.rawValue {
+            return localIpas.isEmpty ? (230~~180) : 0.1
+        } else {
+            return myAppstoreIpas.isEmpty ? (230~~180) : 0.1
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (70~~65) : (60~~55))
+        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (68~~63) : (58~~53))
     }
 }
 
@@ -426,6 +472,12 @@ extension Library: UICollectionViewDelegateFlowLayout {
                 return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewOne", for: indexPath) as! LibrarySectionHeaderView
             } else {
                 return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewTwo", for: indexPath) as! LibrarySectionHeaderView
+            }
+        } else if kind == UICollectionView.elementKindSectionFooter {
+            if indexPath.section == Section.local.rawValue {
+                return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionFooterViewOne", for: indexPath) as! LibrarySectionFooterView
+            } else {
+                return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionFooterViewTwo", for: indexPath) as! LibrarySectionFooterView
             }
         }
         return UICollectionReusableView()

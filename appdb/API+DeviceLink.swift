@@ -101,7 +101,6 @@ extension API {
                             let server = ConfigServer(configData: value, token: token)
                             server.start()
                             server.hasCompleted = { error in
-                                debugLog("success 4")
                                 if let error = error { fail(error) }
                                 else { success() }
                             }

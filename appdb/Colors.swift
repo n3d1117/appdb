@@ -53,6 +53,9 @@ struct Color {
     /* Details+Information parameter color */
     static let informationParameter: ThemeColorPicker = ["#9A9898", "#C5C3C5"]
     
+    /* A light gray used for error message in Downloads */
+    static let lightErrorMessage: ThemeColorPicker = ["#9A9898", "#3D3D3D"]
+    
     /* Green for INSTALL button and verified crackers */
     static let softGreen: ThemeColorPicker = ["#00B600", "#00B600"]
     
