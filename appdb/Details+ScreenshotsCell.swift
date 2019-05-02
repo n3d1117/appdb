@@ -46,14 +46,20 @@ class DetailsScreenshotCell: UICollectionViewCell {
         }
     }
     
-    // Hover icon
+    // Hover icon    
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                self.dim.isHidden = false
-                self.dim.layer.opacity = DimmableView.opacity
+                UIView.animate(withDuration: 0.1) {
+                    self.image.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+                    self.dim.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+                    self.dim.isHidden = false
+                    self.dim.layer.opacity = DimmableView.opacity
+                }
             } else {
                 UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: { [unowned self] in
+                    self.image.transform = .identity
+                    self.dim.transform = .identity
                     self.dim.layer.opacity = 0
                     }, completion: { _ in
                         self.dim.isHidden = true

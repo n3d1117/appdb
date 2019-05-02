@@ -206,6 +206,11 @@ class DetailsFullScreenshots: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         
+        // Add swipe down gesture recognizer
+        let slideDown = UISwipeGestureRecognizer(target: self, action: #selector(dismissAnimated))
+        slideDown.direction = .down
+        view.addGestureRecognizer(slideDown)
+        
         view.addSubview(collectionView)
         view.addSubview(pageControl)
         
