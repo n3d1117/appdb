@@ -75,23 +75,20 @@ extension Library {
                 cell.animateProgress(fraction, "Uploading \(readString) of \(totalString) (\(percentage)%)")
             }
         }, completion: { [unowned self] error in
+            
+            // In case fraction 1.0 is not returned
+            cell.uploadRequest = nil
+            cell.animateProgress(1.0, ipa.size)
+            
             if let error = error {
-                debugLog("error: \(error)")
+                Messages.shared.showError(message: error.prettified)
                 self.uploadBackgroundTask = nil
             } else {
-                debugLog("success")
-                
-                // In case fraction 1.0 is not returned
-                cell.uploadRequest = nil
-                cell.animateProgress(1.0, ipa.size)
-                
                 delay(1) {
                     API.analyzeJob(jobId: jobId, completion: { [unowned self] error in
                         self.uploadBackgroundTask = nil
                         if let error = error {
-                            debugLog("error 2: \(error)")
-                        } else {
-                            debugLog("success 2")
+                            Messages.shared.showError(message: error.prettified)
                         }
                     })
                 }
@@ -105,16 +102,14 @@ extension Library {
         
         IPAFileManager.shared.startServer()
         
-        let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa)
+        guard let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa) else { return }
         let link = IPAFileManager.shared.getIpaLocalUrl(from: ipa)
         
         API.requestInstallJB(plist: plist, icon: " ", link: link, completion: { error in
-            
             if let error = error {
-                debugLog(error)
+                Messages.shared.showError(message: error.prettified)
                 IPAFileManager.shared.stopServer()
             } else {
-                debugLog("success!")
                 // Allowing up to 3 mins for app to install...
                 delay(180) { IPAFileManager.shared.stopServer() }
             }
@@ -171,10 +166,12 @@ extension Library {
             
             API.install(id: sender.linkId, type: .myAppstore) { error in
                 if let error = error {
-                    debugLog(error)
+                    Messages.shared.showError(message: error.prettified)
                     delay(0.3) { setButtonTitle("Install") }
                 } else {
                     setButtonTitle("Requested") // todo localize
+                    
+                    Messages.shared.showSuccess(message: "Installation has been queued to your device!") // todo localize
                     
                     ObserveQueuedApps.shared.addApp(type: .myAppstore, linkId: sender.linkId, name: self.myAppstoreIpas[sender.tag].name, image: "", bundleId: self.myAppstoreIpas[sender.tag].bundleId)
                     
@@ -183,6 +180,11 @@ extension Library {
             }
         } else {
             // Install requested but device is not linked
+            setButtonTitle("Checking...") // todo localize
+            delay(0.3) {
+                Messages.shared.showError(message: "Please authorize app from Settings first".localized())
+                setButtonTitle("Install")
+            }
         }
     }
     
@@ -191,7 +193,7 @@ extension Library {
     internal func deleteMyAppstoreApp(id: String, indexPath: IndexPath) {
         API.deleteIpa(id: id, completion: { error in
             if let error = error {
-                debugLog(error)
+                Messages.shared.showError(message: error.prettified)
             } else {
                 self.myAppstoreIpas.remove(at: indexPath.row)
                 self.collectionView.deleteItems(at: [indexPath])

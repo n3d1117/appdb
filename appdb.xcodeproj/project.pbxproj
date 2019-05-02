@@ -120,6 +120,8 @@
 		8182756420791DE9000E9F87 /* News+Detail+TitleDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182756320791DE9000E9F87 /* News+Detail+TitleDateCell.swift */; };
 		8182756620792464000E9F87 /* News+Detail+HTMLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182756520792464000E9F87 /* News+Detail+HTMLCell.swift */; };
 		81876E2F227B192B00E27CB8 /* Library+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81876E2E227B192B00E27CB8 /* Library+Extension.swift */; };
+		81876E33227B723D00E27CB8 /* MessagesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81876E32227B723D00E27CB8 /* MessagesFactory.swift */; };
+		81876E35227B725C00E27CB8 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81876E34227B725C00E27CB8 /* SwiftMessages.framework */; };
 		8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */; };
 		818A559F20583D4600162E51 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A559E20583D4600162E51 /* Settings.swift */; };
 		818A55A120583D4F00162E51 /* Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A020583D4F00162E51 /* Updates.swift */; };
@@ -316,6 +318,8 @@
 		8182756320791DE9000E9F87 /* News+Detail+TitleDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail+TitleDateCell.swift"; sourceTree = "<group>"; };
 		8182756520792464000E9F87 /* News+Detail+HTMLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail+HTMLCell.swift"; sourceTree = "<group>"; };
 		81876E2E227B192B00E27CB8 /* Library+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Library+Extension.swift"; sourceTree = "<group>"; };
+		81876E32227B723D00E27CB8 /* MessagesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFactory.swift; sourceTree = "<group>"; };
+		81876E34227B725C00E27CB8 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMessages.framework; path = Carthage/Build/iOS/SwiftMessages.framework; sourceTree = "<group>"; };
 		8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticLabel.swift; sourceTree = "<group>"; };
 		8188E8D71DB198B800462256 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8188E8D81DB198B800462256 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/iOS/Cartography.framework; sourceTree = "<group>"; };
@@ -413,6 +417,7 @@
 				817236A620BB1F8F0014F61A /* BLTNBoard.framework in Frameworks */,
 				81FF1C571F9211B00086EEE0 /* AlamofireImage.framework in Frameworks */,
 				81FF1C4D1F9211B00086EEE0 /* ObjectMapper.framework in Frameworks */,
+				81876E35227B725C00E27CB8 /* SwiftMessages.framework in Frameworks */,
 				817D2EE11E8EBBE500B8AE0D /* SwiftyJSON.framework in Frameworks */,
 				814B76F8205ADB63004D46DD /* Static.framework in Frameworks */,
 				812C3542207D235300D39748 /* Swifter.framework in Frameworks */,
@@ -740,6 +745,14 @@
 			name = Details;
 			sourceTree = "<group>";
 		};
+		81876E31227B721300E27CB8 /* • MessagesFactory */ = {
+			isa = PBXGroup;
+			children = (
+				81876E32227B723D00E27CB8 /* MessagesFactory.swift */,
+			);
+			name = "• MessagesFactory";
+			sourceTree = "<group>";
+		};
 		8188E8E31DB1993700462256 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +763,7 @@
 				81795CD61E60885600805B3A /* • ElasticLabel */,
 				81236ACA1E3B8A3E009748E0 /* • PaddingLabel */,
 				81E7CBF91E1FC0DE004AF156 /* • LoadingTableView */,
+				81876E31227B721300E27CB8 /* • MessagesFactory */,
 				8141CB601F817B5F00DBDD89 /* • SafariActivity */,
 				817A40E21E5E2F97003FD6F1 /* • SnappableFlowLayout */,
 				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
@@ -925,6 +939,7 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81876E34227B725C00E27CB8 /* SwiftMessages.framework */,
 				815234CE2278479000B1AE65 /* ZIPFoundation.framework */,
 				81AA80B920D026DF00CC15AD /* Ferrara.framework */,
 				817236A520BB1F8E0014F61A /* BLTNBoard.framework */,
@@ -1293,6 +1308,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Swifter.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZIPFoundation.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftMessages.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
@@ -1356,6 +1372,7 @@
 				81EC006C1DAD7728009EEFFA /* Global.swift in Sources */,
 				813D1E782084F9F800725AC0 /* DeviceInfo.swift in Sources */,
 				8155094A22748F0E00509B20 /* LibrarySectionHeaderView.swift in Sources */,
+				81876E33227B723D00E27CB8 /* MessagesFactory.swift in Sources */,
 				81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */,
 				814F4FBB2196FA35005A8111 /* UpdateableApp.swift in Sources */,
 				810C71FE20ACDAA900D6310E /* DeviceStatus.swift in Sources */,

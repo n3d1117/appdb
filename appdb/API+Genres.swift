@@ -59,9 +59,7 @@ extension API {
                             realm.delete(realm.objects(Genre.self).filter("id = '666'"))
                             
                         }
-                    } catch let e as NSError {
-                        debugLog(e.localizedDescription)
-                    }
+                    } catch { }
                     
                     // Get icons for categories (only once)
                     for genre in realm.objects(Genre.self).filter("category = 'ios' AND icon = ''") {

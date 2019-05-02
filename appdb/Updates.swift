@@ -123,7 +123,6 @@ class Updates: LoadingTableView {
             self.nonUpdateableApps = mixed.filter({ !$0.updateable })
             done(nil)
         }, fail: { error in
-            debugLog(error)
             if error == "NOT_READY" && self.retryCount < self.timeoutLimit {
                 delay(1) {
                     self.retryCount += 1

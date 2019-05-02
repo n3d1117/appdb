@@ -232,13 +232,14 @@ class Details: LoadingTableView {
             
             API.install(id: sender.linkId, type: self.contentType) { error in
                 if let error = error {
-                    debugLog(error)
-                    // todo NOT_COMPATIBLE_WITH_DEVICE
+                    Messages.shared.showError(message: error.prettified)
                     delay(0.3) {
                         setButtonTitle("Install")
                     }
                 } else {
                     setButtonTitle("Requested")
+                    
+                    Messages.shared.showSuccess(message: "Installation has been queued to your device!") // todo localize
                     
                     if self.contentType != .books {
                         ObserveQueuedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
@@ -252,7 +253,11 @@ class Details: LoadingTableView {
                 }
             }
         } else {
-            // Install requested but device is not linked
+            setButtonTitle("Checking...") // todo localize
+            delay(0.3) {
+                Messages.shared.showError(message: "Please authorize app from Settings first".localized())
+                setButtonTitle("Install")
+            }
         }
     }
     
@@ -288,9 +293,9 @@ class Details: LoadingTableView {
             if let textField = alert.textFields?.first, let text = textField.text {
                 API.reportLink(id: id, type: self.contentType, reason: text, completion: { error in
                     if let error = error {
-                        debugLog(error)
+                        Messages.shared.showError(message: error.prettified)
                     } else {
-                        debugLog("success!")
+                        Messages.shared.showSuccess(message: "Link reported successfully!".localized()) // todo localize
                     }
                 })
             }

@@ -92,10 +92,7 @@ class Banner: UITableViewCell {
         
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        
-        //theme_backgroundColor = Color.tableViewBackgroundColor
-        //contentView.theme_backgroundColor = Color.tableViewBackgroundColor
-        
+
         let layout = LNZInfiniteCollectionViewLayout()
         layout.itemSize = CGSize(width: height*2.5, height: height)
         

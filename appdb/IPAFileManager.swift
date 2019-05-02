@@ -37,57 +37,87 @@ struct IPAFileManager {
     }
     
     func rename(file: LocalIPAFile, to: String) {
-        // todo handle error
-        guard FileManager.default.fileExists(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else { return }
+        guard FileManager.default.fileExists(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else {
+            Messages.shared.showError(message: "File not found at given path".prettified)
+            return
+        }
         let startURL = documentsDirectoryURL().appendingPathComponent(file.filename)
         let endURL = documentsDirectoryURL().appendingPathComponent(to)
-        try! FileManager.default.moveItem(at: startURL, to: endURL)
+        do {
+            try FileManager.default.moveItem(at: startURL, to: endURL)
+        } catch let error {
+            Messages.shared.showError(message: error.localizedDescription)
+        }
     }
     
     func delete(file: LocalIPAFile) {
-        // todo handle error
-        guard FileManager.default.isDeletableFile(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else { return }
-        try! FileManager.default.removeItem(at: documentsDirectoryURL().appendingPathComponent(file.filename))
+        guard FileManager.default.isDeletableFile(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else {
+            Messages.shared.showError(message: "File not found at given path".prettified)
+            return
+        }
+        do {
+            try FileManager.default.removeItem(at: documentsDirectoryURL().appendingPathComponent(file.filename))
+        } catch let error {
+            Messages.shared.showError(message: error.localizedDescription)
+        }
     }
     
     func getSize(from filename: String) -> String {
         let url = documentsDirectoryURL().appendingPathComponent(filename)
-        guard FileManager.default.fileExists(atPath: url.path) else { return "" }
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            Messages.shared.showError(message: "File not found at given path".prettified)
+            return ""
+        }
         do {
             let resourceValues = try url.resourceValues(forKeys: [.fileSizeKey])
-            guard let fileSize = resourceValues.fileSize else { return "" }
+            guard let fileSize = resourceValues.fileSize else {
+                Messages.shared.showError(message: "File size not found in resource values".prettified)
+                return ""
+            }
             return Global.humanReadableSize(bytes: Double(fileSize))
-        } catch {
+        } catch let error {
+            Messages.shared.showError(message: error.localizedDescription)
             return ""
         }
     }
     
-    func base64ToJSONInfoPlist(from file: LocalIPAFile) -> String {
-        let ipaUrl = documentsDirectoryURL().appendingPathComponent(file.filename)
-        guard FileManager.default.fileExists(atPath: ipaUrl.path) else { debugLog("no ipa"); return "" }
-        let randomName = Global.randomString(length: 5)
-        let tmp = documentsDirectoryURL().appendingPathComponent(randomName, isDirectory: true)
-        if FileManager.default.fileExists(atPath: tmp.path) { try! FileManager.default.removeItem(atPath: tmp.path) }
-        try! FileManager.default.createDirectory(atPath: tmp.path, withIntermediateDirectories: true, attributes: nil)
-        try! FileManager.default.unzipItem(at: ipaUrl, to: tmp)
-        let payload = tmp.appendingPathComponent("Payload", isDirectory: true)
-        guard FileManager.default.fileExists(atPath: payload.path) else { debugLog("no payload"); return "" }
-        let contents = try! FileManager.default.contentsOfDirectory(at: payload, includingPropertiesForKeys: nil)
-        guard let dotApp = contents.filter({ $0.pathExtension == "app" }).first else { debugLog("no .app"); return "" }
-        let infoPlist = dotApp.appendingPathComponent("Info.plist", isDirectory: false)
-        guard FileManager.default.fileExists(atPath: infoPlist.path) else { debugLog("no info plist"); return "" }
-        guard let dict = NSDictionary(contentsOfFile: infoPlist.path) else { debugLog("not a dict"); return "" }
-        let jsonData = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else { debugLog("cant encode"); return "" }
-        try! FileManager.default.removeItem(atPath: tmp.path)
-        return jsonString.toBase64()
+    // todo localize
+    func base64ToJSONInfoPlist(from file: LocalIPAFile) -> String? {
+        
+        func exit(_ errorMessage: String) -> String? {
+            Messages.shared.showError(message: errorMessage.prettified)
+            return nil
+        }
+        do {
+            let ipaUrl = documentsDirectoryURL().appendingPathComponent(file.filename)
+            guard FileManager.default.fileExists(atPath: ipaUrl.path) else { return exit("IPA Not found") }
+            let randomName = Global.randomString(length: 5)
+            let tmp = documentsDirectoryURL().appendingPathComponent(randomName, isDirectory: true)
+            if FileManager.default.fileExists(atPath: tmp.path) { try FileManager.default.removeItem(atPath: tmp.path) }
+            try FileManager.default.createDirectory(atPath: tmp.path, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.unzipItem(at: ipaUrl, to: tmp)
+            let payload = tmp.appendingPathComponent("Payload", isDirectory: true)
+            guard FileManager.default.fileExists(atPath: payload.path) else { return exit("IPA is missing Payload folder") }
+            let contents = try FileManager.default.contentsOfDirectory(at: payload, includingPropertiesForKeys: nil)
+            guard let dotApp = contents.filter({ $0.pathExtension == "app" }).first else { return exit("IPA is missing .app folder") }
+            let infoPlist = dotApp.appendingPathComponent("Info.plist", isDirectory: false)
+            guard FileManager.default.fileExists(atPath: infoPlist.path) else { return exit("IPA is missing Info.plist file") }
+            guard let dict = NSDictionary(contentsOfFile: infoPlist.path) else { return exit("Unable to read contents of Info.plist file") }
+            let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+            guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else { return exit("Unable to encode Info.plist file") }
+            try FileManager.default.removeItem(atPath: tmp.path)
+            return jsonString.toBase64()
+        } catch let error {
+            Messages.shared.showError(message: error.localizedDescription)
+            return nil
+        }
     }
     
     func moveEventualIPAFilesToDocumentsDirectory(from directory: URL) {
         guard FileManager.default.fileExists(atPath: directory.path) else { return }
-        let inboxContents = try! FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
-        let ipas = inboxContents.filter{ $0.pathExtension == "ipa" }
-        for ipa in ipas {
+        let inboxContents = try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
+        let ipas = inboxContents?.filter{ $0.pathExtension == "ipa" }
+        for ipa in ipas ?? [] {
             let startURL = directory.appendingPathComponent(ipa.lastPathComponent)
             var endURL = documentsDirectoryURL().appendingPathComponent(ipa.lastPathComponent)
             
@@ -110,9 +140,9 @@ struct IPAFileManager {
 
         moveEventualIPAFilesToDocumentsDirectory(from: inboxDirectoryURL())
         
-        let contents = try! FileManager.default.contentsOfDirectory(at: documentsDirectoryURL(), includingPropertiesForKeys: nil)
-        let ipas = contents.filter{ $0.pathExtension == "ipa" }
-        for ipa in ipas {
+        let contents = try? FileManager.default.contentsOfDirectory(at: documentsDirectoryURL(), includingPropertiesForKeys: nil)
+        let ipas = contents?.filter{ $0.pathExtension == "ipa" }
+        for ipa in ipas ?? [] {
             let filename = ipa.lastPathComponent
             let size = getSize(from: filename)
             let ipa = LocalIPAFile(filename: filename, size: size)

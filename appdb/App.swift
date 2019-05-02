@@ -175,7 +175,7 @@ extension App: Mappable {
             }
             return width > height ? "landscape" : "portrait"
         } else {
-            debugLog("WARNING: New filename convention detected! Please take a look")
+            debugLog("WARNING: New filename convention detected! Please take a look: \(absoluteUrl)")
             return "portrait"
         }
     }

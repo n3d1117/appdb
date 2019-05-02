@@ -110,6 +110,7 @@ class LoadingCollectionView: UICollectionViewController {
                 secondaryErrorMessage.text = second.prettified
                 
                 errorMessage.isHidden = false
+                secondaryErrorMessage.isHidden = second.isEmpty 
                 
                 activityIndicator.stopAnimating()
                 

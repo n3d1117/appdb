@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             }
         })
         Realm.Configuration.defaultConfiguration = config
-        debugLog(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "")
+        //debugLog(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "")
         
         // Global Operations
         Global.setFirstLaunch()
@@ -79,7 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             guard let nav = tabController.viewControllers?[2] as? UINavigationController else { return false }
             guard let downloads = nav.viewControllers[0] as? Downloads else { return false }
             downloads.switchToIndex(i: 1)
-            debugLog(url.absoluteString)
             return true
         }
         
