@@ -203,6 +203,13 @@ class Library: LoadingCollectionView {
                       "\nUploaded on \(app.uploadedAt.unixToDetailedString)"
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
+        let install = UIAlertAction(title: "Install".localized(), style: .default) { _ in // todo localize
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? MyAppstoreCell {
+                if let button = cell.installButton {
+                    self.install(sender: button)
+                }
+            }
+        }
         let delete = UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in // todo localize
             API.deleteIpa(id: app.id, completion: { error in
                 if let error = error {
@@ -215,6 +222,8 @@ class Library: LoadingCollectionView {
             })
         }
         let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
+        
+        alertController.addAction(install)
         alertController.addAction(delete)
         alertController.addAction(cancel)
 

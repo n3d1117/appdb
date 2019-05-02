@@ -67,7 +67,7 @@ class Downloads: UIViewController {
     // Update queued apps title in segmented control
     @objc fileprivate func updateQueuedAppsTitle(_ notification: NSNotification) {
         if let number = notification.userInfo?["number"] as? Int {
-            if number == 0 {
+            if number != 0 {
                 control.setTitle("Queued (\(number))", forSegmentAt: 0) // todo localize
             } else {
                 control.setTitle("Queued", forSegmentAt: 0) // todo localize
