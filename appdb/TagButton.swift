@@ -72,7 +72,7 @@ class TagButton: UIButton {
     
     @objc fileprivate func pressed() {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: [.allowUserInteraction, .curveEaseIn], animations: {
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+            self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
         }, completion: nil)
     }
     

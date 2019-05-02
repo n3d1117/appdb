@@ -85,8 +85,8 @@ class FeaturedApp: UICollectionViewCell {
         didSet {
             if isHighlighted {
                 UIView.animate(withDuration: 0.1) {
-                    self.icon.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-                    self.dim.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+                    self.icon.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+                    self.dim.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
                     self.dim.isHidden = false
                     self.dim.layer.opacity = DimmableView.opacity
                 }

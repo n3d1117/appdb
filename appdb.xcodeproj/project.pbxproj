@@ -119,6 +119,7 @@
 		817FF9EF1E59CCE60056960F /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FF9EE1E59CCE60056960F /* Details.swift */; };
 		8182756420791DE9000E9F87 /* News+Detail+TitleDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182756320791DE9000E9F87 /* News+Detail+TitleDateCell.swift */; };
 		8182756620792464000E9F87 /* News+Detail+HTMLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182756520792464000E9F87 /* News+Detail+HTMLCell.swift */; };
+		81876E2F227B192B00E27CB8 /* Library+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81876E2E227B192B00E27CB8 /* Library+Extension.swift */; };
 		8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */; };
 		818A559F20583D4600162E51 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A559E20583D4600162E51 /* Settings.swift */; };
 		818A55A120583D4F00162E51 /* Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A020583D4F00162E51 /* Updates.swift */; };
@@ -314,6 +315,7 @@
 		817FF9EE1E59CCE60056960F /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Details.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8182756320791DE9000E9F87 /* News+Detail+TitleDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail+TitleDateCell.swift"; sourceTree = "<group>"; };
 		8182756520792464000E9F87 /* News+Detail+HTMLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail+HTMLCell.swift"; sourceTree = "<group>"; };
+		81876E2E227B192B00E27CB8 /* Library+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Library+Extension.swift"; sourceTree = "<group>"; };
 		8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticLabel.swift; sourceTree = "<group>"; };
 		8188E8D71DB198B800462256 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8188E8D81DB198B800462256 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/iOS/Cartography.framework; sourceTree = "<group>"; };
@@ -1174,6 +1176,7 @@
 			isa = PBXGroup;
 			children = (
 				8148D85D226DE9A5006AD9E0 /* Library.swift */,
+				81876E2E227B192B00E27CB8 /* Library+Extension.swift */,
 				815A438E2275E11000868949 /* IPAFileManager.swift */,
 				8155094B22748F5300509B20 /* Cells */,
 			);
@@ -1370,6 +1373,7 @@
 				81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */,
 				8115465A20826AA50031C9DA /* Settings+Sections.swift in Sources */,
 				81F1FE7F1E5AF12400C1CD44 /* DismissableModalNavController.swift in Sources */,
+				81876E2F227B192B00E27CB8 /* Library+Extension.swift in Sources */,
 				81324068205BD86000945CE9 /* Settings+StaticCells.swift in Sources */,
 				81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */,
 				817610EF21515A3200602FF2 /* API+SystemStatus.swift in Sources */,

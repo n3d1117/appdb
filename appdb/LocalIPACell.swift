@@ -30,25 +30,24 @@ class LocalIPACell: UICollectionViewCell {
         size.text = text
     }
     
-    func pause() {
-        if let request = uploadRequest {
-            request.suspend()
-            paused = true
-        }
+    func pause() -> Bool {
+        guard let request = uploadRequest else { return false }
+        guard !paused else { return false }
+        request.suspend()
+        paused = true
+        return true
     }
     
     func resume() {
-        if let request = uploadRequest {
-            request.resume()
-            paused = false
-        }
+        guard let request = uploadRequest else { return }
+        request.resume()
+        paused = false
     }
     
     func stop() {
-        if let request = uploadRequest {
-            request.cancel()
-            paused = false
-        }
+        guard let request = uploadRequest else { return }
+        request.cancel()
+        paused = false
     }
     
     func isUploadInProgress() -> Bool {
