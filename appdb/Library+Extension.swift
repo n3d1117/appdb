@@ -80,6 +80,11 @@ extension Library {
                 self.uploadBackgroundTask = nil
             } else {
                 debugLog("success")
+                
+                // In case fraction 1.0 is not returned
+                cell.uploadRequest = nil
+                cell.animateProgress(1.0, ipa.size)
+                
                 delay(1) {
                     API.analyzeJob(jobId: jobId, completion: { [unowned self] error in
                         self.uploadBackgroundTask = nil
