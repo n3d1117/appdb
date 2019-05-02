@@ -184,11 +184,9 @@ class Library: LoadingCollectionView {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == Section.myappstore.rawValue {
-            
             guard self.myAppstoreIpas.indices.contains(indexPath.row) else { return }
             let app = self.myAppstoreIpas[indexPath.row]
             presentOptionsForMyappstoreApp(app, indexPath)
-            
         } else {
             guard self.localIpas.indices.contains(indexPath.row) else { return }
             let ipa = self.localIpas[indexPath.row]
@@ -240,38 +238,65 @@ class Library: LoadingCollectionView {
     }
     
     fileprivate func presentOptionsForLocalIpa(_ ipa: LocalIPAFile, _ indexPath: IndexPath) {
-
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
         let alertController = UIAlertController(title: ipa.filename, message: nil, preferredStyle: .actionSheet)
         
-        let installJB = UIAlertAction(title: "Install without signing".localized(), style: .default) { _ in // todo localize
-            self.customInstall(ipa: ipa)
-        }
-        let addToMyAppstore = UIAlertAction(title: "Upload to MyAppstore".localized(), style: .default) { _ in // todo localize
-            self.addToMyAppstore(ipa: ipa)
-        }
-        let openIn = UIAlertAction(title: "Open in...".localized(), style: .default) { _ in // todo localize
-            self.documentController = UIDocumentInteractionController(url: IPAFileManager.shared.url(for: ipa))
-            if let attributes = self.collectionView.layoutAttributesForItem(at: indexPath) {
-                let rect = self.collectionView.convert(attributes.frame, to: self.collectionView.superview)
-                self.documentController!.presentOpenInMenu(from: rect, in: self.collectionView, animated: true)
+        if cell.isUploadInProgress() {
+            alertController.title = nil
+            if !cell.paused {
+                let pause = UIAlertAction(title: "Pause".localized(), style: .default) { _ in // todo localize
+                    cell.pause()
+                    if let partial = cell.getText().components(separatedBy: "Uploading ").last { // todo localize (NB this might not work for every language, hence the fallback)
+                        cell.updateText("Paused - \(partial)") // todo localize
+                    } else {
+                         cell.updateText("Paused") // todo localize
+                    }
+                }
+                alertController.addAction(pause)
+            } else {
+                let resume = UIAlertAction(title: "Resume".localized(), style: .default) { _ in // todo localize
+                    cell.resume()
+                }
+                alertController.addAction(resume)
             }
+            let stop = UIAlertAction(title: "Stop".localized(), style: .destructive) { _ in // todo localize
+                cell.stop()
+                cell.animateProgress(1.0, ipa.size) // reset text
+            }
+            alertController.addAction(stop)
+        } else {
+            let installJB = UIAlertAction(title: "Install without signing".localized(), style: .default) { _ in // todo localize
+                self.customInstall(ipa: ipa)
+            }
+            let addToMyAppstore = UIAlertAction(title: "Upload to MyAppstore".localized(), style: .default) { _ in // todo localize
+                self.addToMyAppstore(ipa: ipa, indexPath: indexPath)
+            }
+            let openIn = UIAlertAction(title: "Open in...".localized(), style: .default) { _ in // todo localize
+                self.documentController = UIDocumentInteractionController(url: IPAFileManager.shared.url(for: ipa))
+                if let attributes = self.collectionView.layoutAttributesForItem(at: indexPath) {
+                    let rect = self.collectionView.convert(attributes.frame, to: self.collectionView.superview)
+                    self.documentController!.presentOpenInMenu(from: rect, in: self.collectionView, animated: true)
+                }
+            }
+            let rename = UIAlertAction(title: "Rename".localized(), style: .default) { _ in // todo localize
+                self.handleRename(for: ipa, at: indexPath)
+            }
+            let delete = UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in // todo localize
+                IPAFileManager.shared.delete(file: ipa)
+                self.localIpas.remove(at: indexPath.row)
+                self.collectionView.deleteItems(at: [indexPath])
+                self.reloadFooterViews()
+            }
+            
+            alertController.addAction(installJB)
+            alertController.addAction(addToMyAppstore)
+            alertController.addAction(openIn)
+            alertController.addAction(rename)
+            alertController.addAction(delete)
         }
-        let rename = UIAlertAction(title: "Rename".localized(), style: .default) { _ in // todo localize
-            self.handleRename(for: ipa, at: indexPath)
-        }
-        let delete = UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in // todo localize
-            IPAFileManager.shared.delete(file: ipa)
-            self.localIpas.remove(at: indexPath.row)
-            self.collectionView.deleteItems(at: [indexPath])
-            self.reloadFooterViews()
-        }
-        let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
         
-        alertController.addAction(installJB)
-        alertController.addAction(addToMyAppstore)
-        alertController.addAction(openIn)
-        alertController.addAction(rename)
-        alertController.addAction(delete)
+        let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel)
         alertController.addAction(cancel)
         
         if let presenter = alertController.popoverPresentationController, let attributes = collectionView.layoutAttributesForItem(at: indexPath) {
@@ -288,7 +313,10 @@ class Library: LoadingCollectionView {
     
     // MARK: - Add to MyAppstore
     
-    func addToMyAppstore(ipa: LocalIPAFile) {
+    func addToMyAppstore(ipa: LocalIPAFile, indexPath: IndexPath) {
+        
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
+        cell.progressView.progress = 0.0
         
         let randomString = Global.randomString(length: 30)
         guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
@@ -297,16 +325,26 @@ class Library: LoadingCollectionView {
         uploadBackgroundTask = BackgroundTaskUtil()
         uploadBackgroundTask?.start()
         
-        API.addToMyAppstore(jobId: jobId, fileURL: url, progress: { p in
-            debugLog("progress: \(p)")
-        }, completion: { error in
+        API.addToMyAppstore(jobId: jobId, fileURL: url, request: { req in
+            cell.uploadRequest = req
+        }, progress: { fraction, read, completed in
+            if fraction >= 1.0 {
+                cell.uploadRequest = nil
+                cell.animateProgress(fraction, ipa.size)
+            } else {
+                let readString = "\(ByteCountFormatter.string(fromByteCount: read, countStyle: .file))"
+                let totalString = "\(ByteCountFormatter.string(fromByteCount: completed, countStyle: .file))"
+                let percentage = Int(fraction * 100)
+                cell.animateProgress(fraction, "Uploading \(readString) of \(totalString) (\(percentage)%)")
+            }
+        }, completion: { [unowned self] error in
             if let error = error {
                 debugLog("error: \(error)")
                 self.uploadBackgroundTask = nil
             } else {
                 debugLog("success")
                 delay(1) {
-                    API.analyzeJob(jobId: jobId, completion: { error in
+                    API.analyzeJob(jobId: jobId, completion: { [unowned self] error in
                         self.uploadBackgroundTask = nil
                         if let error = error {
                             debugLog("error 2: \(error)")
@@ -469,7 +507,7 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (68~~63) : (58~~53))
+        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (68~~63) : (60~~55))
     }
 }
 

@@ -44,7 +44,7 @@ extension API {
         }
     }
     
-    static func addToMyAppstore(jobId: String, fileURL: URL, progress:@escaping (_ completed: Double) -> Void, completion:@escaping (_ error: String?) -> Void) {
+    static func addToMyAppstore(jobId: String, fileURL: URL, request:@escaping (_ r: Alamofire.Request) -> Void, progress:@escaping (_ fraction: Double, _ read: Int64,_ total: Int64) -> Void, completion:@escaping (_ error: String?) -> Void) {
 
         let parameters = [
             "action": Actions.addIpa.rawValue,
@@ -62,10 +62,10 @@ extension API {
                 case .success(let upload, _, _):
                     
                     upload.uploadProgress { p in
-                        progress(p.fractionCompleted)
+                        progress(p.fractionCompleted, p.completedUnitCount, p.totalUnitCount)
                     }
                     
-                    upload.responseJSON { response in
+                    request(upload.responseJSON { response in
                         switch response.result {
                         case .success(let value):
                             let json = JSON(value)
@@ -77,7 +77,7 @@ extension API {
                         case .failure(let error):
                             completion(error.localizedDescription)
                         }
-                    }
+                    })
                     
                 case .failure(let encodingError):
                      completion(encodingError.localizedDescription)
