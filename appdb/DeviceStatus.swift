@@ -86,7 +86,7 @@ class DeviceStatus: LoadingTableView {
     }
     
     @objc fileprivate func emptyCommandQueue(sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: nil, message: "Clear command queue?".localized(), preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: "Clear command queue?".localized(), preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .cancel)
         let clearAction = UIAlertAction(title: "Clear".localized(), style: .destructive) { _ in
             API.emptyCommandQueue(success: {
@@ -184,7 +184,7 @@ class DeviceStatus: LoadingTableView {
     }
     
     fileprivate func presentControllerToRetryOrFixCommand(index: IndexPath, canFix: Bool = false) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         
         if canFix {
             let fix = UIAlertAction(title: "Fix".localized(), style: .default) { _ in

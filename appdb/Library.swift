@@ -160,7 +160,7 @@ class Library: LoadingCollectionView {
         let title = app.name
         let message = "\(app.bundleId)\(Global.bulletPoint)\(app.size)\(Global.bulletPoint)\(app.version)" +
                       "\nUploaded on \(app.uploadedAt.unixToDetailedString)" // todo localize
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         
         alertController.addAction(UIAlertAction(title: "Install".localized(), style: .default) { _ in // todo localize
             if let cell = self.collectionView.cellForItem(at: indexPath) as? MyAppstoreCell {
@@ -190,7 +190,7 @@ class Library: LoadingCollectionView {
     fileprivate func presentOptionsForLocalIpa(_ ipa: LocalIPAFile, _ indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         
         if cell.isUploadInProgress() {
             if !cell.paused {

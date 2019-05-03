@@ -123,6 +123,7 @@
 		81876E33227B723D00E27CB8 /* MessagesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81876E32227B723D00E27CB8 /* MessagesFactory.swift */; };
 		81876E35227B725C00E27CB8 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81876E34227B725C00E27CB8 /* SwiftMessages.framework */; };
 		8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */; };
+		8189255A227CC9690096F661 /* AdaptiveUIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81892559227CC9690096F661 /* AdaptiveUIAlertController.swift */; };
 		818A559F20583D4600162E51 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A559E20583D4600162E51 /* Settings.swift */; };
 		818A55A120583D4F00162E51 /* Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A020583D4F00162E51 /* Updates.swift */; };
 		818A55A920584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A720584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift */; };
@@ -326,6 +327,7 @@
 		8188E8DB1DB198B800462256 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		8188E8DC1DB198B800462256 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		81892559227CC9690096F661 /* AdaptiveUIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveUIAlertController.swift; sourceTree = "<group>"; };
 		818A559E20583D4600162E51 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		818A55A020583D4F00162E51 /* Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updates.swift; sourceTree = "<group>"; };
 		818A55A42058439B00162E51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 		8188E8E31DB1993700462256 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81892558227CC9490096F661 /* • AdaptiveUIAlertController */,
 				815234D32278C0EE00B1AE65 /* • BackgroundTaskUtil */,
 				81236AC71E3B6870009748E0 /* • ButtonFactory */,
 				81F504E71E5CE6AB0000FACC /* • DimmableView */,
@@ -787,6 +790,14 @@
 				81F1FE941E5B73C700C1CD44 /* AlamofireObjectMapper.swift */,
 			);
 			name = AlamofireObjectMapper;
+			sourceTree = "<group>";
+		};
+		81892558227CC9490096F661 /* • AdaptiveUIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				81892559227CC9690096F661 /* AdaptiveUIAlertController.swift */,
+			);
+			name = "• AdaptiveUIAlertController";
 			sourceTree = "<group>";
 		};
 		818A559920583CD600162E51 /* DOWNLOADS */ = {
@@ -1468,6 +1479,7 @@
 				81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */,
 				8182756420791DE9000E9F87 /* News+Detail+TitleDateCell.swift in Sources */,
 				817A40E41E5E2FB2003FD6F1 /* SnappableFlowLayout.swift in Sources */,
+				8189255A227CC9690096F661 /* AdaptiveUIAlertController.swift in Sources */,
 				81A1038E1F7FCA030011F4B3 /* DynamicFontSizeHelper.swift in Sources */,
 				815234D52278C10A00B1AE65 /* BackgroundTaskUtil.swift in Sources */,
 				811BEE2C2151538600F1F56A /* Promotion.swift in Sources */,
