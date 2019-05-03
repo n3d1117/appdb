@@ -50,6 +50,11 @@ extension Library {
     
     internal func addToMyAppstore(ipa: LocalIPAFile, indexPath: IndexPath) {
         
+        guard DeviceInfo.deviceIsLinked else {
+            Messages.shared.showError(message: "Please authorize app from Settings first".localized())
+            return
+        }
+        
         guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
         
         cell.updateText("Waiting...") // todo localize
@@ -69,8 +74,8 @@ extension Library {
                 cell.uploadRequest = nil
                 cell.animateProgress(fraction, ipa.size)
             } else {
-                let readString = "\(ByteCountFormatter.string(fromByteCount: read, countStyle: .file))"
-                let totalString = "\(ByteCountFormatter.string(fromByteCount: completed, countStyle: .file))"
+                let readString = Global.humanReadableSize(bytes: read)
+                let totalString = Global.humanReadableSize(bytes: completed)
                 let percentage = Int(fraction * 100)
                 cell.animateProgress(fraction, "Uploading \(readString) of \(totalString) (\(percentage)%)")
             }
@@ -98,14 +103,27 @@ extension Library {
     
     // MARK: - Custom install
     
-    internal func customInstall(ipa: LocalIPAFile) {
+    internal func customInstall(ipa: LocalIPAFile, indexPath: IndexPath) {
+        
+        guard DeviceInfo.deviceIsLinked else {
+            Messages.shared.showError(message: "Please authorize app from Settings first".localized())
+            return
+        }
+        
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
+        cell.updateText("Waiting...") // todo localize
         
         IPAFileManager.shared.startServer()
         
-        guard let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa) else { return }
+        guard let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa) else {
+            cell.updateText(ipa.size)
+            return
+        }
+        
         let link = IPAFileManager.shared.getIpaLocalUrl(from: ipa)
         
         API.requestInstallJB(plist: plist, icon: " ", link: link, completion: { error in
+            cell.updateText(ipa.size)
             if let error = error {
                 Messages.shared.showError(message: error.prettified)
                 IPAFileManager.shared.stopServer()

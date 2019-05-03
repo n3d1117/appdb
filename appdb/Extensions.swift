@@ -36,6 +36,7 @@ extension String {
     // Prettify errors
     var prettified: String {
         switch self {
+        case "cancelled": return "Operation has been cancelled.".localized() // todo localize
         case "MAINTENANCE_MODE": return "Maintenance mode. We will be back soon.".localized()
         case "INVALID_LINK_CODE": return "Invalid link code.".localized()
         case "INVALID_EMAIL": return "Invalid email address.".localized()

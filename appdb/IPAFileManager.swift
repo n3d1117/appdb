@@ -74,7 +74,7 @@ struct IPAFileManager {
                 Messages.shared.showError(message: "File size not found in resource values".prettified)
                 return ""
             }
-            return Global.humanReadableSize(bytes: Double(fileSize))
+            return Global.humanReadableSize(bytes: Int64(fileSize))
         } catch let error {
             Messages.shared.showError(message: error.localizedDescription)
             return ""

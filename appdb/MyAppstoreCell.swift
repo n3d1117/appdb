@@ -78,7 +78,7 @@ class MyAppstoreCell: UICollectionViewCell {
             d.centerY == d.superview!.centerY
 
             name.left == name.superview!.left + Global.size.margin.value
-            name.right == name.superview!.right - 110 - Global.size.margin.value
+            name.right == name.superview!.right - 120 - Global.size.margin.value
             name.bottom == d.top + 2
             
             bundleId.left == name.left

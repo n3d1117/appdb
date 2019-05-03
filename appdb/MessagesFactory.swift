@@ -16,7 +16,7 @@ struct Messages {
     lazy var config: SwiftMessages.Config = {
         var config = SwiftMessages.Config()
         config.presentationStyle = .bottom
-        config.duration = .seconds(seconds: 2)
+        config.duration = .seconds(seconds: 2.5)
         config.dimMode = .none
         return config
     }()

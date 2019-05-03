@@ -209,7 +209,7 @@ class Library: LoadingCollectionView {
             alertController.title = ipa.filename
             
             alertController.addAction(UIAlertAction(title: "Install without signing".localized(), style: .default) { _ in // todo localize
-                self.customInstall(ipa: ipa)
+                self.customInstall(ipa: ipa, indexPath: indexPath)
             })
             
             alertController.addAction(UIAlertAction(title: "Upload to MyAppstore".localized(), style: .default) { _ in // todo localize

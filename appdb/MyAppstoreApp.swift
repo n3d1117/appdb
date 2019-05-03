@@ -41,8 +41,8 @@ extension MyAppstoreApp: Mappable {
         uploadedAt              <- map["uploaded_at"]
         size                    <- map["size"]
         
-        if let doubleSize = Double(size) {
-            size = Global.humanReadableSize(bytes: doubleSize)
+        if let int64size = Int64(size) {
+            size = Global.humanReadableSize(bytes: int64size)
         }
         
     }

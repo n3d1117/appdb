@@ -95,9 +95,14 @@ class ObserveQueuedApps {
                         
                         // Track status progress
                         if item.type == "linked_device_info" {
-                            var newStatus: String = item.statusShort + "\n" + item.statusText
-                            if newStatus == "\n" { newStatus = "Waiting..." } // todo localize
-                            self.updateStatus(linkId: item.linkId, status: newStatus)
+                            if item.statusShort == "failed" {
+                                Messages.shared.showError(message: item.status)
+                                self.removeApp(linkId: item.linkId)
+                            } else {
+                                var newStatus: String = item.statusShort + "\n" + item.statusText
+                                if newStatus == "\n" { newStatus = "Waiting..." } // todo localize
+                                self.updateStatus(linkId: item.linkId, status: newStatus)
+                            }
                         }
                         
                         // Should books be supported?
