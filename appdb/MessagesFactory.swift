@@ -25,7 +25,6 @@ struct Messages {
         let view: MessageView = MessageView.viewFromNib(layout: .cardView)
         view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
         view.configureTheme(.success, iconStyle: .subtle)
-        view.configureDropShadow()
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
         SwiftMessages.show(config: config, view: view)
@@ -35,7 +34,6 @@ struct Messages {
         let view: MessageView = MessageView.viewFromNib(layout: .cardView)
         view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
         view.configureTheme(.error, iconStyle: .subtle)
-        view.configureDropShadow()
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
         SwiftMessages.show(config: config, view: view)
