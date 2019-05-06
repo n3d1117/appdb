@@ -21,6 +21,8 @@ struct IPAFileManager {
     static var shared = IPAFileManager()
     private init() { }
     
+    fileprivate let supportedFileExtensions: [String] = ["ipa", "zip"]
+    
     fileprivate var localServer: HttpServer!
     fileprivate var backgroundTask: BackgroundTaskUtil? = nil
     
@@ -94,7 +96,7 @@ struct IPAFileManager {
             let randomName = Global.randomString(length: 5)
             let tmp = documentsDirectoryURL().appendingPathComponent(randomName, isDirectory: true)
             if FileManager.default.fileExists(atPath: tmp.path) { try FileManager.default.removeItem(atPath: tmp.path) }
-            try FileManager.default.createDirectory(atPath: tmp.path, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: tmp.path, withIntermediateDirectories: true)
             try FileManager.default.unzipItem(at: ipaUrl, to: tmp)
             let payload = tmp.appendingPathComponent("Payload", isDirectory: true)
             guard FileManager.default.fileExists(atPath: payload.path) else { return exit("IPA is missing Payload folder") }
@@ -113,25 +115,29 @@ struct IPAFileManager {
         }
     }
     
+    func moveToDocuments(url: URL) {
+        guard FileManager.default.fileExists(atPath: url.path) else { return }
+        var endURL = documentsDirectoryURL().appendingPathComponent(url.lastPathComponent)
+        if !FileManager.default.fileExists(atPath: endURL.path) {
+            try! FileManager.default.moveItem(at: url, to: endURL)
+        } else {
+            var i: Int = 0
+            while FileManager.default.fileExists(atPath: endURL.path) {
+                i += 1
+                let newName = url.deletingPathExtension().lastPathComponent + "_\(i).\(url.pathExtension)"
+                endURL = documentsDirectoryURL().appendingPathComponent(newName)
+            }
+            try! FileManager.default.moveItem(at: url, to: endURL)
+        }
+    }
+    
     func moveEventualIPAFilesToDocumentsDirectory(from directory: URL) {
         guard FileManager.default.fileExists(atPath: directory.path) else { return }
         let inboxContents = try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
-        let ipas = inboxContents?.filter{ $0.pathExtension == "ipa" }
+        let ipas = inboxContents?.filter{ supportedFileExtensions.contains($0.pathExtension) }
         for ipa in ipas ?? [] {
-            let startURL = directory.appendingPathComponent(ipa.lastPathComponent)
-            var endURL = documentsDirectoryURL().appendingPathComponent(ipa.lastPathComponent)
-            
-            if !FileManager.default.fileExists(atPath: endURL.path) {
-                try! FileManager.default.moveItem(at: startURL, to: endURL)
-            } else {
-                var i: Int = 0
-                while FileManager.default.fileExists(atPath: endURL.path) {
-                    i += 1
-                    let newName = ipa.deletingPathExtension().lastPathComponent + "_\(i).ipa"
-                    endURL = documentsDirectoryURL().appendingPathComponent(newName)
-                }
-                try! FileManager.default.moveItem(at: startURL, to: endURL)
-            }
+            let url = directory.appendingPathComponent(ipa.lastPathComponent)
+            moveToDocuments(url: url)
         }
     }
     
@@ -141,7 +147,7 @@ struct IPAFileManager {
         moveEventualIPAFilesToDocumentsDirectory(from: inboxDirectoryURL())
         
         let contents = try? FileManager.default.contentsOfDirectory(at: documentsDirectoryURL(), includingPropertiesForKeys: nil)
-        let ipas = contents?.filter{ $0.pathExtension == "ipa" }
+        let ipas = contents?.filter{ supportedFileExtensions.contains($0.pathExtension) }
         for ipa in ipas ?? [] {
             let filename = ipa.lastPathComponent
             let size = getSize(from: filename)
