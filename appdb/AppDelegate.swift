@@ -74,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         // Handle IPA
         if url.isFileURL && url.pathExtension == "ipa" {
+            IPAFileManager.shared.moveToDocuments(url: url)
             guard let tabController = self.window?.rootViewController as? TabBarController else { return false }
             tabController.selectedIndex = 2
             guard let nav = tabController.viewControllers?[2] as? UINavigationController else { return false }

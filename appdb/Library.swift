@@ -22,9 +22,8 @@ class Library: LoadingCollectionView {
     internal var documentController: UIDocumentInteractionController?
     internal var useDiff: Bool = false
     internal var uploadBackgroundTask: BackgroundTaskUtil? = nil
-    
-    var uploadRequestsAtIndex: [IndexPath: LocalIPAUploadUtil] = [:]
-    
+    internal var uploadRequestsAtIndex: [IndexPath: LocalIPAUploadUtil] = [:]
+
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
