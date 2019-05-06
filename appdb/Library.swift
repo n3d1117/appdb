@@ -23,6 +23,8 @@ class Library: LoadingCollectionView {
     internal var useDiff: Bool = false
     internal var uploadBackgroundTask: BackgroundTaskUtil? = nil
     
+    var uploadRequestsAtIndex: [IndexPath: LocalIPAUploadUtil] = [:]
+    
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
@@ -139,7 +141,11 @@ class Library: LoadingCollectionView {
         } else {
             guard localIpas.indices.contains(indexPath.row) else { return UICollectionViewCell() }
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localipacell", for: indexPath) as! LocalIPACell
-            cell.configure(with: localIpas[indexPath.row])
+            if let upload = uploadRequestsAtIndex[indexPath] {
+                cell.configureForUpload(with: localIpas[indexPath.row], util: upload)
+            } else {
+                cell.configure(with: localIpas[indexPath.row])
+            }
             return cell
         }
     }
@@ -189,21 +195,22 @@ class Library: LoadingCollectionView {
     
     fileprivate func presentOptionsForLocalIpa(_ ipa: LocalIPAFile, _ indexPath: IndexPath) {
         
-        guard let cell = collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         
-        if cell.isUploadInProgress() {
-            if !cell.paused {
+        if let upload = uploadRequestsAtIndex[indexPath] {
+            if !upload.isPaused {
                 alertController.addAction(UIAlertAction(title: "Pause".localized(), style: .default) { _ in // todo localize
-                    self.pauseUpload(cell: cell)
+                    if upload.pause() {
+                        self.collectionView.reloadItems(at: [indexPath])
+                    }
                 })
             } else {
                 alertController.addAction(UIAlertAction(title: "Resume".localized(), style: .default) { _ in // todo localize
-                    self.resumeUpload(cell: cell)
+                    upload.resume()
                 })
             }
             alertController.addAction(UIAlertAction(title: "Stop".localized(), style: .destructive) { _ in // todo localize
-                self.stopUpload(cell: cell, ipa: ipa)
+                upload.stop()
             })
         } else {
             alertController.title = ipa.filename

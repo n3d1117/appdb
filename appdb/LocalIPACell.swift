@@ -16,59 +16,59 @@ class LocalIPACell: UICollectionViewCell {
     fileprivate var size: UILabel!
     fileprivate var moreImageButton: UIImageView!
     fileprivate var dummy: UIView!
-    
-    var progressView: UIProgressView!
-    
-    var uploadRequest: Alamofire.Request? = nil
-    var paused: Bool = false
-    
-    func getText() -> String {
-        return size.text ?? ""
-    }
+    fileprivate var semaphore: Bool = false
+    fileprivate var progressView: UIProgressView!
     
     func updateText(_ text: String) {
         size.text = text
     }
     
-    func pause() -> Bool {
-        guard let request = uploadRequest else { return false }
-        guard !paused else { return false }
-        request.suspend()
-        paused = true
-        return true
+    func configure(with ipa: LocalIPAFile) {
+        filename.text = ipa.filename
+        size.text = ipa.size
+        progressView.isHidden = true
     }
     
-    func resume() {
-        guard let request = uploadRequest else { return }
-        request.resume()
-        paused = false
-    }
-    
-    func stop() {
-        guard let request = uploadRequest else { return }
-        request.cancel()
-        paused = false
-    }
-    
-    func isUploadInProgress() -> Bool {
-        return !progressView.isHidden
-    }
-    
-    func configure(with app: LocalIPAFile) {
-        filename.text = app.filename
-        size.text = app.size
-    }
-    
-    func animateProgress(_ p: Double, _ text: String) {
-        size.text = text
-        progressView.setProgress(Float(p), animated: true)
-        if p >= 1.0 {
-            delay(0.1) {
-                self.progressView.isHidden = true
+    func configureForUpload(with ipa: LocalIPAFile, util: LocalIPAUploadUtil) {
+        filename.text = ipa.filename
+        progressView.isHidden = false
+        semaphore = false
+        
+        if util.isPaused {
+            if let partial = util.lastCachedProgress.components(separatedBy: "Uploading ").last { // todo localize (NB this might not work for every language, hence the fallback)
+                size.text = "Paused - \(partial)" // todo localize
+            } else {
+                size.text = "Paused" // todo localize
             }
         } else {
-            progressView.isHidden = false
+            size.text = util.lastCachedProgress
         }
+        
+        progressView.progress = util.lastCachedFraction
+        
+        util.onProgress = { fraction, text in
+            if !self.semaphore { // prevent wrong cell text update after reuse
+                self.size.text = text
+                self.progressView.setProgress(fraction, animated: true)
+            }
+        }
+        
+        util.onCompletion = {
+            self.filename.text = ipa.filename
+            self.size.text = ipa.size
+            delay(0.1) {
+                self.progressView.isHidden = true
+                self.progressView.progress = 0.0
+            }
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        semaphore = true
+        filename.text = ""
+        size.text = ""
     }
     
     required init?(coder aDecoder: NSCoder) {

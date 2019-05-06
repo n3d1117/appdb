@@ -55,10 +55,8 @@ extension Library {
             return
         }
         
-        guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
-        
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }        
         cell.updateText("Waiting...") // todo localize
-        cell.progressView.progress = 0.0
         
         let randomString = Global.randomString(length: 30)
         guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
@@ -68,22 +66,12 @@ extension Library {
         uploadBackgroundTask?.start()
         
         API.addToMyAppstore(jobId: jobId, fileURL: url, request: { req in
-            cell.uploadRequest = req
-        }, progress: { fraction, read, completed in
-            if fraction >= 1.0 {
-                cell.uploadRequest = nil
-                cell.animateProgress(fraction, ipa.size)
-            } else {
-                let readString = Global.humanReadableSize(bytes: read)
-                let totalString = Global.humanReadableSize(bytes: completed)
-                let percentage = Int(fraction * 100)
-                cell.animateProgress(fraction, "Uploading \(readString) of \(totalString) (\(percentage)%)")
-            }
+            self.uploadRequestsAtIndex[indexPath] = LocalIPAUploadUtil(req)
+            self.collectionView.reloadItems(at: [indexPath])
         }, completion: { [unowned self] error in
             
-            // In case fraction 1.0 is not returned
-            cell.uploadRequest = nil
-            cell.animateProgress(1.0, ipa.size)
+            self.uploadRequestsAtIndex.removeValue(forKey: indexPath)
+            self.collectionView.reloadItems(at: [indexPath])
             
             if let error = error {
                 Messages.shared.showError(message: error.prettified)
@@ -218,31 +206,6 @@ extension Library {
                 self.reloadFooterViews()
             }
         })
-    }
-    
-    // MARK: - Pause upload
-    
-    internal func pauseUpload(cell: LocalIPACell) {
-        if cell.pause() {
-            if let partial = cell.getText().components(separatedBy: "Uploading ").last { // todo localize (NB this might not work for every language, hence the fallback)
-                cell.updateText("Paused - \(partial)") // todo localize
-            } else {
-                cell.updateText("Paused") // todo localize
-            }
-        }
-    }
-    
-    // MARK: - Resume upload
-    
-    internal func resumeUpload(cell: LocalIPACell) {
-        cell.resume()
-    }
-    
-    // MARK: - Stop upload
-    
-    internal func stopUpload(cell: LocalIPACell, ipa: LocalIPAFile) {
-        cell.stop()
-        cell.animateProgress(1.0, ipa.size) // reset text
     }
     
     // MARK: - Open in...
