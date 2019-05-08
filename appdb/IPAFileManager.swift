@@ -21,7 +21,7 @@ struct IPAFileManager {
     static var shared = IPAFileManager()
     private init() { }
     
-    fileprivate let supportedFileExtensions: [String] = ["ipa", "zip"]
+    let supportedFileExtensions: [String] = ["ipa", "zip"]
     
     fileprivate var localServer: HttpServer!
     fileprivate var backgroundTask: BackgroundTaskUtil? = nil

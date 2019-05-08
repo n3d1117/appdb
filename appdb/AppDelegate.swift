@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
         // Handle IPA
-        if url.isFileURL && url.pathExtension == "ipa" {
+        if url.isFileURL && IPAFileManager.shared.supportedFileExtensions.contains(url.pathExtension) {
             IPAFileManager.shared.moveToDocuments(url: url)
             guard let tabController = self.window?.rootViewController as? TabBarController else { return false }
             tabController.selectedIndex = 2
