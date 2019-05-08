@@ -235,7 +235,7 @@ class ETCollectionViewWaterfallLayout: UICollectionViewLayout {
                 let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: IndexPath(item: 0, section: section))
                 attributes.frame = CGRect(x: headerInset.left,
                                           y: top,
-                                          width: (self.collectionView?.bounds.size.width)!,
+                                          width: (self.collectionView?.bounds.size.width)! - headerInset.left - headerInset.right,
                                           height: headerHeight)
                 self.headersAttributes[section] = attributes
                 self.allItemAttributes.append(attributes)

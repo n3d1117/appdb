@@ -16,7 +16,11 @@ class Library: LoadingCollectionView {
         case myappstore = 1
     }
     
-    internal var localIpas = [LocalIPAFile]()
+    internal var localIpas = [LocalIPAFile]() {
+        didSet {
+            setTrashButtonEnabled(enabled: !localIpas.isEmpty)
+        }
+    }
     internal var myAppstoreIpas = [MyAppstoreApp]()
     internal var timer: Timer? = nil
     internal var documentController: UIDocumentInteractionController?
@@ -81,7 +85,7 @@ class Library: LoadingCollectionView {
                 })
                 self.reloadFooterViews()
                 
-            }) { error in
+            }) { _ in
                 self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
                     self.localIpas = newLocalIpas
                 })
@@ -99,7 +103,7 @@ class Library: LoadingCollectionView {
                 
                 self.useDiff = true
                 
-            }) { error in
+            }) { _ in
                 self.state = .done(animated: false)
                 self.reloadFooterViews()
             }

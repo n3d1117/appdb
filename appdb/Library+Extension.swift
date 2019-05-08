@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import DeepDiff
 
 extension Library {
     
@@ -77,11 +78,13 @@ extension Library {
                 Messages.shared.showError(message: error.prettified)
                 self.uploadBackgroundTask = nil
             } else {
-                delay(1) {
+                delay(0.8) {
                     API.analyzeJob(jobId: jobId, completion: { [unowned self] error in
                         self.uploadBackgroundTask = nil
                         if let error = error {
                             Messages.shared.showError(message: error.prettified)
+                        } else {
+                            Messages.shared.showSuccess(message: "File uploaded successfully") // todo localize
                         }
                     })
                 }
@@ -227,6 +230,36 @@ extension Library {
         self.collectionView.deleteItems(at: [indexPath])
         self.reloadFooterViews()
     }
+    
+    internal func deleteAll() {
+        for ipa in localIpas {
+            IPAFileManager.shared.delete(file: ipa)
+        }
+        let changes = diff(old: localIpas, new: [])
+        self.collectionView.reload(changes: changes, section: Section.local.rawValue, updateData: {
+            localIpas.removeAll()
+            reloadFooterViews()
+        })
+    }
+    
+    @objc internal func deleteAllFilesConfirmationAlert(sender: UIButton) {
+        let onlyOne: Bool = localIpas.count == 1
+        let title = onlyOne ? "Delete 1 file?" : "Are you sure you want to delete \(localIpas.count) files?".localized() // todo localize
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+        alertController.addAction(UIAlertAction(title: onlyOne ? "Delete".localized() : "Delete all".localized(), style: .destructive) { _ in // todo localize
+            self.deleteAll()
+        })
+        alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        if let presenter = alertController.popoverPresentationController {
+            presenter.theme_backgroundColor = Color.popoverArrowColor
+            presenter.sourceView = self.view
+            presenter.sourceRect = sender.bounds
+            presenter.permittedArrowDirections = [.up, .down]
+        }
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+        }
+    }
 }
 
 // MARK: - ETCollectionViewDelegateWaterfallLayout
@@ -237,25 +270,22 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
         return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
     }
     
-    var topInset: CGFloat {
-        return 25~~15
-    }
-    
     var layout: ETCollectionViewWaterfallLayout {
         let layout = ETCollectionViewWaterfallLayout()
         layout.minimumColumnSpacing = 18~~13
         layout.minimumInteritemSpacing = 13~~8
         
         // Header
-        layout.headerHeight = 1
-        layout.headerInset.top = 36~~31
+        layout.headerHeight = 25
+        layout.headerInset.top = 26~~21
         layout.headerInset.bottom = 4
         if #available(iOS 11.0, *) {
             layout.headerInset.left = (UIDevice.current.orientation.isLandscape && Global.hasNotch ? 45 : 2)
+            layout.headerInset.right = layout.headerInset.left
         }
         
         // Section Inset
-        layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: 0, right: margin)
+        layout.sectionInset = UIEdgeInsets(top: 10~~5, left: margin, bottom: 0, right: margin)
         
         if Global.isIpad {
             layout.columnCount = 2
@@ -300,11 +330,15 @@ extension Library: UICollectionViewDelegateFlowLayout {
         if kind == UICollectionView.elementKindSectionHeader {
             if indexPath.section == Section.local.rawValue {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewOne", for: indexPath) as! LibrarySectionHeaderView
-                header.configure("Local Files") // todo localize
+                header.configure("Local Files", showsTrash: true) // todo localize
+                header.trashButton.addTarget(self, action: #selector(deleteAllFilesConfirmationAlert), for: .touchUpInside)
+                header.trashButton.isEnabled = !self.localIpas.isEmpty
+                header.helpButton.addTarget(self, action: #selector(showHelpLocal), for: .touchUpInside)
                 return header
             } else {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewTwo", for: indexPath) as! LibrarySectionHeaderView
                 header.configure("MyAppstore")
+                header.helpButton.addTarget(self, action: #selector(showHelpMyAppstore), for: .touchUpInside)
                 return header
             }
         } else if kind == UICollectionView.elementKindSectionFooter {
@@ -315,5 +349,29 @@ extension Library: UICollectionViewDelegateFlowLayout {
             }
         }
         return UICollectionReusableView()
+    }
+    
+    // todo localize
+    @objc fileprivate func showHelpLocal() {
+        let message = "Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n\(IPAFileManager.shared.documentsDirectoryURL().path)".localized()
+        let alertController = UIAlertController(title: "Local Files".localized(), message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true)
+    }
+    
+    // todo localize
+    @objc fileprivate func showHelpMyAppstore() {
+        let message = "appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppstore'".localized()
+        let alertController = UIAlertController(title: "MyAppstore".localized(), message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true)
+    }
+    
+    internal func setTrashButtonEnabled(enabled: Bool) {
+        if let header = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: Section.local.rawValue)) as? LibrarySectionHeaderView {
+            header.trashButton.isEnabled = enabled
+        }
     }
 }
