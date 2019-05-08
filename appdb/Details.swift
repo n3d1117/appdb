@@ -232,14 +232,14 @@ class Details: LoadingTableView {
             
             API.install(id: sender.linkId, type: self.contentType) { error in
                 if let error = error {
-                    Messages.shared.showError(message: error.prettified)
+                    Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
                     delay(0.3) {
                         setButtonTitle("Install")
                     }
                 } else {
                     setButtonTitle("Requested")
                     
-                    Messages.shared.showSuccess(message: "Installation has been queued to your device!") // todo localize
+                    Messages.shared.showSuccess(message: "Installation has been queued to your device!", context: Global.isIpad ? .viewController(self) : nil) // todo localize
                     
                     if self.contentType != .books {
                         ObserveQueuedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
@@ -255,7 +255,7 @@ class Details: LoadingTableView {
         } else {
             setButtonTitle("Checking...") // todo localize
             delay(0.3) {
-                Messages.shared.showError(message: "Please authorize app from Settings first".localized())
+                Messages.shared.showError(message: "Please authorize app from Settings first".localized(), context: Global.isIpad ? .viewController(self) : nil)
                 setButtonTitle("Install")
             }
         }
@@ -293,9 +293,9 @@ class Details: LoadingTableView {
             if let textField = alert.textFields?.first, let text = textField.text {
                 API.reportLink(id: id, type: self.contentType, reason: text, completion: { error in
                     if let error = error {
-                        Messages.shared.showError(message: error.prettified)
+                        Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
                     } else {
-                        Messages.shared.showSuccess(message: "Link reported successfully!".localized()) // todo localize
+                        Messages.shared.showSuccess(message: "Link reported successfully!".localized(), context: Global.isIpad ? .viewController(self) : nil) // todo localize
                     }
                 })
             }

@@ -125,27 +125,15 @@ extension QueuedApps: ETCollectionViewDelegateWaterfallLayout {
         layout.minimumColumnSpacing = 20~~15
         layout.minimumInteritemSpacing = 15~~10
         layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: topInset, right: margin)
-        if Global.isIpad {
-            layout.columnCount = 2
-        } else {
-            layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
-        }
+        layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
         return layout
     }
     
     var itemDimension: CGFloat {
-        if Global.isIpad {
-            if UIDevice.current.orientation.isPortrait {
-                return (view.bounds.width / 2) - 30
-            } else {
-                return (view.bounds.width / 3) - 25
-            }
+        if UIDevice.current.orientation.isPortrait {
+            return view.bounds.width - margin*2
         } else {
-            if UIDevice.current.orientation.isPortrait {
-                return view.bounds.width - 30
-            } else {
-                return (view.bounds.width / 2) - (Global.hasNotch ? 80 : 25)
-            }
+            return (view.bounds.width / 2) - margin*1.5
         }
     }
     

@@ -46,6 +46,7 @@ extension String {
         case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
         case "TOO_SHORT_SEARCH_STRING": return "Please search at least two characters".localized()
         case "NOT_READY": return "The request timed out".localized()
+        case "NOT_COMPATIBLE_WITH_DEVICE": return "Your device is not compatible with this app".localized() // todo localize
         default: return self.localized()
         }
     }

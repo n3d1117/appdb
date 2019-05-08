@@ -298,15 +298,15 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
     var itemDimension: CGFloat {
         if Global.isIpad {
             if UIDevice.current.orientation.isPortrait {
-                return (view.bounds.width / 2) - 30
+                return (view.bounds.width / 2) - margin*1.5
             } else {
-                return (view.bounds.width / 3) - 25
+                return (view.bounds.width / 3) - margin*1.5
             }
         } else {
             if UIDevice.current.orientation.isPortrait {
-                return view.bounds.width - 30
+                return view.bounds.width - margin*2
             } else {
-                return (view.bounds.width / 2) - (Global.hasNotch ? 70 : 25)
+                return (view.bounds.width / 2) - margin*1.5
             }
         }
     }

@@ -85,7 +85,8 @@ class ObserveQueuedApps {
                 if items.isEmpty {
                     self.removeAllApps()
                 } else {
-                    for item in items.filter({ Global.isSecondsAway(from: $0.added.unixToDate) }) {
+                    let linkIds = self.requestedApps.map{ $0.linkId }
+                    for item in items.filter({ linkIds.contains($0.linkId) }) {
                         
                         // Remove app if install prompted
                         if item.type == "install_app" {
@@ -96,7 +97,7 @@ class ObserveQueuedApps {
                         // Track status progress
                         if item.type == "linked_device_info" {
                             if item.statusShort == "failed" {
-                                Messages.shared.showError(message: item.status)
+                                Messages.shared.showError(message: item.statusText)
                                 self.removeApp(linkId: item.linkId)
                             } else {
                                 var newStatus: String = item.statusShort + "\n" + item.statusText

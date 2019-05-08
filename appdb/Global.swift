@@ -129,17 +129,6 @@ struct Global {
         return "now".localized()
     }
     
-    // Returns true if given date is max 60 seconds away from now
-    static func isSecondsAway(from startDate: Date) -> Bool {
-        let calendar = Calendar.current
-        let difference = calendar.dateComponents([.day, .hour, .minute, .second], from: startDate, to: Date())
-        
-        guard let s = difference.second, let m = difference.minute, let h = difference.hour, let d = difference.day else { return false }
-
-        if d > 0 || h > 0 || m > 0 { return false }
-        return s > 0
-    }
-    
     // Human readable size from byte count
     static func humanReadableSize(bytes: Int64) -> String {
         return ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
