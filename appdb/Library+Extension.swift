@@ -232,6 +232,10 @@ extension Library {
     }
     
     internal func deleteAll() {
+        guard uploadRequestsAtIndex.isEmpty else {
+            Messages.shared.showError(message: "Please cancel any pending uploads before deleting local files") // todo localize
+            return
+        }
         for ipa in localIpas {
             IPAFileManager.shared.delete(file: ipa)
         }
