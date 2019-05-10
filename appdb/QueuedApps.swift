@@ -24,6 +24,7 @@ class QueuedApps: LoadingCollectionView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = layout
+        collectionView.contentInset.bottom = 25~~15
         
         // UI
         view.theme_backgroundColor = Color.tableViewBackgroundColor

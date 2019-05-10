@@ -47,7 +47,7 @@ class ConfigServer: NSObject {
     let randomString = Global.randomString(length: 8)
     
     // Background task
-    fileprivate var backgroundTask: BackgroundTaskUtil? = nil
+    fileprivate var backgroundTask: BackgroundTaskUtil?
     
     // Initialization
     init(configData: Data, token: String) {

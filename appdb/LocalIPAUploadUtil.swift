@@ -10,17 +10,18 @@ import Alamofire
 
 class LocalIPAUploadUtil {
     
-    fileprivate var request: Alamofire.UploadRequest? = nil
+    fileprivate var request: Alamofire.UploadRequest?
     
     var isPaused: Bool {
         return paused
     }
     
     var lastCachedFraction: Float = 0.0
-    var lastCachedProgress: String = ""
+    var lastCachedProgress: String = "Waiting..." // todo localize
     
     fileprivate var paused: Bool = false
     
+    var onPause: (() -> ())?
     var onProgress: ((Float, String) -> ())?
     var onCompletion: (() -> ())?
     
@@ -37,17 +38,17 @@ class LocalIPAUploadUtil {
         }
         
         self.request?.responseJSON { _ in
-            self.onCompletion?()
             self.request = nil
+            self.onCompletion?()
         }
     }
     
-    func pause() -> Bool {
-        guard let request = request else { return false }
-        guard !paused else { return false }
+    func pause() {
+        guard let request = request else { return }
+        guard !paused else { return }
         request.suspend()
         paused = true
-        return true
+        onPause?()
     }
     
     func resume() {

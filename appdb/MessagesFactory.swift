@@ -29,6 +29,7 @@ struct Messages {
         view.configureTheme(.success, iconStyle: .subtle)
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
+        view.bodyLabel?.makeDynamicFont()
         SwiftMessages.show(config: config, view: view)
     }
     
@@ -39,6 +40,7 @@ struct Messages {
         view.configureTheme(.error, iconStyle: .subtle)
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
+        view.bodyLabel?.makeDynamicFont()
         SwiftMessages.show(config: config, view: view)
     }
 }

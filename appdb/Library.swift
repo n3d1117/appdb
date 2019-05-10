@@ -22,10 +22,10 @@ class Library: LoadingCollectionView {
         }
     }
     internal var myAppstoreIpas = [MyAppstoreApp]()
-    internal var timer: Timer? = nil
+    internal var timer: Timer?
     internal var documentController: UIDocumentInteractionController?
     internal var useDiff: Bool = false
-    internal var uploadBackgroundTask: BackgroundTaskUtil? = nil
+    internal var uploadBackgroundTask: BackgroundTaskUtil?
     internal var uploadRequestsAtIndex: [IndexPath: LocalIPAUploadUtil] = [:]
 
     convenience init() {
@@ -203,9 +203,7 @@ class Library: LoadingCollectionView {
         if let upload = uploadRequestsAtIndex[indexPath] {
             if !upload.isPaused {
                 alertController.addAction(UIAlertAction(title: "Pause".localized(), style: .default) { _ in // todo localize
-                    if upload.pause() {
-                        self.collectionView.reloadItems(at: [indexPath])
-                    }
+                    upload.pause()
                 })
             } else {
                 alertController.addAction(UIAlertAction(title: "Resume".localized(), style: .default) { _ in // todo localize

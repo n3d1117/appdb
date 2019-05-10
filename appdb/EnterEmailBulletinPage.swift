@@ -13,7 +13,7 @@ class EnterEmailBulletinPage: BLTNPageItem {
     
     @objc public var textField: UITextField!
     
-    @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
+    @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)?
     
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         textField = interfaceBuilder.makeTextField(placeholder: "name@example.com".localized(), returnKey: .done, delegate: self)

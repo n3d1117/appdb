@@ -16,7 +16,7 @@ class EnterLinkCodeBulletinPage: BLTNPageItem {
     @objc public var textField: UITextField!
     private var linkButton: UIButton!
     
-    @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
+    @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)?
     
     override func tearDown() {
         super.tearDown()

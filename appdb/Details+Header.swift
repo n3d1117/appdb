@@ -20,10 +20,10 @@ class DetailsHeader: DetailsCell {
     var name: UILabel!
     var icon: UIImageView!
     var seller: UIButton!
-    var tweaked: UILabel? = nil
-    var ipadOnly: UILabel? = nil
-    var stars: CosmosView? = nil
-    var additionalInfo: UILabel? = nil
+    var tweaked: UILabel?
+    var ipadOnly: UILabel?
+    var stars: CosmosView?
+    var additionalInfo: UILabel?
     
     var devId: String = ""
     weak var delegate: DetailsSellerRedirectionDelegate?

@@ -12,13 +12,11 @@ import AlamofireImage
 
 class QueuedDownloadsCell: UICollectionViewCell {
 
-    var iconSize: CGFloat = (80~~70)
-    
-    var margin: CGFloat = Global.size.margin.value
-    
-    var name: UILabel!
-    var icon: UIImageView!
-    var status: UILabel!
+    fileprivate var iconSize: CGFloat = (80~~70)
+    fileprivate var margin: CGFloat = Global.size.margin.value
+    fileprivate var name: UILabel!
+    fileprivate var icon: UIImageView!
+    fileprivate var status: UILabel!
     
     func configure(with app: RequestedApp) {
         name.text = app.name
@@ -81,8 +79,7 @@ class QueuedDownloadsCell: UICollectionViewCell {
             icon.width == iconSize
             icon.height == icon.width
             icon.left == icon.superview!.left + margin
-            icon.top == icon.superview!.top + margin
-            icon.bottom == icon.superview!.bottom - margin
+            icon.centerY == icon.superview!.centerY
             
             name.left == icon.right + (15~~12) ~ Global.notMaxPriority
             name.right == name.superview!.right - margin

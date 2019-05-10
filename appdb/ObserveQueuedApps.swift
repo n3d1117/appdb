@@ -17,7 +17,7 @@ class ObserveQueuedApps {
     private init() { }
     
     fileprivate var requestedApps = [RequestedApp]()
-    fileprivate var timer: Timer? = nil
+    fileprivate var timer: Timer?
     fileprivate var numberOfQueuedApps: Int = 0
     
     var onUpdate: ((_ apps: [RequestedApp]) -> ())?
