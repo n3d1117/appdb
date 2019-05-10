@@ -209,7 +209,6 @@ class Details: LoadingTableView {
         
         if indexForSegment == .download, indexPath.section > 1, contentType != .books {
             // todo webview
-            debugLog("clicked download row")
             ObserveDownloadingApps.shared.addDownload(url: "https://github.com/PopcornTimeTV/PopcornTimeTV/releases/download/3.2.33/PopcornTimeiOS.ipa", icon: content.itemIconUrl)
         }
         

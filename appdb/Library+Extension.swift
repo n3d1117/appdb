@@ -256,7 +256,7 @@ extension Library {
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         if let presenter = alertController.popoverPresentationController {
             presenter.theme_backgroundColor = Color.popoverArrowColor
-            presenter.sourceView = self.view
+            presenter.sourceView = sender
             presenter.sourceRect = sender.bounds
             presenter.permittedArrowDirections = [.up, .down]
         }

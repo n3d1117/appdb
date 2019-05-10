@@ -112,4 +112,33 @@ extension API {
                 }
         }
     }
+    
+    static func downloadIPA(url: String, request:@escaping (_ r: Alamofire.DownloadRequest) -> Void, completion:@escaping (_ error: String?) -> Void) {
+        guard let url = URL(string: url) else { return }
+        
+        let destination: DownloadRequest.DownloadFileDestination = { _, response in
+            let filename: String = response.suggestedFilename ?? (Global.randomString(length: 10) + ".ipa")
+            var fileURL: URL = IPAFileManager.shared.documentsDirectoryURL().appendingPathComponent(filename)
+            var i: Int = 0
+            while FileManager.default.fileExists(atPath: fileURL.path) {
+                i += 1
+                let newName = String(filename.dropLast(4)) + "_\(i).\(url.pathExtension)"
+                fileURL = IPAFileManager.shared.documentsDirectoryURL().appendingPathComponent(newName)
+            }
+            debugLog("filename chosen here")
+            // todo save filename
+            return (fileURL, [])
+        }
+        
+        let download = Alamofire.download(url, to: destination)
+        request(download)
+        
+        download.response { r in
+            if let error = r.error {
+                completion(error.localizedDescription)
+            } else {
+                completion(nil)
+            }
+        }
+    }
 }

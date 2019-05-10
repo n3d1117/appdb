@@ -43,7 +43,7 @@ class ObserveQueuedApps {
         
         // Notify updates
         numberOfQueuedApps += 1
-        let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps]
+        let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps, "tab": 0]
         NotificationCenter.default.post(name: .UpdateQueuedSegmentTitle, object: self, userInfo: numberOfQueuedAppsDict)
     }
     
@@ -55,7 +55,7 @@ class ObserveQueuedApps {
             UIApplication.shared.keyWindow?.rootViewController?.badgeSubtractOne(for: .downloads)
             
             numberOfQueuedApps -= 1
-            let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps]
+            let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps, "tab": 0]
             NotificationCenter.default.post(name: .UpdateQueuedSegmentTitle, object: self, userInfo: numberOfQueuedAppsDict)
         }
     }
@@ -67,7 +67,7 @@ class ObserveQueuedApps {
         UIApplication.shared.keyWindow?.rootViewController?.updateBadge(with: nil, for: .downloads)
         
         numberOfQueuedApps = 0
-        let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps]
+        let numberOfQueuedAppsDict: [String: Int] = ["number": numberOfQueuedApps, "tab": 0]
         NotificationCenter.default.post(name: .UpdateQueuedSegmentTitle, object: self, userInfo: numberOfQueuedAppsDict)
     }
     

@@ -21,7 +21,7 @@ class Downloads: UIViewController {
     var group = ConstraintGroup()
     
     lazy var viewControllersArray: [UIViewController] = {
-        return [QueuedApps(), Library(), ActiveDownloads()]
+        return [QueuedApps(), Library(), Downloading()]
     }()
     
     deinit {
@@ -66,11 +66,19 @@ class Downloads: UIViewController {
     
     // Update queued apps title in segmented control
     @objc fileprivate func updateQueuedAppsTitle(_ notification: NSNotification) {
-        if let number = notification.userInfo?["number"] as? Int {
-            if number != 0 {
-                control.setTitle("Queued (\(number))", forSegmentAt: 0) // todo localize
-            } else {
-                control.setTitle("Queued", forSegmentAt: 0) // todo localize
+        if let number = notification.userInfo?["number"] as? Int, let tab = notification.userInfo?["tab"] as? Int {
+            if tab == 0 {
+                if number != 0 {
+                    control.setTitle("Queued (\(number))", forSegmentAt: tab) // todo localize
+                } else {
+                    control.setTitle("Queued", forSegmentAt: tab) // todo localize
+                }
+            } else if tab == 2 {
+                if number != 0 {
+                    control.setTitle("Downloading (\(number))", forSegmentAt: tab) // todo localize
+                } else {
+                    control.setTitle("Downloading", forSegmentAt: tab) // todo localize
+                }
             }
         }
     }
@@ -103,7 +111,7 @@ class Downloads: UIViewController {
             
             control.top == header.top
             control.centerX == header.centerX
-            control.width == 360~~310
+            control.width == 370~~330
         }
     }
     
