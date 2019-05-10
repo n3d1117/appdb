@@ -77,6 +77,8 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
     // Dismiss view if tapped outside
     @objc func handleTapBehind(sender: UIGestureRecognizer) {
         
+        guard UIApplication.topNavigation(UIApplication.topViewController()) is DismissableModalNavController else { return }
+        
         if Global.isIpad, sender.state == .ended {
             
             var location: CGPoint = sender.location(in: nil)

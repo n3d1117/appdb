@@ -274,3 +274,36 @@ extension NSTextAttachment {
         bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: width, height: width / ratio)
     }
 }
+
+// MARK: - UIApplication top View Controller & top Navigation View Controller
+
+extension UIApplication {
+    
+    class func topViewController(_ viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = viewController as? UINavigationController {
+            return topViewController(nav.visibleViewController)
+        }
+        if let tab = viewController as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(selected)
+            }
+        }
+        if let presented = viewController?.presentedViewController {
+            return topViewController(presented)
+        }
+        return viewController
+    }
+    
+    class func topNavigation(_ viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UINavigationController? {
+        
+        if let nav = viewController as? UINavigationController {
+            return nav
+        }
+        if let tab = viewController as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return selected.navigationController
+            }
+        }
+        return viewController?.navigationController
+    }
+}
