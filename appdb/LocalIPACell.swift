@@ -37,18 +37,18 @@ class LocalIPACell: UICollectionViewCell {
         size.text = util.lastCachedProgress
         progressView.progress = util.lastCachedFraction
         
+        util.onProgress = { fraction, text in
+            if !self.semaphore, !util.isPaused { // prevent wrong cell text update after reuse
+                self.size.text = text
+                self.progressView.setProgress(fraction, animated: true)
+            }
+        }
+        
         util.onPause = {
             if let partial = util.lastCachedProgress.components(separatedBy: "Uploading ").last { // todo localize (NB this might not work for every language, hence the fallback)
                 self.size.text = "Paused - \(partial)" // todo localize
             } else {
                 self.size.text = "Paused" // todo localize
-            }
-        }
-        
-        util.onProgress = { fraction, text in
-            if !self.semaphore { // prevent wrong cell text update after reuse
-                self.size.text = text
-                self.progressView.setProgress(fraction, animated: true)
             }
         }
         

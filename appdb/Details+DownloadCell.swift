@@ -18,6 +18,12 @@ class DetailsDownload: DetailsCell {
     var cracker: UILabel!
     var button: RoundedButton!
     
+    lazy var bgColorView: UIView = {
+        let view = UIView()
+        view.theme_backgroundColor = Color.cellSelectionColor
+        return view
+    }()
+    
     func configure(with link: Link) {
         host.text = link.host
         cracker.text = link.cracker.decoded
@@ -25,6 +31,11 @@ class DetailsDownload: DetailsCell {
         button.linkId = link.id
         button.isHidden = !link.di_compatible
         host.theme_textColor = link.universal ? Color.mainTint : Color.title
+        
+        selectionStyle = accessoryType == .none ? .none : .default
+        constrain(button) { button in
+            button.right == button.superview!.right - (accessoryType == .none ? Global.size.margin.value : 10)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,17 +46,13 @@ class DetailsDownload: DetailsCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         preservesSuperviewLayoutMargins = false
-        accessoryType = .disclosureIndicator
-        
-        let bgColorView = UIView()
-        bgColorView.theme_backgroundColor = Color.cellSelectionColor
-        selectedBackgroundView = bgColorView
         
         addSeparator(full: true)
         
         // UI
         contentView.theme_backgroundColor = Color.veryVeryLightGray
         theme_backgroundColor = Color.veryVeryLightGray
+        selectedBackgroundView = bgColorView
         
         host = UILabel()
         host.font = .systemFont(ofSize: (16~~15))
@@ -75,7 +82,6 @@ class DetailsDownload: DetailsCell {
     override func setConstraints() {
         constrain(host, cracker, button) { host, cracker, button in
             
-            button.right == button.superview!.right - 10
             button.centerY == button.superview!.centerY
             
             host.top == host.superview!.top + 9

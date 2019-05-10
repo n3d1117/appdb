@@ -8,12 +8,12 @@
 
 struct RequestedApp: Matchable {
     
-    var linkId = ""
+    var linkId: String = ""
     var type: ItemType = .ios
-    var name = ""
-    var status = ""
-    var image = ""
-    var bundleId = ""
+    var name: String = ""
+    var status: String = ""
+    var image: String = ""
+    var bundleId: String = ""
     
     init(type: ItemType, linkId: String, name: String, image: String, bundleId: String, status: String = "") {
         self.linkId = linkId

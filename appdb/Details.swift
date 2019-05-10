@@ -175,6 +175,7 @@ class Details: LoadingTableView {
                     case .download:
                         if !versions.isEmpty {
                             let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as! DetailsDownload
+                            cell.accessoryType = contentType == .books ? .none : .disclosureIndicator
                             cell.configure(with: versions[indexPath.section-2].links[indexPath.row])
                             cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                             return cell
@@ -205,7 +206,14 @@ class Details: LoadingTableView {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = details[indexPath.row] as? DetailsExternalLink  else { return }
+        
+        if indexForSegment == .download, indexPath.section > 1, contentType != .books {
+            // todo webview
+            debugLog("clicked download row")
+            ObserveDownloadingApps.shared.addDownload(url: "https://github.com/PopcornTimeTV/PopcornTimeTV/releases/download/3.2.33/PopcornTimeiOS.ipa", icon: content.itemIconUrl)
+        }
+        
+        guard let cell = details[indexPath.row] as? DetailsExternalLink else { return }
         if !cell.url.isEmpty, let url = URL(string: cell.url) {
             if #available(iOS 9.0, *) {
                 let svc = SFSafariViewController(url: url)
