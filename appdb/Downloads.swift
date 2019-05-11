@@ -191,7 +191,8 @@ extension Downloads {
         let alert = UIAlertController(title: "Enter URL", message: "Enter below the URL of the .ipa file you want to download", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
             textField.addTarget(self, action: #selector(self.urlTextChanged), for: .editingChanged)
-            textField.placeholder = "https://example.com/file.ipa"
+            textField.placeholder = "https://example.com/file.ipa" // todo localize
+            textField.keyboardType = .URL
             textField.theme_keyboardAppearance = [.light, .dark]
             textField.clearButtonMode = .whileEditing
         })

@@ -49,6 +49,7 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         webView = WKWebView()
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
         view = webView
         
         // Progress view
@@ -143,23 +144,34 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
 extension IPAWebViewController {
     
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+            
+            guard let url = navigationAction.request.url, let host = url.host, let delegate = delegate else { return nil }
+            
+            if AdBlocker.shared.shouldBlock(host: host) {
+                return nil
+            } else {
+                let webVc = IPAWebViewController(url, appIcon, delegate: delegate)
+                self.navigationController?.pushViewController(webVc, animated: true)
+            }
+        }
         return nil
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
-        if let contentType = (navigationResponse.response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String {
-            if let url = navigationResponse.response.url, let filename = navigationResponse.response.suggestedFilename,
-                (contentType == "application/octet-stream" || contentType == "application/binary"), filename.hasSuffix(".ipa") {
+        guard let url = navigationResponse.response.url, let filename = navigationResponse.response.suggestedFilename else { return }
+        
+        if filename.hasSuffix(".ipa") {
+            
+            decisionHandler(.cancel)
+            webView.stopLoading()
+            
+            ObserveDownloadingApps.shared.addDownload(url: url.absoluteString, filename: filename, icon: appIcon)
+            dismissAnimated()
+            delegate?.didDismiss()
 
-                decisionHandler(.cancel)
-                webView.stopLoading()
-                
-                ObserveDownloadingApps.shared.addDownload(url: url.absoluteString, filename: filename, icon: appIcon)
-                dismissAnimated()
-                delegate?.didDismiss()
-                return
-            }
+            return
         }
         
         decisionHandler(.allow)
