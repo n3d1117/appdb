@@ -13,7 +13,7 @@ import AlamofireImage
 
 struct DownloadingApp: Equatable, Hashable {
     var filename: String = ""
-    var icon: String?
+    var icon: String = ""
     var util: LocalIPADownloadUtil?
 
     static func ==(lhs: DownloadingApp, rhs: DownloadingApp) -> Bool {
@@ -40,7 +40,7 @@ class DownloadingCell: UICollectionViewCell {
     
     func configureForDownload(with app: DownloadingApp) {
         filename.text = app.filename
-        if let iconUrl = app.icon, let url = URL(string: iconUrl) {
+        if !app.icon.isEmpty, let url = URL(string: app.icon) {
             icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize),
                              imageTransition: .crossDissolve(0.2))
         } else {

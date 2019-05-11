@@ -47,6 +47,11 @@ struct DeviceInfo {
         return pref.linkCode
     }
     
+    static var linkToken: String {
+        guard let pref = realm.objects(Preferences.self).first else { return "" }
+        return pref.token
+    }
+    
     static var appsync: Bool {
         guard let pref = realm.objects(Preferences.self).first else { return false }
         return pref.appsync

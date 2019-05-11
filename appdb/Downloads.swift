@@ -158,6 +158,7 @@ extension Downloads {
         self.addSubview(subView: new.view)
         new.view.alpha = 0
         new.view.layoutIfNeeded()
+        self.navigationItem.rightBarButtonItem = new is Downloading ? UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped)) : nil
         UIView.animate(withDuration: 0.2, animations: {
             new.view.alpha = 1
             old.view.alpha = 0
@@ -177,6 +178,74 @@ extension Downloads {
             s.bottom == v.bottom
             s.right == v.right
             s.left == v.left
+        }
+    }
+}
+
+// MARK: - URL text input on add button tapped
+
+extension Downloads {
+    
+    @objc fileprivate func addTapped() {
+        // todo localize
+        let alert = UIAlertController(title: "Enter URL", message: "Enter below the URL of the .ipa file you want to download", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { textField in
+            textField.addTarget(self, action: #selector(self.urlTextChanged), for: .editingChanged)
+            textField.placeholder = "https://example.com/file.ipa"
+            textField.theme_keyboardAppearance = [.light, .dark]
+            textField.clearButtonMode = .whileEditing
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        
+        let load = UIAlertAction(title: "Load".localized(), style: .default, handler: { _ in
+            guard var text = alert.textFields?[0].text else { return }
+            if !text.hasPrefix("http://"), !text.hasPrefix("https://") {
+                text = "http://" + text
+            }
+            guard let url = URL(string: text) else { return }
+            let webVc = IPAWebViewController(url, delegate: self)
+            let nav = IPAWebViewNavController(rootViewController: webVc)
+            self.present(nav, animated: true)
+        })
+        
+        alert.addAction(load)
+        load.isEnabled = false
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    
+    @objc func urlTextChanged(sender: UITextField) {
+        var responder: UIResponder = sender
+        while !(responder is UIAlertController) { responder = responder.next! }
+        if let alert = responder as? UIAlertController {
+            if let text = sender.text, isValidUrl(urlString: text) {
+                (alert.actions[1] as UIAlertAction).isEnabled = true
+            } else {
+                (alert.actions[1] as UIAlertAction).isEnabled = false
+            }
+        }
+    }
+    
+    func isValidUrl(urlString: String) -> Bool {
+        let types: NSTextCheckingResult.CheckingType = [.link]
+        let detector = try? NSDataDetector(types: types.rawValue)
+        guard (detector != nil && urlString.count > 0) else { return false }
+        return detector!.numberOfMatches(in: urlString, options: NSRegularExpression.MatchingOptions(rawValue: 0),
+                                         range: NSMakeRange(0, urlString.count)) > 0
+    }
+}
+
+//
+//   MARK: - IPAWebViewControllerDelegate
+//   Show success message once download started
+//
+extension Downloads: IPAWebViewControllerDelegate {
+    func didDismiss() {
+        delay(1) {
+            Messages.shared.showSuccess(message: "File download started successfully") // todo localize
         }
     }
 }

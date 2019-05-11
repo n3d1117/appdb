@@ -23,13 +23,12 @@ class ObserveDownloadingApps {
     var onAdded: ((_ app: DownloadingApp) -> ())?
     var onRemoved: ((_ app: DownloadingApp) -> ())?
 
-    func addDownload(url: String, icon: String?) {
+    func addDownload(url: String, filename: String, icon: String) {
 
         var app: DownloadingApp?
         
         API.downloadIPA(url: url, request: { r in
             
-            let filename = Global.randomString(length: 15) // todo
             let util = LocalIPADownloadUtil(r)
             app = DownloadingApp(filename: filename, icon: icon, util: util)
             self.apps.insert(app!, at: 0)

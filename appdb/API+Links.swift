@@ -13,7 +13,7 @@ extension API {
     
     static func getLinks(type: ItemType, trackid: String, success:@escaping (_ items: [Version]) -> Void, fail:@escaping (_ error: String) -> Void) {
         
-        Alamofire.request(endpoint, parameters: ["action": Actions.getLinks.rawValue, "type": type.rawValue, "trackids": trackid], headers: headers)
+        Alamofire.request(endpoint, parameters: ["action": Actions.getLinks.rawValue, "type": type.rawValue, "trackids": trackid], headers: headersWithCookie)
             .responseJSON { response in
 
                 switch response.result {

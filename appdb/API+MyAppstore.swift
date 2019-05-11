@@ -125,8 +125,6 @@ extension API {
                 let newName = String(filename.dropLast(4)) + "_\(i).\(url.pathExtension)"
                 fileURL = IPAFileManager.shared.documentsDirectoryURL().appendingPathComponent(newName)
             }
-            debugLog("filename chosen here")
-            // todo save filename
             return (fileURL, [])
         }
         

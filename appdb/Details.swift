@@ -208,8 +208,13 @@ class Details: LoadingTableView {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexForSegment == .download, indexPath.section > 1, contentType != .books {
-            // todo webview
-            ObserveDownloadingApps.shared.addDownload(url: "https://github.com/PopcornTimeTV/PopcornTimeTV/releases/download/3.2.33/PopcornTimeiOS.ipa", icon: content.itemIconUrl)
+            if let url = URL(string: versions[indexPath.section-2].links[indexPath.row].link) {
+                let webVc = IPAWebViewController(url, content.itemIconUrl, delegate: self)
+                let nav = IPAWebViewNavController(rootViewController: webVc)
+                present(nav, animated: true)
+            } else {
+                Messages.shared.showError(message: "Error: malformed url") // todo localize
+            }
         }
         
         guard let cell = details[indexPath.row] as? DetailsExternalLink else { return }
@@ -411,5 +416,17 @@ extension Details: DetailsSellerRedirectionDelegate {
     func sellerSelected(title: String, type: ItemType, devId: String) {
         let vc = SeeAll(title: title, type: type, devId: devId)
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+//
+//   MARK: - IPAWebViewControllerDelegate
+//   Show success message once download started
+//
+extension Details: IPAWebViewControllerDelegate {
+    func didDismiss() {
+        delay(1) {
+            Messages.shared.showSuccess(message: "File download started successfully", context: Global.isIpad ? .viewController(self) : nil) // todo localize
+        }
     }
 }

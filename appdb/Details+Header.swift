@@ -98,10 +98,8 @@ class DetailsHeader: DetailsCell {
                     seller.addTarget(self, action: #selector(self.sellerTapped), for: .touchUpInside)
                 }
                 
-                if cydiaApp.isTweaked {
-                    tweaked  = buildPaddingLabel()
-                    tweaked!.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia).uppercased()
-                }
+                tweaked  = buildPaddingLabel()
+                tweaked!.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia).uppercased()
                 
                 icon.layer.cornerRadius = Global.cornerRadius(from: (130~~100))
                 if let url = URL(string: cydiaApp.image) {

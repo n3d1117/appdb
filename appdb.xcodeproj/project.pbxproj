@@ -128,6 +128,8 @@
 		818979412284853A00EC87B2 /* DownloadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818979402284853A00EC87B2 /* DownloadingCell.swift */; };
 		81897943228485AA00EC87B2 /* LocalIPADownloadUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81897942228485AA00EC87B2 /* LocalIPADownloadUtil.swift */; };
 		8189794722848D8100EC87B2 /* ObserveDownloadingApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8189794622848D8100EC87B2 /* ObserveDownloadingApps.swift */; };
+		8189794922859EED00EC87B2 /* IPAWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8189794822859EED00EC87B2 /* IPAWebViewController.swift */; };
+		8189794B228714B500EC87B2 /* AdBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8189794A228714B500EC87B2 /* AdBlocker.swift */; };
 		818A559F20583D4600162E51 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A559E20583D4600162E51 /* Settings.swift */; };
 		818A55A120583D4F00162E51 /* Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A020583D4F00162E51 /* Updates.swift */; };
 		818A55A920584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A720584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift */; };
@@ -336,6 +338,8 @@
 		818979402284853A00EC87B2 /* DownloadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingCell.swift; sourceTree = "<group>"; };
 		81897942228485AA00EC87B2 /* LocalIPADownloadUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalIPADownloadUtil.swift; sourceTree = "<group>"; };
 		8189794622848D8100EC87B2 /* ObserveDownloadingApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveDownloadingApps.swift; sourceTree = "<group>"; };
+		8189794822859EED00EC87B2 /* IPAWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAWebViewController.swift; sourceTree = "<group>"; };
+		8189794A228714B500EC87B2 /* AdBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBlocker.swift; sourceTree = "<group>"; };
 		818A559E20583D4600162E51 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		818A55A020583D4F00162E51 /* Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updates.swift; sourceTree = "<group>"; };
 		818A55A42058439B00162E51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -1240,6 +1244,8 @@
 			children = (
 				8148D85B226DE68E006AD9E0 /* Downloading.swift */,
 				8189794622848D8100EC87B2 /* ObserveDownloadingApps.swift */,
+				8189794822859EED00EC87B2 /* IPAWebViewController.swift */,
+				8189794A228714B500EC87B2 /* AdBlocker.swift */,
 				8189793F2284851C00EC87B2 /* Cells */,
 			);
 			name = Downloading;
@@ -1395,6 +1401,7 @@
 				81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */,
 				818A55A120583D4F00162E51 /* Updates.swift in Sources */,
 				8126201D215444A400B06F88 /* NSAttributedString+Utils.swift in Sources */,
+				8189794922859EED00EC87B2 /* IPAWebViewController.swift in Sources */,
 				817A53D81E5F24540081ED26 /* Details+Description.swift in Sources */,
 				8132406B205BE50000945CE9 /* News+Detail.swift in Sources */,
 				81FCAFCE226E1028004FAFD6 /* QueuedDownloadsCell.swift in Sources */,
@@ -1414,6 +1421,7 @@
 				81876E33227B723D00E27CB8 /* MessagesFactory.swift in Sources */,
 				81EC00771DAD89D7009EEFFA /* Banner.swift in Sources */,
 				814F4FBB2196FA35005A8111 /* UpdateableApp.swift in Sources */,
+				8189794B228714B500EC87B2 /* AdBlocker.swift in Sources */,
 				810C71FE20ACDAA900D6310E /* DeviceStatus.swift in Sources */,
 				814B770F205B2DCA004D46DD /* IndicatorView.swift in Sources */,
 				81603A6B216E63A400F18E34 /* TrendingCollectionViewCell.swift in Sources */,
