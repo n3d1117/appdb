@@ -22,6 +22,8 @@ class IPAWebViewNavController: UINavigationController {
     }
 }
 
+// A Web View controller that blocks ads and is able to react to download requests for .ipa files
+
 class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
     fileprivate var webView: WKWebView!
@@ -72,6 +74,8 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         startLoading(request: URLRequest(url: url))
     }
     
+    // Loads adblocker with WKContentRuleListStore if iOS >= 11
+    // Otherwise just load request, ads will be blocked in decidePolicyFor navigationAction
     fileprivate func startLoading(request: URLRequest) {
         if #available(iOS 11, *) {
             WKContentRuleListStore.default().compileContentRuleList(forIdentifier: "rules",
@@ -150,6 +154,7 @@ extension IPAWebViewController {
             
             guard let url = navigationAction.request.url, let host = url.host, let delegate = delegate else { return nil }
             
+            // Do not push a new controller for known ads
             if AdBlocker.shared.shouldBlock(host: host) {
                 return nil
             } else {
@@ -162,6 +167,7 @@ extension IPAWebViewController {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
+        // Start download
         func download(url: String, filename: String) {
             decisionHandler(.cancel)
             webView.stopLoading()
@@ -173,6 +179,7 @@ extension IPAWebViewController {
         if let url = navigationResponse.response.url, let filename = navigationResponse.response.suggestedFilename {
             if let contentType = (navigationResponse.response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String {
                 if allowedContentTypes.contains(contentType), filename.hasSuffix(".ipa") {
+                    // Start download if Content-Type header field is correct and filename ends with .ipa
                     download(url: url.absoluteString, filename: filename)
                     return
                 }

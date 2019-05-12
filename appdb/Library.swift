@@ -69,6 +69,7 @@ class Library: LoadingCollectionView {
         timer = nil
     }
     
+    // On first load just reload data, otherwise perform diff
     @objc internal func loadContent() {
         if useDiff {
             let newLocalIpas = IPAFileManager.shared.listLocalIpas()

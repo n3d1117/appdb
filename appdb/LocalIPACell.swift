@@ -23,12 +23,14 @@ class LocalIPACell: UICollectionViewCell {
         size.text = text
     }
     
+    // Called when there's not upload request
     func configure(with ipa: LocalIPAFile) {
         filename.text = ipa.filename
         size.text = ipa.size
         progressView.isHidden = true
     }
     
+    // Called when an upload request is in progress
     func configureForUpload(with ipa: LocalIPAFile, util: LocalIPAUploadUtil) {
         filename.text = ipa.filename
         progressView.isHidden = false

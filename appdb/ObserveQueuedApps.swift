@@ -11,6 +11,10 @@ import Alamofire
 import RealmSwift
 import SwiftyJSON
 
+// Singleton to observe currently queued apps
+// TL;DR Polls Device Status APIs every second, updates badges
+// Also provides a callback (onUpdate) with updated data that a View Controller can subscribe to
+
 class ObserveQueuedApps {
     
     static var shared = ObserveQueuedApps()

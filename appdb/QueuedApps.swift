@@ -33,6 +33,7 @@ class QueuedApps: LoadingCollectionView {
         
         setErrorMessageIfEmpty()
         
+        // Update collection view every time new data comes
         ObserveQueuedApps.shared.onUpdate = { [unowned self] apps in
             self.updateCollection(with: apps)
         }

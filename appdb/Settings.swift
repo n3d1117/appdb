@@ -154,6 +154,7 @@ class Settings: TableViewController {
     // Push language chooser controller
     func pushLanguageChooser() {
         let languageViewController = LanguageChooser()
+        languageViewController.changedLanguageDelegate = self
         if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: languageViewController)
             nav.modalPresentationStyle = .formSheet
@@ -236,7 +237,6 @@ extension Settings: UIViewControllerPreviewingDelegate {
             case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
             case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
             case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
-            case "Choose Language".localized(): return UINavigationController(rootViewController: LanguageChooser())
             case "News".localized():
                 let news = News()
                 news.isPeeking = true
@@ -244,6 +244,10 @@ extension Settings: UIViewControllerPreviewingDelegate {
             case "Choose Theme".localized():
                 let vc = ThemeChooser()
                 vc.changedThemeDelegate = self
+                return UINavigationController(rootViewController: vc)
+            case "Choose Language".localized():
+                let vc = LanguageChooser()
+                vc.changedLanguageDelegate = self
                 return UINavigationController(rootViewController: vc)
             default: return nil
         }
@@ -261,6 +265,14 @@ extension Settings: UIViewControllerPreviewingDelegate {
 
 extension Settings: ChangedTheme {
     func changedTheme() {
+        refreshSources()
+    }
+}
+
+// MARK: - Changed Language protocol implementation
+
+extension Settings: ChangedLanguage {
+    func changedLanguage() {
         refreshSources()
     }
 }

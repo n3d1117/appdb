@@ -8,6 +8,16 @@
 
 import Alamofire
 
+/*
+ *   TL;DR A class that wraps a Alamofire.UploadRequest, used to subscribe to progress notifications
+ *
+ *   It provides:
+ *      - onPause() callback, called when upload request has been paused via pause() func
+ *      - onProgress(Float, String) callback, called on upload progress, passes fraction completed (for UIProgressView)
+ *          and a localized string
+ *      - onCompletion() callback, called when progress finishes (with or without error)
+ */
+
 class LocalIPAUploadUtil {
     
     fileprivate var request: Alamofire.UploadRequest?

@@ -8,6 +8,17 @@
 
 import UIKit
 
+/*
+*   TL;DR A Singleton that wraps a UIBackgroundTask, used to continue download/upload operations even after app is closed
+*   Usage:
+*           let b: BackgroundTaskUtil?  = BackgroundTaskUtil()
+*           b?.start()
+*   later..
+*           b = nil
+*
+*   Also provides an optional callback (afterStopClosure) after background task has stopped
+*/
+
 class BackgroundTaskUtil {
     
     fileprivate var backgroundTask: UIBackgroundTaskIdentifier = .invalid

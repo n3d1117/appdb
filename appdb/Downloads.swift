@@ -158,7 +158,10 @@ extension Downloads {
         self.addSubview(subView: new.view)
         new.view.alpha = 0
         new.view.layoutIfNeeded()
+        
+        // Set add right bar button item if selected tab is Downloading
         self.navigationItem.rightBarButtonItem = new is Downloading ? UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped)) : nil
+        
         UIView.animate(withDuration: 0.2, animations: {
             new.view.alpha = 1
             old.view.alpha = 0
@@ -221,6 +224,7 @@ extension Downloads {
         var responder: UIResponder = sender
         while !(responder is UIAlertController) { responder = responder.next! }
         if let alert = responder as? UIAlertController {
+            // Enable 'Load' button if text input is a valid url
             if let text = sender.text, isValidUrl(urlString: text) {
                 (alert.actions[1] as UIAlertAction).isEnabled = true
             } else {

@@ -38,6 +38,8 @@ struct IPAFileManager {
         return documentsDirectoryURL().appendingPathComponent(ipa.filename)
     }
     
+    // MARK: - Rename file
+    
     func rename(file: LocalIPAFile, to: String) {
         guard FileManager.default.fileExists(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else {
             Messages.shared.showError(message: "File not found at given path".prettified)
@@ -52,6 +54,8 @@ struct IPAFileManager {
         }
     }
     
+    // MARK: - Delete file
+    
     func delete(file: LocalIPAFile) {
         guard FileManager.default.isDeletableFile(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else {
             Messages.shared.showError(message: "File not found at given path".localized())
@@ -63,6 +67,8 @@ struct IPAFileManager {
             Messages.shared.showError(message: error.localizedDescription)
         }
     }
+    
+    // MARK: - Retrieve file size
     
     func getSize(from filename: String) -> String {
         let url = documentsDirectoryURL().appendingPathComponent(filename)
@@ -83,6 +89,8 @@ struct IPAFileManager {
         }
     }
 
+    // MARK: - Get a base 64 encoded string from Info.plist file
+    
     func base64ToJSONInfoPlist(from file: LocalIPAFile) -> String? {
         
         func exit(_ errorMessage: String) -> String? {
@@ -114,6 +122,8 @@ struct IPAFileManager {
         }
     }
     
+    // MARK: - Move files
+    
     func moveToDocuments(url: URL) {
         guard FileManager.default.fileExists(atPath: url.path) else { return }
         var endURL = documentsDirectoryURL().appendingPathComponent(url.lastPathComponent)
@@ -140,6 +150,8 @@ struct IPAFileManager {
         }
     }
     
+    // MARK: - List all local ipas in documents folder
+    
     func listLocalIpas() -> [LocalIPAFile] {
         var result = [LocalIPAFile]()
 
@@ -162,6 +174,8 @@ protocol LocalIPAServer {
     mutating func startServer()
     mutating func stopServer()
 }
+
+// MARK: - LocalIPAServer: starts a local server on port 8080 and serves ipas in documents directory until stopped
 
 extension IPAFileManager: LocalIPAServer {
     

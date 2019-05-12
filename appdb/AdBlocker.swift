@@ -17,6 +17,7 @@ struct AdBlocker {
     }
 }
 
+// iOS >= 11 only: load ads list and a few additions to block annoying ads/popups
 let blockRules = """
     [
         {

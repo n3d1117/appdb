@@ -11,6 +11,11 @@ import Alamofire
 import RealmSwift
 import SwiftyJSON
 
+// Singleton to manage downloading apps
+// TL;DR Starts download with passed data on addDownload(), updates badges
+// Provides an open local array of downloading apps 
+// Also provides two callback (onAdded and onRemoved) that a View Controller can subscribe to
+
 class ObserveDownloadingApps {
     
     static var shared = ObserveDownloadingApps()

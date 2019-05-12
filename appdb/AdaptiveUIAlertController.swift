@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// An adaptive UIAlertController that can adapt to light and dark themes
 // Source: https://stackoverflow.com/a/41780021
 
 extension UIAlertController {

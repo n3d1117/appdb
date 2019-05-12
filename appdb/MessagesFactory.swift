@@ -12,6 +12,10 @@ struct Messages {
     
     static var shared = Messages()
     private init() { }
+    
+    func hideAll() {
+        SwiftMessages.hideAll()
+    }
 
     func getConfig(_ context: SwiftMessages.PresentationContext? = nil) -> SwiftMessages.Config {
         var config = SwiftMessages.Config()
