@@ -245,7 +245,7 @@ extension Downloads {
 //
 extension Downloads: IPAWebViewControllerDelegate {
     func didDismiss() {
-        delay(1) {
+        delay(0.8) {
             Messages.shared.showSuccess(message: "File download started successfully") // todo localize
         }
     }

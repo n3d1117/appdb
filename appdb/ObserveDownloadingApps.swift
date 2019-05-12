@@ -16,6 +16,8 @@ class ObserveDownloadingApps {
     static var shared = ObserveDownloadingApps()
     private init() { }
     
+    fileprivate var downloadBackgroundTask: BackgroundTaskUtil?
+    
     var apps = [DownloadingApp]()
     
     fileprivate var numberOfDownloadingApps: Int = 0
@@ -26,6 +28,9 @@ class ObserveDownloadingApps {
     func addDownload(url: String, filename: String, icon: String) {
 
         var app: DownloadingApp?
+        
+        downloadBackgroundTask = BackgroundTaskUtil()
+        downloadBackgroundTask?.start()
         
         API.downloadIPA(url: url, request: { r in
             
@@ -43,11 +48,14 @@ class ObserveDownloadingApps {
             NotificationCenter.default.post(name: .UpdateQueuedSegmentTitle, object: self, userInfo: numberOfDownloadingAppsDict)
 
         }) { error in
+            self.downloadBackgroundTask = nil
+            
             if let error = error {
                 Messages.shared.showError(message: error.prettified)
             } else {
                 Messages.shared.showSuccess(message: "File downloaded successfully, added to Library") // todo localize
             }
+            
             if let app = app, let index = self.apps.firstIndex(of: app) {
                 self.apps.remove(at: index)
                 self.onRemoved?(app)

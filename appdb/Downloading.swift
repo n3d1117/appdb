@@ -10,8 +10,7 @@ import UIKit
 
 class Downloading: LoadingCollectionView {
     
-    internal var downloadBackgroundTask: BackgroundTaskUtil?
-    internal var downloadingApps = [DownloadingApp]()
+    fileprivate var downloadingApps = [DownloadingApp]()
     
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout())

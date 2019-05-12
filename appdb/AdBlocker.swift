@@ -40,6 +40,23 @@ let blockRules = """
         {
             "trigger": {
                 "url-filter": ".*",
+                "if-domain": ["tusfiles.com"]
+            }, "action": {
+                "type": "css-display-none",
+                "selector": "#glx-10349-container, iframe"
+            }
+        },
+        {
+            "trigger": {
+                "url-filter": "https://dailyuploads.net/images_mega/logo.png",
+                "if-domain": ["dailyuploads.net"]
+            }, "action": {
+                "type": "block"
+            }
+        },
+        {
+            "trigger": {
+                "url-filter": ".*",
                 "if-domain": \(ads.description)
             }, "action": {
                 "type": "block"
@@ -50,6 +67,8 @@ let blockRules = """
 
 let ads: Set = [
     "djtflbt20bdde.cloudfront.net",
+    "mybestmv.com",
+    "syndication.exosrv.com",
     "bristlyapace.com",
     "dolohen.com",
     "getalinkandshare.com",

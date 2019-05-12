@@ -32,6 +32,8 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     var appIcon: String = ""
     var url: URL!
     
+    let allowedContentTypes: [String] = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary"]
+    
     init(_ url: URL, _ appIcon: String = "", delegate: IPAWebViewControllerDelegate) {
         self.url = url
         self.appIcon = appIcon
@@ -152,7 +154,7 @@ extension IPAWebViewController {
                 return nil
             } else {
                 let webVc = IPAWebViewController(url, appIcon, delegate: delegate)
-                self.navigationController?.pushViewController(webVc, animated: true)
+                navigationController?.pushViewController(webVc, animated: true)
             }
         }
         return nil
@@ -160,18 +162,25 @@ extension IPAWebViewController {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
-        guard let url = navigationResponse.response.url, let filename = navigationResponse.response.suggestedFilename else { return }
-        
-        if filename.hasSuffix(".ipa") {
-            
+        func download(url: String, filename: String) {
             decisionHandler(.cancel)
             webView.stopLoading()
-            
-            ObserveDownloadingApps.shared.addDownload(url: url.absoluteString, filename: filename, icon: appIcon)
+            ObserveDownloadingApps.shared.addDownload(url: url, filename: filename, icon: appIcon)
             dismissAnimated()
             delegate?.didDismiss()
-
-            return
+        }
+        
+        if let url = navigationResponse.response.url, let filename = navigationResponse.response.suggestedFilename {
+            if let contentType = (navigationResponse.response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String {
+                if allowedContentTypes.contains(contentType), filename.hasSuffix(".ipa") {
+                    download(url: url.absoluteString, filename: filename)
+                    return
+                }
+            } else if filename.hasSuffix(".ipa") {
+                // Fallback for some servers not providing Content-Type header field
+                download(url: url.absoluteString, filename: filename)
+                return
+            }
         }
         
         decisionHandler(.allow)

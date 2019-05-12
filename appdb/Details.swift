@@ -215,6 +215,7 @@ class Details: LoadingTableView {
             } else {
                 Messages.shared.showError(message: "Error: malformed url") // todo localize
             }
+            return
         }
         
         guard let cell = details[indexPath.row] as? DetailsExternalLink else { return }
@@ -425,7 +426,7 @@ extension Details: DetailsSellerRedirectionDelegate {
 //
 extension Details: IPAWebViewControllerDelegate {
     func didDismiss() {
-        delay(1) {
+        delay(0.8) {
             Messages.shared.showSuccess(message: "File download started successfully", context: Global.isIpad ? .viewController(self) : nil) // todo localize
         }
     }
