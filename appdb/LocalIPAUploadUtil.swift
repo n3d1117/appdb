@@ -17,7 +17,7 @@ class LocalIPAUploadUtil {
     }
     
     var lastCachedFraction: Float = 0.0
-    var lastCachedProgress: String = "Waiting..." // todo localize
+    var lastCachedProgress: String = "Waiting...".localized()
     
     fileprivate var paused: Bool = false
     
@@ -32,7 +32,7 @@ class LocalIPAUploadUtil {
             let readString = Global.humanReadableSize(bytes: p.completedUnitCount)
             let totalString = Global.humanReadableSize(bytes: p.totalUnitCount)
             let percentage = Int(p.fractionCompleted * 100)
-            self.lastCachedProgress = "Uploading \(readString) of \(totalString) (\(percentage)%)" // todo localize
+            self.lastCachedProgress = "Uploading %@ of %@ (%@%)".localizedFormat(readString, totalString, percentage)
             self.lastCachedFraction = Float(p.fractionCompleted)
             self.onProgress?(self.lastCachedFraction, self.lastCachedProgress)
         }

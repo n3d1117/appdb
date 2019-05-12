@@ -151,6 +151,18 @@ class Settings: TableViewController {
         }
     }
     
+    // Push language chooser controller
+    func pushLanguageChooser() {
+        let languageViewController = LanguageChooser()
+        if Global.isIpad {
+            let nav = DismissableModalNavController(rootViewController: languageViewController)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.pushViewController(languageViewController, animated: true)
+        }
+    }
+    
     // Device Link Bulletin intro
     // Also subscribes to notification requests to open Safari
     func pushDeviceLink() {
@@ -224,6 +236,7 @@ extension Settings: UIViewControllerPreviewingDelegate {
             case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
             case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
             case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
+            case "Choose Language".localized(): return UINavigationController(rootViewController: LanguageChooser())
             case "News".localized():
                 let news = News()
                 news.isPeeking = true

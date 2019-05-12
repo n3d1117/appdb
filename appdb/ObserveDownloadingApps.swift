@@ -53,7 +53,7 @@ class ObserveDownloadingApps {
             if let error = error {
                 Messages.shared.showError(message: error.prettified)
             } else {
-                Messages.shared.showSuccess(message: "File downloaded successfully, added to Library") // todo localize
+                Messages.shared.showSuccess(message: "File downloaded successfully, added to Library".localized())
             }
             
             if let app = app, let index = self.apps.firstIndex(of: app) {

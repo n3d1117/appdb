@@ -101,7 +101,7 @@ class ObserveQueuedApps {
                                 self.removeApp(linkId: item.linkId)
                             } else {
                                 var newStatus: String = item.statusShort + "\n" + item.statusText
-                                if newStatus == "\n" { newStatus = "Waiting..." } // todo localize
+                                if newStatus == "\n" { newStatus = "Waiting...".localized() }
                                 self.updateStatus(linkId: item.linkId, status: newStatus)
                             }
                         }

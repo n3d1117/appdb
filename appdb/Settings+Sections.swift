@@ -8,6 +8,7 @@
 
 import Static
 import UIKit
+import Localize_Swift
 
 extension Settings {
     
@@ -26,8 +27,12 @@ extension Settings {
             Section(header: .title("User Interface".localized()), rows: [
                 Row(text: "Choose Theme".localized(),
                     detailText: Themes.isNight ? "Dark".localized() : "Light".localized(), selection: { [unowned self] in
-                    self.pushThemeChooser()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+                        self.pushThemeChooser()
+                    }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                Row(text: "Choose Language".localized(),
+                    detailText: Localize.displayNameForLanguage(Localize.currentLanguage()), selection: { [unowned self] in
+                        self.pushLanguageChooser()
+                    }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ])
         ]
     }

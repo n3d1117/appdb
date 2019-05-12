@@ -27,7 +27,7 @@ class NewsDetail: LoadingTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Todo register cells
+        // Register cells
         tableView.register(NewsDetailTitleDateCell.self, forCellReuseIdentifier: "titledatecell")
         tableView.register(NewsDetailHTMLCell.self, forCellReuseIdentifier: "htmlcell")
 

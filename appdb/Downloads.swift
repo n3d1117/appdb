@@ -37,7 +37,7 @@ class Downloads: UIViewController {
         headerView = ILTranslucentView(frame: .zero)
         headerView.translucentAlpha = 1
         
-        control = UISegmentedControl(items: ["Queued", "Library", "Downloading"]) // todo localize
+        control = UISegmentedControl(items: ["Queued".localized(), "Library".localized(), "Downloading".localized()])
         control.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)
         control.selectedSegmentIndex = 0
         
@@ -69,15 +69,15 @@ class Downloads: UIViewController {
         if let number = notification.userInfo?["number"] as? Int, let tab = notification.userInfo?["tab"] as? Int {
             if tab == 0 {
                 if number != 0 {
-                    control.setTitle("Queued (\(number))", forSegmentAt: tab) // todo localize
+                    control.setTitle("Queued".localized() + " (\(number))", forSegmentAt: tab)
                 } else {
-                    control.setTitle("Queued", forSegmentAt: tab) // todo localize
+                    control.setTitle("Queued".localized(), forSegmentAt: tab)
                 }
             } else if tab == 2 {
                 if number != 0 {
-                    control.setTitle("Downloading (\(number))", forSegmentAt: tab) // todo localize
+                    control.setTitle("Downloading".localized() + " (\(number))", forSegmentAt: tab)
                 } else {
-                    control.setTitle("Downloading", forSegmentAt: tab) // todo localize
+                    control.setTitle("Downloading".localized(), forSegmentAt: tab)
                 }
             }
         }
@@ -187,11 +187,10 @@ extension Downloads {
 extension Downloads {
     
     @objc fileprivate func addTapped() {
-        // todo localize
-        let alert = UIAlertController(title: "Enter URL", message: "Enter below the URL of the .ipa file you want to download", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Enter URL".localized(), message: "Enter below the URL of the .ipa file you want to download".localized(), preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
             textField.addTarget(self, action: #selector(self.urlTextChanged), for: .editingChanged)
-            textField.placeholder = "https://example.com/file.ipa" // todo localize
+            textField.placeholder = "https://example.com/file.ipa".localized()
             textField.keyboardType = .URL
             textField.theme_keyboardAppearance = [.light, .dark]
             textField.clearButtonMode = .whileEditing
@@ -246,7 +245,7 @@ extension Downloads {
 extension Downloads: IPAWebViewControllerDelegate {
     func didDismiss() {
         delay(0.8) {
-            Messages.shared.showSuccess(message: "File download started successfully") // todo localize
+            Messages.shared.showSuccess(message: "File download has started".localized())
         }
     }
 }

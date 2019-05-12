@@ -168,17 +168,17 @@ class Library: LoadingCollectionView {
     fileprivate func presentOptionsForMyappstoreApp(_ app: MyAppstoreApp, _ indexPath: IndexPath) {
         let title = app.name
         let message = "\(app.bundleId)\(Global.bulletPoint)\(app.size)\(Global.bulletPoint)\(app.version)" +
-                      "\nUploaded on \(app.uploadedAt.unixToDetailedString)" // todo localize
+                      "\n" + "Uploaded on %@".localizedFormat(app.uploadedAt.unixToDetailedString)
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         
-        alertController.addAction(UIAlertAction(title: "Install".localized(), style: .default) { _ in // todo localize
+        alertController.addAction(UIAlertAction(title: "Install".localized(), style: .default) { _ in
             if let cell = self.collectionView.cellForItem(at: indexPath) as? MyAppstoreCell {
                 if let button = cell.installButton {
                     self.installMyAppstoreApp(sender: button)
                 }
             }
         })
-        alertController.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in // todo localize
+        alertController.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in
             self.deleteMyAppstoreApp(id: app.id, indexPath: indexPath)
         })
 
@@ -202,37 +202,37 @@ class Library: LoadingCollectionView {
         
         if let upload = uploadRequestsAtIndex[indexPath] {
             if !upload.isPaused {
-                alertController.addAction(UIAlertAction(title: "Pause".localized(), style: .default) { _ in // todo localize
+                alertController.addAction(UIAlertAction(title: "Pause".localized(), style: .default) { _ in
                     upload.pause()
                 })
             } else {
-                alertController.addAction(UIAlertAction(title: "Resume".localized(), style: .default) { _ in // todo localize
+                alertController.addAction(UIAlertAction(title: "Resume".localized(), style: .default) { _ in
                     upload.resume()
                 })
             }
-            alertController.addAction(UIAlertAction(title: "Stop".localized(), style: .destructive) { _ in // todo localize
+            alertController.addAction(UIAlertAction(title: "Stop".localized(), style: .destructive) { _ in
                 upload.stop()
             })
         } else {
             alertController.title = ipa.filename
             
-            alertController.addAction(UIAlertAction(title: "Install without signing".localized(), style: .default) { _ in // todo localize
+            alertController.addAction(UIAlertAction(title: "Install without signing".localized(), style: .default) { _ in
                 self.customInstall(ipa: ipa, indexPath: indexPath)
             })
             
-            alertController.addAction(UIAlertAction(title: "Upload to MyAppstore".localized(), style: .default) { _ in // todo localize
+            alertController.addAction(UIAlertAction(title: "Upload to MyAppstore".localized(), style: .default) { _ in
                 self.addToMyAppstore(ipa: ipa, indexPath: indexPath)
             })
             
-            alertController.addAction(UIAlertAction(title: "Open in...".localized(), style: .default) { _ in // todo localize
+            alertController.addAction(UIAlertAction(title: "Open in...".localized(), style: .default) { _ in
                 self.openIn(ipa: ipa, indexPath: indexPath)
             })
             
-            alertController.addAction(UIAlertAction(title: "Rename".localized(), style: .default) { _ in // todo localize
+            alertController.addAction(UIAlertAction(title: "Rename".localized(), style: .default) { _ in
                 self.handleRename(for: ipa, at: indexPath)
             })
             
-            alertController.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in // todo localize
+            alertController.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in
                 self.deleteLocalIpa(ipa: ipa, indexPath: indexPath)
             })
         }

@@ -17,7 +17,7 @@ class LocalIPADownloadUtil {
     }
     
     var lastCachedFraction: Float = 0.0
-    var lastCachedProgress: String = "Waiting..." // todo localize
+    var lastCachedProgress: String = "Waiting...".localized()
     
     fileprivate var paused: Bool = false
     
@@ -33,9 +33,9 @@ class LocalIPADownloadUtil {
             let totalString = Global.humanReadableSize(bytes: p.totalUnitCount)
             let percentage = Int(p.fractionCompleted * 100)
             if p.totalUnitCount == -1 { // Google Drive
-                self.lastCachedProgress = "Downloading \(readString)" // todo localize
+                self.lastCachedProgress = "Downloading %@".localizedFormat(readString)
             } else {
-                self.lastCachedProgress = "Downloading \(readString) of \(totalString) (\(percentage)%)" // todo localize
+                self.lastCachedProgress = "Downloading %@ of %@ (%@%)".localizedFormat(readString, totalString, percentage)
             }
             self.lastCachedFraction = Float(p.fractionCompleted)
             self.onProgress?(self.lastCachedFraction, self.lastCachedProgress)

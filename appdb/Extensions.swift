@@ -36,7 +36,7 @@ extension String {
     // Prettify errors
     var prettified: String {
         switch self {
-        case "cancelled": return "Operation has been cancelled.".localized() // todo localize
+        case "cancelled": return "Operation has been cancelled.".localized()
         case "MAINTENANCE_MODE": return "Maintenance mode. We will be back soon.".localized()
         case "INVALID_LINK_CODE": return "Invalid link code.".localized()
         case "INVALID_EMAIL": return "Invalid email address.".localized()
@@ -46,7 +46,7 @@ extension String {
         case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
         case "TOO_SHORT_SEARCH_STRING": return "Please search at least two characters".localized()
         case "NOT_READY": return "The request timed out".localized()
-        case "NOT_COMPATIBLE_WITH_DEVICE": return "Your device is not compatible with this app".localized() // todo localize
+        case "NOT_COMPATIBLE_WITH_DEVICE": return "Your device is not compatible with this app".localized()
         default: return self.localized()
         }
     }

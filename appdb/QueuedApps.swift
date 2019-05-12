@@ -72,7 +72,7 @@ class QueuedApps: LoadingCollectionView {
     }
     
     fileprivate func setErrorMessageIfEmpty() {
-        let noQueuesMessage = "No queued downloads".localized() // todo localize
+        let noQueuesMessage = "No queued downloads".localized()
         if case LoadingCollectionView.State.error(noQueuesMessage, _, _) = state {} else {
             state = .error(first: noQueuesMessage, second: "", animated: false)
         }

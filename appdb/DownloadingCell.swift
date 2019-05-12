@@ -64,16 +64,16 @@ class DownloadingCell: UICollectionViewCell {
         }
         
         app.util?.onPause = {
-            if let partial = app.util?.lastCachedProgress.components(separatedBy: "Downloading ").last { // todo localize
-                self.progress.text = "Paused - \(partial)" // todo localize
+            if let partial = app.util?.lastCachedProgress.components(separatedBy: "Downloading".localized() + " ").last {
+                self.progress.text = "Paused".localized() + " - \(partial)"
             } else {
-                self.progress.text = "Paused" // todo localize
+                self.progress.text = "Paused".localized()
             }
         }
 
         app.util?.onCompletion = { error in
             self.filename.text = app.filename
-            self.resultString = error != nil ? error!.prettified : "File downloaded successfully"
+            self.resultString = error != nil ? error!.prettified : "File downloaded successfully".localized()
             self.progress.text = self.resultString
             delay(0.1) {
                 self.progressView.progress = 0

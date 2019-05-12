@@ -32,7 +32,7 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     var appIcon: String = ""
     var url: URL!
     
-    let allowedContentTypes: [String] = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary"]
+    let allowedContentTypes: [String] = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary", "application/x-ios-app"]
     
     init(_ url: URL, _ appIcon: String = "", delegate: IPAWebViewControllerDelegate) {
         self.url = url
@@ -192,9 +192,7 @@ extension IPAWebViewController {
             decisionHandler(.cancel)
             return
         }
-        
-        // todo itunes
-        
+
         if url.absoluteString.hasPrefix("itms-services://") || url.absoluteString.hasPrefix("https://itunes.apple.com") {
             UIApplication.shared.openURL(url)
             decisionHandler(.cancel)

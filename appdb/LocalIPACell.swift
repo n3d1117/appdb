@@ -45,10 +45,10 @@ class LocalIPACell: UICollectionViewCell {
         }
         
         util.onPause = {
-            if let partial = util.lastCachedProgress.components(separatedBy: "Uploading ").last { // todo localize (NB this might not work for every language, hence the fallback)
-                self.size.text = "Paused - \(partial)" // todo localize
+            if let partial = util.lastCachedProgress.components(separatedBy: "Uploading".localized() + " ").last {
+                self.size.text = "Paused".localized() + " - \(partial)"
             } else {
-                self.size.text = "Paused" // todo localize
+                self.size.text = "Paused"
             }
         }
         

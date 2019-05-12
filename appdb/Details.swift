@@ -213,7 +213,7 @@ class Details: LoadingTableView {
                 let nav = IPAWebViewNavController(rootViewController: webVc)
                 present(nav, animated: true)
             } else {
-                Messages.shared.showError(message: "Error: malformed url") // todo localize
+                Messages.shared.showError(message: "Error: malformed url".localized())
             }
             return
         }
@@ -252,7 +252,7 @@ class Details: LoadingTableView {
                 } else {
                     setButtonTitle("Requested")
                     
-                    Messages.shared.showSuccess(message: "Installation has been queued to your device!", context: Global.isIpad ? .viewController(self) : nil) // todo localize
+                    Messages.shared.showSuccess(message: "Installation has been queued to your device".localized(), context: Global.isIpad ? .viewController(self) : nil)
                     
                     if self.contentType != .books {
                         ObserveQueuedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
@@ -266,7 +266,7 @@ class Details: LoadingTableView {
                 }
             }
         } else {
-            setButtonTitle("Checking...") // todo localize
+            setButtonTitle("Checking...")
             delay(0.3) {
                 Messages.shared.showError(message: "Please authorize app from Settings first".localized(), context: Global.isIpad ? .viewController(self) : nil)
                 setButtonTitle("Install")
@@ -308,7 +308,7 @@ class Details: LoadingTableView {
                     if let error = error {
                         Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
                     } else {
-                        Messages.shared.showSuccess(message: "Link reported successfully!".localized(), context: Global.isIpad ? .viewController(self) : nil) // todo localize
+                        Messages.shared.showSuccess(message: "Link reported successfully!".localized(), context: Global.isIpad ? .viewController(self) : nil)
                     }
                 })
             }
@@ -427,7 +427,7 @@ extension Details: DetailsSellerRedirectionDelegate {
 extension Details: IPAWebViewControllerDelegate {
     func didDismiss() {
         delay(0.8) {
-            Messages.shared.showSuccess(message: "File download started successfully", context: Global.isIpad ? .viewController(self) : nil) // todo localize
+            Messages.shared.showSuccess(message: "File download has started".localized(), context: Global.isIpad ? .viewController(self) : nil)
         }
     }
 }

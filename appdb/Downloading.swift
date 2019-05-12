@@ -62,7 +62,7 @@ class Downloading: LoadingCollectionView {
     }
     
     fileprivate func setErrorMessageIfEmpty() {
-        let noQueuesMessage = "No active downloads".localized() // todo localize
+        let noQueuesMessage = "No active downloads".localized()
         if case LoadingCollectionView.State.error(noQueuesMessage, _, _) = state {} else {
             state = .error(first: noQueuesMessage, second: "", animated: false)
         }
@@ -109,19 +109,19 @@ class Downloading: LoadingCollectionView {
 
         if let util = app.util {
             if !util.isPaused {
-                alertController.addAction(UIAlertAction(title: "Pause".localized(), style: .default) { _ in // todo localize
+                alertController.addAction(UIAlertAction(title: "Pause".localized(), style: .default) { _ in
                     util.pause()
                 })
             } else {
-                alertController.addAction(UIAlertAction(title: "Resume".localized(), style: .default) { _ in // todo localize
+                alertController.addAction(UIAlertAction(title: "Resume".localized(), style: .default) { _ in
                     util.resume()
                 })
             }
-            alertController.addAction(UIAlertAction(title: "Stop".localized(), style: .destructive) { _ in // todo localize
+            alertController.addAction(UIAlertAction(title: "Stop".localized(), style: .destructive) { _ in
                 util.stop()
             })
         } else {
-            alertController.addAction(UIAlertAction(title: "Remove from list".localized(), style: .destructive) { _ in // todo localize
+            alertController.addAction(UIAlertAction(title: "Remove from list".localized(), style: .destructive) { _ in
                 self.downloadingApps.remove(at: indexPath.row)
                 self.collectionView.deleteItems(at: [IndexPath(row: indexPath.row, section: 0)])
                 if self.downloadingApps.isEmpty {

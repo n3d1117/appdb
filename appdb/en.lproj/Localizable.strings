@@ -28,6 +28,9 @@
 
 "Cannot connect" = "Cannot connect";
 "Retry" = "Retry";
+"Waiting..." = "Waiting...";
+"Checking..." = "Checking...";
+"Operation has been cancelled." = "Operation has been cancelled.";
 
 //////////////////////
 //    CATEGORIES    //
@@ -97,6 +100,7 @@
 "Related Books" = "Related Books";
 "Reviews are from Apple's iTunes Store ©" = "Reviews are from Apple's iTunes Store ©";
 "Check out '%@' on appdb!" = "Check out '%@' on appdb!";
+"Installation has been queued to your device" = "Installation has been queued to your device";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //
@@ -135,6 +139,52 @@
 "Please search at least two characters" = "Please search at least two characters";
 "Search News" = "Search News";
 
+///////////////////////
+//     DOWNLOADS     //
+///////////////////////
+
+"Queued" = "Queued";
+"Library" = "Library";
+"Downloading" = "Downloading";
+"No queued downloads"  = "No queued downloads";
+"File download has started" = "File download has started";
+"Enter URL" = "Enter URL";
+"Enter below the URL of the .ipa file you want to download" = "Enter below the URL of the .ipa file you want to download";
+"https://example.com/file.ipa" = "https://example.com/file.ipa";
+"Load" = "Load";
+"Uploaded on %@" = "Uploaded on %@"; // e.g. Uploaded on %date%
+"Pause" = "Pause";
+"Paused" = "Paused";
+"Resume" = "Resume";
+"Stop" = "Stop";
+"Install without signing" = "Install without signing";
+"Upload to MyAppstore" = "Upload to MyAppstore";
+"Open in..." = "Open in...";
+"Rename" = "Rename";
+"Rename File" = "Rename File";
+"Delete" = "Delete";
+"Delete all" = "Delete all";
+"No Local IPAs Found" = "No Local IPAs Found";
+"Use iTunes File Sharing or import them from other apps" = "Use iTunes File Sharing or import them from other apps";
+"No MyAppstore apps" = "No MyAppstore apps";
+"This is your personal IPA library! Apps you upload over time will appear here" = "This is your personal IPA library! Apps you upload over time will appear here";
+"Please cancel any pending uploads before deleting local files" = "Please cancel any pending uploads before deleting local files";
+"Delete 1 file?" = "Delete 1 file?";
+"Local Files" = "Local Files";
+"Are you sure you want to delete %@ files?" = "Are you sure you want to delete %@ files?"; // %@ is the number of files to delete
+"Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@" = "Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@";
+"appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppstore'" = "appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppstore'";
+"No active downloads" = "No active downloads";
+"Remove from list" = "Remove from list";
+"File downloaded successfully" = "File downloaded successfully";
+"File downloaded successfully, added to Library" = "File downloaded successfully, added to Library";
+"Uploading %@ of %@ (%@%)" = "Uploading %@ of %@ (%@%)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
+"Uploading" = "Uploading"; // please use same translation used above, before first %@
+"Downloading %@ of %@ (%@%)" = "Downloading %@ of %@ (%@%)"; // see above
+"Downloading %@" = "Downloading %@"; // e.g. "Downloading 3 MB"
+"Downloading" = "Downloading"; // please use same translation used above, before %@
+"File uploaded successfully" = "File uploaded successfully";
+
 //////////////////////
 //     SETTINGS     //
 //////////////////////
@@ -147,6 +197,8 @@
 "Deauthorize" = "Deauthorize";
 "User Interface" = "User Interface";
 "Choose Theme" = "Choose Theme";
+"Choose Language" = "Choose Language";
+"Language set correctly, please restart the app to apply changes" = "Language set correctly, please restart the app to apply changes";
 "Dark" = "Dark";
 "Light" = "Light";
 "Support" = "Support";
@@ -212,6 +264,26 @@
 "Could not parse plist file." = "Could not parse plist file.";
 "Device status is empty" = "Device status is empty";
 "The request timed out" = "The request timed out";
+"Your device is not compatible with this app" = "Your device is not compatible with this app";
+"Error: malformed url" = "Error: malformed url";
+"IPA Not found" = "IPA Not found";
+"IPA is missing Payload folder" = "IPA is missing Payload folder";
+"IPA is missing .app folder" = "IPA is missing .app folder";
+"IPA is missing Info.plist file" = "IPA is missing Info.plist file";
+"Unable to read contents of Info.plist file" = "Unable to read contents of Info.plist file";
+"Unable to encode Info.plist file" = "Unable to encode Info.plist file";
+"File not found at given path" = "File not found at given path";
+"File size not found in resource values" = "File size not found in resource values";
+
+////////////////////////////
+//     LINK REPORTING     //
+////////////////////////////
+
+"Send" = "Send";
+"Report" = "Report";
+"Reporting a broken link for '%@'." = "Reporting a broken link for '%@'.";
+"Enter a reason for your report" = "Enter a reason for your report";
+"Link reported successfully!" = "Link reported successfully!";
 
 ///////////////////
 //     OTHER     //
@@ -227,7 +299,3 @@
 "Open in Safari" = "Open in Safari";
 "%@ ago" = "%@ ago";
 "now" = "now";
-"Send" = "Send";
-"Report" = "Report";
-"Reporting a broken link for '%@'." = "Reporting a broken link for '%@'.";
-"Enter a reason for your report" = "Enter a reason for your report";

@@ -17,14 +17,14 @@ extension Library {
     internal func reloadFooterViews() {
         if let localIpasFooter = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(row: 0, section: Section.local.rawValue)) as? LibrarySectionFooterView {
             if localIpas.isEmpty {
-                localIpasFooter.configure("No Local IPAs Found", secondaryText: "Use iTunes File Sharing or import them from other apps") // todo localize
+                localIpasFooter.configure("No Local IPAs Found".localized(), secondaryText: "Use iTunes File Sharing or import them from other apps".localized())
             } else {
                 localIpasFooter.configure("")
             }
         }
         if let myappstoreFooter = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(row: 0, section: Section.myappstore.rawValue)) as? LibrarySectionFooterView {
             if myAppstoreIpas.isEmpty {
-                myappstoreFooter.configure("No MyAppstore apps", secondaryText: "This is your personal IPA library! Apps you upload over time will appear here") // todo localize
+                myappstoreFooter.configure("No MyAppstore apps".localized(), secondaryText: "This is your personal IPA library! Apps you upload over time will appear here".localized())
             } else {
                 myappstoreFooter.configure("")
             }
@@ -57,7 +57,7 @@ extension Library {
         }
         
         guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }        
-        cell.updateText("Waiting...") // todo localize
+        cell.updateText("Waiting...".localized())
         
         let randomString = Global.randomString(length: 30)
         guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
@@ -84,7 +84,7 @@ extension Library {
                         if let error = error {
                             Messages.shared.showError(message: error.prettified)
                         } else {
-                            Messages.shared.showSuccess(message: "File uploaded successfully") // todo localize
+                            Messages.shared.showSuccess(message: "File uploaded successfully".localized())
                         }
                     })
                 }
@@ -102,7 +102,7 @@ extension Library {
         }
         
         guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
-        cell.updateText("Waiting...") // todo localize
+        cell.updateText("Waiting...".localized())
         
         IPAFileManager.shared.startServer()
         
@@ -128,8 +128,7 @@ extension Library {
     // MARK: - Rename local ipa
     
     internal func handleRename(for file: LocalIPAFile, at indexPath: IndexPath) {
-        // todo localize
-        let alert = UIAlertController(title: "Rename File", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Rename File".localized(), message: nil, preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
             textField.addTarget(self, action: #selector(self.renameTextChanged), for: .editingChanged)
             textField.placeholder = String(file.filename.dropLast(4))
@@ -171,16 +170,16 @@ extension Library {
         }
         
         if DeviceInfo.deviceIsLinked {
-            setButtonTitle("Requesting...") // todo localize
+            setButtonTitle("Requesting...")
             
             API.install(id: sender.linkId, type: .myAppstore) { error in
                 if let error = error {
                     Messages.shared.showError(message: error.prettified)
                     delay(0.3) { setButtonTitle("Install") }
                 } else {
-                    setButtonTitle("Requested") // todo localize
+                    setButtonTitle("Requested")
                     
-                    Messages.shared.showSuccess(message: "Installation has been queued to your device!") // todo localize
+                    Messages.shared.showSuccess(message: "Installation has been queued to your device".localized())
                     
                     ObserveQueuedApps.shared.addApp(type: .myAppstore, linkId: sender.linkId, name: self.myAppstoreIpas[sender.tag].name, image: "", bundleId: self.myAppstoreIpas[sender.tag].bundleId)
                     
@@ -189,7 +188,7 @@ extension Library {
             }
         } else {
             // Install requested but device is not linked
-            setButtonTitle("Checking...") // todo localize
+            setButtonTitle("Checking...")
             delay(0.3) {
                 Messages.shared.showError(message: "Please authorize app from Settings first".localized())
                 setButtonTitle("Install")
@@ -233,7 +232,7 @@ extension Library {
     
     internal func deleteAll() {
         guard uploadRequestsAtIndex.isEmpty else {
-            Messages.shared.showError(message: "Please cancel any pending uploads before deleting local files") // todo localize
+            Messages.shared.showError(message: "Please cancel any pending uploads before deleting local files".localized())
             return
         }
         for ipa in localIpas {
@@ -248,9 +247,9 @@ extension Library {
     
     @objc internal func deleteAllFilesConfirmationAlert(sender: UIButton) {
         let onlyOne: Bool = localIpas.count == 1
-        let title = onlyOne ? "Delete 1 file?" : "Are you sure you want to delete \(localIpas.count) files?".localized() // todo localize
+        let title = onlyOne ? "Delete 1 file?".localized() : "Are you sure you want to delete %@ files?".localizedFormat(localIpas.count)
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
-        alertController.addAction(UIAlertAction(title: onlyOne ? "Delete".localized() : "Delete all".localized(), style: .destructive) { _ in // todo localize
+        alertController.addAction(UIAlertAction(title: onlyOne ? "Delete".localized() : "Delete all".localized(), style: .destructive) { _ in
             self.deleteAll()
         })
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
@@ -334,7 +333,7 @@ extension Library: UICollectionViewDelegateFlowLayout {
         if kind == UICollectionView.elementKindSectionHeader {
             if indexPath.section == Section.local.rawValue {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewOne", for: indexPath) as! LibrarySectionHeaderView
-                header.configure("Local Files", showsTrash: true) // todo localize
+                header.configure("Local Files".localized(), showsTrash: true)
                 header.trashButton.addTarget(self, action: #selector(deleteAllFilesConfirmationAlert), for: .touchUpInside)
                 header.trashButton.isEnabled = !self.localIpas.isEmpty
                 header.helpButton.addTarget(self, action: #selector(showHelpLocal), for: .touchUpInside)
@@ -354,20 +353,18 @@ extension Library: UICollectionViewDelegateFlowLayout {
         }
         return UICollectionReusableView()
     }
-    
-    // todo localize
+
     @objc fileprivate func showHelpLocal() {
-        let message = "Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n\(IPAFileManager.shared.documentsDirectoryURL().path)".localized()
+        let message = "Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@".localizedFormat(IPAFileManager.shared.documentsDirectoryURL().path)
         let alertController = UIAlertController(title: "Local Files".localized(), message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
         alertController.addAction(okAction)
         self.present(alertController, animated: true)
     }
-    
-    // todo localize
+
     @objc fileprivate func showHelpMyAppstore() {
         let message = "appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppstore'".localized()
-        let alertController = UIAlertController(title: "MyAppstore".localized(), message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "MyAppstore", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
         alertController.addAction(okAction)
         self.present(alertController, animated: true)

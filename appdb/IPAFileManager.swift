@@ -54,7 +54,7 @@ struct IPAFileManager {
     
     func delete(file: LocalIPAFile) {
         guard FileManager.default.isDeletableFile(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else {
-            Messages.shared.showError(message: "File not found at given path".prettified)
+            Messages.shared.showError(message: "File not found at given path".localized())
             return
         }
         do {
@@ -67,13 +67,13 @@ struct IPAFileManager {
     func getSize(from filename: String) -> String {
         let url = documentsDirectoryURL().appendingPathComponent(filename)
         guard FileManager.default.fileExists(atPath: url.path) else {
-            Messages.shared.showError(message: "File not found at given path".prettified)
+            Messages.shared.showError(message: "File not found at given path".localized())
             return ""
         }
         do {
             let resourceValues = try url.resourceValues(forKeys: [.fileSizeKey])
             guard let fileSize = resourceValues.fileSize else {
-                Messages.shared.showError(message: "File size not found in resource values".prettified)
+                Messages.shared.showError(message: "File size not found in resource values".localized())
                 return ""
             }
             return Global.humanReadableSize(bytes: Int64(fileSize))
@@ -82,8 +82,7 @@ struct IPAFileManager {
             return ""
         }
     }
-    
-    // todo localize
+
     func base64ToJSONInfoPlist(from file: LocalIPAFile) -> String? {
         
         func exit(_ errorMessage: String) -> String? {
