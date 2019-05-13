@@ -178,9 +178,9 @@
 "Remove from list" = "Remove from list";
 "File downloaded successfully" = "File downloaded successfully";
 "File downloaded successfully, added to Library" = "File downloaded successfully, added to Library";
-"Uploading %@ of %@ (%@%)" = "Uploading %@ of %@ (%@%)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
+"Uploading %@ of %@ (%@)" = "Uploading %@ of %@ (%@)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
 "Uploading" = "Uploading"; // please use same translation used above, before first %@
-"Downloading %@ of %@ (%@%)" = "Downloading %@ of %@ (%@%)"; // see above
+"Downloading %@ of %@ (%@)" = "Downloading %@ of %@ (%@)"; // e.g. "Downloading 7.4 MB of 15.2 MB (49%)"
 "Downloading %@" = "Downloading %@"; // e.g. "Downloading 3 MB"
 "Downloading" = "Downloading"; // please use same translation used above, before %@
 "File uploaded successfully" = "File uploaded successfully";
@@ -198,7 +198,7 @@
 "User Interface" = "User Interface";
 "Choose Theme" = "Choose Theme";
 "Choose Language" = "Choose Language";
-"Language set correctly, please restart the app to apply changes" = "Language set correctly, please restart the app to apply changes";
+"Language set, please restart the app to apply changes" = "Language set, please restart the app to apply changes";
 "Dark" = "Dark";
 "Light" = "Light";
 "Support" = "Support";
@@ -297,5 +297,8 @@
 "Done" = "Done";
 "more" = "more";
 "Open in Safari" = "Open in Safari";
-"%@ ago" = "%@ ago";
+"%@s ago" = "%@s ago"; // seconds, e.g. 15s ago
+"%@m ago" = "%@m ago"; // minutes, e.g. 5m ago
+"%@h ago" = "%@h ago"; // hours, e.g. 6h ago
+"%@d ago" = "%@d ago"; // days, e.g. 3d ago
 "now" = "now";

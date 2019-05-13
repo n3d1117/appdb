@@ -34,7 +34,7 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     var appIcon: String = ""
     var url: URL!
     
-    let allowedContentTypes: [String] = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary", "application/x-ios-app"]
+    let allowedContentTypes: [String] = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary", "application/x-ios-app", "application/x-zip-compressed", "application/x-download"]
     
     init(_ url: URL, _ appIcon: String = "", delegate: IPAWebViewControllerDelegate) {
         self.url = url
@@ -184,7 +184,7 @@ extension IPAWebViewController {
                     return
                 }
             } else if filename.hasSuffix(".ipa") {
-                // Fallback for some servers not providing Content-Type header field
+                // Fallback for some servers not providing Content-Type header field (looking at you, uploadhive)
                 download(url: url.absoluteString, filename: filename)
                 return
             }

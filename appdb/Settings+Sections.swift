@@ -42,7 +42,7 @@ extension Settings {
     var commonSections: [Static.Section] {
         return [
             
-            Section(header: "Support", rows: [
+            Section(header: .title("Support".localized()), rows: [
                 Row(text: "News".localized(), selection: { [unowned self] in
                     self.pushNews()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
@@ -54,7 +54,7 @@ extension Settings {
                 }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self)
             ]),
             
-            Section(header: "About", rows: [
+            Section(header: .title("About".localized()), rows: [
                 Row(text: "Acknowledgements".localized(), selection: { [unowned self] in
                     self.pushAcknowledgements()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),

@@ -39,10 +39,10 @@ class LocalIPAUploadUtil {
         self.request = request
         
         self.request?.uploadProgress { p in
-            let readString = Global.humanReadableSize(bytes: p.completedUnitCount)
-            let totalString = Global.humanReadableSize(bytes: p.totalUnitCount)
-            let percentage = Int(p.fractionCompleted * 100)
-            self.lastCachedProgress = "Uploading %@ of %@ (%@%)".localizedFormat(readString, totalString, percentage)
+            let readString: String = Global.humanReadableSize(bytes: p.completedUnitCount)
+            let totalString: String = Global.humanReadableSize(bytes: p.totalUnitCount)
+            let percentage: String = String(Int(p.fractionCompleted * 100)) + "%"
+            self.lastCachedProgress = "Uploading %@ of %@ (%@)".localizedFormat(readString, totalString, percentage)
             self.lastCachedFraction = Float(p.fractionCompleted)
             self.onProgress?(self.lastCachedFraction, self.lastCachedProgress)
         }
