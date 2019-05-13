@@ -274,6 +274,7 @@
 "Unable to encode Info.plist file" = "Unable to encode Info.plist file";
 "File not found at given path" = "File not found at given path";
 "File size not found in resource values" = "File size not found in resource values";
+"A report has already been submitted" = "A report has already been submitted";
 
 ////////////////////////////
 //     LINK REPORTING     //

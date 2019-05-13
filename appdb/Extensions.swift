@@ -47,6 +47,7 @@ extension String {
         case "TOO_SHORT_SEARCH_STRING": return "Please search at least two characters".localized()
         case "NOT_READY": return "The request timed out".localized()
         case "NOT_COMPATIBLE_WITH_DEVICE": return "Your device is not compatible with this app".localized()
+        case "REPORT_ALREADY_SUBMITTED": return "A report has already been submitted".localized()
         default: return self.localized()
         }
     }

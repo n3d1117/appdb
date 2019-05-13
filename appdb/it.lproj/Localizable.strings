@@ -274,6 +274,7 @@
 "Unable to encode Info.plist file" = "Impossibile codificare il file Info.plist";
 "File not found at given path" = "File non trovato nel percorso specificato";
 "File size not found in resource values" = "Dimensione del file non trovata";
+"A report has already been submitted" = "Una segnalazione è già stata inviata";
 
 ////////////////////////////
 //     LINK REPORTING     //

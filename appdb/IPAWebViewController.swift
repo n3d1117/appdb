@@ -34,7 +34,7 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     var appIcon: String = ""
     var url: URL!
     
-    let allowedContentTypes: [String] = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary", "application/x-ios-app", "application/x-zip-compressed", "application/x-download"]
+    let allowedContentTypes: [String] = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary", "application/x-ios-app", "application/x-zip-compressed", "application/x-download", "application/force-download"]
     
     init(_ url: URL, _ appIcon: String = "", delegate: IPAWebViewControllerDelegate) {
         self.url = url
@@ -177,6 +177,12 @@ extension IPAWebViewController {
         }
         
         if let url = navigationResponse.response.url, let filename = navigationResponse.response.suggestedFilename {
+            
+            // DEBUG
+            //if filename.hasSuffix(".ipa") {
+                //debugLog((navigationResponse.response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String)
+            //}
+
             if let contentType = (navigationResponse.response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String {
                 if allowedContentTypes.contains(contentType), filename.hasSuffix(".ipa") {
                     // Start download if Content-Type header field is correct and filename ends with .ipa

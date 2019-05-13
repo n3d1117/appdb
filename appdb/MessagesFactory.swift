@@ -30,10 +30,12 @@ struct Messages {
         let view: MessageView = MessageView.viewFromNib(layout: .cardView)
         let config = getConfig(context)
         view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
+        if Global.isIpad { view.configureBackgroundView(width: 600) }
         view.configureTheme(.success, iconStyle: .subtle)
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
         view.bodyLabel?.makeDynamicFont()
+        view.backgroundView.theme_backgroundColor = Color.softGreen
         SwiftMessages.show(config: config, view: view)
     }
     
@@ -41,10 +43,12 @@ struct Messages {
         let view: MessageView = MessageView.viewFromNib(layout: .cardView)
         let config = getConfig(context)
         view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
+        if Global.isIpad { view.configureBackgroundView(width: 600) }
         view.configureTheme(.error, iconStyle: .subtle)
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
         view.bodyLabel?.makeDynamicFont()
+        view.backgroundView.theme_backgroundColor = Color.softRed
         SwiftMessages.show(config: config, view: view)
     }
 }
