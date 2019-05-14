@@ -62,6 +62,11 @@ class MyAppstoreCell: UICollectionViewCell {
         installButton.theme_tintColor = Color.softGreen
         installButton.makeDynamicFont()
         
+        installButton.didSetTitle = { [unowned self] in
+            self.installButton.sizeToFit()
+            self.updateConstraintOnButtonSizeChange(width: self.installButton.bounds.size.width)
+        }
+        
         dummy = UIView()
         
         contentView.addSubview(name)
@@ -78,13 +83,22 @@ class MyAppstoreCell: UICollectionViewCell {
             d.centerY == d.superview!.centerY
 
             name.left == name.superview!.left + Global.size.margin.value
-            name.right == name.superview!.right - 120 - Global.size.margin.value
             name.bottom == d.top + 2
             
             bundleId.left == name.left
-            bundleId.right == name.right
             bundleId.top == d.bottom + 3
             
+        }
+        
+        installButton.sizeToFit()
+        updateConstraintOnButtonSizeChange(width: installButton.bounds.size.width)
+    }
+    
+    var group: ConstraintGroup = ConstraintGroup()
+    fileprivate func updateConstraintOnButtonSizeChange(width: CGFloat) {
+        constrain(name, bundleId, replace: group) { name, bundle in
+            name.right == name.superview!.right - width - Global.size.margin.value*2
+            bundle.right == name.right
         }
     }
     

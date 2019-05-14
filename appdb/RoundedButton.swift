@@ -13,6 +13,8 @@ public class RoundedButton: UIButton {
     // Content id
     var linkId: String = ""
     
+    var didSetTitle: (() -> ())?
+    
     public convenience init() {
         self.init(frame: .zero)
     }
@@ -59,6 +61,11 @@ public class RoundedButton: UIButton {
         didSet {
             refreshBorderColor()
         }
+    }
+    
+    public override func setTitle(_ title: String?, for state: UIControl.State) {
+        super.setTitle(title, for: state)
+        didSetTitle?()
     }
     
     public override var isHighlighted: Bool {
