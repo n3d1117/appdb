@@ -76,7 +76,7 @@ extension String {
         if let unixTime = Double(self) {
             let date = Date(timeIntervalSince1970: unixTime)
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = NSLocale.current
+            dateFormatter.locale = Locale(identifier: Localize.currentLanguage())
             dateFormatter.dateStyle = .medium
             return dateFormatter.string(from: date)
         }
@@ -100,7 +100,7 @@ extension String {
         if let unixTime = Double(self) {
             let date = Date(timeIntervalSince1970: unixTime)
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = NSLocale.current
+            dateFormatter.locale = Locale(identifier: Localize.currentLanguage())
             dateFormatter.dateStyle = .long
             dateFormatter.timeStyle = .medium
             return dateFormatter.string(from: date)
@@ -117,7 +117,7 @@ extension String {
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
         formatter.locale = Locale(identifier: "en_US")
         if let date = formatter.date(from: self) {
-            formatter.locale = NSLocale.current
+            formatter.locale = Locale(identifier: Localize.currentLanguage())
             formatter.dateStyle = .medium
             formatter.timeStyle = .short
             return formatter.string(from: date)
@@ -134,7 +134,7 @@ extension String {
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
         formatter.locale = Locale(identifier: "en_US")
         if let date = formatter.date(from: self) {
-            formatter.locale = NSLocale.current
+            formatter.locale = Locale(identifier: Localize.currentLanguage())
             formatter.dateStyle = .medium
             formatter.timeStyle = .none
             return formatter.string(from: date)

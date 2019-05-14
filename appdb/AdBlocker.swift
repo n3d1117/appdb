@@ -67,6 +67,9 @@ let blockRules = """
 """
 
 let ads: Set = [
+    "tavertotsand.info",
+    "xml.popunder.bid",
+    "static-e-2-at-wqps7yvkz.stackpathdns.com",
     "djtflbt20bdde.cloudfront.net",
     "mybestmv.com",
     "syndication.exosrv.com",
