@@ -21,8 +21,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
     var cancelled: Bool = true
     
     fileprivate let placeholder: String = Global.randomString(length: 4).lowercased()
-    
-    // todo localize
+
     lazy var sections: [Static.Section] = [
         Section(rows: [
             Row(text: "Duplicate app".localized(), accessory: .switchToggle(value: duplicateApp) { [unowned self] newValue in
@@ -47,7 +46,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Installation options".localized() // todo localize
+        title = "Installation options".localized()
         
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.veryVeryLightGray

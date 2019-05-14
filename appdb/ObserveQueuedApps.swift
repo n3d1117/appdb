@@ -95,8 +95,7 @@ class ObserveQueuedApps {
                         // Remove app if install prompted
                         if item.type == "install_app" {
                             if item.status == "failed_fixable" {
-                                // todo localize
-                                Messages.shared.showError(message: "Installation failed but can be fixed from Settings -> Device Status")
+                                Messages.shared.showError(message: "Installation failed, but can be fixed from Settings -> Device Status".localized())
                             }
                             self.removeApp(linkId: item.linkId)
                         }

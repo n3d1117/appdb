@@ -101,6 +101,11 @@
 "Reviews are from Apple's iTunes Store ©" = "Le recensioni fanno parte di iTunes Store ©";
 "Check out '%@' on appdb!" = "Guarda '%@' su appdb!";
 "Installation has been queued to your device" = "L'installazione è stata messa in coda per il tuo dispositivo";
+"Installation options" = "Opzioni di installazione";
+"Duplicate app" = "Duplica app";
+"New ID" = "Nuovo ID";
+"New display name" = "Nuovo nome icona";
+"Use Original" = "Usa l'originale";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //
@@ -275,6 +280,7 @@
 "File not found at given path" = "File non trovato nel percorso specificato";
 "File size not found in resource values" = "Dimensione del file non trovata";
 "A report has already been submitted" = "Una segnalazione è già stata inviata";
+"Installation failed, but can be fixed from Settings -> Device Status" = "L'installazione è fallita, ma può essere aggiustata da Impostazioni -> Stato dispositivo";
 
 ////////////////////////////
 //     LINK REPORTING     //
