@@ -33,7 +33,7 @@ class Settings: TableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Settings".localized()
+        title = "Settings".localized()
         
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor

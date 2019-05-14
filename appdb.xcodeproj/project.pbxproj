@@ -22,6 +22,7 @@
 		81190B47216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B46216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift */; };
 		81190B49216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B48216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift */; };
 		81190B4B216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B4A216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift */; };
+		811A824D2289D18C00969946 /* AdditionalInstallOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A824C2289D18C00969946 /* AdditionalInstallOptionsViewController.swift */; };
 		811B570B227DDBED000B2866 /* LocalIPAUploadUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B570A227DDBED000B2866 /* LocalIPAUploadUtil.swift */; };
 		811BEE282151538600F1F56A /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BEE1E2151538500F1F56A /* Items.swift */; };
 		811BEE292151538600F1F56A /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BEE1F2151538600F1F56A /* Link.swift */; };
@@ -230,6 +231,7 @@
 		81190B46216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LandscapeScreenshotSearchCell+Stars.swift"; sourceTree = "<group>"; };
 		81190B48216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixedScreenshotsSearchCell_L->P+Stars.swift"; sourceTree = "<group>"; };
 		81190B4A216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixedScreenshotsSearchCell_P->L+Stars.swift"; sourceTree = "<group>"; };
+		811A824C2289D18C00969946 /* AdditionalInstallOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInstallOptionsViewController.swift; sourceTree = "<group>"; };
 		811B570A227DDBED000B2866 /* LocalIPAUploadUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalIPAUploadUtil.swift; sourceTree = "<group>"; };
 		811BEE1E2151538500F1F56A /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 		811BEE1F2151538600F1F56A /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -476,6 +478,14 @@
 				8112C35B1F7FC6E30014EDB2 /* DynamicFontSizeHelper.swift */,
 			);
 			name = DynamicFontSizeHelper;
+			sourceTree = "<group>";
+		};
+		811A824B2289D14300969946 /* • AdditionalInstallOptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				811A824C2289D18C00969946 /* AdditionalInstallOptionsViewController.swift */,
+			);
+			name = "• AdditionalInstallOptionsView";
 			sourceTree = "<group>";
 		};
 		811B5709227DDBB2000B2866 /* • LocalIPAUtils */ = {
@@ -781,6 +791,7 @@
 		8188E8E31DB1993700462256 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				811A824B2289D14300969946 /* • AdditionalInstallOptionsView */,
 				81892558227CC9490096F661 /* • AdaptiveUIAlertController */,
 				815234D32278C0EE00B1AE65 /* • BackgroundTaskUtil */,
 				81236AC71E3B6870009748E0 /* • ButtonFactory */,
@@ -1532,6 +1543,7 @@
 				811B570B227DDBED000B2866 /* LocalIPAUploadUtil.swift in Sources */,
 				8189255A227CC9690096F661 /* AdaptiveUIAlertController.swift in Sources */,
 				81A1038E1F7FCA030011F4B3 /* DynamicFontSizeHelper.swift in Sources */,
+				811A824D2289D18C00969946 /* AdditionalInstallOptionsViewController.swift in Sources */,
 				815234D52278C10A00B1AE65 /* BackgroundTaskUtil.swift in Sources */,
 				811BEE2C2151538600F1F56A /* Promotion.swift in Sources */,
 				81E48B101E707C46005FBBEC /* Details+Review.swift in Sources */,

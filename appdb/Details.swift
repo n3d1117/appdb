@@ -243,28 +243,58 @@ class Details: LoadingTableView {
         if DeviceInfo.deviceIsLinked {
             setButtonTitle("Requesting...")
             
-            API.install(id: sender.linkId, type: self.contentType) { error in
-                if let error = error {
-                    Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
-                    delay(0.3) {
-                        setButtonTitle("Install")
-                    }
-                } else {
-                    setButtonTitle("Requested")
-                    
-                    Messages.shared.showSuccess(message: "Installation has been queued to your device".localized(), context: Global.isIpad ? .viewController(self) : nil)
-                    
-                    if self.contentType != .books {
-                        ObserveQueuedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
-                                                          name: self.content.itemName, image: self.content.itemIconUrl,
-                                                          bundleId: self.content.itemBundleId)
-                    }
-                    
-                    delay(5) {
-                        setButtonTitle("Install")
+            func install(alongsideId: String = "", displayName: String = "") {
+                API.install(id: sender.linkId, type: self.contentType, alongsideId: alongsideId, displayName: displayName) { error in
+                    if let error = error {
+                        Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
+                        delay(0.3) {
+                            setButtonTitle("Install")
+                        }
+                    } else {
+                        setButtonTitle("Requested")
+                        
+                        Messages.shared.showSuccess(message: "Installation has been queued to your device".localized(), context: Global.isIpad ? .viewController(self) : nil)
+                        
+                        if self.contentType != .books {
+                            ObserveQueuedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
+                                                            name: self.content.itemName, image: self.content.itemIconUrl,
+                                                            bundleId: self.content.itemBundleId)
+                        }
+                        
+                        delay(5) {
+                            setButtonTitle("Install")
+                        }
                     }
                 }
             }
+            
+            if DeviceInfo.askForInstallationOptions {
+                let vc = AdditionalInstallOptionsViewController()
+                let segue = Messages.shared.generateModalSegue(vc: vc, source: self)
+                
+                delay(0.3) {
+                    segue.perform()
+                }
+                
+                // If vc.cancelled is true, modal was dismissed either through 'Cancel' button or background tap
+                segue.eventListeners.append() { event in
+                    if case .didHide = event, vc.cancelled {
+                        setButtonTitle("Install")
+                    }
+                }
+                
+                vc.onCompletion = { (duplicate: Bool, newId: String, newName: String) in
+                    if duplicate {
+                        install(alongsideId: newId, displayName: newName)
+                    } else {
+                        install(displayName: newName)
+                    }
+                }
+                
+            } else {
+                install()
+            }
+            
         } else {
             setButtonTitle("Checking...")
             delay(0.3) {

@@ -172,20 +172,51 @@ extension Library {
         if DeviceInfo.deviceIsLinked {
             setButtonTitle("Requesting...")
             
-            API.install(id: sender.linkId, type: .myAppstore) { error in
-                if let error = error {
-                    Messages.shared.showError(message: error.prettified)
-                    delay(0.3) { setButtonTitle("Install") }
-                } else {
-                    setButtonTitle("Requested")
-                    
-                    Messages.shared.showSuccess(message: "Installation has been queued to your device".localized())
-                    
-                    ObserveQueuedApps.shared.addApp(type: .myAppstore, linkId: sender.linkId, name: self.myAppstoreIpas[sender.tag].name, image: "", bundleId: self.myAppstoreIpas[sender.tag].bundleId)
-                    
-                    delay(5) { setButtonTitle("Install") }
+            func install(alongsideId: String = "", displayName: String = "") {
+                API.install(id: sender.linkId, type: .myAppstore, alongsideId: alongsideId, displayName: displayName) { error in
+                    if let error = error {
+                        Messages.shared.showError(message: error.prettified)
+                        delay(0.3) { setButtonTitle("Install") }
+                    } else {
+                        setButtonTitle("Requested")
+                        
+                        Messages.shared.showSuccess(message: "Installation has been queued to your device".localized())
+                        
+                        ObserveQueuedApps.shared.addApp(type: .myAppstore, linkId: sender.linkId, name: self.myAppstoreIpas[sender.tag].name, image: "", bundleId: self.myAppstoreIpas[sender.tag].bundleId)
+                        
+                        delay(5) { setButtonTitle("Install") }
+                    }
                 }
             }
+            
+            if DeviceInfo.askForInstallationOptions {
+                
+                let vc = AdditionalInstallOptionsViewController()
+                let segue = Messages.shared.generateModalSegue(vc: vc, source: self)
+                
+                delay(0.3) {
+                    segue.perform()
+                }
+                
+                // If vc.cancelled is true, modal was dismissed either through 'Cancel' button or background tap
+                segue.eventListeners.append() { event in
+                    if case .didHide = event, vc.cancelled {
+                        setButtonTitle("Install")
+                    }
+                }
+                
+                vc.onCompletion = { (duplicate: Bool, newId: String, newName: String) in
+                    if duplicate {
+                        install(alongsideId: newId, displayName: newName)
+                    } else {
+                        install(displayName: newName)
+                    }
+                }
+                
+            } else {
+                install()
+            }
+            
         } else {
             // Install requested but device is not linked
             setButtonTitle("Checking...")

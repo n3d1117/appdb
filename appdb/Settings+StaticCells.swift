@@ -223,3 +223,56 @@ final class SwitchCell: SimpleStaticCell {
         toggle.isOn = pref[keyPath: keyPath]
     }
 }
+
+final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
+
+    var textfieldDidEndEditing: ((String) -> ())?
+    
+    var textField: UITextField!
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        textField = UITextField()
+        textField.delegate = self
+        textField.backgroundColor = .clear
+        textField.textAlignment = .right
+        textField.theme_textColor = Color.title
+        textField.theme_keyboardAppearance = [.light, .dark]
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        contentView.addSubview(textField)
+        
+        constrain(textField) { textField in
+            textField.right == textField.superview!.layoutMarginsGuide.right - 3
+            textField.top == textField.superview!.top
+            textField.bottom == textField.superview!.bottom
+            textField.left == textField.superview!.centerX
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func configure(row: Row) {
+        textLabel?.text = row.text
+        if let placeholder = row.context?["placeholder"] as? String {
+            textField.placeholder = placeholder
+            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: (17~~16))])
+        }
+        if let callback = row.context?["callback"] as? (String) -> () {
+            self.textfieldDidEndEditing = callback
+        }
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        textfieldDidEndEditing?(text)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}

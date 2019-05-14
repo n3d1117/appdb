@@ -10,8 +10,8 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    static func install(id: String, type: ItemType, completion:@escaping (_ error: String?) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.install.rawValue, "type": type.rawValue, "id": id], headers: headersWithCookie)
+    static func install(id: String, type: ItemType, alongsideId: String = "", displayName: String = "", completion:@escaping (_ error: String?) -> Void) {
+        Alamofire.request(endpoint, parameters: ["action": Actions.install.rawValue, "type": type.rawValue, "id": id, "is_alongside": alongsideId.lowercased(), "display_name": displayName], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
