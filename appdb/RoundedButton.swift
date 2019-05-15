@@ -64,14 +64,17 @@ public class RoundedButton: UIButton {
     }
     
     public override func setTitle(_ title: String?, for state: UIControl.State) {
+        
+        // Delay user interaction (only after first call) to avoid spamming the button causing chaos
+        if let text = self.titleLabel?.text, !text.isEmpty {
+            isUserInteractionEnabled = false
+            delay(1) { [weak self] in
+                self?.isUserInteractionEnabled = true
+            }
+        }
+        
         super.setTitle(title, for: state)
         didSetTitle?()
-        
-        // Delay user interaction to avoid spamming the button causing chaos
-        isUserInteractionEnabled = false
-        delay(1) { [weak self] in
-            self?.isUserInteractionEnabled = true
-        }
     }
     
     public override var isHighlighted: Bool {

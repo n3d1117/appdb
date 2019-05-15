@@ -72,9 +72,6 @@ class AdditionalInstallOptionsViewController: TableViewController {
     }
     
     @objc fileprivate func proceedWithInstall() {
-        debugLog("DUPLICATE: \(self.duplicateApp)")
-        debugLog("ID: \(self.newId)")
-        debugLog("NAME: \(self.newName)")
         onCompletion?(self.duplicateApp, self.newId, self.newName)
         cancelled = false
         dismiss(animated: true)
