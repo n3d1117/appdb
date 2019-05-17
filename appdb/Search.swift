@@ -44,6 +44,8 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         return type == .iPhone4S || type == .iPhone5 || type == .iPhone5C || type == .iPhone5S
     }
     
+    internal var shouldRelayout: Bool = false
+    
     var trendingLayout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         var offset: CGFloat = 0
@@ -53,7 +55,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         if shouldIncreaseHeight {
             offset -= 60
         }
-        layout.itemSize = CGSize(width: view.bounds.width - (4~~3) * margin, height: view.bounds.height - offset)
+        layout.itemSize = CGSize(width: collectionView.bounds.width - (4~~3) * margin, height: view.bounds.height - offset)
         layout.sectionInset = UIEdgeInsets(top: topInset, left: 0, bottom: topInset, right: 0)
         return layout
     }
@@ -64,9 +66,9 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: topInset, right: margin)
         if Global.isIpad {
-            layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 2 : 3
+            layout.columnCount = UIDevice.current.orientation.isPortrait ? 2 : 3
         } else {
-            layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
+            layout.columnCount = UIDevice.current.orientation.isPortrait ? 1 : 2
         }
         return layout
     }

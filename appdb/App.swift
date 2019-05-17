@@ -162,6 +162,8 @@ extension App: Mappable {
             guard let width = Int(size[0]), let height = Int(size[1]) else { return "portrait" }
             if width == height {
                 return knownLandscapeScreenshots.contains(absoluteUrl) ? "landscape" : "portrait"
+            } else if width == 406 && height == 722 {
+                return "landscape"
             }
             return width > height ? "landscape" : "portrait"
         } else if let endingFilename = ending.components(separatedBy: ".").first {

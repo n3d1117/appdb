@@ -58,7 +58,7 @@ class UpdateCell: UITableViewCell {
         whatsnew = ElasticLabel()
         whatsnew.theme_textColor = Color.copyrightText
         whatsnew.font = .systemFont(ofSize: 14~~13)
-        whatsnew.maxNumberOfCollapsedLines = 2
+        whatsnew.maxNumberOfCollapsedLines = 3
         whatsnew.makeDynamicFont()
         
         // Icon

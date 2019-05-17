@@ -111,7 +111,7 @@ extension Settings {
                     API.setConfiguration(params: [.ignoreCompatibility: newValue ? "no" : "yes"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Ask to duplicate app".localized(), accessory: .switchToggle(value: DeviceInfo.askForInstallationOptions) { newValue in
+                Row(text: "Ask for installation options".localized(), accessory: .switchToggle(value: DeviceInfo.askForInstallationOptions) { newValue in
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
@@ -138,5 +138,14 @@ extension Settings {
             
         ]
     }
-    
+}
+
+// Slightly increase header view font size
+
+extension Settings: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = .systemFont(ofSize: 15~~14)
+        header.textLabel?.makeDynamicFont()
+    }
 }

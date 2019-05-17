@@ -26,30 +26,25 @@ struct Messages {
         return config
     }
     
-    mutating func showSuccess(message: String, context: SwiftMessages.PresentationContext? = nil) {
+    fileprivate mutating func show(message: String, theme: Theme, context: SwiftMessages.PresentationContext? = nil) {
         let view: MessageView = MessageView.viewFromNib(layout: .cardView)
         let config = getConfig(context)
         view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
         if Global.isIpad { view.configureBackgroundView(width: 600) }
-        view.configureTheme(.success, iconStyle: .subtle)
+        view.configureTheme(theme, iconStyle: .subtle)
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
         view.bodyLabel?.makeDynamicFont()
-        view.backgroundView.theme_backgroundColor = Color.softGreen
+        view.backgroundView.theme_backgroundColor = theme == .success ? Color.softGreen : Color.softRed
         SwiftMessages.show(config: config, view: view)
     }
     
+    mutating func showSuccess(message: String, context: SwiftMessages.PresentationContext? = nil) {
+        show(message: message, theme: .success, context: context)
+    }
+    
     mutating func showError(message: String, context: SwiftMessages.PresentationContext? = nil) {
-        let view: MessageView = MessageView.viewFromNib(layout: .cardView)
-        let config = getConfig(context)
-        view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
-        if Global.isIpad { view.configureBackgroundView(width: 600) }
-        view.configureTheme(.error, iconStyle: .subtle)
-        view.button?.isHidden = true
-        view.titleLabel?.isHidden = true
-        view.bodyLabel?.makeDynamicFont()
-        view.backgroundView.theme_backgroundColor = Color.softRed
-        SwiftMessages.show(config: config, view: view)
+        show(message: message, theme: .error, context: context)
     }
     
     func generateModalSegue(vc: UIViewController, source: UIViewController) -> SwiftMessagesSegue {

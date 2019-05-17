@@ -80,7 +80,7 @@ class DetailsFullScreenshots: UIViewController {
         imageCache: AutoPurgingImageCache()
     )
     
-    var isPortrait: Bool { return UIApplication.shared.statusBarOrientation.isPortrait }
+    var isPortrait: Bool { return UIDevice.current.orientation.isPortrait }
     
     // We get these from previous view
     var mixedClasses, allLandscape: Bool!

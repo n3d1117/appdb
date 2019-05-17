@@ -151,7 +151,7 @@ class Downloading: LoadingCollectionView {
 extension Downloading: ETCollectionViewDelegateWaterfallLayout {
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
+        return UIDevice.current.orientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
     }
     
     var topInset: CGFloat {
@@ -163,7 +163,7 @@ extension Downloading: ETCollectionViewDelegateWaterfallLayout {
         layout.minimumColumnSpacing = 20~~15
         layout.minimumInteritemSpacing = 15~~10
         layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: topInset, right: margin)
-        layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
+        layout.columnCount = UIDevice.current.orientation.isPortrait ? 1 : 2
         return layout
     }
     

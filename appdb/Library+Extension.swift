@@ -301,7 +301,7 @@ extension Library {
 extension Library: ETCollectionViewDelegateWaterfallLayout {
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
+        return UIDevice.current.orientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
     }
     
     var layout: ETCollectionViewWaterfallLayout {
@@ -324,7 +324,7 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
         if Global.isIpad {
             layout.columnCount = 2
         } else {
-            layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
+            layout.columnCount = UIDevice.current.orientation.isPortrait ? 1 : 2
         }
         return layout
     }

@@ -14,7 +14,7 @@ class UpdatesSectionHeader: UITableViewHeaderFooterView {
     lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.theme_textColor = Color.copyrightText
-        title.font = .systemFont(ofSize: 14~~12.5)
+        title.font = .systemFont(ofSize: 14~~13)
         title.numberOfLines = 1
         title.makeDynamicFont()
         return title

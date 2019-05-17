@@ -17,7 +17,7 @@ extension Search {
     }
     
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : 15
+        return UIDevice.current.orientation.isLandscape && Global.hasNotch ? 60 : 15
     }
     
     func pushDetailsController(with content: Object) {
@@ -31,8 +31,18 @@ extension Search {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if shouldRelayout, currentPhase != .loading {
+            shouldRelayout = false
+            switchLayout(phase: currentPhase)
+        }
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        shouldRelayout = true
         coordinator.animate(alongsideTransition: { _ in
             if self.currentPhase != .loading { self.switchLayout(phase: self.currentPhase) }
         })
