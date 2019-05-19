@@ -34,7 +34,6 @@ struct Messages {
         view.configureTheme(theme, iconStyle: .subtle)
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
-        view.bodyLabel?.makeDynamicFont()
         view.backgroundView.theme_backgroundColor = theme == .success ? Color.softGreen : Color.softRed
         SwiftMessages.show(config: config, view: view)
     }

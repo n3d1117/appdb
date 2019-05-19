@@ -68,7 +68,7 @@ public class RoundedButton: UIButton {
         // Delay user interaction (only after first call) to avoid spamming the button causing chaos
         if let text = self.titleLabel?.text, !text.isEmpty {
             isUserInteractionEnabled = false
-            delay(1) { [weak self] in
+            delay(0.7) { [weak self] in
                 self?.isUserInteractionEnabled = true
             }
         }

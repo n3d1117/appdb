@@ -14,6 +14,8 @@ protocol AdditionalInstallOptionsHeightDelegate: class {
     func updateHeight()
 }
 
+// A custom UINavigationController suited to wrap a AdditionalInstallOptionsViewController with variable height
+
 class AdditionalInstallOptionsNavController: UINavigationController, AdditionalInstallOptionsHeightDelegate {
     
     var group: ConstraintGroup = ConstraintGroup()
@@ -29,7 +31,7 @@ class AdditionalInstallOptionsNavController: UINavigationController, AdditionalI
         if let vc = self.viewControllers.first as? AdditionalInstallOptionsViewController {
             constrain(view, replace: group) { view in
                 view.height == vc.height
-                view.width <= 550
+                view.width <= 500
             }
         }
     }
@@ -44,7 +46,7 @@ class AdditionalInstallOptionsNavController: UINavigationController, AdditionalI
 
     func updateHeight() {
         setupConstraints()
-        UIView.animate(withDuration: 0.3, animations: view.superview!.layoutIfNeeded)
+        UIView.animate(withDuration: 0.2, animations: view.superview!.layoutIfNeeded)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -81,7 +83,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
             Row(text: "Duplicate app".localized(), accessory: .switchToggle(value: duplicateApp) { [unowned self] newValue in
                 self.duplicateApp = newValue
                 self.setInstallButtonEnabled()
-                self.heightDelegate?.updateHeight()
+                self.switchMode()
             }, cellClass: SimpleStaticCell.self),
             Row(text: "New display name".localized(), cellClass: StaticTextFieldCell.self, context:
                 ["placeholder": "Use Original".localized(), "callback": { [unowned self] (newName: String) in
@@ -92,6 +94,22 @@ class AdditionalInstallOptionsViewController: TableViewController {
             Row(text: "New ID".localized(), cellClass: StaticTextFieldCell.self, context:
                 ["placeholder": placeholder, "callback": { [unowned self] (newId: String) in
                     self.newId = newId.isEmpty ? self.placeholder : newId
+                    self.setInstallButtonEnabled()
+                }]
+            )
+        ])
+    ]
+    
+    lazy var compactSections: [Static.Section] = [
+        Section(rows: [
+            Row(text: "Duplicate app".localized(), accessory: .switchToggle(value: duplicateApp) { [unowned self] newValue in
+                self.duplicateApp = newValue
+                self.setInstallButtonEnabled()
+                self.switchMode()
+                }, cellClass: SimpleStaticCell.self),
+            Row(text: "New display name".localized(), cellClass: StaticTextFieldCell.self, context:
+                ["placeholder": "Use Original".localized(), "callback": { [unowned self] (newName: String) in
+                    self.newName = newName
                     self.setInstallButtonEnabled()
                 }]
             )
@@ -119,6 +137,11 @@ class AdditionalInstallOptionsViewController: TableViewController {
         
         newId = placeholder
         dataSource.sections = sections
+    }
+    
+    fileprivate func switchMode() {
+        heightDelegate?.updateHeight()
+        dataSource.sections = duplicateApp ? sections : compactSections
     }
     
     @objc fileprivate func dismissAnimated() {
