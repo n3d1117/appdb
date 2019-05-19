@@ -10,7 +10,11 @@ import UIKit
 import Cartography
 import Static
 
-class AdditionalInstallOptionsNavController: UINavigationController {
+protocol AdditionalInstallOptionsHeightDelegate: class {
+    func updateHeight()
+}
+
+class AdditionalInstallOptionsNavController: UINavigationController, AdditionalInstallOptionsHeightDelegate {
     
     var group: ConstraintGroup = ConstraintGroup()
     
@@ -38,6 +42,11 @@ class AdditionalInstallOptionsNavController: UINavigationController {
         }, completion: nil)
     }
 
+    func updateHeight() {
+        setupConstraints()
+        UIView.animate(withDuration: 0.3, animations: view.superview!.layoutIfNeeded)
+    }
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -48,6 +57,8 @@ class AdditionalInstallOptionsNavController: UINavigationController {
 }
 
 class AdditionalInstallOptionsViewController: TableViewController {
+    
+    weak var heightDelegate: AdditionalInstallOptionsHeightDelegate?
     
     var onCompletion: ((Bool, String, String) -> ())?
 
@@ -62,7 +73,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
     fileprivate let rowHeight: CGFloat = 50
     var height: CGFloat {
         let navbarHeight: CGFloat = navigationController?.navigationBar.frame.height ?? 0
-        return navbarHeight + rowHeight * CGFloat(sections.first?.rows.count ?? 3)
+        return navbarHeight + rowHeight * CGFloat(duplicateApp ? 3 : 2)
     }
 
     lazy var sections: [Static.Section] = [
@@ -70,19 +81,20 @@ class AdditionalInstallOptionsViewController: TableViewController {
             Row(text: "Duplicate app".localized(), accessory: .switchToggle(value: duplicateApp) { [unowned self] newValue in
                 self.duplicateApp = newValue
                 self.setInstallButtonEnabled()
+                self.heightDelegate?.updateHeight()
             }, cellClass: SimpleStaticCell.self),
-            Row(text: "New ID".localized(), cellClass: StaticTextFieldCell.self, context:
-                ["placeholder": placeholder, "callback": { [unowned self] (newId: String) in
-                    self.newId = newId.isEmpty ? self.placeholder : newId
-                    self.setInstallButtonEnabled()
-                }]
-            ),
             Row(text: "New display name".localized(), cellClass: StaticTextFieldCell.self, context:
                 ["placeholder": "Use Original".localized(), "callback": { [unowned self] (newName: String) in
                     self.newName = newName
                     self.setInstallButtonEnabled()
                 }]
             ),
+            Row(text: "New ID".localized(), cellClass: StaticTextFieldCell.self, context:
+                ["placeholder": placeholder, "callback": { [unowned self] (newId: String) in
+                    self.newId = newId.isEmpty ? self.placeholder : newId
+                    self.setInstallButtonEnabled()
+                }]
+            )
         ])
     ]
 

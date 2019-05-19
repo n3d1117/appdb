@@ -194,6 +194,8 @@ extension Library {
                 let vc = AdditionalInstallOptionsViewController()
                 let nav = AdditionalInstallOptionsNavController(rootViewController: vc)
                 
+                vc.heightDelegate = nav
+                
                 let segue = Messages.shared.generateModalSegue(vc: nav, source: self)
                 
                 delay(0.3) {
