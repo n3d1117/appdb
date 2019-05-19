@@ -82,7 +82,10 @@ class Settings: TableViewController {
             pref.token = ""
             pref.linkCode = ""
         }
-        NotificationCenter.default.post(name: .RefreshSettings, object: self)
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        delay(1) {
+            NotificationCenter.default.post(name: .RefreshSettings, object: self)
+        }
     }
     
     // Update badge for Updates tab

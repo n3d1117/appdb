@@ -74,6 +74,11 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         startLoading(request: URLRequest(url: url))
     }
     
+    deinit {
+        webView?.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+        webView?.removeObserver(self, forKeyPath: #keyPath(WKWebView.title))
+    }
+    
     // Loads adblocker with WKContentRuleListStore if iOS >= 11
     // Otherwise just load request, ads will be blocked in decidePolicyFor navigationAction
     fileprivate func startLoading(request: URLRequest) {
