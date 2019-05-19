@@ -270,8 +270,10 @@ class Details: LoadingTableView {
             
             if DeviceInfo.askForInstallationOptions {
                 let vc = AdditionalInstallOptionsViewController()
-                let segue = Messages.shared.generateModalSegue(vc: vc, source: self)
+                let nav = AdditionalInstallOptionsNavController(rootViewController: vc)
                 
+                let segue = Messages.shared.generateModalSegue(vc: nav, source: self)
+
                 delay(0.3) {
                     segue.perform()
                 }

@@ -48,10 +48,9 @@ struct Messages {
     }
     
     func generateModalSegue(vc: UIViewController, source: UIViewController) -> SwiftMessagesSegue {
-        let nav = UINavigationController(rootViewController: vc)
-        let segue = SwiftMessagesSegue(identifier: nil, source: source, destination: nav)
+        let segue = SwiftMessagesSegue(identifier: nil, source: source, destination: vc)
         segue.configure(layout: .centered)
-        segue.messageView.backgroundHeight = 194
+        segue.messageView.configureNoDropShadow()
         let dimColor: UIColor = Themes.isNight ? UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 0.8) : UIColor(red: 54/255, green: 54/255, blue: 54/255, alpha: 0.5)
         segue.dimMode = .color(color: dimColor, interactive: true)
         segue.interactiveHide = false

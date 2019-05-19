@@ -10,6 +10,43 @@ import UIKit
 import Cartography
 import Static
 
+class AdditionalInstallOptionsNavController: UINavigationController {
+    
+    var group: ConstraintGroup = ConstraintGroup()
+    
+    override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        
+        setupConstraints()
+    }
+    
+    // Setup constraints
+    fileprivate func setupConstraints() {
+        if let vc = self.viewControllers.first as? AdditionalInstallOptionsViewController {
+            constrain(view, replace: group) { view in
+                view.height == vc.height
+                view.width <= 550
+            }
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            self.setupConstraints()
+        }, completion: nil)
+    }
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class AdditionalInstallOptionsViewController: TableViewController {
     
     var onCompletion: ((Bool, String, String) -> ())?
@@ -21,6 +58,12 @@ class AdditionalInstallOptionsViewController: TableViewController {
     var cancelled: Bool = true
     
     fileprivate let placeholder: String = Global.randomString(length: 4).lowercased()
+    
+    fileprivate let rowHeight: CGFloat = 50
+    var height: CGFloat {
+        let navbarHeight: CGFloat = navigationController?.navigationBar.frame.height ?? 0
+        return navbarHeight + rowHeight * CGFloat(sections.first?.rows.count ?? 3)
+    }
 
     lazy var sections: [Static.Section] = [
         Section(rows: [
@@ -55,7 +98,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
-        tableView.rowHeight = (!Global.isIpad && !Global.hasNotch && UIDevice.current.orientation.isLandscape) ? 53 : 50
+        tableView.rowHeight = rowHeight
         tableView.isScrollEnabled = false
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action: #selector(dismissAnimated))
@@ -81,12 +124,4 @@ class AdditionalInstallOptionsViewController: TableViewController {
         navigationItem.rightBarButtonItem?.isEnabled = !newId.contains(" ")
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-            self.tableView.rowHeight = (!Global.isIpad && !Global.hasNotch && UIDevice.current.orientation.isLandscape) ? 53 : 50
-            self.tableView.reloadData()
-        }, completion: nil)
-    }
 }
