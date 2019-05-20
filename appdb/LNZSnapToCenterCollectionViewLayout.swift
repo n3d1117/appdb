@@ -46,24 +46,24 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
     //MARK: - Inspectable properties
     
     ///The spacing between consecutive items
-    @IBInspectable public var interitemSpacing: CGFloat = 0
+    @IBInspectable public var interitemSpacing: CGFloat = 8
     
     ///The space between the items and the top border of the collection view
-    @IBInspectable public var sectionInsetTop: CGFloat = 0
+    @IBInspectable public var sectionInsetTop: CGFloat = 8
     
     ///The space between the items and the bottom border of the collection view
-    @IBInspectable public var sectionInsetBottom: CGFloat = 0
+    @IBInspectable public var sectionInsetBottom: CGFloat = 8
     
     ///The minimum space from the left border and the first item of the collection view.
     ///The real spacing will be determined in runtime and it will be computed to enforce the first item to be centered.
-    @IBInspectable public var minimumSectionInsetLeft: CGFloat = 0
+    @IBInspectable public var minimumSectionInsetLeft: CGFloat = 8
     
     ///The minimum space from the right border and the last item of the collection view.
     ///The real spacing will be determined in runtime and it will be computed to enforce the last item to be centered.
-    @IBInspectable public var minimumSectionInsetRight: CGFloat = 0
+    @IBInspectable public var minimumSectionInsetRight: CGFloat = 8
     
     ///The size for each element in the collection
-    @IBInspectable public var itemSize: CGSize = CGSize(width: 0, height: 0)
+    @IBInspectable public var itemSize: CGSize = CGSize(width: 100, height: 100)
     
     ///If this property is true, the left and right section spacing will be adapted to enforce the first and last element to be centered.
     ///This property is true by default.
@@ -72,13 +72,13 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
     //MARK: - Utility properties
     
     ///This property represents the actual section inset left calculated in order to have the first element of the collection centered.
-    internal var sectionInsetLeft: CGFloat = 0
+    internal var sectionInsetLeft: CGFloat = 8
     
     ///This property represents the actual section inset right calculated in order to have the last element of the collection centered.
-    internal var sectionInsetRight: CGFloat = 0
-
+    internal var sectionInsetRight: CGFloat = 8
     
-    ///As in focus element is to be intended the element currently in the center, 
+    
+    ///As in focus element is to be intended the element currently in the center,
     ///or the closest element to the center of the collection view.
     ///- seeAlso: FocusedContaining
     public internal(set) var currentInFocus: Int = 0 {
@@ -105,13 +105,13 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
     
     internal var headerAttributes: UICollectionViewLayoutAttributes?
     internal var footerAttributes: UICollectionViewLayoutAttributes?
-
+    
     ///This property will track changes in the collection view size. The prepare method can be called multiple times even when the collection is scrolling
     ///and there might be operations that in the prepare method we want to perform exclusively if the collection sie is changed.
     internal var currentCollectionSize: CGSize = .zero
     
     internal var resetOffset: Bool = true
-
+    
     //MARK: - Layout implementation
     //MARK: Preparation
     
@@ -121,7 +121,7 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         //We can compute the size of the collectionView contentSize property by using the data source methods of the collectionView.dataSource
         //All we need is the number of items in the section.
         
-        //We want to query for the itemCount just once. If there is a value of itemCount, the layout ws not invalidated, therefore we should not query 
+        //We want to query for the itemCount just once. If there is a value of itemCount, the layout ws not invalidated, therefore we should not query
         //the collectionView as we know that there are no changes.
         if itemCount == nil {
             let sections = collection.dataSource?.numberOfSections?(in: collection) ?? 0
@@ -129,7 +129,7 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
                 //This collection view layout can handle just one section.
                 fatalError("\(self) is a collection View Layout that just supports one section")
             }
-
+            
             
             itemCount = collection.dataSource?.collectionView(collection, numberOfItemsInSection: 0) ?? 0
         }
@@ -145,13 +145,12 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
             footerHeight = delegate?.collectionView?(collection, layout: self, referenceSizeForFooterInSection: 0).height ?? 0
         }
         //This method is always called right after the prepare method, so at this point sectionInsetLeft + sectionInsetRight is already determined
-        let w = sectionInsetLeft + sectionInsetRight - interitemSpacing + (itemSize.width + interitemSpacing) * CGFloat(itemCount ?? 0)
-        let he = sectionInsetTop + sectionInsetBottom + itemSize.height
-        let h = (headerHeight ?? 0) + (footerHeight ?? 0) + he
+        let w: CGFloat = sectionInsetLeft + sectionInsetRight - interitemSpacing + (itemSize.width + interitemSpacing) * CGFloat(itemCount ?? 0)
+        let h: CGFloat = CGFloat(headerHeight ?? 0.0) + sectionInsetTop + sectionInsetBottom + itemSize.height + CGFloat(footerHeight ?? 0.0)
         
         return CGSize(width: w, height: h)
     }
-
+    
     open override func prepare() {
         super.prepare()
         
@@ -163,17 +162,21 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         
         if resetOffset {
             resetOffset = false
+            let endOffset = collection.contentSize.width - collection.bounds.width
+            guard centerFirstItem ||
+                (collection.contentOffset.x > 0 && collection.contentOffset.x < endOffset)  else { return }
             
-            let currentInFocusXOffset = (itemSize.width + interitemSpacing) * CGFloat(currentInFocus)
+            let centerInFocusXOffset = frameForItem(at: IndexPath(item: currentInFocus, section: 0)).midX
+            let centeredInFocusXOffset = centerInFocusXOffset - collection.bounds.width/2
+            let proposedOffset = CGPoint(x: centeredInFocusXOffset, y: collection.contentOffset.y)
             
-            let proposedOffset = CGPoint(x: currentInFocusXOffset, y: -collection.contentInset.top)
             collection.contentOffset = proposedOffset
         }
     }
     
     //MARK: Layouting and attributes generators
     
-    ///Returns the items that should be found in a given frame. The frame is relative to the scrollView contentSize coordinate space, therefore 
+    ///Returns the items that should be found in a given frame. The frame is relative to the scrollView contentSize coordinate space, therefore
     ///the origin represents the offset of the scrollView. This method takes in consideration the items count.
     ///- parameter rect: The ract you want the object of.
     ///- returns: An array of tuples, where the first element represents the indexPath of the element, and the second is its rame.
@@ -205,7 +208,7 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         
         return CGRect(origin: CGPoint(x: x, y: y), size: itemSize)
     }
-
+    
     open override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard let collection = collectionView else { return nil }
         
@@ -307,7 +310,7 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         let offset = newOffsetX - collection.contentOffset.x
         
         if (velocity.x < 0 && offset > 0) || (velocity.x > 0 && offset < 0) {
-            //If the velocity of scroll tends to superate the element to go to the next item, or the previous, we correct the new offset by adding or removing 
+            //If the velocity of scroll tends to superate the element to go to the next item, or the previous, we correct the new offset by adding or removing
             //the width of the "page"
             let pageWidth = itemSize.width + interitemSpacing
             newOffsetX += velocity.x > 0 ? pageWidth : -pageWidth
@@ -315,10 +318,10 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         
         //If the offset is out f the contentSize boundaries on iOS 9 the scroll view will behave oddly, so we want to be sure that the new offset is not less
         //than 0 and not more than the contentSize.width
-
+        
         newOffsetX = max(newOffsetX, 0)
         newOffsetX = min(newOffsetX, collection.contentSize.width - collection.bounds.width)
-
+        
         return CGPoint(x: newOffsetX, y: proposedContentOffset.y)
     }
     
@@ -336,12 +339,11 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         }
         invalidateLayout()
     }
-
+    
     //MARK: Invalidation
     
     open override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
         let delta = CGSize(width: newBounds.width - currentCollectionSize.width, height: newBounds.height - currentCollectionSize.height)
-        
         let context = super.invalidationContext(forBoundsChange: newBounds)
         context.contentSizeAdjustment = delta
         return context
@@ -365,13 +367,13 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         super.invalidateLayout(with: context)
     }
     
-    ///This method is intended to update the current element in focus. 
+    ///This method is intended to update the current element in focus.
     internal func updateCurrentInFocus(in rect: CGRect? = nil) {
         guard let collection = collectionView else { return }
         
         let collectionViewSize = collection.bounds.size
         let proposedRect = rect ?? CGRect(origin: CGPoint(x: collection.contentOffset.x, y: 0), size: collectionViewSize)
-
+        
         guard let candidate = getAttributeForCenter(in: proposedRect) else { return }
         currentInFocus = candidate.index.item
     }
@@ -379,7 +381,7 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
     
     open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         //This method is called everytime there is a change in the collection view size or in the collection view offset.
-        //The bounds in this case is to be intended as "current visible frame". We want to update the current in focus 
+        //The bounds in this case is to be intended as "current visible frame". We want to update the current in focus
         //just in case of scroll events, and not if the size changes, because in that case we want to preserve the element
         //in the center to be the same.
         if currentCollectionSize == newBounds.size {
@@ -387,5 +389,5 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
         }
         return true
     }
-
+    
 }
