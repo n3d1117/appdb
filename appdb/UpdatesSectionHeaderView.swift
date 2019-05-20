@@ -46,7 +46,7 @@ class UpdatesSectionHeader: UITableViewHeaderFooterView {
             contentView.addSubview(helpButton)
             constrain(titleLabel, helpButton) { title, why in
                 title.left == title.superview!.layoutMarginsGuide.left
-                title.bottom == title.superview!.bottom - (7~~5)
+                title.bottom == title.superview!.bottom - (9~~7)
                 
                 why.height == (20~~18)
                 why.width == why.height

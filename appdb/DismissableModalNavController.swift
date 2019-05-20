@@ -84,7 +84,7 @@ class DismissableModalNavController: UINavigationController, UIGestureRecognizer
             var location: CGPoint = sender.location(in: nil)
             
             // in landscape view you will have to swap the location coordinates
-            if UIDevice.current.orientation.isLandscape {
+            if UIApplication.shared.statusBarOrientation.isLandscape {
                 location = CGPoint(x: location.y, y: location.x)
                 
                 // Increase height if keyboard is active, to avoid dismissing view by accident

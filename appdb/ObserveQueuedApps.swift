@@ -24,6 +24,9 @@ class ObserveQueuedApps {
     fileprivate var timer: Timer?
     fileprivate var numberOfQueuedApps: Int = 0
     
+    fileprivate var ignoredInstallAppsUUIDs = [String]()
+    fileprivate var ignoredLinkedDeviceInfoUUIDs = [String]()
+    
     var onUpdate: ((_ apps: [RequestedApp]) -> ())?
     
     deinit {
@@ -52,7 +55,7 @@ class ObserveQueuedApps {
     }
     
     func removeApp(linkId: String) {
-        if let index = requestedApps.firstIndex(where: { $0.linkId == linkId }) {
+        if let index = requestedApps.lastIndex(where: { $0.linkId == linkId }) {
             requestedApps.remove(at: index)
             
             // Decrease Downloads badge
@@ -93,21 +96,28 @@ class ObserveQueuedApps {
                     for item in items.filter({ linkIds.contains($0.linkId) }) {
                         
                         // Remove app if install prompted
-                        if item.type == "install_app" {
+                        if item.type == "install_app", !self.ignoredInstallAppsUUIDs.contains(item.uuid) {
                             if item.status == "failed_fixable" {
                                 Messages.shared.showError(message: "Installation failed, but can be fixed from Settings -> Device Status".localized())
                             }
+                            self.ignoredInstallAppsUUIDs.append(item.uuid)
                             self.removeApp(linkId: item.linkId)
+                            
+                            for i in items.filter({ $0.type == "linked_device_info" && !self.ignoredLinkedDeviceInfoUUIDs.contains($0.uuid) && $0.linkId == item.linkId }) {
+                                self.ignoredLinkedDeviceInfoUUIDs.append(i.uuid)
+                            }
                         }
                         
                         // Track status progress
-                        if item.type == "linked_device_info" {
+                        if item.type == "linked_device_info", !self.ignoredLinkedDeviceInfoUUIDs.contains(item.uuid) {
                             if item.statusShort == "failed" {
                                 Messages.shared.showError(message: item.statusText)
+                                self.ignoredLinkedDeviceInfoUUIDs.append(item.uuid)
                                 self.removeApp(linkId: item.linkId)
                             } else {
                                 var newStatus: String = item.statusShort + "\n" + item.statusText
                                 if newStatus == "\n" { newStatus = "Waiting...".localized() }
+                                if newStatus.hasSuffix("requesting installation") { newStatus = "ok\nSigned, requesting installation..." }
                                 self.updateStatus(linkId: item.linkId, status: newStatus)
                             }
                         }

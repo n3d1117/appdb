@@ -35,8 +35,6 @@ class Settings: TableViewController {
         
         title = "Settings".localized()
         
-        dataSource = DataSource(tableViewDelegate: self)
-        
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         view.theme_backgroundColor = Color.tableViewBackgroundColor

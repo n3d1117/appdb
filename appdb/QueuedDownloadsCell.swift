@@ -75,7 +75,7 @@ class QueuedDownloadsCell: UICollectionViewCell {
         contentView.addSubview(icon)
         contentView.addSubview(status)
         
-        constrain(name, status, icon) { name, seller, icon in
+        constrain(name, status, icon) { name, status, icon in
             icon.width == iconSize
             icon.height == icon.width
             icon.left == icon.superview!.left + margin
@@ -83,11 +83,11 @@ class QueuedDownloadsCell: UICollectionViewCell {
             
             name.left == icon.right + (15~~12) ~ Global.notMaxPriority
             name.right == name.superview!.right - margin
-            name.top == icon.top + 3
+            name.top == icon.top + 6
             
-            seller.left == name.left
-            seller.top == name.bottom + 3
-            seller.right <= seller.superview!.right - margin
+            status.left == name.left
+            status.top == name.bottom + 2
+            status.right <= status.superview!.right - margin
             
         }
     }

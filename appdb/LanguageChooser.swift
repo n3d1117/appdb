@@ -28,6 +28,10 @@ class LanguageChooser: UITableViewController {
         return Localize.currentLanguage()
     }
     
+    convenience init() {
+        self.init(style: .grouped)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,12 +89,8 @@ class LanguageChooser: UITableViewController {
         Messages.shared.showSuccess(message: "Language set, please restart the app to apply changes".localized(), context: Global.isIpad ? .viewController(self) : nil)
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Available Languages".localized()
     }
     
 }

@@ -115,7 +115,7 @@ class QueuedApps: LoadingCollectionView {
 extension QueuedApps: ETCollectionViewDelegateWaterfallLayout {
     
     var margin: CGFloat {
-        return UIDevice.current.orientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
     }
     
     var topInset: CGFloat {
@@ -127,12 +127,12 @@ extension QueuedApps: ETCollectionViewDelegateWaterfallLayout {
         layout.minimumColumnSpacing = 20~~15
         layout.minimumInteritemSpacing = 15~~10
         layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: topInset, right: margin)
-        layout.columnCount = UIDevice.current.orientation.isPortrait ? 1 : 2
+        layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
         return layout
     }
     
     var itemDimension: CGFloat {
-        if UIDevice.current.orientation.isPortrait {
+        if UIApplication.shared.statusBarOrientation.isPortrait {
             return view.bounds.width - margin*2
         } else {
             return (view.bounds.width / 2) - margin*1.5

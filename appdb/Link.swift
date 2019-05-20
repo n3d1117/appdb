@@ -41,5 +41,6 @@ class Link: Object {
         self.universal = universal
         
         while self.cracker.hasPrefix(" ") { self.cracker = String(self.cracker.dropFirst()) }
+        if self.cracker == "" { self.cracker = "Unknown".localized() }
     }
 }

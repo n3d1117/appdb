@@ -66,9 +66,9 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: topInset, right: margin)
         if Global.isIpad {
-            layout.columnCount = UIDevice.current.orientation.isPortrait ? 2 : 3
+            layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 2 : 3
         } else {
-            layout.columnCount = UIDevice.current.orientation.isPortrait ? 1 : 2
+            layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
         }
         return layout
     }

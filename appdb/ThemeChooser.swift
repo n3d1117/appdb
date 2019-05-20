@@ -26,6 +26,10 @@ class ThemeChooser: UITableViewController {
         return bgColorView
     }()
     
+    convenience init() {
+        self.init(style: .grouped)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,12 +86,8 @@ class ThemeChooser: UITableViewController {
         tableView.reloadData()
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Available Themes".localized()
     }
     
 }

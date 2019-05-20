@@ -17,7 +17,7 @@ extension Search {
     }
     
     var margin: CGFloat {
-        return UIDevice.current.orientation.isLandscape && Global.hasNotch ? 60 : 15
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : 15
     }
     
     func pushDetailsController(with content: Object) {
@@ -258,13 +258,13 @@ extension Search: ETCollectionViewDelegateWaterfallLayout {
     
     var itemDimension: CGFloat {
         if Global.isIpad {
-            if UIDevice.current.orientation.isPortrait {
+            if UIApplication.shared.statusBarOrientation.isPortrait {
                 return (view.bounds.width / 2) - margin*1.5
             } else {
                 return (view.bounds.width / 3) - margin*1.5
             }
         } else {
-            if UIDevice.current.orientation.isPortrait {
+            if UIApplication.shared.statusBarOrientation.isPortrait {
                 return view.bounds.width - margin*2
             } else {
                 return (view.bounds.width / 2) - margin*1.5

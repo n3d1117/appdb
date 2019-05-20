@@ -305,7 +305,7 @@ extension Library {
 extension Library: ETCollectionViewDelegateWaterfallLayout {
     
     var margin: CGFloat {
-        return UIDevice.current.orientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
     }
     
     var layout: ETCollectionViewWaterfallLayout {
@@ -318,7 +318,7 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
         layout.headerInset.top = 26~~21
         layout.headerInset.bottom = 4
         if #available(iOS 11.0, *) {
-            layout.headerInset.left = (UIDevice.current.orientation.isLandscape && Global.hasNotch ? 45 : 2)
+            layout.headerInset.left = (UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 45 : 2)
             layout.headerInset.right = layout.headerInset.left
         }
         
@@ -328,20 +328,20 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
         if Global.isIpad {
             layout.columnCount = 2
         } else {
-            layout.columnCount = UIDevice.current.orientation.isPortrait ? 1 : 2
+            layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
         }
         return layout
     }
     
     var itemDimension: CGFloat {
         if Global.isIpad {
-            if UIDevice.current.orientation.isPortrait {
+            if UIApplication.shared.statusBarOrientation.isPortrait {
                 return (view.bounds.width / 2) - margin*1.5
             } else {
                 return (view.bounds.width / 3) - margin*1.5
             }
         } else {
-            if UIDevice.current.orientation.isPortrait {
+            if UIApplication.shared.statusBarOrientation.isPortrait {
                 return view.bounds.width - margin*2
             } else {
                 return (view.bounds.width / 2) - margin*1.5
