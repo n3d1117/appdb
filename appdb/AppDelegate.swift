@@ -75,12 +75,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         // Handle IPA
         if url.isFileURL && IPAFileManager.shared.supportedFileExtensions.contains(url.pathExtension) {
             IPAFileManager.shared.moveToDocuments(url: url)
-            guard let tabController = self.window?.rootViewController as? TabBarController else { return false }
+            guard let tabController = window?.rootViewController as? TabBarController else { return false }
             tabController.selectedIndex = 2
             guard let nav = tabController.viewControllers?[2] as? UINavigationController else { return false }
             guard let downloads = nav.viewControllers[0] as? Downloads else { return false }
             downloads.switchToIndex(i: 1)
             return true
+        }
+        
+        // URL Schemes
+        if let queryItems = NSURLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems {
+            return decodeUrlScheme(from: queryItems)
         }
         
         return false
@@ -89,6 +94,132 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return application(app, open: url, sourceApplication: "", annotation: options)
     }
+    
+    // MARK: - URL Schemes
 
+    fileprivate func decodeUrlScheme(from queryItems: [URLQueryItem]) -> Bool {
+        
+        guard let tab = window?.rootViewController as? TabBarController else { return false }
+        
+        // Tab selection, e.g. appdb2://?tab=search
+        
+        if let index = queryItems.firstIndex(where: { $0.name == "tab" }) {
+
+            guard let value = queryItems[index].value else { return false }
+            
+            dismissCurrentNavIfAny()
+            
+            switch value {
+            case "featured":
+                tab.selectedIndex = 0
+            case "search":
+                tab.selectedIndex = 1
+            case "downloads":
+                tab.selectedIndex = 2
+            case "settings":
+                tab.selectedIndex = 3
+            case "updates":
+                tab.selectedIndex = 4
+            case "news":
+                tab.selectedIndex = 3
+                guard let nav = tab.viewControllers?[3] as? UINavigationController else { break }
+                guard let settings = nav.viewControllers[0] as? Settings else { break }
+                settings.pushNews()
+            case "system_status":
+                tab.selectedIndex = 3
+                guard let nav = tab.viewControllers?[3] as? UINavigationController else { break }
+                guard let settings = nav.viewControllers[0] as? Settings else { break }
+                settings.pushSystemStatus()
+            case "device_status":
+                tab.selectedIndex = 3
+                guard let nav = tab.viewControllers?[3] as? UINavigationController else { break }
+                guard let settings = nav.viewControllers[0] as? Settings else { break }
+                settings.pushDeviceStatus()
+            default: break
+            }
+            
+            return true
+        }
+        
+        // Open details page, e.g. appdb2://?trackid=x&type=ios
+        
+        if let index1 = queryItems.firstIndex(where: { $0.name == "trackid" }), let index2 = queryItems.firstIndex(where: { $0.name == "type" }) {
+            guard let trackid = queryItems[index1].value, let typeString = queryItems[index2].value else { return false }
+            guard let nav = tab.viewControllers?[0] as? UINavigationController else { return false }
+            guard let type = ItemType(rawValue: typeString) else { return false }
+            
+            tab.selectedIndex = 0
+            
+            let vc = Details(type: type, trackid: trackid)
+            
+            if Global.isIpad {
+                if let presented = nav.topViewController?.presentedViewController as? DismissableModalNavController {
+                    // Already showing an app, add to stack
+                    if presented.topViewController is Details {
+                        presented.pushViewController(vc, animated: true)
+                    } else {
+                        dismissCurrentNavIfAny()
+                        let navController = DismissableModalNavController(rootViewController: vc)
+                        navController.modalPresentationStyle = .formSheet
+                        nav.present(navController, animated: true)
+                    }
+                } else {
+                    let navController = DismissableModalNavController(rootViewController: vc)
+                    navController.modalPresentationStyle = .formSheet
+                    nav.present(navController, animated: true)
+                }
+            } else {
+                nav.pushViewController(vc, animated: true)
+            }
+            
+            return true
+        }
+        
+        // Search query with type, e.g. appdb2://?q=Facebook&type=ios
+        
+        if let index1 = queryItems.firstIndex(where: { $0.name == "q" }), let index2 = queryItems.firstIndex(where: { $0.name == "type" }) {
+            guard let query = queryItems[index1].value, let typeString = queryItems[index2].value else { return false }
+            guard let type = ItemType(rawValue: typeString) else { return false }
+            
+            dismissCurrentNavIfAny()
+            
+            tab.selectedIndex = 1
+            
+            guard let nav = tab.viewControllers?[1] as? UINavigationController else { return false }
+            guard let search = nav.viewControllers[0] as? Search else { return false }
+            
+            search.setItemTypeAndSearch(type: type, query: query)
+            
+            return true
+        }
+        
+        // Open url in IPAWebViewController, e.g. appdb2://?url=https://google.com
+        
+        if let index1 = queryItems.firstIndex(where: { $0.name == "url" }) {
+            guard let urlString = queryItems[index1].value, let url = URL(string: urlString) else { return false }
+
+            dismissCurrentNavIfAny()
+            
+            tab.selectedIndex = 2
+            
+            guard let nav = tab.viewControllers?[2] as? UINavigationController else { return false }
+            guard let downloads = nav.viewControllers[0] as? Downloads else { return false }
+            
+            let webVc = IPAWebViewController(url, delegate: downloads)
+            let navController = IPAWebViewNavController(rootViewController: webVc)
+            downloads.present(navController, animated: true)
+            
+            return true
+        }
+        
+        return false
+    }
+    
+    fileprivate func dismissCurrentNavIfAny() {
+        guard let tab = window?.rootViewController as? TabBarController else { return }
+        
+        if Global.isIpad, let currentNav = (tab.viewControllers?[tab.selectedIndex] as? UINavigationController)?.topViewController?.presentedViewController as? UINavigationController {
+            currentNav.dismiss(animated: true)
+        }
+    }
 }
-

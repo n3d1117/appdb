@@ -98,7 +98,11 @@ class ObserveQueuedApps {
                         // Remove app if install prompted
                         if item.type == "install_app", !self.ignoredInstallAppsUUIDs.contains(item.uuid) {
                             if item.status == "failed_fixable" {
-                                Messages.shared.showError(message: "Installation failed, but can be fixed from Settings -> Device Status".localized())
+                                let message = Messages.shared.showError(message: "Installation failed, but can be fixed from Settings -> Device Status".localized())
+                                message.tapHandler = { _ in
+                                    UIApplication.shared.openURL(URL(string: "appdb2://?tab=device_status")!)
+                                    Messages.shared.hideAll()
+                                }
                             }
                             self.ignoredInstallAppsUUIDs.append(item.uuid)
                             self.removeApp(linkId: item.linkId)

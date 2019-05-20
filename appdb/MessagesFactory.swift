@@ -26,7 +26,8 @@ struct Messages {
         return config
     }
     
-    fileprivate mutating func show(message: String, theme: Theme, context: SwiftMessages.PresentationContext? = nil) {
+    @discardableResult
+    fileprivate mutating func show(message: String, theme: Theme, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
         let view: MessageView = MessageView.viewFromNib(layout: .cardView)
         let config = getConfig(context)
         view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
@@ -36,14 +37,17 @@ struct Messages {
         view.titleLabel?.isHidden = true
         view.backgroundView.theme_backgroundColor = theme == .success ? Color.softGreen : Color.softRed
         SwiftMessages.show(config: config, view: view)
+        return view
     }
     
-    mutating func showSuccess(message: String, context: SwiftMessages.PresentationContext? = nil) {
-        show(message: message, theme: .success, context: context)
+    @discardableResult
+    mutating func showSuccess(message: String, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
+        return show(message: message, theme: .success, context: context)
     }
     
-    mutating func showError(message: String, context: SwiftMessages.PresentationContext? = nil) {
-        show(message: message, theme: .error, context: context)
+    @discardableResult
+    mutating func showError(message: String, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
+        return show(message: message, theme: .error, context: context)
     }
     
     func generateModalSegue(vc: UIViewController, source: UIViewController) -> SwiftMessagesSegue {

@@ -199,6 +199,17 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         updateSuggestions.reload()
     }
     
+    func setItemTypeAndSearch(type: ItemType, query: String) {
+        guard let updateSuggestions = searchController.searchResultsController as? SuggestionsWhileTyping else { return }
+        updateSuggestions.type = type
+        switch updateSuggestions.type {
+            case .ios: searchController.searchBar.placeholder = "Search iOS Apps".localized()
+            case .cydia: searchController.searchBar.placeholder = "Search Cydia Apps".localized()
+            default: searchController.searchBar.placeholder = "Search Books".localized()
+        }
+        actuallySearch(with: query)
+    }
+    
     // MARK: - Collection view delegate
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
