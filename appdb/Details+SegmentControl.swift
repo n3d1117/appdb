@@ -21,21 +21,6 @@ enum detailsSelectedSegmentState: String {
 
 class DetailsSegmentControl: TableViewHeader {
     
-    var shouldBeTranslucent: Bool = false {
-        willSet {
-            if newValue != shouldBeTranslucent {
-                if newValue {
-                    translucentView.backgroundColor = .clear
-                    translucentView.translucentAlpha = 1
-                } else {
-                    translucentView.theme_backgroundColor = Color.veryVeryLightGray
-                    translucentView.translucentAlpha = 0
-                }
-            }
-        }
-    }
-    
-    var translucentView: ILTranslucentView!
     var segment: UISegmentedControl!
     var items: [detailsSelectedSegmentState] = []
     weak var delegate: SwitchDetailsSegmentDelegate?
@@ -48,7 +33,7 @@ class DetailsSegmentControl: TableViewHeader {
         }
     }
     
-    static var height: CGFloat { return 40 }
+    static var height: CGFloat { return 45 }
     
     convenience init(_ items: [detailsSelectedSegmentState], state: detailsSelectedSegmentState, enabled: Bool, delegate: SwitchDetailsSegmentDelegate) {
         self.init(frame: .zero)
@@ -71,37 +56,21 @@ class DetailsSegmentControl: TableViewHeader {
         segment.selectedSegmentIndex = index(for: state)
         segment.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)
         segment.theme_tintColor = Color.informationParameter
-        translucentView = ILTranslucentView(frame: .zero)
-        translucentView.theme_backgroundColor = Color.veryVeryLightGray
-        translucentView.translucentTintColor = .clear
-        translucentView.translucentAlpha = 0
         setLinksEnabled(enabled)
+
+        contentView.addSubview(segment)
         
-        translucentView.addSubview(segment)
-        contentView.addSubview(translucentView)
-        
-        constrain(translucentView, segment) { translucentView, segment in
+        constrain(segment) { segment in
             
-            // Ugly ass fix for iPhone X
-            if Global.hasNotch {
-                translucentView.top == translucentView.superview!.top
-                translucentView.bottom == translucentView.superview!.bottom
-                translucentView.left == translucentView.superview!.left - 50
-                translucentView.right == translucentView.superview!.right + 50
-            } else {
-                translucentView.edges == translucentView.superview!.edges
-            }
-            
-            segment.top == translucentView.top + 7
-            segment.bottom == translucentView.bottom - 7 ~ Global.notMaxPriority
-            segment.centerX == translucentView.centerX
+            segment.bottom == segment.superview!.bottom - 10
+            segment.centerX == segment.superview!.centerX
             
             if items.contains(.reviews) {
                 if Global.isIpad {
                     segment.width == 380
                 } else {
-                    segment.left == segment.superview!.superview!.left + Global.size.margin.value + 5 ~ Global.notMaxPriority
-                    segment.right == segment.superview!.superview!.right - Global.size.margin.value - 5 ~ Global.notMaxPriority
+                    segment.left == segment.superview!.left + Global.size.margin.value + 5 ~ Global.notMaxPriority
+                    segment.right == segment.superview!.right - Global.size.margin.value - 5 ~ Global.notMaxPriority
                 }
             } else {
                 segment.width == (280~~250)

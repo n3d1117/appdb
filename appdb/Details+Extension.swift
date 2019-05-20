@@ -164,18 +164,6 @@ extension Details {
     
     @objc func dismissAnimated() { dismiss(animated: true) }
     
-    // Helpers
-    
-    // Set header translucency on scroll
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let segment = tableView.headerView(forSection: 1) as? DetailsSegmentControl, indexForSegment != .download {
-            if let header = header.first as? DetailsHeader, let nav = navigationController {
-                let minOff: CGFloat = (nav.navigationBar.frame.height)~~(nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height)
-                segment.shouldBeTranslucent = (scrollView.contentOffset.y > header.height-minOff)
-            }
-        }
-    }
-    
     // Details/Reviews for details segment
     var itemsForSegmentedControl: [detailsSelectedSegmentState] {
         switch contentType {

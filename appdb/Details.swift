@@ -93,7 +93,7 @@ class Details: LoadingTableView {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         switch indexForSegment {
-            case .details, .reviews: return 2
+            case .details, .reviews: return 3
             case .download: return 2 + (versions.isEmpty ? 1 : versions.count)
         }
     }
@@ -101,15 +101,11 @@ class Details: LoadingTableView {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             case 0: return header.count
-            case 1:
+            case 1: return 0
+            default:
                 switch indexForSegment {
                     case .details: return details.count
                     case .reviews: return content.itemReviews.count + 1
-                    case .download: return 0
-                }
-            default:
-                switch indexForSegment {
-                    case .details, .reviews: return 0
                     case .download: return versions.isEmpty ? 1 : versions[section-2].links.count
                 }
         }
@@ -118,15 +114,11 @@ class Details: LoadingTableView {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
             case 0: return header[indexPath.row].height
-            case 1:
+            case 1: return 0
+            default:
                 switch indexForSegment {
                     case .details: return details[indexPath.row].height
                     case .reviews: return indexPath.row == content.itemReviews.count ? UITableView.automaticDimension : DetailsReview.height
-                    case .download: return 0
-                }
-            default:
-                switch indexForSegment {
-                    case .details, .reviews: return 0
                     case .download: return versions.isEmpty ? DetailsDownloadEmptyCell.height : DetailsDownload.height
                 }
         }
@@ -135,53 +127,49 @@ class Details: LoadingTableView {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
             case 0: return header[indexPath.row]
-            case 1:
-                switch indexForSegment {
-                    case .details:
-                        // DetailsDescription and DetailsChangelog need to be dynamic to have smooth expand
-                        if details[indexPath.row] is DetailsDescription {
-                            if let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as? DetailsDescription {
-                                cell.desc.collapsed = descriptionCollapsed
-                                cell.configure(with: content.itemDescription)
-                                cell.desc.delegated = self
-                                details[indexPath.row] = cell // ugly but needed to update height correctly
-                                return cell
-                            } else { return UITableViewCell() }
-                        }
-                        if details[indexPath.row] is DetailsChangelog {
-                            if let cell = tableView.dequeueReusableCell(withIdentifier: "changelog", for: indexPath) as? DetailsChangelog {
-                                cell.desc.collapsed = changelogCollapsed
-                                cell.configure(type: contentType, changelog: content.itemChangelog, updated: content.itemUpdatedDate)
-                                cell.desc.delegated = self
-                                details[indexPath.row] = cell // ugly but needed to update height correctly
-                                return cell
-                            } else { return UITableViewCell() }
-                        }
-                        // Otherwise, just return static cells
-                        return details[indexPath.row]
-                    case .reviews:
-                        if indexPath.row == content.itemReviews.count { return DetailsPublisher("Reviews are from Apple's iTunes Store ©".localized()) }
-                        if let cell = tableView.dequeueReusableCell(withIdentifier: "review", for: indexPath) as? DetailsReview {
-                            cell.desc.collapsed = reviewCollapsedForIndexPath[indexPath] ?? true
-                            cell.configure(with: content.itemReviews[indexPath.row])
-                            cell.desc.delegated = self
-                            return cell
-                        } else { return UITableViewCell() }
-                    case .download: return UITableViewCell()
-                }
+            case 1: return UITableViewCell()
             default:
                 switch indexForSegment {
-                    case .details, .reviews: return UITableViewCell()
-                    case .download:
-                        if !versions.isEmpty {
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as! DetailsDownload
-                            cell.accessoryType = contentType == .books ? .none : .disclosureIndicator
-                            cell.configure(with: versions[indexPath.section-2].links[indexPath.row])
-                            cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
+                case .details:
+                    // DetailsDescription and DetailsChangelog need to be dynamic to have smooth expand
+                    if details[indexPath.row] is DetailsDescription {
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as? DetailsDescription {
+                            cell.desc.collapsed = descriptionCollapsed
+                            cell.configure(with: content.itemDescription)
+                            cell.desc.delegated = self
+                            details[indexPath.row] = cell // ugly but needed to update height correctly
                             return cell
-                        } else {
-                            return DetailsDownloadEmptyCell("No links found.".localized())
-                        }
+                        } else { return UITableViewCell() }
+                    }
+                    if details[indexPath.row] is DetailsChangelog {
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "changelog", for: indexPath) as? DetailsChangelog {
+                            cell.desc.collapsed = changelogCollapsed
+                            cell.configure(type: contentType, changelog: content.itemChangelog, updated: content.itemUpdatedDate)
+                            cell.desc.delegated = self
+                            details[indexPath.row] = cell // ugly but needed to update height correctly
+                            return cell
+                        } else { return UITableViewCell() }
+                    }
+                    // Otherwise, just return static cells
+                    return details[indexPath.row]
+                case .reviews:
+                    if indexPath.row == content.itemReviews.count { return DetailsPublisher("Reviews are from Apple's iTunes Store ©".localized()) }
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "review", for: indexPath) as? DetailsReview {
+                        cell.desc.collapsed = reviewCollapsedForIndexPath[indexPath] ?? true
+                        cell.configure(with: content.itemReviews[indexPath.row])
+                        cell.desc.delegated = self
+                        return cell
+                    } else { return UITableViewCell() }
+                case .download:
+                    if !versions.isEmpty {
+                        let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as! DetailsDownload
+                        cell.accessoryType = contentType == .books ? .none : .disclosureIndicator
+                        cell.configure(with: versions[indexPath.section-2].links[indexPath.row])
+                        cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
+                        return cell
+                    } else {
+                        return DetailsDownloadEmptyCell("No links found.".localized())
+                    }
                 }
         }
     }
