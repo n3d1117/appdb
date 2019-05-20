@@ -14,8 +14,26 @@ import BLTNBoard
 
 class Settings: TableViewController {
     
-    lazy var bulletinManager: BLTNItemManager = {
+    lazy var deviceLinkBulletinManager: BLTNItemManager = {
         let rootItem: BLTNItem = DeviceLinkIntroBulletins.makeSelectorPage()
+        let manager = BLTNItemManager(rootItem: rootItem)
+        manager.theme_backgroundColor = Color.easyBulletinBackground
+        if #available(iOS 10, *) {
+            manager.backgroundViewStyle = .blurredDark
+        }
+        return manager
+    }()
+    
+    lazy var deauthorizeBulletinManager: BLTNItemManager = {
+        let rootItem: BLTNItem = DeviceLinkIntroBulletins.makeDeauthorizeConfirmationPage(action: {
+            let realm = try! Realm()
+            guard let pref = realm.objects(Preferences.self).first else { return }
+            try! realm.write {
+                pref.token = ""
+                pref.linkCode = ""
+            }
+            self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        })
         let manager = BLTNItemManager(rootItem: rootItem)
         manager.theme_backgroundColor = Color.easyBulletinBackground
         if #available(iOS 10, *) {
@@ -74,16 +92,7 @@ class Settings: TableViewController {
     
     // Deauthorize app (clean link code, token & refresh settings)
     func deauthorize() {
-        let realm = try! Realm()
-        guard let pref = realm.objects(Preferences.self).first else { return }
-        try! realm.write {
-            pref.token = ""
-            pref.linkCode = ""
-        }
-        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
-        delay(1) {
-            NotificationCenter.default.post(name: .RefreshSettings, object: self)
-        }
+        deauthorizeBulletinManager.showBulletin(above: tabBarController ?? self)
     }
     
     // Update badge for Updates tab
@@ -171,7 +180,7 @@ class Settings: TableViewController {
     // Also subscribes to notification requests to open Safari
     func pushDeviceLink() {
         NotificationCenter.default.addObserver(self, selector: #selector(openSafari(notification:)), name: .OpenSafari, object: nil)
-        bulletinManager.showBulletin(above: tabBarController ?? self)
+        deviceLinkBulletinManager.showBulletin(above: tabBarController ?? self)
     }
     
     // Opens link to contact dev
@@ -210,7 +219,7 @@ class Settings: TableViewController {
         
         /*if #available(iOS 9.0, *) {
             let svc = SFSafariViewController(url: url)
-            bulletinManager.present(svc, animated: true, completion: nil)
+            deviceLinkBulletinManager.present(svc, animated: true, completion: nil)
         } else {
             UIApplication.shared.openURL(url)
         }*/

@@ -174,6 +174,57 @@ enum DeviceLinkIntroBulletins {
         
     }
     
+    // MARK: - Deauthorization
+    
+    static func makeDeauthorizeConfirmationPage(action: @escaping () -> ()) -> BLTNPageItem {
+        
+        let page = DummyBulletinPage(title: "Deauthorization".localized())
+        page.isDismissable = true
+        page.descriptionText = "Are you sure you want to deauthorize this app from installing apps your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles.".localized()
+        page.actionButtonTitle = "Deauthorize".localized()
+        page.alternativeButtonTitle = "Cancel".localized()
+        page.appearance.titleFontSize = 27
+        page.appearance.theme_actionButtonColor = Color.softRed
+        page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
+        page.appearance.shouldUseCompactDescriptionText = true
+        page.actionHandler = { (item: BLTNActionItem) in
+            item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
+            action()
+            delay(0.8) {
+                item.manager?.push(item: makeDeauthorizeCompletedPage())
+            }
+        }
+        page.alternativeHandler = { (item: BLTNActionItem) in
+            item.manager?.dismissBulletin(animated: true)
+        }
+        
+        return page
+        
+    }
+    
+    static func makeDeauthorizeCompletedPage() -> BLTNPageItem {
+        
+        let page = DummyBulletinPage(title: "Deauthorized".localized())
+        page.image = #imageLiteral(resourceName: "completed")
+        page.appearance.theme_actionButtonColor = Color.softGreen
+        page.appearance.theme_imageViewTintColor = Color.softGreen
+        page.appearance.theme_actionButtonTitleColor = Color.invertedTitle
+        page.appearance.titleFontSize = 27
+        page.descriptionText = "App was deauthorized successfully.".localized()
+        page.appearance.shouldUseCompactDescriptionText = true
+        page.actionButtonTitle = "Continue".localized()
+        page.isDismissable = true
+        
+        NotificationCenter.default.post(name: .RefreshSettings, object: self)
+        
+        page.actionHandler = { item in
+            item.manager?.dismissBulletin(animated: true)
+        }
+        
+        return page
+        
+    }
+    
 }
 
 // Workaround to set descriptionLabel's theme color for error/completion page

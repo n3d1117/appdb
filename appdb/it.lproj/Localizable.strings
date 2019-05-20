@@ -129,6 +129,10 @@
 "Yes, already linked" = "Sì, è già collegato";
 "No, not yet linked" = "No, non è collegato";
 "name@example.com" = "nome@esempio.it";
+"Deauthorization" = "Scollegamento";
+"Deauthorized" = "Scollegato";
+"Are you sure you want to deauthorize this app from installing apps your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Sei sicuro di voler scollgare l'app e rimuovere l'autorizzazione ad installare app sul tuo dispositivo?\n\nNOTA: Per cancellare completamente il tuo dispositivo da appdb, rimuovi il profilo da Impostazioni -> Generali -> Profili.";
+"App was deauthorized successfully." = "App scollegata con successo.";
 
 ////////////////////
 //     SEARCH     //
@@ -140,6 +144,7 @@
 "Trending iOS Apps" = "App iOS in tendenza";
 "Trending Cydia Apps" = "App di Cydia in tendenza";
 "Trending Books" = "Libri in tendenza";
+"No results found" = "Nessun risultato trovato";
 "No results were found for '%@'" = "Nessun risultato trovato per '%@'";
 "Please search at least two characters" = "La ricerca deve contenere almeno due caratteri";
 "Search News" = "Cerca notizie";
