@@ -3,7 +3,7 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/) 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -15,7 +15,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>Alamofire</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/) 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -27,7 +27,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>AlamofireImage</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/) 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -39,7 +39,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>AlamofireNetworkActivityIndicator</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2015 Tristan Himmelman
@@ -51,7 +51,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>AlamofireObjectMapper</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2017 Pavel Sharanda
@@ -65,7 +65,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>Atributika</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2017 Alexis Aubry &lt;me@alexaubry.fr&gt;
@@ -77,7 +77,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>BLTNBoard</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2014 Robert Böhnke &lt;robb@robb.is&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -101,7 +101,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>Cartography</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License
 
 Copyright (c) 2015 Evgenii Neumerzhitckii
@@ -113,7 +113,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>Cosmos</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2015 Khoa Pham
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -125,7 +125,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>DeepDiff</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2015 Johannes Schickling
@@ -137,7 +137,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>Device.swift</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2016 Jin Wang
@@ -149,7 +149,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>DynamicFontSizeHelper</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>MIT License
 
 Copyright (c) 2016 Marco Muccinelli
@@ -163,7 +163,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>Ferrara</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2013 Ivo Leko
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -175,7 +175,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>ILTranslucentView</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2014 - 2015 Atsushi Kiwaki (@_tid_)
@@ -187,7 +187,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>Kanna</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2015 Roy Marmelstein (http://roysapps.com/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -199,7 +199,21 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>Localize-Swift</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
+		<string>MIT License
+
+Copyright (c) 2017 Gilt Tech
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+		<key>Title</key>
+		<string>LNZCollectionLayouts</string>
+	</dict>
+	<dict>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2014 Hearst
@@ -211,7 +225,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>ObjectMapper</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>TABLE OF CONTENTS
 
 1. Apache License version 2.0
@@ -317,7 +331,7 @@ You agree to comply with all export, re-export and import restrictions and regul
 		<string>realm-cocoa</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2015 Venmo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -331,7 +345,7 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FO
 		<string>Static</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>Copyright (c) 2014, Damian Kołakowski
 
 All rights reserved.
@@ -349,7 +363,7 @@ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIE
 		<string>swifter</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>MIT License
 
 Copyright (c) 2017 Leo Zhou
@@ -361,7 +375,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>SwiftPullToRefresh</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2016 节操精选 http://jiecao.fm
@@ -373,7 +387,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 		<string>SwiftTheme</string>
 	</dict>
 	<dict>
-		<key>FooterText</key>
+		<key>Copyright</key>
 		<string>The MIT License (MIT)
 
 Copyright (c) 2017 Ruoyu Fu
@@ -383,6 +397,68 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
 		<key>Title</key>
 		<string>SwiftyJSON</string>
+	</dict>
+	<dict>
+		<key>Copyright</key>
+		<string>MIT License
+
+Copyright (c) 2017 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</string>
+		<key>Title</key>
+		<string>ETCollectionViewWaterFallLayout</string>
+	</dict>
+	<dict>
+		<key>Copyright</key>
+		<string>MIT License
+
+Copyright (c) 2017 Thomas Zoechling
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+		<key>Title</key>
+		<string>ZIPFoundation</string>
+	</dict>
+	<dict>
+		<key>Copyright</key>
+		<string>Copyright (c) 2016 SwiftKick Mobile LLC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+		<key>Title</key>
+		<string>SwiftMessages</string>
+	</dict>
+	<dict>
+		<key>Copyright</key>
+		<string>The materials on Icons8&apos;s web site are provided &quot;as is&quot; Icons8 makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, Icons8 does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any sites linked to this site.
+
+The Site serves as a venue for Individuals to purchase distinct service or products. Neither Icons8 nor the Site has control over the quality or fitness for a particular function of a product. Icons8 likewise has no control over the accuracy, reliability, completeness, or timeliness of the User-submitted details and makes no representations or warranties about any info on the Site.
+
+THE WEBSITE AND ALL DETAILS, CONTENT, MATERIALS, PRODUCTS (INCLUDING SOFTWARE APPLICATION) AND SERVICES CONSISTED OF ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THIS SITE ARE PROVIDED BY Icons8 ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS, UNLESS OTHERWISE SPECIFIED IN WRITING. Icons8 MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, ABOUT THE OPERATION OF THIS SITE OR THE INFO, MATERIAL, MATERIALS, PRODUCTS (INCLUDING SOFTWARE) OR SERVICES CONSISTED OF ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THIS SITE, UNLESS OTHERWISE POINTED OUT IN WRITING. ICONS8 DOES NOT PROMISE THAT THE SITE WILL BE ERROR-FREE AND THAT ALL THE DEFECTS WILL BE CORRECTED. ICONS8 DOES NOT PROMISE THE SPECIFIC RESULT OF YOU USING THIS SITE. YOU EXPRESSLY AGREE THAT YOUR USE OF THIS WEBSITE IS AT YOUR OWN RISK. TO THE COMPLETE EXTENT PERMISSIBLE BY APPLICABLE LAW, ICONS8 DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND PHYSICAL FITNESS FOR A PARTICULAR PURPOSE. Icons8 DOES NOT WARRANT THAT THIS WEBSITE; DETAILS, CONTENT, MATERIALS, PRODUCTS (INCLUDING SOFTWARE APPLICATION) OR SERVICES CONSISTED OF ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THE SITE; ITS SERVERS; OR EMAIL SENT FROM Icons8 ARE WITHOUT VIRUSES OR OTHER HARMFUL ELEMENTS. Icons8 WILL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND ARISING FROM THE USE OF THE SITE OR FROM ANY DETAILS, CONTENT, MATERIALS, PRODUCTS (INCLUDING SOFTWARE APPLICATION) OR SERVICES CONSISTED OF ON OR OTHERWISE MADE AVAILABLE TO YOU WITH THIS SITE, INCLUDING, BUT NOT LIMITED TO DIRECT, INDIRECT, INCIDENTAL, PUNITIVE, AND CONSEQUENTIAL DAMAGES, UNLESS OTHERWISE POINTED OUT IN WRITING. UNDER NO SCENARIO SHALL Icons8&apos;S LIABILITY DEVELOPING FROM OR IN CONNECTION WITH THE SITE OR YOUR USE OF THE WEBSITE, DESPITE THE REASON FOR ACTION (WHETHER IN AGREEMENT, TORT, BREACH OF SERVICE WARRANTY OR OTHERWISE), GO BEYOND $100. ALL INFORMATION PROVIDED ON ICONS8 WEBSITE IS SUBJET OF CHANGING WITHOUT NOTICE.</string>
+		<key>Title</key>
+		<string>icons8.com</string>
 	</dict>
 </array>
 </plist>

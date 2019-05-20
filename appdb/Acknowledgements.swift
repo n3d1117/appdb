@@ -59,6 +59,12 @@ class Acknowledgements: LoadingTableView {
     // Parse 'Acknowledgements.plist' into an array of Licenses
     fileprivate func parseLicenses() {
         guard let url = Bundle.main.url(forResource:"Acknowledgements", withExtension: "plist") else { fail(); return }
+        
+        // Debug
+        //debugLog("SHA1 of acknowledgements file is \(SHA1.hexString(fromFile: url.path)!)")
+        
+        guard SHA1.hexString(fromFile: url.path) == "6F63A0B7 AD3D9483 2FEEA453 8ADCB713 7C855DC9" else { fail(); return }
+        
         do {
             let data = try Data(contentsOf: url)
             guard let items = try PropertyListSerialization.propertyList(from: data, format: nil)
@@ -66,11 +72,11 @@ class Acknowledgements: LoadingTableView {
 
             var tmpLicenses: [License] = []
             for item in items {
-                if let title = item["Title"], let text = item["FooterText"] {
+                if let title = item["Title"], let text = item["Copyright"] {
                     tmpLicenses.append(License(title: title, text: text))
                 }
             }
-            self.licenses = tmpLicenses
+            self.licenses = tmpLicenses.sorted(by: { $0.title.lowercased() < $1.title.lowercased() })
         } catch {
             fail(error)
         }
