@@ -12,8 +12,8 @@ import AlamofireImage
 
 class QueuedDownloadsCell: UICollectionViewCell {
 
-    fileprivate var iconSize: CGFloat = (80~~70)
-    fileprivate var margin: CGFloat = Global.size.margin.value
+    fileprivate var iconSize: CGFloat = (75~~65)
+    fileprivate var margin: CGFloat = (15~~10)
     fileprivate var name: UILabel!
     fileprivate var icon: UIImageView!
     fileprivate var status: UILabel!

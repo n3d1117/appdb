@@ -140,6 +140,6 @@ extension QueuedApps: ETCollectionViewDelegateWaterfallLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: (80~~70) + Global.size.margin.value*2)
+        return CGSize(width: itemDimension, height: (75~~65) + (15~~10)*2)
     }
 }
