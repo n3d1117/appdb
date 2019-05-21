@@ -46,24 +46,24 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
     //MARK: - Inspectable properties
     
     ///The spacing between consecutive items
-    @IBInspectable public var interitemSpacing: CGFloat = 8
+    @IBInspectable public var interitemSpacing: CGFloat = 0
     
     ///The space between the items and the top border of the collection view
-    @IBInspectable public var sectionInsetTop: CGFloat = 8
+    @IBInspectable public var sectionInsetTop: CGFloat = 0
     
     ///The space between the items and the bottom border of the collection view
-    @IBInspectable public var sectionInsetBottom: CGFloat = 8
+    @IBInspectable public var sectionInsetBottom: CGFloat = 0
     
     ///The minimum space from the left border and the first item of the collection view.
     ///The real spacing will be determined in runtime and it will be computed to enforce the first item to be centered.
-    @IBInspectable public var minimumSectionInsetLeft: CGFloat = 8
+    @IBInspectable public var minimumSectionInsetLeft: CGFloat = 0
     
     ///The minimum space from the right border and the last item of the collection view.
     ///The real spacing will be determined in runtime and it will be computed to enforce the last item to be centered.
-    @IBInspectable public var minimumSectionInsetRight: CGFloat = 8
+    @IBInspectable public var minimumSectionInsetRight: CGFloat = 0
     
     ///The size for each element in the collection
-    @IBInspectable public var itemSize: CGSize = CGSize(width: 100, height: 100)
+    @IBInspectable public var itemSize: CGSize = CGSize(width: 0, height: 0)
     
     ///If this property is true, the left and right section spacing will be adapted to enforce the first and last element to be centered.
     ///This property is true by default.
@@ -72,10 +72,10 @@ open class LNZSnapToCenterCollectionViewLayout: UICollectionViewLayout, FocusedC
     //MARK: - Utility properties
     
     ///This property represents the actual section inset left calculated in order to have the first element of the collection centered.
-    internal var sectionInsetLeft: CGFloat = 8
+    internal var sectionInsetLeft: CGFloat = 0
     
     ///This property represents the actual section inset right calculated in order to have the last element of the collection centered.
-    internal var sectionInsetRight: CGFloat = 8
+    internal var sectionInsetRight: CGFloat = 0
     
     
     ///As in focus element is to be intended the element currently in the center,

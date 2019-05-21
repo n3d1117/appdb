@@ -36,20 +36,23 @@ extension String {
     // Prettify errors
     var prettified: String {
         switch self {
-        case "cancelled": return "Operation has been cancelled.".localized()
-        case "MAINTENANCE_MODE": return "Maintenance mode. We will be back soon.".localized()
-        case "INVALID_LINK_CODE": return "Invalid link code.".localized()
-        case "INVALID_EMAIL": return "Invalid email address.".localized()
-        case "NO_DEVICE_LINKED": return "No device linked.".localized()
-        case "USE_LINK_CODE_INSTEAD": return "Use link code instead.".localized()
-        case "MISSING_LINK_CODE_OR_EMAIL": return "Missing link code or email.".localized()
-        case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
-        case "TOO_SHORT_SEARCH_STRING": return "Please search at least two characters".localized()
-        case "NOT_READY": return "The request timed out".localized()
-        case "NOT_COMPATIBLE_WITH_DEVICE": return "Your device is not compatible with this app".localized()
-        case "REPORT_ALREADY_SUBMITTED": return "A report has already been submitted".localized()
-        case "JSON could not be serialized because of error:\nThe data couldn’t be read because it isn’t in the correct format.": return "An error has occurred: malformed JSON".localized()
-        default: return self.localized()
+            case "cancelled": return "Operation has been cancelled.".localized()
+            case "MAINTENANCE_MODE": return "Maintenance mode. We will be back soon.".localized()
+            case "INVALID_LINK_CODE": return "Invalid link code.".localized()
+            case "INVALID_EMAIL": return "Invalid email address.".localized()
+            case "NO_DEVICE_LINKED": return "No device linked.".localized()
+            case "USE_LINK_CODE_INSTEAD": return "Use link code instead.".localized()
+            case "MISSING_LINK_CODE_OR_EMAIL": return "Missing link code or email.".localized()
+            case "PRO_EXPIRED": return "Your PRO subscription has expired.".localized()
+            case "PRO_REVOKED": return "Your PRO subscription has been revoked by Apple.".localized()
+            case "DEVICE_IS_NOT_PRO": return "Your device doesn't seem to have a PRO subcription.".localized()
+            case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
+            case "TOO_SHORT_SEARCH_STRING": return "Please search at least two characters".localized()
+            case "NOT_READY": return "The request timed out".localized()
+            case "NOT_COMPATIBLE_WITH_DEVICE": return "Your device is not compatible with this app".localized()
+            case "REPORT_ALREADY_SUBMITTED": return "A report has already been submitted".localized()
+            case "JSON could not be serialized because of error:\nThe data couldn’t be read because it isn’t in the correct format.": return "An error has occurred: malformed JSON".localized()
+            default: return self.localized()
         }
     }
     

@@ -289,6 +289,9 @@
 "A report has already been submitted" = "Una segnalazione è già stata inviata";
 "Installation failed, but can be fixed from Settings -> Device Status" = "L'installazione è fallita, ma può essere aggiustata da Impostazioni -> Stato dispositivo";
 "An error has occurred: malformed JSON" = "Errore: JSON non valido";
+"Your PRO subscription has expired." = "Il tuo abbonamento PRO è scaduto.";
+"Your PRO subscription has been revoked by Apple." = "Il tuo abbonamento PRO è stato revocato da Apple.";
+"Your device doesn't seem to have a PRO subcription." = "Il tuo dispositivo non ha un abbonamento PRO attivo.";
 
 ////////////////////////////
 //     LINK REPORTING     //
