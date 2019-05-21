@@ -288,6 +288,7 @@
 "File size not found in resource values" = "File size not found in resource values";
 "A report has already been submitted" = "A report has already been submitted";
 "Installation failed, but can be fixed from Settings -> Device Status" = "Installation failed, but can be fixed from Settings -> Device Status";
+"An error has occurred: malformed JSON" = "An error has occurred: malformed JSON";
 
 ////////////////////////////
 //     LINK REPORTING     //

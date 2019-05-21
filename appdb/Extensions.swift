@@ -48,6 +48,7 @@ extension String {
         case "NOT_READY": return "The request timed out".localized()
         case "NOT_COMPATIBLE_WITH_DEVICE": return "Your device is not compatible with this app".localized()
         case "REPORT_ALREADY_SUBMITTED": return "A report has already been submitted".localized()
+        case "JSON could not be serialized because of error:\nThe data couldn’t be read because it isn’t in the correct format.": return "An error has occurred: malformed JSON".localized()
         default: return self.localized()
         }
     }
