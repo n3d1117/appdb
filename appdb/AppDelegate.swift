@@ -188,7 +188,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             guard let nav = tab.viewControllers?[1] as? UINavigationController else { return false }
             guard let search = nav.viewControllers[0] as? Search else { return false }
             
-            search.setItemTypeAndSearch(type: type, query: query)
+            delay(0.7) {
+                search.setItemTypeAndSearch(type: type, query: query)
+            }
+            
+            return true
+        }
+        
+        // Open news with id, e.g. appdb2://?news_id=x
+        
+        if let index1 = queryItems.firstIndex(where: { $0.name == "news_id" }) {
+            guard let id = queryItems[index1].value else { return false }
+            
+            dismissCurrentNavIfAny()
+            
+            tab.selectedIndex = 3
+            guard let nav = tab.viewControllers?[3] as? UINavigationController else { return false }
+            guard let settings = nav.viewControllers[0] as? Settings else { return false }
+            settings.pushNews()
+            
+            let newsDetailViewController = NewsDetail(with: id)
+            
+            if Global.isIpad {
+                delay(1) {
+                    if let presented = nav.topViewController?.presentedViewController as? DismissableModalNavController {
+                        presented.pushViewController(newsDetailViewController, animated: true)
+                    }
+                }
+            } else {
+                nav.pushViewController(newsDetailViewController, animated: true)
+            }
             
             return true
         }
@@ -212,14 +241,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             return true
         }
         
+        // Authorize app with link code, e.g. appdb2://?action=authorize&code=x
+        
+        if let index1 = queryItems.firstIndex(where: { $0.name == "action" }), let index2 = queryItems.firstIndex(where: { $0.name == "code" }) {
+            guard let action = queryItems[index1].value, let code = queryItems[index2].value else { return false }
+            guard action == "authorize", !code.isEmpty, !DeviceInfo.deviceIsLinked else { return false }
+            
+            dismissCurrentNavIfAny()
+            
+            tab.selectedIndex = 3
+            
+            guard let nav = tab.viewControllers?[3] as? UINavigationController else { return false }
+            guard let settings = nav.viewControllers[0] as? Settings else { return false }
+            
+            delay(0.5) {
+                settings.showlinkCodeFromURLSchemeBulletin(code: code)
+            }
+            
+            return true
+        }
+        
         return false
     }
     
     fileprivate func dismissCurrentNavIfAny() {
         guard let tab = window?.rootViewController as? TabBarController else { return }
-        
+
         if Global.isIpad, let currentNav = (tab.viewControllers?[tab.selectedIndex] as? UINavigationController)?.topViewController?.presentedViewController as? UINavigationController {
             currentNav.dismiss(animated: true)
+        }
+        
+        if tab.selectedIndex == 3 {
+            guard let nav = tab.viewControllers?[3] as? UINavigationController else { return }
+            guard let settings = nav.viewControllers[0] as? Settings else { return }
+            
+            DispatchQueue.main.async {
+                if settings.deviceLinkBulletinManager.isShowingBulletin {
+                    settings.deviceLinkBulletinManager.dismissBulletin()
+                } else if settings.deauthorizeBulletinManager.isShowingBulletin {
+                    settings.deauthorizeBulletinManager.dismissBulletin()
+                }
+            }
         }
     }
 }

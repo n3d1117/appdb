@@ -154,20 +154,21 @@ enum DeviceLinkIntroBulletins {
         
     }
     
-    static func makeErrorPage(with error: String) -> BLTNPageItem {
+    static func makeErrorPage(with error: String, displayBackButton: Bool = true) -> BLTNPageItem {
         
         let page = DummyBulletinPage(title: "Unable to complete".localized())
         page.image = #imageLiteral(resourceName: "error")
         page.appearance.theme_imageViewTintColor = Color.softRed
-        page.appearance.theme_actionButtonColor = Color.softRed
         page.appearance.titleFontSize = 27
         page.descriptionText = "An error has occurred".localized() + ":\n" + error
-        page.alternativeButtonTitle = "Go Back".localized()
-        page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
         page.isDismissable = true
-        page.alternativeHandler = { item in
-            item.manager?.popItem()
+        if displayBackButton {
+            page.alternativeButtonTitle = "Go Back".localized()
+            page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
+            page.alternativeHandler = { item in
+                item.manager?.popItem()
+            }
         }
         
         return page
@@ -190,7 +191,7 @@ enum DeviceLinkIntroBulletins {
         page.actionHandler = { (item: BLTNActionItem) in
             item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
             action()
-            delay(0.8) {
+            delay(0.7) {
                 item.manager?.push(item: makeDeauthorizeCompletedPage())
             }
         }
@@ -219,6 +220,36 @@ enum DeviceLinkIntroBulletins {
         
         page.actionHandler = { item in
             item.manager?.dismissBulletin(animated: true)
+        }
+        
+        return page
+        
+    }
+    
+    // MARK: - link device from url scheme with given code
+    
+    static func makeLinkCodeFromURLSchemePage(code: String) -> BLTNPageItem {
+        
+        let page = DummyBulletinPage()
+        page.shouldStartWithActivityIndicator = true
+        page.image = #imageLiteral(resourceName: "completed") // just a placeholder, never actually displayed
+        page.actionButtonTitle = ""
+        page.presentationHandler = { item in
+            item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
+            delay(0.8) {
+                API.linkDevice(code: code, success: {
+                    API.getConfiguration(success: {
+                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
+                        item.manager?.push(item: completionPage)
+                    }, fail: { error in
+                        let errorPage = self.makeErrorPage(with: error.prettified, displayBackButton: false)
+                        item.manager?.push(item: errorPage)
+                    })
+                }, fail: { error in
+                    let errorPage = self.makeErrorPage(with: error.prettified, displayBackButton: false)
+                    item.manager?.push(item: errorPage)
+                })
+            }
         }
         
         return page

@@ -15,13 +15,13 @@ class NewsDetail: LoadingTableView {
             shareButton.isEnabled = true
         }
     }
-    var partialItem: SingleNews!
+    var id: String!
     
     fileprivate var shareButton: UIBarButtonItem!
     
-    convenience init(with item: SingleNews) {
+    convenience init(with id: String) {
         self.init(style: .plain)
-        self.partialItem = item
+        self.id = id
     }
     
     override func viewDidLoad() {
@@ -54,13 +54,17 @@ class NewsDetail: LoadingTableView {
         showsErrorButton = false
         state = .loading
         
-        guard let p = self.partialItem else { return }
-        API.getNewsDetail(id: p.id, success: { result in
+        guard let id = self.id else { return }
+        API.getNewsDetail(id: id, success: { result in
             self.item = result
             self.state = .done
         }, fail: { error in
             self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
         })
+    }
+    
+    fileprivate func commonInit() {
+        
     }
     
     @objc fileprivate func share(sender: UIBarButtonItem) {

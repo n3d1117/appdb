@@ -156,7 +156,7 @@ class News: LoadingTableView {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = isFiltering() ? filteredNews[indexPath.row] : displayedNews[indexPath.row]
         guard !item.id.isEmpty else { return }
-        let newsDetailViewController = NewsDetail(with: item)
+        let newsDetailViewController = NewsDetail(with: item.id)
         navigationController?.pushViewController(newsDetailViewController, animated: true)
     }
 }
@@ -193,7 +193,7 @@ extension News: UIViewControllerPreviewingDelegate {
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         let item = isFiltering() ? filteredNews[indexPath.row] : displayedNews[indexPath.row]
         guard !item.id.isEmpty else { return nil }
-        let newsDetailViewController = NewsDetail(with: item)
+        let newsDetailViewController = NewsDetail(with: item.id)
         return newsDetailViewController
     }
     

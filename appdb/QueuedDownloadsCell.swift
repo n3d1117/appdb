@@ -86,7 +86,7 @@ class QueuedDownloadsCell: UICollectionViewCell {
             name.top == icon.top + 6
             
             status.left == name.left
-            status.top == name.bottom + 2
+            status.top == name.bottom + (2~~0)
             status.right <= status.superview!.right - margin
             
         }

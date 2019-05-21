@@ -203,10 +203,17 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         guard let updateSuggestions = searchController.searchResultsController as? SuggestionsWhileTyping else { return }
         updateSuggestions.type = type
         switch updateSuggestions.type {
-            case .ios: searchController.searchBar.placeholder = "Search iOS Apps".localized()
-            case .cydia: searchController.searchBar.placeholder = "Search Cydia Apps".localized()
-            default: searchController.searchBar.placeholder = "Search Books".localized()
+            case .ios:
+                searchController.searchBar.selectedScopeButtonIndex = 0
+                searchController.searchBar.placeholder = "Search iOS Apps".localized()
+            case .cydia:
+                searchController.searchBar.selectedScopeButtonIndex = 1
+                searchController.searchBar.placeholder = "Search Cydia Apps".localized()
+            default:
+                searchController.searchBar.selectedScopeButtonIndex = 2
+                searchController.searchBar.placeholder = "Search Books".localized()
         }
+        getTrending(type: updateSuggestions.type)
         actuallySearch(with: query)
     }
     

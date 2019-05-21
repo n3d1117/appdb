@@ -42,6 +42,8 @@ class Settings: TableViewController {
         return manager
     }()
     
+    var urlSchemeLinkCodeBulletinManager: BLTNItemManager?
+    
     deinit { NotificationCenter.default.removeObserver(self) }
     
     convenience init() {
@@ -286,5 +288,19 @@ extension Settings: ChangedTheme {
 extension Settings: ChangedLanguage {
     func changedLanguage() {
         refreshSources()
+    }
+}
+
+// MARK: - Link device from URL Scheme
+
+extension Settings {
+    func showlinkCodeFromURLSchemeBulletin(code: String) {
+        let rootItem = DeviceLinkIntroBulletins.makeLinkCodeFromURLSchemePage(code: code)
+        urlSchemeLinkCodeBulletinManager = BLTNItemManager(rootItem: rootItem)
+        urlSchemeLinkCodeBulletinManager?.theme_backgroundColor = Color.easyBulletinBackground
+        if #available(iOS 10, *) {
+            urlSchemeLinkCodeBulletinManager?.backgroundViewStyle = .blurredDark
+        }
+        urlSchemeLinkCodeBulletinManager?.showBulletin(above: tabBarController ?? self)
     }
 }
