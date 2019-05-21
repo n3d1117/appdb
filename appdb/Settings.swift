@@ -26,12 +26,7 @@ class Settings: TableViewController {
     
     lazy var deauthorizeBulletinManager: BLTNItemManager = {
         let rootItem: BLTNItem = DeviceLinkIntroBulletins.makeDeauthorizeConfirmationPage(action: {
-            let realm = try! Realm()
-            guard let pref = realm.objects(Preferences.self).first else { return }
-            try! realm.write {
-                pref.token = ""
-                pref.linkCode = ""
-            }
+            self.deauthorize()
             self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
         })
         let manager = BLTNItemManager(rootItem: rootItem)
@@ -87,13 +82,26 @@ class Settings: TableViewController {
                 }) { _ in }
             }) { error in
                 // Profile has been removed, so let's deauthorize the app as well
-                if error == "NO_DEVICE_LINKED" { self.deauthorize() }
+                if error == "NO_DEVICE_LINKED" {
+                    self.deauthorize()
+                    self.refreshSources()
+                }
             }
         }
     }
     
-    // Deauthorize app (clean link code, token & refresh settings)
+    // Deauthorize app (clean link code and token)
     func deauthorize() {
+        let realm = try! Realm()
+        guard let pref = realm.objects(Preferences.self).first else { return }
+        try! realm.write {
+            pref.token = ""
+            pref.linkCode = ""
+        }
+    }
+    
+    // Show deauthorization bulletin
+    func showDeauthorizeConfirmation() {
         deauthorizeBulletinManager.showBulletin(above: tabBarController ?? self)
     }
     
