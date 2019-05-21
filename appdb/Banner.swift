@@ -57,19 +57,11 @@ class Banner: UITableViewCell {
     let height: CGFloat = {
         let w: Double = Double(UIScreen.main.bounds.width)
         let h: Double = Double(UIScreen.main.bounds.height)
-        let screenHeight: Double = max(w, h)
-
-        switch screenHeight { /* Are these numbers out of my ass? Probably. There should be a better way. */
-            case 480, 568: return 128
-            case 667, 812: return 150
-            case 736: return 165
-            case 896: return 170
-            case 1024: return 220
-            case 1112, 1194: return 225
-            case 1366: return 250
-            default: debugLog("oh no, uncaught device height! (\(screenHeight))"); return 200~~160
-        }
         
+        let screenWidth: Double = min(w, h)
+        
+        // Experimental
+        return (230~~CGFloat(screenWidth/2.517 + 2))
     }()
     
     // Timer to scroll automatically

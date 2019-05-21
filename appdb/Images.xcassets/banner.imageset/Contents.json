@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Artboard 2.png",
+      "filename" : "banner@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Artboard 2@2x.png",
+      "filename" : "banner@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Artboard 2@3x.png",
+      "filename" : "banner.png",
       "scale" : "3x"
     }
   ],
