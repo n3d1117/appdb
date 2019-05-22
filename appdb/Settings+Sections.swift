@@ -48,7 +48,7 @@ extension Settings {
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "System Status".localized(), selection: { [unowned self] in
                     self.pushSystemStatus()
-                }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self),
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Visit appdb forum".localized(), detailText: forumSite, selection: { [unowned self] in
                     self.openInSafari(self.forumSite)
                 }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self)

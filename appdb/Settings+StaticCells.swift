@@ -23,12 +23,16 @@ class SimpleStaticCell: UITableViewCell, Cell {
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
         
-        textLabel?.font = .systemFont(ofSize: (15.5~~14.5))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
+        
+        detailTextLabel?.makeDynamicFont()
+        detailTextLabel?.theme_textColor = Color.darkGray
     }
     
     func configure(row: Row) {
+        textLabel?.theme_textColor = Color.title
+        detailTextLabel?.theme_textColor = Color.darkGray
         textLabel?.text = row.text
         detailTextLabel?.text = row.detailText
         imageView?.image = row.image
@@ -62,11 +66,21 @@ final class SimpleSubtitleCell: UITableViewCell, Cell {
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
         selectedBackgroundView = bgColorView
         
-        textLabel?.font = .systemFont(ofSize: (15.5~~14.5))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
         
         detailTextLabel?.makeDynamicFont()
+        detailTextLabel?.theme_textColor = Color.darkGray
+    }
+    
+    func configure(row: Row) {
+        
+        accessoryType = row.accessory.type
+        
+        textLabel?.theme_textColor = Color.title
+        textLabel?.text = row.text
+        
+        detailTextLabel?.text = row.detailText
         detailTextLabel?.theme_textColor = Color.darkGray
     }
     
@@ -89,6 +103,9 @@ final class SimpleStaticButtonCell: UITableViewCell, Cell {
     }
     
     func configure(row: Row) {
+        textLabel?.theme_textColor = ["#F8F8F8", "#F8F8F8"]
+        textLabel?.textAlignment = .center
+        
         textLabel?.text = row.text?.uppercased()
         theme_backgroundColor = row.context?["bgColor"] as? ThemeColorPicker
         contentView.theme_backgroundColor = row.context?["bgColor"] as? ThemeColorPicker
@@ -142,6 +159,7 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
     
     func configure(row: Row) {
         
+        textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
         
         guard let pro = row.context?["active"] as? Bool else { return }
@@ -216,6 +234,7 @@ final class SwitchCell: SimpleStaticCell {
     }
     
     override func configure(row: Row) {
+        textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
 
         if let vc = row.context?["valueChange"] as? ValueChange {
@@ -259,6 +278,7 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
     }
     
     override func configure(row: Row) {
+        textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
         if let placeholder = row.context?["placeholder"] as? String {
             textField.placeholder = placeholder
