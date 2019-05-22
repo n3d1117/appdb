@@ -21,7 +21,11 @@ extension Settings {
     var forumSite: String {
         return "https://forum." + Global.mainSite.components(separatedBy: "https://")[1]
     }
-    
+
+    var proSite: String {
+        return Global.mainSite + "pro.php?lt=" + DeviceInfo.linkToken
+    }
+
     var themeSection: [Static.Section] {
         return [
             Section(header: .title("User Interface".localized()), rows: [
@@ -90,9 +94,11 @@ extension Settings {
                 
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "PRO Status".localized(), cellClass: SimpleStaticPROStatusCell.self,
-                    context: ["active": DeviceInfo.pro, "expire": DeviceInfo.proUntil, "revoked": DeviceInfo.proRevoked,
-                              "revokedOn": DeviceInfo.proRevokedOn, "disabled": DeviceInfo.proDisabled]),
+                Row(text: "PRO Status".localized(), selection: { [unowned self] in
+                    if !DeviceInfo.proRevoked, !DeviceInfo.proDisabled, !DeviceInfo.pro {
+                        self.openInSafari(self.proSite)
+                    }
+                }, cellClass: SimpleStaticPROStatusCell.self, context: ["active": DeviceInfo.pro, "expire": DeviceInfo.proUntil, "revoked": DeviceInfo.proRevoked, "revokedOn": DeviceInfo.proRevokedOn, "disabled": DeviceInfo.proDisabled]),
                 
                 Row(text: "Link Code".localized(), detailText: DeviceInfo.linkCode, selection: { [unowned self] in
                         API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })

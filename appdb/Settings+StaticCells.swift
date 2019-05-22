@@ -124,22 +124,9 @@ final class SimpleStaticButtonCell: UITableViewCell, Cell {
 
 final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
     
-    private lazy var activeLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: (15~~14))
-        label.makeDynamicFont()
-        label.textAlignment = .right
-        return label
-    }()
-    
-    private lazy var expirationLabel: UILabel = {
-        let label = UILabel()
-        label.theme_textColor = Color.darkGray
-        label.font = .systemFont(ofSize: (13~~12))
-        label.makeDynamicFont()
-        label.textAlignment = .right
-        return label
-    }()
+    fileprivate var dummy: UIView!
+    fileprivate var activeLabel: UILabel!
+    fileprivate var expirationLabel: UILabel!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
@@ -147,14 +134,29 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         preservesSuperviewLayoutMargins = true
         contentView.preservesSuperviewLayoutMargins = true
         
+        activeLabel = UILabel()
+        activeLabel.font = .systemFont(ofSize: (15~~14))
+        activeLabel.makeDynamicFont()
+        activeLabel.textAlignment = .right
+        
+        expirationLabel = UILabel()
+        expirationLabel.theme_textColor = Color.darkGray
+        expirationLabel.font = .systemFont(ofSize: (13~~12))
+        expirationLabel.makeDynamicFont()
+        expirationLabel.textAlignment = .right
+        
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
         
-        textLabel?.font = .systemFont(ofSize: (15.5~~14.5))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
         
+        dummy = UIView()
+        dummy.isHidden = true
+        
         contentView.addSubview(activeLabel)
+        contentView.addSubview(expirationLabel)
+        contentView.addSubview(dummy)
     }
     
     func configure(row: Row) {
@@ -168,38 +170,53 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         guard let proRevoked = row.context?["revoked"] as? Bool else { return }
         guard let proRevokedOn = (row.context?["revokedOn"] as? String)?.rfc2822decodedShort else { return }
         
-        if (pro && !proExpirationDate.isEmpty) || (proRevoked && !proRevokedOn.isEmpty) {
-            activeLabel.theme_textColor = Color.softGreen
-            contentView.addSubview(expirationLabel)
-            constrain(activeLabel, expirationLabel) { active, expiration in
-                
-                // todo dummy
-                
-                active.centerY ~== active.superview!.centerY ~- (8~~6)
-                active.trailing ~== active.superview!.trailingMargin
-                
-                expiration.top ~== active.bottom
-                expiration.trailing ~== active.trailing
-            }
-            if proRevoked {
-                expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
-            } else {
-                expirationLabel.text = "Expires on %@".localizedFormat(proExpirationDate)
-            }
-        } else {
+        if proRevoked {
             activeLabel.theme_textColor = Color.softRed
-            constrain(activeLabel) { active in
-                active.centerY ~== active.superview!.centerY
-                active.trailing ~== active.superview!.trailingMargin
+            expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
+            activeLabel.text = "Revoked".localized()
+            selectionStyle = .none
+        } else if proDisabled {
+            activeLabel.theme_textColor = Color.softRed
+            activeLabel.text = "Disabled".localized()
+            selectionStyle = .none
+        } else {
+            if pro {
+                activeLabel.theme_textColor = Color.softGreen
+                expirationLabel.text = "Expires on %@".localizedFormat(proExpirationDate)
+                activeLabel.text = "Active".localized()
+                selectionStyle = .none
+            } else {
+                activeLabel.theme_textColor = Color.softRed
+                expirationLabel.text = "Tap to know more".localized()
+                activeLabel.text = "Inactive".localized()
+                accessoryType = .disclosureIndicator
+                let bgColorView = UIView()
+                bgColorView.theme_backgroundColor = Color.cellSelectionColor
+                selectedBackgroundView = bgColorView
             }
         }
         
         if proDisabled {
-            activeLabel.text = "Disabled".localized()
-        } else if proRevoked {
-            activeLabel.text = "Revoked".localized()
+            expirationLabel.isHidden = true
+            
+            constrain(activeLabel) { active in
+                active.centerY ~== active.superview!.centerY
+                active.trailing ~== active.superview!.trailingMargin
+            }
+            
         } else {
-            activeLabel.text = pro ? "Active".localized() : "Inactive".localized()
+            
+            constrain(activeLabel, expirationLabel, dummy) { active, expiration, d in
+                
+                d.height ~== 1
+                d.centerY ~== d.superview!.centerY
+                
+                active.bottom ~== d.top ~+ 2
+                active.trailing ~== active.superview!.trailingMargin
+                
+                expiration.top ~== d.bottom ~+ 3
+                expiration.trailing ~== active.trailing
+            }
         }
     }
     
