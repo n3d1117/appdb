@@ -131,7 +131,7 @@
 "name@example.com" = "name@example.com";
 "Deauthorization" = "Deauthorization";
 "Deauthorized" = "Deauthorized";
-"Are you sure you want to deauthorize this app from installing apps your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Are you sure you want to deauthorize this app from installing apps your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles.";
+"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles.";
 "App was deauthorized successfully." = "App was deauthorized successfully.";
 
 ////////////////////

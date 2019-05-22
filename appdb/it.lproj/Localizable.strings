@@ -131,7 +131,7 @@
 "name@example.com" = "nome@esempio.it";
 "Deauthorization" = "Scollegamento";
 "Deauthorized" = "Scollegato";
-"Are you sure you want to deauthorize this app from installing apps your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Sei sicuro di voler scollgare l'app e rimuovere l'autorizzazione ad installare app sul tuo dispositivo?\n\nNOTA: Per cancellare completamente il tuo dispositivo da appdb, rimuovi il profilo da Impostazioni -> Generali -> Profili.";
+"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Sei sicuro di voler scollgare l'app e rimuovere l'autorizzazione ad installare app sul tuo dispositivo?\n\nNOTA: Per cancellare completamente il tuo dispositivo da appdb, rimuovi il profilo da Impostazioni -> Generali -> Profili.";
 "App was deauthorized successfully." = "App scollegata con successo.";
 
 ////////////////////

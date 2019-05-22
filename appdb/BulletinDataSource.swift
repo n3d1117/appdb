@@ -181,7 +181,7 @@ enum DeviceLinkIntroBulletins {
         
         let page = DummyBulletinPage(title: "Deauthorization".localized())
         page.isDismissable = true
-        page.descriptionText = "Are you sure you want to deauthorize this app from installing apps your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles.".localized()
+        page.descriptionText = "Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles.".localized()
         page.actionButtonTitle = "Deauthorize".localized()
         page.alternativeButtonTitle = "Cancel".localized()
         page.appearance.titleFontSize = 27
