@@ -117,8 +117,4 @@ class SelectorBulletinPage: BLTNPageItem {
         
     }
     
-    override func actionButtonTapped(sender: UIButton) {
-        manager?.displayNextItem()
-    }
-    
 }

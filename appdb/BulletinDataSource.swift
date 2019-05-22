@@ -22,23 +22,22 @@ enum DeviceLinkIntroBulletins {
         
         // If device was authorized before, linkDevice will succeed with any code given
         // So there's no need to ask the user to paste the code/enter email!
-        // If it fails, just show the item itself
-        
-        // TODO FIX
-        // CURRENTLY COMMENTED BECAUSE WAITING FOR https://github.com/alexaubry/BulletinBoard/issues/112
-        /*page.shouldStartWithActivityIndicator = true
-        page.presentationHandler = { item in
-            API.linkDevice(code: "anything", success: {
-                API.getConfiguration(success: {
-                    let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
-                    item.manager?.push(item: completionPage)
+        // If it fails, just show the next item
+        page.actionHandler = { item in
+            item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
+            delay(0.3) {
+                API.linkDevice(code: "anything", success: {
+                    API.getConfiguration(success: {
+                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
+                        item.manager?.push(item: completionPage)
+                    }, fail: { _ in
+                        item.manager?.displayNextItem()
+                    })
                 }, fail: { _ in
-                    item.manager?.hideActivityIndicator()
+                    item.manager?.displayNextItem()
                 })
-            }, fail: { _ in
-                item.manager?.hideActivityIndicator()
-            })
-        }*/
+            }
+        }
         
         return page
     }
