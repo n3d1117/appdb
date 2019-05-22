@@ -79,7 +79,8 @@ extension Settings {
             Section(rows: [
                 Row(text: "Authorize App".localized(), selection: { [unowned self] in
                     self.pushDeviceLink()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.mainTint, "bgHover": Color.darkMainTint])
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticButtonCell.self,
+                   context: ["bgColor": Color.slightlyDarkerMainTint, "bgHover": Color.darkMainTint])
             ], footer: .title("Authorize app with link code from appdb website and enjoy unlimited app installs!".localized()))
         
         ] + commonSections

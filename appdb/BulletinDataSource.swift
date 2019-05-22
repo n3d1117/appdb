@@ -25,6 +25,7 @@ enum DeviceLinkIntroBulletins {
         // If it fails, just show the next item
         page.actionHandler = { item in
             item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
+            
             delay(0.3) {
                 API.linkDevice(code: "anything", success: {
                     API.getConfiguration(success: {
@@ -60,7 +61,7 @@ enum DeviceLinkIntroBulletins {
             
             item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
             
-            delay(0.4) {
+            delay(0.3) {
                 
                 // Request device link with given code
                 // On success, store link token & present completion bulletin
@@ -187,10 +188,10 @@ enum DeviceLinkIntroBulletins {
         page.appearance.theme_actionButtonColor = Color.softRed
         page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
-        page.actionHandler = { (item: BLTNActionItem) in
+        page.actionHandler = { item in
             item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
             action()
-            delay(0.7) {
+            delay(0.4) {
                 item.manager?.push(item: makeDeauthorizeCompletedPage())
             }
         }
@@ -235,7 +236,7 @@ enum DeviceLinkIntroBulletins {
         page.actionButtonTitle = ""
         page.presentationHandler = { item in
             item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
-            delay(0.8) {
+            delay(0.6) {
                 API.linkDevice(code: code, success: {
                     API.getConfiguration(success: {
                         let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()

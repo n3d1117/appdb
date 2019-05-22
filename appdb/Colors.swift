@@ -20,8 +20,11 @@ struct Color {
     /* Blue main tint, may not be final */
     static let mainTint: ThemeColorPicker = ["#446CB3", "#6FACFA"]
     
-    /* Darker main tint for pressed state 'Authorize' cell */
-    static let darkMainTint: ThemeColorPicker = ["#486A92", "#507DB8"]
+    /* Slightly darker main tint for 'Authorize' cell background */
+    static let slightlyDarkerMainTint: ThemeColorPicker = ["#446CB3", "#3A6EB0"]
+    
+    /* Darker main tint for pressed 'Authorize' cell state */
+    static let darkMainTint: ThemeColorPicker = ["#486A92", "#2C5285"]
     
     /* Category, author, seeAll button */
     static let darkGray: ThemeColorPicker = ["#6F7179", "#9c9c9c"]
@@ -63,7 +66,7 @@ struct Color {
     static let softRed: ThemeColorPicker = ["#D32F2F", "#D32F2F"]
     
     /* Dark red for pressed 'Deauthorize' cell state */
-    static let darkRed: ThemeColorPicker = ["#A32F2F", "#A32F2F"]
+    static let darkRed: ThemeColorPicker = ["#A32F2F", "#6A2121"]
     
     /* Gray for timestamp in device status cell */
     static let timestampGray: ThemeColorPicker = ["#AAAAAA", "#AAAAAA"]

@@ -211,10 +211,10 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
                 d.height ~== 1
                 d.centerY ~== d.superview!.centerY
                 
-                active.bottom ~== d.top ~+ 2
+                active.bottom ~== d.top ~+ 1
                 active.trailing ~== active.superview!.trailingMargin
                 
-                expiration.top ~== d.bottom ~+ 3
+                expiration.top ~== d.bottom ~+ 2
                 expiration.trailing ~== active.trailing
             }
         }
