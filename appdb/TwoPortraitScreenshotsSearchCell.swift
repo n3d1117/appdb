@@ -67,22 +67,22 @@ class TwoPortraitScreenshotsSearchCell: SearchCell {
     
     override func setConstraints() {
         constrain(screenshot_one, screenshot_two, dummyView, icon) { s_one, s_two, dummy, icon in
-            icon.height == iconSize
+            icon.height ~== iconSize
             
-            s_one.height == portraitSize ~ Global.notMaxPriority
-            s_one.width == s_one.height / magic
-            s_one.top == icon.bottom + spaceFromIcon
-            s_one.bottom == s_one.superview!.bottom - Global.size.margin.value
+            (s_one.height ~== portraitSize) ~ Global.notMaxPriority
+            s_one.width ~== s_one.height ~/ magic
+            s_one.top ~== icon.bottom ~+ spaceFromIcon
+            s_one.bottom ~== s_one.superview!.bottom ~- Global.size.margin.value
 
-            s_two.height == portraitSize ~ Global.notMaxPriority
-            s_two.width == s_two.height / magic
-            s_two.top == s_one.top
-            s_two.bottom == s_one.bottom
+            (s_two.height ~== portraitSize) ~ Global.notMaxPriority
+            s_two.width ~== s_two.height ~/ magic
+            s_two.top ~== s_one.top
+            s_two.bottom ~== s_one.bottom
 
-            dummy.height == s_one.height
-            dummy.width == 15
+            dummy.height ~== s_one.height
+            dummy.width ~== 15
             distribute(horizontally: s_one, dummy, s_two)
-            dummy.centerX == dummy.superview!.centerX
+            dummy.centerX ~== dummy.superview!.centerX
         }
     }
 }

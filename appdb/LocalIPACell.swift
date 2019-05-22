@@ -127,25 +127,25 @@ class LocalIPACell: UICollectionViewCell {
         
         constrain(filename, size, moreImageButton, progressView, dummy) { name, size, moreButton, progress, d in
             
-            moreButton.centerY == moreButton.superview!.centerY
-            moreButton.right == moreButton.superview!.right - Global.size.margin.value
-            moreButton.width == (22~~20)
-            moreButton.height == moreButton.width
+            moreButton.centerY ~== moreButton.superview!.centerY
+            moreButton.right ~== moreButton.superview!.right ~- Global.size.margin.value
+            moreButton.width ~== (22~~20)
+            moreButton.height ~== moreButton.width
             
-            d.height == 1
-            d.centerY == d.superview!.centerY
+            d.height ~== 1
+            d.centerY ~== d.superview!.centerY
             
-            name.left == name.superview!.left + Global.size.margin.value
-            name.right == moreButton.left - Global.size.margin.value
-            name.bottom == d.top + 2
+            name.left ~== name.superview!.left ~+ Global.size.margin.value
+            name.right ~== moreButton.left ~- Global.size.margin.value
+            name.bottom ~== d.top ~+ 2
             
-            size.left == name.left
-            size.right == name.right
-            size.top == d.bottom + 3
+            size.left ~== name.left
+            size.right ~== name.right
+            size.top ~== d.bottom ~+ 3
             
-            progress.bottom == progress.superview!.bottom
-            progress.left == progress.superview!.left
-            progress.right == progress.superview!.right
+            progress.bottom ~== progress.superview!.bottom
+            progress.left ~== progress.superview!.left
+            progress.right ~== progress.superview!.right
         }
     }
     

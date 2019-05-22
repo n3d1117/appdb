@@ -100,10 +100,10 @@ class Banner: UITableViewCell {
         
         // Add constraints
         constrain(collectionView) { collectionView in
-            collectionView.top == collectionView.superview!.top
-            collectionView.left == collectionView.superview!.left
-            collectionView.right == collectionView.superview!.right
-            collectionView.height == height
+            collectionView.top ~== collectionView.superview!.top
+            collectionView.left ~== collectionView.superview!.left
+            collectionView.right ~== collectionView.superview!.right
+            collectionView.height ~== height
         }
         
         slideshowInterval = 4.5

@@ -115,7 +115,7 @@ class DetailsScreenshots: DetailsCell {
     
     override func setConstraints() {
         constrain(collectionView) { collection in
-            collection.edges == collection.superview!.edges
+            collection.edges ~== collection.superview!.edges
         }
     }
     

@@ -54,15 +54,15 @@ class LandscapeScreenshotSearchCell: SearchCell {
     override func setConstraints() {
         constrain(screenshot, icon) { s, icon in
             
-            icon.height == iconSize
+            icon.height ~== iconSize
             
-            s.height == landscapeSize ~ Global.notMaxPriority
-            s.width == s.height * magic
-            s.top == icon.bottom + spaceFromIcon
-            s.centerX == s.superview!.centerX
-            s.bottom == s.superview!.bottom - margin
-            s.left >= s.superview!.left + margin + 5
-            s.right <= s.superview!.right - margin - 5
+            (s.height ~== landscapeSize) ~ Global.notMaxPriority
+            s.width ~== s.height ~* magic
+            s.top ~== icon.bottom ~+ spaceFromIcon
+            s.centerX ~== s.superview!.centerX
+            s.bottom ~== s.superview!.bottom ~- margin
+            s.left ~>= s.superview!.left ~+ margin ~+ 5
+            s.right ~<= s.superview!.right ~- margin ~- 5
         }
     }
 }

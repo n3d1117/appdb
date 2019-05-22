@@ -30,9 +30,9 @@ class MixedScreenshotsSearchCellOneWithStars: MixedScreenshotsSearchCellOne {
         contentView.addSubview(stars)
         
         constrain(seller, stars) { seller, stars in
-            stars.left == seller.left
-            stars.right <= stars.superview!.right - Global.size.margin.value
-            stars.top == seller.bottom + (7~~6)
+            stars.left ~== seller.left
+            stars.right ~<= stars.superview!.right ~- Global.size.margin.value
+            stars.top ~== seller.bottom ~+ (7~~6)
         }
         
     }

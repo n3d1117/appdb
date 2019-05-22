@@ -76,25 +76,25 @@ class ThreePortraitScreenshotsSearchCell: SearchCell {
     override func setConstraints() {
         constrain(screenshot_one, screenshot_two, screenshot_three, icon) { s_one, s_two, s_three, icon in
             
-            icon.height == iconSize
+            icon.height ~== iconSize
             
-            s_one.height == compactPortraitSize ~ Global.notMaxPriority
-            s_one.width == s_one.height / magic
-            s_one.top == icon.bottom + spaceFromIcon
-            s_one.bottom == s_one.superview!.bottom - Global.size.margin.value
+            (s_one.height ~== compactPortraitSize) ~ Global.notMaxPriority
+            s_one.width ~== s_one.height ~/ magic
+            s_one.top ~== icon.bottom ~+ spaceFromIcon
+            s_one.bottom ~== s_one.superview!.bottom ~- Global.size.margin.value
             
-            s_two.height == s_one.height
-            s_two.width == s_one.width
-            s_two.top == s_one.top
-            s_two.bottom == s_one.bottom
+            s_two.height ~== s_one.height
+            s_two.width ~== s_one.width
+            s_two.top ~== s_one.top
+            s_two.bottom ~== s_one.bottom
             
-            s_three.height == s_one.height
-            s_three.width == s_one.width
-            s_three.top == s_one.top
-            s_three.bottom == s_one.bottom
+            s_three.height ~== s_one.height
+            s_three.width ~== s_one.width
+            s_three.top ~== s_one.top
+            s_three.bottom ~== s_one.bottom
             
             distribute(by: 15, horizontally: s_one, s_two, s_three)
-            s_two.centerX == s_two.superview!.centerX
+            s_two.centerX ~== s_two.superview!.centerX
         }
     }
 }

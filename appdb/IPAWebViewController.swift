@@ -132,9 +132,9 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         }
         
         constrain(progressView, replace: group) { progress in
-            progress.top == progress.superview!.top + offset
-            progress.left == progress.superview!.left
-            progress.right == progress.superview!.right
+            progress.top ~== progress.superview!.top ~+ offset
+            progress.left ~== progress.superview!.left
+            progress.right ~== progress.superview!.right
         }
     }
     

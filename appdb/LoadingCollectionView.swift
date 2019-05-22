@@ -66,24 +66,24 @@ class LoadingCollectionView: UICollectionViewController {
     fileprivate func setConstraints() {
         constrain(activityIndicator, errorMessage, secondaryErrorMessage) { a, e, s in
             if !hasSegment {
-                a.center == a.superview!.center
+                a.center ~== a.superview!.center
             } else {
-                a.centerX == a.superview!.centerX
-                a.centerY == a.superview!.centerY - 50
+                a.centerX ~== a.superview!.centerX
+                a.centerY ~== a.superview!.centerY ~- 50
             }
             
-            e.left == e.superview!.left + 30
-            e.right == e.superview!.right - 30
-            e.centerX == e.superview!.centerX
+            e.left ~== e.superview!.left ~+ 30
+            e.right ~== e.superview!.right ~- 30
+            e.centerX ~== e.superview!.centerX
             if !hasSegment {
-                e.centerY == e.superview!.centerY - 20
+                e.centerY ~== e.superview!.centerY ~- 20
             } else {
-                e.centerY == e.superview!.centerY - 55
+                e.centerY ~== e.superview!.centerY ~- 55
             }
             
-            s.left == e.left
-            s.right == e.right
-            s.top == e.bottom + 10
+            s.left ~== e.left
+            s.right ~== e.right
+            s.top ~== e.bottom ~+ 10
         }
     }
     

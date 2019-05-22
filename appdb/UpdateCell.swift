@@ -78,24 +78,24 @@ class UpdateCell: UITableViewCell {
     fileprivate func setConstraints() {
         constrain(name, info, icon, whatsnew) { name, info, icon, whatsnew in
             
-            icon.width == (80~~60)
-            icon.height == icon.width ~ Global.notMaxPriority
-            icon.top == icon.superview!.top + (15~~10)
+            icon.width ~== (80~~60)
+            (icon.height ~== icon.width) ~ Global.notMaxPriority
+            icon.top ~== icon.superview!.top ~+ (15~~10)
             
-            icon.left == icon.superview!.layoutMarginsGuide.left
+            icon.left ~== icon.superview!.layoutMarginsGuide.left
             
-            name.left == icon.right + (15~~12)
-            name.right == name.superview!.layoutMarginsGuide.right
-            name.centerY == icon.centerY - (12~~10)
+            name.left ~== icon.right ~+ (15~~12)
+            name.right ~== name.superview!.layoutMarginsGuide.right
+            name.centerY ~== icon.centerY ~- (12~~10)
             
-            info.top == name.bottom + (5~~4)
-            info.left == name.left
-            info.right == name.right
+            info.top ~== name.bottom ~+ (5~~4)
+            info.left ~== name.left
+            info.right ~== name.right
             
-            whatsnew.top == icon.bottom + (14~~11)
-            whatsnew.left == icon.left
-            whatsnew.right == name.right
-            whatsnew.bottom == whatsnew.superview!.bottom - 15
+            whatsnew.top ~== icon.bottom ~+ (14~~11)
+            whatsnew.left ~== icon.left
+            whatsnew.right ~== name.right
+            whatsnew.bottom ~== whatsnew.superview!.bottom ~- 15
             
         }
     }

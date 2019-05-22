@@ -219,9 +219,9 @@ class DetailsFullScreenshots: UIViewController {
     
     fileprivate func setConstraints() {
         constrain(collectionView, pageControl) { collection, pageControl in
-            collection.edges == collection.superview!.edges
-            pageControl.bottom == pageControl.superview!.layoutMarginsGuide.bottom
-            pageControl.centerX == pageControl.superview!.centerX
+            collection.edges ~== collection.superview!.edges
+            pageControl.bottom ~== pageControl.superview!.layoutMarginsGuide.bottom
+            pageControl.centerX ~== pageControl.superview!.centerX
         }
     }
     

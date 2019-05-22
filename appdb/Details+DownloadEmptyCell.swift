@@ -42,7 +42,7 @@ class DetailsDownloadEmptyCell: DetailsCell {
     
     override func setConstraints() {
         constrain(error) { error in
-            error.center == error.superview!.center
+            error.center ~== error.superview!.center
         }
     }
 }

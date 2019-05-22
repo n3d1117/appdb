@@ -44,11 +44,11 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(tagView)
         
         constrain(title, tagView) { title, tagView in
-            title.top == title.superview!.top + 5
+            title.top ~== title.superview!.top ~+ 5
             
-            tagView.top == title.bottom + 15
-            tagView.leading == tagView.superview!.leading
-            tagView.trailing == tagView.superview!.trailing
+            tagView.top ~== title.bottom ~+ 15
+            tagView.leading ~== tagView.superview!.leading
+            tagView.trailing ~== tagView.superview!.trailing
         }
     }
     

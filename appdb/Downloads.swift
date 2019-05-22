@@ -99,19 +99,19 @@ class Downloads: UIViewController {
                 height -= (UIApplication.shared.statusBarFrame.height - 20.0)
             }
             
-            header.top == view.top + height
-            header.left == view.left
-            header.right == view.right
-            header.height == 40
+            header.top ~== view.top ~+ height
+            header.left ~== view.left
+            header.right ~== view.right
+            header.height ~== 40
             
-            line.height == 1/UIScreen.main.scale
-            line.left == header.left
-            line.right == header.right
-            line.top == header.bottom - 0.5
+            line.height ~== 1/UIScreen.main.scale
+            line.left ~== header.left
+            line.right ~== header.right
+            line.top ~== header.bottom ~- 0.5
             
-            control.top == header.top
-            control.centerX == header.centerX
-            control.width == 370~~330
+            control.top ~== header.top
+            control.centerX ~== header.centerX
+            control.width ~== 370~~330
         }
     }
     
@@ -177,10 +177,10 @@ extension Downloads {
     func addSubview(subView: UIView) {
         view.addSubview(subView)
         constrain(view, subView, headerView) { v, s, h in
-            s.top == h.bottom
-            s.bottom == v.bottom
-            s.right == v.right
-            s.left == v.left
+            s.top ~== h.bottom
+            s.bottom ~== v.bottom
+            s.right ~== v.right
+            s.left ~== v.left
         }
     }
 }

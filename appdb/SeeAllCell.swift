@@ -114,23 +114,23 @@ class SeeAllCell: UITableViewCell {
     // Set constraints
     fileprivate func setConstraints() {
         constrain(icon, nameLabel, infoLabel) { icon, name, info in
-            icon.width == ((reuseIdentifier == "seeallcell_book" ? 70 : 80)~~60)
+            icon.width ~== ((reuseIdentifier == "seeallcell_book" ? 70 : 80)~~60)
             
             if reuseIdentifier == "seeallcell_book" {
-                icon.height == icon.width * 1.542
+                icon.height ~== icon.width * 1.542
             } else {
-                icon.height == icon.width
+                icon.height ~== icon.width
             }
-            icon.left == icon.superview!.layoutMarginsGuide.left
-            icon.centerY == icon.superview!.centerY
+            icon.left ~== icon.superview!.layoutMarginsGuide.left
+            icon.centerY ~== icon.superview!.centerY
             
-            name.left == icon.right + (15~~12)
-            name.right == name.superview!.right - Global.size.margin.value
-            name.centerY == name.superview!.centerY - (12~~10)
+            name.left ~== icon.right ~+ (15~~12)
+            name.right ~== name.superview!.right ~- Global.size.margin.value
+            name.centerY ~== name.superview!.centerY ~- (12~~10)
             
-            info.top == name.bottom + (5~~4)
-            info.left == name.left
-            info.right == name.right
+            info.top ~== name.bottom ~+ (5~~4)
+            info.left ~== name.left
+            info.right ~== name.right
         }
     }
     

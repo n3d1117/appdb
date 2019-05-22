@@ -34,7 +34,7 @@ class DetailsDownload: DetailsCell {
         
         selectionStyle = accessoryType == .none ? .none : .default
         constrain(button) { button in
-            button.right == button.superview!.right - (accessoryType == .none ? Global.size.margin.value : 10)
+            button.right ~== button.superview!.right ~- (accessoryType == .none ? Global.size.margin.value : 10)
         }
     }
     
@@ -82,15 +82,15 @@ class DetailsDownload: DetailsCell {
     override func setConstraints() {
         constrain(host, cracker, button) { host, cracker, button in
             
-            button.centerY == button.superview!.centerY
+            button.centerY ~== button.superview!.centerY
             
-            host.top == host.superview!.top + 9
-            host.left == host.superview!.left + Global.size.margin.value
-            host.right <= button.left - 9
+            host.top ~== host.superview!.top ~+ 9
+            host.left ~== host.superview!.left ~+ Global.size.margin.value
+            host.right ~<= button.left ~- 9
             
-            cracker.left == host.left
-            cracker.right <= button.left - Global.size.margin.value
-            cracker.bottom == cracker.superview!.bottom - 10
+            cracker.left ~== host.left
+            cracker.right ~<= button.left ~- Global.size.margin.value
+            cracker.bottom ~== cracker.superview!.bottom ~- 10
         }
     }
 }

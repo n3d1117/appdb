@@ -146,24 +146,24 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 height -= (UIApplication.shared.statusBarFrame.height - 20.0)
             }
             
-            header.top == view.top + height
-            header.left == view.left
-            header.right == view.right
-            header.height == 40
+            header.top ~== view.top ~+ height
+            header.left ~== view.left
+            header.right ~== view.right
+            header.height ~== 40
             
-            line.height == 1/UIScreen.main.scale
-            line.left == header.left
-            line.right == header.right
-            line.top == header.bottom - 0.5
+            line.height ~== (1/UIScreen.main.scale)
+            line.left ~== header.left
+            line.right ~== header.right
+            line.top ~== header.bottom ~- 0.5
             
-            control.top == header.top
-            control.centerX == header.centerX
-            control.width == 280
+            control.top ~== header.top
+            control.centerX ~== header.centerX
+            control.width ~== 280
             
-            tableView.top == header.bottom
-            tableView.bottom == view.bottom
-            tableView.right == view.right
-            tableView.left == view.left
+            tableView.top ~== header.bottom
+            tableView.bottom ~== view.bottom
+            tableView.right ~== view.right
+            tableView.left ~== view.left
         }
     }
     

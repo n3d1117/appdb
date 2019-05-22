@@ -62,18 +62,18 @@ class DetailsSegmentControl: TableViewHeader {
         
         constrain(segment) { segment in
             
-            segment.bottom == segment.superview!.bottom - 10
-            segment.centerX == segment.superview!.centerX
+            segment.bottom ~== segment.superview!.bottom ~- 10
+            segment.centerX ~== segment.superview!.centerX
             
             if items.contains(.reviews) {
                 if Global.isIpad {
-                    segment.width == 380
+                    segment.width ~== 380
                 } else {
-                    segment.left == segment.superview!.left + Global.size.margin.value + 5 ~ Global.notMaxPriority
-                    segment.right == segment.superview!.right - Global.size.margin.value - 5 ~ Global.notMaxPriority
+                    (segment.left ~== segment.superview!.left ~+ Global.size.margin.value ~+ 5) ~ Global.notMaxPriority
+                    (segment.right ~== segment.superview!.right ~- Global.size.margin.value ~- 5) ~ Global.notMaxPriority
                 }
             } else {
-                segment.width == (280~~250)
+                segment.width ~== (280~~250)
             }
         }
         

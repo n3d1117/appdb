@@ -154,11 +154,11 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
             activeLabel.theme_textColor = Color.softGreen
             contentView.addSubview(expirationLabel)
             constrain(activeLabel, expirationLabel) { active, expiration in
-                active.centerY == active.superview!.centerY - (8~~6)
-                active.trailing == active.superview!.trailingMargin
+                active.centerY ~== active.superview!.centerY ~- (8~~6)
+                active.trailing ~== active.superview!.trailingMargin
                 
-                expiration.top == active.bottom
-                expiration.trailing == active.trailing
+                expiration.top ~== active.bottom
+                expiration.trailing ~== active.trailing
             }
             if proRevoked {
                 expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
@@ -168,8 +168,8 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         } else {
             activeLabel.theme_textColor = Color.softRed
             constrain(activeLabel) { active in
-                active.centerY == active.superview!.centerY
-                active.trailing == active.superview!.trailingMargin
+                active.centerY ~== active.superview!.centerY
+                active.trailing ~== active.superview!.trailingMargin
             }
         }
         
@@ -244,10 +244,10 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         contentView.addSubview(textField)
         
         constrain(textField) { textField in
-            textField.right == textField.superview!.layoutMarginsGuide.right - 3
-            textField.top == textField.superview!.top
-            textField.bottom == textField.superview!.bottom
-            textField.left == textField.superview!.centerX
+            textField.right ~== textField.superview!.layoutMarginsGuide.right ~- 3
+            textField.top ~== textField.superview!.top
+            textField.bottom ~== textField.superview!.bottom
+            textField.left ~== textField.superview!.centerX
         }
     }
     

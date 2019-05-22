@@ -141,42 +141,42 @@ class LoadingTableView: UITableViewController {
         switch state {
         case .loading:
             constrain(activityIndicator, replace: group1) { indicator in
-                indicator.centerX == indicator.superview!.centerX
-                indicator.centerY == indicator.superview!.centerY - offset - 10
+                indicator.centerX ~== indicator.superview!.centerX
+                indicator.centerY ~== indicator.superview!.centerY ~- (offset - 10)
             }
         case .error:
             if showsErrorButton {
                 constrain(errorMessage, secondaryErrorMessage, refreshButton, replace: group2) { message, secondaryMessage, button in
-                    message.left == message.superview!.left + 30
-                    message.right == message.superview!.right - 30
-                    message.centerX == message.superview!.centerX
-                    message.centerY == message.superview!.centerY - offset - 35
+                    message.left ~== message.superview!.left ~+ 30
+                    message.right ~== message.superview!.right ~- 30
+                    message.centerX ~== message.superview!.centerX
+                    message.centerY ~== message.superview!.centerY ~- (offset - 35)
                     
-                    secondaryMessage.left == message.left
-                    secondaryMessage.right == message.right
-                    secondaryMessage.top == message.bottom + 10
+                    secondaryMessage.left ~== message.left
+                    secondaryMessage.right ~== message.right
+                    secondaryMessage.top ~== message.bottom ~+ 10
                     
-                    button.top == secondaryMessage.bottom + 30
-                    button.centerX == button.superview!.centerX
-                    button.width == CGFloat(refreshButton.tag + 20)
+                    button.top ~== secondaryMessage.bottom ~+ 30
+                    button.centerX ~== button.superview!.centerX
+                    button.width ~== CGFloat(refreshButton.tag + 20)
                 }
             } else if secondaryErrorMessage.text?.isEmpty ?? false {
                 constrain(errorMessage, replace: group2) { message in
-                    message.left == message.superview!.left + 30
-                    message.right == message.superview!.right - 30
-                    message.centerX == message.superview!.centerX
-                    message.centerY == message.superview!.centerY - offset - 15
+                    message.left ~== message.superview!.left ~+ 30
+                    message.right ~== message.superview!.right ~- 30
+                    message.centerX ~== message.superview!.centerX
+                    message.centerY ~== message.superview!.centerY ~- (offset - 15)
                 }
             } else {
                 constrain(errorMessage, secondaryErrorMessage, replace: group2) { message, secondaryMessage in
-                    message.left == message.superview!.left + 30
-                    message.right == message.superview!.right - 30
-                    message.centerX == message.superview!.centerX
-                    message.centerY == message.superview!.centerY - offset - 20
+                    message.left ~== message.superview!.left ~+ 30
+                    message.right ~== message.superview!.right ~- 30
+                    message.centerX ~== message.superview!.centerX
+                    message.centerY ~== message.superview!.centerY ~- (offset - 20)
                     
-                    secondaryMessage.left == message.left
-                    secondaryMessage.right == message.right
-                    secondaryMessage.top == message.bottom + 10
+                    secondaryMessage.left ~== message.left
+                    secondaryMessage.right ~== message.right
+                    secondaryMessage.top ~== message.bottom ~+ 10
                 }
             }
         default: break

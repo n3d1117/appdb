@@ -69,18 +69,18 @@ class DetailsChangelog: DetailsCell {
     override func setConstraints() {
         constrain(title, date, desc) { title, date, desc in
             
-            title.top == title.superview!.top + 12
-            title.left == title.superview!.left + Global.size.margin.value
-            title.right == title.superview!.right - Global.size.margin.value
+            title.top ~== title.superview!.top ~+ 12
+            title.left ~== title.superview!.left ~+ Global.size.margin.value
+            title.right ~== title.superview!.right ~- Global.size.margin.value
             
-            date.top == title.bottom - 1
-            date.left == title.left
-            date.right == title.right
+            date.top ~== title.bottom ~- 1
+            date.left ~== title.left
+            date.right ~== title.right
             
-            desc.top == date.bottom + 8 ~ Global.notMaxPriority
-            desc.left == title.left
-            desc.right == title.right
-            desc.bottom == desc.superview!.bottom - 15
+            (desc.top ~== date.bottom ~+ 8) ~ Global.notMaxPriority
+            desc.left ~== title.left
+            desc.right ~== title.right
+            desc.bottom ~== desc.superview!.bottom ~- 15
             
         }
     }

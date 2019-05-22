@@ -40,7 +40,7 @@ class NewsDetailHTMLCell: UITableViewCell {
     fileprivate func setConstraints() {
         let pad = Global.size.margin.value + 5
         constrain(htmlText) { text in
-            text.edges == inset(text.superview!.edges, pad, pad, pad, pad)
+            text.edges ~== inset(text.superview!.edges, pad, pad, pad, pad)
         }
     }
 }

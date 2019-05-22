@@ -50,19 +50,19 @@ class LibrarySectionHeaderView: UICollectionReusableView {
         addSubview(trashButton)
         
         constrain(label, helpButton, trashButton) { label, help, more in
-            label.left == label.superview!.left + Global.size.margin.value
-            label.right == label.superview!.right
-            label.centerY == label.superview!.centerY
+            label.left ~== label.superview!.left ~+ Global.size.margin.value
+            label.right ~== label.superview!.right
+            label.centerY ~== label.superview!.centerY
             
-            help.height == (22~~20)
-            help.width == help.height
-            help.right == help.superview!.right - Global.size.margin.value
-            help.centerY == label.centerY
+            help.height ~== (22~~20)
+            help.width ~== help.height
+            help.right ~== help.superview!.right ~- Global.size.margin.value
+            help.centerY ~== label.centerY
             
-            more.height == (22~~20)
-            more.width == more.height
-            more.right == help.left - (12~~10)
-            more.centerY == help.centerY
+            more.height ~== (22~~20)
+            more.width ~== more.height
+            more.right ~== help.left ~- (12~~10)
+            more.centerY ~== help.centerY
         }
     }
     

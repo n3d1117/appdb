@@ -143,30 +143,30 @@ class DownloadingCell: UICollectionViewCell {
         
         constrain(filename, progress, icon, moreImageButton, progressView, dummy) { name, progress, icon, moreButton, progressView, d in
             
-            icon.width == iconSize
-            icon.height == icon.width
-            icon.left == icon.superview!.left + Global.size.margin.value
-            icon.centerY == icon.superview!.centerY
+            icon.width ~== iconSize
+            icon.height ~== icon.width
+            icon.left ~== icon.superview!.left ~+ Global.size.margin.value
+            icon.centerY ~== icon.superview!.centerY
             
-            moreButton.centerY == moreButton.superview!.centerY
-            moreButton.right == moreButton.superview!.right - Global.size.margin.value
-            moreButton.width == (22~~20)
-            moreButton.height == moreButton.width
+            moreButton.centerY ~== moreButton.superview!.centerY
+            moreButton.right ~== moreButton.superview!.right ~- Global.size.margin.value
+            moreButton.width ~== (22~~20)
+            moreButton.height ~== moreButton.width
             
-            d.height == 1
-            d.centerY == d.superview!.centerY
+            d.height ~== 1
+            d.centerY ~== d.superview!.centerY
             
-            name.left == icon.right + (12~~10)
-            name.right == moreButton.left - Global.size.margin.value
-            name.bottom == d.top + 2
+            name.left ~== icon.right ~+ (12~~10)
+            name.right ~== moreButton.left ~- Global.size.margin.value
+            name.bottom ~== d.top ~+ 2
             
-            progress.left == name.left
-            progress.right == moreButton.left - (5~~0)
-            progress.top == d.bottom + 3
+            progress.left ~== name.left
+            progress.right ~== moreButton.left ~- (5~~0)
+            progress.top ~== d.bottom + 3
             
-            progressView.bottom == progressView.superview!.bottom
-            progressView.left == progressView.superview!.left
-            progressView.right == progressView.superview!.right
+            progressView.bottom ~== progressView.superview!.bottom
+            progressView.left ~== progressView.superview!.left
+            progressView.right ~== progressView.superview!.right
         }
     }
     

@@ -27,7 +27,7 @@ class NoScreenshotsSearchCell: SearchCell {
         icon.layer.cornerRadius = Global.cornerRadius(from: iconSize)
         
         constrain(icon) { icon in
-            icon.bottom == icon.superview!.bottom - margin
+            icon.bottom ~== icon.superview!.bottom ~- margin
         }
     }
 }

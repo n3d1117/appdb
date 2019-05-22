@@ -1,6 +1,6 @@
 github "Alamofire/Alamofire"
 github "realm/realm-cocoa"
-github "robb/Cartography" "master"
+github "n3d1117/Cartography" "master"
 github "SwiftyJSON/SwiftyJSON"
 github "tid-kijyun/Kanna" ~> 5.0.0
 github "Alamofire/AlamofireImage"

@@ -33,8 +33,8 @@ class NoScreenshotsSearchCellBook: SearchCell {
         super.sharedSetup()
         
         constrain(icon) { icon in
-            icon.height == coverHeight
-            icon.bottom == icon.superview!.bottom - margin
+            icon.height ~== coverHeight
+            icon.bottom ~== icon.superview!.bottom ~- margin
         }
     }
 }

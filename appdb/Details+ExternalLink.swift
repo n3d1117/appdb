@@ -47,9 +47,9 @@ class DetailsExternalLink: DetailsCell {
         contentView.addSubview(label)
         
         constrain(label) { label in
-            label.centerY == label.superview!.centerY
-            label.left == label.superview!.left + Global.size.margin.value + 5
-            label.right == label.superview!.right - Global.size.margin.value
+            label.centerY ~== label.superview!.centerY
+            label.left ~== label.superview!.left ~+ Global.size.margin.value ~+ 5
+            label.right ~== label.superview!.right ~- Global.size.margin.value
         }
     
     }

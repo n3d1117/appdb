@@ -173,28 +173,28 @@ class ItemCollection: FeaturedCell {
     fileprivate func setConstraints() {
         if !didSetConstraints { didSetConstraints = true
             constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
-                collection.left == collection.superview!.left
-                collection.right == collection.superview!.right
-                collection.top == collection.superview!.top + (44~~39)
-                collection.bottom == collection.superview!.bottom
+                collection.left ~== collection.superview!.left
+                collection.right ~== collection.superview!.right
+                collection.top ~== collection.superview!.top ~+ (44~~39)
+                collection.bottom ~== collection.superview!.bottom
             
                 if #available(iOS 11.0, *) {
-                    section.left == section.superview!.safeAreaLayoutGuide.left + Global.size.margin.value
+                    section.left ~== section.superview!.safeAreaLayoutGuide.left ~+ Global.size.margin.value
                 } else {
-                    section.left == section.superview!.left + Global.size.margin.value
+                    section.left ~== section.superview!.left ~+ Global.size.margin.value
                 }
-                section.right == section.left + sectionLabel.frame.size.width ~ Global.notMaxPriority
-                section.bottom == collection.top - (44~~39 - section.height.item.bounds.height) / 2
+                (section.right ~== section.left ~+ sectionLabel.frame.size.width) ~ Global.notMaxPriority
+                section.bottom ~== collection.top ~- (44~~39 - section.height.item.bounds.height)/2
         
                 if #available(iOS 11.0, *) {
-                    seeAll.right == seeAll.superview!.safeAreaLayoutGuide.right - Global.size.margin.value
+                    seeAll.right ~== seeAll.superview!.safeAreaLayoutGuide.right ~- Global.size.margin.value
                 } else {
-                    seeAll.right == seeAll.superview!.right - Global.size.margin.value
+                    seeAll.right ~== seeAll.superview!.right ~- Global.size.margin.value
                 }
-                seeAll.centerY == section.centerY
-                category.left == section.right + 8
-                category.right <= seeAll.left - 8
-                category.centerY == section.centerY
+                seeAll.centerY ~== section.centerY
+                category.left ~== section.right ~+ 8
+                category.right ~<= seeAll.left ~- 8
+                category.centerY ~== section.centerY
             }
             separatorInset.left = showFullSeparator ? 0 : Global.size.margin.value
             layoutMargins.left = showFullSeparator ? 0 : Global.size.margin.value

@@ -133,15 +133,15 @@ class SearchSuggestionCell: UITableViewCell {
         
         constrain(label, searchImageView) { label, image in
             
-            image.height == 20
-            image.width == 30
+            image.height ~== 20
+            image.width ~== 30
             
-            image.left == image.superview!.layoutMarginsGuide.left
-            image.centerY == image.superview!.centerY
+            image.left ~== image.superview!.layoutMarginsGuide.left
+            image.centerY ~== image.superview!.centerY
             
-            label.left == image.right + (10~~7)
-            label.right == label.superview!.layoutMarginsGuide.right
-            label.centerY == image.centerY
+            label.left ~== image.right ~+ (10~~7)
+            label.right ~== label.superview!.layoutMarginsGuide.right
+            label.centerY ~== image.centerY
         }
         
     }

@@ -36,7 +36,7 @@ class DetailsFullScreenshotCell: UICollectionViewCell {
     
     fileprivate func setConstraints() {
         constrain(image) { image in
-            image.edges == image.superview!.edges
+            image.edges ~== image.superview!.edges
         }
     }
 }

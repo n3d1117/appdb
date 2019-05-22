@@ -46,10 +46,10 @@ class DeviceStatusCell: UITableViewCell {
         line.theme_backgroundColor = Color.borderColor
         addSubview(line)
         constrain(line) { line in
-            line.height == 1/UIScreen.main.scale
-            line.left == line.superview!.left
-            line.right == line.superview!.right
-            line.top == line.superview!.bottom - 1/UIScreen.main.scale
+            line.height ~== 1/UIScreen.main.scale
+            line.left ~== line.superview!.left
+            line.right ~== line.superview!.right
+            line.top ~== line.superview!.bottom ~- (1/UIScreen.main.scale)
         }
         
         selectionStyle = .none
@@ -94,89 +94,89 @@ class DeviceStatusCell: UITableViewCell {
         let margin: CGFloat = (6~~4)
         
         constrain(moreImageButton) { m in
-            m.centerY == m.superview!.centerY
-            m.right == m.superview!.right - Global.size.margin.value
-            m.width == (22~~20)
-            m.height == m.width
+            m.centerY ~== m.superview!.centerY
+            m.right ~== m.superview!.right ~- Global.size.margin.value
+            m.width ~== (22~~20)
+            m.height ~== m.width
         }
         
         constrain(status_left, status, timestamp) { sl, s, ts in
             
-            ts.top == ts.superview!.top + (12~~10)
-            ts.right == ts.superview!.right - Global.size.margin.value
-            ts.height >= 16
+            ts.top ~== ts.superview!.top ~+ (12~~10)
+            ts.right ~== ts.superview!.right ~- Global.size.margin.value
+            ts.height ~>= 16
             
-            sl.top == sl.superview!.top + (15~~12)
-            sl.left == sl.superview!.left + Global.size.margin.value
-            sl.right == sl.left + (130~~95)
+            sl.top ~== sl.superview!.top ~+ (15~~12)
+            sl.left ~== sl.superview!.left ~+ Global.size.margin.value
+            sl.right ~== sl.left ~+ (130~~95)
             
-            s.left == sl.right + space
-            s.right == s.superview!.right - Global.size.margin.value  - (60~~55)
-            s.top == sl.top
+            s.left ~== sl.right ~+ space
+            s.right ~== s.superview!.right ~- Global.size.margin.value ~- (60~~55)
+            s.top ~== sl.top
             
             constrain(type_left, type) { tl, t in
-                tl.top == s.bottom + margin ~ Global.notMaxPriority
-                tl.left == sl.left
-                tl.right == sl.right
+                (tl.top ~== s.bottom ~+ margin) ~ Global.notMaxPriority
+                tl.left ~== sl.left
+                tl.right ~== sl.right
                 
-                t.left == tl.right + space
-                t.right == t.superview!.right - Global.size.margin.value
-                t.top == tl.top
+                t.left ~== tl.right ~+ space
+                t.right ~== t.superview!.right ~- Global.size.margin.value
+                t.top ~== tl.top
                 
                 constrain(title_left, title) { til, ti in
-                    til.top == t.bottom + margin ~ Global.notMaxPriority
-                    til.left == tl.left
-                    til.right == tl.right
+                    (til.top ~== t.bottom ~+ margin) ~ Global.notMaxPriority
+                    til.left ~== tl.left
+                    til.right ~== tl.right
                     
-                    ti.left == til.right + space
-                    ti.right == ti.superview!.right - Global.size.margin.value
-                    ti.top == til.top
+                    ti.left ~== til.right ~+ space
+                    ti.right ~== ti.superview!.right ~- Global.size.margin.value
+                    ti.top ~== til.top
                     
                     constrain(bundle_left, bundle) { bl, b in
-                        bl.top == ti.bottom + margin ~ Global.notMaxPriority
-                        bl.left == til.left
-                        bl.right == til.right
+                        (bl.top ~== ti.bottom ~+ margin) ~ Global.notMaxPriority
+                        bl.left ~== til.left
+                        bl.right ~== til.right
                         
-                        b.left == bl.right + space
-                        b.right == b.superview!.right - Global.size.margin.value
-                        b.top == bl.top
+                        b.left ~== bl.right ~+ space
+                        b.right ~== b.superview!.right ~- Global.size.margin.value
+                        b.top ~== bl.top
                         
                         constrain(purpose_left, purpose) { pl, p in
-                            pl.top == b.bottom + margin ~ Global.notMaxPriority
-                            pl.left == bl.left
-                            pl.right == bl.right
+                            (pl.top ~== b.bottom ~+ margin) ~ Global.notMaxPriority
+                            pl.left ~== bl.left
+                            pl.right ~== bl.right
                             
-                            p.left == pl.right + space
-                            p.right == p.superview!.right - Global.size.margin.value - (22~~20)
-                            p.top == pl.top
+                            p.left ~== pl.right ~+ space
+                            p.right ~== p.superview!.right ~- Global.size.margin.value ~- (22~~20)
+                            p.top ~== pl.top
                             
                             constrain(acknowledged_left, acknowledged) { al, a in
-                                al.top == p.bottom + margin ~ Global.notMaxPriority
-                                al.left == pl.left
-                                al.right == pl.right
+                                (al.top ~== p.bottom ~+ margin) ~ Global.notMaxPriority
+                                al.left ~== pl.left
+                                al.right ~== pl.right
                                 
-                                a.left == al.right + space
-                                a.right == a.superview!.right - Global.size.margin.value
-                                a.top == al.top
+                                a.left ~== al.right ~+ space
+                                a.right ~== a.superview!.right ~- Global.size.margin.value
+                                a.top ~== al.top
                             
                                 constrain(statusShort_left, statusShort) { ssl, ss in
-                                    ssl.top == a.bottom + margin ~ Global.notMaxPriority
-                                    ssl.left == al.left
-                                    ssl.right == al.right
+                                    (ssl.top ~== a.bottom ~+ margin) ~ Global.notMaxPriority
+                                    ssl.left ~== al.left
+                                    ssl.right ~== al.right
                                     
-                                    ss.left == ssl.right + space
-                                    ss.right == ss.superview!.right - Global.size.margin.value
-                                    ss.top == ssl.top
+                                    ss.left ~== ssl.right ~+ space
+                                    ss.right ~== ss.superview!.right ~- Global.size.margin.value
+                                    ss.top ~== ssl.top
                                     
                                     constrain(statusText_left, statusText) { sl, s in
-                                        sl.top == ss.bottom + margin ~ Global.notMaxPriority
-                                        sl.left == ssl.left
-                                        sl.right == ssl.right
+                                        (sl.top ~== ss.bottom ~+ margin) ~ Global.notMaxPriority
+                                        sl.left ~== ssl.left
+                                        sl.right ~== ssl.right
                                         
-                                        s.left == sl.right + space
-                                        s.right == s.superview!.right - Global.size.margin.value
-                                        s.top == sl.top
-                                        s.bottom == s.superview!.bottom - 15
+                                        s.left ~== sl.right ~+ space
+                                        s.right ~== s.superview!.right ~- Global.size.margin.value
+                                        s.top ~== sl.top
+                                        s.bottom ~== s.superview!.bottom ~- 15
                                     }
                                 }
                             }

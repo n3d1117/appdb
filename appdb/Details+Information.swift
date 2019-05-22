@@ -196,111 +196,111 @@ class DetailsInformation: DetailsCell {
     override func setConstraints() {
         constrain(title) { title in
             
-            title.top == title.superview!.top + 12
-            title.left == title.superview!.left + Global.size.margin.value
+            title.top ~== title.superview!.top ~+ 12
+            title.left ~== title.superview!.left ~+ Global.size.margin.value
             
             switch type {
             case .ios:
                 constrain(seller, sellerText) { seller, sellerText in
                     
-                    seller.top == title.bottom + 9 ~ Global.notMaxPriority
-                    seller.left == title.left
-                    seller.right == seller.left + (100~~86)
+                    (seller.top ~== title.bottom ~+ 9) ~ Global.notMaxPriority
+                    seller.left ~== title.left
+                    seller.right ~== seller.left ~+ (100~~86)
                     
-                    sellerText.left == seller.right + (20~~15)
-                    sellerText.right == sellerText.superview!.right - Global.size.margin.value
-                    sellerText.top == seller.top
+                    sellerText.left ~== seller.right ~+ (20~~15)
+                    sellerText.right ~== sellerText.superview!.right ~- Global.size.margin.value
+                    sellerText.top ~== seller.top
                     
                     constrain(bundleId, bundleIdText) { bundleId, bundleIdText in
                         
-                        bundleId.top == sellerText.bottom + (5~~4) ~ Global.notMaxPriority
-                        bundleId.left == seller.left
-                        bundleId.right == seller.right
+                        (bundleId.top ~== sellerText.bottom ~+ (5~~4)) ~ Global.notMaxPriority
+                        bundleId.left ~== seller.left
+                        bundleId.right ~== seller.right
                         
-                        bundleIdText.left == bundleId.right + (20~~15)
-                        bundleIdText.right == bundleIdText.superview!.right - Global.size.margin.value
-                        bundleIdText.top == bundleId.top
+                        bundleIdText.left ~== bundleId.right ~+ (20~~15)
+                        bundleIdText.right ~== bundleIdText.superview!.right ~- Global.size.margin.value
+                        bundleIdText.top ~== bundleId.top
                         
                         constrain(category, categoryText) { category, categoryText in
                             
-                            category.top == bundleIdText.bottom + (5~~4)
-                            category.left == bundleId.left
-                            category.right == bundleId.right
+                            category.top ~== bundleIdText.bottom ~+ (5~~4)
+                            category.left ~== bundleId.left
+                            category.right ~== bundleId.right
                             
-                            categoryText.left == category.right + (20~~15)
-                            categoryText.right == categoryText.superview!.right - Global.size.margin.value
-                            categoryText.top == category.top
+                            categoryText.left ~== category.right ~+ (20~~15)
+                            categoryText.right ~== categoryText.superview!.right ~- Global.size.margin.value
+                            categoryText.top ~== category.top
                             
                             constrain(price, priceText) { price, priceText in
                                 
-                                price.top == categoryText.bottom + (5~~4)
-                                price.left == category.left
-                                price.right == category.right
+                                price.top ~== categoryText.bottom ~+ (5~~4)
+                                price.left ~== category.left
+                                price.right ~== category.right
                                 
-                                priceText.left == price.right + (20~~15)
-                                priceText.right == priceText.superview!.right - Global.size.margin.value
-                                priceText.top == price.top
+                                priceText.left ~== price.right ~+ (20~~15)
+                                priceText.right ~== priceText.superview!.right ~- Global.size.margin.value
+                                priceText.top ~== price.top
                                 
                                 constrain(updated, updatedText) { updated, updatedText in
                                     
-                                    updated.top == priceText.bottom + (5~~4)
-                                    updated.left == price.left
-                                    updated.right == price.right
+                                    updated.top ~== priceText.bottom ~+ (5~~4)
+                                    updated.left ~== price.left
+                                    updated.right ~== price.right
                                     
-                                    updatedText.left == updated.right + (20~~15)
-                                    updatedText.right == updatedText.superview!.right - Global.size.margin.value
-                                    updatedText.top == updated.top
+                                    updatedText.left ~== updated.right ~+ (20~~15)
+                                    updatedText.right ~== updatedText.superview!.right ~- Global.size.margin.value
+                                    updatedText.top ~== updated.top
                                     
                                     constrain(version, versionText) { version, versionText in
                                         
-                                        version.top == updatedText.bottom + (5~~4)
-                                        version.left == updated.left
-                                        version.right == updated.right
+                                        version.top ~== updatedText.bottom ~+ (5~~4)
+                                        version.left ~== updated.left
+                                        version.right ~== updated.right
                                         
-                                        versionText.left == version.right + (20~~15)
-                                        versionText.right == versionText.superview!.right - Global.size.margin.value
-                                        versionText.top == version.top
+                                        versionText.left ~== version.right ~+ (20~~15)
+                                        versionText.right ~== versionText.superview!.right ~- Global.size.margin.value
+                                        versionText.top ~== version.top
                                         
                                         constrain(size, sizeText) { size, sizeText in
                                             
-                                            size.top == versionText.bottom + (5~~4)
-                                            size.left == version.left
-                                            size.right == version.right
+                                            size.top ~== versionText.bottom ~+ (5~~4)
+                                            size.left ~== version.left
+                                            size.right ~== version.right
                                             
-                                            sizeText.left == size.right + (20~~15)
-                                            sizeText.right == sizeText.superview!.right - Global.size.margin.value
-                                            sizeText.top == size.top
+                                            sizeText.left ~== size.right ~+ (20~~15)
+                                            sizeText.right ~== sizeText.superview!.right ~- Global.size.margin.value
+                                            sizeText.top ~== size.top
                                             
                                             constrain(rating, ratingText) { rating, ratingText in
                                                 
-                                                rating.top == sizeText.bottom + (5~~4)
-                                                rating.left == size.left
-                                                rating.right == size.right
+                                                rating.top ~== sizeText.bottom ~+ (5~~4)
+                                                rating.left ~== size.left
+                                                rating.right ~== size.right
                                                 
-                                                ratingText.left == rating.right + (20~~15)
-                                                ratingText.right == ratingText.superview!.right - Global.size.margin.value
-                                                ratingText.top == rating.top
+                                                ratingText.left ~== rating.right ~+ (20~~15)
+                                                ratingText.right ~== ratingText.superview!.right ~- Global.size.margin.value
+                                                ratingText.top ~== rating.top
                                                 
                                                 constrain(compatibility, compatibilityText) { compatibility, compatibilityText in
                                                     
-                                                    compatibility.top == ratingText.bottom + (5~~4)
-                                                    compatibility.left == rating.left
-                                                    compatibility.right == rating.right
+                                                    compatibility.top ~== ratingText.bottom ~+ (5~~4)
+                                                    compatibility.left ~== rating.left
+                                                    compatibility.right ~== rating.right
                                                     
-                                                    compatibilityText.left == compatibility.right + (20~~15)
-                                                    compatibilityText.right == compatibilityText.superview!.right - Global.size.margin.value
-                                                    compatibilityText.top == compatibility.top
+                                                    compatibilityText.left ~== compatibility.right ~+ (20~~15)
+                                                    compatibilityText.right ~== compatibilityText.superview!.right ~- Global.size.margin.value
+                                                    compatibilityText.top ~== compatibility.top
                                                     
                                                     constrain(languages, languagesText) { languages, languagesText in
                                                         
-                                                        languages.top == compatibilityText.bottom + (5~~4)
-                                                        languages.left == compatibility.left
-                                                        languages.right == compatibility.right
+                                                        languages.top ~== compatibilityText.bottom ~+ (5~~4)
+                                                        languages.left ~== compatibility.left
+                                                        languages.right ~== compatibility.right
                                                         
-                                                        languagesText.left == languages.right + (20~~15)
-                                                        languagesText.right == languagesText.superview!.right - Global.size.margin.value
-                                                        languagesText.top == languages.top
-                                                        languagesText.bottom == languagesText.superview!.bottom - 15
+                                                        languagesText.left ~== languages.right ~+ (20~~15)
+                                                        languagesText.right ~== languagesText.superview!.right ~- Global.size.margin.value
+                                                        languagesText.top ~== languages.top
+                                                        languagesText.bottom ~== languagesText.superview!.bottom ~- 15
                                                         
                                                     }
                                                     
@@ -323,54 +323,54 @@ class DetailsInformation: DetailsCell {
             case .cydia:
                 constrain(seller, sellerText) { seller, sellerText in
                     
-                    seller.top == title.bottom + 9 ~ Global.notMaxPriority
-                    seller.left == title.left
-                    seller.right == seller.left + (100~~86)
+                    (seller.top ~== title.bottom ~+ 9) ~ Global.notMaxPriority
+                    seller.left ~== title.left
+                    seller.right ~== seller.left ~+ (100~~86)
                     
-                    sellerText.left == seller.right + (20~~15)
-                    sellerText.right == sellerText.superview!.right - Global.size.margin.value
-                    sellerText.top == seller.top
+                    sellerText.left ~== seller.right ~+ (20~~15)
+                    sellerText.right ~== sellerText.superview!.right ~- Global.size.margin.value
+                    sellerText.top ~== seller.top
                     
                     constrain(bundleId, bundleIdText) { bundleId, bundleIdText in
                         
-                        bundleId.top == sellerText.bottom + (5~~4)
-                        bundleId.left == seller.left
-                        bundleId.right == seller.right
+                        bundleId.top ~== sellerText.bottom ~+ (5~~4)
+                        bundleId.left ~== seller.left
+                        bundleId.right ~== seller.right
                         
-                        bundleIdText.left == bundleId.right + (20~~15)
-                        bundleIdText.right == bundleIdText.superview!.right - Global.size.margin.value
-                        bundleIdText.top == bundleId.top
+                        bundleIdText.left ~== bundleId.right ~+ (20~~15)
+                        bundleIdText.right ~== bundleIdText.superview!.right ~- Global.size.margin.value
+                        bundleIdText.top ~== bundleId.top
                         
                         constrain(category, categoryText) { category, categoryText in
                             
-                            category.top == bundleIdText.bottom + (5~~4)
-                            category.left == bundleId.left
-                            category.right == bundleId.right
+                            category.top ~== bundleIdText.bottom ~+ (5~~4)
+                            category.left ~== bundleId.left
+                            category.right ~== bundleId.right
                             
-                            categoryText.left == category.right + (20~~15)
-                            categoryText.right == categoryText.superview!.right - Global.size.margin.value
-                            categoryText.top == category.top
+                            categoryText.left ~== category.right ~+ (20~~15)
+                            categoryText.right ~== categoryText.superview!.right ~- Global.size.margin.value
+                            categoryText.top ~== category.top
                             
                             constrain(updated, updatedText) { updated, updatedText in
                                 
-                                updated.top == categoryText.bottom + (5~~4)
-                                updated.left == category.left
-                                updated.right == category.right
+                                updated.top ~== categoryText.bottom ~+ (5~~4)
+                                updated.left ~== category.left
+                                updated.right ~== category.right
                                 
-                                updatedText.left == updated.right + (20~~15)
-                                updatedText.right == updatedText.superview!.right - Global.size.margin.value
-                                updatedText.top == updated.top
+                                updatedText.left ~== updated.right ~+ (20~~15)
+                                updatedText.right ~== updatedText.superview!.right ~- Global.size.margin.value
+                                updatedText.top ~== updated.top
                                 
                                 constrain(version, versionText) { version, versionText in
                                     
-                                    version.top == updatedText.bottom + (5~~4)
+                                    version.top == updatedText.bottom ~+ (5~~4)
                                     version.left == updated.left
                                     version.right == updated.right
                                     
-                                    versionText.left == version.right + (20~~15)
-                                    versionText.right == versionText.superview!.right - Global.size.margin.value
-                                    versionText.top == version.top
-                                    versionText.bottom == versionText.superview!.bottom - 15
+                                    versionText.left ~== version.right ~+ (20~~15)
+                                    versionText.right ~== versionText.superview!.right ~- Global.size.margin.value
+                                    versionText.top ~== version.top
+                                    versionText.bottom ~== versionText.superview!.bottom ~- 15
                                     
                                 }
                                 
@@ -383,74 +383,74 @@ class DetailsInformation: DetailsCell {
             case .books:
                 constrain(seller, sellerText) { seller, sellerText in
                     
-                    seller.top == title.bottom + 9 ~ Global.notMaxPriority
-                    seller.left == title.left
-                    seller.right == seller.left + (100~~86)
+                    (seller.top ~== title.bottom ~+ 9) ~ Global.notMaxPriority
+                    seller.left ~== title.left
+                    seller.right ~== seller.left ~+ (100~~86)
                     
-                    sellerText.left == seller.right + (20~~15)
-                    sellerText.right == sellerText.superview!.right - Global.size.margin.value
-                    sellerText.top == seller.top
+                    sellerText.left ~== seller.right ~+ (20~~15)
+                    sellerText.right ~== sellerText.superview!.right ~- Global.size.margin.value
+                    sellerText.top ~== seller.top
                     
                     constrain(category, categoryText) { category, categoryText in
                         
-                        category.top == sellerText.bottom + (5~~4)
-                        category.left == seller.left
-                        category.right == seller.right
+                        category.top ~== sellerText.bottom ~+ (5~~4)
+                        category.left ~== seller.left
+                        category.right ~== seller.right
                         
-                        categoryText.left == category.right + (20~~15)
-                        categoryText.right == categoryText.superview!.right - Global.size.margin.value
-                        categoryText.top == category.top
+                        categoryText.left ~== category.right ~+ (20~~15)
+                        categoryText.right ~== categoryText.superview!.right ~- Global.size.margin.value
+                        categoryText.top ~== category.top
                         
                         constrain(updated, updatedText) { updated, updatedText in
                             
-                            updated.top == categoryText.bottom + (5~~4)
-                            updated.left == category.left
-                            updated.right == category.right
+                            updated.top ~== categoryText.bottom ~+ (5~~4)
+                            updated.left ~== category.left
+                            updated.right ~== category.right
                             
-                            updatedText.left == updated.right + (20~~15)
-                            updatedText.right == updatedText.superview!.right - Global.size.margin.value
-                            updatedText.top == updated.top
+                            updatedText.left ~== updated.right ~+ (20~~15)
+                            updatedText.right ~== updatedText.superview!.right ~- Global.size.margin.value
+                            updatedText.top ~== updated.top
                             
                             constrain(price, priceText) { price, priceText in
                                 
-                                price.top == updatedText.bottom + (5~~4)
-                                price.left == updated.left
-                                price.right == updated.right
+                                price.top ~== updatedText.bottom ~+ (5~~4)
+                                price.left ~== updated.left
+                                price.right ~== updated.right
                                 
-                                priceText.left == price.right + (20~~15)
-                                priceText.right == priceText.superview!.right - Global.size.margin.value
-                                priceText.top == price.top
+                                priceText.left ~== price.right ~+ (20~~15)
+                                priceText.right ~== priceText.superview!.right ~- Global.size.margin.value
+                                priceText.top ~== price.top
                                 
                                 constrain(printLength, printLengthText) { printLength, printLengthText in
                                     
-                                    printLength.top == priceText.bottom + (5~~4)
-                                    printLength.left == price.left
-                                    printLength.right == price.right
+                                    printLength.top ~== priceText.bottom ~+ (5~~4)
+                                    printLength.left ~== price.left
+                                    printLength.right ~== price.right
                                     
-                                    printLengthText.left == printLength.right + (20~~15)
-                                    printLengthText.right == printLength.superview!.right - Global.size.margin.value
-                                    printLengthText.top == printLength.top
+                                    printLengthText.left ~== printLength.right ~+ (20~~15)
+                                    printLengthText.right ~== printLength.superview!.right ~- Global.size.margin.value
+                                    printLengthText.top ~== printLength.top
                                     
                                     constrain(languages, languagesText) { languages, languagesText in
                                         
-                                        languages.top == printLengthText.bottom + (5~~4)
-                                        languages.left == printLength.left
-                                        languages.right == printLength.right
+                                        languages.top ~== printLengthText.bottom ~+ (5~~4)
+                                        languages.left ~== printLength.left
+                                        languages.right ~== printLength.right
                                         
-                                        languagesText.left == languages.right + (20~~15)
-                                        languagesText.right == languagesText.superview!.right - Global.size.margin.value
-                                        languagesText.top == languages.top
+                                        languagesText.left ~== languages.right ~+ (20~~15)
+                                        languagesText.right ~== languagesText.superview!.right ~- Global.size.margin.value
+                                        languagesText.top ~== languages.top
                                         
                                         constrain(compatibility, compatibilityText) { compatibility, compatibilityText in
                                             
-                                            compatibility.top == languagesText.bottom + (5~~4)
-                                            compatibility.left == languages.left
-                                            compatibility.right == languages.right
+                                            compatibility.top ~== languagesText.bottom ~+ (5~~4)
+                                            compatibility.left ~== languages.left
+                                            compatibility.right ~== languages.right
                                             
-                                            compatibilityText.left == compatibility.right + (20~~15)
-                                            compatibilityText.right == compatibilityText.superview!.right - Global.size.margin.value
-                                            compatibilityText.top == compatibility.top
-                                            compatibilityText.bottom == compatibilityText.superview!.bottom - 15
+                                            compatibilityText.left ~== compatibility.right ~+ (20~~15)
+                                            compatibilityText.right ~== compatibilityText.superview!.right ~- Global.size.margin.value
+                                            compatibilityText.top ~== compatibility.top
+                                            compatibilityText.bottom ~== compatibilityText.superview!.bottom ~- 15
                                             
                                         }
                                         

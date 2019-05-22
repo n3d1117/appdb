@@ -61,21 +61,21 @@ class FeaturedApp: UICollectionViewCell {
     
     fileprivate func setConstraints() {
         constrain(icon, title, category, dim) { icon, title, category, dim in
-            icon.left == icon.superview!.left
-            icon.top == icon.superview!.top
-            icon.right == icon.superview!.right
-            icon.height == frame.size.width
-            icon.width == icon.height
+            icon.left ~== icon.superview!.left
+            icon.top ~== icon.superview!.top
+            icon.right ~== icon.superview!.right
+            icon.height ~== frame.size.width
+            icon.width ~== icon.height
             
-            title.left == title.superview!.left
-            title.right == title.superview!.right
-            title.top == icon.bottom + 5
+            title.left ~== title.superview!.left
+            title.right ~== title.superview!.right
+            title.top ~== icon.bottom ~+ 5
             
-            category.left == category.superview!.left
-            category.right == category.superview!.right
-            category.top == title.bottom + (2~~1)
+            category.left ~== category.superview!.left
+            category.right ~== category.superview!.right
+            category.top ~== title.bottom ~+ (2~~1)
             
-            dim.edges == icon.edges
+            dim.edges ~== icon.edges
             
         }
     }

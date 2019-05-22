@@ -76,17 +76,17 @@ class MyAppstoreCell: UICollectionViewCell {
         
         constrain(name, bundleId, installButton, dummy) { name, bundleId, button, d in
             
-            button.right == button.superview!.right - Global.size.margin.value
-            button.centerY == button.superview!.centerY
+            button.right ~== button.superview!.right ~- Global.size.margin.value
+            button.centerY ~== button.superview!.centerY
             
-            d.height == 1
-            d.centerY == d.superview!.centerY
+            d.height ~== 1
+            d.centerY ~== d.superview!.centerY
 
-            name.left == name.superview!.left + Global.size.margin.value
-            name.bottom == d.top + 2
+            name.left ~== name.superview!.left ~+ Global.size.margin.value
+            name.bottom ~== d.top ~+ 2
             
-            bundleId.left == name.left
-            bundleId.top == d.bottom + 3
+            bundleId.left ~== name.left
+            bundleId.top ~== d.bottom ~+ 3
             
         }
         
@@ -97,8 +97,8 @@ class MyAppstoreCell: UICollectionViewCell {
     var group: ConstraintGroup = ConstraintGroup()
     fileprivate func updateConstraintOnButtonSizeChange(width: CGFloat) {
         constrain(name, bundleId, replace: group) { name, bundle in
-            name.right == name.superview!.right - width - Global.size.margin.value*2
-            bundle.right == name.right
+            name.right ~== name.superview!.right ~- width ~- (Global.size.margin.value * 2)
+            bundle.right ~== name.right
         }
     }
     

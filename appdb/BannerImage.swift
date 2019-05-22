@@ -26,7 +26,7 @@ class BannerImage: UICollectionViewCell {
         contentView.addSubview(image)
 
         constrain(image) { image in
-            image.edges == image.superview!.edges
+            image.edges ~== image.superview!.edges
         }
     }
 }

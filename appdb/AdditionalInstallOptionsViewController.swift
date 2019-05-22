@@ -30,8 +30,8 @@ class AdditionalInstallOptionsNavController: UINavigationController, AdditionalI
     fileprivate func setupConstraints() {
         if let vc = self.viewControllers.first as? AdditionalInstallOptionsViewController {
             constrain(view, replace: group) { view in
-                view.height == vc.height
-                view.width <= 500
+                view.height ~== vc.height
+                view.width ~<= 500
             }
         }
     }

@@ -61,16 +61,16 @@ class CategoryCell: UITableViewCell {
     fileprivate func setConstraints() {
         constrain(icon, name) { icon, name in
             
-            icon.width == 30
+            icon.width ~== 30
             
-            if reuseIdentifier == "category_ios" { icon.height == icon.width }
-            else if reuseIdentifier == "category_books" { icon.height == icon.width * 1.542 }
+            if reuseIdentifier == "category_ios" { icon.height ~== icon.width }
+            else if reuseIdentifier == "category_books" { icon.height ~== icon.width ~* 1.542 }
             
-            icon.left == icon.superview!.left + Global.size.margin.value
-            icon.centerY == icon.superview!.centerY
+            icon.left ~== icon.superview!.left ~+ Global.size.margin.value
+            icon.centerY ~== icon.superview!.centerY
             
-            name.left == icon.right + 10
-            name.centerY == icon.centerY
+            name.left ~== icon.right ~+ 10
+            name.centerY ~== icon.centerY
             
         }
     }

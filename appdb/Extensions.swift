@@ -172,10 +172,10 @@ extension DetailsCell {
         line.theme_backgroundColor = Color.borderColor
         addSubview(line)
         constrain(line) { line in
-            line.height == 1/UIScreen.main.scale
-            line.left == line.superview!.left + (full ? 0 : Global.size.margin.value)
-            line.right == line.superview!.right
-            line.top == line.superview!.bottom - 1/UIScreen.main.scale
+            line.height ~== 1/UIScreen.main.scale
+            line.left ~== line.superview!.left ~+ (full ? 0 : Global.size.margin.value)
+            line.right ~== line.superview!.right
+            line.top ~== line.superview!.bottom ~- (1/UIScreen.main.scale)
         }
     }
 }
@@ -186,10 +186,10 @@ class TableViewHeader: UITableViewHeaderFooterView {
         line.theme_backgroundColor = Color.borderColor
         addSubview(line)
         constrain(line) { line in
-            line.height == 1/UIScreen.main.scale
-            line.left == line.superview!.left + (full ? 0 : Global.size.margin.value)
-            line.right == line.superview!.right
-            line.top == line.superview!.bottom - 1/UIScreen.main.scale
+            line.height ~== 1/UIScreen.main.scale
+            line.left ~== line.superview!.left ~+ (full ? 0 : Global.size.margin.value)
+            line.right ~== line.superview!.right
+            line.top ~== line.superview!.bottom ~- (1/UIScreen.main.scale)
         }
     }
 }

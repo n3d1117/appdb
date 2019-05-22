@@ -66,19 +66,19 @@ class MixedScreenshotsSearchCellTwo: SearchCell {
     override func setConstraints() {
         constrain(screenshot_one, screenshot_two, icon) { s_one, s_two, icon in
             
-            icon.height == iconSize
+            icon.height ~== iconSize
             
-            s_one.height == mixedPortraitSize ~ Global.notMaxPriority
-            s_one.width == s_one.height / magic
-            s_one.left == s_one.superview!.left + margin + 10
-            s_one.top == icon.bottom + spaceFromIcon
-            s_one.bottom == s_one.superview!.bottom - margin ~ Global.notMaxPriority
+            (s_one.height ~== mixedPortraitSize) ~ Global.notMaxPriority
+            s_one.width ~== s_one.height ~/ magic
+            s_one.left ~== s_one.superview!.left ~+ margin + 10
+            s_one.top ~== icon.bottom ~+ spaceFromIcon
+            (s_one.bottom ~== s_one.superview!.bottom ~- margin) ~ Global.notMaxPriority
             
-            s_two.height == s_one.height ~ Global.notMaxPriority
-            s_two.width == s_two.height * magic
-            s_two.right == s_two.superview!.right - margin - 10
-            s_two.bottom == s_one.bottom ~ Global.notMaxPriority
-            s_two.top == s_one.top
+            (s_two.height ~== s_one.height) ~ Global.notMaxPriority
+            s_two.width ~== s_two.height ~* magic
+            s_two.right ~== s_two.superview!.right ~- margin - 10
+            (s_two.bottom ~== s_one.bottom) ~ Global.notMaxPriority
+            s_two.top ~== s_one.top
             
             distribute(by: 15, horizontally: s_one, s_two)
         }

@@ -71,15 +71,15 @@ class IgnoredCell: UITableViewCell {
     fileprivate func setConstraints() {
         constrain(icon, name) { icon, name in
             
-            icon.width == 30
-            icon.height == icon.width
+            icon.width ~== 30
+            icon.height ~== icon.width
             
-            icon.left == icon.superview!.left + (25~~18)
-            icon.centerY == icon.superview!.centerY
+            icon.left ~== icon.superview!.left ~+ (25~~18)
+            icon.centerY ~== icon.superview!.centerY
             
-            name.left == icon.right + (12~~10)
-            name.right == name.superview!.right - 30
-            name.centerY == icon.centerY
+            name.left ~== icon.right ~+ (12~~10)
+            name.right ~== name.superview!.right ~- 30
+            name.centerY ~== icon.centerY
             
         }
     }

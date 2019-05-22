@@ -45,18 +45,18 @@ class UpdatesSectionHeader: UITableViewHeaderFooterView {
         if showsButton {
             contentView.addSubview(helpButton)
             constrain(titleLabel, helpButton) { title, why in
-                title.left == title.superview!.layoutMarginsGuide.left
-                title.bottom == title.superview!.bottom - (9~~7)
+                title.left ~== title.superview!.layoutMarginsGuide.left
+                title.bottom ~== title.superview!.bottom ~- (9~~7)
                 
-                why.height == (20~~18)
-                why.width == why.height
-                why.right == why.superview!.layoutMarginsGuide.right
-                why.centerY == title.centerY
+                why.height ~== (20~~18)
+                why.width ~== why.height
+                why.right ~== why.superview!.layoutMarginsGuide.right
+                why.centerY ~== title.centerY
             }
         } else {
             constrain(titleLabel) { title in
-                title.left == title.superview!.layoutMarginsGuide.left
-                title.bottom == title.superview!.bottom - (7~~5)
+                title.left ~== title.superview!.layoutMarginsGuide.left
+                title.bottom ~== title.superview!.bottom ~- (7~~5)
             }
         }
     }

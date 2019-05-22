@@ -52,21 +52,21 @@ class FeaturedBook: UICollectionViewCell {
     
     fileprivate func setConstraints() {        
         constrain(cover, title, author, dim) { cover, title, author, dim in
-            cover.left == cover.superview!.left
-            cover.top == cover.superview!.top
-            cover.right == cover.superview!.right
-            cover.width == frame.size.width
-            cover.height == cover.width * 1.542
+            cover.left ~== cover.superview!.left
+            cover.top ~== cover.superview!.top
+            cover.right ~== cover.superview!.right
+            cover.width ~== frame.size.width
+            cover.height ~== cover.width ~* 1.542
             
-            title.left == title.superview!.left
-            title.right == title.superview!.right
-            title.top == cover.bottom + (4~~7)
+            title.left ~== title.superview!.left
+            title.right ~== title.superview!.right
+            title.top ~== cover.bottom ~+ (4~~7)
             
-            author.left == author.superview!.left
-            author.right == author.superview!.right
-            author.top == title.bottom + 2
+            author.left ~== author.superview!.left
+            author.right ~== author.superview!.right
+            author.top ~== title.bottom ~+ 2
             
-            dim.edges == cover.edges
+            dim.edges ~== cover.edges
         }
     }
     

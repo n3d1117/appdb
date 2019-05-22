@@ -46,10 +46,10 @@ class NewsDetailTitleDateCell: UITableViewCell {
         line.theme_backgroundColor = Color.borderColor
         addSubview(line)
         constrain(line) { line in
-            line.height == 1/UIScreen.main.scale
-            line.left == line.superview!.left + Global.size.margin.value + 5
-            line.right == line.superview!.right
-            line.top == line.superview!.bottom - 1/UIScreen.main.scale
+            line.height ~== 1/UIScreen.main.scale
+            line.left ~== line.superview!.left ~+ Global.size.margin.value ~+ 5
+            line.right ~== line.superview!.right
+            line.top ~== line.superview!.bottom ~- (1/UIScreen.main.scale)
         }
         
         contentView.addSubview(title)
@@ -60,14 +60,14 @@ class NewsDetailTitleDateCell: UITableViewCell {
     
     fileprivate func setConstraints() {
         constrain(title, date) { title, date in
-            title.top == title.superview!.top + Global.size.margin.value + 5
-            title.left == title.superview!.left + Global.size.margin.value + 5
-            title.right == title.superview!.right - Global.size.margin.value - 5
+            title.top ~== title.superview!.top ~+ Global.size.margin.value ~+ 5
+            title.left ~== title.superview!.left ~+ Global.size.margin.value ~+ 5
+            title.right ~== title.superview!.right ~- Global.size.margin.value ~- 5
             
-            date.top == title.bottom + 7
-            date.left == title.left
-            date.right == title.right
-            date.bottom == date.superview!.bottom - Global.size.margin.value - 5
+            date.top ~== title.bottom ~+ 7
+            date.left ~== title.left
+            date.right ~== title.right
+            date.bottom ~== date.superview!.bottom ~- Global.size.margin.value ~- 5
         }
     }
 }

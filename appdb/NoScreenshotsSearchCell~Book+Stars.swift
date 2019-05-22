@@ -41,12 +41,12 @@ class NoScreenshotsSearchCellBookWithStars: SearchCell {
         contentView.addSubview(stars)
         
         constrain(icon, seller, stars) { icon, seller, stars in
-            icon.height == coverHeight
-            icon.bottom == icon.superview!.bottom - margin
+            icon.height ~== coverHeight
+            icon.bottom ~== icon.superview!.bottom ~- margin
             
-            stars.left == seller.left
-            stars.right <= stars.superview!.right - Global.size.margin.value
-            stars.top == seller.bottom + (7~~6)
+            stars.left ~== seller.left
+            stars.right ~<= stars.superview!.right ~- Global.size.margin.value
+            stars.top ~== seller.bottom ~+ (7~~6)
         }
     }
     
