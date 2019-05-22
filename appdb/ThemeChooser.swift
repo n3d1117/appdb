@@ -65,7 +65,7 @@ class ThemeChooser: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = indexPath.row == 0 ? "Light".localized() : "Dark".localized()
-        cell.textLabel?.font = .systemFont(ofSize: (17~~16))
+        cell.textLabel?.font = .systemFont(ofSize: (16~~15))
         cell.textLabel?.theme_textColor = Color.title
         switch indexPath.row {
             case 0: cell.accessoryType = lightTheme ? .checkmark : .none

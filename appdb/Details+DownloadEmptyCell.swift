@@ -29,7 +29,7 @@ class DetailsDownloadEmptyCell: DetailsCell {
         theme_backgroundColor = Color.veryVeryLightGray
         
         error = UILabel()
-        error.font = .systemFont(ofSize: (23~~22))
+        error.font = .systemFont(ofSize: (22~~21))
         error.makeDynamicFont()
         error.numberOfLines = 0
         error.theme_textColor = Color.darkGray

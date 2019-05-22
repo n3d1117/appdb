@@ -28,7 +28,7 @@ class LoadingCollectionView: UICollectionViewController {
     lazy var errorMessage: UILabel = {
         let errorMessage = UILabel()
         errorMessage.theme_textColor = Color.copyrightText
-        errorMessage.font = .systemFont(ofSize: (26~~24), weight: UIFont.Weight.semibold)
+        errorMessage.font = .systemFont(ofSize: (25~~23), weight: .semibold)
         errorMessage.numberOfLines = 0
         errorMessage.textAlignment = .center
         errorMessage.makeDynamicFont()
@@ -38,7 +38,7 @@ class LoadingCollectionView: UICollectionViewController {
     lazy var secondaryErrorMessage: UILabel = {
         let secondaryErrorMessage = UILabel()
         secondaryErrorMessage.theme_textColor = Color.copyrightText
-        secondaryErrorMessage.font = .systemFont(ofSize: (19~~17))
+        secondaryErrorMessage.font = .systemFont(ofSize: (18~~16))
         secondaryErrorMessage.numberOfLines = 0
         secondaryErrorMessage.textAlignment = .center
         secondaryErrorMessage.makeDynamicFont()

@@ -113,7 +113,7 @@ class SearchSuggestionCell: UITableViewCell {
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: (17~~16))
+        label.font = .systemFont(ofSize: (16~~15))
         label.numberOfLines = 1
         label.theme_textColor = ["#777777", "#828282"]
         label.makeDynamicFont()

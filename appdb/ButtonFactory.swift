@@ -21,7 +21,7 @@ struct ButtonFactory {
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if bold {
-            button.titleLabel?.font = .systemFont(ofSize: size, weight: UIFont.Weight.semibold)
+            button.titleLabel?.font = .systemFont(ofSize: size, weight: .semibold)
         } else {
             button.titleLabel?.font = .systemFont(ofSize: size)
         }
@@ -46,7 +46,7 @@ struct ButtonFactory {
         button.theme_setImage(["bolt_dark", "bolt_light"], forState: .normal)
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
-        button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: UIFont.Weight.semibold)
+        button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: .semibold)
         
         button.makeDynamicFont()
         button.contentHorizontalAlignment = .left

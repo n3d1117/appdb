@@ -41,7 +41,7 @@ class TagListView: UIView {
     var marginX: CGFloat = 10
     var marginY: CGFloat = 12
     
-    var textFont: UIFont = UIFont.systemFont(ofSize: 18) {
+    var textFont: UIFont = UIFont.systemFont(ofSize: 17) {
         didSet {
             for tagView in tagViews {
                 tagView.textFont = textFont

@@ -95,7 +95,7 @@ class LocalIPACell: UICollectionViewCell {
         // Filename
         filename = UILabel()
         filename.theme_textColor = Color.title
-        filename.font = .systemFont(ofSize: 17~~16)
+        filename.font = .systemFont(ofSize: 16~~15)
         filename.numberOfLines = 1
         filename.makeDynamicFont()
         

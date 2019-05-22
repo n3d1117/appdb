@@ -46,7 +46,7 @@ class DetailsTweakedNotice: DetailsCell {
             title = UILabel()
             title.theme_textColor = Color.title
             title.text = "Tweaked Version Notice".localized()
-            title.font = .systemFont(ofSize: (17~~16))
+            title.font = .systemFont(ofSize: (16~~15))
             title.makeDynamicFont()
             
             content = UILabel()

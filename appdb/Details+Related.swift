@@ -79,7 +79,7 @@ class DetailsRelated: DetailsCell {
             title = UILabel()
             title.theme_textColor = Color.title
             title.text = type == .books ? "Related Books".localized() : "Related Apps".localized()
-            title.font = .systemFont(ofSize: (17~~16))
+            title.font = .systemFont(ofSize: (16~~15))
             title.makeDynamicFont()
             
             let layout = SnappableFlowLayout(width: (75~~65), spacing: Global.size.spacing.value)

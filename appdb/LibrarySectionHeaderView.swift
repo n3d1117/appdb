@@ -14,7 +14,7 @@ class LibrarySectionHeaderView: UICollectionReusableView {
     lazy var label: UILabel = {
         let label = UILabel()
         label.theme_textColor = Color.copyrightText
-        label.font = .systemFont(ofSize: (20~~18), weight: UIFont.Weight.semibold)
+        label.font = .systemFont(ofSize: (18.5~~17.5), weight: .semibold)
         label.numberOfLines = 1
         label.textAlignment = .left
         label.makeDynamicFont()

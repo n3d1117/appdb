@@ -50,7 +50,7 @@ class LoadingTableView: UITableViewController {
     lazy var errorMessage: UILabel = {
         let errorMessage = UILabel()
         errorMessage.theme_textColor = Color.copyrightText
-        errorMessage.font = .systemFont(ofSize: (26~~24), weight: UIFont.Weight.semibold)
+        errorMessage.font = .systemFont(ofSize: (25~~23), weight: .semibold)
         errorMessage.numberOfLines = 0
         errorMessage.textAlignment = .center
         errorMessage.makeDynamicFont()
@@ -60,7 +60,7 @@ class LoadingTableView: UITableViewController {
     lazy var secondaryErrorMessage: UILabel = {
         let secondaryErrorMessage = UILabel()
         secondaryErrorMessage.theme_textColor = Color.copyrightText
-        secondaryErrorMessage.font = .systemFont(ofSize: (19~~17))
+        secondaryErrorMessage.font = .systemFont(ofSize: (18~~16))
         secondaryErrorMessage.numberOfLines = 0
         secondaryErrorMessage.textAlignment = .center
         secondaryErrorMessage.makeDynamicFont()
@@ -160,7 +160,7 @@ class LoadingTableView: UITableViewController {
                     button.centerX ~== button.superview!.centerX
                     button.width ~== CGFloat(refreshButton.tag + 20)
                 }
-            } else if secondaryErrorMessage.text?.isEmpty ?? false {
+            } else if secondaryErrorMessage.text?.isEmpty ?? true {
                 constrain(errorMessage, replace: group2) { message in
                     message.left ~== message.superview!.left ~+ 30
                     message.right ~== message.superview!.right ~- 30
@@ -172,7 +172,7 @@ class LoadingTableView: UITableViewController {
                     message.left ~== message.superview!.left ~+ 30
                     message.right ~== message.superview!.right ~- 30
                     message.centerX ~== message.superview!.centerX
-                    message.centerY ~== message.superview!.centerY ~- (offset - 20)
+                    message.centerY ~== message.superview!.centerY ~- (offset + 20)
                     
                     secondaryMessage.left ~== message.left
                     secondaryMessage.right ~== message.right

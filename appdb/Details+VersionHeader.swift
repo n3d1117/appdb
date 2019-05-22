@@ -32,7 +32,7 @@ class DetailsVersionHeader: TableViewHeader {
         backgroundView = bgColorView
         
         version = UILabel()
-        version.font = UIFont.systemFont(ofSize: (17~~16))
+        version.font = UIFont.systemFont(ofSize: (16~~15))
         version.makeDynamicFont()
         version.numberOfLines = 1
         version.theme_textColor = Color.title

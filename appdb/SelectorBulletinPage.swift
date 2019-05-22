@@ -38,7 +38,7 @@ class SelectorBulletinPage: BLTNPageItem {
         description.theme_textColor = Color.title
         imageStack.addArrangedSubview(description)
         
-        let stack = interfaceBuilder.makeGroupStack(spacing: 12)
+        let stack = interfaceBuilder.makeGroupStack(spacing: 10)
         
         let firstButton = createChoiceCell(title: "Yes, already linked".localized(), isSelected: true)
         firstButton.addTarget(self, action: #selector(linkedButtonTapped), for: .touchUpInside)
@@ -63,7 +63,7 @@ class SelectorBulletinPage: BLTNPageItem {
         
         let button = UIButton(type: .system)
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         button.contentHorizontalAlignment = .center
         
         button.layer.cornerRadius = 12

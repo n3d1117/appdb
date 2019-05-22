@@ -54,7 +54,7 @@ class PortraitScreenshotSearchCell: SearchCell {
     
     override func setConstraints() {
         constrain(screenshot, icon) { s, icon in
-            icon.height ~== iconSize
+            ((icon.height ~== iconSize) ~ Global.notMaxPriority) ~ Global.notMaxPriority
             (s.height ~== portraitSize) ~ Global.notMaxPriority
             s.width ~== s.height ~/ magic
             s.top ~== icon.bottom ~+ spaceFromIcon

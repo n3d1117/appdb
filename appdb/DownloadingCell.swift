@@ -104,7 +104,7 @@ class DownloadingCell: UICollectionViewCell {
         // Filename
         filename = UILabel()
         filename.theme_textColor = Color.title
-        filename.font = .systemFont(ofSize: 17~~16)
+        filename.font = .systemFont(ofSize: 15~~14)
         filename.numberOfLines = 1
         filename.makeDynamicFont()
         
@@ -145,11 +145,11 @@ class DownloadingCell: UICollectionViewCell {
             
             icon.width ~== iconSize
             icon.height ~== icon.width
-            icon.left ~== icon.superview!.left ~+ Global.size.margin.value
+            icon.left ~== icon.superview!.left ~+ (15~~12)
             icon.centerY ~== icon.superview!.centerY
             
             moreButton.centerY ~== moreButton.superview!.centerY
-            moreButton.right ~== moreButton.superview!.right ~- Global.size.margin.value
+            moreButton.right ~== moreButton.superview!.right ~- (15~~12)
             moreButton.width ~== (22~~20)
             moreButton.height ~== moreButton.width
             

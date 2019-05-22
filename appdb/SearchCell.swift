@@ -38,7 +38,7 @@ class SearchCell: UICollectionViewCell {
     lazy var paddingLabel: PaddingLabel = {
         let label = PaddingLabel()
         label.theme_textColor = Color.invertedTitle
-        label.font = .systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
+        label.font = .systemFont(ofSize: 10.0, weight: .semibold)
         label.makeDynamicFont()
         label.layer.backgroundColor = UIColor.gray.cgColor
         label.layer.cornerRadius = 6

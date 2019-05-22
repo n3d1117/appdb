@@ -14,7 +14,7 @@ class LibrarySectionFooterView: UICollectionReusableView {
     lazy var primaryLabel: UILabel = {
         let label = UILabel()
         label.theme_textColor = Color.lightErrorMessage
-        label.font = .systemFont(ofSize: (22~~20), weight: UIFont.Weight.semibold)
+        label.font = .systemFont(ofSize: (20~~18), weight: .semibold)
         label.numberOfLines = 0
         label.textAlignment = .center
         label.makeDynamicFont()
@@ -24,7 +24,7 @@ class LibrarySectionFooterView: UICollectionReusableView {
     lazy var secondaryLabel: UILabel = {
         let label = UILabel()
         label.theme_textColor = Color.lightErrorMessage
-        label.font = .systemFont(ofSize: (18~~16))
+        label.font = .systemFont(ofSize: (17~~15))
         label.numberOfLines = 0
         label.textAlignment = .center
         label.makeDynamicFont()

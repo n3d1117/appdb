@@ -41,7 +41,7 @@ class DetailsExternalLink: DetailsCell {
         
         label = UILabel()
         label.text = text.localized()
-        label.font = .systemFont(ofSize: (17~~16))
+        label.font = .systemFont(ofSize: (16~~15))
         label.makeDynamicFont()
         label.theme_textColor = Color.title
         contentView.addSubview(label)

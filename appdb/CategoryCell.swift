@@ -48,7 +48,7 @@ class CategoryCell: UITableViewCell {
         
         // Name
         name = UILabel()
-        name.font = .systemFont(ofSize: (17~~16))
+        name.font = .systemFont(ofSize: (16~~15))
         name.numberOfLines = 1
         name.makeDynamicFont()
         

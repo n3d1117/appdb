@@ -23,7 +23,7 @@ class SimpleStaticCell: UITableViewCell, Cell {
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
         
-        textLabel?.font = .systemFont(ofSize: (17~~16))
+        textLabel?.font = .systemFont(ofSize: (15.5~~14.5))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
     }
@@ -62,7 +62,7 @@ final class SimpleSubtitleCell: UITableViewCell, Cell {
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
         selectedBackgroundView = bgColorView
         
-        textLabel?.font = .systemFont(ofSize: (17~~16))
+        textLabel?.font = .systemFont(ofSize: (15.5~~14.5))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
         
@@ -82,7 +82,7 @@ final class SimpleStaticButtonCell: UITableViewCell, Cell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
-        textLabel?.font = .boldSystemFont(ofSize: (16~~15))
+        textLabel?.font = .boldSystemFont(ofSize: (15.5~~14.5))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = ["#F8F8F8", "#F8F8F8"]
         textLabel?.textAlignment = .center
@@ -133,7 +133,7 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
         
-        textLabel?.font = .systemFont(ofSize: (17~~16))
+        textLabel?.font = .systemFont(ofSize: (15.5~~14.5))
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
         
@@ -154,6 +154,9 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
             activeLabel.theme_textColor = Color.softGreen
             contentView.addSubview(expirationLabel)
             constrain(activeLabel, expirationLabel) { active, expiration in
+                
+                // todo dummy
+                
                 active.centerY ~== active.superview!.centerY ~- (8~~6)
                 active.trailing ~== active.superview!.trailingMargin
                 
@@ -259,7 +262,7 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         textLabel?.text = row.text
         if let placeholder = row.context?["placeholder"] as? String {
             textField.placeholder = placeholder
-            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: (17~~16))])
+            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: (15.5~~14.5))])
         }
         if let callback = row.context?["callback"] as? (String) -> () {
             self.textfieldDidEndEditing = callback

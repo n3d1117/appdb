@@ -28,7 +28,7 @@ class NewsDetailHTMLCell: UITableViewCell {
         
         // Title
         htmlText = AttributedLabel()
-        htmlText.font = .systemFont(ofSize: (17~~16))
+        htmlText.font = .systemFont(ofSize: (16~~15))
         htmlText.theme_textColor = Color.title
         htmlText.numberOfLines = 0
         

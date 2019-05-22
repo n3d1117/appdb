@@ -15,7 +15,7 @@ enum DeviceLinkIntroBulletins {
         let page = SelectorBulletinPage(title: "Authorization".localized())
         page.isDismissable = true
         page.actionButtonTitle = "Continue".localized()
-        page.appearance.titleFontSize = 25
+        page.appearance.titleFontSize = 23
         page.appearance.theme_actionButtonColor = Color.mainTint
         page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
@@ -50,7 +50,7 @@ enum DeviceLinkIntroBulletins {
         page.descriptionText = "Paste the 8 digits case sensitive link code you see on this page:".localized()
         page.actionButtonTitle = "Continue".localized()
         page.alternativeButtonTitle = "Go Back".localized()
-        page.appearance.titleFontSize = 27
+        page.appearance.titleFontSize = 25
         page.appearance.theme_actionButtonColor = Color.mainTint
         page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
@@ -95,7 +95,7 @@ enum DeviceLinkIntroBulletins {
         page.isDismissable = true
         page.descriptionText = "Please enter your email address below and click Continue. You will be redirected to the Settings app where you can proceed with appdb profile installation.".localized()
         page.actionButtonTitle = "Continue".localized()
-        page.appearance.titleFontSize = 27
+        page.appearance.titleFontSize = 25
         page.appearance.theme_actionButtonColor = Color.mainTint
         page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.alternativeButtonTitle = "Go Back".localized()
@@ -138,7 +138,7 @@ enum DeviceLinkIntroBulletins {
         page.appearance.theme_actionButtonColor = Color.softGreen
         page.appearance.theme_imageViewTintColor = Color.softGreen
         page.appearance.theme_actionButtonTitleColor = Color.invertedTitle
-        page.appearance.titleFontSize = 27
+        page.appearance.titleFontSize = 25
         page.descriptionText = "Well done! This app is now authorized to install apps on your device.".localized()
         page.appearance.shouldUseCompactDescriptionText = true
         page.actionButtonTitle = "Start using appdb!".localized()
@@ -159,7 +159,7 @@ enum DeviceLinkIntroBulletins {
         let page = DummyBulletinPage(title: "Unable to complete".localized())
         page.image = #imageLiteral(resourceName: "error")
         page.appearance.theme_imageViewTintColor = Color.softRed
-        page.appearance.titleFontSize = 27
+        page.appearance.titleFontSize = 25
         page.descriptionText = "An error has occurred".localized() + ":\n" + error
         page.appearance.shouldUseCompactDescriptionText = true
         page.isDismissable = true
@@ -184,7 +184,7 @@ enum DeviceLinkIntroBulletins {
         page.descriptionText = "Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles.".localized()
         page.actionButtonTitle = "Deauthorize".localized()
         page.alternativeButtonTitle = "Cancel".localized()
-        page.appearance.titleFontSize = 27
+        page.appearance.titleFontSize = 25
         page.appearance.theme_actionButtonColor = Color.softRed
         page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
@@ -210,7 +210,7 @@ enum DeviceLinkIntroBulletins {
         page.appearance.theme_actionButtonColor = Color.softGreen
         page.appearance.theme_imageViewTintColor = Color.softGreen
         page.appearance.theme_actionButtonTitleColor = Color.invertedTitle
-        page.appearance.titleFontSize = 27
+        page.appearance.titleFontSize = 25
         page.descriptionText = "App was deauthorized successfully.".localized()
         page.appearance.shouldUseCompactDescriptionText = true
         page.actionButtonTitle = "Continue".localized()

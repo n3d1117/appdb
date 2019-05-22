@@ -76,7 +76,7 @@ class ThreePortraitScreenshotsSearchCell: SearchCell {
     override func setConstraints() {
         constrain(screenshot_one, screenshot_two, screenshot_three, icon) { s_one, s_two, s_three, icon in
             
-            icon.height ~== iconSize
+            (icon.height ~== iconSize) ~ Global.notMaxPriority
             
             (s_one.height ~== compactPortraitSize) ~ Global.notMaxPriority
             s_one.width ~== s_one.height ~/ magic

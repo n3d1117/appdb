@@ -176,6 +176,6 @@ extension Downloading: ETCollectionViewDelegateWaterfallLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: (70~~60))
+        return CGSize(width: itemDimension, height: (50~~40)+(15~~12)*2)
     }
 }

@@ -40,7 +40,7 @@ class Library: LoadingCollectionView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset.bottom = 25~~15
+        collectionView.contentInset.bottom = 25~~45
         collectionView.delaysContentTouches = false
         
         // UI

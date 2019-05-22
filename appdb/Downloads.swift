@@ -111,7 +111,10 @@ class Downloads: UIViewController {
             
             control.top ~== header.top
             control.centerX ~== header.centerX
-            control.width ~== 370~~330
+
+            let screenWidth: CGFloat = min(CGFloat(UIScreen.main.bounds.width), CGFloat(UIScreen.main.bounds.height))
+            let width = (370~~330) > screenWidth ? (screenWidth - Global.size.margin.value * 2) : (370~~330)
+            control.width ~== width
         }
     }
     

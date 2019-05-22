@@ -54,7 +54,7 @@ class LandscapeScreenshotSearchCell: SearchCell {
     override func setConstraints() {
         constrain(screenshot, icon) { s, icon in
             
-            icon.height ~== iconSize
+            (icon.height ~== iconSize) ~ Global.notMaxPriority
             
             (s.height ~== landscapeSize) ~ Global.notMaxPriority
             s.width ~== s.height ~* magic

@@ -136,7 +136,7 @@ class ItemCollection: FeaturedCell {
         
         categoryLabel  = PaddingLabel()
         categoryLabel.theme_textColor = Color.invertedTitle
-        categoryLabel.font = UIFont.systemFont(ofSize: 10.0, weight: UIFont.Weight.semibold)
+        categoryLabel.font = UIFont.systemFont(ofSize: 10.0, weight: .semibold)
         categoryLabel.layer.backgroundColor = UIColor.gray.cgColor
         categoryLabel.layer.cornerRadius = 6
         categoryLabel.isHidden = true
