@@ -292,6 +292,7 @@
 "Your PRO subscription has expired." = "Il tuo abbonamento PRO è scaduto.";
 "Your PRO subscription has been revoked by Apple." = "Il tuo abbonamento PRO è stato revocato da Apple.";
 "Your device doesn't seem to have a PRO subcription." = "Il tuo dispositivo non ha un abbonamento PRO attivo.";
+"App duplication is currently supported on non-jailbroken devices with PRO." = "La duplicazione di app è al momento supportata solo su dispositivi senza jailbreak e con abbonamento PRO";
 
 ////////////////////////////
 //     LINK REPORTING     //

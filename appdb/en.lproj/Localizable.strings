@@ -292,6 +292,7 @@
 "Your PRO subscription has expired." = "Your PRO subscription has expired.";
 "Your PRO subscription has been revoked by Apple." = "Your PRO subscription has been revoked by Apple.";
 "Your device doesn't seem to have a PRO subcription." = "Your device doesn't seem to have a PRO subcription.";
+"App duplication is currently supported on non-jailbroken devices with PRO." = "App duplication is currently supported on non-jailbroken devices with PRO.";
 
 ////////////////////////////
 //     LINK REPORTING     //

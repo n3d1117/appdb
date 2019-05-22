@@ -46,6 +46,7 @@ extension String {
             case "PRO_EXPIRED": return "Your PRO subscription has expired.".localized()
             case "PRO_REVOKED": return "Your PRO subscription has been revoked by Apple.".localized()
             case "DEVICE_IS_NOT_PRO": return "Your device doesn't seem to have a PRO subcription.".localized()
+            case "ALONGSIDE_NOT_SUPPORTED": return "App duplication is currently supported on non-jailbroken devices with PRO.".localized()
             case "The operation couldn’t be completed. ObjectMapper failed to serialize response.": return "Oops! Something went wrong. Please try again later.".localized()
             case "TOO_SHORT_SEARCH_STRING": return "Please search at least two characters".localized()
             case "NOT_READY": return "The request timed out".localized()
