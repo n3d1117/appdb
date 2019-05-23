@@ -16,7 +16,7 @@ protocol IgnoredAppsListChanged: class {
 class Ignored: LoadingTableView {
     
     // Delegate to notify for changes in ignored list
-    var delegate: IgnoredAppsListChanged?
+    weak var delegate: IgnoredAppsListChanged?
     
     let realm = try! Realm()
     

@@ -29,7 +29,7 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     fileprivate var webView: WKWebView!
     fileprivate var progressView: UIProgressView!
     
-    fileprivate var delegate: IPAWebViewControllerDelegate?
+    fileprivate weak var delegate: IPAWebViewControllerDelegate?
     
     var appIcon: String = ""
     var url: URL!

@@ -14,4 +14,4 @@ github "n3d1117/Static" "master"
 github "alexaubry/BulletinBoard"
 github "glock45/swifter" ~> 1.4.3
 github "weichsel/ZIPFoundation"
-github "SwiftKickMobile/SwiftMessages" "master"
+github "SwiftKickMobile/SwiftMessages"

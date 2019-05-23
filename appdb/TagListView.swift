@@ -9,7 +9,7 @@
 import UIKit
 import SwiftTheme
 
-protocol TagListViewDelegate {
+protocol TagListViewDelegate: class {
     func tagPressed(_ title: String) -> Void
 }
 
@@ -50,7 +50,7 @@ class TagListView: UIView {
         }
     }
     
-    var delegate: TagListViewDelegate?
+    weak var delegate: TagListViewDelegate?
     
     open private(set) var tagViews: [TagButton] = []
     private(set) var tagBackgroundViews: [UIView] = []

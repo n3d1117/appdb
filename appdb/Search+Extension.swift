@@ -357,14 +357,14 @@ extension Search: UIPopoverPresentationControllerDelegate, SearchDidSelectTypePr
     }
 }
 
-protocol SearchDidSelectTypeProtocol {
+protocol SearchDidSelectTypeProtocol: class {
     func selectedTypeWithIndex(_ index: Int)
 }
 
 class SmallTableViewController: UITableViewController {
     
     var selectedType: Int = 0
-    var delegate: SearchDidSelectTypeProtocol?
+    weak var delegate: SearchDidSelectTypeProtocol?
     
     lazy var bgColorView: UIView = {
         let view = UIView()
