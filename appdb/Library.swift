@@ -24,7 +24,6 @@ class Library: LoadingCollectionView {
     internal var myAppstoreIpas = [MyAppstoreApp]()
     internal var timer: Timer?
     internal var documentController: UIDocumentInteractionController?
-    internal var useDiff: Bool = false
     internal var uploadBackgroundTask: BackgroundTaskUtil?
     internal var uploadRequestsAtIndex: [IndexPath: LocalIPAUploadUtil] = [:]
 
@@ -51,6 +50,8 @@ class Library: LoadingCollectionView {
         registerCells()
         
         state = .hideIndicator
+        
+        reloadFooterViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,43 +72,30 @@ class Library: LoadingCollectionView {
     
     // On first load just reload data, otherwise perform diff
     @objc internal func loadContent() {
-        if useDiff {
-            let newLocalIpas = IPAFileManager.shared.listLocalIpas()
-            let localIpaChanges = diff(old: localIpas, new: newLocalIpas)
+        let newLocalIpas = IPAFileManager.shared.listLocalIpas()
+        let localIpaChanges = diff(old: localIpas, new: newLocalIpas)
+        
+        API.getIpas(success: { ipas in
+            let myappstoreChanges = diff(old: self.myAppstoreIpas, new: ipas)
             
-            API.getIpas(success: { ipas in
-                let myappstoreChanges = diff(old: self.myAppstoreIpas, new: ipas)
-
-                self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
-                    self.localIpas = newLocalIpas
-                })
-                self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
-                    self.myAppstoreIpas = ipas
-                })
-                self.reloadFooterViews()
-                
-            }) { _ in
-                self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
-                    self.localIpas = newLocalIpas
-                })
-                self.reloadFooterViews()
-            }
+            if !self.isDone { self.state = .done(animated: false) }
             
-        } else {
-            localIpas = IPAFileManager.shared.listLocalIpas()
-            API.getIpas(success: { ipas in
+            self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
+                self.localIpas = newLocalIpas
+            })
+            self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
                 self.myAppstoreIpas = ipas
-
-                self.state = .done(animated: false)
-                self.reloadFooterViews()
-                self.collectionView.reloadData()
-                
-                self.useDiff = true
-                
-            }) { _ in
-                self.state = .done(animated: false)
-                self.reloadFooterViews()
-            }
+            })
+            self.reloadFooterViews()
+            
+        }) { _ in
+            
+            if !self.isDone { self.state = .done(animated: false) }
+            
+            self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
+                self.localIpas = newLocalIpas
+            })
+            self.reloadFooterViews()
         }
     }
     

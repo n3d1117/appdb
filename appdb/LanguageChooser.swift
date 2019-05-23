@@ -56,6 +56,19 @@ class LanguageChooser: UITableViewController {
     
     @objc fileprivate func dismissAnimated() { dismiss(animated: true) }
     
+    fileprivate func setLanguageAndRefresh(_ language: String) {
+        Localize.setCurrentLanguage(language)
+        UserDefaults.standard.set([language], forKey: "AppleLanguages")
+        changedLanguageDelegate?.changedLanguage()
+        tableView.reloadData()
+        title = "Choose Language".localized()
+        if Global.isIpad { navigationItem.rightBarButtonItem?.title = "Dismiss".localized() }
+        Messages.shared.hideAll()
+        Messages.shared.showSuccess(message: "Language set, please restart the app to apply changes".localized(), context: Global.isIpad ? .viewController(self) : nil)
+    }
+    
+    // MARK: - UITableViewDelegate
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -81,13 +94,11 @@ class LanguageChooser: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard availableLanguages.indices.contains(indexPath.row) else { return }
         let language = availableLanguages[indexPath.row]
-        Localize.setCurrentLanguage(language)
-        changedLanguageDelegate?.changedLanguage()
-        tableView.reloadData()
-        title = "Choose Language".localized()
-        if Global.isIpad { navigationItem.rightBarButtonItem?.title = "Dismiss".localized() }
-        Messages.shared.hideAll()
-        Messages.shared.showSuccess(message: "Language set, please restart the app to apply changes".localized(), context: Global.isIpad ? .viewController(self) : nil)
+        if Localize.currentLanguage() != language {
+            setLanguageAndRefresh(language)
+        } else {
+            tableView.reloadData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

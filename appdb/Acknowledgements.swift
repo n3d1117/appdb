@@ -85,7 +85,7 @@ class Acknowledgements: LoadingTableView {
     fileprivate func fail(_ error: Error? = nil) {
         licenses = []
         if let error = error {
-            self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
+            self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error.localizedDescription, animated: false)
         } else {
             self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: "Could not parse plist file.".localized(), animated: false)
         }

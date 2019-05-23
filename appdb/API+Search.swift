@@ -53,7 +53,7 @@ extension API {
                     }
                 }
             } else {
-                fail((hasError ?? "An error has occurred").localized())
+                fail((hasError ?? "Cannot connect").localized())
             }
         })
     }

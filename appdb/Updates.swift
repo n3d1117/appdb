@@ -78,7 +78,7 @@ class Updates: LoadingTableView {
                 self.getUpdates(ticket, done: { error in
                     if let error = error {
                         self.cleanup()
-                        self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error, animated: self.animated)
+                        self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error, animated: self.animated)
                     } else {
                         
                         self.isLoading = false
@@ -97,11 +97,11 @@ class Updates: LoadingTableView {
                 
             }, fail: { error in
                 self.cleanup()
-                self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error, animated: self.animated)
+                self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error, animated: false)
             })
         } else {
             self.cleanup()
-            showErrorMessage(text: "An error has occurred".localized(), secondaryText: "Please authorize app from Settings first".localized(), animated: self.animated)
+            showErrorMessage(text: "An error has occurred".localized(), secondaryText: "Please authorize app from Settings first".localized(), animated: false)
         }
     }
     

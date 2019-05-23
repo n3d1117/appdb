@@ -77,7 +77,7 @@ extension Details {
             if let item = items.first { success(item) }
             else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find content with id %@ in our database".localizedFormat(trackid)) }
         }, fail: { error in
-            self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error)
+            self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error)
         })
     }
     

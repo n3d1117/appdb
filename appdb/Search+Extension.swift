@@ -116,7 +116,7 @@ extension Search {
             
         }) { error in
             delay(0.3) {
-                self.state = .error(first: "An error has occurred".localized(), second: error, animated: true)
+                self.state = .error(first: "Cannot connect".localized(), second: error, animated: true)
             }
         }
     }

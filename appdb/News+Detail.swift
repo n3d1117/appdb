@@ -59,7 +59,7 @@ class NewsDetail: LoadingTableView {
             self.item = result
             self.state = .done
         }, fail: { error in
-            self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
+            self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error.localizedDescription, animated: false)
         })
     }
     

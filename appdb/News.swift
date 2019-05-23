@@ -108,7 +108,7 @@ class News: LoadingTableView {
             self.tableView.spr_endRefreshing()
             self.displayedNews = []
             self.tableView.reloadData()
-            self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
+            self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error.localizedDescription, animated: false)
         })
     }
     

@@ -64,7 +64,7 @@ class SystemStatus: LoadingTableView {
             self.services = services.sorted{ $0.name.lowercased() < $1.name.lowercased() }
         }, fail: { error in
             self.services = []
-            self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
+            self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error.localizedDescription, animated: false)
         })
     }
     

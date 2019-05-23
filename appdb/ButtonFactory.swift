@@ -39,12 +39,15 @@ struct ButtonFactory {
     }
     
     // Returns a Retry button with a bolt on the left (used in No Internet view)
-    static func createRetryButton(text: String, color: ThemeColorPicker) -> UIButton {
-        let button = ButtonWithColoredBorder() /* Type is system to keep nice highlighting features */
+    static func createRetryButton(text: String, color: ThemeColorPicker = Color.copyrightText) -> UIButton {
+        let button = BouncyButtonWithColoredBorder()
         
         button.setTitle(text, for: .normal)
         button.theme_setImage(["bolt_dark", "bolt_light"], forState: .normal)
+        button.setImage(button.imageView!.image!.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageView?.theme_tintColor = color
         button.theme_setTitleColor(color, forState: .normal)
+        button.theme_setTitleColor(Color.buttonBorderColor, forState: .highlighted)
         button.theme_tintColor = color
         button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: .semibold)
         
@@ -53,7 +56,7 @@ struct ButtonFactory {
         button.titleLabel?.lineBreakMode = .byTruncatingTail
         
         button.layer.borderWidth = 0.8
-        button.layer.cornerRadius = 5.0
+        button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.contentEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         button.isHighlighted = false /* set to false initially so the initial borderColor is set too */
@@ -73,11 +76,24 @@ struct ButtonFactory {
 // Class to match system button image/text highlighting with the border color
 // Values are hardcoded to match specifically the 'Retry' button for no internet view
 //
-class ButtonWithColoredBorder: UIButton {
+class BouncyButtonWithColoredBorder: UIButton {
     override var isHighlighted: Bool {
         didSet {
-            if isHighlighted { layer.theme_borderColor = Color.buttonBorderCgColor } /* apple's button selected color */
-            else { layer.theme_borderColor = Color.copyrightTextCgColor } /* hardcoded to match LoadingTableView */
+            if isHighlighted {
+                layer.theme_borderColor = Color.buttonBorderCgColor /* apple's button selected color */
+                theme_tintColor = Color.buttonBorderColor
+                // Bounce animation
+                UIView.animate(withDuration: 0.1) {
+                    self.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
+                }
+            } else {
+                layer.theme_borderColor = Color.copyrightTextCgColor /* hardcoded to match LoadingTableView */
+                theme_tintColor = Color.copyrightText
+                // Reset bounce animation
+                UIView.animate(withDuration: 0.1) {
+                    self.transform = .identity
+                }
+            }
         }
     }
 }

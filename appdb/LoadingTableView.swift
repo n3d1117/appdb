@@ -68,7 +68,7 @@ class LoadingTableView: UITableViewController {
     }()
     
     lazy var refreshButton: UIButton = {
-        let refreshButton = ButtonFactory.createRetryButton(text: "Retry".localized(), color: Color.copyrightText)
+        let refreshButton = ButtonFactory.createRetryButton(text: "Retry".localized())
         return refreshButton
     }()
     
@@ -150,13 +150,15 @@ class LoadingTableView: UITableViewController {
                     message.left ~== message.superview!.left ~+ 30
                     message.right ~== message.superview!.right ~- 30
                     message.centerX ~== message.superview!.centerX
-                    message.centerY ~== message.superview!.centerY ~- (offset - 35)
                     
                     secondaryMessage.left ~== message.left
                     secondaryMessage.right ~== message.right
                     secondaryMessage.top ~== message.bottom ~+ 10
+                    secondaryMessage.centerY ~== message.superview!.centerY ~- (offset)
                     
-                    button.top ~== secondaryMessage.bottom ~+ 30
+                    message.bottom ~== secondaryMessage.top ~- 10
+                    
+                    button.top ~== secondaryMessage.bottom ~+ 25
                     button.centerX ~== button.superview!.centerX
                     button.width ~== CGFloat(refreshButton.tag + 20)
                 }

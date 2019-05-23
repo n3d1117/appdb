@@ -74,6 +74,9 @@ struct Color {
     /* Background for bulletins */
     static let easyBulletinBackground: ThemeColorPicker = ["#EDEFEF", "#242424"]
     
+    /* Hardcoded Apple's UIButton selected color */
+    static let buttonBorderColor: ThemeColorPicker = ["#D0D0D4", "#272727"]
+    
     
     /////////////////
     //  CG COLORS  //

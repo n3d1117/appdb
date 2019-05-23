@@ -169,7 +169,7 @@ class SeeAll: LoadingTableView {
             self.tableView.spr_endRefreshing()
             self.items = []
             self.tableView.reloadData()
-            self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error, animated: false)
+            self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error, animated: false)
         })
     }
     

@@ -125,7 +125,7 @@ class DeviceStatus: LoadingTableView {
             let diff = Diff(from: self.statuses, to: [])
             self.statuses = []
             self.handleUpdates(from: diff)
-            self.showErrorMessage(text: "An error has occurred".localized(), secondaryText: error.localizedDescription, animated: false)
+            self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error.localizedDescription, animated: false)
             trashItem?.isEnabled = false
         }
     }
