@@ -71,37 +71,31 @@ class Library: LoadingCollectionView {
     }
     
     @objc internal func loadContent() {
+        
         let newLocalIpas = IPAFileManager.shared.listLocalIpas()
         let localIpaChanges = diff(old: localIpas, new: newLocalIpas)
         
-        API.getIpas(success: { [weak self] ipas in
-            guard let self = self else { return }
-            
-            let myappstoreChanges = diff(old: self.myAppstoreIpas, new: ipas)
-            
-            if !self.isDone { self.state = .done(animated: false) }
-            
-            self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
-                self.localIpas = newLocalIpas
-            }, completion: { _ in
+        self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
+            self.localIpas = newLocalIpas
+        }, completion: { _ in
+            API.getIpas(success: { [weak self] ipas in
+                guard let self = self else { return }
+                
+                let myappstoreChanges = diff(old: self.myAppstoreIpas, new: ipas)
+                if !self.isDone { self.state = .done(animated: false) }
                 self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
                     self.myAppstoreIpas = ipas
                 }, completion: { _ in
                     self.reloadFooterViews()
                 })
-            })
-            
-        }) { [weak self] _ in
-            guard let self = self else { return }
-            
-            if !self.isDone { self.state = .done(animated: false) }
-            
-            self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
-                self.localIpas = newLocalIpas
-            }, completion: { _ in
+                
+            }) { [weak self] _ in
+                guard let self = self else { return }
+
+                if !self.isDone { self.state = .done(animated: false) }
                 self.reloadFooterViews()
-            })
-        }
+            }
+        })
     }
     
     // MARK: - Orientation change
