@@ -106,8 +106,8 @@ class SearchSuggestionCell: UITableViewCell {
     
     lazy var searchImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "Search").withRenderingMode(.alwaysTemplate)
         imageView.theme_tintColor = ["#c6c6c6", "#7c7c7c"]
+        imageView.image = #imageLiteral(resourceName: "search").withRenderingMode(.alwaysTemplate)
         return imageView
     }()
     
@@ -134,7 +134,7 @@ class SearchSuggestionCell: UITableViewCell {
         constrain(label, searchImageView) { label, image in
             
             image.height ~== 20
-            image.width ~== 30
+            image.width ~== image.height
             
             image.left ~== image.superview!.layoutMarginsGuide.left
             image.centerY ~== image.superview!.centerY
