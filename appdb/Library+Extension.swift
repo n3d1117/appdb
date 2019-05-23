@@ -269,9 +269,9 @@ extension Library {
     
     internal func deleteLocalIpa(ipa: LocalIPAFile, indexPath: IndexPath) {
         IPAFileManager.shared.delete(file: ipa)
-        self.localIpas.remove(at: indexPath.row)
-        self.collectionView.deleteItems(at: [indexPath])
-        self.reloadFooterViews()
+        localIpas.remove(at: indexPath.row)
+        collectionView.deleteItems(at: [indexPath])
+        reloadFooterViews()
     }
     
     internal func deleteAll() {
@@ -283,15 +283,16 @@ extension Library {
             IPAFileManager.shared.delete(file: ipa)
         }
         let changes = diff(old: localIpas, new: [])
-        self.collectionView.reload(changes: changes, section: Section.local.rawValue, updateData: {
+        collectionView.reload(changes: changes, section: Section.local.rawValue, updateData: {
             localIpas.removeAll()
-            reloadFooterViews()
+        }, completion: { _ in
+            self.reloadFooterViews()
         })
     }
     
     @objc internal func deleteAllFilesConfirmationAlert(sender: UIButton) {
         let onlyOne: Bool = localIpas.count == 1
-        let title = onlyOne ? "Delete 1 file?".localized() : "Are you sure you want to delete %@ files?".localizedFormat(localIpas.count)
+        let title = onlyOne ? "Delete 1 file?".localized() : "Are you sure you want to delete %@ files?".localizedFormat(String(localIpas.count))
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         alertController.addAction(UIAlertAction(title: onlyOne ? "Delete".localized() : "Delete all".localized(), style: .destructive) { _ in
             self.deleteAll()

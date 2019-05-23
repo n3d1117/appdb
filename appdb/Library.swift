@@ -70,7 +70,6 @@ class Library: LoadingCollectionView {
         timer = nil
     }
     
-    // On first load just reload data, otherwise perform diff
     @objc internal func loadContent() {
         let newLocalIpas = IPAFileManager.shared.listLocalIpas()
         let localIpaChanges = diff(old: localIpas, new: newLocalIpas)
@@ -84,20 +83,24 @@ class Library: LoadingCollectionView {
             
             self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
                 self.localIpas = newLocalIpas
+            }, completion: { _ in
+                self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
+                    self.myAppstoreIpas = ipas
+                }, completion: { _ in
+                    self.reloadFooterViews()
+                })
             })
-            self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
-                self.myAppstoreIpas = ipas
-            })
-            self.reloadFooterViews()
             
-        }) { _ in
+        }) { [weak self] _ in
+            guard let self = self else { return }
             
             if !self.isDone { self.state = .done(animated: false) }
             
             self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
                 self.localIpas = newLocalIpas
+            }, completion: { _ in
+                self.reloadFooterViews()
             })
-            self.reloadFooterViews()
         }
     }
     

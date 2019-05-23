@@ -195,12 +195,12 @@ class Updates: LoadingTableView {
         if section == 0 {
             if updateableApps.isEmpty { return nil }
             let count = updateableApps.count
-            text = (count == 1 ? "%@ Updateable app" : "%@ Updateable apps").localizedFormat("\(count)")
+            text = (count == 1 ? "%@ Updateable app" : "%@ Updateable apps").localizedFormat(String(count))
         } else {
             view.helpButton.addTarget(self, action: #selector(self.showHelp), for: .touchUpInside)
             if nonUpdateableApps.isEmpty { return nil }
             let count = nonUpdateableApps.count
-            text = (count == 1 ? "%@ Non updateable app" : "%@ Non updateable apps").localizedFormat("\(count)")
+            text = (count == 1 ? "%@ Non updateable app" : "%@ Non updateable apps").localizedFormat(String(count))
         }
         view.configure(with: text)
         return view
@@ -260,10 +260,10 @@ class Updates: LoadingTableView {
             if let header = tableView.headerView(forSection: indexPath.section) as? UpdatesSectionHeader {
                 if indexPath.section == 0 {
                     let count = self.updateableApps.count
-                    header.configure(with: (count == 1 ? "%@ Updateable app" : "%@ Updateable apps").localizedFormat("\(count)"))
+                    header.configure(with: (count == 1 ? "%@ Updateable app" : "%@ Updateable apps").localizedFormat(String(count)))
                 } else {
                     let count = self.nonUpdateableApps.count
-                    header.configure(with: (count == 1 ? "%@ Non updateable app" : "%@ Non updateable apps").localizedFormat("\(count)"))
+                    header.configure(with: (count == 1 ? "%@ Non updateable app" : "%@ Non updateable apps").localizedFormat(String(count)))
                 }
             }
             
