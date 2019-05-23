@@ -77,6 +77,17 @@ struct Color {
     /* Hardcoded Apple's UIButton selected color */
     static let buttonBorderColor: ThemeColorPicker = ["#D0D0D4", "#272727"]
     
+    /* Almost full white, used for authorize cell text color */
+    static let dirtyWhite: ThemeColorPicker = ["#F8F8F8", "#F8F8F8"]
+    
+    /* Search suggestions, color for text */
+    static let searchSuggestionsTextColor: ThemeColorPicker = ["#777777", "#828282"]
+    
+    /* Search suggestions, color for search icon */
+    static let searchSuggestionsIconColor: ThemeColorPicker = ["#c6c6c6", "#7c7c7c"]
+    
+    /* "...more" text color in ElasticLabel */
+    static let moreTextColor = ["#4E7DD0", "#649EE6"]
     
     /////////////////
     //  CG COLORS  //

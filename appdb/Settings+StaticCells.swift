@@ -98,12 +98,12 @@ final class SimpleStaticButtonCell: UITableViewCell, Cell {
         
         textLabel?.font = .boldSystemFont(ofSize: (15.5~~14.5))
         textLabel?.makeDynamicFont()
-        textLabel?.theme_textColor = ["#F8F8F8", "#F8F8F8"]
+        textLabel?.theme_textColor = Color.dirtyWhite
         textLabel?.textAlignment = .center
     }
     
     func configure(row: Row) {
-        textLabel?.theme_textColor = ["#F8F8F8", "#F8F8F8"]
+        textLabel?.theme_textColor = Color.dirtyWhite
         textLabel?.textAlignment = .center
         
         textLabel?.text = row.text?.uppercased()

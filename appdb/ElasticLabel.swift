@@ -22,7 +22,7 @@ class ElasticLabel: UILabel {
     var recognizer: UITapGestureRecognizer!
     var expandedText: String! = ""
     
-    var moreTextColor = ["#4E7DD0", "#649EE6"]
+    var moreTextColor = Color.moreTextColor
     
     open override var text: String? {
         didSet {

@@ -106,8 +106,8 @@ class SearchSuggestionCell: UITableViewCell {
     
     lazy var searchImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.theme_tintColor = ["#c6c6c6", "#7c7c7c"]
         imageView.image = #imageLiteral(resourceName: "search").withRenderingMode(.alwaysTemplate)
+        imageView.theme_tintColor = Color.searchSuggestionsIconColor
         return imageView
     }()
     
@@ -115,7 +115,7 @@ class SearchSuggestionCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: (16~~15))
         label.numberOfLines = 1
-        label.theme_textColor = ["#777777", "#828282"]
+        label.theme_textColor = Color.searchSuggestionsTextColor
         label.makeDynamicFont()
         return label
     }()
