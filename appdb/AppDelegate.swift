@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     var window: UIWindow?
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        IPAFileManager.shared.clearTmpDirectory()
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)

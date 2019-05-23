@@ -38,6 +38,24 @@ struct IPAFileManager {
         return documentsDirectoryURL().appendingPathComponent(ipa.filename)
     }
     
+    // MARK: - Clear temporary folder - there may be leftovers
+    
+    func clearTmpDirectory() {
+        do {
+            var tmpDirURL: URL!
+            
+            if #available(iOS 10.0, *) {
+                tmpDirURL = FileManager.default.temporaryDirectory
+            } else {
+                tmpDirURL = URL(fileURLWithPath: NSTemporaryDirectory())
+            }
+            let tmpDirectory = try FileManager.default.contentsOfDirectory(atPath: tmpDirURL.path)
+            try tmpDirectory.forEach { file in
+                try FileManager.default.removeItem(atPath: tmpDirURL.appendingPathComponent(file).path)
+            }
+        } catch { }
+    }
+    
     // MARK: - Rename file
     
     func rename(file: LocalIPAFile, to: String) {
