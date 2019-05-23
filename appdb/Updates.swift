@@ -73,9 +73,12 @@ class Updates: LoadingTableView {
         isLoading = true
         if DeviceInfo.deviceIsLinked {
             
-            API.getUpdatesTicket(success: { ticket in
+            API.getUpdatesTicket(success: { [weak self] ticket in
+                guard let self = self else { return }
                 
-                self.getUpdates(ticket, done: { error in
+                self.getUpdates(ticket, done: { [weak self] error in
+                    guard let self = self else { return }
+                    
                     if let error = error {
                         self.cleanup()
                         self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error, animated: self.animated)
@@ -95,7 +98,9 @@ class Updates: LoadingTableView {
                     }
                 })
                 
-            }, fail: { error in
+            }, fail: { [weak self] error in
+                guard let self = self else { return }
+                
                 self.cleanup()
                 self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error, animated: false)
             })
@@ -116,13 +121,17 @@ class Updates: LoadingTableView {
     }
     
     func getUpdates(_ t: String, done: @escaping (_ error: String?) -> Void) {
-        API.getUpdates(ticket: t, success: { apps in
+        API.getUpdates(ticket: t, success: { [weak self] apps in
+            guard let self = self else { return }
+            
             self.allApps = apps
             let mixed = apps.filter({ !$0.isIgnored }).sorted{ $0.name.lowercased() < $1.name.lowercased() }
             self.updateableApps = mixed.filter({ $0.updateable })
             self.nonUpdateableApps = mixed.filter({ !$0.updateable })
             done(nil)
-        }, fail: { error in
+        }, fail: { [weak self] error in
+            guard let self = self else { return }
+            
             if error == "NOT_READY" && self.retryCount < self.timeoutLimit {
                 delay(1) {
                     self.retryCount += 1

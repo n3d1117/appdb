@@ -66,10 +66,13 @@ extension Library {
         uploadBackgroundTask = BackgroundTaskUtil()
         uploadBackgroundTask?.start()
         
-        API.addToMyAppstore(jobId: jobId, fileURL: url, request: { req in
+        API.addToMyAppstore(jobId: jobId, fileURL: url, request: { [weak self] req in
+            guard let self = self else { return }
+            
             self.uploadRequestsAtIndex[indexPath] = LocalIPAUploadUtil(req)
             self.collectionView.reloadItems(at: [indexPath])
-        }, completion: { [unowned self] error in
+        }, completion: { [weak self] error in
+            guard let self = self else { return }
             
             self.uploadRequestsAtIndex.removeValue(forKey: indexPath)
             self.collectionView.reloadItems(at: [indexPath])
@@ -79,7 +82,9 @@ extension Library {
                 self.uploadBackgroundTask = nil
             } else {
                 delay(0.8) {
-                    API.analyzeJob(jobId: jobId, completion: { [unowned self] error in
+                    API.analyzeJob(jobId: jobId, completion: { [weak self] error in
+                        guard let self = self else { return }
+                        
                         self.uploadBackgroundTask = nil
                         if let error = error {
                             Messages.shared.showError(message: error.prettified)
@@ -173,7 +178,9 @@ extension Library {
             setButtonTitle("Requesting...")
             
             func install(alongsideId: String = "", displayName: String = "") {
-                API.install(id: sender.linkId, type: .myAppstore, alongsideId: alongsideId, displayName: displayName) { error in
+                API.install(id: sender.linkId, type: .myAppstore, alongsideId: alongsideId, displayName: displayName) { [weak self] error in
+                    guard let self = self else { return }
+                    
                     if let error = error {
                         Messages.shared.showError(message: error.prettified)
                         delay(0.3) { setButtonTitle("Install") }
@@ -234,7 +241,9 @@ extension Library {
     // MARK: - Delete MyAppstore app
     
     internal func deleteMyAppstoreApp(id: String, indexPath: IndexPath) {
-        API.deleteIpa(id: id, completion: { error in
+        API.deleteIpa(id: id, completion: { [weak self] error in
+            guard let self = self else { return }
+            
             if let error = error {
                 Messages.shared.showError(message: error.prettified)
             } else {

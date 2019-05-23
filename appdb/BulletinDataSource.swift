@@ -70,15 +70,15 @@ enum DeviceLinkIntroBulletins {
                 API.linkDevice(code: code, success: {
                     
                     API.getConfiguration(success: {
-                        let completionPage = self.makeCompletionPage()
+                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
                         item.manager?.push(item: completionPage)
                     }, fail: { error in
-                        let errorPage = self.makeErrorPage(with: error.prettified)
+                        let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
                         item.manager?.push(item: errorPage)
                     })
                     
                 }, fail: { error in
-                    let errorPage = self.makeErrorPage(with: error.prettified)
+                    let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
                     item.manager?.push(item: errorPage)
                 })
             }
@@ -110,19 +110,19 @@ enum DeviceLinkIntroBulletins {
                 
                 API.setConfiguration(params: [.appsync: "no"], success: {
                     API.getConfiguration(success: {
-                        let completionPage = self.makeCompletionPage()
+                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
                         item.manager?.push(item: completionPage)
                     }, fail: { error in
-                        let errorPage = self.makeErrorPage(with: error.prettified)
+                        let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
                         item.manager?.push(item: errorPage)
                     })
                 }, fail: { error in
-                    let errorPage = self.makeErrorPage(with: error.prettified)
+                    let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
                     item.manager?.push(item: errorPage)
                 })
                 
             }, fail: { error in
-                let errorPage = self.makeErrorPage(with: error.prettified)
+                let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
                 item.manager?.push(item: errorPage)
             })
             
@@ -242,11 +242,11 @@ enum DeviceLinkIntroBulletins {
                         let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
                         item.manager?.push(item: completionPage)
                     }, fail: { error in
-                        let errorPage = self.makeErrorPage(with: error.prettified, displayBackButton: false)
+                        let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified, displayBackButton: false)
                         item.manager?.push(item: errorPage)
                     })
                 }, fail: { error in
-                    let errorPage = self.makeErrorPage(with: error.prettified, displayBackButton: false)
+                    let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified, displayBackButton: false)
                     item.manager?.push(item: errorPage)
                 })
             }

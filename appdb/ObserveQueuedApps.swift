@@ -87,7 +87,8 @@ class ObserveQueuedApps {
     @objc func updateAppsStatus() {
         if !requestedApps.isEmpty {
 
-            API.getDeviceStatus(success: { [unowned self] items in
+            API.getDeviceStatus(success: { [weak self] items in
+                guard let self = self else { return }
                 
                 if items.isEmpty {
                     self.removeAllApps()

@@ -224,7 +224,8 @@ class ItemCollection: FeaturedCell {
     }
     
     func getItems <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") -> Void where T:Mappable, T:Meta {
-        API.search(type: type, order: order, price: price, genre: genre, success: { array in
+        API.search(type: type, order: order, price: price, genre: genre, success: { [weak self] array in
+            guard let self = self else { return }
             
             if self.items.isEmpty {
                 self.items = array

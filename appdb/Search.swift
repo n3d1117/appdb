@@ -128,7 +128,8 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     // Fetch trending apps
     
     func getTrending(type: ItemType = .ios) {
-        API.getTrending(type: type, order: .day, maxResults: (12~~10), success: { results in
+        API.getTrending(type: type, order: .day, maxResults: (12~~10), success: { [weak self] results in
+            guard let self = self else { return }
             self.trendingItems = results
         })
     }

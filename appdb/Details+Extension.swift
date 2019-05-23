@@ -73,7 +73,8 @@ extension Details {
 
     // Get content dynamically
     func getContent<T:Object>(type: T.Type, trackid: String, success:@escaping (_ item: T) -> Void) -> Void where T:Mappable, T:Meta {
-        API.search(type: type, trackid: trackid, success: { items in
+        API.search(type: type, trackid: trackid, success: { [weak self] items in
+            guard let self = self else { return }
             if let item = items.first { success(item) }
             else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find content with id %@ in our database".localizedFormat(trackid)) }
         }, fail: { error in
@@ -145,7 +146,9 @@ extension Details {
     
     // Get links
     func getLinks() {
-        API.getLinks(type: contentType, trackid: content.itemId, success: { items in
+        API.getLinks(type: contentType, trackid: content.itemId, success: { [weak self] items in
+            guard let self = self else { return }
+            
             self.versions = items
             
             // Ensure latest version is always at the top

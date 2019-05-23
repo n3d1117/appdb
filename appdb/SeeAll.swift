@@ -149,7 +149,9 @@ class SeeAll: LoadingTableView {
     }
     
     fileprivate func loadItems<T:Object>(type: T.Type) -> Void where T:Mappable, T:Meta {
-        API.search(type: type, order: order, price: price, genre: categoryId, dev: devId, page: currentPage, success: { array in
+        API.search(type: type, order: order, price: price, genre: categoryId, dev: devId, page: currentPage, success: { [weak self] array in
+            
+            guard let self = self else { return }
             
             if array.isEmpty {
                 self.tableView.spr_endRefreshingWithNoMoreData()
@@ -262,7 +264,8 @@ extension SeeAll: UISearchResultsUpdating {
     }
     
     func quickSearch<T:Object>(type: T.Type) -> Void where T:Mappable, T:Meta {
-        API.search(type: type, q: query, success: { results in
+        API.search(type: type, q: query, success: { [weak self] results in
+            guard let self = self else { return }
             self.filteredItems = results
             self.tableView.reloadData()
         }, fail: { _ in })

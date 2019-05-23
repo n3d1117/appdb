@@ -144,9 +144,11 @@ class ConfigServer: NSObject {
         
         backgroundTask = nil
 
-        API.getLinkCode(success: {
+        API.getLinkCode(success: { [weak self] in
+            guard let self = self else { return }
             self.hasCompleted?(nil)
-        }) { error in
+        }) { [weak self] error in
+            guard let self = self else { return }
             self.hasCompleted?(error)
         }
     }

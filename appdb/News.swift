@@ -101,10 +101,14 @@ class News: LoadingTableView {
     @objc func dismissAnimated() { dismiss(animated: true) }
     
     fileprivate func fetchNews() {
-        API.getNews(limit: 500, success: { news in
+        API.getNews(limit: 500, success: { [weak self] news in
+            guard let self = self else { return }
+            
             self.allNews = news
             self.loadNews()
-        }, fail: { error in
+        }, fail: { [weak self] error in
+            guard let self = self else { return }
+            
             self.tableView.spr_endRefreshing()
             self.displayedNews = []
             self.tableView.reloadData()

@@ -89,7 +89,8 @@ class DeviceStatus: LoadingTableView {
         let alertController = UIAlertController(title: nil, message: "Clear command queue?".localized(), preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .cancel)
         let clearAction = UIAlertAction(title: "Clear".localized(), style: .destructive) { _ in
-            API.emptyCommandQueue(success: {
+            API.emptyCommandQueue(success: { [weak self] in
+                guard let self = self else { return }
                 self.fetchStatus()
                 self.timer?.invalidate()
                 self.timer = Timer.scheduledTimer(timeInterval: self.refreshEvery, target: self,
@@ -109,7 +110,9 @@ class DeviceStatus: LoadingTableView {
         
         let trashItem = (self.navigationItem.leftBarButtonItem ~~ self.navigationItem.rightBarButtonItem)
         
-        API.getDeviceStatus(success: { results in
+        API.getDeviceStatus(success: { [weak self] results in
+            guard let self = self else { return }
+            
             let diff = Diff(from: self.statuses, to: results)
             self.statuses = results
             self.handleUpdates(from: diff)

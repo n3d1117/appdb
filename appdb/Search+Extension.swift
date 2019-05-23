@@ -54,7 +54,9 @@ extension Search {
         
         self.collectionView.spr_resetNoMoreData()
         
-        API.search(type: type, q: query, page: page, success: { items in
+        API.search(type: type, q: query, page: page, success: { [weak self] items in
+            guard let self = self else { return }
+            
             for item in items {
                 self.results.append(item)
                 

@@ -75,7 +75,9 @@ class Library: LoadingCollectionView {
         let newLocalIpas = IPAFileManager.shared.listLocalIpas()
         let localIpaChanges = diff(old: localIpas, new: newLocalIpas)
         
-        API.getIpas(success: { ipas in
+        API.getIpas(success: { [weak self] ipas in
+            guard let self = self else { return }
+            
             let myappstoreChanges = diff(old: self.myAppstoreIpas, new: ipas)
             
             if !self.isDone { self.state = .done(animated: false) }

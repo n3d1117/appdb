@@ -77,10 +77,13 @@ class Settings: TableViewController {
         // Refresh link code & configuration parameters
         if DeviceInfo.deviceIsLinked {
             API.getLinkCode(success: {
-                API.getConfiguration(success: { [unowned self] in
+                API.getConfiguration(success: { [weak self] in
+                    guard let self = self else { return }
                     self.refreshSources()
                 }) { _ in }
-            }) { error in
+            }) { [weak self] error in
+                guard let self = self else { return }
+                
                 // Profile has been removed, so let's deauthorize the app as well
                 if error == "NO_DEVICE_LINKED" {
                     self.deauthorize()

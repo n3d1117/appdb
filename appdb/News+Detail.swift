@@ -55,10 +55,12 @@ class NewsDetail: LoadingTableView {
         state = .loading
         
         guard let id = self.id else { return }
-        API.getNewsDetail(id: id, success: { result in
+        API.getNewsDetail(id: id, success: { [weak self] result in
+            guard let self = self else { return }
             self.item = result
             self.state = .done
-        }, fail: { error in
+        }, fail: { [weak self] error in
+            guard let self = self else { return }
             self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error.localizedDescription, animated: false)
         })
     }

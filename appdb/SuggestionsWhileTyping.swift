@@ -54,7 +54,9 @@ class SuggestionsWhileTyping: UITableViewController, UISearchResultsUpdating {
     }
     
     @objc func reload() {
-        API.fastSearch(type: self.type, query: self.text, maxResults: 7, success: { results in
+        API.fastSearch(type: self.type, query: self.text, maxResults: 7, success: { [weak self] results in
+            guard let self = self else { return }
+            
             self.results = results
             self.tableView.reloadData()
         })

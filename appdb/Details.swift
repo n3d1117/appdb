@@ -232,7 +232,9 @@ class Details: LoadingTableView {
             setButtonTitle("Requesting...")
             
             func install(alongsideId: String = "", displayName: String = "") {
-                API.install(id: sender.linkId, type: self.contentType, alongsideId: alongsideId, displayName: displayName) { error in
+                API.install(id: sender.linkId, type: self.contentType, alongsideId: alongsideId, displayName: displayName) { [weak self] error in
+                    guard let self = self else { return }
+                    
                     if let error = error {
                         Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
                         delay(0.3) {
@@ -326,7 +328,10 @@ class Details: LoadingTableView {
         
         let reportAction = UIAlertAction(title: "Send".localized(), style: .destructive, handler: { _ in
             if let textField = alert.textFields?.first, let text = textField.text {
-                API.reportLink(id: id, type: self.contentType, reason: text, completion: { error in
+                API.reportLink(id: id, type: self.contentType, reason: text, completion: { [weak self] error in
+                    
+                    guard let self = self else { return }
+                    
                     if let error = error {
                         Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
                     } else {

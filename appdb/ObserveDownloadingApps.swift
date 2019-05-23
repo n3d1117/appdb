@@ -37,7 +37,8 @@ class ObserveDownloadingApps {
         downloadBackgroundTask = BackgroundTaskUtil()
         downloadBackgroundTask?.start()
         
-        API.downloadIPA(url: url, request: { r in
+        API.downloadIPA(url: url, request: { [weak self] r in
+            guard let self = self else { return }
             
             let util = LocalIPADownloadUtil(r)
             app = DownloadingApp(filename: filename, icon: icon, util: util)

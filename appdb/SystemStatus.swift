@@ -58,11 +58,16 @@ class SystemStatus: LoadingTableView {
     
     fileprivate func fetchStatus() {
         
-        API.getLastSystemStatusUpdateTime { checkedAt in self.checkedAt = checkedAt }
+        API.getLastSystemStatusUpdateTime { [weak self] checkedAt in
+            guard let self = self else { return }
+            self.checkedAt = checkedAt
+        }
         
-        API.getSystemStatus(success: { services in
+        API.getSystemStatus(success: { [weak self] services in
+            guard let self = self else { return }
             self.services = services.sorted{ $0.name.lowercased() < $1.name.lowercased() }
-        }, fail: { error in
+        }, fail: { [weak self] error in
+            guard let self = self else { return }
             self.services = []
             self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error.localizedDescription, animated: false)
         })
