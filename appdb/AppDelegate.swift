@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
     func applicationWillTerminate(_ application: UIApplication) {
         IPAFileManager.shared.clearTmpDirectory()
+        //IPAFileManager.shared.clearCacheDirectory()
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
