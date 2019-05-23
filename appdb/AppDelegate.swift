@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         // Theme navigation bar
         let navigationBar = UINavigationBar.appearance()
-        let titleAttributes = ["#121212", "#F8F8F8"].map { hexString in
+        let titleAttributes = Color.navigationBarTextColor.map { hexString in
             return [
                 AttributedStringKey.foregroundColor: UIColor(rgba: hexString),
                 AttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16.5)

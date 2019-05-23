@@ -89,6 +89,9 @@ struct Color {
     /* "...more" text color in ElasticLabel */
     static let moreTextColor = ["#4E7DD0", "#649EE6"]
     
+    /* Text color used in navigation bar title */
+    static let navigationBarTextColor = ["#121212", "#F8F8F8"]
+    
     /////////////////
     //  CG COLORS  //
     /////////////////
