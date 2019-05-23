@@ -12,6 +12,11 @@ struct DeviceInfo {
     
     static let realm = try! Realm()
     
+    static var didSpecifyPreferredLanguage: Bool {
+        guard let pref = realm.objects(Preferences.self).first else { return false }
+        return pref.didSpecifyPreferredLanguage
+    }
+    
     static var deviceIsLinked: Bool {
         guard let pref = realm.objects(Preferences.self).first else { return false }
         return !pref.token.isEmpty

@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import Cartography
 import AlamofireImage
+import Localize_Swift
 
 // Utils
 
@@ -132,6 +133,15 @@ struct Global {
     // Human readable size from byte count
     static func humanReadableSize(bytes: Int64) -> String {
         return ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
+    }
+    
+    // Sets app language the same as device language, unless it's been previously changed from Settings
+    static func restoreLanguage() {
+        let defaultLanguage = Localize.defaultLanguage()
+        if !DeviceInfo.didSpecifyPreferredLanguage, defaultLanguage != Localize.currentLanguage() {
+            Localize.setCurrentLanguage(defaultLanguage)
+            UserDefaults.standard.set([defaultLanguage], forKey: "AppleLanguages")
+        }
     }
     
 }

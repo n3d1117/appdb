@@ -13,6 +13,7 @@ class Preferences: Object {
 
     @objc dynamic var theme: Int = 0
     @objc dynamic var isFirstLaunch: Bool = false
+    @objc dynamic var didSpecifyPreferredLanguage: Bool = false
     
     @objc dynamic var token: String = ""
     @objc dynamic var linkCode: String = ""

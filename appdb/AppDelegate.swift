@@ -17,9 +17,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
+        
+        // Realm config
+        let dbURL: URL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0].appendingPathComponent("db.realm")
+        let config = Realm.Configuration(fileURL: dbURL, schemaVersion: 1, migrationBlock: { migration, oldVersion in
+            // v0 -> v1 migration
+            if oldVersion < 1 {
+                migration.enumerateObjects(ofType: Preferences.className()) { _, new in
+                    new?["didSpecifyPreferredLanguage"] = false
+                }
+            }
+        })
+        Realm.Configuration.defaultConfiguration = config
+        debugLog(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "")
+        
+        // Global Operations
+        Global.setFirstLaunch()
+        Global.restoreLanguage()
+        Themes.restoreLastTheme()
         
         // Set main tint color
         self.window?.theme_backgroundColor = Color.tableViewBackgroundColor
@@ -36,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 AttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16.5)
             ]
         }
-        
         navigationBar.theme_barStyle = [.default, .black]
         navigationBar.theme_tintColor = Color.mainTint
         navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithAttributes(titleAttributes)
@@ -47,20 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         // Theme UISwitch
         UISwitch.appearance().theme_onTintColor = Color.mainTint
-        
-        // Realm config
-        let dbURL: URL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0].appendingPathComponent("db.realm")
-        let config = Realm.Configuration(fileURL: dbURL, schemaVersion: 0, migrationBlock: { migration, oldVersion in
-            if oldVersion < 1 {
-                // Migrate if needed
-            }
-        })
-        Realm.Configuration.defaultConfiguration = config
-        //debugLog(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "")
-        
-        // Global Operations
-        Global.setFirstLaunch()
-        Themes.restoreLastTheme()
         
         // Show network activity indicator
         NetworkActivityIndicatorManager.shared.isEnabled = true

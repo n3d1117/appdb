@@ -8,6 +8,7 @@
 
 import UIKit
 import Localize_Swift
+import RealmSwift
 
 protocol ChangedLanguage: class {
     func changedLanguage()
@@ -57,6 +58,11 @@ class LanguageChooser: UITableViewController {
     @objc fileprivate func dismissAnimated() { dismiss(animated: true) }
     
     fileprivate func setLanguageAndRefresh(_ language: String) {
+        if !DeviceInfo.didSpecifyPreferredLanguage {
+            let realm = try! Realm()
+            guard let pref = realm.objects(Preferences.self).first else { return }
+            try! realm.write { pref.didSpecifyPreferredLanguage = true }
+        }
         Localize.setCurrentLanguage(language)
         UserDefaults.standard.set([language], forKey: "AppleLanguages")
         changedLanguageDelegate?.changedLanguage()
