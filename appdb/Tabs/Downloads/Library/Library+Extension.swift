@@ -14,19 +14,21 @@ extension Library {
 
     // MARK: - Reload footer views
 
-    internal func reloadFooterViews() {
-        if let localIpasFooter = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(row: 0, section: Section.local.rawValue)) as? LibrarySectionFooterView {
-            if localIpas.isEmpty {
-                localIpasFooter.configure("No Local IPAs Found".localized(), secondaryText: "Use iTunes File Sharing or import them from other apps".localized())
-            } else {
-                localIpasFooter.configure("")
-            }
-        }
-        if let myappstoreFooter = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(row: 0, section: Section.myappstore.rawValue)) as? LibrarySectionFooterView {
-            if myAppstoreIpas.isEmpty {
-                myappstoreFooter.configure("No MyAppstore apps".localized(), secondaryText: "This is your personal IPA library! Apps you upload over time will appear here".localized())
-            } else {
-                myappstoreFooter.configure("")
+    internal func reloadFooterView(section: Section) {
+        if let footer = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(row: 0, section: section.rawValue)) as? LibrarySectionFooterView {
+            switch section {
+            case .local:
+                if localIpas.isEmpty {
+                    footer.configure("No Local IPAs Found".localized(), secondaryText: "Use iTunes File Sharing or import them from other apps".localized())
+                } else {
+                    footer.configure("")
+                }
+            case .myappstore:
+                if myAppstoreIpas.isEmpty {
+                    footer.configure("No MyAppstore apps".localized(), secondaryText: "This is your personal IPA library! Apps you upload over time will appear here".localized())
+                } else {
+                    footer.configure("")
+                }
             }
         }
     }
@@ -243,7 +245,9 @@ extension Library {
             } else {
                 self.myAppstoreIpas.remove(at: indexPath.row)
                 self.collectionView.deleteItems(at: [indexPath])
-                self.reloadFooterViews()
+                if self.myAppstoreIpas.isEmpty {
+                    self.reloadFooterView(section: .myappstore)
+                }
             }
         })
     }
@@ -265,7 +269,9 @@ extension Library {
         IPAFileManager.shared.delete(file: ipa)
         localIpas.remove(at: indexPath.row)
         collectionView.deleteItems(at: [indexPath])
-        reloadFooterViews()
+        if localIpas.isEmpty {
+            reloadFooterView(section: .local)
+        }
     }
 
     internal func deleteAll() {
@@ -280,7 +286,7 @@ extension Library {
         collectionView.reload(changes: changes, section: Section.local.rawValue, updateData: {
             localIpas.removeAll()
         }, completion: { _ in
-            self.reloadFooterViews()
+            self.reloadFooterView(section: .local)
         })
     }
 

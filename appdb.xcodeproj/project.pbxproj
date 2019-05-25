@@ -791,18 +791,6 @@
 		8188E8E31DB1993700462256 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
-				812620122154449500B06F88 /* Atributika */,
-				8112C35A1F7FC6D40014EDB2 /* DynamicFontSizeHelper */,
-				8105175520D0282500B3E1FB /* Ferrara */,
-				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
-				819DFD592279F51900A811F9 /* LNZSnapToCenterCollectionViewLayout */,
-				815234D02278A6AD00B1AE65 /* SHA1 */,
-				81F055E42298141200E76874 /* Storage */,
-				814B7701205B2DB1004D46DD /* SwiftPullToRefresh */,
-				81E1702C2170D05D00A38380 /* TagView */,
-				81431A9F20A0CBFC00C830BE /* UIDeviceExtension */,
-				819E69901F8E9E5400C4608F /* WaterfallLayout */,
 				81892558227CC9490096F661 /* • AdaptiveUIAlertController */,
 				811A824B2289D14300969946 /* • AdditionalInstallOptionsView */,
 				815234D32278C0EE00B1AE65 /* • BackgroundTaskUtil */,
@@ -816,6 +804,18 @@
 				81236ACA1E3B8A3E009748E0 /* • PaddingLabel */,
 				8141CB601F817B5F00DBDD89 /* • SafariActivity */,
 				817A40E21E5E2F97003FD6F1 /* • SnappableFlowLayout */,
+				8188E8E81DB199FD00462256 /* AlamofireObjectMapper */,
+				812620122154449500B06F88 /* Atributika */,
+				8112C35A1F7FC6D40014EDB2 /* DynamicFontSizeHelper */,
+				8105175520D0282500B3E1FB /* Ferrara */,
+				81F3D6591E1310C1003CD808 /* ILTranslucentView */,
+				819DFD592279F51900A811F9 /* LNZSnapToCenterCollectionViewLayout */,
+				815234D02278A6AD00B1AE65 /* SHA1 */,
+				81F055E42298141200E76874 /* Storage */,
+				814B7701205B2DB1004D46DD /* SwiftPullToRefresh */,
+				81E1702C2170D05D00A38380 /* TagView */,
+				81431A9F20A0CBFC00C830BE /* UIDeviceExtension */,
+				819E69901F8E9E5400C4608F /* WaterfallLayout */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
