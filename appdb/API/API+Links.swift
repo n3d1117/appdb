@@ -67,7 +67,6 @@ extension API {
                         }
 
                         DispatchQueue.main.async {
-                            debugLog(versions)
                             success(versions)
                         }
                     }
