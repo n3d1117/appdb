@@ -1,12 +1,11 @@
 github "Alamofire/Alamofire"
-github "realm/realm-cocoa"
 github "n3d1117/Cartography" "master"
 github "SwiftyJSON/SwiftyJSON"
 github "tid-kijyun/Kanna" ~> 5.0.0
 github "Alamofire/AlamofireImage"
 github "Alamofire/AlamofireNetworkActivityIndicator"
 github "evgenyneu/Cosmos"
-github "onmyway133/DeepDiff" ~> 1.4.0
+github "onmyway133/DeepDiff"
 github "marmelroy/Localize-Swift"
 github "Hearst-DD/ObjectMapper"
 github "n3d1117/SwiftTheme" "master"

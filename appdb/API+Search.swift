@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import RealmSwift
 import SwiftyJSON
 import ObjectMapper
 
@@ -15,7 +14,7 @@ extension API {
     
     // MARK: - Search
     
-    static func search <T:Object>(type: T.Type,
+    static func search <T>(type: T.Type,
                                   order: Order = .all,
                                   price: Price = .all,
                                   genre: String = "0",
@@ -24,7 +23,7 @@ extension API {
                                   q: String = "",
                                   page: Int = 1,
                                   success:@escaping (_ items: [T]) -> Void,
-                                  fail:@escaping (_ error: String) -> Void) where T:Mappable, T:Meta {
+                                  fail:@escaping (_ error: String) -> Void) where T:Mappable, T:Item {
 
         let request = Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue,
                                                  "type": T.type().rawValue,
@@ -42,12 +41,7 @@ extension API {
                 request.responseArray(keyPath: "data") { (response: DataResponse<[T]>) in
                     switch response.result {
                         case .success(let items):
-                            do {
-                                try realm.write { realm.add(items, update: true) }
-                                success(items)
-                            } catch let error as NSError {
-                                fail(error.localizedDescription)
-                            }
+                            success(items)
                         case .failure(let error):
                             fail(error.localizedDescription)
                     }

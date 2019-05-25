@@ -23,7 +23,7 @@ extension Settings {
     }
 
     var proSite: String {
-        return Global.mainSite + "pro.php?lt=" + DeviceInfo.linkToken
+        return Global.mainSite + "pro.php?lt=" + Preferences.linkToken
     }
 
     var themeSection: [Static.Section] {
@@ -96,12 +96,12 @@ extension Settings {
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
                 
                 Row(text: "PRO Status".localized(), selection: { [unowned self] in
-                    if !DeviceInfo.proRevoked, !DeviceInfo.proDisabled, !DeviceInfo.pro {
+                    if !Preferences.proRevoked, !Preferences.proDisabled, !Preferences.pro {
                         self.openInSafari(self.proSite)
                     }
-                }, cellClass: SimpleStaticPROStatusCell.self, context: ["active": DeviceInfo.pro, "expire": DeviceInfo.proUntil, "revoked": DeviceInfo.proRevoked, "revokedOn": DeviceInfo.proRevokedOn, "disabled": DeviceInfo.proDisabled]),
+                }, cellClass: SimpleStaticPROStatusCell.self, context: ["active": Preferences.pro, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "disabled": Preferences.proDisabled]),
                 
-                Row(text: "Link Code".localized(), detailText: DeviceInfo.linkCode, selection: { [unowned self] in
+                Row(text: "Link Code".localized(), detailText: Preferences.linkCode, selection: { [unowned self] in
                         API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
                     }, cellClass: SimpleStaticCell.self, context: ["disableSelection": true], copyAction: { row in
                         UIPasteboard.general.string = row.detailText
@@ -110,21 +110,21 @@ extension Settings {
             ], footer: .title("Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.".localized())),
             
             Section(header: .title("Device Configuration".localized()), rows: [
-                Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: DeviceInfo.appsync) { newValue in
+                Row(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: Preferences.appsync) { newValue in
                     API.setConfiguration(params: [.appsync: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Compatibility Checks".localized(), accessory: .switchToggle(value: !DeviceInfo.ignoresCompatibility) { newValue in
+                Row(text: "Compatibility Checks".localized(), accessory: .switchToggle(value: !Preferences.ignoresCompatibility) { newValue in
                     API.setConfiguration(params: [.ignoreCompatibility: newValue ? "no" : "yes"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
-                Row(text: "Ask for installation options".localized(), accessory: .switchToggle(value: DeviceInfo.askForInstallationOptions) { newValue in
+                Row(text: "Ask for installation options".localized(), accessory: .switchToggle(value: Preferences.askForInstallationOptions) { newValue in
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
                 
                 Row(text: "Show badge for updates".localized(), cellClass: SwitchCell.self, context: ["valueChange": { [unowned self] new in
                     self.setShowsBadgeForUpdates(new)
-                }, "keyPath": \Preferences.showBadgeForUpdates]),
+                }, "value": Preferences.showBadgeForUpdates]),
             ]),
             
             Section(rows: [

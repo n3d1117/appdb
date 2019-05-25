@@ -9,25 +9,25 @@
 import ObjectMapper
 import SwiftyJSON
 
-class DeviceStatusItem: Mappable, Matchable {
+struct DeviceStatusItem: Mappable, Matchable {
     
-    @objc dynamic var uuid = ""
-    @objc dynamic var added = ""
-    @objc dynamic var params = ""
-    @objc dynamic var acknowledged = ""
-    @objc dynamic var status = ""
-    @objc dynamic var type = ""
-    @objc dynamic var timestamp = ""
-    @objc dynamic var title = ""
-    @objc dynamic var bundleId = ""
-    @objc dynamic var purpose = ""
-    @objc dynamic var statusShort = ""
-    @objc dynamic var statusText = ""
-    @objc dynamic var linkId = ""
-
-    convenience required init?(map: Map) { self.init() }
+    init?(map: Map) { }
     
-    func mapping(map: Map) {
+    var uuid: String = ""
+    var added: String = ""
+    var params: String = ""
+    var acknowledged: String = ""
+    var status: String = ""
+    var type: String = ""
+    var timestamp: String = ""
+    var title: String = ""
+    var bundleId: String = ""
+    var purpose: String = ""
+    var statusShort: String = ""
+    var statusText: String = ""
+    var linkId: String = ""
+    
+    mutating func mapping(map: Map) {
         uuid             <- map["uuid"]
         added            <- map["added"]
         params           <- map["params"]

@@ -11,7 +11,7 @@ import Cartography
 import Alamofire
 import AlamofireImage
 
-struct DownloadingApp: Equatable, Hashable {
+struct DownloadingApp: Hashable {
     var filename: String = ""
     var icon: String = ""
     var util: LocalIPADownloadUtil?

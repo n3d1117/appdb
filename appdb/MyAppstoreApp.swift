@@ -6,28 +6,27 @@
 //  Copyright © 2019 ned. All rights reserved.
 //
 
-import RealmSwift
 import SwiftyJSON
 import ObjectMapper
 
-class MyAppstoreApp: Object, Meta {
+class MyAppstoreApp: Item {
     
-    convenience required init?(map: Map) { self.init() }
+    required init?(map: Map) { }
     
-    override class func primaryKey() -> String? {
-        return "id"
-    }
-    
-    static func type() -> ItemType {
+    override class func type() -> ItemType {
         return .myAppstore
     }
     
-    @objc dynamic var name = ""
-    @objc dynamic var id = ""
-    @objc dynamic var bundleId = ""
-    @objc dynamic var version = ""
-    @objc dynamic var uploadedAt = ""
-    @objc dynamic var size = ""
+    override var id: String {
+        get { return super.id }
+        set { super.id = newValue }
+    }
+    
+    var name: String = ""
+    var bundleId: String = ""
+    var version: String = ""
+    var uploadedAt: String = ""
+    var size: String = ""
     
 }
 

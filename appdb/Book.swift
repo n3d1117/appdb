@@ -6,59 +6,59 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
-import RealmSwift
 import SwiftyJSON
 import ObjectMapper
 
-class Book: Object, Meta {
+class Book: Item {
     
-    convenience required init?(map: Map) { self.init() }
+    required init?(map: Map) { }
     
-    override class func primaryKey() -> String? {
-        return "id"
+    override var id: String {
+        get { return super.id }
+        set { super.id = newValue }
     }
     
-    static func type() -> ItemType {
+    override class func type() -> ItemType {
         return .books
     }
     
     // iTunes data
-    var lastParseItunes = ""
+    var lastParseItunes: String = ""
     
-    @objc dynamic var name = ""
-    @objc dynamic var id = ""
-    @objc dynamic var image = ""
+    var name: String = ""
+    var image: String = ""
     
     // General
-    @objc dynamic var categoryId = ""
-    @objc dynamic var printLenght = ""
-    @objc dynamic var published = ""
-    @objc dynamic var author = ""
+    var categoryId: String = ""
+    var printLenght: String = ""
+    var published: String = ""
+    var author: String = ""
     
     // Text
-    @objc dynamic var description_ = ""
+    var description_: String = ""
     
     // Ratings
-    @objc dynamic var numberOfRating = ""
-    @objc dynamic var numberOfStars: Double = 0.0
+    var numberOfRating: String = ""
+    var numberOfStars: Double = 0.0
     
     // Information
-    @objc dynamic var updated = ""
-    @objc dynamic var price = ""
-    @objc dynamic var requirements = ""
-    @objc dynamic var language = ""
+    var updated: String = ""
+    var price: String = ""
+    var requirements: String = ""
+    var language: String = ""
     
     // Artist ID
-    @objc dynamic var artistId = ""
+    var artistId: String = ""
     
     // Copyright
-    @objc dynamic var publisher = ""
+    var publisher: String = ""
     
     // Related Books
-    var relatedBooks = List<RelatedContent>()
+    var relatedBooks = [RelatedContent]()
     
     // Related Apps
-    var reviews = List<Review>()
+    var reviews = [Review]()
+
 }
 
 extension Book: Mappable {
@@ -118,7 +118,7 @@ extension Book: Mappable {
             }
             
             // Related Books
-            let tmpRelated = List<RelatedContent>()
+            var tmpRelated = [RelatedContent]()
             for i in 0..<itunesParse["relatedapps"].count {
                 let item = itunesParse["relatedapps"][i]
                 if !item["type"].stringValue.isEmpty, !item["trackid"].stringValue.isEmpty, !item["artist"]["name"].stringValue.isEmpty {
@@ -145,7 +145,7 @@ extension Book: Mappable {
             }; relatedBooks = tmpRelated
             
             // Reviews
-            let tmpReviews = List<Review>()
+            var tmpReviews = [Review]()
             for i in 0..<itunesParse["reviews"].count {
                 let item = itunesParse["reviews"][i]
                 tmpReviews.append(Review(

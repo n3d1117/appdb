@@ -18,12 +18,7 @@ extension API {
                 
                 switch response.result {
                 case .success(let results):
-                    do {
-                        try realm.write { realm.add(results, update: true) }
-                        success(results)
-                    } catch let error as NSError {
-                        fail(error)
-                    }
+                    success(results)
                 case .failure(let error):
                     fail(error as NSError)
                 }

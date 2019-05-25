@@ -7,30 +7,32 @@
 //
 
 import Foundation
-import RealmSwift
 
-class Version: Object {
-    @objc dynamic var number = ""
-    let links = List<Link>()
+struct Version: Equatable {
     
-    convenience init(number: String) {
-        self.init()
+    var number: String = ""
+    var links = [Link]()
+    
+    init(number: String) {
         self.number = number
+    }
+    
+    static func == (lhs: Version, rhs: Version) -> Bool {
+        return lhs.number == rhs.number
     }
 }
 
-class Link: Object {
-    @objc dynamic var link = ""
-    @objc dynamic var cracker = ""
-    @objc dynamic var host = ""
-    @objc dynamic var id = ""
-    @objc dynamic var verified = false
-    @objc dynamic var di_compatible = false
-    @objc dynamic var hidden = false
-    @objc dynamic var universal = false
+struct Link {
+    var link: String = ""
+    var cracker: String = ""
+    var host: String = ""
+    var id: String = ""
+    var verified: Bool = false
+    var di_compatible: Bool = false
+    var hidden: Bool = false
+    var universal: Bool = false
     
-    convenience init(link: String, cracker: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool) {
-        self.init()
+    init(link: String, cracker: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool) {
         self.link = link
         self.cracker = cracker
         self.host = host

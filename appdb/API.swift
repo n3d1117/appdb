@@ -7,12 +7,10 @@
 //
 
 import Alamofire
-import RealmSwift
 import SwiftyJSON
 import Localize_Swift
 
 struct API {
-    static let realm = try! Realm()
     static let endpoint = "https://api.dbservices.to/v1.2/"
     static let statusEndpoint = "https://status.dbservices.to/API/v1.0/"
     
@@ -23,16 +21,12 @@ struct API {
     static let headers: HTTPHeaders = ["User-Agent": "appdb iOS Client v\(Global.appVersion)"]
     
     static var headersWithCookie: HTTPHeaders {
-        guard let pref = realm.objects(Preferences.self).first, !pref.token.isEmpty else { return headers }
+        guard Preferences.deviceIsLinked else { return headers }
         return [
             "User-Agent": "appdb iOS Client v\(Global.appVersion)",
-            "Cookie": "lt=\(pref.token)"
+            "Cookie": "lt=\(Preferences.linkToken)"
         ]
     }
-}
-
-protocol Meta {
-    static func type() -> ItemType
 }
 
 enum DeviceType: String {

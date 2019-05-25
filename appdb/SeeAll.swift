@@ -8,7 +8,6 @@
 
 import UIKit
 import ObjectMapper
-import RealmSwift
 
 class SeeAll: LoadingTableView {
     
@@ -22,9 +21,9 @@ class SeeAll: LoadingTableView {
     fileprivate var currentPage: Int = 1
     fileprivate var allLoaded: Bool = false
     
-    var items: [Object] = []
+    var items: [Item] = []
     
-    fileprivate var filteredItems: [Object] = []
+    fileprivate var filteredItems: [Item] = []
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     
     // Store the result from registerForPreviewing(with:sourceView:)
@@ -148,7 +147,7 @@ class SeeAll: LoadingTableView {
         }
     }
     
-    fileprivate func loadItems<T:Object>(type: T.Type) -> Void where T:Mappable, T:Meta {
+    fileprivate func loadItems<T>(type: T.Type) -> Void where T:Mappable, T:Item {
         API.search(type: type, order: order, price: price, genre: categoryId, dev: devId, page: currentPage, success: { [weak self] array in
             
             guard let self = self else { return }
@@ -248,7 +247,7 @@ extension SeeAll: UISearchResultsUpdating {
     
     func filterContentForSearchText(_ searchText: String) {
         if searchText.count <= 1 {
-            filteredItems = items.filter({( item: Object) -> Bool in
+            filteredItems = items.filter({( item: Item) -> Bool in
                 return item.itemName.lowercased().contains(searchText.lowercased())
             })
             self.tableView.reloadData()
@@ -263,7 +262,7 @@ extension SeeAll: UISearchResultsUpdating {
         }
     }
     
-    func quickSearch<T:Object>(type: T.Type) -> Void where T:Mappable, T:Meta {
+    func quickSearch<T>(type: T.Type) -> Void where T:Mappable, T:Item {
         API.search(type: type, q: query, success: { [weak self] results in
             guard let self = self else { return }
             self.filteredItems = results

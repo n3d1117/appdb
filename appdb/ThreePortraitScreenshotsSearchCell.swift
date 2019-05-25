@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 
 class ThreePortraitScreenshotsSearchCell: SearchCell {
     
@@ -59,7 +58,7 @@ class ThreePortraitScreenshotsSearchCell: SearchCell {
     
     // MARK: - Additional Configuration
     
-    override func configure(with item: Object) {
+    override func configure(with item: Item) {
         super.configure(with: item)
         guard item.itemFirstThreeScreenshotsUrls.count > 2 else { return }
         let ssUrls = item.itemFirstThreeScreenshotsUrls

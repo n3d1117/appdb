@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 
 class NoScreenshotsSearchCellBook: SearchCell {
     
@@ -19,7 +18,7 @@ class NoScreenshotsSearchCellBook: SearchCell {
         super.init(coder: aDecoder)
     }
     
-    override func configure(with item: Object) {
+    override func configure(with item: Item) {
         self.name.text = item.itemName
         self.name.numberOfLines = 3
         self.seller.text = item.itemSeller

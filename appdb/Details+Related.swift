@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 import AlamofireImage
 
 protocol RelatedRedirectionDelegate: class {

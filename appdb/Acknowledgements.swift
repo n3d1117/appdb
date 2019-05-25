@@ -63,7 +63,7 @@ class Acknowledgements: LoadingTableView {
         // Debug
         //debugLog("SHA1 of acknowledgements file is \(SHA1.hexString(fromFile: url.path)!)")
         
-        guard SHA1.hexString(fromFile: url.path) == "6F63A0B7 AD3D9483 2FEEA453 8ADCB713 7C855DC9" else { fail(); return }
+        guard SHA1.hexString(fromFile: url.path) == "AFB2D061 CD29BC3D 8DBF4E1C 776147C1 C97CA35A" else { fail(); return }
         
         do {
             let data = try Data(contentsOf: url)

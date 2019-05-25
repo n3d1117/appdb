@@ -10,7 +10,6 @@ import UIKit
 import Cartography
 import AlamofireImage
 import Cosmos
-import RealmSwift
 
 class MixedScreenshotsSearchCellOneWithStars: MixedScreenshotsSearchCellOne {
     
@@ -37,7 +36,7 @@ class MixedScreenshotsSearchCellOneWithStars: MixedScreenshotsSearchCellOne {
         
     }
     
-    override func configure(with item: Object) {
+    override func configure(with item: Item) {
         super.configure(with: item)
         stars.rating = item.itemNumberOfStars
         stars.text = item.itemRating

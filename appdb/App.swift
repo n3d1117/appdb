@@ -6,69 +6,71 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
-import UIKit
-import RealmSwift
 import SwiftyJSON
 import ObjectMapper
 
-class App: Object, Meta {
+class App: Item {
     
-    convenience required init?(map: Map) { self.init() }
+    required init?(map: Map) { }
     
-    override class func primaryKey() -> String? {
-        return "id"
+    override var id: String {
+        get { return super.id }
+        set { super.id = newValue }
     }
     
-    static func type() -> ItemType {
+    override class func type() -> ItemType {
         return .ios
     }
     
-    @objc dynamic var name = ""
-    @objc dynamic var id = ""
-    @objc dynamic var image = ""
+    static func == (lhs: App, rhs: App) -> Bool {
+        return lhs.id == rhs.id && lhs.version == rhs.version
+    }
+    
+    var name: String = ""
+    var image: String = ""
 
     // iTunes data
-    var lastParseItunes = ""
-    var screenshots = ""
+    var lastParseItunes: String = ""
+    var screenshotsData: String = ""
     
     // General
     var category: Category?
-    @objc dynamic var seller = ""
+    var seller: String = ""
     
     // Text cells
-    @objc dynamic var description_ = ""
-    @objc dynamic var whatsnew = ""
+    var description_: String = ""
+    var whatsnew: String = ""
     
     // Dev apps
-    @objc dynamic var artistId = ""
-    @objc dynamic var genreId = ""
+    var artistId: String = ""
+    var genreId: String = ""
     
     // Copyright notice
-    @objc dynamic var publisher = ""
-    @objc dynamic var pname = ""
+    var publisher: String = ""
+    var pname: String = ""
     
     // Information
-    @objc dynamic var bundleId = ""
-    @objc dynamic var updated = ""
-    @objc dynamic var published = ""
-    @objc dynamic var version = ""
-    @objc dynamic var price = ""
-    @objc dynamic var size = ""
-    @objc dynamic var rated = ""
-    @objc dynamic var compatibility = ""
-    @objc dynamic var languages = ""
+    var bundleId: String = ""
+    var updated: String = ""
+    var published: String = ""
+    var version: String = ""
+    var price: String = ""
+    var size: String = ""
+    var rated: String = ""
+    var compatibility: String = ""
+    var languages: String = ""
     
     // Support links
-    @objc dynamic var website = ""
-    @objc dynamic var support = ""
+    var website: String = ""
+    var support: String = ""
     
     // Ratings
-    @objc dynamic var numberOfRating = ""
-    @objc dynamic var numberOfStars: Double = 0.0
+    var numberOfRating: String = ""
+    var numberOfStars: Double = 0.0
     
     // Screenshots
-    var screenshotsIphone = List<Screenshot>()
-    var screenshotsIpad = List<Screenshot>()
+    var screenshotsIphone = [Screenshot]()
+    var screenshotsIpad = [Screenshot]()
 
 }
 
@@ -87,7 +89,7 @@ extension App: Mappable {
         artistId                <- map["artist_id"]
         description_            <- map["description"]
         whatsnew                <- map["whatsnew"]
-        screenshots             <- map["screenshots"]
+        screenshotsData         <- map["screenshots"]
         lastParseItunes         <- map["last_parse_itunes"]
         website                 <- map["pwebsite"]
         support                 <- map["psupport"]
@@ -120,8 +122,7 @@ extension App: Mappable {
             // Pulled app?
             
             // Fix categories not showing for pulled apps
-            let realm = try! Realm()
-            if let genre = realm.objects(Genre.self).filter("category = %@ AND id = %@", "ios", genreId).first {
+            if let genre = Preferences.genres.filter({ $0.category == "ios" && $0.id == genreId }).first {
                 category = Category(name: genre.name, id: genre.id)
             }
             seller = pname
@@ -130,9 +131,9 @@ extension App: Mappable {
         
         // Screenshots
         
-        if let data = screenshots.data(using: .utf8), let screenshotsParse = try? JSON(data: data) {
+        if let data = screenshotsData.data(using: .utf8), let screenshotsParse = try? JSON(data: data) {
             
-            let tmpScreens = List<Screenshot>()
+            var tmpScreens = [Screenshot]()
             for i in 0..<screenshotsParse["iphone"].count {
                 tmpScreens.append(Screenshot(
                     src: screenshotsParse["iphone"][i]["src"].stringValue,
@@ -141,7 +142,7 @@ extension App: Mappable {
                 ))
             }; screenshotsIphone = tmpScreens
             
-            let tmpScreensIpad = List<Screenshot>()
+            var tmpScreensIpad = [Screenshot]()
             for i in 0..<screenshotsParse["ipad"].count {
                 tmpScreensIpad.append(Screenshot(
                     src: screenshotsParse["ipad"][i]["src"].stringValue,

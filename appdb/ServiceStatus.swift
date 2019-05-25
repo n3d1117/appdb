@@ -6,20 +6,16 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
-import RealmSwift
 import ObjectMapper
 
-class ServiceStatus: Object, Mappable {
-    @objc dynamic var name = ""
-    @objc dynamic var isOnline = false
+struct ServiceStatus: Mappable {
     
-    convenience required init?(map: Map) { self.init() }
+    init?(map: Map) { }
     
-    override class func primaryKey() -> String? {
-        return "name"
-    }
-    
-    func mapping(map: Map) {
+    var name: String = ""
+    var isOnline: Bool = false
+
+    mutating func mapping(map: Map) {
         name             <- map["name"]
         isOnline         <- map["is_online"]
     }

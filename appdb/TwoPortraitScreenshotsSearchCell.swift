@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 
 class TwoPortraitScreenshotsSearchCell: SearchCell {
     
@@ -53,7 +52,7 @@ class TwoPortraitScreenshotsSearchCell: SearchCell {
     
     // MARK: - Additional Configuration
     
-    override func configure(with item: Object) {
+    override func configure(with item: Item) {
         super.configure(with: item)
         guard item.itemFirstTwoScreenshotsUrls.count > 1 else { return }
         if let url1 = URL(string: item.itemFirstTwoScreenshotsUrls[0]), let url2 = URL(string: item.itemFirstTwoScreenshotsUrls[1]) {

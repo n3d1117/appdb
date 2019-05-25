@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import Cartography
 import AlamofireImage
 
@@ -97,20 +96,18 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func reloadAfterIndexChange(index: Int) {
 
-        let realm = try! Realm()
-        
         switch index {
         case 0: //iOS
             tableView.rowHeight = 50
-            categories = Array(realm.objects(Genre.self).filter("category = 'ios'").sorted(byKeyPath: "name"))
+            categories = Preferences.genres.filter({ $0.category == "ios" }).sorted{ $0.name.lowercased() < $1.name.lowercased() }
             putCategoriesAtTheTop(compound: "0-ios")
         case 1: //Cydia
             tableView.rowHeight = 50
-            categories = Array(realm.objects(Genre.self).filter("category = 'cydia'").sorted(byKeyPath: "name"))
+            categories = Preferences.genres.filter({ $0.category == "cydia" }).sorted{ $0.name.lowercased() < $1.name.lowercased() }
             putCategoriesAtTheTop(compound: "0-cydia")
         case 2: //Books
             tableView.rowHeight = 60
-            categories = Array(realm.objects(Genre.self).filter("category = 'books'").sorted(byKeyPath: "name"))
+            categories = Preferences.genres.filter({ $0.category == "books" }).sorted{ $0.name.lowercased() < $1.name.lowercased() }
             putCategoriesAtTheTop(compound: "0-books")
             
         default: break

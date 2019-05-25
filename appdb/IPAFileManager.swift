@@ -11,7 +11,7 @@ import UIKit
 import Swifter
 import ZIPFoundation
 
-struct LocalIPAFile: Equatable, Hashable {
+struct LocalIPAFile: Hashable {
     var filename: String = ""
     var size: String = ""
 }

@@ -27,25 +27,19 @@ extension API {
                                 switch r.result {
                                 case .success(let v):
                                     let json2 = JSON(v)
+                                    let data = json["data"]
                                     
-                                    do {
-                                        guard let pref = realm.objects(Preferences.self).first else { return }
-                                        let data = json["data"]
-                                        try realm.write {
-                                            pref.appsync = data["appsync"].stringValue=="yes"
-                                            pref.ignoreCompatibility = data["ignore_compatibility"].stringValue=="yes"
-                                            pref.askForInstallationOptions = data["ask_for_installation_options"].stringValue=="yes"
-                                            pref.pro = data["is_pro"].stringValue=="yes"
-                                            pref.proDisabled = data["is_pro_disabled"].stringValue=="yes"
-                                            pref.proRevoked = !json2["success"].boolValue
-                                            pref.proRevokedOn = json2["data"].stringValue
-                                            pref.proUntil = data["pro_till"].stringValue
-                                            
-                                            success()
-                                        }
-                                    } catch(let error as NSError) {
-                                        fail(error.localizedDescription)
-                                    }
+                                    Preferences.set(.appsync, to: data["appsync"].stringValue=="yes")
+                                    Preferences.set(.ignoreCompatibility, to: data["ignore_compatibility"].stringValue=="yes")
+                                    Preferences.set(.askForInstallationOptions, to: data["ask_for_installation_options"].stringValue=="yes")
+                                    
+                                    Preferences.set(.pro, to: data["is_pro"].stringValue=="yes")
+                                    Preferences.set(.proDisabled, to: data["is_pro_disabled"].stringValue=="yes")
+                                    Preferences.set(.proRevoked, to: !json2["success"].boolValue)
+                                    Preferences.set(.proRevokedOn, to: json2["data"].stringValue)
+                                    Preferences.set(.proUntil, to: data["pro_till"].stringValue)
+                                    
+                                    success()
                                     
                                 case .failure(let error):
                                     fail(error.localizedDescription)
@@ -74,21 +68,14 @@ extension API {
                        fail(json["errors"][0].stringValue)
                     } else {
                         // Update values
-                        do {
-                            guard let pref = realm.objects(Preferences.self).first else { return }
-                            try realm.write {
-                                for (key, value) in params {
-                                    switch key {
-                                    case .appsync: pref.appsync = value == "yes"
-                                    case .askForOptions: pref.askForInstallationOptions = value == "yes"
-                                    case .ignoreCompatibility: pref.ignoreCompatibility = value == "yes"
-                                    }
-                                }
-                                success()
+                        for (key, value) in params {
+                            switch key {
+                            case .appsync: Preferences.set(.appsync, to: value == "yes")
+                            case .askForOptions: Preferences.set(.askForInstallationOptions, to: value == "yes")
+                            case .ignoreCompatibility: Preferences.set(.ignoreCompatibility, to: value == "yes")
                             }
-                        } catch let error as NSError {
-                            fail(error.localizedDescription)
                         }
+                        success()
                     }
                 case .failure(let error):
                     fail(error.localizedDescription)

@@ -10,7 +10,6 @@ import UIKit
 import Static
 import SwiftTheme
 import Cartography
-import RealmSwift
 
 // A simple cell for the 'Static' framework that adapts to theme changes
 // and has has dynamic text font size. Used for Settings cells.
@@ -175,16 +174,19 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
             expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
             activeLabel.text = "Revoked".localized()
             selectionStyle = .none
+            accessoryType = .none
         } else if proDisabled {
             activeLabel.theme_textColor = Color.softRed
             activeLabel.text = "Disabled".localized()
             selectionStyle = .none
+            accessoryType = .none
         } else {
             if pro {
                 activeLabel.theme_textColor = Color.softGreen
                 expirationLabel.text = "Expires on %@".localizedFormat(proExpirationDate)
                 activeLabel.text = "Active".localized()
                 selectionStyle = .none
+                accessoryType = .none
             } else {
                 activeLabel.theme_textColor = Color.softRed
                 expirationLabel.text = "Tap to know more".localized()
@@ -257,9 +259,8 @@ final class SwitchCell: SimpleStaticCell {
         if let vc = row.context?["valueChange"] as? ValueChange {
             self.valueChange = vc
         }
-        guard let pref = (try? Realm())?.objects(Preferences.self).first else { return }
-        guard let keyPath = row.context?["keyPath"] as? WritableKeyPath<Preferences, Bool> else { return }
-        toggle.isOn = pref[keyPath: keyPath]
+        guard let value = row.context?["value"] as? Bool else { return }
+        toggle.isOn = value
     }
 }
 
@@ -299,7 +300,7 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         textLabel?.text = row.text
         if let placeholder = row.context?["placeholder"] as? String {
             textField.placeholder = placeholder
-            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: (15.5~~14.5))])
+            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: textLabel?.font?.pointSize ?? (17~~16))])
         }
         if let callback = row.context?["callback"] as? (String) -> () {
             self.textfieldDidEndEditing = callback

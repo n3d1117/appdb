@@ -35,7 +35,7 @@ class TabBarController: UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if let view = item.value(forKey: "view") as? UIView, let image = view.subviews.first as? UIImageView {
             UIView.animate(withDuration: 0.1, animations: {
-                image.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                image.transform = CGAffineTransform(scaleX: 0.93, y: 0.93)
             }) { _ in
                 UIView.animate(withDuration: 0.1) {
                     image.transform = .identity

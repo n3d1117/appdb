@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import RealmSwift
 
 //
 // Content Properties
 //
-extension Object {
+extension Item {
     
     var itemId: String {
         if let app = self as? App { return app.id }

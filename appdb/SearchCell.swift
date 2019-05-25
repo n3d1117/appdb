@@ -9,7 +9,6 @@
 import UIKit
 import Cartography
 import AlamofireImage
-import RealmSwift
 
 class SearchCell: UICollectionViewCell {
     
@@ -66,7 +65,7 @@ class SearchCell: UICollectionViewCell {
     var icon: UIImageView!
     var seller: UILabel!
     
-    func configure(with item: Object) {
+    func configure(with item: Item) {
         self.name.text = item.itemName
         self.seller.text = item.itemSeller
         self.tweaked = item.itemIsTweaked

@@ -9,7 +9,6 @@
 import UIKit
 import Static
 import SafariServices
-import RealmSwift
 import BLTNBoard
 
 class Settings: TableViewController {
@@ -75,7 +74,7 @@ class Settings: TableViewController {
         refreshSources()
         
         // Refresh link code & configuration parameters
-        if DeviceInfo.deviceIsLinked {
+        if Preferences.deviceIsLinked {
             API.getLinkCode(success: {
                 API.getConfiguration(success: { [weak self] in
                     guard let self = self else { return }
@@ -95,12 +94,7 @@ class Settings: TableViewController {
     
     // Deauthorize app (clean link code and token)
     func deauthorize() {
-        let realm = try! Realm()
-        guard let pref = realm.objects(Preferences.self).first else { return }
-        try! realm.write {
-            pref.token = ""
-            pref.linkCode = ""
-        }
+        Preferences.removeKeysOnDeauthorization()
     }
     
     // Show deauthorization bulletin
@@ -110,9 +104,7 @@ class Settings: TableViewController {
     
     // Update badge for Updates tab
     func setShowsBadgeForUpdates(_ show: Bool) {
-        let realm = try! Realm()
-        guard let pref = realm.objects(Preferences.self).first else { return }
-        try! realm.write { pref.showBadgeForUpdates = show }
+        Preferences.set(.showBadgeForUpdates, to: show)
     }
     
     // Push device status controller
@@ -241,7 +233,7 @@ class Settings: TableViewController {
     // Reloads table view
     
     @objc func refreshSources() {
-        if DeviceInfo.deviceIsLinked {
+        if Preferences.deviceIsLinked {
             dataSource.sections = deviceLinkedSections
         } else {
             dataSource.sections = deviceNotLinkedSections

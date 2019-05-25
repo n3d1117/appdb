@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import Cartography
 import AlamofireImage
 import Localize_Swift
@@ -35,25 +34,6 @@ struct Global {
     }
     
     static let mainSite: String = "https://appdb.to/"
-    
-    // Sets Bool is first launch
-    static func setFirstLaunch() {
-        let realm = try! Realm()
-        if let pref = realm.objects(Preferences.self).first {
-            if pref.isFirstLaunch { try! realm.write { pref.isFirstLaunch = false } }
-        } else {
-            let pref = Preferences()
-            pref.isFirstLaunch = true
-            try! realm.write { realm.add(pref) }
-        }
-    }
-    
-    // Returns true if it's first launch
-    static var firstLaunch: Bool {
-        let realm = try! Realm()
-        if let pref = realm.objects(Preferences.self).first { return pref.isFirstLaunch }
-        return false
-    }
     
     // Returns App Version
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? tilde
@@ -138,7 +118,7 @@ struct Global {
     // Sets app language the same as device language, unless it's been previously changed from Settings
     static func restoreLanguage() {
         let defaultLanguage = Localize.defaultLanguage()
-        if !DeviceInfo.didSpecifyPreferredLanguage, defaultLanguage != Localize.currentLanguage() {
+        if !Preferences.didSpecifyPreferredLanguage, defaultLanguage != Localize.currentLanguage() {
             Localize.setCurrentLanguage(defaultLanguage)
             UserDefaults.standard.set([defaultLanguage], forKey: "AppleLanguages")
         }

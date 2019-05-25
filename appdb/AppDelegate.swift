@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import SwiftTheme
 import AlamofireNetworkActivityIndicator
 
@@ -27,21 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
         
-        // Realm config
-        let dbURL: URL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0].appendingPathComponent("db.realm")
-        let config = Realm.Configuration(fileURL: dbURL, schemaVersion: 1, migrationBlock: { migration, oldVersion in
-            // v0 -> v1 migration
-            if oldVersion < 1 {
-                migration.enumerateObjects(ofType: Preferences.className()) { _, new in
-                    new?["didSpecifyPreferredLanguage"] = false
-                }
-            }
-        })
-        Realm.Configuration.defaultConfiguration = config
-        debugLog(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "")
-        
         // Global Operations
-        Global.setFirstLaunch()
         Global.restoreLanguage()
         Themes.restoreLastTheme()
         
@@ -72,9 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         UISwitch.appearance().theme_onTintColor = Color.mainTint
         
         // Show network activity indicator
-        NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.startDelay = 0.3
-        NetworkActivityIndicatorManager.shared.completionDelay = 0.2
+        NetworkActivityIndicatorManager.shared.isEnabled = true
         
         return true
     }
@@ -254,7 +238,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         if let index1 = queryItems.firstIndex(where: { $0.name == "action" }), let index2 = queryItems.firstIndex(where: { $0.name == "code" }) {
             guard let action = queryItems[index1].value, let code = queryItems[index2].value else { return false }
-            guard action == "authorize", !code.isEmpty, !DeviceInfo.deviceIsLinked else { return false }
+            guard action == "authorize", !code.isEmpty, !Preferences.deviceIsLinked else { return false }
             
             dismissCurrentNavIfAny()
             

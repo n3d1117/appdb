@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class Updates: LoadingTableView {
     
@@ -23,9 +22,9 @@ class Updates: LoadingTableView {
     var retryCount: Int = 0
     var timeoutLimit: Int = 60 // will throw error after 1 min of NOT_READY responses
     
-    // Token to observe changes in Settings tab, used to update badge
-    var token: NotificationToken?
-    deinit { token = nil }
+    // Observation token to observe changes in Settings tab, used to update badge
+    var observation: DefaultsObservation?
+    deinit { observation = nil }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +58,7 @@ class Updates: LoadingTableView {
         }
 
         // If device was just linked, start checking for updates as soon as view appears
-        if DeviceInfo.deviceIsLinked, state == .error, errorMessage.text != "No updates found".localized() {
+        if Preferences.deviceIsLinked, state == .error, errorMessage.text != "No updates found".localized() {
             self.animated = onlyOnce
             if onlyOnce { onlyOnce = false }
             state = .loading
@@ -71,7 +70,7 @@ class Updates: LoadingTableView {
     
     func checkUpdates() {
         isLoading = true
-        if DeviceInfo.deviceIsLinked {
+        if Preferences.deviceIsLinked {
             
             API.getUpdatesTicket(success: { [weak self] ticket in
                 guard let self = self else { return }
@@ -225,13 +224,9 @@ class Updates: LoadingTableView {
 
         let ignore = UITableViewRowAction(style: .normal, title: "Ignore".localized()) { _, _ in
             
-            let realm = try! Realm()
-            guard let ignoredList = realm.objects(IgnoredUpdateableApps.self).first else { return }
-            
-            try! realm.write {
-                let trackid = (indexPath.section == 0 ? self.updateableApps : self.nonUpdateableApps)[indexPath.row].trackid
-                ignoredList.ignoredTrackids.append(trackid)
-            }
+            let app = (indexPath.section == 0 ? self.updateableApps : self.nonUpdateableApps)[indexPath.row]
+            let ignoredApp = IgnoredApp(trackid: app.trackid, name: app.name, iconUrl: app.image, type: app.type)
+            Preferences.append(.ignoredUpdateableApps, element: ignoredApp)
 
             if indexPath.section == 0 {
                 self.updateableApps.remove(at: indexPath.row)

@@ -9,7 +9,6 @@
 import UIKit
 import Cosmos
 import Cartography
-import RealmSwift
 
 class SeeAllCell: UITableViewCell {
     

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import Cartography
 import Localize_Swift
 
@@ -17,7 +16,7 @@ protocol ChangeCategory: class {
 }
 
 protocol ContentRedirection: class {
-    func pushDetailsController(with content: Object)
+    func pushDetailsController(with content: Item)
     func pushSeeAllController(title: String, type: ItemType, category: String, price: Price, order: Order)
 }
 
@@ -54,7 +53,12 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
         
         // List Genres and enable button on completion
-        API.listGenres()
+        API.listGenres(completion: { [weak self] in
+            guard let self = self else { return }
+            
+            // Enable categories button
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+        })
 
         // Wait for data to be fetched, reload tableView on completion
         reloadTableWhenReady()
@@ -93,9 +97,6 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             // Add banner
             addBanner(self.banner)
             
-            // Enable categories button
-            self.navigationItem.leftBarButtonItem?.isEnabled = true
-            
             // Works around crazy cell bugs on rotation, enables preloading
             tableView.estimatedRowHeight = 32
             tableView.rowHeight = UITableView.automaticDimension
@@ -113,7 +114,13 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         
         delay(0.3) {
             // Retry all network operations
-            API.listGenres()
+            API.listGenres(completion: { [weak self] in
+                guard let self = self else { return }
+                
+                // Enable categories button
+                self.navigationItem.leftBarButtonItem?.isEnabled = true
+            })
+            
             for cell in self.cells.compactMap({$0 as? ItemCollection}) { cell.requestItems() }
             //self.banner.setImageInputs()
             self.reloadTableWhenReady()
@@ -179,7 +186,7 @@ extension Featured: ChangeCategory {
 // MARK: - Push Details controller
 extension Featured: ContentRedirection {
     
-    func pushDetailsController(with content: Object) {
+    func pushDetailsController(with content: Item) {
         let detailsViewController = Details(content: content)
         if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: detailsViewController)

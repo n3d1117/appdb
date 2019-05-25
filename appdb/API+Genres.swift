@@ -7,14 +7,13 @@
 //
 
 import Alamofire
-import RealmSwift
 import SwiftyJSON
 
 extension API {
     
     // MARK: - Genres
     
-    static func listGenres() {
+    static func listGenres(completion:@escaping () -> Void) {
         
         Alamofire.request(endpoint, parameters: ["action": Actions.listGenres.rawValue, "lang": languageCode], headers: headers)
             .responseJSON { response in
@@ -25,6 +24,11 @@ extension API {
                     
                     var genres: [Genre] = []
                     let data = json["data"]
+                    
+                    // Default genres
+                    genres.append(Genre(category: "ios", id: "0", name: "All Categories".localized()))
+                    genres.append(Genre(category: "cydia", id: "0", name: "All Categories".localized()))
+                    genres.append(Genre(category: "books", id: "0", name: "All Categories".localized()))
                     
                     // Cydia genres
                     for (key, value):(String, JSON) in data["cydia"] {
@@ -41,35 +45,37 @@ extension API {
                         genres.append(Genre(category: "books", id: key, name: value.stringValue))
                     }
                     
-                    do {
-                        try realm.write {
-                            
-                            // Marking '666' for future comparison
-                            for object in realm.objects(Genre.self) { object.id = "666" }
-                            
-                            // Using this ugly 'create()' method so that icon url is preserved at next launch
-                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "ios", "compound": "0-ios"], update: true)
-                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "cydia", "compound": "0-cydia"], update: true)
-                            realm.create(Genre.self, value: ["id": "0", "name": "All Categories".localized(), "category": "books", "compound": "0-books"], update: true)
-                            for genre in genres {
-                                realm.create(Genre.self, value: ["id": genre.id, "name": genre.name, "category": genre.category, "compound": "\(genre.id)-\(genre.category)"], update: true)
-                            }
-
-                            // Delete any old category that was deleted from appdb
-                            realm.delete(realm.objects(Genre.self).filter("id = '666'"))
-                            
-                        }
-                    } catch { }
+                    // Remove delete genres
+                    if let index = Preferences.genres.firstIndex(where: { !genres.contains($0) }) {
+                        Preferences.remove(.genres, at: index)
+                    }
                     
-                    // Get icons for categories (only once)
-                    for genre in realm.objects(Genre.self).filter("category = 'ios' AND icon = ''") {
-                        getIcon(id: genre.id, type: .ios)
-                    }
-                    for genre in realm.objects(Genre.self).filter("category = 'cydia' AND icon = ''") {
-                        getIcon(id: genre.id, type: .cydia)
-                    }
-                    for genre in realm.objects(Genre.self).filter("category = 'books' AND icon = ''") {
-                        getIcon(id: genre.id, type: .books)
+                    guard !genres.isEmpty else { completion(); return }
+                    
+                    // Save genres
+                    for (index, var genre) in genres.enumerated() {
+                        guard let type =  ItemType(rawValue: genre.category) else { return }
+                        
+                        if let index = Preferences.genres.firstIndex(where: { $0.compound == genre.compound }) {
+                            // Genre exists
+                            if Preferences.genres[index].icon.isEmpty {
+                                getIcon(id: genre.id, type: type, completion: { icon in
+                                    genre.icon = icon
+                                    Preferences.remove(.genres, at: index)
+                                    Preferences.append(.genres, element: genre)
+                                })
+                            }
+                        } else {
+                            // Genre does not exist
+                            getIcon(id: genre.id, type: type, completion: { icon in
+                                genre.icon = icon
+                                Preferences.append(.genres, element: genre)
+                            })
+                        }
+                        
+                        if index == genres.count - 1 {
+                            completion()
+                        }
                     }
                     
                 case .failure:
@@ -79,23 +85,21 @@ extension API {
         }
     }
     
-    static func getIcon(id: String, type: ItemType) {
-        if let cat = realm.objects(Genre.self).filter("category = %@ AND id = %@", type.rawValue, id).first {
-            Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue], headers: headers)
-                .responseJSON { response in
-                    switch response.result {
-                    case .success(let value):
-                        let json = JSON(value)
-                        try! realm.write { cat.icon = json["data"][0]["image"].stringValue }
-                    case .failure:
-                        break
-                    }
-            }
+    static func getIcon(id: String, type: ItemType, completion:@escaping (String) -> Void) {
+        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue], headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    completion(json["data"][0]["image"].stringValue)
+                case .failure:
+                    completion("")
+                }
         }
     }
     
     static func categoryFromId(id: String, type: ItemType) -> String {
-        if let genre = realm.objects(Genre.self).filter("category = %@ AND id = %@", type.rawValue, id).first {
+        if let genre = Preferences.genres.filter({ $0.category == type.rawValue && $0.id == id }).first {
             return genre.name
         } else {
             return ""
@@ -103,7 +107,10 @@ extension API {
     }
     
     static func idFromCategory(name: String, type: ItemType) -> String {
-        if let genre = realm.objects(Genre.self).filter("category = %@ AND name = %@", type.rawValue, name).first { return genre.id }
-        return ""
+        if let genre = Preferences.genres.filter({ $0.category == type.rawValue && $0.name == name }).first {
+            return genre.id
+        } else {
+            return ""
+        }
     }
 }

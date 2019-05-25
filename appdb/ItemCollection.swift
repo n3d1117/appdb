@@ -8,12 +8,11 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 import DeepDiff
 import AlamofireImage
 import ObjectMapper
 
-// Class to handle response correctly from Featured
+// Struct to handle response correctly from Featured
 struct FeaturedItemCollectionResponse {
     var success : Bool = false
     var errorDescription : String = ""
@@ -80,7 +79,7 @@ class ItemCollection: FeaturedCell {
     var seeAllButton: UIButton!
     
     // Array to fill data with
-    var items: [Object] = []
+    var items: [Item] = []
     
     var showFullSeparator: Bool = false
     
@@ -223,7 +222,7 @@ class ItemCollection: FeaturedCell {
         }
     }
     
-    func getItems <T:Object>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") -> Void where T:Mappable, T:Meta {
+    func getItems<T>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") -> Void where T:Mappable, T:Item {
         API.search(type: type, order: order, price: price, genre: genre, success: { [weak self] array in
             guard let self = self else { return }
             
@@ -236,10 +235,7 @@ class ItemCollection: FeaturedCell {
                     self.items = array
                 })
             }
-            
-            // Fix rare issue where first three Cydia items would not load category text - probs not fixed
-            if !self.items.isEmpty, Global.firstLaunch { self.dirtyFixEmptyCategory() }
-            
+
             // Update category label
             if genre != "0", let type = ItemType(rawValue: T.type().rawValue) {
                 self.categoryLabel.text = API.categoryFromId(id: genre, type: type).uppercased()
@@ -256,21 +252,6 @@ class ItemCollection: FeaturedCell {
         }, fail: { error in
             self.response.errorDescription = error.prettified
         })
-    }
-    
-    // Fixes rare issue where first three Cydia items would not load category text.
-    // Reloading text after 0.3 seconds, seems to work (tested on iPad Mini 2) - not working for all devices
-
-    fileprivate func dirtyFixEmptyCategory() {
-        if self.items[0] is CydiaApp {
-            delay(0.3) { for i in 0..<3 {
-                if let cell = self.collectionView.cellForItem(at: IndexPath(row: i, section: 0)) as? FeaturedApp {
-                    if cell.category.text == "", let cydiaApp = self.items[i] as? CydiaApp {
-                        cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
-                    }
-                }
-            } }
-        }
     }
     
     // MARK: - Reload items after category change

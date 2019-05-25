@@ -32,7 +32,7 @@ extension API {
                             
                             let fetched = data[trackid][0]
                             if !fetched.isEmpty {
-                                let version = Version(number: Global.tilde)
+                                var version = Version(number: Global.tilde)
                                 for e in 0..<fetched.count {
                                     version.links.append(Link(
                                         link: fetched[e]["link"].stringValue,
@@ -57,7 +57,7 @@ extension API {
                             keys.sort { $0.compare($1, options: .numeric) == .orderedDescending }
                             
                             for key in keys {
-                                let version = Version(number: key), fetched = data[trackid][key]
+                                var version = Version(number: key), fetched = data[trackid][key]
                                 for e in 0..<fetched.count {
                                     version.links.append(Link(
                                         link: fetched[e]["link"].stringValue,

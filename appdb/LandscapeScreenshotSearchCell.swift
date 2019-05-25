@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 
 class LandscapeScreenshotSearchCell: SearchCell {
     
@@ -40,7 +39,7 @@ class LandscapeScreenshotSearchCell: SearchCell {
     
     // MARK: - Additional Configuration
     
-    override func configure(with item: Object) {
+    override func configure(with item: Item) {
         super.configure(with: item)
         
         if let url = URL(string: item.itemFirstScreenshotUrl) {

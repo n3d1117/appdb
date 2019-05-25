@@ -6,51 +6,54 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
-import RealmSwift
 import SwiftyJSON
 import ObjectMapper
 
-class CydiaApp: Object, Meta {
+class CydiaApp: Item {
     
-    convenience required init?(map: Map) { self.init() }
+    required init?(map: Map) { }
     
-    override class func primaryKey() -> String? {
-        return "id"
+    override var id: String {
+        get { return super.id }
+        set { super.id = newValue }
     }
     
-    static func type() -> ItemType {
+    override class func type() -> ItemType {
         return .cydia
     }
     
-    var screenshots: String = ""
+    static func == (lhs: CydiaApp, rhs: CydiaApp) -> Bool {
+        return lhs.id == rhs.id && lhs.version == rhs.version
+    }
     
-    @objc dynamic var name = ""
-    @objc dynamic var id = ""
-    @objc dynamic var image = ""
+    var screenshotsData: String = ""
+    
+    var name: String = ""
+    var image: String = ""
     
     // General
-    @objc dynamic var categoryId = ""
-    @objc dynamic var developer = ""
-    @objc dynamic var developerId = ""
+    var categoryId: String = ""
+    var developer: String = ""
+    var developerId: String = ""
     
     // Text
-    @objc dynamic var description_ = ""
-    @objc dynamic var whatsnew = ""
+    var description_: String = ""
+    var whatsnew: String = ""
     
     // Information
-    @objc dynamic var bundleId = ""
-    @objc dynamic var version = ""
-    @objc dynamic var price = ""
-    @objc dynamic var updated = ""
+    var bundleId: String = ""
+    var version: String = ""
+    var price: String = ""
+    var updated: String = ""
     
     // Tweaked
-    @objc dynamic var originalTrackid = ""
-    @objc dynamic var originalSection = ""
-    @objc dynamic var isTweaked = false
+    var originalTrackid: String = ""
+    var originalSection: String = ""
+    var isTweaked = false
     
     // Screenshots
-    var screenshotsIphone = List<Screenshot>()
-    var screenshotsIpad = List<Screenshot>()
+    var screenshotsIphone = [Screenshot]()
+    var screenshotsIpad = [Screenshot]()
     
 }
 
@@ -71,14 +74,14 @@ extension CydiaApp: Mappable {
         whatsnew                <- map["whatsnew"]
         originalTrackid         <- map["original_trackid"]
         originalSection         <- map["original_section"]
-        screenshots             <- map["screenshots"]
+        screenshotsData         <- map["screenshots"]
 
         isTweaked = originalTrackid != "0"
         if developer.hasSuffix(" ") { developer = String(developer.dropLast()) }
         
-        if let data = screenshots.data(using: .utf8), let screenshotsParse = try? JSON(data: data) {
+        if let data = screenshotsData.data(using: .utf8), let screenshotsParse = try? JSON(data: data) {
             // Screenshots
-            let tmpScreens = List<Screenshot>()
+            var tmpScreens = [Screenshot]()
             for i in 0..<screenshotsParse["iphone"].count {
                 tmpScreens.append(Screenshot(
                     src: screenshotsParse["iphone"][i]["src"].stringValue,
@@ -87,7 +90,7 @@ extension CydiaApp: Mappable {
                 ))
             }; screenshotsIphone = tmpScreens
             
-            let tmpScreensIpad = List<Screenshot>()
+            var tmpScreensIpad = [Screenshot]()
             for i in 0..<screenshotsParse["ipad"].count {
                 tmpScreensIpad.append(Screenshot(
                     src: screenshotsParse["ipad"][i]["src"].stringValue,

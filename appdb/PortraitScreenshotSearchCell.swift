@@ -9,7 +9,6 @@
 import UIKit
 import Cartography
 import AlamofireImage
-import RealmSwift
 
 class PortraitScreenshotSearchCell: SearchCell {
     
@@ -41,7 +40,7 @@ class PortraitScreenshotSearchCell: SearchCell {
     
     // MARK: - Additional Configuration
     
-    override func configure(with item: Object) {
+    override func configure(with item: Item) {
         super.configure(with: item)
         
         if let url = URL(string: item.itemFirstScreenshotUrl) {

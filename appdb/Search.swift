@@ -9,7 +9,6 @@
 import UIKit
 import Cartography
 import ObjectMapper
-import RealmSwift
 
 class Search: LoadingCollectionView, UISearchBarDelegate {
     
@@ -31,7 +30,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         }
     }
     
-    var results: [Object] = []
+    var results: [Item] = []
     
     enum Phase {
         case showTrending, showResults, loading

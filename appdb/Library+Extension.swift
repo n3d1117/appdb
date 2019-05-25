@@ -51,7 +51,7 @@ extension Library {
     
     internal func addToMyAppstore(ipa: LocalIPAFile, indexPath: IndexPath) {
         
-        guard DeviceInfo.deviceIsLinked else {
+        guard Preferences.deviceIsLinked else {
             Messages.shared.showError(message: "Please authorize app from Settings first".localized())
             return
         }
@@ -101,7 +101,7 @@ extension Library {
     
     internal func customInstall(ipa: LocalIPAFile, indexPath: IndexPath) {
         
-        guard DeviceInfo.deviceIsLinked else {
+        guard Preferences.deviceIsLinked else {
             Messages.shared.showError(message: "Please authorize app from Settings first".localized())
             return
         }
@@ -174,7 +174,7 @@ extension Library {
             sender.setTitle(text.localized().uppercased(), for: .normal)
         }
         
-        if DeviceInfo.deviceIsLinked {
+        if Preferences.deviceIsLinked {
             setButtonTitle("Requesting...")
             
             func install(alongsideId: String = "", displayName: String = "") {
@@ -196,7 +196,7 @@ extension Library {
                 }
             }
             
-            if DeviceInfo.askForInstallationOptions {
+            if Preferences.askForInstallationOptions {
                 
                 let vc = AdditionalInstallOptionsViewController()
                 let nav = AdditionalInstallOptionsNavController(rootViewController: vc)

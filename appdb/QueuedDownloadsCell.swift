@@ -13,7 +13,7 @@ import AlamofireImage
 class QueuedDownloadsCell: UICollectionViewCell {
 
     fileprivate var iconSize: CGFloat = (75~~65)
-    fileprivate var margin: CGFloat = (15~~10)
+    fileprivate var margin: CGFloat = (15~~12)
     fileprivate var name: UILabel!
     fileprivate var icon: UIImageView!
     fileprivate var status: UILabel!
@@ -83,7 +83,7 @@ class QueuedDownloadsCell: UICollectionViewCell {
             
             (name.left ~== icon.right ~+ (15~~12)) ~ Global.notMaxPriority
             name.right ~== name.superview!.right ~- margin
-            name.top ~== icon.top ~+ 6
+            name.top ~== icon.top ~+ 5
             
             status.left ~== name.left
             status.top ~== name.bottom ~+ (2~~0)

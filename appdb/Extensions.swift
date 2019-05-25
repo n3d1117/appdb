@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 import Kanna
 import Localize_Swift
+import DeepDiff
 
 // Delay function
 func delay(_ delay: Double, closure: @escaping ()->()) {
@@ -313,3 +314,16 @@ extension UIApplication {
         return viewController?.navigationController
     }
 }
+
+extension DiffAware where Self: Hashable {
+    public var diffId: Int {
+        return hashValue
+    }
+    
+    public static func compareContent(_ a: Self, _ b: Self) -> Bool {
+        return a == b
+    }
+}
+
+extension Item: DiffAware { }
+extension LocalIPAFile: DiffAware { }

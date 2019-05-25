@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import RealmSwift
 import SwiftyJSON
 
 // Singleton to observe currently queued apps

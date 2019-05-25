@@ -7,7 +7,6 @@
 //
 
 import Cartography
-import RealmSwift
 import ObjectMapper
 
 protocol SearcherDelegate: class {

@@ -6,7 +6,6 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
-import RealmSwift
 import SwiftTheme
 
 enum Themes: Int {
@@ -28,19 +27,12 @@ enum Themes: Int {
     // MARK: - Save & Restore
     
     static func saveCurrentTheme() {
-        let realm = try! Realm()
-        if let pref = realm.objects(Preferences.self).first {
-            try! realm.write { pref.theme = ThemeManager.currentThemeIndex }
-        }
+        Preferences.set(.theme, to: ThemeManager.currentThemeIndex)
     }
     
     static func restoreLastTheme() {
-        let realm = try! Realm()
-        if let pref = realm.objects(Preferences.self).first {
-            switchTo(theme: Themes(rawValue: pref.theme)!)
-        } else {
-            switchTo(theme: Themes(rawValue: 0)!)
-        }
+        guard let theme = Themes(rawValue: Preferences.theme) else { return }
+        switchTo(theme: theme)
     }
     
 }

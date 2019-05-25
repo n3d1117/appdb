@@ -7,16 +7,30 @@
 //
 
 import Foundation
-import RealmSwift
 
-class Review: Object {
-    @objc dynamic var author = ""
-    @objc dynamic var text = ""
-    @objc dynamic var title = ""
-    @objc dynamic var rating = 0.0
+class Item: Hashable {
+    var id: String = ""
     
-    convenience init(author: String, text: String, title: String, rating: Double) {
-        self.init()
+    class func type() -> ItemType {
+        return .ios // Default implementation
+    }
+    
+    static func == (lhs: Item, rhs: Item) -> Bool {
+        return lhs.id == rhs.id // Default implementation
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+struct Review {
+    var author: String = ""
+    var text: String = ""
+    var title: String = ""
+    var rating: Double = 0.0
+    
+    init(author: String, text: String, title: String, rating: Double) {
         self.author = author
         self.text = text
         self.title = title
@@ -24,27 +38,25 @@ class Review: Object {
     }
 }
 
-class Screenshot: Object {
-    @objc dynamic var image = ""
-    @objc dynamic var class_ = ""
-    @objc dynamic var type = ""
+struct Screenshot {
+    var image: String = ""
+    var class_: String = ""
+    var type: String = ""
     
-    convenience init(src: String, class_: String = "", type: String) {
-        self.init()
+    init(src: String, class_: String = "", type: String) {
         self.image = src
         self.class_ = class_
         self.type = type
     }
 }
 
-class RelatedContent: Object {
-    @objc dynamic var icon = ""
-    @objc dynamic var id = ""
-    @objc dynamic var name = ""
-    @objc dynamic var artist = ""
+struct RelatedContent {
+    var icon: String = ""
+    var id: String = ""
+    var name: String = ""
+    var artist: String = ""
     
-    convenience init(icon: String, id: String, name: String, artist: String) {
-        self.init()
+    init(icon: String, id: String, name: String, artist: String) {
         self.icon = icon
         self.id = id
         self.name = name
@@ -52,32 +64,32 @@ class RelatedContent: Object {
     }
 }
 
-class Category {
-    var name = ""
-    var id = ""
-    convenience init(name: String, id: String) {
-        self.init()
+struct Category {
+    var name: String = ""
+    var id: String = ""
+    
+    init(name: String, id: String) {
         self.name = name
         self.id = id
     }
 }
 
-class Genre: Object {
-    @objc dynamic var category = ""
-    @objc dynamic var id = ""
-    @objc dynamic var name = ""
-    @objc dynamic var icon = ""
-    @objc dynamic var compound: String = ""
+struct Genre: Equatable, Codable {
     
-    convenience init(category: String, id: String, name: String) {
-        self.init()
+    var category: String = ""
+    var id: String = ""
+    var name: String = ""
+    var icon: String = ""
+    var compound: String = ""
+    
+    init(category: String, id: String, name: String) {
         self.category = category
         self.id = id
         self.name = name
         self.compound = self.id + "-" + self.category
     }
     
-    override class func primaryKey() -> String? {
-        return "compound"
+    static func == (lhs: Genre, rhs: Genre) -> Bool {
+        return lhs.compound == rhs.compound
     }
 }

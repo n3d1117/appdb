@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 import Cosmos
 
 class DetailsReview: DetailsCell {

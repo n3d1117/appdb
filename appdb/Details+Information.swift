@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 
 /* This ugly af */
 class DetailsInformation: DetailsCell {
@@ -41,7 +40,7 @@ class DetailsInformation: DetailsCell {
     override var height: CGFloat { return UITableView.automaticDimension }
     override var identifier: String { return "information" }
     
-    convenience init(type: ItemType, content: Object) {
+    convenience init(type: ItemType, content: Item) {
         self.init(style: .default, reuseIdentifier: "information")
         
         self.type = type

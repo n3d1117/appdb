@@ -36,26 +36,19 @@ extension API {
                 request.responseArray(keyPath: "data") { (response: DataResponse<[UpdateableApp]>) in
                     switch response.result {
                     case .success(var items):
-                        do {
-                            
-                            // Cleanup mismatch versions
-                            for item in items {
-                                var new = item.versionNew
-                                var old = item.versionOld
-                                new = new.replacingOccurrences(of: " ", with: "")
-                                old = old.replacingOccurrences(of: " ", with: "")
-                                if new.hasPrefix("v") { new = String(new.dropFirst()) }
-                                if old.hasPrefix("v") { old = String(old.dropFirst()) }
-                                if new.compare(old, options: .numeric) != .orderedDescending {
-                                    debugLog("found mismatch for \(item.name): new: \(new), old: \(old). Removing...")
-                                    items.remove(at: items.firstIndex(of: item)!)
-                                }
+                        
+                        // Cleanup mismatch versions
+                        for item in items {
+                            var new = item.versionNew
+                            var old = item.versionOld
+                            new = new.replacingOccurrences(of: " ", with: "")
+                            old = old.replacingOccurrences(of: " ", with: "")
+                            if new.hasPrefix("v") { new = String(new.dropFirst()) }
+                            if old.hasPrefix("v") { old = String(old.dropFirst()) }
+                            if new.compare(old, options: .numeric) != .orderedDescending {
+                                debugLog("found mismatch for \(item.name): new: \(new), old: \(old). Removing...")
+                                items.remove(at: items.firstIndex(of: item)!)
                             }
-                            
-                            try realm.write { realm.add(items, update: true) }
-                            success(items)
-                        } catch let error as NSError {
-                            fail(error.localizedDescription)
                         }
                     case .failure(let error):
                         fail(error.localizedDescription)

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 extension Updates {
     
@@ -46,27 +45,10 @@ extension Updates {
         animated = true
         showsErrorButton = false
         
-        // Observe changes for 'showBadgeForUpdates' in preferences
-        
-        let realm = try! Realm()
-        
-        // Instantiate ignored apps list only once
-        if realm.objects(IgnoredUpdateableApps.self).isEmpty {
-            try! realm.write { realm.add(IgnoredUpdateableApps()) }
-        }
-        
-        if let pref = realm.objects(Preferences.self).first {
-            token = pref.observe { change in
-                switch change {
-                case .change(let properties):
-                    for property in properties {
-                        if property.name == "showBadgeForUpdates" {
-                            self.updateBadge()
-                        }
-                    }
-                default: break
-                }
-            }
+        // Observe changes for 'showBadgeForUpdates' in preferences        
+        observation = defaults.observe(.showBadgeForUpdates) { [weak self] _ in
+            guard let self = self else { return }
+            self.updateBadge()
         }
     }
     
@@ -94,11 +76,7 @@ extension Updates {
     
     // Update badge only if user has 'showBadgeForUpdates' enabled
     func updateBadge() {
-        if DeviceInfo.showBadgeForUpdates {
-            updateBadge(with: badgeCount, for: .updates)
-        } else {
-            updateBadge(with: nil, for: .updates)
-        }
+        updateBadge(with: Preferences.showBadgeForUpdates ? badgeCount : nil, for: .updates)
     }
 
 }

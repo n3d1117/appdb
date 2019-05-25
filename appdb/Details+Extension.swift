@@ -6,19 +6,16 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
-import RealmSwift
 import UIKit
 import Cartography
 import ObjectMapper
 
 // Details cell template
 class DetailsCell: UITableViewCell {
-
     var type: ItemType = .ios
     var identifier: String { return "" }
     var height: CGFloat { return 0 }
     func setConstraints() {}
-    
 }
 
 extension Details {
@@ -72,7 +69,7 @@ extension Details {
     }
 
     // Get content dynamically
-    func getContent<T:Object>(type: T.Type, trackid: String, success:@escaping (_ item: T) -> Void) -> Void where T:Mappable, T:Meta {
+    func getContent<T>(type: T.Type, trackid: String, success:@escaping (_ item: T) -> Void) -> Void where T:Mappable, T:Item {
         API.search(type: type, trackid: trackid, success: { [weak self] items in
             guard let self = self else { return }
             if let item = items.first { success(item) }

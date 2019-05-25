@@ -6,25 +6,20 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
-import RealmSwift
 import ObjectMapper
 
-class Promotion: Object, Mappable {
+struct Promotion: Mappable {
     
-    convenience required init?(map: Map) { self.init() }
+    init?(map: Map) { }
     
-    override class func primaryKey() -> String? {
-        return "id"
-    }
+    var id: String = ""
+    var lead: String = ""
+    var type: String = ""
+    var trackid: String = ""
+    var name: String = ""
+    var image: String = ""
     
-    @objc dynamic var id = ""
-    @objc dynamic var lead = ""
-    @objc dynamic var type = ""
-    @objc dynamic var trackid = ""
-    @objc dynamic var name = ""
-    @objc dynamic var image = ""
-    
-    func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         
         id            <- map["id"]
         lead          <- map["lead"]

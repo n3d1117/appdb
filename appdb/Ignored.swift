@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 protocol IgnoredAppsListChanged: class {
     func ignoredChanged()
@@ -17,22 +16,9 @@ class Ignored: LoadingTableView {
     
     // Delegate to notify for changes in ignored list
     weak var delegate: IgnoredAppsListChanged?
-    
-    let realm = try! Realm()
-    
-    var ignoredTrackids: [String] {
-        guard let obj = realm.objects(IgnoredUpdateableApps.self).first else { return [] }
-        return Array(obj.ignoredTrackids)
-    }
-    
-    var apps: [UpdateableApp] {
-        var tmpApps: [UpdateableApp] = []
-        for id in ignoredTrackids {
-            if let match = realm.objects(UpdateableApp.self).filter("trackid = %@", id).first {
-                tmpApps.append(match)
-            }
-        }
-        return tmpApps.sorted{ $0.name.lowercased() < $1.name.lowercased() }
+
+    var apps: [IgnoredApp] {
+        return Preferences.ignoredUpdateableApps.sorted{ $0.name.lowercased() < $1.name.lowercased() }
     }
     
     convenience init() {
@@ -86,7 +72,7 @@ class Ignored: LoadingTableView {
             name.append(contentsOf: stringToBeAdded)
         }
         
-        cell.configure(with: name, image: app.image)
+        cell.configure(with: name, image: app.iconUrl)
         cell.removeButton.addTarget(self, action: #selector(self.removeFromIgnored), for: .touchUpInside)
         return cell
     }
@@ -104,27 +90,23 @@ class Ignored: LoadingTableView {
     // MARK: - Remove from ignored list
     
     @objc func removeFromIgnored(_ sender: UIButton) {
-        guard let obj = realm.objects(IgnoredUpdateableApps.self).first else { return }
-        
         if let cell = sender.superview as? IgnoredCell, let row = tableView.indexPath(for: cell)?.row {
 
             guard apps.indices.contains(row) else { return }
             
-            try! realm.write {
-                if let index = obj.ignoredTrackids.index(of: apps[row].trackid) {
-                    obj.ignoredTrackids.remove(at: index) // this affects self.apps too
-                    tableView.beginUpdates()
-                    if apps.isEmpty {
-                        tableView.deleteSections(IndexSet(arrayLiteral: 0), with: .fade)
-                    } else {
-                        tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
-                    }
-                    tableView.endUpdates()
-                    if apps.isEmpty {
-                        showErrorMessage(text: "No ignored updates".localized(), secondaryText: "Swipe left on any update to add it to this list".localized(), animated: false)
-                    }
-                    delegate?.ignoredChanged()
+            if let index = Preferences.ignoredUpdateableApps.firstIndex(of: apps[row]) {
+                Preferences.remove(.ignoredUpdateableApps, at: index)
+                tableView.beginUpdates()
+                if apps.isEmpty {
+                    tableView.deleteSections(IndexSet(arrayLiteral: 0), with: .fade)
+                } else {
+                    tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
                 }
+                tableView.endUpdates()
+                if apps.isEmpty {
+                    showErrorMessage(text: "No ignored updates".localized(), secondaryText: "Swipe left on any update to add it to this list".localized(), animated: false)
+                }
+                delegate?.ignoredChanged()
             }
         }
     }

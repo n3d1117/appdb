@@ -8,7 +8,6 @@
 
 import UIKit
 import Cartography
-import RealmSwift
 import Cosmos
 
 protocol DetailsSellerRedirectionDelegate: class {
@@ -40,7 +39,7 @@ class DetailsHeader: DetailsCell {
     
     override var identifier: String { return "header" }
     
-    convenience init(type: ItemType, content: Object, delegate: DetailsSellerRedirectionDelegate) {
+    convenience init(type: ItemType, content: Item, delegate: DetailsSellerRedirectionDelegate) {
         self.init(style: .default, reuseIdentifier: "header")
 
         self.type = type

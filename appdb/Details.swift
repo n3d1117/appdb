@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import RealmSwift
 import SafariServices
 
 class Details: LoadingTableView {
     
-    var content: Object!
+    var content: Item!
     var descriptionCollapsed: Bool = true
     var changelogCollapsed: Bool = true
     var reviewCollapsedForIndexPath : [IndexPath: Bool] = [:]
@@ -47,7 +46,7 @@ class Details: LoadingTableView {
     }
     
     // Init with content (app, cydia app or book)
-    convenience init(content: Object) {
+    convenience init(content: Item) {
         self.init(style: .plain)
 
         self.content = content
@@ -228,7 +227,7 @@ class Details: LoadingTableView {
             sender.setTitle(text.localized().uppercased(), for: .normal)
         }
         
-        if DeviceInfo.deviceIsLinked {
+        if Preferences.deviceIsLinked {
             setButtonTitle("Requesting...")
             
             func install(alongsideId: String = "", displayName: String = "") {
@@ -258,7 +257,7 @@ class Details: LoadingTableView {
                 }
             }
             
-            if DeviceInfo.askForInstallationOptions {
+            if Preferences.askForInstallationOptions {
                 let vc = AdditionalInstallOptionsViewController()
                 let nav = AdditionalInstallOptionsNavController(rootViewController: vc)
                 
@@ -301,7 +300,7 @@ class Details: LoadingTableView {
     // MARK: - Report link with reason
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexForSegment == .download && DeviceInfo.deviceIsLinked && !versions.isEmpty
+        return indexForSegment == .download && Preferences.deviceIsLinked && !versions.isEmpty
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

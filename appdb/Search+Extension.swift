@@ -8,7 +8,6 @@
 
 import UIKit
 import ObjectMapper
-import RealmSwift
 
 extension Search {
     
@@ -20,7 +19,7 @@ extension Search {
         return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : 15
     }
     
-    func pushDetailsController(with content: Object) {
+    func pushDetailsController(with content: Item) {
         let detailsViewController = Details(content: content)
         if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: detailsViewController)
@@ -48,7 +47,7 @@ extension Search {
         })
     }
 
-    func searchAndUpdate<T: Object>(_ query: String = "", page: Int = 1, type: T.Type) where T: Mappable, T: Meta {
+    func searchAndUpdate<T>(_ query: String = "", page: Int = 1, type: T.Type) where T: Mappable, T:Item {
         var tmp: [SearchCell] = []
         if page == 1 { results = [] }
         
@@ -137,7 +136,7 @@ extension Search {
         mixedOne_ipad, mixedOne_ipad_stars, mixedTwo_ipad, mixedTwo_ipad_stars
     }
     
-    func detectScreenshotsOrder(from item: Object) -> CellType {
+    func detectScreenshotsOrder(from item: Item) -> CellType {
         if item is Book {
             return item.itemHasStars ? .none_book_stars : .none_book
         } else if item is App || item is CydiaApp {

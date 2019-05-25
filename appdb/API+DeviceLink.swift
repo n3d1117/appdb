@@ -23,21 +23,15 @@ extension API {
                     if !json["success"].boolValue {
                         fail(json["errors"][0].stringValue)
                     } else {
-                        do {
-                            // Save token
-                            guard let pref = realm.objects(Preferences.self).first else { return }
-                            try realm.write { pref.token = json["data"]["link_token"].stringValue }
-                            
-                            // Update link code
-                            self.getLinkCode(success: {
-                                 success()
-                            }, fail: { error in
-                                fail(error)
-                            })
-                            
-                        } catch let error as NSError {
-                            fail(error.localizedDescription)
-                        }
+                        // Save token
+                        Preferences.set(.token, to: json["data"]["link_token"].stringValue)
+                        
+                        // Update link code
+                        API.getLinkCode(success: {
+                            success()
+                        }, fail: { error in
+                            fail(error)
+                        })
                     }
                 case .failure(let error):
                     fail(error.localizedDescription)
@@ -65,12 +59,7 @@ extension API {
                     guard !token.isEmpty else { fail("Unable to fetch device token.".localized()); return }
                     
                     // Save token
-                    do {
-                        guard let pref = realm.objects(Preferences.self).first else { return }
-                        try realm.write { pref.token = token }
-                    } catch let error as NSError {
-                        fail(error.localizedDescription)
-                    }
+                    Preferences.set(.token, to: token)
                     
                     // If profile_service is empty, device is already authorized
                     guard !profileService.isEmpty else {
@@ -119,9 +108,7 @@ extension API {
     }
     
     static func getLinkCode(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        
-        Alamofire.request(endpoint, parameters: ["action": Actions.getLinkCode.rawValue,
-                                                 "lang": languageCode], headers: headersWithCookie)
+        Alamofire.request(endpoint, parameters: ["action": Actions.getLinkCode.rawValue, "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -129,13 +116,8 @@ extension API {
                 if !json["success"].boolValue {
                     fail(json["errors"][0].stringValue)
                 } else {
-                    do {
-                        guard let pref = realm.objects(Preferences.self).first else { return }
-                        try realm.write { pref.linkCode = json["data"].stringValue }
-                        success()
-                    } catch let error as NSError {
-                        fail(error.localizedDescription)
-                    }
+                    Preferences.set(.linkCode, to: json["data"].stringValue)
+                    success()
                 }
             case .failure(let error):
                 fail(error.localizedDescription)

@@ -16,12 +16,7 @@ extension API {
                 
                 switch response.result {
                 case .success(let news):
-                    do {
-                        try realm.write { realm.add(news, update: true) }
-                        success(news)
-                    } catch let error as NSError {
-                        fail(error)
-                    }
+                    success(news)
                 case .failure(let error):
                     fail(error as NSError)
                 }
@@ -33,12 +28,7 @@ extension API {
         .responseObject(keyPath: "data") { (response: DataResponse<SingleNews>) in
             switch response.result {
             case .success(let singleNews):
-                do {
-                    try realm.write { realm.add(singleNews, update: true) }
-                    success(singleNews)
-                } catch let error as NSError {
-                    fail(error)
-                }
+                success(singleNews)
             case .failure(let error):
                 fail(error as NSError)
             }
