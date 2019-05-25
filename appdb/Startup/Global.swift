@@ -122,4 +122,12 @@ enum Global {
             UserDefaults.standard.set([defaultLanguage], forKey: "AppleLanguages")
         }
     }
+
+    // Delete keychain data if first launch. Old data might still be there...
+    static func deleteEventualKeychainData() {
+        if !UserDefaults.standard.bool(forKey: "notFirstRun") {
+            Preferences.removeKeychainData()
+            UserDefaults.standard.set(true, forKey: "notFirstRun")
+        }
+    }
 }

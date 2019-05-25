@@ -127,10 +127,7 @@ extension Preferences {
     // Remove all
 
     static func removeKeysOnDeauthorization() {
-        // Remove secure keys
-        for key in SecureKeys.allCases {
-            KeychainWrapper.standard.removeObject(forKey: key.rawValue)
-        }
+        removeKeychainData()
 
         // Remove normal keys
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.appsync.name)
@@ -138,6 +135,13 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoreCompatibility.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.showBadgeForUpdates.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)
+    }
+
+    // Remove secure keys
+    static func removeKeychainData() {
+        for key in SecureKeys.allCases {
+            KeychainWrapper.standard.removeObject(forKey: key.rawValue)
+        }
     }
 }
 

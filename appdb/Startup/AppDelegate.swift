@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         window?.makeKeyAndVisible()
 
         // Global Operations
+        Global.deleteEventualKeychainData()
         Global.restoreLanguage()
         Themes.restoreLastTheme()
 
