@@ -11,9 +11,9 @@ import UIKit
 import DeepDiff
 
 extension Library {
-    
+
     // MARK: - Reload footer views
-    
+
     internal func reloadFooterViews() {
         if let localIpasFooter = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(row: 0, section: Section.local.rawValue)) as? LibrarySectionFooterView {
             if localIpas.isEmpty {
@@ -30,53 +30,52 @@ extension Library {
             }
         }
     }
-    
+
     // MARK: - Register cells
-    
+
     internal func registerCells() {
         // Header
         collectionView.register(LibrarySectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "librarySectionHeaderViewOne")
         collectionView.register(LibrarySectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "librarySectionHeaderViewTwo")
-        
+
         // Footer
         collectionView.register(LibrarySectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "librarySectionFooterViewOne")
         collectionView.register(LibrarySectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "librarySectionFooterViewTwo")
-        
+
         // Cells
         collectionView.register(MyAppstoreCell.self, forCellWithReuseIdentifier: "myappstorecell")
         collectionView.register(LocalIPACell.self, forCellWithReuseIdentifier: "localipacell")
     }
-    
+
     // MARK: - Add to MyAppstore
-    
+
     internal func addToMyAppstore(ipa: LocalIPAFile, indexPath: IndexPath) {
-        
         guard Preferences.deviceIsLinked else {
             Messages.shared.showError(message: "Please authorize app from Settings first".localized())
             return
         }
-        
-        guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }        
+
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
         cell.updateText("Waiting...".localized())
-        
+
         let randomString = Global.randomString(length: 30)
         guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
         let url = IPAFileManager.shared.url(for: ipa)
-        
+
         uploadBackgroundTask = BackgroundTaskUtil()
         uploadBackgroundTask?.start()
-        
+
         API.addToMyAppstore(jobId: jobId, fileURL: url, request: { [weak self] req in
             guard let self = self else { return }
-            
+
             self.uploadRequestsAtIndex[indexPath] = LocalIPAUploadUtil(req)
             self.collectionView.reloadItems(at: [indexPath])
         }, completion: { [weak self] error in
             guard let self = self else { return }
-            
+
             self.uploadRequestsAtIndex.removeValue(forKey: indexPath)
             self.collectionView.reloadItems(at: [indexPath])
-            
+
             if let error = error {
                 Messages.shared.showError(message: error.prettified)
                 self.uploadBackgroundTask = nil
@@ -84,7 +83,7 @@ extension Library {
                 delay(0.8) {
                     API.analyzeJob(jobId: jobId, completion: { [weak self] error in
                         guard let self = self else { return }
-                        
+
                         self.uploadBackgroundTask = nil
                         if let error = error {
                             Messages.shared.showError(message: error.prettified)
@@ -96,28 +95,27 @@ extension Library {
             }
         })
     }
-    
+
     // MARK: - Custom install
-    
+
     internal func customInstall(ipa: LocalIPAFile, indexPath: IndexPath) {
-        
         guard Preferences.deviceIsLinked else {
             Messages.shared.showError(message: "Please authorize app from Settings first".localized())
             return
         }
-        
+
         guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
         cell.updateText("Waiting...".localized())
-        
+
         IPAFileManager.shared.startServer()
-        
+
         guard let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa) else {
             cell.updateText(ipa.size)
             return
         }
-        
+
         let link = IPAFileManager.shared.getIpaLocalUrl(from: ipa)
-        
+
         API.requestInstallJB(plist: plist, icon: " ", link: link, completion: { error in
             cell.updateText(ipa.size)
             if let error = error {
@@ -129,9 +127,9 @@ extension Library {
             }
         })
     }
-    
+
     // MARK: - Rename local ipa
-    
+
     internal func handleRename(for file: LocalIPAFile, at indexPath: IndexPath) {
         let alert = UIAlertController(title: "Rename File".localized(), message: nil, preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
@@ -141,81 +139,79 @@ extension Library {
             textField.theme_keyboardAppearance = [.light, .dark]
             textField.clearButtonMode = .whileEditing
         })
-        
+
         alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
-        
+
         let rename = UIAlertAction(title: "OK".localized(), style: .default, handler: { _ in
             guard let text = alert.textFields?[0].text else { return }
             IPAFileManager.shared.rename(file: file, to: text + ".ipa")
             self.loadContent()
         })
-        
+
         alert.addAction(rename)
         rename.isEnabled = false
-        
+
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
     }
-    
+
     @objc func renameTextChanged(sender: UITextField) {
         var responder: UIResponder = sender
         while !(responder is UIAlertController) { responder = responder.next! }
         if let alert = responder as? UIAlertController {
-            (alert.actions[1] as UIAlertAction).isEnabled = sender.text != ""
+            (alert.actions[1] as UIAlertAction).isEnabled = !(sender.text ?? "").isEmpty
         }
     }
-    
+
     // MARK: - Install MyAppstore app
-    
+
     @objc internal func installMyAppstoreApp(sender: RoundedButton) {
-        
         func setButtonTitle(_ text: String) {
             sender.setTitle(text.localized().uppercased(), for: .normal)
         }
-        
+
         if Preferences.deviceIsLinked {
             setButtonTitle("Requesting...")
-            
+
             func install(alongsideId: String = "", displayName: String = "") {
                 API.install(id: sender.linkId, type: .myAppstore, alongsideId: alongsideId, displayName: displayName) { [weak self] error in
                     guard let self = self else { return }
-                    
+
                     if let error = error {
                         Messages.shared.showError(message: error.prettified)
                         delay(0.3) { setButtonTitle("Install") }
                     } else {
                         setButtonTitle("Requested")
-                        
+
                         Messages.shared.showSuccess(message: "Installation has been queued to your device".localized())
-                        
+
                         ObserveQueuedApps.shared.addApp(type: .myAppstore, linkId: sender.linkId, name: self.myAppstoreIpas[sender.tag].name, image: "", bundleId: self.myAppstoreIpas[sender.tag].bundleId)
-                        
+
                         delay(5) { setButtonTitle("Install") }
                     }
                 }
             }
-            
+
             if Preferences.askForInstallationOptions {
-                
                 let vc = AdditionalInstallOptionsViewController()
                 let nav = AdditionalInstallOptionsNavController(rootViewController: vc)
-                
+
                 vc.heightDelegate = nav
-                
+
                 let segue = Messages.shared.generateModalSegue(vc: nav, source: self)
-                
+
                 delay(0.3) {
                     segue.perform()
                 }
-                
+
                 // If vc.cancelled is true, modal was dismissed either through 'Cancel' button or background tap
-                segue.eventListeners.append() { event in
+                segue.eventListeners.append { event in
                     if case .didHide = event, vc.cancelled {
                         setButtonTitle("Install")
                     }
                 }
-                
+
                 vc.onCompletion = { (duplicate: Bool, newId: String, newName: String) in
                     if duplicate {
                         install(alongsideId: newId, displayName: newName)
@@ -223,11 +219,9 @@ extension Library {
                         install(displayName: newName)
                     }
                 }
-                
             } else {
                 install()
             }
-            
         } else {
             // Install requested but device is not linked
             setButtonTitle("Checking...")
@@ -237,13 +231,13 @@ extension Library {
             }
         }
     }
-    
+
     // MARK: - Delete MyAppstore app
-    
+
     internal func deleteMyAppstoreApp(id: String, indexPath: IndexPath) {
         API.deleteIpa(id: id, completion: { [weak self] error in
             guard let self = self else { return }
-            
+
             if let error = error {
                 Messages.shared.showError(message: error.prettified)
             } else {
@@ -253,7 +247,7 @@ extension Library {
             }
         })
     }
-    
+
     // MARK: - Open in...
 
     internal func openIn(ipa: LocalIPAFile, indexPath: IndexPath) {
@@ -264,16 +258,16 @@ extension Library {
             self.documentController = nil
         }
     }
-    
+
     // MARK: - Delete local ipa
-    
+
     internal func deleteLocalIpa(ipa: LocalIPAFile, indexPath: IndexPath) {
         IPAFileManager.shared.delete(file: ipa)
         localIpas.remove(at: indexPath.row)
         collectionView.deleteItems(at: [indexPath])
         reloadFooterViews()
     }
-    
+
     internal func deleteAll() {
         guard uploadRequestsAtIndex.isEmpty else {
             Messages.shared.showError(message: "Please cancel any pending uploads before deleting local files".localized())
@@ -289,7 +283,7 @@ extension Library {
             self.reloadFooterViews()
         })
     }
-    
+
     @objc internal func deleteAllFilesConfirmationAlert(sender: UIButton) {
         let onlyOne: Bool = localIpas.count == 1
         let title = onlyOne ? "Delete 1 file?".localized() : "Are you sure you want to delete %@ files?".localizedFormat(String(localIpas.count))
@@ -313,28 +307,27 @@ extension Library {
 // MARK: - ETCollectionViewDelegateWaterfallLayout
 
 extension Library: ETCollectionViewDelegateWaterfallLayout {
-    
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20 ~~ 15)
     }
-    
+
     var layout: ETCollectionViewWaterfallLayout {
         let layout = ETCollectionViewWaterfallLayout()
-        layout.minimumColumnSpacing = 18~~13
-        layout.minimumInteritemSpacing = 13~~8
-        
+        layout.minimumColumnSpacing = 18 ~~ 13
+        layout.minimumInteritemSpacing = 13 ~~ 8
+
         // Header
         layout.headerHeight = 25
-        layout.headerInset.top = 26~~21
+        layout.headerInset.top = 26 ~~ 21
         layout.headerInset.bottom = 4
         if #available(iOS 11.0, *) {
             layout.headerInset.left = (UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 45 : 2)
             layout.headerInset.right = layout.headerInset.left
         }
-        
+
         // Section Inset
-        layout.sectionInset = UIEdgeInsets(top: 10~~5, left: margin, bottom: 0, right: margin)
-        
+        layout.sectionInset = UIEdgeInsets(top: 10 ~~ 5, left: margin, bottom: 0, right: margin)
+
         if Global.isIpad {
             layout.columnCount = 2
         } else {
@@ -342,64 +335,63 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
         }
         return layout
     }
-    
+
     var itemDimension: CGFloat {
         if Global.isIpad {
             if UIApplication.shared.statusBarOrientation.isPortrait {
-                return (view.bounds.width / 2) - margin*1.5
+                return (view.bounds.width / 2) - margin * 1.5
             } else {
-                return (view.bounds.width / 3) - margin*1.5
+                return (view.bounds.width / 3) - margin * 1.5
             }
         } else {
             if UIApplication.shared.statusBarOrientation.isPortrait {
-                return view.bounds.width - margin*2
+                return view.bounds.width - margin * 2
             } else {
-                return (view.bounds.width / 2) - margin*1.5
+                return (view.bounds.width / 2) - margin * 1.5
             }
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, heightForFooterIn section: Int) -> CGFloat {
         if section == Section.local.rawValue {
-            return localIpas.isEmpty ? (230~~180) : 0.1
+            return localIpas.isEmpty ? (230 ~~ 180) : 0.1
         } else {
-            return myAppstoreIpas.isEmpty ? (230~~180) : 0.1
+            return myAppstoreIpas.isEmpty ? (230 ~~ 180) : 0.1
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (68~~63) : (60~~55))
+        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (68 ~~ 63) : (60 ~~ 55))
     }
 }
 
 extension Library: UICollectionViewDelegateFlowLayout {
-    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             if indexPath.section == Section.local.rawValue {
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewOne", for: indexPath) as! LibrarySectionHeaderView
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewOne", for: indexPath) as? LibrarySectionHeaderView else { return UICollectionReusableView() }
                 header.configure("Local Files".localized(), showsTrash: true)
                 header.trashButton.addTarget(self, action: #selector(deleteAllFilesConfirmationAlert), for: .touchUpInside)
                 header.trashButton.isEnabled = !self.localIpas.isEmpty
                 header.helpButton.addTarget(self, action: #selector(showHelpLocal), for: .touchUpInside)
                 return header
             } else {
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewTwo", for: indexPath) as! LibrarySectionHeaderView
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewTwo", for: indexPath) as? LibrarySectionHeaderView else { return UICollectionReusableView() }
                 header.configure("MyAppstore")
                 header.helpButton.addTarget(self, action: #selector(showHelpMyAppstore), for: .touchUpInside)
                 return header
             }
         } else if kind == UICollectionView.elementKindSectionFooter {
             if indexPath.section == Section.local.rawValue {
-                return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionFooterViewOne", for: indexPath) as! LibrarySectionFooterView
+                return (collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionFooterViewOne", for: indexPath) as? LibrarySectionFooterView) ?? UICollectionReusableView()
             } else {
-                return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionFooterViewTwo", for: indexPath) as! LibrarySectionFooterView
+                return (collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionFooterViewTwo", for: indexPath) as? LibrarySectionFooterView) ?? UICollectionReusableView()
             }
         }
         return UICollectionReusableView()
     }
 
-    @objc fileprivate func showHelpLocal() {
+    @objc private func showHelpLocal() {
         let message = "Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@".localizedFormat(IPAFileManager.shared.documentsDirectoryURL().path)
         let alertController = UIAlertController(title: "Local Files".localized(), message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
@@ -407,14 +399,14 @@ extension Library: UICollectionViewDelegateFlowLayout {
         self.present(alertController, animated: true)
     }
 
-    @objc fileprivate func showHelpMyAppstore() {
+    @objc private func showHelpMyAppstore() {
         let message = "appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppstore'".localized()
         let alertController = UIAlertController(title: "MyAppstore", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
         alertController.addAction(okAction)
         self.present(alertController, animated: true)
     }
-    
+
     internal func setTrashButtonEnabled(enabled: Bool) {
         if let header = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: Section.local.rawValue)) as? LibrarySectionHeaderView {
             header.trashButton.isEnabled = enabled

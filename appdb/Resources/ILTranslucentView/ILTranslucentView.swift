@@ -13,7 +13,7 @@ import UIKit
 @IBDesignable
 open class ILTranslucentView: UIView {
 
-    fileprivate var _translucent = true
+    private var _translucent = true
     @IBInspectable open var translucent: Bool {
         set {
             _translucent = newValue
@@ -37,7 +37,7 @@ open class ILTranslucentView: UIView {
         }
     }
 
-    fileprivate var _translucentAlpha: CGFloat = 1.0
+    private var _translucentAlpha: CGFloat = 1.0
     @IBInspectable open var translucentAlpha: CGFloat {
         set {
             if newValue > 1 {
@@ -57,7 +57,7 @@ open class ILTranslucentView: UIView {
         }
     }
 
-    fileprivate var _translucentTintColor = UIColor.clear
+    private var _translucentTintColor = UIColor.clear
     @IBInspectable open var translucentTintColor: UIColor {
         set {
             _translucentTintColor = newValue
@@ -72,14 +72,14 @@ open class ILTranslucentView: UIView {
         }
     }
 
-    fileprivate var ilColorBG: UIColor?
-    fileprivate var ilDefaultColorBG: UIColor?
+    private var ilColorBG: UIColor?
+    private var ilDefaultColorBG: UIColor?
 
-    fileprivate var toolbarBG: UIToolbar?
-    fileprivate var nonExistentSubview: UIView?
-    fileprivate var toolbarContainerClipView: UIView?
-    fileprivate var overlayBackgroundView: UIView?
-    fileprivate var initComplete = false
+    private var toolbarBG: UIToolbar?
+    private var nonExistentSubview: UIView?
+    private var toolbarContainerClipView: UIView?
+    private var overlayBackgroundView: UIView?
+    private var initComplete = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -93,7 +93,7 @@ open class ILTranslucentView: UIView {
 }
 
 extension ILTranslucentView {
-    fileprivate func createUI() {
+    private func createUI() {
         self.ilColorBG = self.backgroundColor
 
         self.translucent = true
@@ -135,7 +135,7 @@ extension ILTranslucentView {
         self.initComplete = true
     }
 
-    fileprivate func isItClearColor(_ color: UIColor) -> Bool {
+    private func isItClearColor(_ color: UIColor) -> Bool {
         var red: CGFloat = 0.0
         var green: CGFloat = 0.0
         var blue: CGFloat = 0.0

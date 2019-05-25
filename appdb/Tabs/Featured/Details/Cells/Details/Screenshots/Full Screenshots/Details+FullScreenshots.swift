@@ -22,15 +22,11 @@ class DetailsFullScreenshotsNavController: UINavigationController {
 }
 
 extension DetailsFullScreenshots: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fullscreenshot", for: indexPath) as! DetailsFullScreenshotCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fullscreenshot", for: indexPath) as? DetailsFullScreenshotCell else { return UICollectionViewCell() }
         guard let url = URL(string: screenshots[indexPath.row].image) else { return UICollectionViewCell() }
-        
+
         // If 'mixedClasses' is true, assign image and rotate left if landscape.
-        // Here all images are portrait size
-        // This is because collectionView has a lot of issues to layout items with different size
-        // in a suitable manner. tldr: i'm lazy as fuck.
         if mixedClasses {
             imageDownloader.download(URLRequest(url: url)) { response in
                 guard let image = response.result.value else { return }
@@ -46,15 +42,15 @@ extension DetailsFullScreenshots: UICollectionViewDelegate, UICollectionViewData
         }
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return screenshots.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return itemSize(for: indexPath.row)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: top, left: left, bottom: bottom, right: left)
     }
@@ -64,14 +60,14 @@ class DetailsFullScreenshots: UIViewController {
 
     // The array of screenshot to use as a data source
     var screenshots: [Screenshot] = []
-    
+
     var collectionView: UICollectionView!
     var pageControl: UIPageControl!
-    
+
     // Given index to open specific screenshot
     var index: Int = 0
     var spacing: CGFloat!
-    
+
     // Image downloader, used to rotate image left if needed
     let imageDownloader = ImageDownloader(
         configuration: ImageDownloader.defaultURLSessionConfiguration(),
@@ -79,75 +75,75 @@ class DetailsFullScreenshots: UIViewController {
         maximumActiveDownloads: 5,
         imageCache: AutoPurgingImageCache()
     )
-    
+
     var isPortrait: Bool { return UIApplication.shared.statusBarOrientation.isPortrait }
-    
+
     // We get these from previous view
     var mixedClasses, allLandscape: Bool!
     var magic: CGFloat!
-    
+
     // Layout insets
     var height, width, left, top, bottom: CGFloat!
-    
+
     // Returns item size at given index
     func itemSize(for index: Int) -> CGSize {
         if isPortrait { // device is portratit
             if screenshots[index].class_ == "landscape" && !mixedClasses {
-                let w = round(view.bounds.width - (Global.size.margin.value-(-100~~0))*2)
-                return CGSize(width: w, height: w/magic)
+                let w = round(view.bounds.width - (Global.Size.margin.value - (-100 ~~ 0)) * 2)
+                return CGSize(width: w, height: w / magic)
             } else {
-                let off: CGFloat = (Global.isIpad && magic == 1.775) ? (180~~20) : (100~~20)
-                let w = round(view.bounds.width - (Global.size.margin.value+off)*2)
-                return CGSize(width: w, height: w*magic)
+                let off: CGFloat = (Global.isIpad && magic == 1.775) ? (180 ~~ 20) : (100 ~~ 20)
+                let w = round(view.bounds.width - (Global.Size.margin.value + off) * 2)
+                return CGSize(width: w, height: w * magic)
             }
         } else { // device is landscape
             if screenshots[index].class_ == "landscape" && !mixedClasses {
-                let h = round(view.bounds.height - (Global.size.margin.value+(100~~25))*2)
-                return CGSize(width: h*magic, height: h)
+                let h = round(view.bounds.height - (Global.Size.margin.value + (100 ~~ 25)) * 2)
+                return CGSize(width: h * magic, height: h)
             } else {
-                let h = round(view.bounds.height - (Global.size.margin.value+(100~~25))*2)
-                return CGSize(width: h/magic, height: h)
+                let h = round(view.bounds.height - (Global.Size.margin.value + (100 ~~ 25)) * 2)
+                return CGSize(width: h / magic, height: h)
             }
         }
     }
-    
+
     // Calculates width, height and insets for the correct layout
     func calculateAllSizes() {
         if isPortrait {
             if allLandscape {
-                width = round(view.bounds.width - (Global.size.margin.value-(-100~~0))*2)
-                height = round(width/magic)
-                left = round((view.bounds.width-width)/2)
-                
-                let w = (view.bounds.width - Global.size.margin.value/2) / magic
-                let topFull = round((view.bounds.height - w)/2)
+                width = round(view.bounds.width - (Global.Size.margin.value - (-100 ~~ 0)) * 2)
+                height = round(width / magic)
+                left = round((view.bounds.width - width) / 2)
+
+                let w = (view.bounds.width - Global.Size.margin.value / 2) / magic
+                let topFull = round((view.bounds.height - w) / 2)
                 top = topFull
-                bottom = topFull - (50~~0)
+                bottom = topFull - (50 ~~ 0)
             } else {
-                let off: CGFloat = round((Global.isIpad && magic == 1.775) ? (180~~20) : (100~~20))
-                width = round(view.bounds.width - (Global.size.margin.value+off)*2)
-                height = round(width*magic)
-                left = round((view.bounds.width-width)/2)
-                top = round((view.bounds.height - (view.bounds.width - (Global.size.margin.value+20)*2)*magic)/2 + 23)
-                bottom = round((view.bounds.height - (view.bounds.width - (Global.size.margin.value+20)*2)*magic)/2 - 23)
+                let off: CGFloat = round((Global.isIpad && magic == 1.775) ? (180 ~~ 20) : (100 ~~ 20))
+                width = round(view.bounds.width - (Global.Size.margin.value + off) * 2)
+                height = round(width * magic)
+                left = round((view.bounds.width - width) / 2)
+                top = round((view.bounds.height - (view.bounds.width - (Global.Size.margin.value + 20) * 2) * magic) / 2 + 23)
+                bottom = round((view.bounds.height - (view.bounds.width - (Global.Size.margin.value + 20) * 2) * magic) / 2 - 23)
             }
         } else {
             if allLandscape {
-                height = round(view.bounds.height - (Global.size.margin.value+(100~~25))*2)
-                width = round(height*magic)
-                left = round((view.bounds.width-width)/2)
-                top = round(Global.size.margin.value+20+(30~~12))
-                bottom = round(Global.size.margin.value+20-(-30~~12) - (50~~0))
+                height = round(view.bounds.height - (Global.Size.margin.value + (100 ~~ 25)) * 2)
+                width = round(height * magic)
+                left = round((view.bounds.width - width) / 2)
+                top = round(Global.Size.margin.value + 20 + (30 ~~ 12))
+                bottom = round(Global.Size.margin.value + 20 - (-30 ~~ 12) - (50 ~~ 0))
             } else {
-                height = round(view.bounds.height - (Global.size.margin.value+(100~~25))*2)
-                width = round(height/magic)
-                left = round((view.bounds.width-width)/2)
-                top = round(Global.size.margin.value+20+(30~~15))
-                bottom = round(Global.size.margin.value+20-(-30~~15) - (50~~0))
+                height = round(view.bounds.height - (Global.Size.margin.value + (100 ~~ 25)) * 2)
+                width = round(height / magic)
+                left = round((view.bounds.width - width) / 2)
+                top = round(Global.Size.margin.value + 20 + (30 ~~ 15))
+                bottom = round(Global.Size.margin.value + 20 - (-30 ~~ 15) - (50 ~~ 0))
             }
         }
     }
-    
+
     // Initializer
     convenience init(_ screenshots: [Screenshot], _ index: Int, _ allLandscape: Bool, _ mixedClasses: Bool, _ magic: CGFloat) {
         self.init()
@@ -156,29 +152,29 @@ class DetailsFullScreenshots: UIViewController {
         self.allLandscape = allLandscape
         self.mixedClasses = mixedClasses
         self.magic = magic
-        
+
         // wtf this crashes sourcekit? self.spacing = self.allLandscape ? (35~~10) : (35~~25)
         if self.allLandscape {
-            self.spacing = (35~~10)
+            self.spacing = (35 ~~ 10)
         } else {
-            self.spacing = (35~~25)
+            self.spacing = (35 ~~ 25)
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         calculateAllSizes()
-        
+
         // Insert light or dark blur based on current theme
         view.backgroundColor = .clear
-        var darkBlur: UIBlurEffect = UIBlurEffect()
+        var darkBlur = UIBlurEffect()
         darkBlur = UIBlurEffect(style: Themes.isNight ? .dark : .light)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame = view.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.insertSubview(blurView, at: 0)
-        
+
         // Set up page control indicator
         pageControl = UIPageControl(frame: .zero)
         pageControl.numberOfPages = screenshots.count
@@ -186,16 +182,16 @@ class DetailsFullScreenshots: UIViewController {
         pageControl.pageIndicatorTintColor = .lightGray
         pageControl.theme_currentPageIndicatorTintColor = Color.mainTint
         pageControl.isUserInteractionEnabled = false
-        
+
         // Add done button
         let doneButton = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
         navigationItem.rightBarButtonItem = doneButton
-        
+
         // Configure SnappableFlowLayout
         let layout = SnappableFlowLayout(width: width, spacing: spacing, magic: 60)
         layout.minimumLineSpacing = spacing
         layout.scrollDirection = .horizontal
-        
+
         // Initialize collection view
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(DetailsFullScreenshotCell.self, forCellWithReuseIdentifier: "fullscreenshot")
@@ -205,26 +201,26 @@ class DetailsFullScreenshots: UIViewController {
         collectionView.scrollsToTop = false
         collectionView.backgroundColor = .clear
         collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
-        
+
         // Add swipe down gesture recognizer
         let slideDown = UISwipeGestureRecognizer(target: self, action: #selector(dismissAnimated))
         slideDown.direction = .down
         view.addGestureRecognizer(slideDown)
-        
+
         view.addSubview(collectionView)
         view.addSubview(pageControl)
-        
+
         setConstraints()
     }
-    
-    fileprivate func setConstraints() {
+
+    private func setConstraints() {
         constrain(collectionView, pageControl) { collection, pageControl in
             collection.edges ~== collection.superview!.edges
             pageControl.bottom ~== pageControl.superview!.layoutMarginsGuide.bottom
             pageControl.centerX ~== pageControl.superview!.centerX
         }
     }
-    
+
     // If index != 0, we need to scroll the collection view to given index before presenting
     var shouldOpenWithCustomOffset: Bool = false
     override func viewDidLayoutSubviews() {
@@ -237,21 +233,21 @@ class DetailsFullScreenshots: UIViewController {
             collectionView.setContentOffset(CGPoint(x: x, y: 0), animated: false)
         }
     }
-    
+
     // Update pageControl based on scroll offset
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let w = itemSize(for: pageControl.currentPage).width
-        let page = floor((scrollView.contentOffset.x - w/2) / w) + 1
+        let page = floor((scrollView.contentOffset.x - w / 2) / w) + 1
         pageControl.currentPage = Int(page)
     }
-    
+
     // This sucks - attempts at a smooth rotation with layout invalidation
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         UIView.animate(withDuration: 0.1) {
             self.collectionView.alpha = 0
         }
-        guard let layout =  self.collectionView?.collectionViewLayout as? SnappableFlowLayout else { return }
+        guard let layout = self.collectionView?.collectionViewLayout as? SnappableFlowLayout else { return }
         coordinator.animate(alongsideTransition: nil) { _ in
             self.calculateAllSizes()
             layout.invalidateLayout()
@@ -262,7 +258,6 @@ class DetailsFullScreenshots: UIViewController {
             }
         }
     }
-    
+
     @objc func dismissAnimated() { dismiss(animated: true) }
-    
 }

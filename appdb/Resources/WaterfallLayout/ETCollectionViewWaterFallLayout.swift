@@ -111,27 +111,27 @@ class ETCollectionViewWaterfallLayout: UICollectionViewLayout {
     
     open var minimumContentHeight: CGFloat = 0.0
     
-    fileprivate weak var delegate: ETCollectionViewDelegateWaterfallLayout! {
+    private weak var delegate: ETCollectionViewDelegateWaterfallLayout! {
         return self.collectionView?.delegate as? ETCollectionViewDelegateWaterfallLayout
     }
     
-    fileprivate var columnHeights: [[CGFloat]] = []
+    private var columnHeights: [[CGFloat]] = []
     
-    fileprivate var sectionItemAttributes: [[UICollectionViewLayoutAttributes]] = []
+    private var sectionItemAttributes: [[UICollectionViewLayoutAttributes]] = []
     
-    fileprivate var allItemAttributes: [UICollectionViewLayoutAttributes] = []
+    private var allItemAttributes: [UICollectionViewLayoutAttributes] = []
     
-    fileprivate var headersAttributes: [Int: UICollectionViewLayoutAttributes] = [:]
+    private var headersAttributes: [Int: UICollectionViewLayoutAttributes] = [:]
     
-    fileprivate var footersAttributes: [Int: UICollectionViewLayoutAttributes] = [:]
+    private var footersAttributes: [Int: UICollectionViewLayoutAttributes] = [:]
     
-    fileprivate var unionRects: [CGRect] = []
+    private var unionRects: [CGRect] = []
     
-    fileprivate let unionSize = 20
+    private let unionSize = 20
     
     
     // MARK: - function
-    fileprivate func columnCount(forSection section: Int) -> Int {
+    private func columnCount(forSection section: Int) -> Int {
         if delegate.responds(to: #selector(ETCollectionViewDelegateWaterfallLayout.collectionView(_:layout:columnCountFor:))) {
             return delegate.collectionView!(self.collectionView!, layout: self, columnCountFor: section)
         }
@@ -139,7 +139,7 @@ class ETCollectionViewWaterfallLayout: UICollectionViewLayout {
         return columnCount
     }
     
-    fileprivate func evaluatedSectionInsetForSection(at index: Int) -> UIEdgeInsets {
+    private func evaluatedSectionInsetForSection(at index: Int) -> UIEdgeInsets {
         if delegate.responds(to: #selector(ETCollectionViewDelegateWaterfallLayout.collectionView(_:layout:insetForSectionAt:))) {
             return delegate.collectionView!(self.collectionView!, layout: self, insetForSectionAt: index)
         }
@@ -147,7 +147,7 @@ class ETCollectionViewWaterfallLayout: UICollectionViewLayout {
         return sectionInset
     }
     
-    fileprivate func evaluatedMinimumColumnSpacing(at index: Int) -> CGFloat {
+    private func evaluatedMinimumColumnSpacing(at index: Int) -> CGFloat {
         if delegate.responds(to: #selector(ETCollectionViewDelegateWaterfallLayout.collectionView(_:layout:minimumColumnSpacingForSectionAt:))) {
             return delegate.collectionView!(self.collectionView!, layout: self, minimumColumnSpacingForSectionAt: index)
         }
@@ -155,7 +155,7 @@ class ETCollectionViewWaterfallLayout: UICollectionViewLayout {
         return minimumColumnSpacing
     }
     
-    fileprivate func evaluatedMinimumInteritemSpaing(at index: Int) -> CGFloat {
+    private func evaluatedMinimumInteritemSpaing(at index: Int) -> CGFloat {
         if delegate.responds(to: #selector(ETCollectionViewDelegateWaterfallLayout.collectionView(_:layout:minimumInteritemSpacingForSectionAt:))) {
             return delegate.collectionView!(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAt: index)
         }
@@ -407,7 +407,7 @@ class ETCollectionViewWaterfallLayout: UICollectionViewLayout {
     }
     
     // MARK: - Find the shortest column
-    fileprivate func shortestColumnIndexIn(section: Int) -> Int {
+    private func shortestColumnIndexIn(section: Int) -> Int {
         
         var index = 0
         var shortestHeight = CGFloat.greatestFiniteMagnitude
@@ -427,7 +427,7 @@ class ETCollectionViewWaterfallLayout: UICollectionViewLayout {
      *
      *  @return index for the longest column
      */
-    fileprivate func longestColumnIndexIn(section: Int) -> Int {
+    private func longestColumnIndexIn(section: Int) -> Int {
         
         var index = 0
         var longestHeight: CGFloat = 0
@@ -447,7 +447,7 @@ class ETCollectionViewWaterfallLayout: UICollectionViewLayout {
      *
      *  @return index for the next column
      */
-    fileprivate func nextColumnIndex(forItem item: Int, section: Int) -> Int {
+    private func nextColumnIndex(forItem item: Int, section: Int) -> Int {
         
         var index = 0
         let columnCount = self.columnCount(forSection: section)

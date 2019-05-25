@@ -10,26 +10,21 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    
     static func getLinks(type: ItemType, trackid: String, success:@escaping (_ items: [Version]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        
         Alamofire.request(endpoint, parameters: ["action": Actions.getLinks.rawValue, "type": type.rawValue, "trackids": trackid], headers: headersWithCookie)
             .responseJSON { response in
-
                 switch response.result {
                 case .success(let value):
-                    
+
                     let json = JSON(value)
                     let data = json["data"]
                     var versions: [Version] = []
-                    
+
                     let queue = DispatchQueue(label: "it.ned.links_\(trackid)", attributes: .concurrent)
-                    
+
                     queue.async {
-                        
                         // No multiple keys for books
                         if type == .books {
-                            
                             let fetched = data[trackid][0]
                             if !fetched.isEmpty {
                                 var version = Version(number: Global.tilde)
@@ -46,16 +41,14 @@ extension API {
                                     ))
                                 }; versions.append(version)
                             }
-                        
                         } else {
-                            
                             var keys: [String] = []
-                            for (key, _) in data[trackid] {
-                                if !data[trackid][key].isEmpty { keys.append(key) }
+                            for (key, _) in data[trackid] where !data[trackid][key].isEmpty {
+                                keys.append(key)
                             }
-                            
+
                             keys.sort { $0.compare($1, options: .numeric) == .orderedDescending }
-                            
+
                             for key in keys {
                                 var version = Version(number: key), fetched = data[trackid][key]
                                 for e in 0..<fetched.count {
@@ -72,18 +65,19 @@ extension API {
                                 }; versions.append(version)
                             }
                         }
-                        
+
                         DispatchQueue.main.async {
+                            debugLog(versions)
                             success(versions)
                         }
                     }
-                    
+
                 case .failure(let error):
                     fail(error.localizedDescription)
                 }
-        }
+            }
     }
-    
+
     static func reportLink(id: String, type: ItemType, reason: String, completion:@escaping (_ error: String?) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.report.rawValue, "type": type.rawValue, "id": id, "reason": reason], headers: headersWithCookie)
             .responseJSON { response in
@@ -98,7 +92,6 @@ extension API {
                 case .failure(let error):
                     completion(error.localizedDescription)
                 }
-        }
+            }
     }
-    
 }

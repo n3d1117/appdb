@@ -9,13 +9,12 @@
 import UIKit
 import SwiftTheme
 
-struct ButtonFactory {
-    
+enum ButtonFactory {
+
     // Returns a button with arrow on the right (such as 'See All' button)
     static func createChevronButton(text: String, color: ThemeColorPicker, size: CGFloat = 11.5, bold: Bool = true) -> UIButton {
-        
         let button = UIButton(type: .system) /* Type is system to keep nice highlighting features */
-        
+
         button.setTitle(text, for: .normal)
         button.setImage(#imageLiteral(resourceName: "rightArrow").withRenderingMode(.alwaysTemplate), for: .normal)
         button.theme_setTitleColor(color, forState: .normal)
@@ -28,20 +27,20 @@ struct ButtonFactory {
         button.makeDynamicFont()
         button.contentHorizontalAlignment = .left
         button.titleLabel?.lineBreakMode = .byTruncatingTail
-        
+
         button.imageView!.contentMode = .center
         button.sizeToFit()
 
-        button.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -button.imageRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
-        button.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: button.titleRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -button.imageRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: button.titleRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
 
         return button
     }
-    
+
     // Returns a Retry button with a bolt on the left (used in No Internet view)
     static func createRetryButton(text: String, color: ThemeColorPicker = Color.copyrightText) -> UIButton {
         let button = BouncyButtonWithColoredBorder()
-        
+
         button.setTitle(text, for: .normal)
         button.theme_setImage(["bolt_dark", "bolt_light"], forState: .normal)
         button.setImage(button.imageView!.image!.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -49,12 +48,12 @@ struct ButtonFactory {
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_setTitleColor(Color.buttonBorderColor, forState: .highlighted)
         button.theme_tintColor = color
-        button.titleLabel?.font = .systemFont(ofSize: (14~~13), weight: .semibold)
-        
+        button.titleLabel?.font = .systemFont(ofSize: (14 ~~ 13), weight: .semibold)
+
         button.makeDynamicFont()
         button.contentHorizontalAlignment = .left
         button.titleLabel?.lineBreakMode = .byTruncatingTail
-        
+
         button.layer.borderWidth = 0.8
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
@@ -63,13 +62,12 @@ struct ButtonFactory {
 
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
         button.imageEdgeInsets = UIEdgeInsets.zero
-        
+
         button.sizeToFit()
         button.tag = Int(button.bounds.width) /* pass dynamic width */ 
-        
+
         return button
     }
-
 }
 
 //

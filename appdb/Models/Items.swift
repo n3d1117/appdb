@@ -10,15 +10,15 @@ import Foundation
 
 class Item: Hashable {
     var id: String = ""
-    
+
     class func type() -> ItemType {
         return .ios // Default implementation
     }
-    
+
     static func == (lhs: Item, rhs: Item) -> Bool {
         return lhs.id == rhs.id // Default implementation
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
@@ -29,7 +29,7 @@ struct Review {
     var text: String = ""
     var title: String = ""
     var rating: Double = 0.0
-    
+
     init(author: String, text: String, title: String, rating: Double) {
         self.author = author
         self.text = text
@@ -42,7 +42,7 @@ struct Screenshot {
     var image: String = ""
     var class_: String = ""
     var type: String = ""
-    
+
     init(src: String, class_: String = "", type: String) {
         self.image = src
         self.class_ = class_
@@ -55,7 +55,7 @@ struct RelatedContent {
     var id: String = ""
     var name: String = ""
     var artist: String = ""
-    
+
     init(icon: String, id: String, name: String, artist: String) {
         self.icon = icon
         self.id = id
@@ -67,7 +67,7 @@ struct RelatedContent {
 struct Category {
     var name: String = ""
     var id: String = ""
-    
+
     init(name: String, id: String) {
         self.name = name
         self.id = id
@@ -75,20 +75,19 @@ struct Category {
 }
 
 struct Genre: Equatable, Codable {
-    
     var category: String = ""
     var id: String = ""
     var name: String = ""
     var icon: String = ""
     var compound: String = ""
-    
+
     init(category: String, id: String, name: String) {
         self.category = category
         self.id = id
         self.name = name
         self.compound = self.id + "-" + self.category
     }
-    
+
     static func == (lhs: Genre, rhs: Genre) -> Bool {
         return lhs.compound == rhs.compound
     }

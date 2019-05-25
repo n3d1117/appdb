@@ -17,84 +17,85 @@ import SwiftyJSON
  *
  */
 class ConfigServer: NSObject {
-    
-    // Using callback for delegation. Neat!
-    // Source: http://marinbenc.com/why-you-shouldnt-use-delegates-in-swift
-    var hasCompleted: ((_ error: String?) -> ())?
-    
+
+    // Using callback for delegation
+    var hasCompleted: ((_ error: String?) -> Void)?
+
     // Possible states
-    private enum configState: Int {
+    private enum ConfigState: Int {
         case stopped, ready, hopefullyInstalledConfig, backToApp
     }
-    
+
     // The listening port
     internal let listeningPort: in_port_t = 8080
-    
+
     // Local server instance
     private var localServer: HttpServer!
-    
+
     // The .mobileconfig is passed as Data in the constructor
     private var configData: Data!
-    
+
     // The device appdb token, used to redirect to appdb.to/?lt=token on complete
     private var token: String = ""
-    
+
     // The current state
-    private var currentState: configState = .stopped
-    
+    private var currentState: ConfigState = .stopped
+
     // A random 8 characters string used to serve the install page
     // Randomised so that we don't use the same page to avoid possible conflicts
     let randomString = Global.randomString(length: 8)
-    
+
     // Background task
-    fileprivate var backgroundTask: BackgroundTaskUtil?
-    
+    private var backgroundTask: BackgroundTaskUtil?
+
     // Initialization
     init(configData: Data, token: String) {
         super.init()
         self.configData = configData
         self.token = token
-        
+
         // Initialize http server
         localServer = HttpServer()
-        
+
         // Set up page handlers
         setupHandlers()
     }
-    
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     // MARK: Control functions
-    
+
     internal func start() {
         let page = composeURL(ending: "start/")
         if let url = URL(string: page), UIApplication.shared.canOpenURL(url) {
             do {
                 try localServer.start(listeningPort, forceIPv4: false, priority: .default)
                 currentState = .ready
-                
+
                 backgroundTask = BackgroundTaskUtil()
                 backgroundTask?.start()
                 backgroundTask?.afterStopClosure = { [weak self] in
                     self?.returnedToApp()
                 }
-                
+
                 UIApplication.shared.openURL(url)
             } catch {
                 self.stop()
             }
         }
     }
-    
+
     internal func stop() {
         if currentState != .stopped {
             currentState = .stopped
-            NotificationCenter.default.removeObserver(self)
             self.hasCompleted?("Oops! Something went wrong. Please try again later.".localized())
             backgroundTask = nil
         }
     }
-    
+
     private func setupHandlers() {
-        
         // The '/start' page is simply used to redirect to the real, randomized page
         localServer["/start"] = { _ in
             if self.currentState == .ready {
@@ -104,7 +105,7 @@ class ConfigServer: NSObject {
                 return .notFound
             }
         }
-        
+
         // The randomized page
         localServer["\(randomString)"] = { _ in
             switch self.currentState {
@@ -127,40 +128,40 @@ class ConfigServer: NSObject {
             }
         }
     }
-    
+
     private func returnedToApp() {
-        
         if currentState != .stopped {
             currentState = .stopped
             localServer.stop()
         }
-        
+
         // Delete local mobileconfig
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let configFileUrl = documentsDirectory.appendingPathComponent("enroll.mobileconfig")
         if FileManager.default.fileExists(atPath: configFileUrl.path) {
-            try! FileManager.default.removeItem(at: configFileUrl)
+            do {
+                try FileManager.default.removeItem(at: configFileUrl)
+            } catch { }
         }
-        
+
         backgroundTask = nil
 
         API.getLinkCode(success: { [weak self] in
             guard let self = self else { return }
             self.hasCompleted?(nil)
-        }) { [weak self] error in
+        }, fail: { [weak self] error in
             guard let self = self else { return }
             self.hasCompleted?(error)
-        }
+        })
     }
 }
 
 // MARK: HTML stuff
 
 extension ConfigServer {
-    
     private func composeURL(ending: String?) -> String {
         var base = "http://127.0.0.1:\(listeningPort)"
-        if let e = ending { base += "/\(e)" }
+        if let ending = ending { base += "/\(ending)" }
         return base
     }
 

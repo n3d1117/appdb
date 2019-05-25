@@ -19,44 +19,43 @@ import Alamofire
  */
 
 class LocalIPADownloadUtil {
-    
-    fileprivate var request: Alamofire.DownloadRequest?
-    
+    private var request: Alamofire.DownloadRequest?
+
     var isPaused: Bool {
         return paused
     }
-    
+
     var lastCachedFraction: Float = 0.0
     var lastCachedProgress: String = "Waiting...".localized()
-    
-    fileprivate var paused: Bool = false
-    
-    var onPause: (() -> ())?
-    var onProgress: ((Float, String) -> ())?
-    var onCompletion: ((_ error: String?) -> ())?
-    
+
+    private var paused: Bool = false
+
+    var onPause: (() -> Void)?
+    var onProgress: ((Float, String) -> Void)?
+    var onCompletion: ((_ error: String?) -> Void)?
+
     init(_ request: Alamofire.DownloadRequest) {
         self.request = request
-        
-        self.request?.downloadProgress { p in
-            let readString: String = Global.humanReadableSize(bytes: p.completedUnitCount)
-            let totalString: String = Global.humanReadableSize(bytes: p.totalUnitCount)
-            let percentage: String = String(Int(p.fractionCompleted * 100)) + "%"
-            if p.totalUnitCount == -1 { // Google Drive
+
+        self.request?.downloadProgress { progress in
+            let readString: String = Global.humanReadableSize(bytes: progress.completedUnitCount)
+            let totalString: String = Global.humanReadableSize(bytes: progress.totalUnitCount)
+            let percentage = String(Int(progress.fractionCompleted * 100)) + "%"
+            if progress.totalUnitCount == -1 { // Google Drive
                 self.lastCachedProgress = "Downloading %@".localizedFormat(readString)
             } else {
                 self.lastCachedProgress = "Downloading %@ of %@ (%@)".localizedFormat(readString, totalString, percentage)
             }
-            self.lastCachedFraction = Float(p.fractionCompleted)
+            self.lastCachedFraction = Float(progress.fractionCompleted)
             self.onProgress?(self.lastCachedFraction, self.lastCachedProgress)
         }
-        
-        self.request?.response { r in
+
+        self.request?.response { response in
             self.request = nil
-            self.onCompletion?(r.error?.localizedDescription)
+            self.onCompletion?(response.error?.localizedDescription)
         }
     }
-    
+
     func pause() {
         guard let request = request else { return }
         guard !paused else { return }
@@ -64,18 +63,16 @@ class LocalIPADownloadUtil {
         paused = true
         onPause?()
     }
-    
+
     func resume() {
         guard let request = request else { return }
         request.resume()
         paused = false
     }
-    
+
     func stop() {
         guard let request = request else { return }
         request.cancel()
         paused = false
     }
-    
 }
-

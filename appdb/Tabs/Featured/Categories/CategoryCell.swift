@@ -10,30 +10,29 @@ import UIKit
 import Cartography
 
 class CategoryCell: UITableViewCell {
-    
     var name: UILabel!
     var icon: UIImageView!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         // Margins
         contentView.preservesSuperviewLayoutMargins = false
         preservesSuperviewLayoutMargins = false
-        layoutMargins.left = Global.size.margin.value
-        separatorInset.left = Global.size.margin.value
-        
+        layoutMargins.left = Global.Size.margin.value
+        separatorInset.left = Global.Size.margin.value
+
         // UI
         contentView.theme_backgroundColor = Color.veryVeryLightGray
         theme_backgroundColor = Color.veryVeryLightGray
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
         selectedBackgroundView = bgColorView
-  
+
         // Icon
         icon = UIImageView()
         if reuseIdentifier == "category_ios" {
@@ -45,34 +44,30 @@ class CategoryCell: UITableViewCell {
         }
         icon.layer.borderWidth = 0.5
         icon.layer.theme_borderColor = Color.borderCgColor
-        
+
         // Name
         name = UILabel()
-        name.font = .systemFont(ofSize: (16~~15))
+        name.font = .systemFont(ofSize: (16 ~~ 15))
         name.numberOfLines = 1
         name.makeDynamicFont()
-        
+
         contentView.addSubview(icon)
         contentView.addSubview(name)
-        
+
         setConstraints()
     }
-    
-    fileprivate func setConstraints() {
+
+    private func setConstraints() {
         constrain(icon, name) { icon, name in
-            
             icon.width ~== 30
-            
-            if reuseIdentifier == "category_ios" { icon.height ~== icon.width }
-            else if reuseIdentifier == "category_books" { icon.height ~== icon.width ~* 1.542 }
-            
-            icon.left ~== icon.superview!.left ~+ Global.size.margin.value
+
+            if reuseIdentifier == "category_ios" { icon.height ~== icon.width } else if reuseIdentifier == "category_books" { icon.height ~== icon.width ~* 1.542 }
+
+            icon.left ~== icon.superview!.left ~+ Global.Size.margin.value
             icon.centerY ~== icon.superview!.centerY
-            
+
             name.left ~== icon.right ~+ 10
             name.centerY ~== icon.centerY
-            
         }
     }
-
 }

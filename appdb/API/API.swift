@@ -10,16 +10,16 @@ import Alamofire
 import SwiftyJSON
 import Localize_Swift
 
-struct API {
+enum API {
     static let endpoint = "https://api.dbservices.to/v1.2/"
     static let statusEndpoint = "https://status.dbservices.to/API/v1.0/"
-    
+
     static var languageCode: String {
         return Localize.currentLanguage()
     }
-    
+
     static let headers: HTTPHeaders = ["User-Agent": "appdb iOS Client v\(Global.appVersion)"]
-    
+
     static var headersWithCookie: HTTPHeaders {
         guard Preferences.deviceIsLinked else { return headers }
         return [
@@ -30,8 +30,8 @@ struct API {
 }
 
 enum DeviceType: String {
-    case iphone = "iphone"
-    case ipad = "ipad"
+    case iphone
+    case ipad
 }
 
 enum ItemType: String {

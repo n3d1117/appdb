@@ -20,25 +20,24 @@ protocol BadgeManager {
 }
 
 extension UIViewController: BadgeManager {
-    
     func currentIntValue(for tab: BadgeableTabs) -> Int? {
         guard let item = (tabBarController ?? self as? UITabBarController)?.tabBar.items?[tab.rawValue] else { return nil }
-        return Int(item.badgeValue ?? "0") ?? nil
+        return Int(item.badgeValue ?? "0")
     }
-    
+
     // Set badge value
     func updateBadge(with text: Any? = nil, for tab: BadgeableTabs) {
         let badge = text == nil ? nil : "\(text!)"
         (tabBarController ?? self as? UITabBarController)?.tabBar.items?[tab.rawValue].badgeValue = badge
     }
-    
+
     // Badge += 1
     func badgeAddOne(for tab: BadgeableTabs) {
         guard let item = (tabBarController ?? self as? UITabBarController)?.tabBar.items?[tab.rawValue] else { return }
         guard let currentValue = currentIntValue(for: tab) else { return }
         item.badgeValue = "\(currentValue + 1)"
     }
-    
+
     // Badge -= 1
     func badgeSubtractOne(for tab: BadgeableTabs) {
         guard let item = (tabBarController ?? self as? UITabBarController)?.tabBar.items?[tab.rawValue] else { return }
@@ -46,5 +45,4 @@ extension UIViewController: BadgeManager {
         let newValue = currentValue - 1 <= 0 ? nil : currentValue - 1
         item.badgeValue = newValue == nil ? nil : "\(newValue!)"
     }
-    
 }

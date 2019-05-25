@@ -23,13 +23,13 @@ import UIKit
  *
  */
 
-struct DimmableView {
+enum DimmableView {
     static func get() -> UIView {
         let dim = UIView()
         dim.layer.opacity = 0
         dim.backgroundColor = .black
         return dim
     }
-    
+
     static let opacity: Float = 0.3
 }

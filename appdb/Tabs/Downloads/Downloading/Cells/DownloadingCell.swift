@@ -16,28 +16,27 @@ struct DownloadingApp: Hashable {
     var icon: String = ""
     var util: LocalIPADownloadUtil?
 
-    static func ==(lhs: DownloadingApp, rhs: DownloadingApp) -> Bool {
+    static func == (lhs: DownloadingApp, rhs: DownloadingApp) -> Bool {
         return lhs.filename == rhs.filename
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(filename)
     }
 }
 
 class DownloadingCell: UICollectionViewCell {
-    
-    fileprivate var iconSize: CGFloat = (50~~40)
-    
-    fileprivate var filename: UILabel!
-    fileprivate var progress: UILabel!
-    fileprivate var icon: UIImageView!
-    fileprivate var moreImageButton: UIImageView!
-    fileprivate var dummy: UIView!
-    fileprivate var progressView: UIProgressView!
-    
-    fileprivate var resultString: String = ""
-    
+    private var iconSize: CGFloat = (50 ~~ 40)
+
+    private var filename: UILabel!
+    private var progress: UILabel!
+    private var icon: UIImageView!
+    private var moreImageButton: UIImageView!
+    private var dummy: UIView!
+    private var progressView: UIProgressView!
+
+    private var resultString: String = ""
+
     func configureForDownload(with app: DownloadingApp) {
         filename.text = app.filename
         if !app.icon.isEmpty, let url = URL(string: app.icon) {
@@ -46,9 +45,9 @@ class DownloadingCell: UICollectionViewCell {
         } else {
             icon.image = #imageLiteral(resourceName: "blank_icon")
         }
-        
+
         progressView.progress = app.util?.lastCachedFraction ?? 0
-        
+
         if app.util == nil {
             self.progress.text = self.resultString
             return
@@ -62,7 +61,7 @@ class DownloadingCell: UICollectionViewCell {
                 self.progressView.setProgress(fraction, animated: true)
             }
         }
-        
+
         app.util?.onPause = {
             if let partial = app.util?.lastCachedProgress.components(separatedBy: "Downloading".localized() + " ").last {
                 self.progress.text = "Paused".localized() + " - \(partial)"
@@ -80,48 +79,48 @@ class DownloadingCell: UICollectionViewCell {
             }
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.setup()
     }
-    
+
     func setup() {
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
-        
+
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 6
         contentView.layer.borderWidth = 1 / UIScreen.main.scale
         contentView.layer.theme_borderColor = Color.borderCgColor
         layer.backgroundColor = UIColor.clear.cgColor
-        
+
         // Filename
         filename = UILabel()
         filename.theme_textColor = Color.title
-        filename.font = .systemFont(ofSize: 15~~14)
+        filename.font = .systemFont(ofSize: 15 ~~ 14)
         filename.numberOfLines = 1
         filename.makeDynamicFont()
-        
+
         // Progress text
         progress = UILabel()
         progress.theme_textColor = Color.darkGray
-        progress.font = .systemFont(ofSize: 13~~12)
+        progress.font = .systemFont(ofSize: 13 ~~ 12)
         progress.numberOfLines = 1
         progress.makeDynamicFont()
-        
+
         // Icon
         icon = UIImageView()
         icon.layer.borderWidth = 1 / UIScreen.main.scale
         icon.layer.theme_borderColor = Color.borderCgColor
         icon.contentMode = .scaleToFill
         icon.layer.cornerRadius = Global.cornerRadius(from: iconSize)
-        
+
         // Progress view
         progressView = UIProgressView()
         progressView.trackTintColor = .clear
@@ -131,45 +130,44 @@ class DownloadingCell: UICollectionViewCell {
         // More image button
         moreImageButton = UIImageView(image: #imageLiteral(resourceName: "more"))
         moreImageButton.alpha = 0.9
-        
+
         dummy = UIView()
-        
+
         contentView.addSubview(filename)
         contentView.addSubview(progress)
         contentView.addSubview(icon)
         contentView.addSubview(moreImageButton)
         contentView.addSubview(progressView)
         contentView.addSubview(dummy)
-        
-        constrain(filename, progress, icon, moreImageButton, progressView, dummy) { name, progress, icon, moreButton, progressView, d in
-            
+
+        constrain(filename, progress, icon, moreImageButton, progressView, dummy) { name, progress, icon, moreButton, progressView, dummy in
             icon.width ~== iconSize
             icon.height ~== icon.width
-            icon.left ~== icon.superview!.left ~+ (15~~12)
+            icon.left ~== icon.superview!.left ~+ (15 ~~ 12)
             icon.centerY ~== icon.superview!.centerY
-            
+
             moreButton.centerY ~== moreButton.superview!.centerY
-            moreButton.right ~== moreButton.superview!.right ~- (15~~12)
-            moreButton.width ~== (22~~20)
+            moreButton.right ~== moreButton.superview!.right ~- (15 ~~ 12)
+            moreButton.width ~== (22 ~~ 20)
             moreButton.height ~== moreButton.width
-            
-            d.height ~== 1
-            d.centerY ~== d.superview!.centerY
-            
-            name.left ~== icon.right ~+ (12~~10)
-            name.right ~== moreButton.left ~- Global.size.margin.value
-            name.bottom ~== d.top ~+ 2
-            
+
+            dummy.height ~== 1
+            dummy.centerY ~== dummy.superview!.centerY
+
+            name.left ~== icon.right ~+ (12 ~~ 10)
+            name.right ~== moreButton.left ~- Global.Size.margin.value
+            name.bottom ~== dummy.top ~+ 2
+
             progress.left ~== name.left
-            progress.right ~== moreButton.left ~- (5~~0)
-            progress.top ~== d.bottom + 3
-            
+            progress.right ~== moreButton.left ~- (5 ~~ 0)
+            progress.top ~== dummy.bottom + 3
+
             progressView.bottom ~== progressView.superview!.bottom
             progressView.left ~== progressView.superview!.left
             progressView.right ~== progressView.superview!.right
         }
     }
-    
+
     // Hover animation
     override var isHighlighted: Bool {
         didSet {

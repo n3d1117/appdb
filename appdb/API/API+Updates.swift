@@ -10,7 +10,6 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    
     static func getUpdatesTicket(success:@escaping (_ ticket: String) -> Void, fail:@escaping (_ error: String) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.getUpdatesTicket.rawValue], headers: headersWithCookie)
             .responseJSON { response in
@@ -25,18 +24,18 @@ extension API {
                 case .failure(let error):
                     fail(error.localizedDescription)
                 }
-        }
+            }
     }
-    
+
     static func getUpdates(ticket: String, success:@escaping (_ items: [UpdateableApp]) -> Void, fail:@escaping (_ error: String) -> Void) {
         let request = Alamofire.request(endpoint, parameters: ["action": Actions.getUpdates.rawValue, "t": ticket], headers: headersWithCookie)
-        
+
         quickCheckForErrors(request, completion: { ok, hasError in
             if ok {
                 request.responseArray(keyPath: "data") { (response: DataResponse<[UpdateableApp]>) in
                     switch response.result {
                     case .success(var items):
-                        
+
                         // Cleanup mismatch versions
                         for item in items {
                             var new = item.versionNew
@@ -59,5 +58,4 @@ extension API {
             }
         })
     }
-    
 }

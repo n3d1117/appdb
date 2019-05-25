@@ -12,18 +12,18 @@ import UIKit
 class FeaturedCell: UITableViewCell {
     var height: CGFloat {
         guard let id = Featured.CellType(rawValue: reuseIdentifier ?? "") else { return 0 }
-        
+
         // iOS Height
-        if Featured.iosTypes.contains(id) { return Global.size.heightIos.value + (45~~40) }
-        
+        if Featured.iosTypes.contains(id) { return Global.Size.heightIos.value + (45 ~~ 40) }
+
         // Books Height
-        if id == .books { return Global.size.heightBooks.value + (45~~40) }
+        if id == .books { return Global.Size.heightBooks.value + (45 ~~ 40) }
         return 0
     }
 }
 
 extension Featured {
-    
+
     // Reuse identifiers
     enum CellType: String {
         case iosNew = "ios_new"
@@ -35,39 +35,38 @@ extension Featured {
         case banner = "banner"
         case copyright = "copyright"
     }
-    
+
     static let iosTypes: [CellType] = [.iosNew, .iosPaid, .iosPopular, .cydia]
-    
+
     // Set up
     func setUp() {
-        
         // Register cells
         for id in Featured.iosTypes { tableView.register(ItemCollection.self, forCellReuseIdentifier: id.rawValue) }
         tableView.register(ItemCollection.self, forCellReuseIdentifier: CellType.books.rawValue)
         tableView.register(Dummy.self, forCellReuseIdentifier: CellType.dummy.rawValue)
         tableView.register(Banner.self, forCellReuseIdentifier: CellType.banner.rawValue)
         tableView.register(Copyright.self, forCellReuseIdentifier: CellType.copyright.rawValue)
-        
+
         for cell in cells.compactMap({$0 as? ItemCollection}) { cell.delegate = self; cell.delegateCategory = self }
-        
+
         // Register for 3D Touch
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         }
-        
+
         tableView.tableFooterView = UIView()
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         tableView.theme_separatorColor = Color.borderColor
-        
+
         if #available(iOS 11.0, *) {
             tableView.insetsContentViewsToSafeArea = false
         }
-        
+
         // Hide the 'Back' text on back button
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
     }
-    
+
     // Add Banner
     func addBanner(_ banner: Banner) {
         tableView.tableHeaderView = banner
@@ -82,7 +81,7 @@ extension Featured {
             }
         }
     }
-    
+
     // Stick banner to top
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let headerView = tableView.tableHeaderView as? Banner, let nav = navigationController {
@@ -92,22 +91,20 @@ extension Featured {
             } else {
                 headerView.subviews[0].bounds.origin.y = 0
             }
-        }  
+        }
     }
 }
-
 
 // MARK: - 3D Touch Peek and Pop on icons
 
 extension Featured: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         guard let cell = tableView.cellForRow(at: indexPath) as? ItemCollection else { return nil }
-        
+
         guard let index = cell.collectionView.indexPathForItem(at: self.view.convert(location, to: cell.collectionView)) else { return nil }
         guard cell.items.indices.contains(index.row) else { return nil }
-        
+
         if let collectionViewCell = cell.collectionView.cellForItem(at: index) as? FeaturedApp {
             let iconRect = tableView.convert(collectionViewCell.icon.frame, from: collectionViewCell.icon.superview!)
             if #available(iOS 9.0, *) { previewingContext.sourceRect = iconRect }
@@ -117,12 +114,11 @@ extension Featured: UIViewControllerPreviewingDelegate {
         } else {
             return nil
         }
-        
+
         let detailsViewController = Details(content: cell.items[index.row])
         return detailsViewController
-        
     }
-    
+
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
     }

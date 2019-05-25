@@ -10,62 +10,61 @@ import UIKit
 import Cartography
 
 class Downloads: UIViewController {
-
     var currentViewController: UIViewController?
-    
+
     var headerView: ILTranslucentView!
     var control: UISegmentedControl!
     var line: UIView!
-    
+
     // Constraints group, will be replaced when orientation changes
     var group = ConstraintGroup()
-    
+
     lazy var viewControllersArray: [UIViewController] = {
-        return [QueuedApps(), Library(), Downloading()]
+        [QueuedApps(), Library(), Downloading()]
     }()
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Hide bottom hairline
         if let nav = navigationController { nav.navigationBar.hideBottomHairline() }
-        
+
         headerView = ILTranslucentView(frame: .zero)
         headerView.translucentAlpha = 1
-        
+
         control = UISegmentedControl(items: ["Queued".localized(), "Library".localized(), "Downloading".localized()])
         control.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)
         control.selectedSegmentIndex = 0
-        
+
         line = UIView(frame: .zero)
         line.theme_backgroundColor = Color.borderColor
-        
+
         headerView.addSubview(line)
         headerView.addSubview(control)
         view.addSubview(headerView)
-        
+
         // UI
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         title = "Downloads".localized()
-        
+
         // Subscribe to changes to the number of currently queued apps
         NotificationCenter.default.addObserver(self, selector: #selector(updateQueuedAppsTitle(_:)), name: .UpdateQueuedSegmentTitle, object: nil)
-        
+
         // Set constraints
         setConstraints()
-        
+
         // Add first view controller
         currentViewController = viewControllersArray[0]
         addChild(currentViewController!)
-        addSubview(subView: currentViewController!.view)
+        addSubview(currentViewController!.view)
     }
-    
+
     // Update queued apps title in segmented control
-    @objc fileprivate func updateQueuedAppsTitle(_ notification: NSNotification) {
+    @objc private func updateQueuedAppsTitle(_ notification: NSNotification) {
         if let number = notification.userInfo?["number"] as? Int, let tab = notification.userInfo?["tab"] as? Int {
             if tab == 0 {
                 if number != 0 {
@@ -82,60 +81,59 @@ class Downloads: UIViewController {
             }
         }
     }
-    
+
     // MARK: - Constraints
-    
-    fileprivate func setConstraints() {
+
+    private func setConstraints() {
         constrain(view, headerView, control, line, replace: group) { view, header, control, line in
-            
             // Calculate navBar + status bar height
             var height: CGFloat = 0
             if let nav = navigationController {
                 height = nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height
             }
-            
+
             // Fixes hotspot status bar on non X devices
             if !Global.hasNotch, UIApplication.shared.statusBarFrame.height > 20.0 {
                 height -= (UIApplication.shared.statusBarFrame.height - 20.0)
             }
-            
+
             header.top ~== view.top ~+ height
             header.left ~== view.left
             header.right ~== view.right
             header.height ~== 40
-            
-            line.height ~== 1/UIScreen.main.scale
+
+            line.height ~== 1 / UIScreen.main.scale
             line.left ~== header.left
             line.right ~== header.right
             line.top ~== header.bottom ~- 0.5
-            
+
             control.top ~== header.top
             control.centerX ~== header.centerX
 
             let screenWidth: CGFloat = min(CGFloat(UIScreen.main.bounds.width), CGFloat(UIScreen.main.bounds.height))
-            let width = (370~~330) > screenWidth ? (screenWidth - Global.size.margin.value * 2) : (370~~330)
+            let width = (370 ~~ 330) > screenWidth ? (screenWidth - Global.Size.margin.value * 2) : (370 ~~ 330)
             control.width ~== width
         }
     }
-    
+
     // Update constraints to reflect orientation change (recalculate navigationBar + statusBar height)
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+
+        coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
             self.setConstraints()
         }, completion: nil)
     }
-    
+
     // MARK: - Segmented Control index did change
-    
+
     // Switch table view based on segment index
     @objc func indexDidChange(sender: UISegmentedControl) {
         let new: UIViewController = viewControllersArray[sender.selectedSegmentIndex]
         self.cycle(from: self.currentViewController!, to: new)
         self.currentViewController = new
     }
-    
+
     // Called from AppDelegate
     func switchToIndex(i: Int) {
         guard let control = control else { delay(0.8) { self.switchToIndex(i: i) }; return }
@@ -149,7 +147,7 @@ class Downloads: UIViewController {
 }
 
 extension Downloads {
-    
+
     //
     // Switch between table views with fade animation
     // Credits: https://github.com/woelmer/SwitchChildViewControllersWithAutoLayout
@@ -158,13 +156,13 @@ extension Downloads {
         control.isUserInteractionEnabled = false
         old.willMove(toParent: nil)
         self.addChild(new)
-        self.addSubview(subView: new.view)
+        self.addSubview(new.view)
         new.view.alpha = 0
         new.view.layoutIfNeeded()
-        
+
         // Set add right bar button item if selected tab is Downloading
         self.navigationItem.rightBarButtonItem = new is Downloading ? UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped)) : nil
-        
+
         UIView.animate(withDuration: 0.2, animations: {
             new.view.alpha = 1
             old.view.alpha = 0
@@ -175,15 +173,15 @@ extension Downloads {
             self.control.isUserInteractionEnabled = true
         })
     }
-    
+
     // Add subview and constraints
-    func addSubview(subView: UIView) {
-        view.addSubview(subView)
-        constrain(view, subView, headerView) { v, s, h in
-            s.top ~== h.bottom
-            s.bottom ~== v.bottom
-            s.right ~== v.right
-            s.left ~== v.left
+    func addSubview(_ subview: UIView) {
+        view.addSubview(subview)
+        constrain(view, subview, headerView) { view, subview, header in
+            subview.top ~== header.bottom
+            subview.bottom ~== view.bottom
+            subview.right ~== view.right
+            subview.left ~== view.left
         }
     }
 }
@@ -191,8 +189,7 @@ extension Downloads {
 // MARK: - URL text input on add button tapped
 
 extension Downloads {
-    
-    @objc fileprivate func addTapped() {
+    @objc private func addTapped() {
         let alert = UIAlertController(title: "Enter URL".localized(), message: "Enter below the URL of the .ipa file you want to download".localized(), preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
             textField.addTarget(self, action: #selector(self.urlTextChanged), for: .editingChanged)
@@ -201,28 +198,28 @@ extension Downloads {
             textField.theme_keyboardAppearance = [.light, .dark]
             textField.clearButtonMode = .whileEditing
         })
-        
+
         alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
-        
+
         let load = UIAlertAction(title: "Load".localized(), style: .default, handler: { _ in
             guard var text = alert.textFields?[0].text else { return }
             if !text.hasPrefix("http://"), !text.hasPrefix("https://") {
                 text = "http://" + text
             }
             guard let url = URL(string: text) else { return }
-            let webVc = IPAWebViewController(url, delegate: self)
+            let webVc = IPAWebViewController(delegate: self, url: url)
             let nav = IPAWebViewNavController(rootViewController: webVc)
             self.present(nav, animated: true)
         })
-        
+
         alert.addAction(load)
         load.isEnabled = false
-        
+
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
     }
-    
+
     @objc func urlTextChanged(sender: UITextField) {
         var responder: UIResponder = sender
         while !(responder is UIAlertController) { responder = responder.next! }
@@ -235,19 +232,19 @@ extension Downloads {
             }
         }
     }
-    
+
     func isValidUrl(urlString: String) -> Bool {
         let types: NSTextCheckingResult.CheckingType = [.link]
         let detector = try? NSDataDetector(types: types.rawValue)
-        guard (detector != nil && urlString.count > 0) else { return false }
+        guard detector != nil && !urlString.isEmpty else { return false }
         return detector!.numberOfMatches(in: urlString, options: NSRegularExpression.MatchingOptions(rawValue: 0),
-                                         range: NSMakeRange(0, urlString.count)) > 0
+                                         range: NSRange(location: 0, length: urlString.count)) > 0
     }
 }
 
 //
-//   MARK: - IPAWebViewControllerDelegate
-//   Show success message once download started
+// MARK: - IPAWebViewControllerDelegate
+// Show success message once download started
 //
 extension Downloads: IPAWebViewControllerDelegate {
     func didDismiss() {

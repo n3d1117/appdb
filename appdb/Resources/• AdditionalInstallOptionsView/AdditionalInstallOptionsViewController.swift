@@ -17,17 +17,16 @@ protocol AdditionalInstallOptionsHeightDelegate: class {
 // A custom UINavigationController suited to wrap a AdditionalInstallOptionsViewController with variable height
 
 class AdditionalInstallOptionsNavController: UINavigationController, AdditionalInstallOptionsHeightDelegate {
-    
-    var group: ConstraintGroup = ConstraintGroup()
-    
+    var group = ConstraintGroup()
+
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        
+
         setupConstraints()
     }
-    
+
     // Setup constraints
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
         if let vc = self.viewControllers.first as? AdditionalInstallOptionsViewController {
             constrain(view, replace: group) { view in
                 view.height ~== vc.height
@@ -35,11 +34,11 @@ class AdditionalInstallOptionsNavController: UINavigationController, AdditionalI
             }
         }
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+
+        coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
             self.setupConstraints()
         }, completion: nil)
     }
@@ -48,31 +47,30 @@ class AdditionalInstallOptionsNavController: UINavigationController, AdditionalI
         setupConstraints()
         UIView.animate(withDuration: 0.2, animations: view.superview!.layoutIfNeeded)
     }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
 class AdditionalInstallOptionsViewController: TableViewController {
-    
     weak var heightDelegate: AdditionalInstallOptionsHeightDelegate?
-    
-    var onCompletion: ((Bool, String, String) -> ())?
 
-    fileprivate var duplicateApp: Bool = true
-    fileprivate var newId: String = ""
-    fileprivate var newName: String = ""
-    
+    var onCompletion: ((Bool, String, String) -> Void)?
+
+    private var duplicateApp: Bool = true
+    private var newId: String = ""
+    private var newName: String = ""
+
     var cancelled: Bool = true
-    
-    fileprivate let placeholder: String = Global.randomString(length: 4).lowercased()
-    
-    fileprivate let rowHeight: CGFloat = 50
+
+    private let placeholder: String = Global.randomString(length: 4).lowercased()
+
+    private let rowHeight: CGFloat = 50
     var height: CGFloat {
         let navbarHeight: CGFloat = navigationController?.navigationBar.frame.height ?? 0
         return navbarHeight + rowHeight * CGFloat(duplicateApp ? 3 : 2)
@@ -99,7 +97,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
             )
         ])
     ]
-    
+
     lazy var compactSections: [Static.Section] = [
         Section(rows: [
             Row(text: "Duplicate app".localized(), accessory: .switchToggle(value: duplicateApp) { [unowned self] newValue in
@@ -118,45 +116,44 @@ class AdditionalInstallOptionsViewController: TableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "Installation options".localized()
-        
+
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.veryVeryLightGray
         view.theme_backgroundColor = Color.veryVeryLightGray
 
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
-        
+
         tableView.rowHeight = rowHeight
         tableView.isScrollEnabled = false
-        
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action: #selector(dismissAnimated))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Install".localized(), style: .done, target: self, action: #selector(proceedWithInstall))
         navigationItem.rightBarButtonItem?.isEnabled = true
-        
+
         newId = placeholder
         dataSource.sections = sections
     }
-    
-    fileprivate func switchMode() {
+
+    private func switchMode() {
         heightDelegate?.updateHeight()
         dataSource.sections = duplicateApp ? sections : compactSections
     }
-    
-    @objc fileprivate func dismissAnimated() {
+
+    @objc private func dismissAnimated() {
         cancelled = true
         dismiss(animated: true)
     }
-    
-    @objc fileprivate func proceedWithInstall() {
+
+    @objc private func proceedWithInstall() {
         onCompletion?(self.duplicateApp, self.newId, self.newName)
         cancelled = false
         dismiss(animated: true)
     }
-    
-    fileprivate func setInstallButtonEnabled() {
+
+    private func setInstallButtonEnabled() {
         navigationItem.rightBarButtonItem?.isEnabled = !newId.contains(" ")
     }
-    
 }

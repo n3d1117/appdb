@@ -7,14 +7,13 @@
 //
 
 struct RequestedApp: Matchable {
-    
     var linkId: String = ""
     var type: ItemType = .ios
     var name: String = ""
     var status: String = ""
     var image: String = ""
     var bundleId: String = ""
-    
+
     init(type: ItemType, linkId: String, name: String, image: String, bundleId: String, status: String = "") {
         self.linkId = linkId
         self.type = type
@@ -23,7 +22,7 @@ struct RequestedApp: Matchable {
         self.bundleId = bundleId
         self.status = status
     }
-    
+
     func match(with object: Any) -> Match {
         guard let app = object as? RequestedApp else { return .none }
         guard linkId == app.linkId else { return .none }

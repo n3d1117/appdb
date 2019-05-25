@@ -20,50 +20,48 @@ import UIKit
 */
 
 class BackgroundTaskUtil {
-    
-    fileprivate var backgroundTask: UIBackgroundTaskIdentifier = .invalid
-    
-    var afterStopClosure: (() -> ())?
-    
+    private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+
+    var afterStopClosure: (() -> Void)?
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     func start() {
         registerForNotifications()
     }
-    
-    fileprivate func registerForNotifications() {
+
+    private func registerForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground),
                                        name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
                                        name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-    
-    @objc fileprivate func didEnterBackground(notification: NSNotification) {
+
+    @objc private func didEnterBackground(notification: NSNotification) {
         startBackgroundTask()
     }
-    
-    @objc fileprivate func willEnterForeground(notification: NSNotification) {
+
+    @objc private func willEnterForeground(notification: NSNotification) {
         if backgroundTask != .invalid {
             stopBackgroundTask()
         }
     }
-    
-    fileprivate func startBackgroundTask() {
+
+    private func startBackgroundTask() {
         backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
             DispatchQueue.main.async {
                 self.stopBackgroundTask()
             }
         })
     }
-    
-    fileprivate func stopBackgroundTask() {
+
+    private func stopBackgroundTask() {
         if backgroundTask != .invalid {
             UIApplication.shared.endBackgroundTask(backgroundTask)
             backgroundTask = .invalid
             self.afterStopClosure?()
         }
     }
-    
 }

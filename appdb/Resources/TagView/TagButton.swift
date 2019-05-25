@@ -70,13 +70,13 @@ class TagButton: UIButton {
     
     // MARK: - Animations
     
-    @objc fileprivate func pressed() {
+    @objc private func pressed() {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: [.allowUserInteraction, .curveEaseIn], animations: {
             self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
         }, completion: nil)
     }
     
-    @objc fileprivate func released() {
+    @objc private func released() {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: [.allowUserInteraction, .curveEaseOut], animations: {
             self.transform = .identity
         }, completion: nil)

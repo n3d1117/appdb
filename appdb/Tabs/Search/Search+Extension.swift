@@ -10,15 +10,14 @@ import UIKit
 import ObjectMapper
 
 extension Search {
-    
     var topInset: CGFloat {
         return Global.isIpad ? 25 : 15
     }
-    
+
     var margin: CGFloat {
         return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : 15
     }
-    
+
     func pushDetailsController(with content: Item) {
         let detailsViewController = Details(content: content)
         if Global.isIpad {
@@ -29,16 +28,16 @@ extension Search {
             navigationController?.pushViewController(detailsViewController, animated: true)
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if shouldRelayout, currentPhase != .loading {
             shouldRelayout = false
             switchLayout(phase: currentPhase)
         }
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         shouldRelayout = true
@@ -47,46 +46,46 @@ extension Search {
         })
     }
 
-    func searchAndUpdate<T>(_ query: String = "", page: Int = 1, type: T.Type) where T: Mappable, T:Item {
+    func searchAndUpdate<T>(_ type: T.Type, query: String = "", page: Int = 1) where T: Mappable, T: Item {
         var tmp: [SearchCell] = []
         if page == 1 { results = [] }
-        
+
         self.collectionView.spr_resetNoMoreData()
-        
+
         API.search(type: type, q: query, page: page, success: { [weak self] items in
             guard let self = self else { return }
-            
+
             for item in items {
                 self.results.append(item)
-                
+
                 switch self.detectScreenshotsOrder(from: item) {
-                    case .none: tmp.append(NoScreenshotsSearchCell())
-                    case .none_book: tmp.append(NoScreenshotsSearchCellBook())
-                    case .none_book_stars: tmp.append(NoScreenshotsSearchCellBookWithStars())
-                    case .onePortrait_iphone: tmp.append(PortraitScreenshotSearchCell_iPhone())
-                    case .onePortrait_iphone_stars:  tmp.append(PortraitScreenshotSearchCell_iPhone())
-                    case .onePortrait_ipad: tmp.append(PortraitScreenshotSearchCellWithStars_iPad())
-                    case .onePortrait_ipad_stars: tmp.append(PortraitScreenshotSearchCellWithStars_iPad())
-                    case .oneLandscape_iphone: tmp.append(LandscapeScreenshotSearchCell_iPhone())
-                    case .oneLandscape_iphone_stars: tmp.append(LandscapeScreenshotSearchCellWithStars_iPhone())
-                    case .oneLandscape_ipad: tmp.append(LandscapeScreenshotSearchCell_iPad())
-                    case .oneLandscape_ipad_stars: tmp.append(LandscapeScreenshotSearchCellWithStars_iPad())
-                    case .twoPortrait_iphone: tmp.append(TwoPortraitScreenshotsSearchCell_iPhone())
-                    case .twoPortrait_iphone_stars: tmp.append(TwoPortraitScreenshotsSearchCellWithStars_iPhone())
-                    case .twoPortrait_ipad: tmp.append(TwoPortraitScreenshotsSearchCell_iPad())
-                    case .twoPortrait_ipad_stars: tmp.append(TwoPortraitScreenshotsSearchCellWithStars_iPad())
-                    case .threePortrait_iphone: tmp.append(ThreePortraitScreenshotsSearchCell_iPhone())
-                    case .threePortrait_iphone_stars: tmp.append(ThreePortraitScreenshotsSearchCellWithStars_iPhone())
-                    case .threePortrait_ipad: tmp.append(ThreePortraitScreenshotsSearchCell_iPad())
-                    case .threePortrait_ipad_stars: tmp.append(ThreePortraitScreenshotsSearchCellWithStars_iPad())
-                    case .mixedOne_iphone: tmp.append(MixedScreenshotsSearchCellOne_iPhone())
-                    case .mixedOne_iphone_stars: tmp.append(MixedScreenshotsSearchCellOneWithStars_iPhone())
-                    case .mixedOne_ipad: tmp.append(MixedScreenshotsSearchCellOne_iPad())
-                    case .mixedOne_ipad_stars: tmp.append(MixedScreenshotsSearchCellOneWithStars_iPad())
-                    case .mixedTwo_iphone: tmp.append(MixedScreenshotsSearchCellTwo_iPhone())
-                    case .mixedTwo_iphone_stars: tmp.append(MixedScreenshotsSearchCellTwoWithStars_iPhone())
-                    case .mixedTwo_ipad: tmp.append(MixedScreenshotsSearchCellTwo_iPad())
-                    case .mixedTwo_ipad_stars: tmp.append(MixedScreenshotsSearchCellTwoWithStars_iPad())
+                case .none: tmp.append(NoScreenshotsSearchCell())
+                case .noneBook: tmp.append(NoScreenshotsSearchCellBook())
+                case .noneBookStars: tmp.append(NoScreenshotsSearchCellBookWithStars())
+                case .onePortraitIphone: tmp.append(PortraitScreenshotSearchCelliPhone())
+                case .onePortraitIphoneStars: tmp.append(PortraitScreenshotSearchCelliPhone())
+                case .onePortraitIpad: tmp.append(PortraitScreenshotSearchCellWithStarsiPad())
+                case .onePortraitIpadStars: tmp.append(PortraitScreenshotSearchCellWithStarsiPad())
+                case .oneLandscapeIphone: tmp.append(LandscapeScreenshotSearchCelliPhone())
+                case .oneLandscapeIphoneStars: tmp.append(LandscapeScreenshotSearchCellWithStarsiPhone())
+                case .oneLandscapeIpad: tmp.append(LandscapeScreenshotSearchCelliPad())
+                case .oneLandscapeIpadStars: tmp.append(LandscapeScreenshotSearchCellWithStarsiPad())
+                case .twoPortraitIphone: tmp.append(TwoPortraitScreenshotsSearchCelliPhone())
+                case .twoPortraitIphoneStars: tmp.append(TwoPortraitScreenshotsSearchCellWithStarsiPhone())
+                case .twoPortraitIpad: tmp.append(TwoPortraitScreenshotsSearchCelliPad())
+                case .twoPortraitIpadStars: tmp.append(TwoPortraitScreenshotsSearchCellWithStarsiPad())
+                case .threePortraitIphone: tmp.append(ThreePortraitScreenshotsSearchCelliPhone())
+                case .threePortraitIphoneStars: tmp.append(ThreePortraitScreenshotsSearchCellWithStarsiPhone())
+                case .threePortraitIpad: tmp.append(ThreePortraitScreenshotsSearchCelliPad())
+                case .threePortraitIpadStars: tmp.append(ThreePortraitScreenshotsSearchCellWithStarsiPad())
+                case .mixedOneIphone: tmp.append(MixedScreenshotsSearchCellOneiPhone())
+                case .mixedOneIphoneStars: tmp.append(MixedScreenshotsSearchCellOneWithStarsiPhone())
+                case .mixedOneIpad: tmp.append(MixedScreenshotsSearchCellOneiPad())
+                case .mixedOneIpadStars: tmp.append(MixedScreenshotsSearchCellOneWithStarsiPad())
+                case .mixedTwoIphone: tmp.append(MixedScreenshotsSearchCellTwoiPhone())
+                case .mixedTwoIphoneStars: tmp.append(MixedScreenshotsSearchCellTwoWithStarsiPhone())
+                case .mixedTwoIpad: tmp.append(MixedScreenshotsSearchCellTwoiPad())
+                case .mixedTwoIpadStars: tmp.append(MixedScreenshotsSearchCellTwoWithStarsiPad())
                 }
             }
             if tmp.isEmpty {
@@ -114,31 +113,30 @@ extension Search {
                     }
                 }
             }
-            
-        }) { error in
+        }, fail: { error in
             delay(0.3) {
                 self.state = .error(first: "Cannot connect".localized(), second: error, animated: true)
             }
-        }
+        })
     }
-    
+
     enum CellType {
-        case none, none_book, none_book_stars, // No screenshots
-        
+        case none, noneBook, noneBookStars, // No screenshots
+
         // iPhone screenshots
-        onePortrait_iphone, onePortrait_iphone_stars, oneLandscape_iphone, oneLandscape_iphone_stars,
-        twoPortrait_iphone, twoPortrait_iphone_stars, threePortrait_iphone, threePortrait_iphone_stars,
-        mixedOne_iphone, mixedOne_iphone_stars, mixedTwo_iphone, mixedTwo_iphone_stars,
-        
+        onePortraitIphone, onePortraitIphoneStars, oneLandscapeIphone, oneLandscapeIphoneStars,
+        twoPortraitIphone, twoPortraitIphoneStars, threePortraitIphone, threePortraitIphoneStars,
+        mixedOneIphone, mixedOneIphoneStars, mixedTwoIphone, mixedTwoIphoneStars,
+
         // iPad screenshots
-        onePortrait_ipad, onePortrait_ipad_stars, oneLandscape_ipad, oneLandscape_ipad_stars,
-        twoPortrait_ipad, twoPortrait_ipad_stars, threePortrait_ipad, threePortrait_ipad_stars,
-        mixedOne_ipad, mixedOne_ipad_stars, mixedTwo_ipad, mixedTwo_ipad_stars
+        onePortraitIpad, onePortraitIpadStars, oneLandscapeIpad, oneLandscapeIpadStars,
+        twoPortraitIpad, twoPortraitIpadStars, threePortraitIpad, threePortraitIpadStars,
+        mixedOneIpad, mixedOneIpadStars, mixedTwoIpad, mixedTwoIpadStars
     }
-    
+
     func detectScreenshotsOrder(from item: Item) -> CellType {
         if item is Book {
-            return item.itemHasStars ? .none_book_stars : .none_book
+            return item.itemHasStars ? .noneBookStars : .noneBook
         } else if item is App || item is CydiaApp {
             var isIpad = false
             var screenshots: [Screenshot] = []
@@ -162,82 +160,81 @@ extension Search {
             case 1:
                 if screenshots.first!.class_ == "landscape" {
                     if item.itemHasStars {
-                        return (isIpad ? .oneLandscape_ipad_stars : .oneLandscape_iphone_stars)
+                        return (isIpad ? .oneLandscapeIpadStars : .oneLandscapeIphoneStars)
                     } else {
-                        return (isIpad ? .oneLandscape_ipad : .oneLandscape_iphone)
+                        return (isIpad ? .oneLandscapeIpad : .oneLandscapeIphone)
                     }
                 } else {
                     if item.itemHasStars {
-                        return (isIpad ? .onePortrait_ipad_stars : .onePortrait_iphone_stars)
+                        return (isIpad ? .onePortraitIpadStars : .onePortraitIphoneStars)
                     } else {
-                        return (isIpad ? .onePortrait_ipad : .onePortrait_iphone)
+                        return (isIpad ? .onePortraitIpad : .onePortraitIphone)
                     }
                 }
             case 2:
                 if screenshots.first!.class_ == "portrait" {
                     if screenshots[1].class_ == "portrait" {
                         if item.itemHasStars {
-                            return (isIpad ? .twoPortrait_ipad_stars : .twoPortrait_iphone_stars)
+                            return (isIpad ? .twoPortraitIpadStars : .twoPortraitIphoneStars)
                         } else {
-                            return (isIpad ? .twoPortrait_ipad : .twoPortrait_iphone)
+                            return (isIpad ? .twoPortraitIpad : .twoPortraitIphone)
                         }
                     } else {
                         if item.itemHasStars {
-                            return (isIpad ? .mixedTwo_ipad_stars : .mixedTwo_iphone_stars)
+                            return (isIpad ? .mixedTwoIpadStars : .mixedTwoIphoneStars)
                         } else {
-                            return (isIpad ? .mixedTwo_ipad : .mixedTwo_iphone)
+                            return (isIpad ? .mixedTwoIpad : .mixedTwoIphone)
                         }
                     }
                 } else {
                     if screenshots[1].class_ == "portrait" {
                         if item.itemHasStars {
-                            return (isIpad ? .mixedOne_ipad_stars : .mixedOne_iphone_stars)
+                            return (isIpad ? .mixedOneIpadStars : .mixedOneIphoneStars)
                         } else {
-                            return (isIpad ? .mixedOne_ipad : .mixedOne_iphone)
+                            return (isIpad ? .mixedOneIpad : .mixedOneIphone)
                         }
                     } else {
                         if item.itemHasStars {
-                            return (isIpad ? .oneLandscape_ipad_stars : .oneLandscape_iphone_stars)
+                            return (isIpad ? .oneLandscapeIpadStars : .oneLandscapeIphoneStars)
                         } else {
-                            return (isIpad ? .oneLandscape_ipad : .oneLandscape_iphone)
+                            return (isIpad ? .oneLandscapeIpad : .oneLandscapeIphone)
                         }
                     }
                 }
             default:
                 if screenshots.first!.class_ == "portrait", screenshots[1].class_ == "portrait", screenshots[2].class_ == "portrait" {
                     if item.itemHasStars {
-                        return (isIpad ? .threePortrait_ipad_stars : .threePortrait_iphone_stars)
+                        return (isIpad ? .threePortraitIpadStars : .threePortraitIphoneStars)
                     } else {
-                        return (isIpad ? .threePortrait_ipad : .threePortrait_iphone)
+                        return (isIpad ? .threePortraitIpad : .threePortraitIphone)
                     }
                 } else {
                     if screenshots.first!.class_ == "portrait" {
                         if screenshots[1].class_ == "portrait" {
                             if item.itemHasStars {
-                                return (isIpad ? .twoPortrait_ipad_stars : .twoPortrait_iphone_stars)
+                                return (isIpad ? .twoPortraitIpadStars : .twoPortraitIphoneStars)
                             } else {
-                                return (isIpad ? .twoPortrait_ipad : .twoPortrait_iphone)
+                                return (isIpad ? .twoPortraitIpad : .twoPortraitIphone)
                             }
                         } else {
                             if item.itemHasStars {
-                                return (isIpad ? .mixedTwo_ipad_stars : .mixedTwo_iphone_stars)
+                                return (isIpad ? .mixedTwoIpadStars : .mixedTwoIphoneStars)
                             } else {
-                                return (isIpad ? .mixedTwo_ipad : .mixedTwo_iphone)
+                                return (isIpad ? .mixedTwoIpad : .mixedTwoIphone)
                             }
                         }
                     } else {
-                        
                         if screenshots[1].class_ == "portrait" {
                             if item.itemHasStars {
-                                return (isIpad ? .mixedOne_ipad_stars : .mixedOne_iphone_stars)
+                                return (isIpad ? .mixedOneIpadStars : .mixedOneIphoneStars)
                             } else {
-                                return (isIpad ? .mixedOne_ipad : .mixedOne_iphone)
+                                return (isIpad ? .mixedOneIpad : .mixedOneIphone)
                             }
                         } else {
                             if item.itemHasStars {
-                                return (isIpad ? .oneLandscape_ipad_stars : .oneLandscape_iphone_stars)
+                                return (isIpad ? .oneLandscapeIpadStars : .oneLandscapeIphoneStars)
                             } else {
-                                return (isIpad ? .oneLandscape_ipad : .oneLandscape_iphone)
+                                return (isIpad ? .oneLandscapeIpad : .oneLandscapeIphone)
                             }
                         }
                     }
@@ -256,23 +253,22 @@ extension Search {
 // MARK: - ETCollectionViewDelegateWaterfallLayout
 
 extension Search: ETCollectionViewDelegateWaterfallLayout {
-    
     var itemDimension: CGFloat {
         if Global.isIpad {
             if UIApplication.shared.statusBarOrientation.isPortrait {
-                return (view.bounds.width / 2) - margin*1.5
+                return (view.bounds.width / 2) - margin * 1.5
             } else {
-                return (view.bounds.width / 3) - margin*1.5
+                return (view.bounds.width / 3) - margin * 1.5
             }
         } else {
             if UIApplication.shared.statusBarOrientation.isPortrait {
-                return view.bounds.width - margin*2
+                return view.bounds.width - margin * 2
             } else {
-                return (view.bounds.width / 2) - margin*1.5
+                return (view.bounds.width / 2) - margin * 1.5
             }
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
         guard resultCells.indices.contains(indexPath.row) else { return .zero }
         return CGSize(width: itemDimension, height: resultCells[indexPath.row].height)
@@ -292,7 +288,7 @@ extension Search: UIViewControllerPreviewingDelegate {
         let vc = Details(content: item)
         return vc
     }
-    
+
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
     }
@@ -301,11 +297,9 @@ extension Search: UIViewControllerPreviewingDelegate {
 // MARK: - Tapped on a tag
 
 extension Search: TagListViewDelegate {
-    
     func tagPressed(_ title: String) {
         actuallySearch(with: title)
     }
-    
 }
 
 // MARK: - Redirect to results after clicking a suggestion
@@ -320,7 +314,6 @@ extension Search: SearcherDelegate {
 // content type (ios, cydia, books) only on iOS 9/10 because scope bar is too buggy
 
 extension Search: UIPopoverPresentationControllerDelegate, SearchDidSelectTypeProtocol {
-    
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         guard let updateSuggestions = searchController.searchResultsController as? SuggestionsWhileTyping else { return }
         var type: Int = 0
@@ -341,15 +334,15 @@ extension Search: UIPopoverPresentationControllerDelegate, SearchDidSelectTypePr
         }
         present(vc, animated: true, completion: nil)
     }
-    
+
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
-    
+
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
-    
+
     func selectedTypeWithIndex(_ index: Int) {
         searchBar(searchController.searchBar, selectedScopeButtonIndexDidChange: index)
         if currentPhase != .showTrending {
@@ -363,40 +356,39 @@ protocol SearchDidSelectTypeProtocol: class {
 }
 
 class SmallTableViewController: UITableViewController {
-    
     var selectedType: Int = 0
     weak var delegate: SearchDidSelectTypeProtocol?
-    
+
     lazy var bgColorView: UIView = {
         let view = UIView()
         view.theme_backgroundColor = Color.cellSelectionColor
         return view
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "id")
         tableView.rowHeight = 40
         tableView.isScrollEnabled = false
         tableView.showsVerticalScrollIndicator = false
         tableView.theme_separatorColor = Color.borderColor
-        
+
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
-        
+
         // Show full separator
         tableView.cellLayoutMarginsFollowReadableWidth = false
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "id", for: indexPath)
         switch indexPath.row {
@@ -411,12 +403,12 @@ class SmallTableViewController: UITableViewController {
         cell.selectedBackgroundView = bgColorView
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-            case 0: selectedType = 0
-            case 1: selectedType = 1
-            default: selectedType = 2
+        case 0: selectedType = 0
+        case 1: selectedType = 1
+        default: selectedType = 2
         }
         delegate?.selectedTypeWithIndex(selectedType)
         tableView.reloadData()

@@ -10,11 +10,10 @@ import UIKit
 import BLTNBoard
 
 class EnterEmailBulletinPage: BLTNPageItem {
-    
     @objc public var textField: UITextField!
-    
+
     @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)?
-    
+
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         textField = interfaceBuilder.makeTextField(placeholder: "name@example.com".localized(), returnKey: .done, delegate: self)
         textField.theme_backgroundColor = Color.invertedTitle
@@ -24,41 +23,39 @@ class EnterEmailBulletinPage: BLTNPageItem {
         descriptionLabel?.theme_textColor = Color.title
         return [textField]
     }
-    
+
     override func tearDown() {
         super.tearDown()
         textField?.delegate = nil
     }
-    
+
     override func actionButtonTapped(sender: UIButton) {
         textInputHandler?(self, textField.text)
         super.actionButtonTapped(sender: sender)
     }
-    
+
     override func alternativeButtonTapped(sender: UIButton) {
         self.manager?.popItem()
     }
-    
 }
 
 // MARK: - UITextFieldDelegate
 
 extension EnterEmailBulletinPage: UITextFieldDelegate {
-    
     @objc open func isEmailValid(text: String?) -> Bool {
         // Email validation is done server side, yay
         return text != nil && !text!.isEmpty
     }
-    
+
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         if isEmailValid(text: textField.text) {
             textInputHandler?(self, textField.text)
@@ -67,8 +64,5 @@ extension EnterEmailBulletinPage: UITextFieldDelegate {
             descriptionLabel!.text = "Please enter a valid email address.".localized()
             textField.backgroundColor = UIColor.red.withAlphaComponent(0.2)
         }
-        
     }
-    
 }
-

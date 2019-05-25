@@ -9,23 +9,20 @@
 import ObjectMapper
 
 struct SingleNews: Mappable {
-    
     init?(map: Map) { }
-    
+
     var id: String = ""
     var title: String = ""
     var text: String = ""
     var added: String = ""
 
     mutating func mapping(map: Map) {
-        
-        id             <- map["id"]
-        title          <- map["title"]
-        text           <- map["text"]
-        added          <- map["added"]
-        
+        id <- map["id"]
+        title <- map["title"]
+        text <- map["text"]
+        added <- map["added"]
+
         added = added.unixToString
         title = title.decoded
-        
     }
 }

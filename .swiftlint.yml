@@ -1,0 +1,48 @@
+excluded:
+  - Carthage
+  - appdb/*.lproj
+  - appdb/Other
+  - appdb/Resources/AlamofireObjectMapper
+  - appdb/Resources/Atributika
+  - appdb/Resources/DynamicFontSizeHelper
+  - appdb/Resources/Ferrara
+  - appdb/Resources/ILTranslucentView
+  - appdb/Resources/LNZSnapToCenterCollectionViewLayout
+  - appdb/Resources/SHA1
+  - appdb/Resources/Storage
+  - appdb/Resources/SwiftPullToRefresh
+  - appdb/Resources/TagView
+  - appdb/Resources/UIDeviceExtension
+  - appdb/Resources/WaterfallLayout
+  
+opt_in_rules:
+  - closure_end_indentation
+  - convenience_type
+  - empty_string
+  - explicit_init
+  - first_where
+  - identical_operands
+  - joined_default_parameter
+  - last_where
+  - literal_expression_end_indentation
+
+disabled_rules:
+  - function_parameter_count
+  - file_length
+  - type_body_length
+  - todo
+  - identifier_name
+  - type_name
+  - line_length
+  - function_body_length
+  - cyclomatic_complexity
+  - yoda_condition
+  - unused_private_declaration
+  - trailing_closure
+  - toggle_bool
+
+force_cast: warning
+force_try: warning
+shorthand_operator: warning
+
+reporter: "xcode"

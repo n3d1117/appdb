@@ -9,9 +9,9 @@
 import Foundation
 
 struct AdBlocker {
-    fileprivate init() { }
+    private init() { }
     static let shared = AdBlocker()
-    
+
     func shouldBlock(host: String) -> Bool {
         return ads.contains(host)
     }

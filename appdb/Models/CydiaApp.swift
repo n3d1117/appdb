@@ -10,75 +10,72 @@ import SwiftyJSON
 import ObjectMapper
 
 class CydiaApp: Item {
-    
     required init?(map: Map) { }
-    
+
     override var id: String {
         get { return super.id }
         set { super.id = newValue }
     }
-    
+
     override class func type() -> ItemType {
         return .cydia
     }
-    
+
     static func == (lhs: CydiaApp, rhs: CydiaApp) -> Bool {
         return lhs.id == rhs.id && lhs.version == rhs.version
     }
-    
+
     var screenshotsData: String = ""
-    
+
     var name: String = ""
     var image: String = ""
-    
+
     // General
     var categoryId: String = ""
     var developer: String = ""
     var developerId: String = ""
-    
+
     // Text
     var description_: String = ""
     var whatsnew: String = ""
-    
+
     // Information
     var bundleId: String = ""
     var version: String = ""
     var price: String = ""
     var updated: String = ""
-    
+
     // Tweaked
     var originalTrackid: String = ""
     var originalSection: String = ""
     var isTweaked = false
-    
+
     // Screenshots
     var screenshotsIphone = [Screenshot]()
     var screenshotsIpad = [Screenshot]()
-    
 }
 
 extension CydiaApp: Mappable {
     func mapping(map: Map) {
-        
-        name                    <- map["name"]
-        id                      <- map["id"]
-        image                   <- map["image"]
-        bundleId                <- map["bundle_id"]
-        developer               <- map["pname"]
-        developerId             <- map["artist_id"]
-        version                 <- map["version"]
-        price                   <- map["price"]
-        categoryId              <- map["genre_id"]
-        updated                 <- map["added"]
-        description_            <- map["description"]
-        whatsnew                <- map["whatsnew"]
-        originalTrackid         <- map["original_trackid"]
-        originalSection         <- map["original_section"]
-        screenshotsData         <- map["screenshots"]
+        name <- map["name"]
+        id <- map["id"]
+        image <- map["image"]
+        bundleId <- map["bundle_id"]
+        developer <- map["pname"]
+        developerId <- map["artist_id"]
+        version <- map["version"]
+        price <- map["price"]
+        categoryId <- map["genre_id"]
+        updated <- map["added"]
+        description_ <- map["description"]
+        whatsnew <- map["whatsnew"]
+        originalTrackid <- map["original_trackid"]
+        originalSection <- map["original_section"]
+        screenshotsData <- map["screenshots"]
 
         isTweaked = originalTrackid != "0"
         if developer.hasSuffix(" ") { developer = String(developer.dropLast()) }
-        
+
         if let data = screenshotsData.data(using: .utf8), let screenshotsParse = try? JSON(data: data) {
             // Screenshots
             var tmpScreens = [Screenshot]()
@@ -89,7 +86,7 @@ extension CydiaApp: Mappable {
                     type: "iphone"
                 ))
             }; screenshotsIphone = tmpScreens
-            
+
             var tmpScreensIpad = [Screenshot]()
             for i in 0..<screenshotsParse["ipad"].count {
                 tmpScreensIpad.append(Screenshot(
@@ -99,6 +96,5 @@ extension CydiaApp: Mappable {
                 ))
             }; screenshotsIpad = tmpScreensIpad
         }
-        
     }
 }

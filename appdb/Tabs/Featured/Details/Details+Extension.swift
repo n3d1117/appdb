@@ -19,7 +19,7 @@ class DetailsCell: UITableViewCell {
 }
 
 extension Details {
-    
+
     // Returns content type
     var contentType: ItemType {
         if content is App { return .ios }
@@ -27,10 +27,9 @@ extension Details {
         if content is Book { return .books }
         return .ios
     }
-    
+
     // Set up
     func setUp() {
-
         // Register cells
         for cell in header { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
         for cell in details { tableView.register(type(of: cell), forCellReuseIdentifier: cell.identifier) }
@@ -38,11 +37,11 @@ extension Details {
         tableView.register(DetailsChangelog.self, forCellReuseIdentifier: "changelog")
         tableView.register(DetailsReview.self, forCellReuseIdentifier: "review")
         tableView.register(DetailsDownload.self, forCellReuseIdentifier: "download")
-        
+
         // Initialize 'Share' button
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
         shareButton.isEnabled = false
-        
+
         if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
@@ -50,35 +49,33 @@ extension Details {
         } else {
             self.navigationItem.rightBarButtonItems = [shareButton]
         }
-        
+
         // Hide separator for empty cells
         tableView.tableFooterView = UIView()
-        
+
         // Register for 3D Touch
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         }
-        
+
         // UI
         tableView.theme_backgroundColor = Color.veryVeryLightGray
         tableView.separatorStyle = .none // Let's use self made separators instead
-        
+
         // Fix random separator margin issues
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
-
     }
 
     // Get content dynamically
-    func getContent<T>(type: T.Type, trackid: String, success:@escaping (_ item: T) -> Void) -> Void where T:Mappable, T:Item {
+    func getContent<T>(type: T.Type, trackid: String, success:@escaping (_ item: T) -> Void) where T: Mappable, T: Item {
         API.search(type: type, trackid: trackid, success: { [weak self] items in
             guard let self = self else { return }
-            if let item = items.first { success(item) }
-            else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find content with id %@ in our database".localizedFormat(trackid)) }
+            if let item = items.first { success(item) } else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find content with id %@ in our database".localizedFormat(trackid)) }
         }, fail: { error in
             self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error)
         })
     }
-    
+
     func fetchInfo(type: ItemType, trackid: String) {
         switch type {
         case .ios:
@@ -106,11 +103,11 @@ extension Details {
             break
         }
     }
-    
+
     // Initialize cells
     func initializeCells() {
         header = [DetailsHeader(type: contentType, content: content, delegate: self)]
-        
+
         details = [
             DetailsTweakedNotice(originalTrackId: content.itemOriginalTrackid, originalSection: content.itemOriginalSection, delegate: self),
             DetailsScreenshots(type: contentType, screenshots: content.itemScreenshots, delegate: self),
@@ -119,7 +116,7 @@ extension Details {
             DetailsRelated(type: contentType, related: content.itemRelatedContent, delegate: self),
             DetailsInformation(type: contentType, content: content)
         ]
-        
+
         switch contentType {
         case .ios: if let app = content as? App {
             details.append(DetailsExternalLink(text: "Developer Apps".localized(), devId: app.artistId, devName: app.seller))
@@ -132,72 +129,70 @@ extension Details {
             }
         case .books: if let book = content as? Book {
             details.append(DetailsExternalLink(text: "More by this author".localized(), devId: book.artistId, devName: book.author))
-            if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) }
-            else if !book.author.isEmpty { details.append(DetailsPublisher("© " + book.author)) }
+            if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) } else if !book.author.isEmpty { details.append(DetailsPublisher("© " + book.author)) }
             }
         default:
             break
         }
         shareButton.isEnabled = true
     }
-    
+
     // Get links
     func getLinks() {
         API.getLinks(type: contentType, trackid: content.itemId, success: { [weak self] items in
             guard let self = self else { return }
-            
+
             self.versions = items
-            
+
             // Ensure latest version is always at the top
-            if let latest = self.versions.filter({$0.number==self.content.itemVersion}).first {
+            if let latest = self.versions.first(where: {$0.number == self.content.itemVersion}) {
                 if let index = self.versions.firstIndex(of: latest) {
                     self.versions.remove(at: index)
                     self.versions.insert(latest, at: 0)
                 }
             }
-            
+
             // Enable links segment
             self.loadedLinks = true
-            
         }, fail: { _ in })
     }
-    
+
     @objc func dismissAnimated() { dismiss(animated: true) }
-    
+
     // Details/Reviews for details segment
-    var itemsForSegmentedControl: [detailsSelectedSegmentState] {
+    var itemsForSegmentedControl: [DetailsSelectedSegmentState] {
         switch contentType {
-            case .books: if let book = content as? Book {
-                if !book.reviews.isEmpty { return [.details, .reviews, .download] }
-                return [.details, .download]
-            }
-            default: break
+        case .books: if let book = content as? Book {
+            if !book.reviews.isEmpty { return [.details, .reviews, .download] }
+            return [.details, .download]
+        }
+        default: break
         }; return [.details, .download]
     }
-    
+
     // Setting the right estimated height for rows with dynamic content helps with tableview jumping issues
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexForSegment {
         case .details:
             if details[indexPath.row] is DetailsDescription {
-                return 145~~135
+                return 145 ~~ 135
             } else if details[indexPath.row] is DetailsChangelog {
-                return 115~~105
+                return 115 ~~ 105
             } else {
                 return 32
             }
         case .reviews:
-            return indexPath.row == content.itemReviews.count ? 32 : 110~~150
+            return indexPath.row == content.itemReviews.count ? 32 : 110 ~~ 150
         default:
             return 32
         }
     }
-    
+
     // Reload data on rotation to update ElasticLabel text
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+
+        coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
             if self.indexForSegment != .download { self.tableView.reloadData() }
         }, completion: nil)
     }
@@ -206,13 +201,12 @@ extension Details {
 // MARK: - 3D Touch Peek and Pop on icons
 extension Details: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         guard let cell = tableView.cellForRow(at: indexPath) as? DetailsRelated else { return nil }
-        
+
         guard let index = cell.collectionView.indexPathForItem(at: self.view.convert(location, to: cell.collectionView)) else { return nil }
         guard cell.relatedContent.indices.contains(index.row) else { return nil }
-        
+
         if let collectionViewCell = cell.collectionView.cellForItem(at: index) as? FeaturedApp {
             let iconRect = tableView.convert(collectionViewCell.icon.frame, from: collectionViewCell.icon.superview!)
             if #available(iOS 9.0, *) { previewingContext.sourceRect = iconRect }
@@ -222,12 +216,11 @@ extension Details: UIViewControllerPreviewingDelegate {
         } else {
             return nil
         }
-        
+
         let detailsViewController = Details(type: contentType, trackid: cell.relatedContent[index.row].id)
         return detailsViewController
-        
     }
-    
+
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
     }

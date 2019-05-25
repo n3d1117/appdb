@@ -17,37 +17,36 @@ struct LocalIPAFile: Hashable {
 }
 
 struct IPAFileManager {
-    
     static var shared = IPAFileManager()
     private init() { }
-    
+
     let supportedFileExtensions: [String] = ["ipa", "zip"]
-    
-    fileprivate var localServer: HttpServer!
-    fileprivate var backgroundTask: BackgroundTaskUtil? = nil
-    
+
+    private var localServer: HttpServer!
+    private var backgroundTask: BackgroundTaskUtil?
+
     func documentsDirectoryURL() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
-    
+
     func cachesDirectoryURL() -> URL {
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
-    
+
     func inboxDirectoryURL() -> URL {
         return documentsDirectoryURL().appendingPathComponent("Inbox")
     }
-    
+
     func url(for ipa: LocalIPAFile) -> URL {
         return documentsDirectoryURL().appendingPathComponent(ipa.filename)
     }
-    
+
     // MARK: - Clear temporary folder - there may be leftovers
-    
+
     func clearTmpDirectory() {
         do {
             var tmpDirURL: URL!
-            
+
             if #available(iOS 10.0, *) {
                 tmpDirURL = FileManager.default.temporaryDirectory
             } else {
@@ -59,18 +58,18 @@ struct IPAFileManager {
             }
         } catch { }
     }
-    
+
     // MARK: - Clear cache folder - TODO call
-    
+
     func clearCacheDirectory() {
         do {
             let contents = try FileManager.default.contentsOfDirectory(at: cachesDirectoryURL(), includingPropertiesForKeys: nil)
             for file in contents { try FileManager.default.removeItem(at: file) }
         } catch { }
     }
-    
+
     // MARK: - Rename file
-    
+
     func rename(file: LocalIPAFile, to: String) {
         guard FileManager.default.fileExists(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else {
             Messages.shared.showError(message: "File not found at given path".prettified)
@@ -84,9 +83,9 @@ struct IPAFileManager {
             Messages.shared.showError(message: error.localizedDescription)
         }
     }
-    
+
     // MARK: - Delete file
-    
+
     func delete(file: LocalIPAFile) {
         guard FileManager.default.isDeletableFile(atPath: documentsDirectoryURL().appendingPathComponent(file.filename).path) else {
             Messages.shared.showError(message: "File not found at given path".localized())
@@ -98,9 +97,9 @@ struct IPAFileManager {
             Messages.shared.showError(message: error.localizedDescription)
         }
     }
-    
+
     // MARK: - Retrieve file size
-    
+
     func getSize(from filename: String) -> String {
         let url = documentsDirectoryURL().appendingPathComponent(filename)
         guard FileManager.default.fileExists(atPath: url.path) else {
@@ -121,9 +120,8 @@ struct IPAFileManager {
     }
 
     // MARK: - Get a base 64 encoded string from Info.plist file
-    
+
     func base64ToJSONInfoPlist(from file: LocalIPAFile) -> String? {
-        
         func exit(_ errorMessage: String) -> String? {
             Messages.shared.showError(message: errorMessage.prettified)
             return nil
@@ -139,7 +137,7 @@ struct IPAFileManager {
             let payload = tmp.appendingPathComponent("Payload", isDirectory: true)
             guard FileManager.default.fileExists(atPath: payload.path) else { return exit("IPA is missing Payload folder") }
             let contents = try FileManager.default.contentsOfDirectory(at: payload, includingPropertiesForKeys: nil)
-            guard let dotApp = contents.filter({ $0.pathExtension == "app" }).first else { return exit("IPA is missing .app folder") }
+            guard let dotApp = contents.first(where: { $0.pathExtension == "app" }) else { return exit("IPA is missing .app folder") }
             let infoPlist = dotApp.appendingPathComponent("Info.plist", isDirectory: false)
             guard FileManager.default.fileExists(atPath: infoPlist.path) else { return exit("IPA is missing Info.plist file") }
             guard let dict = NSDictionary(contentsOfFile: infoPlist.path) else { return exit("Unable to read contents of Info.plist file") }
@@ -152,14 +150,16 @@ struct IPAFileManager {
             return nil
         }
     }
-    
+
     // MARK: - Move files
-    
+
     func moveToDocuments(url: URL) {
         guard FileManager.default.fileExists(atPath: url.path) else { return }
         var endURL = documentsDirectoryURL().appendingPathComponent(url.lastPathComponent)
         if !FileManager.default.fileExists(atPath: endURL.path) {
-            try! FileManager.default.moveItem(at: url, to: endURL)
+            do {
+                try FileManager.default.moveItem(at: url, to: endURL)
+            } catch {}
         } else {
             var i: Int = 0
             while FileManager.default.fileExists(atPath: endURL.path) {
@@ -167,36 +167,38 @@ struct IPAFileManager {
                 let newName = url.deletingPathExtension().lastPathComponent + "_\(i).\(url.pathExtension)"
                 endURL = documentsDirectoryURL().appendingPathComponent(newName)
             }
-            try! FileManager.default.moveItem(at: url, to: endURL)
+            do {
+                try FileManager.default.moveItem(at: url, to: endURL)
+            } catch {}
         }
     }
-    
+
     func moveEventualIPAFilesToDocumentsDirectory(from directory: URL) {
         guard FileManager.default.fileExists(atPath: directory.path) else { return }
         let inboxContents = try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
-        let ipas = inboxContents?.filter{ supportedFileExtensions.contains($0.pathExtension) }
+        let ipas = inboxContents?.filter { supportedFileExtensions.contains($0.pathExtension) }
         for ipa in ipas ?? [] {
             let url = directory.appendingPathComponent(ipa.lastPathComponent)
             moveToDocuments(url: url)
         }
     }
-    
+
     // MARK: - List all local ipas in documents folder
-    
+
     func listLocalIpas() -> [LocalIPAFile] {
         var result = [LocalIPAFile]()
 
         moveEventualIPAFilesToDocumentsDirectory(from: inboxDirectoryURL())
-        
+
         let contents = try? FileManager.default.contentsOfDirectory(at: documentsDirectoryURL(), includingPropertiesForKeys: nil)
-        let ipas = contents?.filter{ supportedFileExtensions.contains($0.pathExtension) }
+        let ipas = contents?.filter { supportedFileExtensions.contains($0.pathExtension) }
         for ipa in ipas ?? [] {
             let filename = ipa.lastPathComponent
             let size = getSize(from: filename)
             let ipa = LocalIPAFile(filename: filename, size: size)
             if !result.contains(ipa) { result.append(ipa) }
         }
-        result = result.sorted{ $0.filename.localizedStandardCompare($1.filename) == .orderedAscending }
+        result = result.sorted { $0.filename.localizedStandardCompare($1.filename) == .orderedAscending }
         return result
     }
 }
@@ -209,11 +211,10 @@ protocol LocalIPAServer {
 // MARK: - LocalIPAServer: starts a local server on port 8080 and serves ipas in documents directory until stopped
 
 extension IPAFileManager: LocalIPAServer {
-    
     func getIpaLocalUrl(from ipa: LocalIPAFile) -> String {
          return "http://127.0.0.1:8080/\(ipa.filename)"
     }
-    
+
     mutating func startServer() {
         localServer = HttpServer()
         localServer["/:path"] = shareFilesFromDirectory(documentsDirectoryURL().path)
@@ -225,7 +226,7 @@ extension IPAFileManager: LocalIPAServer {
             stopServer()
         }
     }
-    
+
     mutating func stopServer() {
         localServer.stop()
         backgroundTask = nil

@@ -11,41 +11,38 @@ import Cartography
 import Alamofire
 
 class DetailsScreenshotCell: UICollectionViewCell {
-
     var image: UIImageView!
     var dim: UIView = DimmableView.get()
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         image = UIImageView()
         image.layer.borderWidth = 1 / UIScreen.main.scale
         image.layer.cornerRadius = 7
         image.layer.theme_borderColor = Color.borderCgColor
         let filter = Global.screenshotRoundedFilter(size: contentView.frame.size, radius: 7)
         image.image = filter.filter(#imageLiteral(resourceName: "placeholderCover"))
-        
+
         dim.layer.cornerRadius = image.layer.cornerRadius
-        
+
         contentView.addSubview(image)
         contentView.addSubview(dim)
-        
+
         setConstraints()
     }
-    
-    fileprivate func setConstraints() {
+
+    private func setConstraints() {
         constrain(image, dim) { image, dim in
-            
             image.edges ~== image.superview!.edges
             dim.edges ~== image.edges
-            
         }
     }
-    
+
     // Hover icon    
     override var isHighlighted: Bool {
         didSet {

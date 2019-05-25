@@ -19,40 +19,39 @@ import Alamofire
  */
 
 class LocalIPAUploadUtil {
-    
-    fileprivate var request: Alamofire.UploadRequest?
-    
+    private var request: Alamofire.UploadRequest?
+
     var isPaused: Bool {
         return paused
     }
-    
+
     var lastCachedFraction: Float = 0.0
     var lastCachedProgress: String = "Waiting...".localized()
-    
-    fileprivate var paused: Bool = false
-    
-    var onPause: (() -> ())?
-    var onProgress: ((Float, String) -> ())?
-    var onCompletion: (() -> ())?
-    
+
+    private var paused: Bool = false
+
+    var onPause: (() -> Void)?
+    var onProgress: ((Float, String) -> Void)?
+    var onCompletion: (() -> Void)?
+
     init(_ request: Alamofire.UploadRequest) {
         self.request = request
-        
-        self.request?.uploadProgress { p in
-            let readString: String = Global.humanReadableSize(bytes: p.completedUnitCount)
-            let totalString: String = Global.humanReadableSize(bytes: p.totalUnitCount)
-            let percentage: String = String(Int(p.fractionCompleted * 100)) + "%"
+
+        self.request?.uploadProgress { progress in
+            let readString: String = Global.humanReadableSize(bytes: progress.completedUnitCount)
+            let totalString: String = Global.humanReadableSize(bytes: progress.totalUnitCount)
+            let percentage = String(Int(progress.fractionCompleted * 100)) + "%"
             self.lastCachedProgress = "Uploading %@ of %@ (%@)".localizedFormat(readString, totalString, percentage)
-            self.lastCachedFraction = Float(p.fractionCompleted)
+            self.lastCachedFraction = Float(progress.fractionCompleted)
             self.onProgress?(self.lastCachedFraction, self.lastCachedProgress)
         }
-        
+
         self.request?.responseJSON { _ in
             self.request = nil
             self.onCompletion?()
         }
     }
-    
+
     func pause() {
         guard let request = request else { return }
         guard !paused else { return }
@@ -60,17 +59,16 @@ class LocalIPAUploadUtil {
         paused = true
         onPause?()
     }
-    
+
     func resume() {
         guard let request = request else { return }
         request.resume()
         paused = false
     }
-    
+
     func stop() {
         guard let request = request else { return }
         request.cancel()
         paused = false
     }
-    
 }

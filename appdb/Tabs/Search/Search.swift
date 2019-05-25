@@ -11,40 +11,39 @@ import Cartography
 import ObjectMapper
 
 class Search: LoadingCollectionView, UISearchBarDelegate {
-    
-    fileprivate var currentPage: Int = 1
-    
-    fileprivate var trendingItems: [String] = [] {
+    private var currentPage: Int = 1
+
+    private var trendingItems: [String] = [] {
         didSet {
             if !trendingItems.isEmpty {
                 self.collectionView.reloadData()
             }
         }
     }
-    
+
     var searchController = UISearchController()
-    
+
     var resultCells: [SearchCell] = [] {
         didSet {
             for cell in resultCells { collectionView.register(type(of: cell), forCellWithReuseIdentifier: cell.identifier) }
         }
     }
-    
+
     var results: [Item] = []
-    
+
     enum Phase {
         case showTrending, showResults, loading
     }
-    
+
     var currentPhase: Phase = .showTrending
-    
+
     var shouldIncreaseHeight: Bool {
         let type = InternalDeviceType.current
         return type == .iPhone4S || type == .iPhone5 || type == .iPhone5C || type == .iPhone5S
     }
-    
+
     internal var shouldRelayout: Bool = false
-    
+
     var trendingLayout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         var offset: CGFloat = 0
@@ -54,11 +53,11 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         if shouldIncreaseHeight {
             offset -= 60
         }
-        layout.itemSize = CGSize(width: collectionView.bounds.width - (4~~3) * margin, height: view.bounds.height - offset)
+        layout.itemSize = CGSize(width: collectionView.bounds.width - (4 ~~ 3) * margin, height: view.bounds.height - offset)
         layout.sectionInset = UIEdgeInsets(top: topInset, left: 0, bottom: topInset, right: 0)
         return layout
     }
-    
+
     var resultsLayout: ETCollectionViewWaterfallLayout {
         let layout = ETCollectionViewWaterfallLayout()
         layout.minimumColumnSpacing = 15
@@ -71,14 +70,14 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         }
         return layout
     }
-    
+
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationItem.title = "Search".localized()
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -104,7 +103,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         searchController.searchBar.textField?.enablesReturnKeyAutomatically = false
         searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
         definesPresentationContext = true
-        
+
         if #available(iOS 11.0, *) {
             searchController.searchBar.scopeButtonTitles = ["iOS".localized(), "Cydia".localized(), "Books".localized()]
             navigationItem.searchController = searchController
@@ -118,47 +117,47 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             searchController.searchBar.setImage(#imageLiteral(resourceName: "filter"), for: .bookmark, state: .normal)
             navigationItem.titleView = searchController.searchBar
         }
-        
+
         setFooter()
-        
+
         getTrending()
     }
-    
+
     // Fetch trending apps
-    
+
     func getTrending(type: ItemType = .ios) {
-        API.getTrending(type: type, order: .day, maxResults: (12~~10), success: { [weak self] results in
+        API.getTrending(type: type, order: .day, maxResults: (12 ~~ 10), success: { [weak self] results in
             guard let self = self else { return }
             self.trendingItems = results
         })
     }
-    
+
     // Called when user reaches bottom, loads 25 more
-    
-    fileprivate func setFooter() {
+
+    private func setFooter() {
         collectionView.spr_setIndicatorFooter { [weak self] in
-            self?.currentPage += 1
+            guard let self = self else { return }
+            self.currentPage += 1
             // start search
-            guard let updateSuggestions = self?.searchController.searchResultsController as? SuggestionsWhileTyping else { return }
-            guard let text = self?.searchController.searchBar.text else { return }
-            guard let page = self?.currentPage else { return }
+            guard let updateSuggestions = self.searchController.searchResultsController as? SuggestionsWhileTyping else { return }
+            guard let text = self.searchController.searchBar.text else { return }
             switch updateSuggestions.type {
-            case .ios: self?.searchAndUpdate(text, page: page, type: App.self)
-            case .cydia: self?.searchAndUpdate(text, page: page, type: CydiaApp.self)
-            case .books: self?.searchAndUpdate(text, page: page, type: Book.self)
+            case .ios: self.searchAndUpdate(App.self, query: text, page: self.currentPage)
+            case .cydia: self.searchAndUpdate(CydiaApp.self, query: text, page: self.currentPage)
+            case .books: self.searchAndUpdate(Book.self, query: text, page: self.currentPage)
             default: break
             }
         }
         collectionView.spr_endRefreshingWithNoMoreData()
     }
-    
+
     // MARK: - Search bar
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let text = searchBar.text ?? ""
         actuallySearch(with: text)
     }
-    
+
     func actuallySearch(with text: String) {
         currentPage = 1
         searchController.isActive = false
@@ -167,70 +166,70 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         // start search
         guard let updateSuggestions = self.searchController.searchResultsController as? SuggestionsWhileTyping else { return }
         switch updateSuggestions.type {
-            case .ios: self.searchAndUpdate(text, type: App.self)
-            case .cydia: self.searchAndUpdate(text, type: CydiaApp.self)
-            case .books: self.searchAndUpdate(text, type: Book.self)
-            default: break
+        case .ios: self.searchAndUpdate(App.self, query: text)
+        case .cydia: self.searchAndUpdate(CydiaApp.self, query: text)
+        case .books: self.searchAndUpdate(Book.self, query: text)
+        default: break
         }
     }
-    
+
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         if currentPhase != .showTrending {
             switchLayout(phase: .showTrending, reload: true)
         }
     }
-    
+
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         guard let updateSuggestions = searchController.searchResultsController as? SuggestionsWhileTyping else { return }
         switch selectedScope {
-            case 0:
-                updateSuggestions.type = .ios
-                searchController.searchBar.placeholder = "Search iOS Apps".localized()
-            case 1:
-                updateSuggestions.type = .cydia
-                searchController.searchBar.placeholder = "Search Cydia Apps".localized()
-            case 2:
-                updateSuggestions.type = .books
-                searchController.searchBar.placeholder = "Search Books".localized()
-            default: break
+        case 0:
+            updateSuggestions.type = .ios
+            searchController.searchBar.placeholder = "Search iOS Apps".localized()
+        case 1:
+            updateSuggestions.type = .cydia
+            searchController.searchBar.placeholder = "Search Cydia Apps".localized()
+        case 2:
+            updateSuggestions.type = .books
+            searchController.searchBar.placeholder = "Search Books".localized()
+        default: break
         }
         getTrending(type: updateSuggestions.type)
         guard let text = searchBar.text, text.count > 1  else { return }
         updateSuggestions.reload()
     }
-    
+
     func setItemTypeAndSearch(type: ItemType, query: String) {
         guard let updateSuggestions = searchController.searchResultsController as? SuggestionsWhileTyping else { return }
         updateSuggestions.type = type
         switch updateSuggestions.type {
-            case .ios:
-                searchController.searchBar.selectedScopeButtonIndex = 0
-                searchController.searchBar.placeholder = "Search iOS Apps".localized()
-            case .cydia:
-                searchController.searchBar.selectedScopeButtonIndex = 1
-                searchController.searchBar.placeholder = "Search Cydia Apps".localized()
-            default:
-                searchController.searchBar.selectedScopeButtonIndex = 2
-                searchController.searchBar.placeholder = "Search Books".localized()
+        case .ios:
+            searchController.searchBar.selectedScopeButtonIndex = 0
+            searchController.searchBar.placeholder = "Search iOS Apps".localized()
+        case .cydia:
+            searchController.searchBar.selectedScopeButtonIndex = 1
+            searchController.searchBar.placeholder = "Search Cydia Apps".localized()
+        default:
+            searchController.searchBar.selectedScopeButtonIndex = 2
+            searchController.searchBar.placeholder = "Search Books".localized()
         }
         getTrending(type: updateSuggestions.type)
         actuallySearch(with: query)
     }
-    
+
     // MARK: - Collection view delegate
-    
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch currentPhase {
-            case .showResults: return resultCells.count
-            case .showTrending: return trendingItems.count > 0 ? 1 : 0
-            case .loading: return 0
+        case .showResults: return resultCells.count
+        case .showTrending: return trendingItems.isEmpty ? 0 : 1
+        case .loading: return 0
         }
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch currentPhase {
         case .showResults:
@@ -245,8 +244,8 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             return UICollectionViewCell()
         }
     }
-    
-    fileprivate func trendingTitle() -> String {
+
+    private func trendingTitle() -> String {
         guard let updateSuggestions = self.searchController.searchResultsController as? SuggestionsWhileTyping else { return "" }
         switch updateSuggestions.type {
         case .ios: return "Trending iOS Apps".localized().uppercased().replacingOccurrences(of: "IOS", with: "iOS")
@@ -255,20 +254,20 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         default: return ""
         }
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if results.indices.contains(indexPath.row), currentPhase == .showResults {
             pushDetailsController(with: results[indexPath.row])
         }
     }
-    
+
     func switchLayout(phase: Phase, animated: Bool = false, reload: Bool = false) {
         currentPhase = phase
-        
+
         if reload {
             collectionView.reloadData()
         }
-        
+
         switch currentPhase {
         case .showTrending:
             state = .hideIndicator
@@ -284,9 +283,9 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             state = .done(animated: animated)
         }
     }
-    
+
     // Fix bug on iOS 11+ where the scroll indicator would follow first cell when scrolled up
-    
+
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if #available(iOS 11.0, *), currentPhase == .showResults, let nav = navigationController {
             let minOff: CGFloat = -nav.navigationBar.frame.height - UIApplication.shared.statusBarFrame.height - searchController.searchBar.frame.size.height

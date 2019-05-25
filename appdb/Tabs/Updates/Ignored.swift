@@ -13,57 +13,57 @@ protocol IgnoredAppsListChanged: class {
 }
 
 class Ignored: LoadingTableView {
-    
+
     // Delegate to notify for changes in ignored list
     weak var delegate: IgnoredAppsListChanged?
 
     var apps: [IgnoredApp] {
-        return Preferences.ignoredUpdateableApps.sorted{ $0.name.lowercased() < $1.name.lowercased() }
+        return Preferences.ignoredUpdateableApps.sorted { $0.name.lowercased() < $1.name.lowercased() }
     }
-    
+
     convenience init() {
         self.init(style: .grouped)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         animated = false
         showsSpinner = false
         showsErrorButton = false
-        
+
         tableView.tableFooterView = UIView()
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         tableView.theme_separatorColor = Color.borderColor
 
         tableView.register(IgnoredCell.self, forCellReuseIdentifier: "cell")
-        
+
         if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             self.navigationItem.rightBarButtonItems = [dismissButton]
         }
-        
+
         if apps.isEmpty {
             showErrorMessage(text: "No ignored updates".localized(), secondaryText: "Swipe left on any update to add it to this list".localized(), animated: false)
         }
     }
-    
+
     @objc func dismissAnimated() { dismiss(animated: true) }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return apps.isEmpty ? 0 : 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return apps.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! IgnoredCell
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? IgnoredCell else { return UITableViewCell() }
+
         // If there are two apps with the same name, append section at the end to distinguish them
         let app = apps[indexPath.row]
         var name = app.name
@@ -71,29 +71,28 @@ class Ignored: LoadingTableView {
             let stringToBeAdded = app.type == "ios" ? (" (" + "iOS".localized() + ")") : (" (" + "Cydia".localized() + ")")
             name.append(contentsOf: stringToBeAdded)
         }
-        
+
         cell.configure(with: name, image: app.iconUrl)
         cell.removeButton.addTarget(self, action: #selector(self.removeFromIgnored), for: .touchUpInside)
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UpdatesSectionHeader(showsButton: false)
         view.configure(with: "Ignored Updates".localized())
         return view
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    
+
     // MARK: - Remove from ignored list
-    
+
     @objc func removeFromIgnored(_ sender: UIButton) {
         if let cell = sender.superview as? IgnoredCell, let row = tableView.indexPath(for: cell)?.row {
-
             guard apps.indices.contains(row) else { return }
-            
+
             if let index = Preferences.ignoredUpdateableApps.firstIndex(of: apps[row]) {
                 Preferences.remove(.ignoredUpdateableApps, at: index)
                 tableView.beginUpdates()
@@ -110,13 +109,12 @@ class Ignored: LoadingTableView {
             }
         }
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+
+        coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
             if !self.apps.isEmpty { self.tableView.reloadData() }
         }, completion: nil)
     }
-    
 }

@@ -10,19 +10,18 @@ import UIKit
 import Cartography
 
 class BannerImage: UICollectionViewCell {
-
     var image: UIImageView!
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         image = UIImageView()
         image.contentMode = .scaleAspectFit
-        
+
         contentView.addSubview(image)
 
         constrain(image) { image in

@@ -12,7 +12,6 @@ import SafariServices
 import BLTNBoard
 
 class Settings: TableViewController {
-    
     lazy var deviceLinkBulletinManager: BLTNItemManager = {
         let rootItem: BLTNItem = DeviceLinkIntroBulletins.makeSelectorPage()
         let manager = BLTNItemManager(rootItem: rootItem)
@@ -22,7 +21,7 @@ class Settings: TableViewController {
         }
         return manager
     }()
-    
+
     lazy var deauthorizeBulletinManager: BLTNItemManager = {
         let rootItem: BLTNItem = DeviceLinkIntroBulletins.makeDeauthorizeConfirmationPage(action: {
             self.deauthorize()
@@ -35,78 +34,78 @@ class Settings: TableViewController {
         }
         return manager
     }()
-    
+
     var urlSchemeLinkCodeBulletinManager: BLTNItemManager?
-    
+
     deinit { NotificationCenter.default.removeObserver(self) }
-    
+
     convenience init() {
         self.init(style: .grouped)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "Settings".localized()
-        
+
         tableView.theme_separatorColor = Color.borderColor
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         tableView.cellLayoutMarginsFollowReadableWidth = true
-        
+
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
-        
+
         tableView.rowHeight = 50
-        
+
         // Subscribe to notifications for device linked/unlinked so i can refresh sections
         NotificationCenter.default.addObserver(self, selector: #selector(refreshSources), name: .RefreshSettings, object: nil)
-        
+
         // Register for 3d Touch
         if #available(iOS 9.0, *), traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         }
-        
+
         // Hide the 'Back' text on back button
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
-        
+
         refreshSources()
-        
+
         // Refresh link code & configuration parameters
         if Preferences.deviceIsLinked {
             API.getLinkCode(success: {
                 API.getConfiguration(success: { [weak self] in
                     guard let self = self else { return }
                     self.refreshSources()
-                }) { _ in }
-            }) { [weak self] error in
+                }, fail: { _ in })
+            }, fail: { [weak self] error in
                 guard let self = self else { return }
-                
+
                 // Profile has been removed, so let's deauthorize the app as well
                 if error == "NO_DEVICE_LINKED" {
                     self.deauthorize()
                     self.refreshSources()
                 }
-            }
+            })
         }
     }
-    
+
     // Deauthorize app (clean link code and token)
     func deauthorize() {
         Preferences.removeKeysOnDeauthorization()
     }
-    
+
     // Show deauthorization bulletin
     func showDeauthorizeConfirmation() {
         deauthorizeBulletinManager.showBulletin(above: tabBarController ?? self)
     }
-    
+
     // Update badge for Updates tab
     func setShowsBadgeForUpdates(_ show: Bool) {
         Preferences.set(.showBadgeForUpdates, to: show)
     }
-    
+
     // Push device status controller
     func pushDeviceStatus() {
         let deviceStatusController = DeviceStatus()
@@ -118,7 +117,7 @@ class Settings: TableViewController {
             self.navigationController?.pushViewController(deviceStatusController, animated: true)
         }
     }
-    
+
     // Push news controller
     func pushNews() {
         let newsViewController = News()
@@ -130,7 +129,7 @@ class Settings: TableViewController {
             self.navigationController?.pushViewController(newsViewController, animated: true)
         }
     }
-    
+
     // Push acknowledgements controller
     func pushAcknowledgements() {
         let acknowledgementsViewController = Acknowledgements()
@@ -142,7 +141,7 @@ class Settings: TableViewController {
             self.navigationController?.pushViewController(acknowledgementsViewController, animated: true)
         }
     }
-    
+
     // Push system status controller
     func pushSystemStatus() {
         let statusViewController = SystemStatus()
@@ -154,7 +153,7 @@ class Settings: TableViewController {
             self.navigationController?.pushViewController(statusViewController, animated: true)
         }
     }
-    
+
     // Push theme chooser controller
     func pushThemeChooser() {
         let themeViewController = ThemeChooser()
@@ -167,7 +166,7 @@ class Settings: TableViewController {
             self.navigationController?.pushViewController(themeViewController, animated: true)
         }
     }
-    
+
     // Push language chooser controller
     func pushLanguageChooser() {
         let languageViewController = LanguageChooser()
@@ -180,14 +179,14 @@ class Settings: TableViewController {
             self.navigationController?.pushViewController(languageViewController, animated: true)
         }
     }
-    
+
     // Device Link Bulletin intro
     // Also subscribes to notification requests to open Safari
     func pushDeviceLink() {
         NotificationCenter.default.addObserver(self, selector: #selector(openSafari(notification:)), name: .OpenSafari, object: nil)
         deviceLinkBulletinManager.showBulletin(above: tabBarController ?? self)
     }
-    
+
     // Opens link to contact dev
     /*func openTelegramLink() {
         let username = "MY_TG_USERNAME"
@@ -203,7 +202,7 @@ class Settings: TableViewController {
             }
         }
     }*/
-    
+
     // Opens Safari with given URL
     func openInSafari(_ url: String) {
         guard let url = URL(string: url) else { return }
@@ -214,14 +213,14 @@ class Settings: TableViewController {
             UIApplication.shared.openURL(url)
         }
     }
-    
+
     // Open Safari from given url via notification
-    @objc fileprivate func openSafari(notification: Notification) {
+    @objc private func openSafari(notification: Notification) {
         guard let urlString = notification.userInfo?["URLString"] as? String else { return }
         guard let url = URL(string: urlString) else { return }
-        
+
         UIApplication.shared.openURL(url)
-        
+
         /*if #available(iOS 9.0, *) {
             let svc = SFSafariViewController(url: url)
             deviceLinkBulletinManager.present(svc, animated: true, completion: nil)
@@ -229,9 +228,9 @@ class Settings: TableViewController {
             UIApplication.shared.openURL(url)
         }*/
     }
-    
+
     // Reloads table view
-    
+
     @objc func refreshSources() {
         if Preferences.deviceIsLinked {
             dataSource.sections = deviceLinkedSections
@@ -248,28 +247,28 @@ extension Settings: UIViewControllerPreviewingDelegate {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         guard let row = dataSource.row(at: location) else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
-        
+
         // Wrap it into a UINavigationController to see viewController's title on peek
         switch row.text {
-            case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
-            case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
-            case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
-            case "News".localized():
-                let news = News()
-                news.isPeeking = true
-                return UINavigationController(rootViewController: news)
-            case "Choose Theme".localized():
-                let vc = ThemeChooser()
-                vc.changedThemeDelegate = self
-                return UINavigationController(rootViewController: vc)
-            case "Choose Language".localized():
-                let vc = LanguageChooser()
-                vc.changedLanguageDelegate = self
-                return UINavigationController(rootViewController: vc)
-            default: return nil
+        case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
+        case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
+        case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
+        case "News".localized():
+            let news = News()
+            news.isPeeking = true
+            return UINavigationController(rootViewController: news)
+        case "Choose Theme".localized():
+            let vc = ThemeChooser()
+            vc.changedThemeDelegate = self
+            return UINavigationController(rootViewController: vc)
+        case "Choose Language".localized():
+            let vc = LanguageChooser()
+            vc.changedLanguageDelegate = self
+            return UINavigationController(rootViewController: vc)
+        default: return nil
         }
     }
-    
+
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         // Unwrap it when committing, to make sure it show back button and everything navigation-related
         if let view = (viewControllerToCommit as? UINavigationController)?.viewControllers.first {

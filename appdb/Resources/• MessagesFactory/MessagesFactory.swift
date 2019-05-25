@@ -9,10 +9,9 @@
 import SwiftMessages
 
 struct Messages {
-    
     static var shared = Messages()
     private init() { }
-    
+
     func hideAll() {
         SwiftMessages.hideAll()
     }
@@ -25,10 +24,10 @@ struct Messages {
         config.dimMode = .none
         return config
     }
-    
+
     @discardableResult
-    fileprivate mutating func show(message: String, theme: Theme, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
-        let view: MessageView = MessageView.viewFromNib(layout: .cardView)
+    private mutating func show(message: String, theme: Theme, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
+        let view = MessageView.viewFromNib(layout: .cardView)
         let config = getConfig(context)
         view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
         if Global.isIpad { view.configureBackgroundView(width: 600) }
@@ -39,23 +38,23 @@ struct Messages {
         SwiftMessages.show(config: config, view: view)
         return view
     }
-    
+
     @discardableResult
     mutating func showSuccess(message: String, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
         return show(message: message, theme: .success, context: context)
     }
-    
+
     @discardableResult
     mutating func showError(message: String, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
         return show(message: message, theme: .error, context: context)
     }
-    
+
     func generateModalSegue(vc: UIViewController, source: UIViewController) -> SwiftMessagesSegue {
         let segue = SwiftMessagesSegue(identifier: nil, source: source, destination: vc)
         segue.configure(layout: .centered)
         segue.keyboardTrackingView = KeyboardTrackingView()
         segue.messageView.configureNoDropShadow()
-        let dimColor: UIColor = Themes.isNight ? UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 0.8) : UIColor(red: 54/255, green: 54/255, blue: 54/255, alpha: 0.5)
+        let dimColor: UIColor = Themes.isNight ? UIColor(red: 34 / 255, green: 34 / 255, blue: 34 / 255, alpha: 0.8) : UIColor(red: 54 / 255, green: 54 / 255, blue: 54 / 255, alpha: 0.5)
         segue.dimMode = .color(color: dimColor, interactive: true)
         segue.interactiveHide = false
         return segue

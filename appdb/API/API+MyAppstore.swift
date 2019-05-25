@@ -10,20 +10,18 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    
     static func getIpas(success:@escaping (_ items: [MyAppstoreApp]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.getIpas.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: DataResponse<[MyAppstoreApp]>) in
-                
                 switch response.result {
                 case .success(let ipas):
                     success(ipas)
                 case .failure(let error as NSError):
                     fail(error)
                 }
-        }
+            }
     }
-    
+
     static func deleteIpa(id: String, completion:@escaping (_ error: String?) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.deleteIpa.rawValue, "id": id, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
@@ -38,16 +36,15 @@ extension API {
                 case .failure(let error):
                     completion(error.localizedDescription)
                 }
-        }
+            }
     }
-    
+
     static func addToMyAppstore(jobId: String, fileURL: URL, request:@escaping (_ r: Alamofire.UploadRequest) -> Void, completion:@escaping (_ error: String?) -> Void) {
-        
         let parameters = [
             "action": Actions.addIpa.rawValue,
             "job_id": jobId
         ]
-        
+
         Alamofire.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(fileURL, withName: "ipa")
             for (key, value) in parameters {
@@ -57,9 +54,9 @@ extension API {
            encodingCompletion: { encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
-                
+
                 request(upload)
-                
+
                 upload.responseJSON { response in
                     switch response.result {
                     case .success(let value):
@@ -73,20 +70,20 @@ extension API {
                         completion(error.localizedDescription)
                     }
                 }
-                
+
             case .failure(let encodingError):
                 completion(encodingError.localizedDescription)
             }
         })
     }
-    
+
     static func analyzeJob(jobId: String, completion:@escaping (_ error: String?) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.analyzeIpa.rawValue], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    
+
                     if !json["success"].boolValue {
                         completion(json["errors"][0].stringValue)
                     } else {
@@ -105,12 +102,12 @@ extension API {
                 case .failure(let error):
                     completion(error.localizedDescription)
                 }
-        }
+            }
     }
-    
+
     static func downloadIPA(url: String, request:@escaping (_ r: Alamofire.DownloadRequest) -> Void, completion:@escaping (_ error: String?) -> Void) {
         guard let url = URL(string: url) else { return }
-        
+
         let destination: DownloadRequest.DownloadFileDestination = { _, response in
             let filename: String = response.suggestedFilename ?? (Global.randomString(length: 10) + ".ipa")
             var fileURL: URL = IPAFileManager.shared.documentsDirectoryURL().appendingPathComponent(filename)
@@ -122,12 +119,12 @@ extension API {
             }
             return (fileURL, [])
         }
-        
+
         let download = Alamofire.download(url, to: destination)
         request(download)
-        
-        download.response { r in
-            if let error = r.error {
+
+        download.response { response in
+            if let error = response.error {
                 completion(error.localizedDescription)
             } else {
                 completion(nil)

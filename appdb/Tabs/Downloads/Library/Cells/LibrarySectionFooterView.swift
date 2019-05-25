@@ -10,27 +10,26 @@ import UIKit
 import Cartography
 
 class LibrarySectionFooterView: UICollectionReusableView {
-    
     lazy var primaryLabel: UILabel = {
         let label = UILabel()
         label.theme_textColor = Color.lightErrorMessage
-        label.font = .systemFont(ofSize: (20~~18), weight: .semibold)
+        label.font = .systemFont(ofSize: (20 ~~ 18), weight: .semibold)
         label.numberOfLines = 0
         label.textAlignment = .center
         label.makeDynamicFont()
         return label
     }()
-    
+
     lazy var secondaryLabel: UILabel = {
         let label = UILabel()
         label.theme_textColor = Color.lightErrorMessage
-        label.font = .systemFont(ofSize: (17~~15))
+        label.font = .systemFont(ofSize: (17 ~~ 15))
         label.numberOfLines = 0
         label.textAlignment = .center
         label.makeDynamicFont()
         return label
     }()
-    
+
     func configure(_ primaryText: String, secondaryText: String = "") {
         if primaryText.isEmpty {
             primaryLabel.removeFromSuperview()
@@ -47,21 +46,21 @@ class LibrarySectionFooterView: UICollectionReusableView {
             secondaryLabel.text = secondaryText
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    fileprivate func setupConstraints() {
+
+    private func setupConstraints() {
         constrain(primaryLabel, secondaryLabel) { primary, secondary in
             primary.centerY ~== primary.superview!.centerY ~- 20
             primary.centerX ~== primary.superview!.centerX
-            primary.left ~== primary.superview!.left ~+ (130~~50)
-            primary.right ~== primary.superview!.right ~- (130~~50)
+            primary.left ~== primary.superview!.left ~+ (130 ~~ 50)
+            primary.right ~== primary.superview!.right ~- (130 ~~ 50)
 
             secondary.top ~== primary.bottom ~+ 5
             secondary.centerX ~== secondary.superview!.centerX
@@ -69,5 +68,4 @@ class LibrarySectionFooterView: UICollectionReusableView {
             secondary.right ~== primary.right
         }
     }
-    
 }

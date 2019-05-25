@@ -10,77 +10,76 @@ import UIKit
 import Cartography
 
 class TwoPortraitScreenshotsSearchCell: SearchCell {
-    
-    override var height: CGFloat { return round(iconSize + portraitSize + margin*2 + spaceFromIcon) }
-    
-    var screenshot_one: UIImageView!
-    var screenshot_two: UIImageView!
-    
-    var dummyView: UIView = UIView()
+    override var height: CGFloat { return round(iconSize + portraitSize + margin * 2 + spaceFromIcon) }
+
+    var screenshotOne: UIImageView!
+    var screenshotTwo: UIImageView!
+
+    var dummyView = UIView()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         super.sharedSetup()
-        
+
         icon.layer.cornerRadius = Global.cornerRadius(from: iconSize)
-        
-        screenshot_one = UIImageView()
-        screenshot_one.image = #imageLiteral(resourceName: "placeholderCover")
-        screenshot_one.layer.borderWidth = 1 / UIScreen.main.scale
-        screenshot_one.layer.cornerRadius = 5
-        screenshot_one.layer.theme_borderColor = Color.borderCgColor
-        screenshot_one.layer.masksToBounds = true
-        
-        screenshot_two = UIImageView()
-        screenshot_two.image = #imageLiteral(resourceName: "placeholderCover")
-        screenshot_two.layer.borderWidth = 1 / UIScreen.main.scale
-        screenshot_two.layer.cornerRadius = 5
-        screenshot_two.layer.theme_borderColor = Color.borderCgColor
-        screenshot_two.layer.masksToBounds = true
-        
-        contentView.addSubview(screenshot_one)
+
+        screenshotOne = UIImageView()
+        screenshotOne.image = #imageLiteral(resourceName: "placeholderCover")
+        screenshotOne.layer.borderWidth = 1 / UIScreen.main.scale
+        screenshotOne.layer.cornerRadius = 5
+        screenshotOne.layer.theme_borderColor = Color.borderCgColor
+        screenshotOne.layer.masksToBounds = true
+
+        screenshotTwo = UIImageView()
+        screenshotTwo.image = #imageLiteral(resourceName: "placeholderCover")
+        screenshotTwo.layer.borderWidth = 1 / UIScreen.main.scale
+        screenshotTwo.layer.cornerRadius = 5
+        screenshotTwo.layer.theme_borderColor = Color.borderCgColor
+        screenshotTwo.layer.masksToBounds = true
+
+        contentView.addSubview(screenshotOne)
         contentView.addSubview(dummyView)
-        contentView.addSubview(screenshot_two)
-        
+        contentView.addSubview(screenshotTwo)
+
         setConstraints()
     }
-    
+
     // MARK: - Additional Configuration
-    
+
     override func configure(with item: Item) {
         super.configure(with: item)
         guard item.itemFirstTwoScreenshotsUrls.count > 1 else { return }
         if let url1 = URL(string: item.itemFirstTwoScreenshotsUrls[0]), let url2 = URL(string: item.itemFirstTwoScreenshotsUrls[1]) {
-            let filter = Global.screenshotRoundedFilter(size: screenshot_one.frame.size, radius: 5)
-            screenshot_one.af_setImage(withURL: url1, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
-            screenshot_two.af_setImage(withURL: url2, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
+            let filter = Global.screenshotRoundedFilter(size: screenshotOne.frame.size, radius: 5)
+            screenshotOne.af_setImage(withURL: url1, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
+            screenshotTwo.af_setImage(withURL: url2, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
         }
     }
-    
+
     // MARK: - Constraints
-    
+
     override func setConstraints() {
-        constrain(screenshot_one, screenshot_two, dummyView, icon) { s_one, s_two, dummy, icon in
+        constrain(screenshotOne, screenshotTwo, dummyView, icon) { sOne, sTwo, dummy, icon in
             (icon.height ~== iconSize) ~ Global.notMaxPriority
-            
-            (s_one.height ~== portraitSize) ~ Global.notMaxPriority
-            s_one.width ~== s_one.height ~/ magic
-            s_one.top ~== icon.bottom ~+ spaceFromIcon
-            s_one.bottom ~== s_one.superview!.bottom ~- Global.size.margin.value
 
-            (s_two.height ~== portraitSize) ~ Global.notMaxPriority
-            s_two.width ~== s_two.height ~/ magic
-            s_two.top ~== s_one.top
-            s_two.bottom ~== s_one.bottom
+            (sOne.height ~== portraitSize) ~ Global.notMaxPriority
+            sOne.width ~== sOne.height ~/ magic
+            sOne.top ~== icon.bottom ~+ spaceFromIcon
+            sOne.bottom ~== sOne.superview!.bottom ~- Global.Size.margin.value
 
-            dummy.height ~== s_one.height
+            (sTwo.height ~== portraitSize) ~ Global.notMaxPriority
+            sTwo.width ~== sTwo.height ~/ magic
+            sTwo.top ~== sOne.top
+            sTwo.bottom ~== sOne.bottom
+
+            dummy.height ~== sOne.height
             dummy.width ~== 15
-            distribute(horizontally: s_one, dummy, s_two)
+            distribute(horizontally: sOne, dummy, sTwo)
             dummy.centerX ~== dummy.superview!.centerX
         }
     }

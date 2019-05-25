@@ -9,29 +9,28 @@
 import UIKit
 
 class Downloading: LoadingCollectionView {
-    
-    fileprivate var downloadingApps = [DownloadingApp]()
-    
+    private var downloadingApps = [DownloadingApp]()
+
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
-    
+
     override func viewDidLoad() {
         self.hasSegment = true
         super.viewDidLoad()
-        
+
         // Collection View
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset.bottom = 25~~15
+        collectionView.contentInset.bottom = 25 ~~ 15
         collectionView.delaysContentTouches = false
-        
+
         // UI
         view.theme_backgroundColor = Color.tableViewBackgroundColor
         collectionView.theme_backgroundColor = Color.tableViewBackgroundColor
         collectionView.register(DownloadingCell.self, forCellWithReuseIdentifier: "downloading")
-        
+
         let apps = ObserveDownloadingApps.shared.apps
         if !apps.isEmpty {
             downloadingApps = apps
@@ -40,14 +39,14 @@ class Downloading: LoadingCollectionView {
         } else {
             setErrorMessageIfEmpty()
         }
-        
+
         ObserveDownloadingApps.shared.onAdded = { [weak self] app in
             guard let self = self else { return }
             self.downloadingApps.insert(app, at: 0)
             if !self.isDone { self.state = .done(animated: false) }
             self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
         }
-        
+
         ObserveDownloadingApps.shared.onRemoved = { [weak self] app in
             guard let self = self else { return }
             if let index = self.downloadingApps.firstIndex(of: app) {
@@ -60,16 +59,16 @@ class Downloading: LoadingCollectionView {
             }
         }
     }
-    
-    fileprivate func setErrorMessageIfEmpty() {
+
+    private func setErrorMessageIfEmpty() {
         let noQueuesMessage = "No active downloads".localized()
         if case LoadingCollectionView.State.error(noQueuesMessage, _, _) = state {} else {
             state = .error(first: noQueuesMessage, second: "", animated: false)
         }
     }
-    
+
     // MARK: - Orientation change
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { _ in
@@ -79,32 +78,32 @@ class Downloading: LoadingCollectionView {
             }
         })
     }
-    
+
     // MARK: - Collection view delegate
-    
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (isLoading || hasError) ? 0 : downloadingApps.count
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard !isLoading else { return UICollectionViewCell() }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "downloading", for: indexPath) as! DownloadingCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "downloading", for: indexPath) as? DownloadingCell else { return UICollectionViewCell() }
         cell.configureForDownload(with: downloadingApps[indexPath.row])
         return cell
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard downloadingApps.indices.contains(indexPath.row) else { return }
         presentOptions(downloadingApps[indexPath.row], indexPath)
     }
-    
+
     // MARK: - Present options to pause, resume, stop or remove when finished
-    
-    fileprivate func presentOptions(_ app: DownloadingApp, _ indexPath: IndexPath) {
+
+    private func presentOptions(_ app: DownloadingApp, _ indexPath: IndexPath) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
 
         if let util = app.util {
@@ -129,53 +128,51 @@ class Downloading: LoadingCollectionView {
                 }
             })
         }
-        
+
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
-        
+
         if let presenter = alertController.popoverPresentationController, let attributes = collectionView.layoutAttributesForItem(at: indexPath) {
             presenter.theme_backgroundColor = Color.popoverArrowColor
             presenter.sourceView = self.view
             presenter.sourceRect = collectionView.convert(attributes.frame, to: collectionView.superview)
             presenter.permittedArrowDirections = [.up, .down]
         }
-        
+
         DispatchQueue.main.async {
             self.present(alertController, animated: true)
         }
     }
-    
 }
 
 // MARK: - ETCollectionViewDelegateWaterfallLayout
 
 extension Downloading: ETCollectionViewDelegateWaterfallLayout {
-    
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20~~15)
+        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20 ~~ 15)
     }
-    
+
     var topInset: CGFloat {
         return Global.isIpad ? 25 : 15
     }
-    
+
     var layout: ETCollectionViewWaterfallLayout {
         let layout = ETCollectionViewWaterfallLayout()
-        layout.minimumColumnSpacing = 20~~15
-        layout.minimumInteritemSpacing = 15~~10
+        layout.minimumColumnSpacing = 20 ~~ 15
+        layout.minimumInteritemSpacing = 15 ~~ 10
         layout.sectionInset = UIEdgeInsets(top: topInset, left: margin, bottom: topInset, right: margin)
         layout.columnCount = UIApplication.shared.statusBarOrientation.isPortrait ? 1 : 2
         return layout
     }
-    
+
     var itemDimension: CGFloat {
         if UIApplication.shared.statusBarOrientation.isPortrait {
-            return view.bounds.width - margin*2
+            return view.bounds.width - margin * 2
         } else {
-            return (view.bounds.width / 2) - margin*1.5
+            return (view.bounds.width / 2) - margin * 1.5
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: (50~~40)+(15~~12)*2)
+        return CGSize(width: itemDimension, height: (50 ~~ 40) + (15 ~~ 12) * 2)
     }
 }

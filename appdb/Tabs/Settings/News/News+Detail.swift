@@ -9,24 +9,23 @@
 import UIKit
 
 class NewsDetail: LoadingTableView {
-    
-    fileprivate var item: SingleNews! {
+    private var item: SingleNews! {
         didSet {
             shareButton.isEnabled = true
         }
     }
     var id: String!
-    
-    fileprivate var shareButton: UIBarButtonItem!
-    
+
+    private var shareButton: UIBarButtonItem!
+
     convenience init(with id: String) {
         self.init(style: .plain)
         self.id = id
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Register cells
         tableView.register(NewsDetailTitleDateCell.self, forCellReuseIdentifier: "titledatecell")
         tableView.register(NewsDetailHTMLCell.self, forCellReuseIdentifier: "htmlcell")
@@ -34,7 +33,7 @@ class NewsDetail: LoadingTableView {
         // Initialize 'Share' button
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
         shareButton.isEnabled = false
-        
+
         if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
@@ -42,18 +41,18 @@ class NewsDetail: LoadingTableView {
         } else {
             self.navigationItem.rightBarButtonItems = [shareButton]
         }
-        
+
         // Hide separator for empty cells
         tableView.tableFooterView = UIView()
-        
+
         // UI
         tableView.theme_backgroundColor = Color.veryVeryLightGray
-        
+
         tableView.separatorStyle = .none
-        
+
         showsErrorButton = false
         state = .loading
-        
+
         guard let id = self.id else { return }
         API.getNewsDetail(id: id, success: { [weak self] result in
             guard let self = self else { return }
@@ -64,12 +63,11 @@ class NewsDetail: LoadingTableView {
             self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error.localizedDescription, animated: false)
         })
     }
-    
-    fileprivate func commonInit() {
-        
+
+    private func commonInit() {
     }
-    
-    @objc fileprivate func share(sender: UIBarButtonItem) {
+
+    @objc private func share(sender: UIBarButtonItem) {
         let text = item.title
         let urlString = "\(Global.mainSite)news.php?id=\(item.id)"
         guard let url = URL(string: urlString) else { return }
@@ -80,19 +78,19 @@ class NewsDetail: LoadingTableView {
         activity.popoverPresentationController?.barButtonItem = sender
         present(activity, animated: true)
     }
-    
+
     @objc func dismissAnimated() { dismiss(animated: true) }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return state == .done ? 2 : 0
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard state == .done else { return UITableViewCell() }
         switch indexPath.row {
@@ -109,12 +107,12 @@ class NewsDetail: LoadingTableView {
             return cell
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard state == .done else { return 0 }
         return UITableView.automaticDimension
     }
-    
+
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         guard state == .done else { return 0 }
         switch indexPath.row {
@@ -122,14 +120,13 @@ class NewsDetail: LoadingTableView {
         default: return 300
         }
     }
-    
 }
 
 extension AttributedLabel {
     func transform(using text: String) {
         var counter = 0
         var isOrdered = false
-        
+
         // Supports <ul>, <ol>, <li>, <p>, <br>
         let transformers: [TagTransformer] = [
             .brTransformer,
@@ -146,51 +143,50 @@ extension AttributedLabel {
                 return isOrdered ? "\(counter). " : "• "
             },
             TagTransformer(tagName: "li", tagType: .end) { _ in
-                return "\n"
+                "\n"
             },
             TagTransformer(tagName: "p", tagType: .end) { _ in
-                return "\n"
+                "\n"
             }
-            
         ]
         // Supports <b>
         let b = Style("b").font(.boldSystemFont(ofSize: font.pointSize))
-        
+
         // Supports <i>
         let i = Style("i").font(.italicSystemFont(ofSize: font.pointSize))
-        
+
         // Supports <strong>
         let strong = Style("strong").font(.boldSystemFont(ofSize: font.pointSize))
-        
+
         // Supports <u>
         let u = Style("u").underlineStyle(.single)
-        
+
         // Supports <a>
         let link = Style("a").foregroundColor(UIColor(rgba: "#446CB3"), .normal).foregroundColor(UIColor(rgba: "#486A92"), .highlighted)
             .underlineStyle(.single)
-        
+
         // Supports <img>
         let img = Style("img")
-        
+
         // Close <img> tag manually (otherwise it's not detected)
         var newText = text
         if text.contains("<img src") {
-            let a = text.components(separatedBy: "<img src")[1].components(separatedBy: ">")[0]
-            newText = text.replacingOccurrences(of: a + ">", with: a + "></img>")
+            let tmp = text.components(separatedBy: "<img src")[1].components(separatedBy: ">")[0]
+            newText = text.replacingOccurrences(of: tmp + ">", with: tmp + "></img>")
         }
-        
+
         // Apply styles
         let str = newText.style(tags: [b, i, strong, u, img, link], transformers: transformers)
-        
+
         // Create NSMutableAttributedString
         let mutableAttrStr = NSMutableAttributedString(attributedString: str.attributedString)
-        
+
         // Insert image if <img> tag is found
         addImageSupport(mutableAttrStr: mutableAttrStr, detections: str.detections)
 
         // Update text
         attributedText = mutableAttrStr.styleLinks(link)
-        
+
         // Click on url detection
         onClick = { label, detection in
             switch detection.type {
@@ -215,7 +211,7 @@ extension AttributedLabel {
             }
         }
     }
-    
+
     func addImageSupport(mutableAttrStr: NSMutableAttributedString, detections: [Detection]) {
         var locationShift = 0
         for detection in detections {
@@ -223,24 +219,23 @@ extension AttributedLabel {
             case .tag(let tag):
 
                 if tag.name == "img", let imageSrc = tag.attributes["src"] {
-                
                     if let url = URL(string: imageSrc) {
                         let textAttachment = NSTextAttachment()
-                        
+
                         // Load image synchronously
                         if let data = try? Data(contentsOf: url) {
                             let image = UIImage(data: data)
                             textAttachment.image = image
-                            
+
                             // Give it a fixed width
                             var maxWidth = UIScreen.main.bounds.width - 100
                             if maxWidth > 500 { maxWidth = 500 }
                             textAttachment.setImageWidth(width: maxWidth)
-                            
+
                             // Add image
                             let imageAttrStr = NSAttributedString(attachment: textAttachment)
-                            let nsrange = NSRange.init(detection.range, in: mutableAttrStr.string)
-                            mutableAttrStr.insert(imageAttrStr, at: nsrange.location + locationShift)
+                            let range = NSRange(detection.range, in: mutableAttrStr.string)
+                            mutableAttrStr.insert(imageAttrStr, at: range.location + locationShift)
                             locationShift += 1
                         }
                     }
@@ -249,7 +244,7 @@ extension AttributedLabel {
                 break
             }
         }
-        
+
         // Center the image
         mutableAttrStr.setAttachmentsAlignment(.center)
     }

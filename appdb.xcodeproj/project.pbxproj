@@ -802,7 +802,7 @@
 				814B7701205B2DB1004D46DD /* SwiftPullToRefresh */,
 				81E1702C2170D05D00A38380 /* TagView */,
 				81431A9F20A0CBFC00C830BE /* UIDeviceExtension */,
-				819E69901F8E9E5400C4608F /* Waterfall Layout */,
+				819E69901F8E9E5400C4608F /* WaterfallLayout */,
 				81892558227CC9490096F661 /* • AdaptiveUIAlertController */,
 				811A824B2289D14300969946 /* • AdditionalInstallOptionsView */,
 				815234D32278C0EE00B1AE65 /* • BackgroundTaskUtil */,
@@ -943,12 +943,12 @@
 			path = LNZSnapToCenterCollectionViewLayout;
 			sourceTree = "<group>";
 		};
-		819E69901F8E9E5400C4608F /* Waterfall Layout */ = {
+		819E69901F8E9E5400C4608F /* WaterfallLayout */ = {
 			isa = PBXGroup;
 			children = (
 				819E698A1F8E8D3A00C4608F /* ETCollectionViewWaterFallLayout.swift */,
 			);
-			path = "Waterfall Layout";
+			path = WaterfallLayout;
 			sourceTree = "<group>";
 		};
 		819EC27420A7249F007138CF /* Acknowledgements */ = {
@@ -1323,6 +1323,7 @@
 				8167A60B1DAC246000F96AC2 /* Sources */,
 				8167A60C1DAC246000F96AC2 /* Frameworks */,
 				8188E8D61DB1983700462256 /* Run Script */,
+				81A1D960229955C000C18CBC /* Run Script (swiftlint) */,
 				81A9DBB4214D36A000AB1A8C /* Resources */,
 				811BEE35215154D700F1F56A /* Embed Frameworks */,
 			);
@@ -1421,6 +1422,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		81A1D960229955C000C18CBC /* Run Script (swiftlint) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script (swiftlint)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config \".swiftlint.autocorrect.yml\" && swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

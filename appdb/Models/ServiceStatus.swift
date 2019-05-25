@@ -9,14 +9,13 @@
 import ObjectMapper
 
 struct ServiceStatus: Mappable {
-    
     init?(map: Map) { }
-    
+
     var name: String = ""
     var isOnline: Bool = false
 
     mutating func mapping(map: Map) {
-        name             <- map["name"]
-        isOnline         <- map["is_online"]
+        name <- map["name"]
+        isOnline <- map["is_online"]
     }
 }

@@ -8,72 +8,72 @@
 
 import UIKit
 
-final class PortraitScreenshotSearchCell_iPad: PortraitScreenshotSearchCell {
+final class PortraitScreenshotSearchCelliPad: PortraitScreenshotSearchCell {
     override var magic: CGFloat { return 1.333 }
-    override var portraitSize: CGFloat { return (170~~160) }
+    override var portraitSize: CGFloat { return (170 ~~ 160) }
     override var identifier: String { return "portraitscreenshotcellipad" }
 }
 
-final class PortraitScreenshotSearchCellWithStars_iPad: PortraitScreenshotSearchCellWithStars {
+final class PortraitScreenshotSearchCellWithStarsiPad: PortraitScreenshotSearchCellWithStars {
     override var magic: CGFloat { return 1.333 }
-    override var portraitSize: CGFloat { return (170~~160) }
+    override var portraitSize: CGFloat { return (170 ~~ 160) }
     override var identifier: String { return "portraitscreenshotcellstarsipad" }
 }
 
-final class TwoPortraitScreenshotsSearchCell_iPad: TwoPortraitScreenshotsSearchCell {
+final class TwoPortraitScreenshotsSearchCelliPad: TwoPortraitScreenshotsSearchCell {
     override var magic: CGFloat { return 1.333 }
-    override var portraitSize: CGFloat { return (150~~160) }
+    override var portraitSize: CGFloat { return (150 ~~ 160) }
     override var identifier: String { return "portraitscreenshotscellipad" }
 }
 
-final class TwoPortraitScreenshotsSearchCellWithStars_iPad: TwoPortraitScreenshotsSearchCellWithStars {
+final class TwoPortraitScreenshotsSearchCellWithStarsiPad: TwoPortraitScreenshotsSearchCellWithStars {
     override var magic: CGFloat { return 1.333 }
-    override var portraitSize: CGFloat { return (150~~160) }
+    override var portraitSize: CGFloat { return (150 ~~ 160) }
     override var identifier: String { return "portraitscreenshotscellstarsipad" }
 }
 
-final class ThreePortraitScreenshotsSearchCell_iPad: ThreePortraitScreenshotsSearchCell {
+final class ThreePortraitScreenshotsSearchCelliPad: ThreePortraitScreenshotsSearchCell {
     override var magic: CGFloat { return 1.333 }
     override var identifier: String { return "threeportraitscreenshotscellipad" }
-    override var compactPortraitSize: CGFloat { return (100~~110) }
+    override var compactPortraitSize: CGFloat { return (100 ~~ 110) }
 }
 
-final class ThreePortraitScreenshotsSearchCellWithStars_iPad: ThreePortraitScreenshotsSearchCellWithStars {
+final class ThreePortraitScreenshotsSearchCellWithStarsiPad: ThreePortraitScreenshotsSearchCellWithStars {
     override var magic: CGFloat { return 1.333 }
     override var identifier: String { return "threeportraitscreenshotscellstarsipad" }
-    override var compactPortraitSize: CGFloat { return (100~~110) }
+    override var compactPortraitSize: CGFloat { return (100 ~~ 110) }
 }
 
-final class LandscapeScreenshotSearchCell_iPad: LandscapeScreenshotSearchCell {
+final class LandscapeScreenshotSearchCelliPad: LandscapeScreenshotSearchCell {
     override var magic: CGFloat { return 1.333 }
     override var identifier: String { return "landscapescreenshotcellipad" }
 }
 
-final class LandscapeScreenshotSearchCellWithStars_iPad: LandscapeScreenshotSearchCellWithStars {
+final class LandscapeScreenshotSearchCellWithStarsiPad: LandscapeScreenshotSearchCellWithStars {
     override var magic: CGFloat { return 1.333 }
     override var identifier: String { return "landscapescreenshotcellstarsipad" }
 }
 
-final class MixedScreenshotsSearchCellOne_iPad: MixedScreenshotsSearchCellOne {
+final class MixedScreenshotsSearchCellOneiPad: MixedScreenshotsSearchCellOne {
     override var magic: CGFloat { return 1.333 }
-    override var mixedPortraitSize: CGFloat { return (140~~135) }
+    override var mixedPortraitSize: CGFloat { return (140 ~~ 135) }
     override var identifier: String { return "mixedscreenshotscelloneipad" }
 }
 
-final class MixedScreenshotsSearchCellOneWithStars_iPad: MixedScreenshotsSearchCellOneWithStars {
+final class MixedScreenshotsSearchCellOneWithStarsiPad: MixedScreenshotsSearchCellOneWithStars {
     override var magic: CGFloat { return 1.333 }
-    override var mixedPortraitSize: CGFloat { return (140~~135) }
+    override var mixedPortraitSize: CGFloat { return (140 ~~ 135) }
     override var identifier: String { return "mixedscreenshotscellonestarsipad" }
 }
 
-final class MixedScreenshotsSearchCellTwo_iPad: MixedScreenshotsSearchCellTwo {
+final class MixedScreenshotsSearchCellTwoiPad: MixedScreenshotsSearchCellTwo {
     override var magic: CGFloat { return 1.333 }
-    override var mixedPortraitSize: CGFloat { return (140~~155) }
+    override var mixedPortraitSize: CGFloat { return (140 ~~ 155) }
     override var identifier: String { return "mixedscreenshotscelltwoipad" }
 }
 
-final class MixedScreenshotsSearchCellTwoWithStars_iPad: MixedScreenshotsSearchCellTwoWithStars {
+final class MixedScreenshotsSearchCellTwoWithStarsiPad: MixedScreenshotsSearchCellTwoWithStars {
     override var magic: CGFloat { return 1.333 }
-    override var mixedPortraitSize: CGFloat { return (140~~155) }
+    override var mixedPortraitSize: CGFloat { return (140 ~~ 155) }
     override var identifier: String { return "mixedscreenshotscelltwostarsipad" }
 }

@@ -10,113 +10,107 @@ import SwiftyJSON
 import ObjectMapper
 
 class Book: Item {
-    
     required init?(map: Map) { }
-    
+
     override var id: String {
         get { return super.id }
         set { super.id = newValue }
     }
-    
+
     override class func type() -> ItemType {
         return .books
     }
-    
+
     // iTunes data
     var lastParseItunes: String = ""
-    
+
     var name: String = ""
     var image: String = ""
-    
+
     // General
     var categoryId: String = ""
     var printLenght: String = ""
     var published: String = ""
     var author: String = ""
-    
+
     // Text
     var description_: String = ""
-    
+
     // Ratings
     var numberOfRating: String = ""
     var numberOfStars: Double = 0.0
-    
+
     // Information
     var updated: String = ""
     var price: String = ""
     var requirements: String = ""
     var language: String = ""
-    
+
     // Artist ID
     var artistId: String = ""
-    
+
     // Copyright
     var publisher: String = ""
-    
+
     // Related Books
     var relatedBooks = [RelatedContent]()
-    
+
     // Related Apps
     var reviews = [Review]()
-
 }
 
 extension Book: Mappable {
     func mapping(map: Map) {
-        
-        name                    <- map["name"]
-        id                      <- map["id"]
-        image                   <- map["image"]
-        price                   <- map["price"]
-        categoryId              <- map["genre_id"]
-        author                  <- map["pname"]
-        updated                 <- map["added"]
-        description_            <- map["description"]
-        artistId                <- map["artist_id"]
-        lastParseItunes         <- map["last_parse_itunes"]
-        
+        name <- map["name"]
+        id <- map["id"]
+        image <- map["image"]
+        price <- map["price"]
+        categoryId <- map["genre_id"]
+        author <- map["pname"]
+        updated <- map["added"]
+        description_ <- map["description"]
+        artistId <- map["artist_id"]
+        lastParseItunes <- map["last_parse_itunes"]
+
         if let data = lastParseItunes.data(using: .utf8), let itunesParse = try? JSON(data: data) {
-            
             // Information
             printLenght = itunesParse["printlength"].stringValue
             publisher = itunesParse["seller"].stringValue
             requirements = itunesParse["requirements"].stringValue
             published = itunesParse["published"].stringValue
             language = itunesParse["languages"].stringValue
-            
+
             // Dirty fixes
             while published.hasPrefix(" ") { published = String(published.dropFirst()) }
             if published == "01.01.1970" { published = "" }
             if language.hasPrefix("Language: ") { language = String(language.dropFirst(10)) }
             if language.hasPrefix("Requirements") { language = "" }
             if printLenght.hasPrefix("Language") { printLenght = "" }
-            
+
             // Ratings
             if !itunesParse["ratings"]["current"].stringValue.isEmpty {
-                
                 // numberOfRating
                 let array = itunesParse["ratings"]["current"].stringValue.components(separatedBy: ", ")
                 let array2 = "\(array[1])".components(separatedBy: " ")
                 if let tmpNumber = Int(array2[0]) {
-                    let num: NSNumber = NSNumber(value: tmpNumber)
+                    let num = NSNumber(value: tmpNumber)
                     numberOfRating = "(" + NumberFormatter.localizedString(from: num, number: .decimal) + ")"
                 }
-                
+
                 // numberOfStars
                 let array3 = itunesParse["ratings"]["current"].stringValue.components(separatedBy: " ")
                 if let tmpStars = Double(array3[0]) {
                     numberOfStars = itunesParse["ratings"]["current"].stringValue.contains("half") ? tmpStars + 0.5 : tmpStars
                 }
             } else if !itunesParse["ratings"]["count"].stringValue.isEmpty {
-                
                 // numberOfRating
                 let count = itunesParse["ratings"]["count"].intValue
                 numberOfRating = "(" + NumberFormatter.localizedString(from: NSNumber(value: count), number: .decimal) + ")"
-                
+
                 // numberOfStars
                 numberOfStars = itunesParse["ratings"]["stars"].doubleValue
             }
-            
+
             // Related Books
             var tmpRelated = [RelatedContent]()
             for i in 0..<itunesParse["relatedapps"].count {
@@ -130,7 +124,7 @@ extension Book: Mappable {
                     ))
                 }
             }
-            
+
             // Also Bought
             for i in 0..<itunesParse["alsobought"].count {
                 let item = itunesParse["alsobought"][i]
@@ -143,7 +137,7 @@ extension Book: Mappable {
                     ))
                 }
             }; relatedBooks = tmpRelated
-            
+
             // Reviews
             var tmpReviews = [Review]()
             for i in 0..<itunesParse["reviews"].count {
@@ -156,6 +150,5 @@ extension Book: Mappable {
                 ))
             }; reviews = tmpReviews
         }
-
     }
 }

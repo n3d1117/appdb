@@ -9,14 +9,13 @@
 import UIKit
 
 class Dummy: FeaturedCell {
-    
     override var height: CGFloat {
-        return Global.size.spacing.value
+        return Global.Size.spacing.value
     }
-    
+
     convenience init() {
         self.init(style: .default, reuseIdentifier: Featured.CellType.dummy.rawValue)
-        
+
         selectionStyle = .none
         preservesSuperviewLayoutMargins = false
         separatorInset.left = 0
@@ -24,5 +23,4 @@ class Dummy: FeaturedCell {
         theme_backgroundColor = Color.tableViewBackgroundColor
         contentView.theme_backgroundColor = Color.tableViewBackgroundColor
     }
-
 }

@@ -11,15 +11,14 @@ import Cartography
 import Cosmos
 
 class NoScreenshotsSearchCellBookWithStars: SearchCell {
-    
     override var identifier: String { return "noscreenshotscellbookstars" }
-    override var height: CGFloat { return coverHeight + margin*2 }
+    override var height: CGFloat { return coverHeight + margin * 2 }
     var stars: CosmosView!
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func configure(with item: Item) {
         self.name.text = item.itemName
         self.name.numberOfLines = 3
@@ -29,31 +28,31 @@ class NoScreenshotsSearchCellBookWithStars: SearchCell {
         guard let url = URL(string: item.itemIconUrl) else { return }
         icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         super.sharedSetup()
-        
+
         stars = buildStars()
-        
+
         contentView.addSubview(stars)
-        
+
         constrain(icon, seller, stars) { icon, seller, stars in
             icon.height ~== coverHeight
             icon.bottom ~== icon.superview!.bottom ~- margin
-            
+
             stars.left ~== seller.left
-            stars.right ~<= stars.superview!.right ~- Global.size.margin.value
-            stars.top ~== seller.bottom ~+ (7~~6)
+            stars.right ~<= stars.superview!.right ~- Global.Size.margin.value
+            stars.top ~== seller.bottom ~+ (7 ~~ 6)
         }
     }
-    
-    fileprivate func buildStars() -> CosmosView {
+
+    private func buildStars() -> CosmosView {
         let stars = CosmosView()
         stars.settings.starSize = 12
         stars.settings.updateOnTouch = false
-        stars.settings.textFont = .systemFont(ofSize: 12~~11)
+        stars.settings.textFont = .systemFont(ofSize: 12 ~~ 11)
         stars.settings.totalStars = 5
         stars.settings.fillMode = .half
         stars.settings.textMargin = 2
@@ -61,4 +60,3 @@ class NoScreenshotsSearchCellBookWithStars: SearchCell {
         return stars
     }
 }
-

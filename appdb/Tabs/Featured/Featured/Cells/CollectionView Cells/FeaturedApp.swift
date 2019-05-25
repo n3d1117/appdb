@@ -10,37 +10,36 @@ import UIKit
 import Cartography
 
 class FeaturedApp: UICollectionViewCell {
-    
     var title: UILabel!
     var category: UILabel!
     var icon: UIImageView!
     var dim: UIView = DimmableView.get()
-    
+
     var tweaked: Bool = false {
         didSet { title.theme_textColor = tweaked ? Color.mainTint: Color.title }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         icon = UIImageView()
         icon.layer.cornerRadius = Global.cornerRadius(from: frame.size.width)
         icon.layer.borderWidth = 1 / UIScreen.main.scale
         icon.layer.theme_borderColor = Color.borderCgColor
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.image = #imageLiteral(resourceName: "placeholderIcon")
-        
+
         title = UILabel()
         title.theme_textColor = Color.title
         title.font = .systemFont(ofSize: 11.5)
         title.lineBreakMode = .byTruncatingTail
         title.numberOfLines = 2
         title.makeDynamicFont()
-        
+
         category = UILabel()
         category.theme_textColor = Color.darkGray
         category.font = .systemFont(ofSize: 11.5)
@@ -49,36 +48,35 @@ class FeaturedApp: UICollectionViewCell {
         category.makeDynamicFont()
 
         dim.layer.cornerRadius = icon.layer.cornerRadius
-        
+
         contentView.addSubview(icon)
         contentView.addSubview(title)
         contentView.addSubview(category)
         contentView.addSubview(dim)
-        
+
         setConstraints()
     }
-    
-    fileprivate func setConstraints() {
+
+    private func setConstraints() {
         constrain(icon, title, category, dim) { icon, title, category, dim in
             icon.left ~== icon.superview!.left
             icon.top ~== icon.superview!.top
             icon.right ~== icon.superview!.right
             icon.height ~== frame.size.width
             icon.width ~== icon.height
-            
+
             title.left ~== title.superview!.left
             title.right ~== title.superview!.right
             title.top ~== icon.bottom ~+ 5
-            
+
             category.left ~== category.superview!.left
             category.right ~== category.superview!.right
-            category.top ~== title.bottom ~+ (2~~1)
-            
+            category.top ~== title.bottom ~+ (2 ~~ 1)
+
             dim.edges ~== icon.edges
-            
         }
     }
-    
+
     // Hover icon
     override var isHighlighted: Bool {
         didSet {

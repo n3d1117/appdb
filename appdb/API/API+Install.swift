@@ -24,9 +24,9 @@ extension API {
                 case .failure(let error):
                     completion(error.localizedDescription)
                 }
-        }
+            }
     }
-    
+
     static func requestInstallJB(plist: String, icon: String, link: String, completion:@escaping (_ error: String?) -> Void) {
         Alamofire.request(endpoint, method: .post, parameters: ["action": Actions.customInstall.rawValue, "plist": plist, "icon": icon, "link": link], headers: headersWithCookie)
             .responseJSON { response in
@@ -41,6 +41,6 @@ extension API {
                 case .failure(let error):
                     completion(error.localizedDescription)
                 }
-        }
+            }
     }
 }

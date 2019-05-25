@@ -11,9 +11,8 @@ import SwiftyJSON
 import ObjectMapper
 
 struct UpdateableApp: Equatable {
-    
     init?(map: Map) { }
-    
+
     var itemType: ItemType = .ios
 
     var versionOld: String = ""
@@ -26,32 +25,29 @@ struct UpdateableApp: Equatable {
     var name: String = ""
     var whatsnew: String = ""
     var date: String = ""
-    
+
     var isIgnored: Bool {
         return !Preferences.ignoredUpdateableApps.filter({ $0.trackid == trackid }).isEmpty
     }
-    
+
     static func == (lhs: UpdateableApp, rhs: UpdateableApp) -> Bool {
         return lhs.trackid == rhs.trackid && lhs.type == rhs.type
     }
-    
 }
 
 extension UpdateableApp: Mappable {
-    
     mutating func mapping(map: Map) {
-        versionOld                    <- map["version_old"]
-        versionNew                    <- map["version_new"]
-        alongsideId                   <- map["alongside_id"]
-        trackid                       <- map["trackid"]
-        image                         <- map["image"]
-        updateable                    <- map["updateable"]
-        type                          <- map["type"]
-        name                          <- map["name"]
-        whatsnew                      <- map["whatsnew"]
-        date                          <- map["added"]
-        
+        versionOld <- map["version_old"]
+        versionNew <- map["version_new"]
+        alongsideId <- map["alongside_id"]
+        trackid <- map["trackid"]
+        image <- map["image"]
+        updateable <- map["updateable"]
+        type <- map["type"]
+        name <- map["name"]
+        whatsnew <- map["whatsnew"]
+        date <- map["added"]
+
         itemType = type == "ios" ? .ios : .cydia
     }
-
 }

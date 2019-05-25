@@ -1,0 +1,38 @@
+excluded:
+  - Carthage
+  - appdb/*.lproj
+  - appdb/Other
+  - appdb/Resources/AlamofireObjectMapper
+  - appdb/Resources/Atributika
+  - appdb/Resources/DynamicFontSizeHelper
+  - appdb/Resources/Ferrara
+  - appdb/Resources/ILTranslucentView
+  - appdb/Resources/LNZSnapToCenterCollectionViewLayout
+  - appdb/Resources/SHA1
+  - appdb/Resources/Storage
+  - appdb/Resources/SwiftPullToRefresh
+  - appdb/Resources/TagView
+  - appdb/Resources/UIDeviceExtension
+  - appdb/Resources/WaterfallLayout
+
+whitelist_rules:
+  - trailing_newline
+  - colon
+  - statement_position
+  - opening_brace
+  - legacy_constructor
+  - mark
+  - vertical_whitespace
+  - redundant_void_return
+  - void_return
+  - redundant_optional_initialization
+  - trailing_whitespace
+  - operator_usage_whitespace
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - vertical_whitespace_closing_braces
+  - unused_import
+  - unneeded_parentheses_in_closure_argument
+  - implicit_return
+
+reporter: "xcode"

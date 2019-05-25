@@ -10,9 +10,8 @@ import ObjectMapper
 import SwiftyJSON
 
 struct DeviceStatusItem: Mappable, Matchable {
-    
     init?(map: Map) { }
-    
+
     var uuid: String = ""
     var added: String = ""
     var params: String = ""
@@ -26,18 +25,18 @@ struct DeviceStatusItem: Mappable, Matchable {
     var statusShort: String = ""
     var statusText: String = ""
     var linkId: String = ""
-    
+
     mutating func mapping(map: Map) {
-        uuid             <- map["uuid"]
-        added            <- map["added"]
-        params           <- map["params"]
-        acknowledged     <- map["acknowledged"]
-        status           <- map["status"]
-        type             <- map["type"]
-        
+        uuid <- map["uuid"]
+        added <- map["added"]
+        params <- map["params"]
+        acknowledged <- map["acknowledged"]
+        status <- map["status"]
+        type <- map["type"]
+
         acknowledged = acknowledged.unixToDetailedString
         timestamp = Global.formattedTimeFromNow(from: added.unixToDate)
-        
+
         if let data = params.data(using: .utf8), let params = try? JSON(data: data) {
             title = params["link_data"]["title"].stringValue
             bundleId = params["link_data"]["bundle_id"].stringValue
@@ -47,12 +46,11 @@ struct DeviceStatusItem: Mappable, Matchable {
             statusText = params["sign"]["status_text"].stringValue
             if statusText.hasSuffix("\n") { statusText = statusText.trimTrailingWhitespace() }
         }
-        
     }
-    
+
     func match(with object: Any) -> Match {
         guard let status = object as? DeviceStatusItem else { return .none }
-        
+
         if uuid == status.uuid {
             if statusText == status.statusText && timestamp == status.timestamp {
                 return .equal
@@ -63,5 +61,4 @@ struct DeviceStatusItem: Mappable, Matchable {
             return .none
         }
     }
-    
 }

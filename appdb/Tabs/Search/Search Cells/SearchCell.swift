@@ -11,9 +11,8 @@ import Cartography
 import AlamofireImage
 
 class SearchCell: UICollectionViewCell {
-    
     func setConstraints() {}
-    
+
     var tweaked: Bool = false {
         didSet {
             if oldValue != tweaked {
@@ -23,8 +22,8 @@ class SearchCell: UICollectionViewCell {
                     paddingLabel.isHidden = false
                     constrain(paddingLabel, seller) { tweaked, seller in
                         tweaked.left ~== seller.left
-                        tweaked.right ~<= tweaked.superview!.right ~- Global.size.margin.value
-                        tweaked.top ~== seller.bottom ~+ (7~~6)
+                        tweaked.right ~<= tweaked.superview!.right ~- Global.Size.margin.value
+                        tweaked.top ~== seller.bottom ~+ (7 ~~ 6)
                     }
                 } else {
                     paddingLabel.isHidden = true
@@ -33,7 +32,7 @@ class SearchCell: UICollectionViewCell {
             }
         }
     }
-    
+
     lazy var paddingLabel: PaddingLabel = {
         let label = PaddingLabel()
         label.theme_textColor = Color.invertedTitle
@@ -49,22 +48,22 @@ class SearchCell: UICollectionViewCell {
 
     var identifier: String { return "" }
     var height: CGFloat { return 0 }
-    
+
     var compactPortraitSize: CGFloat { return 0 }
     var portraitSize: CGFloat { return 0 }
     var mixedPortraitSize: CGFloat { return 0 }
-    
-    var landscapeSize: CGFloat = (150~~140)
-    var iconSize: CGFloat = (80~~70)
-    var coverHeight: CGFloat = (80~~70) * 1.542
-    var spaceFromIcon: CGFloat = (15~~12)
-    
-    var margin: CGFloat = Global.size.margin.value
-    
+
+    var landscapeSize: CGFloat = (150 ~~ 140)
+    var iconSize: CGFloat = (80 ~~ 70)
+    var coverHeight: CGFloat = (80 ~~ 70) * 1.542
+    var spaceFromIcon: CGFloat = (15 ~~ 12)
+
+    var margin: CGFloat = Global.Size.margin.value
+
     var name: UILabel!
     var icon: UIImageView!
     var seller: UILabel!
-    
+
     func configure(with item: Item) {
         self.name.text = item.itemName
         self.seller.text = item.itemSeller
@@ -73,57 +72,56 @@ class SearchCell: UICollectionViewCell {
         guard let url = URL(string: item.itemIconUrl) else { return }
         icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize), imageTransition: .crossDissolve(0.2))
     }
-    
+
     func sharedSetup() {
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
-        
+
         contentView.layer.cornerRadius = 6
         contentView.layer.borderWidth = 1 / UIScreen.main.scale
         contentView.layer.theme_borderColor = Color.borderCgColor
         layer.backgroundColor = UIColor.clear.cgColor
-        
+
         // Name
         name = UILabel()
         name.theme_textColor = Color.title
-        name.font = .systemFont(ofSize: 18.5~~16.5)
+        name.font = .systemFont(ofSize: 18.5 ~~ 16.5)
         name.numberOfLines = 2
         name.makeDynamicFont()
-        
+
         // Icon
         icon = UIImageView()
         icon.layer.borderWidth = 1 / UIScreen.main.scale
         icon.layer.theme_borderColor = Color.borderCgColor
         icon.contentMode = .scaleToFill
-        
+
         // Seller
         seller = UILabel()
         seller.theme_textColor = Color.darkGray
-        seller.font = .systemFont(ofSize: 14~~13)
+        seller.font = .systemFont(ofSize: 14 ~~ 13)
         seller.numberOfLines = 1
         seller.makeDynamicFont()
-        
+
         contentView.addSubview(name)
         contentView.addSubview(icon)
         contentView.addSubview(seller)
         contentView.addSubview(paddingLabel)
-        
+
         constrain(name, seller, icon) { name, seller, icon in
             icon.width ~== iconSize
             icon.left ~== icon.superview!.left ~+ margin
             icon.top ~== icon.superview!.top ~+ margin
-            
-            (name.left ~== icon.right ~+ (15~~12)) ~ Global.notMaxPriority
+
+            (name.left ~== icon.right ~+ (15 ~~ 12)) ~ Global.notMaxPriority
             name.right ~== name.superview!.right ~- margin
             name.top ~== icon.top ~+ 3
-            
+
             seller.left ~== name.left
             seller.top ~== name.bottom ~+ 3
             seller.right ~<= seller.superview!.right ~- margin
-            
         }
     }
-    
+
     // Hover animation
     override var isHighlighted: Bool {
         didSet {
