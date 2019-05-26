@@ -1,5 +1,5 @@
 //
-//  MyAppstoreCell.swift
+//  MyAppStoreCell.swift
 //  appdb
 //
 //  Created by ned on 26/04/2019.
@@ -9,13 +9,13 @@
 import UIKit
 import Cartography
 
-class MyAppstoreCell: UICollectionViewCell {
+class MyAppStoreCell: UICollectionViewCell {
     var name: UILabel!
     var bundleId: UILabel!
     var installButton: RoundedButton!
     var dummy: UIView!
 
-    func configure(with app: MyAppstoreApp) {
+    func configure(with app: MyAppStoreApp) {
         name.text = app.name + " (\(app.version))"
         bundleId.text = app.bundleId
         installButton.linkId = app.id

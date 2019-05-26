@@ -1,5 +1,5 @@
 //
-//  MyAppstoreApp.swift
+//  MyAppStoreApp.swift
 //  appdb
 //
 //  Created by ned on 26/04/2019.
@@ -9,7 +9,7 @@
 import SwiftyJSON
 import ObjectMapper
 
-class MyAppstoreApp: Item {
+class MyAppStoreApp: Item {
     required init?(map: Map) { }
 
     override class func type() -> ItemType {
@@ -28,7 +28,7 @@ class MyAppstoreApp: Item {
     var size: String = ""
 }
 
-extension MyAppstoreApp: Mappable {
+extension MyAppStoreApp: Mappable {
     func mapping(map: Map) {
         name <- map["name"]
         id <- map["id"]

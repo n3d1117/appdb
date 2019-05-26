@@ -25,7 +25,7 @@ extension Library {
                 }
             case .myappstore:
                 if myAppstoreIpas.isEmpty {
-                    footer.configure("No MyAppstore apps".localized(), secondaryText: "This is your personal IPA library! Apps you upload over time will appear here".localized())
+                    footer.configure("No MyAppStore apps".localized(), secondaryText: "This is your personal IPA library! Apps you upload over time will appear here".localized())
                 } else {
                     footer.configure("")
                 }
@@ -45,13 +45,13 @@ extension Library {
         collectionView.register(LibrarySectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "librarySectionFooterViewTwo")
 
         // Cells
-        collectionView.register(MyAppstoreCell.self, forCellWithReuseIdentifier: "myappstorecell")
+        collectionView.register(MyAppStoreCell.self, forCellWithReuseIdentifier: "myappstorecell")
         collectionView.register(LocalIPACell.self, forCellWithReuseIdentifier: "localipacell")
     }
 
-    // MARK: - Add to MyAppstore
+    // MARK: - Add to MyAppStore
 
-    internal func addToMyAppstore(ipa: LocalIPAFile, indexPath: IndexPath) {
+    internal func addToMyAppStore(ipa: LocalIPAFile, indexPath: IndexPath) {
         guard Preferences.deviceIsLinked else {
             Messages.shared.showError(message: "Please authorize app from Settings first".localized())
             return
@@ -67,7 +67,7 @@ extension Library {
         uploadBackgroundTask = BackgroundTaskUtil()
         uploadBackgroundTask?.start()
 
-        API.addToMyAppstore(jobId: jobId, fileURL: url, request: { [weak self] req in
+        API.addToMyAppStore(jobId: jobId, fileURL: url, request: { [weak self] req in
             guard let self = self else { return }
 
             self.uploadRequestsAtIndex[indexPath] = LocalIPAUploadUtil(req)
@@ -166,9 +166,9 @@ extension Library {
         }
     }
 
-    // MARK: - Install MyAppstore app
+    // MARK: - Install MyAppStore app
 
-    @objc internal func installMyAppstoreApp(sender: RoundedButton) {
+    @objc internal func installMyAppStoreApp(sender: RoundedButton) {
         func setButtonTitle(_ text: String) {
             sender.setTitle(text.localized().uppercased(), for: .normal)
         }
@@ -234,9 +234,9 @@ extension Library {
         }
     }
 
-    // MARK: - Delete MyAppstore app
+    // MARK: - Delete MyAppStore app
 
-    internal func deleteMyAppstoreApp(id: String, indexPath: IndexPath) {
+    internal func deleteMyAppStoreApp(id: String, indexPath: IndexPath) {
         API.deleteIpa(id: id, completion: { [weak self] error in
             guard let self = self else { return }
 
@@ -383,8 +383,8 @@ extension Library: UICollectionViewDelegateFlowLayout {
                 return header
             } else {
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "librarySectionHeaderViewTwo", for: indexPath) as? LibrarySectionHeaderView else { return UICollectionReusableView() }
-                header.configure("MyAppstore")
-                header.helpButton.addTarget(self, action: #selector(showHelpMyAppstore), for: .touchUpInside)
+                header.configure("MyAppStore")
+                header.helpButton.addTarget(self, action: #selector(showHelpMyAppStore), for: .touchUpInside)
                 return header
             }
         } else if kind == UICollectionView.elementKindSectionFooter {
@@ -405,9 +405,9 @@ extension Library: UICollectionViewDelegateFlowLayout {
         self.present(alertController, animated: true)
     }
 
-    @objc private func showHelpMyAppstore() {
-        let message = "appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppstore'".localized()
-        let alertController = UIAlertController(title: "MyAppstore", message: message, preferredStyle: .alert)
+    @objc private func showHelpMyAppStore() {
+        let message = "appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'".localized()
+        let alertController = UIAlertController(title: "MyAppStore", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
         alertController.addAction(okAction)
         self.present(alertController, animated: true)

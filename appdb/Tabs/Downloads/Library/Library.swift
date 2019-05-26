@@ -20,7 +20,7 @@ class Library: LoadingCollectionView {
             setTrashButtonEnabled(enabled: !localIpas.isEmpty)
         }
     }
-    internal var myAppstoreIpas = [MyAppstoreApp]()
+    internal var myAppstoreIpas = [MyAppStoreApp]()
     internal var timer: Timer?
     internal var documentController: UIDocumentInteractionController?
     internal var uploadBackgroundTask: BackgroundTaskUtil?
@@ -119,9 +119,9 @@ class Library: LoadingCollectionView {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == Section.myappstore.rawValue {
             guard myAppstoreIpas.indices.contains(indexPath.row) else { return UICollectionViewCell() }
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myappstorecell", for: indexPath) as? MyAppstoreCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myappstorecell", for: indexPath) as? MyAppStoreCell else { return UICollectionViewCell() }
             cell.configure(with: myAppstoreIpas[indexPath.row])
-            cell.installButton.addTarget(self, action: #selector(installMyAppstoreApp), for: .touchUpInside)
+            cell.installButton.addTarget(self, action: #selector(installMyAppStoreApp), for: .touchUpInside)
             cell.installButton.tag = indexPath.row
             return cell
         } else {
@@ -148,21 +148,21 @@ class Library: LoadingCollectionView {
         }
     }
 
-    private func presentOptionsForMyappstoreApp(_ app: MyAppstoreApp, _ indexPath: IndexPath) {
+    private func presentOptionsForMyappstoreApp(_ app: MyAppStoreApp, _ indexPath: IndexPath) {
         let title = app.name
         let message = "\(app.bundleId)\(Global.bulletPoint)\(app.size)\(Global.bulletPoint)\(app.version)" +
                       "\n" + "Uploaded on %@".localizedFormat(app.uploadedAt.unixToDetailedString)
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
 
         alertController.addAction(UIAlertAction(title: "Install".localized(), style: .default) { _ in
-            if let cell = self.collectionView.cellForItem(at: indexPath) as? MyAppstoreCell {
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? MyAppStoreCell {
                 if let button = cell.installButton {
-                    self.installMyAppstoreApp(sender: button)
+                    self.installMyAppStoreApp(sender: button)
                 }
             }
         })
         alertController.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in
-            self.deleteMyAppstoreApp(id: app.id, indexPath: indexPath)
+            self.deleteMyAppStoreApp(id: app.id, indexPath: indexPath)
         })
 
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
@@ -202,8 +202,8 @@ class Library: LoadingCollectionView {
                 self.customInstall(ipa: ipa, indexPath: indexPath)
             })
 
-            alertController.addAction(UIAlertAction(title: "Upload to MyAppstore".localized(), style: .default) { _ in
-                self.addToMyAppstore(ipa: ipa, indexPath: indexPath)
+            alertController.addAction(UIAlertAction(title: "Upload to MyAppStore".localized(), style: .default) { _ in
+                self.addToMyAppStore(ipa: ipa, indexPath: indexPath)
             })
 
             alertController.addAction(UIAlertAction(title: "Open in...".localized(), style: .default) { _ in

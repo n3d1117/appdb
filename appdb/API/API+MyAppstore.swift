@@ -1,5 +1,5 @@
 //
-//  API+MyAppstore.swift
+//  API+MyAppStore.swift
 //  appdb
 //
 //  Created by ned on 26/04/2019.
@@ -10,9 +10,9 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    static func getIpas(success:@escaping (_ items: [MyAppstoreApp]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+    static func getIpas(success:@escaping (_ items: [MyAppStoreApp]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.getIpas.rawValue, "lang": languageCode], headers: headersWithCookie)
-            .responseArray(keyPath: "data") { (response: DataResponse<[MyAppstoreApp]>) in
+            .responseArray(keyPath: "data") { (response: DataResponse<[MyAppStoreApp]>) in
                 switch response.result {
                 case .success(let ipas):
                     success(ipas)
@@ -39,7 +39,7 @@ extension API {
             }
     }
 
-    static func addToMyAppstore(jobId: String, fileURL: URL, request:@escaping (_ r: Alamofire.UploadRequest) -> Void, completion:@escaping (_ error: String?) -> Void) {
+    static func addToMyAppStore(jobId: String, fileURL: URL, request:@escaping (_ r: Alamofire.UploadRequest) -> Void, completion:@escaping (_ error: String?) -> Void) {
         let parameters = [
             "action": Actions.addIpa.rawValue,
             "job_id": jobId

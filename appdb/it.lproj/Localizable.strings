@@ -170,7 +170,7 @@
 "Resume" = "Riprendi";
 "Stop" = "Interrompi";
 "Install without signing" = "Installa senza firmare";
-"Upload to MyAppstore" = "Carica su MyAppstore";
+"Upload to MyAppStore" = "Carica su MyAppStore";
 "Open in..." = "Apri in...";
 "Rename" = "Rinomina";
 "Rename File" = "Rinomina file";
@@ -178,14 +178,14 @@
 "Delete all" = "Elimina tutti";
 "No Local IPAs Found" = "Nessun file IPA locale trovato";
 "Use iTunes File Sharing or import them from other apps" = "Usa la condivisione file di iTunes o importa i file da altre app";
-"No MyAppstore apps" = "Nessuna app in MyAppstore";
+"No MyAppStore apps" = "Nessuna app in MyAppStore";
 "This is your personal IPA library! Apps you upload over time will appear here" = "Questa è la tua libreria personale! Tutte le app che carichi nel tempo appariranno qui";
 "Please cancel any pending uploads before deleting local files" = "Per favore interrompi tutti gli upload in corso prima di eliminare i file locali";
 "Delete 1 file?" = "Elimina 1 file?";
 "Local Files" = "File Locali";
 "Are you sure you want to delete %@ files?" = "Sei sicuro di voler eliminare %@ file?"; // %@ is the number of files to delete
 "Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@" = "Metti i tuoi file .ipa (o .zip) nella cartella Documenti, o con la condivisione file di iTunes, o con l'app Files o importandoli direttamente da altre app.\n\nPercorso della cartella Documenti:\n\n%@";
-"appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppstore'" = "appdb presenta il MyAppStore - il tuo AppStore personale.\n\n• Salva le tue app personali su appdb\n• Condivise su tutti i dispositivi sotto la stessa email\n• Carica app fino a un massimo di 4GB\n• Upload multipli in contemporanea supportati!\n\nPer cominciare, clicca su un file IPA locale e seleziona 'Carica su MyAppstore'";
+"appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'" = "appdb presenta il MyAppStore - il tuo AppStore personale.\n\n• Salva le tue app personali su appdb\n• Condivise su tutti i dispositivi sotto la stessa email\n• Carica app fino a un massimo di 4GB\n• Upload multipli in contemporanea supportati!\n\nPer cominciare, clicca su un file IPA locale e seleziona 'Carica su MyAppStore'";
 "No active downloads" = "Nessun download in corso";
 "Remove from list" = "Rimuovi dalla lista";
 "File downloaded successfully" = "File scaricato con successo";
