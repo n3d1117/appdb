@@ -115,7 +115,10 @@ class Details: LoadingTableView {
             switch indexForSegment {
             case .details: return details[indexPath.row].height
             case .reviews: return indexPath.row == content.itemReviews.count ? UITableView.automaticDimension : DetailsReview.height
-            case .download: return versions.isEmpty ? DetailsDownloadEmptyCell.height : DetailsDownload.height
+            case .download:
+                if versions.isEmpty { return DetailsDownloadEmptyCell.height }
+                let link = versions[indexPath.section - 2].links[indexPath.row]
+                return link.cracker == link.uploader ? DetailsDownloadUnified.height : DetailsDownload.height
             }
         }
     }
@@ -158,11 +161,20 @@ class Details: LoadingTableView {
                 } else { return UITableViewCell() }
             case .download:
                 if !versions.isEmpty {
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as? DetailsDownload else { return UITableViewCell() }
-                    cell.accessoryType = contentType == .books ? .none : .disclosureIndicator
-                    cell.configure(with: versions[indexPath.section - 2].links[indexPath.row])
-                    cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
-                    return cell
+                    let link = versions[indexPath.section - 2].links[indexPath.row]
+                    if link.cracker == link.uploader {
+                        guard let cell = tableView.dequeueReusableCell(withIdentifier: "downloadUnified", for: indexPath) as? DetailsDownloadUnified else { return UITableViewCell() }
+                        cell.accessoryType = contentType == .books ? .none : .disclosureIndicator
+                        cell.configure(with: link)
+                        cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
+                        return cell
+                    } else {
+                        guard let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as? DetailsDownload else { return UITableViewCell() }
+                        cell.accessoryType = contentType == .books ? .none : .disclosureIndicator
+                        cell.configure(with: link)
+                        cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
+                        return cell
+                    }
                 } else {
                     return DetailsDownloadEmptyCell("No links found.".localized())
                 }

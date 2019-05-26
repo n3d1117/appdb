@@ -37,6 +37,7 @@ extension Details {
         tableView.register(DetailsChangelog.self, forCellReuseIdentifier: "changelog")
         tableView.register(DetailsReview.self, forCellReuseIdentifier: "review")
         tableView.register(DetailsDownload.self, forCellReuseIdentifier: "download")
+        tableView.register(DetailsDownloadUnified.self, forCellReuseIdentifier: "downloadUnified")
 
         // Initialize 'Share' button
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
