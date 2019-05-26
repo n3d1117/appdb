@@ -32,7 +32,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>β1</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -42,7 +42,7 @@
 			<string>it.ned.appdb-scheme</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>appdb2</string>
+				<string>appdb-ios</string>
 			</array>
 		</dict>
 	</array>

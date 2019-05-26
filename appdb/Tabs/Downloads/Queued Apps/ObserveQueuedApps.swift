@@ -96,7 +96,7 @@ class ObserveQueuedApps {
                             if item.status == "failed_fixable" {
                                 let message = Messages.shared.showError(message: "Installation failed, but can be fixed from Settings -> Device Status".localized())
                                 message.tapHandler = { _ in
-                                    UIApplication.shared.openURL(URL(string: "appdb2://?tab=device_status")!)
+                                    UIApplication.shared.openURL(URL(string: "appdb-ios://?tab=device_status")!)
                                     Messages.shared.hideAll()
                                 }
                             }

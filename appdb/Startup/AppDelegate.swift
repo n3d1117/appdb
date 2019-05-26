@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     private func decodeUrlScheme(from queryItems: [URLQueryItem]) -> Bool {
         guard let tab = window?.rootViewController as? TabBarController else { return false }
 
-        // Tab selection, e.g. appdb2://?tab=search
+        // Tab selection, e.g. appdb-ios://?tab=search
 
         if let index = queryItems.firstIndex(where: { $0.name == "tab" }) {
             guard let value = queryItems[index].value else { return false }
@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             return true
         }
 
-        // Open details page, e.g. appdb2://?trackid=x&type=ios
+        // Open details page, e.g. appdb-ios://?trackid=x&type=ios
 
         if let index1 = queryItems.firstIndex(where: { $0.name == "trackid" }), let index2 = queryItems.firstIndex(where: { $0.name == "type" }) {
             guard let trackid = queryItems[index1].value, let typeString = queryItems[index2].value else { return false }
@@ -164,7 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             return true
         }
 
-        // Search query with type, e.g. appdb2://?q=Facebook&type=ios
+        // Search query with type, e.g. appdb-ios://?q=Facebook&type=ios
 
         if let index1 = queryItems.firstIndex(where: { $0.name == "q" }), let index2 = queryItems.firstIndex(where: { $0.name == "type" }) {
             guard let query = queryItems[index1].value, let typeString = queryItems[index2].value else { return false }
@@ -184,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             return true
         }
 
-        // Open news with id, e.g. appdb2://?news_id=x
+        // Open news with id, e.g. appdb-ios://?news_id=x
 
         if let index1 = queryItems.firstIndex(where: { $0.name == "news_id" }) {
             guard let id = queryItems[index1].value else { return false }
@@ -211,7 +211,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             return true
         }
 
-        // Open url in IPAWebViewController, e.g. appdb2://?url=https://google.com
+        // Open url in IPAWebViewController, e.g. appdb-ios://?url=https://google.com
 
         if let index1 = queryItems.firstIndex(where: { $0.name == "url" }) {
             guard let urlString = queryItems[index1].value, let url = URL(string: urlString) else { return false }
@@ -230,7 +230,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             return true
         }
 
-        // Authorize app with link code, e.g. appdb2://?action=authorize&code=x
+        // Authorize app with link code, e.g. appdb-ios://?action=authorize&code=x
 
         if let index1 = queryItems.firstIndex(where: { $0.name == "action" }), let index2 = queryItems.firstIndex(where: { $0.name == "code" }) {
             guard let action = queryItems[index1].value, let code = queryItems[index2].value else { return false }
