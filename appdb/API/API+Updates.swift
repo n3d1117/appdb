@@ -49,6 +49,7 @@ extension API {
                                 items.remove(at: items.firstIndex(of: item)!)
                             }
                         }
+                        success(items)
                     case .failure(let error):
                         fail(error.localizedDescription)
                     }
