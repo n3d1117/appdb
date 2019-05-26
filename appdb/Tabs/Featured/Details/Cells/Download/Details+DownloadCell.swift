@@ -10,10 +10,11 @@ import UIKit
 import Cartography
 
 class DetailsDownload: DetailsCell {
-    static var height: CGFloat = 60 ~~ 55
+    static var height: CGFloat = 75 ~~ 70
 
     var host: UILabel!
     var cracker: UILabel!
+    var uploader: UILabel!
     var button: RoundedButton!
 
     lazy var bgColorView: UIView = {
@@ -24,8 +25,10 @@ class DetailsDownload: DetailsCell {
 
     func configure(with link: Link) {
         host.text = link.host
-        cracker.text = link.cracker.decoded
+        cracker.text = "Cracked by %@".localizedFormat(link.cracker.decoded)
         cracker.theme_textColor = link.verified ? Color.softGreen : Color.softRed
+        uploader.text = "Uploaded by %@".localizedFormat(link.uploader.decoded)
+        uploader.theme_textColor = link.verified ? Color.softGreen : Color.softRed
         button.linkId = link.id
         button.isHidden = !link.diCompatible
         host.theme_textColor = link.universal ? Color.mainTint : Color.title
@@ -58,10 +61,14 @@ class DetailsDownload: DetailsCell {
         host.numberOfLines = 1
 
         cracker = UILabel()
-        cracker.font = .systemFont(ofSize: (13 ~~ 12))
+        cracker.font = .systemFont(ofSize: (12.5 ~~ 11.5))
         cracker.makeDynamicFont()
         cracker.numberOfLines = 1
-        cracker.theme_textColor = Color.title
+
+        uploader = UILabel()
+        uploader.font = .systemFont(ofSize: (12.5 ~~ 11.5))
+        uploader.makeDynamicFont()
+        uploader.numberOfLines = 1
 
         button = RoundedButton()
         button.titleLabel?.font = .boldSystemFont(ofSize: 13)
@@ -71,22 +78,27 @@ class DetailsDownload: DetailsCell {
 
         contentView.addSubview(host)
         contentView.addSubview(cracker)
+        contentView.addSubview(uploader)
         contentView.addSubview(button)
 
         setConstraints()
     }
 
     override func setConstraints() {
-        constrain(host, cracker, button) { host, cracker, button in
+        constrain(host, cracker, uploader, button) { host, cracker, uploader, button in
             button.centerY ~== button.superview!.centerY
-
-            host.top ~== host.superview!.top ~+ 9
-            host.left ~== host.superview!.left ~+ Global.Size.margin.value
-            host.right ~<= button.left ~- 9
 
             cracker.left ~== host.left
             cracker.right ~<= button.left ~- Global.Size.margin.value
-            cracker.bottom ~== cracker.superview!.bottom ~- 10
+            cracker.centerY ~== button.centerY + 3
+
+            host.bottom ~== cracker.top ~- 3
+            host.left ~== host.superview!.left ~+ Global.Size.margin.value
+            host.right ~<= button.left ~- 9
+
+            uploader.left ~== cracker.left
+            uploader.right ~== cracker.right
+            uploader.top ~== cracker.bottom + 1
         }
     }
 }

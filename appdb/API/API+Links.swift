@@ -32,6 +32,7 @@ extension API {
                                     version.links.append(Link(
                                         link: fetched[e]["link"].stringValue,
                                         cracker: fetched[e]["cracker"].stringValue,
+                                        uploader: fetched[e]["uploader_name"].stringValue,
                                         host: fetched[e]["host"].stringValue,
                                         id: fetched[e]["id"].stringValue,
                                         verified: fetched[e]["verified"].boolValue,
@@ -55,6 +56,7 @@ extension API {
                                     version.links.append(Link(
                                         link: fetched[e]["link"].stringValue,
                                         cracker: fetched[e]["cracker"].stringValue,
+                                        uploader: fetched[e]["uploader_name"].stringValue,
                                         host: fetched[e]["host"].stringValue,
                                         id: fetched[e]["id"].stringValue,
                                         verified: fetched[e]["verified"].boolValue,

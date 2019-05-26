@@ -24,6 +24,7 @@ struct Version: Equatable {
 struct Link {
     var link: String = ""
     var cracker: String = ""
+    var uploader: String = ""
     var host: String = ""
     var id: String = ""
     var verified: Bool = false
@@ -31,9 +32,10 @@ struct Link {
     var hidden: Bool = false
     var universal: Bool = false
 
-    init(link: String, cracker: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool) {
+    init(link: String, cracker: String, uploader: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool) {
         self.link = link
         self.cracker = cracker
+        self.uploader = uploader
         self.host = host
         self.id = id
         self.verified = verified
@@ -43,5 +45,8 @@ struct Link {
 
         while self.cracker.hasPrefix(" ") { self.cracker = String(self.cracker.dropFirst()) }
         if self.cracker.isEmpty { self.cracker = "Unknown".localized() }
+
+        while self.uploader.hasPrefix(" ") { self.uploader = String(self.uploader.dropFirst()) }
+        if self.uploader.isEmpty { self.uploader = "Unknown".localized() }
     }
 }
