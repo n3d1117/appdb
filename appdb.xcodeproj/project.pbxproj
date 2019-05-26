@@ -534,11 +534,11 @@
 		812E97861E5772BD00C1379F /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				81A060241F8A24E9004EEEE1 /* Search Cells */,
-				81603A69216E638E00F18E34 /* Trending View */,
 				81485A76216617980004184F /* Search+Extension.swift */,
 				815C4A9F1F954FDA0002AB08 /* Search.swift */,
 				815C4AA11F9550340002AB08 /* SuggestionsWhileTyping.swift */,
+				81A060241F8A24E9004EEEE1 /* Search Cells */,
+				81603A69216E638E00F18E34 /* Trending View */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -847,10 +847,10 @@
 		818A559920583CD600162E51 /* Downloads */ = {
 			isa = PBXGroup;
 			children = (
+				8148D857226DD219006AD9E0 /* Downloads.swift */,
 				81FCAFCC226E1012004FAFD6 /* Downloading */,
 				81FCAFCB226E1007004FAFD6 /* Library */,
 				81FCAFCA226E0FF9004FAFD6 /* Queued Apps */,
-				8148D857226DD219006AD9E0 /* Downloads.swift */,
 			);
 			path = Downloads;
 			sourceTree = "<group>";
@@ -869,16 +869,16 @@
 		818A559B20583CF800162E51 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				818A559E20583D4600162E51 /* Settings.swift */,
+				8115465920826AA50031C9DA /* Settings+Sections.swift */,
+				81324067205BD86000945CE9 /* Settings+StaticCells.swift */,
 				819EC27420A7249F007138CF /* Acknowledgements */,
 				814FF02C207B9B5F0049DF9A /* Device Link */,
 				810C71FC20ACDA9800D6310E /* Device Status */,
+				819EC27C20A76EB6007138CF /* Theme Chooser */,
 				81DD29D52288CD1A00412BE6 /* Language Chooser */,
 				81324069205BE4C700945CE9 /* News */,
 				81004A10209E2502002414F1 /* System Status */,
-				819EC27C20A76EB6007138CF /* Theme Chooser */,
-				8115465920826AA50031C9DA /* Settings+Sections.swift */,
-				81324067205BD86000945CE9 /* Settings+StaticCells.swift */,
-				818A559E20583D4600162E51 /* Settings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
