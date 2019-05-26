@@ -1051,6 +1051,7 @@
 		81D60A1D215159DC00CDF94C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				817610E621515A3100602FF2 /* API.swift */,
 				817610EB21515A3200602FF2 /* API+Configuration.swift */,
 				817610EA21515A3200602FF2 /* API+DeviceLink.swift */,
 				817610EC21515A3200602FF2 /* API+DeviceStatus.swift */,
@@ -1063,7 +1064,6 @@
 				817610E921515A3200602FF2 /* API+Search.swift */,
 				817610E521515A3100602FF2 /* API+SystemStatus.swift */,
 				814F4FB82196F5F9005A8111 /* API+Updates.swift */,
-				817610E621515A3100602FF2 /* API.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";

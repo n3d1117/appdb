@@ -305,3 +305,17 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         return true
     }
 }
+
+final class ContactDevStaticCell: SimpleStaticCell {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func configure(row: Row) {
+        super.configure(row: row)
+    }
+}

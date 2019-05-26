@@ -10,6 +10,7 @@ import UIKit
 import Static
 import SafariServices
 import BLTNBoard
+import MessageUI
 
 class Settings: TableViewController {
     lazy var deviceLinkBulletinManager: BLTNItemManager = {
@@ -69,6 +70,8 @@ class Settings: TableViewController {
         // Hide the 'Back' text on back button
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
+
+        dataSource = DataSource(tableViewDelegate: self)
 
         refreshSources()
 
@@ -180,6 +183,24 @@ class Settings: TableViewController {
         }
     }
 
+    // Show contact developer options
+    func contactDeveloper(indexPath: IndexPath) {
+        let alertController = UIAlertController(title: nil, message: "Choose an option".localized(), preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+        alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        alertController.addAction(UIAlertAction(title: "Email".localized(), style: .default) { _ in
+            self.composeEmail()
+        })
+        alertController.addAction(UIAlertAction(title: "Telegram".localized(), style: .default) { _ in
+            self.openTelegramLink()
+        })
+        if let popover = alertController.popoverPresentationController {
+            popover.sourceView = tableView
+            popover.sourceRect = tableView.rectForRow(at: indexPath)
+            popover.theme_backgroundColor = Color.popoverArrowColor
+        }
+        self.present(alertController, animated: true)
+    }
+
     // Device Link Bulletin intro
     // Also subscribes to notification requests to open Safari
     func pushDeviceLink() {
@@ -188,8 +209,8 @@ class Settings: TableViewController {
     }
 
     // Opens link to contact dev
-    /*func openTelegramLink() {
-        let username = "MY_TG_USERNAME"
+    func openTelegramLink() {
+        let username = "ne_do"
         let link = "tg://resolve?domain=\(username)"
         if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.openURL(url)
@@ -201,7 +222,25 @@ class Settings: TableViewController {
                 UIApplication.shared.openURL(url)
             }
         }
-    }*/
+    }
+
+    // Compose email to dev
+    func composeEmail() {
+
+        let recipient = "appdb.ned@gmail.com"
+        let subject = "appdb \(Global.appVersion) — Support"
+
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([recipient])
+            mail.setSubject(subject)
+            present(mail, animated: true)
+        } else {
+            // no Mail.app setup
+            Messages.shared.showError(message: "Could not find email service.".localized())
+        }
+    }
 
     // Opens Safari with given URL
     func openInSafari(_ url: String) {
@@ -304,5 +343,23 @@ extension Settings {
             urlSchemeLinkCodeBulletinManager?.backgroundViewStyle = .blurredDark
         }
         urlSchemeLinkCodeBulletinManager?.showBulletin(above: tabBarController ?? self)
+    }
+}
+
+// MARK: - Call contactDeveloper() on cell tap, I do this here because I need the indexPath
+
+extension Settings: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath) is ContactDevStaticCell {
+            contactDeveloper(indexPath: indexPath)
+        }
+    }
+}
+
+// MARK: - MFMailComposeViewControllerDelegate
+
+extension Settings: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

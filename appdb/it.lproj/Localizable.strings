@@ -236,6 +236,11 @@
 "Available Languages" = "Lingue disponibili";
 "Available Themes" = "Temi disponibili";
 "Tap to know more" = "Per saperne di più";
+"Contact Developer" = "Contatta sviluppatore";
+"Choose an option" = "Scegli un'opzione";
+"Email" = "Email";
+"Telegram" = "Telegram";
+"Could not find email service." = "Impossibile trovare il servizio email collegato.";
 
 /////////////////////
 //     UPDATES     //

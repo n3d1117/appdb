@@ -30,11 +30,11 @@ extension Settings {
         return [
             Section(header: .title("User Interface".localized()), rows: [
                 Row(text: "Choose Theme".localized(),
-                    detailText: Themes.isNight ? "Dark".localized() : "Light".localized(), selection: { [unowned self] in
+                    detailText: Themes.isNight ? "Dark".localized() : "Light".localized(), selection: { [unowned self] _ in
                         self.pushThemeChooser()
                     }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Choose Language".localized(),
-                    detailText: Localize.displayNameForLanguage(Localize.currentLanguage()), selection: { [unowned self] in
+                    detailText: Localize.displayNameForLanguage(Localize.currentLanguage()), selection: { [unowned self] _ in
                         self.pushLanguageChooser()
                     }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ])
@@ -46,19 +46,20 @@ extension Settings {
     var commonSections: [Static.Section] {
         return [
             Section(header: .title("Support".localized()), rows: [
-                Row(text: "News".localized(), selection: { [unowned self] in
+                Row(text: "News".localized(), selection: { [unowned self] _ in
                     self.pushNews()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "System Status".localized(), selection: { [unowned self] in
+                Row(text: "System Status".localized(), selection: { [unowned self] _ in
                     self.pushSystemStatus()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "Visit appdb forum".localized(), detailText: forumSite, selection: { [unowned self] in
+                Row(text: "Contact Developer".localized(), selection: { _ in }, accessory: .disclosureIndicator, cellClass: ContactDevStaticCell.self),
+                Row(text: "Visit appdb forum".localized(), detailText: forumSite, selection: { [unowned self] _ in
                     self.openInSafari(self.forumSite)
                 }, accessory: .disclosureIndicator, cellClass: SimpleSubtitleCell.self)
             ]),
 
             Section(header: .title("About".localized()), rows: [
-                Row(text: "Acknowledgements".localized(), selection: { [unowned self] in
+                Row(text: "Acknowledgements".localized(), selection: { [unowned self] _ in
                     self.pushAcknowledgements()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Version".localized(), detailText: "\(Global.appVersion)", cellClass: SimpleStaticCell.self)
@@ -75,7 +76,7 @@ extension Settings {
             ]),
 
             Section(rows: [
-                Row(text: "Authorize App".localized(), selection: { [unowned self] in
+                Row(text: "Authorize App".localized(), selection: { [unowned self] _ in
                     self.pushDeviceLink()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticButtonCell.self,
                    context: ["bgColor": Color.slightlyDarkerMainTint, "bgHover": Color.darkMainTint])
@@ -90,13 +91,13 @@ extension Settings {
             Section(header: .title("General".localized()), rows: [
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
 
-                Row(text: "PRO Status".localized(), selection: { [unowned self] in
+                Row(text: "PRO Status".localized(), selection: { [unowned self] _ in
                     if !Preferences.proRevoked, !Preferences.proDisabled, !Preferences.pro {
                         self.openInSafari(self.proSite)
                     }
                 }, cellClass: SimpleStaticPROStatusCell.self, context: ["active": Preferences.pro, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "disabled": Preferences.proDisabled]),
 
-                Row(text: "Link Code".localized(), detailText: Preferences.linkCode, selection: { [unowned self] in
+                Row(text: "Link Code".localized(), detailText: Preferences.linkCode, selection: { [unowned self] _ in
                         API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
                     }, cellClass: SimpleStaticCell.self, context: ["disableSelection": true], copyAction: { row in
                         UIPasteboard.general.string = row.detailText
@@ -123,13 +124,13 @@ extension Settings {
             ]),
 
             Section(rows: [
-                Row(text: "Device Status".localized(), selection: { [unowned self] in
+                Row(text: "Device Status".localized(), selection: { [unowned self] _ in
                     self.pushDeviceStatus()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ])
         ] + commonSections + [
             Section(rows: [
-                Row(text: "Deauthorize".localized(), selection: { [unowned self] in
+                Row(text: "Deauthorize".localized(), selection: { [unowned self] _ in
                     self.showDeauthorizeConfirmation()
                 }, cellClass: SimpleStaticButtonCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
             ], footer: .title("To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles.".localized())),
