@@ -830,5 +830,9 @@ let knownLandscapeScreenshots: Set = [
 "http://a5.mzstatic.com/us/r30/Purple/v4/20/a1/6c/20a16c46-ccec-e1be-4ebe-4b48a6ce9e70/screen480x480.jpeg",
 "http://a5.mzstatic.com/us/r30/Purple4/v4/74/59/c3/7459c30c-0799-580e-2085-1736a0af433f/screen480x480.jpeg",
 "http://a3.mzstatic.com/us/r30/Purple6/v4/ad/a0/45/ada0459c-c822-ad89-e385-8a97d480f76a/screen480x480.jpeg",
-"http://a5.mzstatic.com/us/r30/Purple4/v4/a5/e7/fd/a5e7fd2f-5832-ef51-7a78-4ea7605ebbaf/screen480x480.jpeg"
+"http://a5.mzstatic.com/us/r30/Purple4/v4/a5/e7/fd/a5e7fd2f-5832-ef51-7a78-4ea7605ebbaf/screen480x480.jpeg",
+"https://static.appdb.to/images/ios-1900000044-ipad-0.png",
+"https://static.appdb.to/images/ios-1900000044-ipad-1.png",
+"https://static.appdb.to/images/ios-1900000044-ipad-2.png",
+"https://static.appdb.to/images/ios-1900000044-ipad-3.png"
 ]

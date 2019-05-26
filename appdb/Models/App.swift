@@ -161,6 +161,10 @@ extension App: Mappable {
             return width > height ? "landscape" : "portrait"
         } else if let endingFilename = ending.components(separatedBy: ".").first {
             // e.g. http://a1.mzstatic.com/us/r30/Purple2/.../screen568x568.jpeg
+            guard endingFilename.contains("screen") else {
+                // e.g. https://static.appdb.to/images/ios-1900000044-ipad-0.png
+                return knownLandscapeScreenshots.contains(absoluteUrl) ? "landscape" : "portrait"
+            }
             guard let size = endingFilename.components(separatedBy: "screen").last?.components(separatedBy: "x") else { return "portrait" }
             guard let width = Int(size[0]), let height = Int(size[1]) else { return "portrait" }
             if width == height {
