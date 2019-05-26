@@ -188,7 +188,7 @@ class Settings: TableViewController {
         let alertController = UIAlertController(title: nil, message: "Choose an option".localized(), preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         alertController.addAction(UIAlertAction(title: "Email".localized(), style: .default) { _ in
-            self.composeEmail()
+            self.selectEmail(indexPath: indexPath)
         })
         alertController.addAction(UIAlertAction(title: "Telegram".localized(), style: .default) { _ in
             self.openTelegramLink()
@@ -221,24 +221,6 @@ class Settings: TableViewController {
             } else {
                 UIApplication.shared.openURL(url)
             }
-        }
-    }
-
-    // Compose email to dev
-    func composeEmail() {
-
-        let recipient = "appdb.ned@gmail.com"
-        let subject = "appdb \(Global.appVersion) — Support"
-
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients([recipient])
-            mail.setSubject(subject)
-            present(mail, animated: true)
-        } else {
-            // no Mail.app setup
-            Messages.shared.showError(message: "Could not find email service.".localized())
         }
     }
 
@@ -359,7 +341,100 @@ extension Settings: UITableViewDelegate {
 // MARK: - MFMailComposeViewControllerDelegate
 
 extension Settings: MFMailComposeViewControllerDelegate {
+
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
+    }
+
+    enum MailServices: String {
+        case stock = "Mail"
+        case spark = "Spark"
+        case gmail = "Gmail"
+        case yahoo = "Yahoo"
+        case outlook = "Outlook"
+    }
+
+    func listMailServices() -> [MailServices] {
+
+        var services = [MailServices]()
+
+        if MFMailComposeViewController.canSendMail() {
+            services.append(.stock)
+        }
+        if UIApplication.shared.canOpenURL(URL(string: "googlegmail://")!) {
+            services.append(.gmail)
+        }
+        if UIApplication.shared.canOpenURL(URL(string: "readdle-spark://")!) {
+            services.append(.spark)
+        }
+        if UIApplication.shared.canOpenURL(URL(string: "ymail://")!) {
+            services.append(.yahoo)
+        }
+        if UIApplication.shared.canOpenURL(URL(string: "ms-outlook://")!) {
+            services.append(.outlook)
+        }
+
+        return services
+    }
+
+    func compose(service: MailServices, subject: String, recipient: String) {
+        switch service {
+        case .stock:
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([recipient])
+            mail.setSubject(subject)
+            present(mail, animated: true)
+        case .gmail:
+            if let gmailUrl = URL(string: "googlegmail://co?subject=\(subject)&to=\(recipient)") {
+                UIApplication.shared.openURL(gmailUrl)
+            }
+        case .spark:
+            if let sparkUrl = URL(string: "readdle-spark://compose?subject=\(subject)&recipient=\(recipient)") {
+                UIApplication.shared.openURL(sparkUrl)
+            }
+        case .yahoo:
+            if let yahooUrl = URL(string: "ymail://mail/compose?subject=\(subject)&to=\(recipient)") {
+                UIApplication.shared.openURL(yahooUrl)
+            }
+        case .outlook:
+            if let outlookUrl = URL(string: "ms-outlook://compose?subject=\(subject)&to=\(recipient)") {
+                UIApplication.shared.openURL(outlookUrl)
+            }
+        }
+    }
+
+    // Compose email to dev
+    func selectEmail(indexPath: IndexPath) {
+
+        let recipient = "appdb.ned@gmail.com"
+        let subject = "appdb \(Global.appVersion) — Support"
+
+        guard let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+
+        let services = listMailServices()
+
+        if services.isEmpty {
+            Messages.shared.showError(message: "Could not find email service.".localized())
+        } else if services.count == 1, let service = services.first {
+            compose(service: service, subject: subjectEncoded, recipient: recipient)
+        } else {
+            // Show mail options
+
+            let alertController = UIAlertController(title: nil, message: "Select a service".localized(), preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+            alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+
+            for service in services {
+                alertController.addAction(UIAlertAction(title: service.rawValue, style: .default) { _ in
+                    self.compose(service: service, subject: subjectEncoded, recipient: recipient)
+                })
+            }
+            if let popover = alertController.popoverPresentationController {
+                popover.sourceView = tableView
+                popover.sourceRect = tableView.rectForRow(at: indexPath)
+                popover.theme_backgroundColor = Color.popoverArrowColor
+            }
+            self.present(alertController, animated: true)
+        }
     }
 }

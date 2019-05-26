@@ -32,7 +32,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>β1</string>
+	<string>β2</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -50,7 +50,11 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>ms-outlook</string>
 		<string>tg</string>
+		<string>googlegmail</string>
+		<string>readdle-spark</string>
+		<string>ymail</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
