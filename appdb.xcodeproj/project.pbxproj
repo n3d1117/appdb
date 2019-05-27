@@ -1245,10 +1245,10 @@
 		81F1FE801E5B103700C1CD44 /* Featured */ = {
 			isa = PBXGroup;
 			children = (
+				81EC00641DAD7514009EEFFA /* Featured.swift */,
+				81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */,
 				818A55A620584D8200162E51 /* Banner */,
 				81EC007C1DAD92BE009EEFFA /* Cells */,
-				81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */,
-				81EC00641DAD7514009EEFFA /* Featured.swift */,
 			);
 			path = Featured;
 			sourceTree = "<group>";

@@ -61,6 +61,9 @@ class Downloads: UIViewController {
         currentViewController = viewControllersArray[0]
         addChild(currentViewController!)
         addSubview(currentViewController!.view)
+
+        // Preload Library view controller
+        _ = viewControllersArray[1].view
     }
 
     // Update queued apps title in segmented control

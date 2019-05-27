@@ -49,6 +49,8 @@ class Library: LoadingCollectionView {
         registerCells()
 
         state = .hideIndicator
+
+        loadContent()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -71,25 +73,25 @@ class Library: LoadingCollectionView {
         let newLocalIpas = IPAFileManager.shared.listLocalIpas()
         let localIpaChanges = diff(old: localIpas, new: newLocalIpas)
 
-        self.collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
+        collectionView.reload(changes: localIpaChanges, section: Section.local.rawValue, updateData: {
             self.localIpas = newLocalIpas
             self.reloadFooterView(section: .local)
-        }, completion: { _ in
-            API.getIpas(success: { [weak self] ipas in
-                guard let self = self else { return }
+        })
 
-                let myappstoreChanges = diff(old: self.myAppstoreIpas, new: ipas)
-                if !self.isDone { self.state = .done(animated: false) }
-                self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
-                    self.myAppstoreIpas = ipas
-                    self.reloadFooterView(section: .myappstore)
-                })
-            }, fail: { [weak self] _ in
-                guard let self = self else { return }
+        API.getIpas(success: { [weak self] ipas in
+            guard let self = self else { return }
 
-                if !self.isDone { self.state = .done(animated: false) }
+            let myappstoreChanges = diff(old: self.myAppstoreIpas, new: ipas)
+            if !self.isDone { self.state = .done(animated: false) }
+            self.collectionView.reload(changes: myappstoreChanges, section: Section.myappstore.rawValue, updateData: {
+                self.myAppstoreIpas = ipas
                 self.reloadFooterView(section: .myappstore)
             })
+        }, fail: { [weak self] _ in
+            guard let self = self else { return }
+
+            if !self.isDone { self.state = .done(animated: false) }
+            self.reloadFooterView(section: .myappstore)
         })
     }
 
