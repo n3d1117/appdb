@@ -34,6 +34,7 @@ class TagButton: UIButton {
     var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             titleLabel?.font = textFont
+            titleLabel?.makeDynamicFont()
         }
     }
     
@@ -59,8 +60,9 @@ class TagButton: UIButton {
     // MARK: - Layout
     
     override open var intrinsicContentSize: CGSize {
-        var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]) ?? .zero
-        size.height = textFont.pointSize + paddingY * 2
+        guard let font = titleLabel?.scalableFont else { return .zero }
+        var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: font]) ?? .zero
+        size.height = font.pointSize + paddingY * 2
         size.width += paddingX * 2
         if size.width < size.height {
             size.width = size.height

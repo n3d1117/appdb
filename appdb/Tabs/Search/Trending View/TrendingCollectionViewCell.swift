@@ -13,6 +13,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     lazy var title: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: (22 ~~ 20), weight: .bold)
+        label.makeDynamicFont()
         label.textAlignment = .left
         label.theme_textColor = Color.title
         return label
