@@ -25,20 +25,21 @@ extension API {
                     queue.async {
                         // No multiple keys for books
                         if type == .books {
-                            let fetched = data[trackid][0]
+                            let fetched: JSON = data[trackid][0]
                             if !fetched.isEmpty {
                                 var version = Version(number: Global.tilde)
                                 for e in 0..<fetched.count {
+                                    let link: JSON = fetched[e]
                                     version.links.append(Link(
-                                        link: fetched[e]["link"].stringValue,
-                                        cracker: fetched[e]["cracker"].stringValue,
-                                        uploader: fetched[e]["uploader_name"].stringValue,
-                                        host: fetched[e]["host"].stringValue,
-                                        id: fetched[e]["id"].stringValue,
-                                        verified: fetched[e]["verified"].boolValue,
-                                        di_compatible: fetched[e]["di_compatible"].boolValue,
-                                        hidden: fetched[e]["is_hidden"] == "0" ? false : true,
-                                        universal: fetched[e]["is_universal"] == "0" ? false : true
+                                        link: link["link"].stringValue,
+                                        cracker: link["cracker"].stringValue,
+                                        uploader: link["uploader_name"].stringValue,
+                                        host: link["host"].stringValue,
+                                        id: link["id"].stringValue,
+                                        verified: link["verified"].boolValue,
+                                        di_compatible: link["di_compatible"].boolValue,
+                                        hidden: link["is_hidden"] != "0",
+                                        universal: link["is_universal"] != "0"
                                     ))
                                 }; versions.append(version)
                             }
@@ -51,18 +52,19 @@ extension API {
                             keys.sort { $0.compare($1, options: .numeric) == .orderedDescending }
 
                             for key in keys {
-                                var version = Version(number: key), fetched = data[trackid][key]
+                                var version = Version(number: key), fetched: JSON = data[trackid][key]
                                 for e in 0..<fetched.count {
+                                    let link: JSON = fetched[e]
                                     version.links.append(Link(
-                                        link: fetched[e]["link"].stringValue,
-                                        cracker: fetched[e]["cracker"].stringValue,
-                                        uploader: fetched[e]["uploader_name"].stringValue,
-                                        host: fetched[e]["host"].stringValue,
-                                        id: fetched[e]["id"].stringValue,
-                                        verified: fetched[e]["verified"].boolValue,
-                                        di_compatible: fetched[e]["di_compatible"].boolValue,
-                                        hidden: fetched[e]["is_hidden"] == "0" ? false : true,
-                                        universal: fetched[e]["is_universal"] == "0" ? false : true
+                                        link: link["link"].stringValue,
+                                        cracker: link["cracker"].stringValue,
+                                        uploader: link["uploader_name"].stringValue,
+                                        host: link["host"].stringValue,
+                                        id: link["id"].stringValue,
+                                        verified: link["verified"].boolValue,
+                                        di_compatible: link["di_compatible"].boolValue,
+                                        hidden: link["is_hidden"] != "0",
+                                        universal: link["is_universal"] != "0"
                                     ))
                                 }; versions.append(version)
                             }
