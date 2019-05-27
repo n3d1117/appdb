@@ -97,6 +97,7 @@ class Settings: TableViewController {
     // Deauthorize app (clean link code and token)
     func deauthorize() {
         Preferences.removeKeysOnDeauthorization()
+        NotificationCenter.default.post(name: .Deauthorized, object: self)
     }
 
     // Show deauthorization bulletin

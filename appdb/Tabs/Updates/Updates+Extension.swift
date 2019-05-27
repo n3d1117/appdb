@@ -30,6 +30,9 @@ extension Updates {
 
         tableView.cellLayoutMarginsFollowReadableWidth = true
 
+        tableView.register(UpdateCell.self, forCellReuseIdentifier: "cell")
+        tableView.estimatedRowHeight = (135 ~~ 115)
+
         // Hide the 'Back' text on back button
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
@@ -42,6 +45,9 @@ extension Updates {
         state = .loading
         animated = true
         showsErrorButton = false
+
+        // Observe deauthorization event
+        NotificationCenter.default.addObserver(self, selector: #selector(onDeauthorization), name: .Deauthorized, object: nil)
 
         // Observe changes for 'showBadgeForUpdates' in preferences        
         observation = defaults.observe(.showBadgeForUpdates) { [weak self] _ in
@@ -75,6 +81,11 @@ extension Updates {
     // Update badge only if user has 'showBadgeForUpdates' enabled
     func updateBadge() {
         updateBadge(with: Preferences.showBadgeForUpdates ? badgeCount : nil, for: .updates)
+    }
+
+    @objc func onDeauthorization() {
+        self.cleanup()
+        showErrorMessage(text: "An error has occurred".localized(), secondaryText: "Please authorize app from Settings first".localized(), animated: false)
     }
 }
 

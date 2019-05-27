@@ -23,7 +23,11 @@ class Updates: LoadingTableView {
 
     // Observation token to observe changes in Settings tab, used to update badge
     var observation: DefaultsObservation?
-    deinit { observation = nil }
+
+    deinit {
+        observation = nil
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +35,6 @@ class Updates: LoadingTableView {
         self.title = "Updates".localized()
 
         setUp()
-
-        tableView.register(UpdateCell.self, forCellReuseIdentifier: "cell")
-        tableView.estimatedRowHeight = (135 ~~ 115)
 
         // Refresh action
         tableView.spr_setIndicatorHeader { [weak self] in
@@ -105,7 +106,7 @@ class Updates: LoadingTableView {
         }
     }
 
-    private func cleanup() {
+    internal func cleanup() {
         isLoading = false
         tableView.spr_endRefreshing()
         self.navigationItem.rightBarButtonItem?.isEnabled = false

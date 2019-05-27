@@ -199,6 +199,7 @@ class TableViewHeader: UITableViewHeaderFooterView {
 extension Notification.Name {
     static let OpenSafari = Notification.Name("DidClickButtonSoPleaseOpenSafari")
     static let RefreshSettings = Notification.Name("DidUpdateLinkStateSoPleaseRefreshSettings")
+    static let Deauthorized = Notification.Name("AppWasDeauthorized")
     static let UpdateQueuedSegmentTitle = Notification.Name("DidUpdateNumberOfQueuedApps")
 }
 

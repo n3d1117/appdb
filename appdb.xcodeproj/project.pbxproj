@@ -858,10 +858,10 @@
 		818A559A20583CE400162E51 /* Updates */ = {
 			isa = PBXGroup;
 			children = (
-				814F4FB72196F43B005A8111 /* Cells */,
-				814F4FBC21974A5B005A8111 /* Ignored.swift */,
-				8142FCD22198E1FE003CD6DE /* Updates+Extension.swift */,
 				818A55A020583D4F00162E51 /* Updates.swift */,
+				8142FCD22198E1FE003CD6DE /* Updates+Extension.swift */,
+				814F4FBC21974A5B005A8111 /* Ignored.swift */,
+				814F4FB72196F43B005A8111 /* Cells */,
 			);
 			path = Updates;
 			sourceTree = "<group>";
