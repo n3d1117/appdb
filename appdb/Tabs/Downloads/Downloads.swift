@@ -190,7 +190,7 @@ extension Downloads {
 
 extension Downloads {
     @objc private func addTapped() {
-        let alert = UIAlertController(title: "Enter URL".localized(), message: "Enter below the URL of the .ipa file you want to download".localized(), preferredStyle: .alert)
+        let alert = UIAlertController(title: "Enter URL".localized(), message: "Enter below the URL of the .ipa file you want to download".localized(), preferredStyle: .alert, adaptive: true)
         alert.addTextField(configurationHandler: { textField in
             textField.addTarget(self, action: #selector(self.urlTextChanged), for: .editingChanged)
             textField.placeholder = "https://example.com/file.ipa".localized()

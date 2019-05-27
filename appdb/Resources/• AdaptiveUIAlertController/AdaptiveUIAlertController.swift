@@ -39,10 +39,25 @@ extension UIAlertController {
         return view.recursiveSubviews.compactMap({$0 as? UIVisualEffectView}).first
     }
 
-    public convenience init(title: String?, message: String?, preferredStyle: UIAlertController.Style, blurStyle: UIBlurEffect.Style) {
+    public convenience init(title: String?, message: String?, preferredStyle: UIAlertController.Style, adaptive: Bool) {
         self.init(title: title, message: message, preferredStyle: preferredStyle)
-        if !Global.isIpad {
+
+        guard adaptive, !Global.isIpad else { return }
+
+        let blurStyle: UIBlurEffect.Style = Themes.isNight ? .dark : .light
+
+        if preferredStyle == .actionSheet {
             self.blurStyle = blurStyle
+        } else {
+            if #available(iOS 11.0, *) {
+                if let title = title, blurStyle == .dark {
+                    setValue(NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 19 ~~ 18)]), forKey: "attributedTitle")
+                }
+                if let message = message, blurStyle == .dark {
+                    setValue(NSAttributedString(string: message, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14 ~~ 13)]), forKey: "attributedMessage")
+                }
+                self.blurStyle = blurStyle
+            }
         }
     }
 

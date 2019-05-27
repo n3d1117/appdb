@@ -319,7 +319,7 @@ class Details: LoadingTableView {
     }
 
     func showReportAlert(_ id: String) {
-        let alert = UIAlertController(title: "Report".localized(), message: "Reporting a broken link for '%@'.".localizedFormat(content.itemName), preferredStyle: .alert)
+        let alert = UIAlertController(title: "Report".localized(), message: "Reporting a broken link for '%@'.".localizedFormat(content.itemName), preferredStyle: .alert, adaptive: true)
 
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "Enter a reason for your report".localized()

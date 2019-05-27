@@ -1293,10 +1293,10 @@
 		81FCAFCB226E1007004FAFD6 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				8155094B22748F5300509B20 /* Cells */,
-				815A438E2275E11000868949 /* IPAFileManager.swift */,
-				81876E2E227B192B00E27CB8 /* Library+Extension.swift */,
 				8148D85D226DE9A5006AD9E0 /* Library.swift */,
+				81876E2E227B192B00E27CB8 /* Library+Extension.swift */,
+				815A438E2275E11000868949 /* IPAFileManager.swift */,
+				8155094B22748F5300509B20 /* Cells */,
 			);
 			path = Library;
 			sourceTree = "<group>";

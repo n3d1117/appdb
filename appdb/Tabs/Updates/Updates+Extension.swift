@@ -66,7 +66,7 @@ extension Updates {
     // Show help alert view controller when user clicks on ? button
     @objc func showHelp() {
         let message = "Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'.".localized()
-        let alertController = UIAlertController(title: "Non Updateable Apps".localized(), message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Non Updateable Apps".localized(), message: message, preferredStyle: .alert, adaptive: true)
         let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
         alertController.addAction(okAction)
         self.present(alertController, animated: true)

@@ -104,7 +104,7 @@ class Downloading: LoadingCollectionView {
     // MARK: - Present options to pause, resume, stop or remove when finished
 
     private func presentOptions(_ app: DownloadingApp, _ indexPath: IndexPath) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, adaptive: true)
 
         if let util = app.util {
             if !util.isPaused {

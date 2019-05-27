@@ -185,7 +185,7 @@ class Settings: TableViewController {
 
     // Show contact developer options
     func contactDeveloper(indexPath: IndexPath) {
-        let alertController = UIAlertController(title: nil, message: "Choose an option".localized(), preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+        let alertController = UIAlertController(title: nil, message: "Choose an option".localized(), preferredStyle: .actionSheet, adaptive: true)
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         alertController.addAction(UIAlertAction(title: "Email".localized(), style: .default) { _ in
             self.selectEmail(indexPath: indexPath)
@@ -421,7 +421,7 @@ extension Settings: MFMailComposeViewControllerDelegate {
         } else {
             // Show mail options
 
-            let alertController = UIAlertController(title: nil, message: "Select a service".localized(), preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+            let alertController = UIAlertController(title: nil, message: "Select a service".localized(), preferredStyle: .actionSheet, adaptive: true)
             alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
 
             for service in services {

@@ -133,7 +133,7 @@ extension Library {
     // MARK: - Rename local ipa
 
     internal func handleRename(for file: LocalIPAFile, at indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Rename File".localized(), message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Rename File".localized(), message: nil, preferredStyle: .alert, adaptive: true)
         alert.addTextField(configurationHandler: { textField in
             textField.addTarget(self, action: #selector(self.renameTextChanged), for: .editingChanged)
             textField.placeholder = String(file.filename.dropLast(4))
@@ -293,7 +293,7 @@ extension Library {
     @objc internal func deleteAllFilesConfirmationAlert(sender: UIButton) {
         let onlyOne: Bool = localIpas.count == 1
         let title = onlyOne ? "Delete 1 file?".localized() : "Are you sure you want to delete %@ files?".localizedFormat(String(localIpas.count))
-        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, adaptive: true)
         alertController.addAction(UIAlertAction(title: onlyOne ? "Delete".localized() : "Delete all".localized(), style: .destructive) { _ in
             self.deleteAll()
         })
@@ -399,7 +399,7 @@ extension Library: UICollectionViewDelegateFlowLayout {
 
     @objc private func showHelpLocal() {
         let message = "Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@".localizedFormat(IPAFileManager.shared.documentsDirectoryURL().path)
-        let alertController = UIAlertController(title: "Local Files".localized(), message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Local Files".localized(), message: message, preferredStyle: .alert, adaptive: true)
         let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
         alertController.addAction(okAction)
         self.present(alertController, animated: true)
@@ -407,7 +407,7 @@ extension Library: UICollectionViewDelegateFlowLayout {
 
     @objc private func showHelpMyAppStore() {
         let message = "appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'".localized()
-        let alertController = UIAlertController(title: "MyAppStore", message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "MyAppStore", message: message, preferredStyle: .alert, adaptive: true)
         let okAction = UIAlertAction(title: "OK".localized(), style: .cancel)
         alertController.addAction(okAction)
         self.present(alertController, animated: true)

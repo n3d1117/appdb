@@ -152,7 +152,7 @@ class Library: LoadingCollectionView {
         let title = app.name
         let message = "\(app.bundleId)\(Global.bulletPoint)\(app.size)\(Global.bulletPoint)\(app.version)" +
                       "\n" + "Uploaded on %@".localizedFormat(app.uploadedAt.unixToDetailedString)
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet, adaptive: true)
 
         alertController.addAction(UIAlertAction(title: "Install".localized(), style: .default) { _ in
             if let cell = self.collectionView.cellForItem(at: indexPath) as? MyAppStoreCell {
@@ -180,7 +180,7 @@ class Library: LoadingCollectionView {
     }
 
     private func presentOptionsForLocalIpa(_ ipa: LocalIPAFile, _ indexPath: IndexPath) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: Themes.isNight ? .dark : .light)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, adaptive: true)
 
         if let upload = uploadRequestsAtIndex[indexPath] {
             if !upload.isPaused {
