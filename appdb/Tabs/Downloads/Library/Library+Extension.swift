@@ -58,44 +58,50 @@ extension Library {
         }
 
         guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
-        cell.updateText("Waiting...".localized())
 
-        let randomString = Global.randomString(length: 30)
-        guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
-        let url = IPAFileManager.shared.url(for: ipa)
+        DispatchQueue.main.async {
+            cell.updateText("Waiting...".localized())
+        }
 
-        uploadBackgroundTask = BackgroundTaskUtil()
-        uploadBackgroundTask?.start()
+        delay(0.3) {
 
-        API.addToMyAppStore(jobId: jobId, fileURL: url, request: { [weak self] req in
-            guard let self = self else { return }
+            let randomString = Global.randomString(length: 30)
+            guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
+            let url = IPAFileManager.shared.url(for: ipa)
 
-            self.uploadRequestsAtIndex[indexPath] = LocalIPAUploadUtil(req)
-            self.collectionView.reloadItems(at: [indexPath])
-        }, completion: { [weak self] error in
-            guard let self = self else { return }
+            self.uploadBackgroundTask = BackgroundTaskUtil()
+            self.uploadBackgroundTask?.start()
 
-            self.uploadRequestsAtIndex.removeValue(forKey: indexPath)
-            self.collectionView.reloadItems(at: [indexPath])
+            API.addToMyAppStore(jobId: jobId, fileURL: url, request: { [weak self] req in
+                guard let self = self else { return }
 
-            if let error = error {
-                Messages.shared.showError(message: error.prettified)
-                self.uploadBackgroundTask = nil
-            } else {
-                delay(0.8) {
-                    API.analyzeJob(jobId: jobId, completion: { [weak self] error in
-                        guard let self = self else { return }
+                self.uploadRequestsAtIndex[indexPath] = LocalIPAUploadUtil(req)
+                self.collectionView.reloadItems(at: [indexPath])
+            }, completion: { [weak self] error in
+                guard let self = self else { return }
 
-                        self.uploadBackgroundTask = nil
-                        if let error = error {
-                            Messages.shared.showError(message: error.prettified)
-                        } else {
-                            Messages.shared.showSuccess(message: "File uploaded successfully".localized())
-                        }
-                    })
+                self.uploadRequestsAtIndex.removeValue(forKey: indexPath)
+                self.collectionView.reloadItems(at: [indexPath])
+
+                if let error = error {
+                    Messages.shared.showError(message: error.prettified)
+                    self.uploadBackgroundTask = nil
+                } else {
+                    delay(0.8) {
+                        API.analyzeJob(jobId: jobId, completion: { [weak self] error in
+                            guard let self = self else { return }
+
+                            self.uploadBackgroundTask = nil
+                            if let error = error {
+                                Messages.shared.showError(message: error.prettified)
+                            } else {
+                                Messages.shared.showSuccess(message: "File uploaded successfully".localized())
+                            }
+                        })
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     // MARK: - Custom install
@@ -106,28 +112,44 @@ extension Library {
             return
         }
 
+        let queue = DispatchQueue(label: "it.ned.custom_install_\(Global.randomString(length: 5))", attributes: .concurrent)
+
         guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
-        cell.updateText("Waiting...".localized())
 
-        IPAFileManager.shared.startServer()
-
-        guard let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa) else {
-            cell.updateText(ipa.size)
-            return
+        DispatchQueue.main.async {
+            cell.updateText("Waiting...".localized())
         }
 
-        let link = IPAFileManager.shared.getIpaLocalUrl(from: ipa)
+        delay(0.3) {
 
-        API.requestInstallJB(plist: plist, icon: " ", link: link, completion: { error in
-            cell.updateText(ipa.size)
-            if let error = error {
-                Messages.shared.showError(message: error.prettified)
-                IPAFileManager.shared.stopServer()
-            } else {
-                // Allowing up to 3 mins for app to install...
-                delay(180) { IPAFileManager.shared.stopServer() }
+            queue.async {
+
+                IPAFileManager.shared.startServer()
+
+                guard let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa) else {
+                    DispatchQueue.main.async {
+                        cell.updateText(ipa.size)
+                        IPAFileManager.shared.stopServer()
+                    }
+                    return
+                }
+
+                let link = IPAFileManager.shared.getIpaLocalUrl(from: ipa)
+
+                API.requestInstallJB(plist: plist, icon: " ", link: link, completion: { error in
+                    DispatchQueue.main.async {
+                        cell.updateText(ipa.size)
+                        if let error = error {
+                            Messages.shared.showError(message: error.prettified)
+                            IPAFileManager.shared.stopServer()
+                        } else {
+                            // Allowing up to 3 mins for app to install...
+                            delay(180) { IPAFileManager.shared.stopServer() }
+                        }
+                    }
+                })
             }
-        })
+        }
     }
 
     // MARK: - Rename local ipa

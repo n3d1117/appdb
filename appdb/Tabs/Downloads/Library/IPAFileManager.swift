@@ -122,15 +122,22 @@ struct IPAFileManager {
     // MARK: - Get a base 64 encoded string from Info.plist file
 
     func base64ToJSONInfoPlist(from file: LocalIPAFile) -> String? {
+
+        let randomName = Global.randomString(length: 5)
+        let tmp = documentsDirectoryURL().appendingPathComponent(randomName, isDirectory: true)
+
         func exit(_ errorMessage: String) -> String? {
             Messages.shared.showError(message: errorMessage.prettified)
-            return nil
+            do {
+                try FileManager.default.removeItem(atPath: tmp.path)
+                return nil
+            } catch {
+                return nil
+            }
         }
         do {
             let ipaUrl = documentsDirectoryURL().appendingPathComponent(file.filename)
             guard FileManager.default.fileExists(atPath: ipaUrl.path) else { return exit("IPA Not found") }
-            let randomName = Global.randomString(length: 5)
-            let tmp = documentsDirectoryURL().appendingPathComponent(randomName, isDirectory: true)
             if FileManager.default.fileExists(atPath: tmp.path) { try FileManager.default.removeItem(atPath: tmp.path) }
             try FileManager.default.createDirectory(atPath: tmp.path, withIntermediateDirectories: true)
             try FileManager.default.unzipItem(at: ipaUrl, to: tmp)
@@ -147,7 +154,12 @@ struct IPAFileManager {
             return jsonString.toBase64()
         } catch let error {
             Messages.shared.showError(message: error.localizedDescription)
-            return nil
+            do {
+                try FileManager.default.removeItem(atPath: tmp.path)
+                return nil
+            } catch {
+                return nil
+            }
         }
     }
 
