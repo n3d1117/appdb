@@ -22,7 +22,8 @@ class LanguageChooser: UITableViewController {
         return bgColorView
     }()
 
-    let availableLanguages = Localize.availableLanguages().filter({ !Localize.displayNameForLanguage($0).isEmpty })
+    let availableLanguages = Localize.availableLanguages().filter({ !Localize.displayNameForLanguage($0).isEmpty }).sorted()
+
     var currentLanguage: String {
         return Localize.currentLanguage()
     }
@@ -82,7 +83,7 @@ class LanguageChooser: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let language = availableLanguages[indexPath.row]
-        cell.textLabel?.text = Localize.displayNameForLanguage(language)
+        cell.textLabel?.text = emojiFlag(for: language) + "  " + Localize.displayNameForLanguage(language)
         cell.textLabel?.theme_textColor = Color.title
         cell.textLabel?.makeDynamicFont()
         cell.accessoryType = language == currentLanguage ? .checkmark : .none
@@ -104,5 +105,29 @@ class LanguageChooser: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Available Languages".localized()
+    }
+}
+
+extension LanguageChooser {
+
+    // Returns emoji flag for country given the language
+    // If a language is spoken in more than one country (e.g "en"), the country code needs to be added manually (GB)
+    func emojiFlag(for language: String) -> String {
+        var country = ""
+
+        if Locale.availableIdentifiers.contains("\(language)_\(language.uppercased())") {
+            country = language
+        } else {
+            switch language {
+            case "en": country = "gb"
+            default: fatalError("New language detected: \(language), does not have a country code. Please add manually!")
+            }
+        }
+
+        var flag = ""
+        for scalar in country.uppercased().unicodeScalars {
+            flag.unicodeScalars.append(UnicodeScalar(127397 + scalar.value)!)
+        }
+        return String(flag)
     }
 }
