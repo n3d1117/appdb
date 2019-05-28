@@ -37,7 +37,7 @@ struct UpdateableApp: Equatable {
 }
 
 extension UpdateableApp: Mappable {
-    
+
     mutating func mapping(map: Map) {
         versionOld <- map["version_old"]
         versionNew <- map["version_new"]

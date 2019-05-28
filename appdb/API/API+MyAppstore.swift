@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    
+
     static func getIpas(success:@escaping (_ items: [MyAppStoreApp]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.getIpas.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: DataResponse<[MyAppStoreApp]>) in

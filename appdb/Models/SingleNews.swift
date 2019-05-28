@@ -9,7 +9,7 @@
 import ObjectMapper
 
 struct SingleNews: Mappable {
-    
+
     init?(map: Map) { }
 
     var id: String = ""

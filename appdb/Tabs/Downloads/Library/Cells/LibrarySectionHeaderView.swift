@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class LibrarySectionHeaderView: UICollectionReusableView {
-    
+
     lazy var label: UILabel = {
         let label = UILabel()
         label.theme_textColor = Color.copyrightText

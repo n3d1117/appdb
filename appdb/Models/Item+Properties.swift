@@ -12,7 +12,7 @@ import UIKit
 // Content Properties
 //
 extension Item {
-    
+
     var itemId: String {
         if let app = self as? App { return app.id }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.id }

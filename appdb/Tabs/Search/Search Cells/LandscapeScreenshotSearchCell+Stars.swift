@@ -12,7 +12,7 @@ import AlamofireImage
 import Cosmos
 
 class LandscapeScreenshotSearchCellWithStars: LandscapeScreenshotSearchCell {
-    
+
     var stars: CosmosView!
 
     required init?(coder aDecoder: NSCoder) {

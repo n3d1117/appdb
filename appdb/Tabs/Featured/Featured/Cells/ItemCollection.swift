@@ -19,7 +19,7 @@ struct FeaturedItemCollectionResponse {
 }
 
 extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
 
@@ -219,7 +219,7 @@ class ItemCollection: FeaturedCell {
         }
     }
 
-    func getItems<T>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") where T: Mappable, T: Item {
+    func getItems<T>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") where T: Item {
         API.search(type: type, order: order, price: price, genre: genre, success: { [weak self] array in
             guard let self = self else { return }
 

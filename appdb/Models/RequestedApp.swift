@@ -7,7 +7,7 @@
 //
 
 struct RequestedApp: Matchable {
-    
+
     var linkId: String = ""
     var type: ItemType = .ios
     var name: String = ""

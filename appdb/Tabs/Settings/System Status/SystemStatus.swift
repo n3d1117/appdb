@@ -9,7 +9,7 @@
 import UIKit
 
 class SystemStatus: LoadingTableView {
-    
+
     var checkedAt: String?
 
     var services: [ServiceStatus] = [] {

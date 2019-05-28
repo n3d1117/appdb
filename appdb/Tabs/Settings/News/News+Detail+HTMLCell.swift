@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class NewsDetailHTMLCell: UITableViewCell {
-    
+
     var htmlText: AttributedLabel!
 
     required init?(coder aDecoder: NSCoder) {

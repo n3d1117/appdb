@@ -12,7 +12,7 @@ import SafariServices
 import SwiftTheme
 
 class EnterLinkCodeBulletinPage: BLTNPageItem {
-    
+
     @objc public var textField: UITextField!
     private var linkButton: UIButton!
 

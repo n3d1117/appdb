@@ -11,7 +11,7 @@ import BLTNBoard
 import SwiftTheme
 
 class SelectorBulletinPage: BLTNPageItem {
-    
+
     private var firstButton: UIButton!
     private var secondButton: UIButton!
 

@@ -16,7 +16,7 @@ import SwiftyJSON
 // Also provides two callback (onAdded and onRemoved) that a View Controller can subscribe to
 
 class ObserveDownloadingApps {
-    
+
     static var shared = ObserveDownloadingApps()
     private init() { }
 

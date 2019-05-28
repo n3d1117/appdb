@@ -11,7 +11,7 @@ import Cartography
 import AlamofireImage
 
 class PortraitScreenshotSearchCell: SearchCell {
-    
+
     override var height: CGFloat { return round(iconSize + portraitSize + margin * 2 + spaceFromIcon) }
 
     var screenshot: UIImageView!

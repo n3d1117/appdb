@@ -20,7 +20,7 @@ func debugLog(_ arg: Any) {
 }
 
 enum Global {
-    
+
     static let isIpad = UIDevice.current.userInterfaceIdiom == .pad
 
     static var hasNotch: Bool {

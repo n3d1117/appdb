@@ -9,7 +9,7 @@
 import UIKit
 
 class QueuedApps: LoadingCollectionView {
-    
+
     private var requestedApps = [RequestedApp]()
 
     convenience init() {

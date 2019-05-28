@@ -15,7 +15,7 @@ protocol DetailsSellerRedirectionDelegate: class {
 }
 
 class DetailsHeader: DetailsCell {
-    
+
     var name: UILabel!
     var icon: UIImageView!
     var seller: UIButton!

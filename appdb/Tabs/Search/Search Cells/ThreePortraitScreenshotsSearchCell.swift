@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class ThreePortraitScreenshotsSearchCell: SearchCell {
-    
+
     override var height: CGFloat { return round(iconSize + compactPortraitSize + margin * 2 + spaceFromIcon) }
 
     var screenshotOne: UIImageView!

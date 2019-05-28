@@ -9,7 +9,7 @@
 import UIKit
 
 extension Updates {
-    
+
     var badgeCount: Int? {
         let count = updateableApps.count + nonUpdateableApps.count
         return count > 0 ? count : nil

@@ -14,7 +14,7 @@ protocol DynamicContentRedirection: class {
 }
 
 class DetailsTweakedNotice: DetailsCell {
-    
+
     var trackid: String!
     var section: String!
 

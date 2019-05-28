@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    
+
     static func linkDevice(code: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.link.rawValue, "type": "control", "link_code": code,
                                                  "lang": languageCode], headers: headers)

@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class CategoryCell: UITableViewCell {
-    
+
     var name: UILabel!
     var icon: UIImageView!
 

@@ -14,7 +14,7 @@ protocol ChangedLanguage: class {
 }
 
 class LanguageChooser: UITableViewController {
-    
+
     weak var changedLanguageDelegate: ChangedLanguage?
 
     private var bgColorView: UIView = {

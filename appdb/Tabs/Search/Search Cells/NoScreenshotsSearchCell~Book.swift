@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class NoScreenshotsSearchCellBook: SearchCell {
-    
+
     override var identifier: String { return "noscreenshotscellbook" }
     override var height: CGFloat { return coverHeight + margin * 2 }
 

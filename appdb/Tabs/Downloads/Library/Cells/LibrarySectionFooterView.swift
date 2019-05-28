@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class LibrarySectionFooterView: UICollectionReusableView {
-    
+
     lazy var primaryLabel: UILabel = {
         let label = UILabel()
         label.theme_textColor = Color.lightErrorMessage

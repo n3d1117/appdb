@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    
+
     static func getDeviceStatus(success:@escaping (_ items: [DeviceStatusItem]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.getStatus.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: DataResponse<[DeviceStatusItem]>) in

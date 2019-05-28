@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 
 extension Search {
-    
+
     var topInset: CGFloat {
         return Global.isIpad ? 25 : 15
     }

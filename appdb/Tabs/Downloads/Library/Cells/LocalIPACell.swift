@@ -11,7 +11,7 @@ import Cartography
 import Alamofire
 
 class LocalIPACell: UICollectionViewCell {
-    
+
     private var filename: UILabel!
     private var size: UILabel!
     private var moreImageButton: UIImageView!

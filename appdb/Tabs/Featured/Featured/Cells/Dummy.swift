@@ -9,7 +9,7 @@
 import UIKit
 
 class Dummy: FeaturedCell {
-    
+
     override var height: CGFloat {
         return Global.Size.spacing.value
     }

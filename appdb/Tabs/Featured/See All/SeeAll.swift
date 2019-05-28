@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 
 class SeeAll: LoadingTableView {
-    
+
     var type: ItemType = .ios
     var categoryId: String = ""
     var devId: String = ""

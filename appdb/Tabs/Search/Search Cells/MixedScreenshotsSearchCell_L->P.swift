@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class MixedScreenshotsSearchCellOne: SearchCell {
-    
+
     override var height: CGFloat { return round(iconSize + mixedPortraitSize + margin * 2 + spaceFromIcon) }
 
     var screenshotOne: UIImageView!

@@ -10,7 +10,7 @@ import ObjectMapper
 import SwiftyJSON
 
 struct DeviceStatusItem: Mappable, Matchable {
-    
+
     init?(map: Map) { }
 
     var uuid: String = ""

@@ -12,7 +12,7 @@ import AlamofireImage
 import Cosmos
 
 class MixedScreenshotsSearchCellOneWithStars: MixedScreenshotsSearchCellOne {
-    
+
     var stars: CosmosView!
 
     required init?(coder aDecoder: NSCoder) {

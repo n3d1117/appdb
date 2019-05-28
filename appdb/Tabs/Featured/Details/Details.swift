@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 
 class Details: LoadingTableView {
-    
+
     var content: Item!
     var descriptionCollapsed: Bool = true
     var changelogCollapsed: Bool = true

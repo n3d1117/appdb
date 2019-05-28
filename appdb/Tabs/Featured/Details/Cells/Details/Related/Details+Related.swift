@@ -15,7 +15,7 @@ protocol RelatedRedirectionDelegate: class {
 }
 
 extension DetailsRelated: UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = relatedContent[indexPath.row]
         switch type {

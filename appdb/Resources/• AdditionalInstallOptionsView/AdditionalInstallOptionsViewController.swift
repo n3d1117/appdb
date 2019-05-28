@@ -17,7 +17,7 @@ protocol AdditionalInstallOptionsHeightDelegate: class {
 // A custom UINavigationController suited to wrap a AdditionalInstallOptionsViewController with variable height
 
 class AdditionalInstallOptionsNavController: UINavigationController, AdditionalInstallOptionsHeightDelegate {
-    
+
     var group = ConstraintGroup()
 
     override init(rootViewController: UIViewController) {

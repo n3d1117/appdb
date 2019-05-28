@@ -9,7 +9,7 @@
 import ObjectMapper
 
 struct ServiceStatus: Mappable {
-    
+
     init?(map: Map) { }
 
     var name: String = ""

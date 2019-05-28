@@ -11,7 +11,7 @@ import Cartography
 import AlamofireImage
 
 class SearchCell: UICollectionViewCell {
-    
+
     func setConstraints() {}
 
     var tweaked: Bool = false {

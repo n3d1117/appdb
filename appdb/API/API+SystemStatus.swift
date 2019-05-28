@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    
+
     static func getSystemStatus(success:@escaping (_ items: [ServiceStatus]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
         Alamofire.request(statusEndpoint, headers: headers)
             .responseArray(keyPath: "data") { (response: DataResponse<[ServiceStatus]>) in

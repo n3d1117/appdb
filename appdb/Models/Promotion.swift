@@ -9,7 +9,7 @@
 import ObjectMapper
 
 struct Promotion: Mappable {
-    
+
     init?(map: Map) { }
 
     var id: String = ""

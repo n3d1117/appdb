@@ -10,7 +10,7 @@ import UIKit
 import BLTNBoard
 
 class EnterEmailBulletinPage: BLTNPageItem {
-    
+
     @objc public var textField: UITextField!
 
     @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)?

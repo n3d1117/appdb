@@ -10,7 +10,7 @@ import UIKit
 import DeepDiff
 
 class Library: LoadingCollectionView {
-    
+
     enum Section: Int {
         case local = 0
         case myappstore = 1

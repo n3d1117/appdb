@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class DetailsDownload: DetailsCell {
-    
+
     static var height: CGFloat = 75 ~~ 70
 
     var host: UILabel!

@@ -20,7 +20,7 @@ protocol BadgeManager {
 }
 
 extension UIViewController: BadgeManager {
-    
+
     func currentIntValue(for tab: BadgeableTabs) -> Int? {
         guard let item = (tabBarController ?? self as? UITabBarController)?.tabBar.items?[tab.rawValue] else { return nil }
         return Int(item.badgeValue ?? "0")

@@ -15,7 +15,7 @@ protocol ElasticLabelDelegate: class {
 }
 
 class ElasticLabel: UILabel {
-    
+
     weak var delegated: ElasticLabelDelegate?
     var maxNumberOfCollapsedLines: Int = 5
     var collapsed: Bool = true { didSet { numberOfLines = collapsed ? maxNumberOfCollapsedLines : 0 } }

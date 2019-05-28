@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class LandscapeScreenshotSearchCell: SearchCell {
-    
+
     override var height: CGFloat { return round(iconSize + landscapeSize + margin * 2 + spaceFromIcon) }
 
     var screenshot: UIImageView!

@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class Downloads: UIViewController {
-    
+
     var currentViewController: UIViewController?
 
     var headerView: ILTranslucentView!

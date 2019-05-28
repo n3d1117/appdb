@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class NoScreenshotsSearchCell: SearchCell {
-    
+
     override var identifier: String { return "noscreenshotscell" }
     override var height: CGFloat { return iconSize + margin * 2 }
 

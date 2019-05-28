@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class MyAppStoreCell: UICollectionViewCell {
-    
+
     var name: UILabel!
     var bundleId: UILabel!
     var installButton: RoundedButton!

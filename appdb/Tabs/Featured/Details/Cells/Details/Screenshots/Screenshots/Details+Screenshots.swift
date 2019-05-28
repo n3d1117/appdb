@@ -14,7 +14,7 @@ protocol ScreenshotRedirectionDelegate: class {
 }
 
 extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshot", for: indexPath) as? DetailsScreenshotCell else { return UICollectionViewCell() }
         if let url = URL(string: screenshots[indexPath.row].image) {

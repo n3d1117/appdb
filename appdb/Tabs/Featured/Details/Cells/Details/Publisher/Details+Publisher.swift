@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class DetailsPublisher: DetailsCell {
-    
+
     override var height: CGFloat { return UITableView.automaticDimension }
     override var identifier: String { return "publisher" }
 

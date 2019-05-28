@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class LoadingCollectionView: UICollectionViewController {
-    
+
     enum State {
         case done(animated: Bool)
         case loading

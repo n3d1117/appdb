@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class FeaturedBook: UICollectionViewCell {
-    
+
     var title: UILabel!
     var author: UILabel!
     var cover: UIImageView!

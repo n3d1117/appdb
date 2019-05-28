@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 
 class TrendingCollectionViewCell: UICollectionViewCell {
-    
+
     lazy var title: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: (22 ~~ 20), weight: .bold)
