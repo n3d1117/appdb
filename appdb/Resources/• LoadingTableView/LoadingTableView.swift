@@ -140,7 +140,7 @@ class LoadingTableView: UITableViewController {
         case .loading:
             constrain(activityIndicator, replace: group1) { indicator in
                 indicator.centerX ~== indicator.superview!.centerX
-                indicator.centerY ~== indicator.superview!.centerY ~- (offset - 10)
+                indicator.centerY ~== indicator.superview!.centerY ~- offset
             }
         case .error:
             if showsErrorButton {
@@ -152,7 +152,7 @@ class LoadingTableView: UITableViewController {
                     secondaryMessage.left ~== message.left
                     secondaryMessage.right ~== message.right
                     secondaryMessage.top ~== message.bottom ~+ 10
-                    secondaryMessage.centerY ~== message.superview!.centerY ~- (offset)
+                    secondaryMessage.centerY ~== message.superview!.centerY ~- offset
 
                     message.bottom ~== secondaryMessage.top ~- 10
 
