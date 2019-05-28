@@ -9,6 +9,7 @@
 import UIKit
 
 class Downloading: LoadingCollectionView {
+    
     private var downloadingApps = [DownloadingApp]()
 
     convenience init() {

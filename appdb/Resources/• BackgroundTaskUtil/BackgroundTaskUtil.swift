@@ -20,6 +20,7 @@ import UIKit
 */
 
 class BackgroundTaskUtil {
+    
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
     var afterStopClosure: (() -> Void)?

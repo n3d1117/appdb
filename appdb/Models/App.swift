@@ -10,6 +10,7 @@ import SwiftyJSON
 import ObjectMapper
 
 class App: Item {
+    
     required init?(map: Map) { }
 
     override var id: String {

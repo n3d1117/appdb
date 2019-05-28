@@ -10,6 +10,7 @@ import SwiftyJSON
 import ObjectMapper
 
 class MyAppStoreApp: Item {
+    
     required init?(map: Map) { }
 
     override class func type() -> ItemType {

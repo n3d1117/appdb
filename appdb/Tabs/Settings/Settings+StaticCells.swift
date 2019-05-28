@@ -15,6 +15,7 @@ import Cartography
 // and has has dynamic text font size. Used for Settings cells.
 
 class SimpleStaticCell: UITableViewCell, Cell {
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
 

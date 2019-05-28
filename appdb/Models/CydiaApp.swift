@@ -10,6 +10,7 @@ import SwiftyJSON
 import ObjectMapper
 
 class CydiaApp: Item {
+    
     required init?(map: Map) { }
 
     override var id: String {

@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class BannerImage: UICollectionViewCell {
+    
     var image: UIImageView!
 
     required init?(coder aDecoder: NSCoder) {

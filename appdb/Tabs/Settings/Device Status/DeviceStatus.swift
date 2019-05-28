@@ -9,6 +9,7 @@
 import UIKit
 
 class DeviceStatus: LoadingTableView {
+    
     var didEndRefreshing: Bool = false
     var timer: Timer?
     let refreshEvery: Double = 1.5

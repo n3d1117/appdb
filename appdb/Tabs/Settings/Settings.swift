@@ -13,6 +13,7 @@ import BLTNBoard
 import MessageUI
 
 class Settings: TableViewController {
+    
     lazy var deviceLinkBulletinManager: BLTNItemManager = {
         let rootItem: BLTNItem = DeviceLinkIntroBulletins.makeSelectorPage()
         let manager = BLTNItemManager(rootItem: rootItem)

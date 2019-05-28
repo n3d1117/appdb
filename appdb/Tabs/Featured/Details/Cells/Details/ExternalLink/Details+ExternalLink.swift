@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class DetailsExternalLink: DetailsCell {
+    
     override var height: CGFloat { return 45 }
     override var identifier: String { return "link" }
 

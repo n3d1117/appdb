@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class MyAppStoreCell: UICollectionViewCell {
+    
     var name: UILabel!
     var bundleId: UILabel!
     var installButton: RoundedButton!
@@ -43,7 +44,7 @@ class MyAppStoreCell: UICollectionViewCell {
         // Name
         name = UILabel()
         name.theme_textColor = Color.title
-        name.font = .systemFont(ofSize: 18.5 ~~ 16.5)
+        name.font = .systemFont(ofSize: 18 ~~ 16)
         name.numberOfLines = 1
         name.makeDynamicFont()
 

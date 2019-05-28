@@ -11,6 +11,7 @@ import Cartography
 import Cosmos
 
 class DetailsReview: DetailsCell {
+    
     var title: UILabel!
     var stars: CosmosView!
     var desc: ElasticLabel!

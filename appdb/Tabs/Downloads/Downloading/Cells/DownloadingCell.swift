@@ -26,6 +26,7 @@ struct DownloadingApp: Hashable {
 }
 
 class DownloadingCell: UICollectionViewCell {
+    
     private var iconSize: CGFloat = (50 ~~ 40)
 
     private var filename: UILabel!

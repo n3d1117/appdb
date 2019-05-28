@@ -11,6 +11,7 @@ import Cartography
 
 /* This ugly af */
 class DetailsInformation: DetailsCell {
+    
     var title: UILabel!
 
     var seller: UILabel!

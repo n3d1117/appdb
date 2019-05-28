@@ -11,6 +11,7 @@ import Cartography
 import AlamofireImage
 
 class QueuedDownloadsCell: UICollectionViewCell {
+    
     private var iconSize: CGFloat = (75 ~~ 65)
     private var margin: CGFloat = (15 ~~ 12)
     private var name: UILabel!

@@ -6,6 +6,7 @@ import UIKit
 import SwiftTheme
 
 extension String {
+    
     func truncateToSize(size: CGSize, ellipses: String, trailingText: String, attributes: [NSAttributedString.Key: Any], trailingAttributes: [NSAttributedString.Key: Any]) -> NSAttributedString {
         if !willFit(to: size, attributes: attributes) {
             let indexOfLastCharacterThatFits = indexThatFits(size: size, ellipses: ellipses, trailingText: trailingText, attributes: attributes, min: 0, max: self.count)

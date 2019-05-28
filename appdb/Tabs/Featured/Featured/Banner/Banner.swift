@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as? BannerImage else { return UICollectionViewCell() }
 

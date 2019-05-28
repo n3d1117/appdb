@@ -19,6 +19,7 @@ import Alamofire
  */
 
 class LocalIPAUploadUtil {
+    
     private var request: Alamofire.UploadRequest?
 
     var isPaused: Bool {

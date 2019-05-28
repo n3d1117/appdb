@@ -11,6 +11,7 @@ import Cartography
 import Cosmos
 
 class NoScreenshotsSearchCellBookWithStars: SearchCell {
+    
     override var identifier: String { return "noscreenshotscellbookstars" }
     override var height: CGFloat { return coverHeight + margin * 2 }
     var stars: CosmosView!

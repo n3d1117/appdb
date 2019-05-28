@@ -9,6 +9,7 @@
 import UIKit
 
 class News: LoadingTableView {
+    
     private var numberOfNewsToBeDisplayed: Int = 50
     private var currentPage: Int = 1
     private var allNews: [SingleNews] = []

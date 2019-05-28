@@ -10,6 +10,7 @@ import UIKit
 import BLTNBoard
 
 enum DeviceLinkIntroBulletins {
+    
     static func makeSelectorPage() -> SelectorBulletinPage {
         let page = SelectorBulletinPage(title: "Authorization".localized())
         page.isDismissable = true

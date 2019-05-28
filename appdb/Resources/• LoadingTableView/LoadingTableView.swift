@@ -26,6 +26,7 @@ import Cartography
  */
 
 class LoadingTableView: UITableViewController {
+    
     var animated: Bool = false
     var showsErrorButton: Bool = true
     var showsSpinner: Bool = true

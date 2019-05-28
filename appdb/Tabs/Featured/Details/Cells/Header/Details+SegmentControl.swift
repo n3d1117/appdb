@@ -20,6 +20,7 @@ enum DetailsSelectedSegmentState: String {
 }
 
 class DetailsSegmentControl: TableViewHeader {
+    
     var segment: UISegmentedControl!
     var items: [DetailsSelectedSegmentState] = []
     weak var delegate: SwitchDetailsSegmentDelegate?

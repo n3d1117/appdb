@@ -12,6 +12,7 @@ import AlamofireNetworkActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
+    
     var window: UIWindow?
 
     func applicationWillTerminate(_ application: UIApplication) {

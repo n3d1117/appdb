@@ -19,6 +19,7 @@ struct FeaturedItemCollectionResponse {
 }
 
 extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
 

@@ -10,6 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
+    
     static func getConfiguration(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
         Alamofire.request(endpoint, parameters: ["action": Actions.getConfiguration.rawValue,
                                                  "lang": languageCode], headers: headersWithCookie)

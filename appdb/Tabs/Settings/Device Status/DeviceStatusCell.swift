@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class DeviceStatusCell: UITableViewCell {
+    
     var statusLeft, typeLeft, titleLeft, bundleLeft, purposeLeft, acknowledgedLeft, statusShortLeft, statusTextLeft: UILabel!
     var status, type, title, bundle, purpose, acknowledged, statusShort, statusText: UILabel!
 

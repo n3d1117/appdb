@@ -11,6 +11,7 @@ import Cartography
 import Alamofire
 
 class DetailsScreenshotCell: UICollectionViewCell {
+    
     var image: UIImageView!
     var dim: UIView = DimmableView.get()
 

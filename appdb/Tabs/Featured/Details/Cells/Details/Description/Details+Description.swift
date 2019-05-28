@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class DetailsDescription: DetailsCell {
+    
     var title: UILabel!
     var desc: ElasticLabel!
 

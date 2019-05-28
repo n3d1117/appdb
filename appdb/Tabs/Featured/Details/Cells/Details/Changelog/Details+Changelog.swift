@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class DetailsChangelog: DetailsCell {
+    
     var changelog: String! = ""
 
     var title: UILabel!

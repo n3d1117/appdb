@@ -22,6 +22,7 @@ class DetailsFullScreenshotsNavController: UINavigationController {
 }
 
 extension DetailsFullScreenshots: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fullscreenshot", for: indexPath) as? DetailsFullScreenshotCell else { return UICollectionViewCell() }
         guard let url = URL(string: screenshots[indexPath.row].image) else { return UICollectionViewCell() }

@@ -9,6 +9,7 @@
 import Foundation
 
 class Item: Hashable {
+    
     var id: String = ""
 
     class func type() -> ItemType {

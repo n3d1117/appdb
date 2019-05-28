@@ -11,6 +11,7 @@ import Cartography
 import ObjectMapper
 
 class Search: LoadingCollectionView, UISearchBarDelegate {
+    
     private var currentPage: Int = 1
 
     private var trendingItems: [String] = [] {

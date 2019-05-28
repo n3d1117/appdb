@@ -25,6 +25,7 @@ class IPAWebViewNavController: UINavigationController {
 // A Web View controller that blocks ads and is able to react to download requests for .ipa files
 
 class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
+    
     private var webView: WKWebView!
     private var progressView: UIProgressView!
 

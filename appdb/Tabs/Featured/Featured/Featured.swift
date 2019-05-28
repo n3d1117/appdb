@@ -21,6 +21,7 @@ protocol ContentRedirection: class {
 }
 
 class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
+    
     let cells: [FeaturedCell] = [
         ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true),
         Dummy(),

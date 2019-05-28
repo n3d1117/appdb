@@ -9,6 +9,7 @@
 import SwiftMessages
 
 struct Messages {
+    
     static var shared = Messages()
     private init() { }
 

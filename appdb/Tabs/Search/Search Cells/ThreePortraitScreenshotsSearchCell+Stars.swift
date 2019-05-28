@@ -12,6 +12,7 @@ import AlamofireImage
 import Cosmos
 
 class ThreePortraitScreenshotsSearchCellWithStars: ThreePortraitScreenshotsSearchCell {
+    
     var stars: CosmosView!
 
     required init?(coder aDecoder: NSCoder) {

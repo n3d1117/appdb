@@ -10,6 +10,7 @@ import UIKit
 
 /* TODO - use presentation controller instead? */
 class DismissableModalNavController: UINavigationController, UIGestureRecognizerDelegate {
+    
     private var recognizer: UITapGestureRecognizer!
     private var keyboardShown: Bool = false
 

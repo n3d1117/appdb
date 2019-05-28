@@ -9,6 +9,7 @@
 import UIKit
 
 class Updates: LoadingTableView {
+    
     var allApps: [UpdateableApp] = []
     var updateableApps: [UpdateableApp] = []
     var nonUpdateableApps: [UpdateableApp] = []

@@ -17,6 +17,7 @@ struct LocalIPAFile: Hashable {
 }
 
 struct IPAFileManager {
+    
     static var shared = IPAFileManager()
     private init() { }
 

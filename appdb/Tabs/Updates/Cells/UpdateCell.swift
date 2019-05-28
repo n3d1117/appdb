@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class UpdateCell: UITableViewCell {
+
     var name: UILabel!
     var info: UILabel!
     var whatsnew: ElasticLabel!

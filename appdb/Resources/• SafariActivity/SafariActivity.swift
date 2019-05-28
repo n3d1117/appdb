@@ -14,6 +14,7 @@ public extension UIActivity.ActivityType {
 }
 
 public class SafariActivity: UIActivity {
+    
     var urlToOpen: URL?
 
     var foundURL: URL? {

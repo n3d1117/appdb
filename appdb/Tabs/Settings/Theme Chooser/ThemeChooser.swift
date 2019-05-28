@@ -13,6 +13,7 @@ protocol ChangedTheme: class {
 }
 
 class ThemeChooser: UITableViewController {
+    
     weak var changedThemeDelegate: ChangedTheme?
 
     private var lightTheme: Bool {

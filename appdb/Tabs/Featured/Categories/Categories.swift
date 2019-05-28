@@ -16,6 +16,7 @@ private var selected: Int = 0
 private var savedScrollPosition: CGFloat = 0.0
 
 class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     var tableView: UITableView!
     var headerView: ILTranslucentView!
     var control: UISegmentedControl!
@@ -94,15 +95,15 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     func reloadAfterIndexChange(index: Int) {
         switch index {
-        case 0: //iOS
+        case 0: // iOS
             tableView.rowHeight = 50
             categories = Preferences.genres.filter({ $0.category == "ios" }).sorted { $0.name.lowercased() < $1.name.lowercased() }
             putCategoriesAtTheTop(compound: "0-ios")
-        case 1: //Cydia
+        case 1: // Cydia
             tableView.rowHeight = 50
             categories = Preferences.genres.filter({ $0.category == "cydia" }).sorted { $0.name.lowercased() < $1.name.lowercased() }
             putCategoriesAtTheTop(compound: "0-cydia")
-        case 2: //Books
+        case 2: // Books
             tableView.rowHeight = 60
             categories = Preferences.genres.filter({ $0.category == "books" }).sorted { $0.name.lowercased() < $1.name.lowercased() }
             putCategoriesAtTheTop(compound: "0-books")

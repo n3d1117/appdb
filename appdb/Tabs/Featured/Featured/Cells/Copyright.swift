@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class Copyright: FeaturedCell {
+    
     var copyrightNotice: UILabel!
 
     override var height: CGFloat { return UITableView.automaticDimension }

@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class UpdatesSectionHeader: UITableViewHeaderFooterView {
+
     lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.theme_textColor = Color.copyrightText

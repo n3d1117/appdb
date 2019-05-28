@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class FeaturedApp: UICollectionViewCell {
+    
     var title: UILabel!
     var category: UILabel!
     var icon: UIImageView!

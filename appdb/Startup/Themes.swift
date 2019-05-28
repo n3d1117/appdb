@@ -9,6 +9,7 @@
 import SwiftTheme
 
 enum Themes: Int {
+    
     case light = 0
     case dark = 1
 

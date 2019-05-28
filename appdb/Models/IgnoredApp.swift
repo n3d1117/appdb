@@ -9,6 +9,7 @@
 import Foundation
 
 struct IgnoredApp: Equatable, Codable {
+    
     var trackid: String = ""
     var name: String = ""
     var iconUrl: String = ""

@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class IgnoredCell: UITableViewCell {
+
     var name: UILabel!
     var icon: UIImageView!
     var removeButton: UIButton!

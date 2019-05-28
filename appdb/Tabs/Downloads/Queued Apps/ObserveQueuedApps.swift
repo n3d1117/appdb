@@ -15,6 +15,7 @@ import SwiftyJSON
 // Also provides a callback (onUpdate) with updated data that a View Controller can subscribe to
 
 class ObserveQueuedApps {
+    
     static var shared = ObserveQueuedApps()
     private init() { }
 

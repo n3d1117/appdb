@@ -14,6 +14,7 @@ protocol SearcherDelegate: class {
 }
 
 class SuggestionsWhileTyping: UITableViewController, UISearchResultsUpdating {
+    
     weak var searcherDelegate: SearcherDelegate?
 
     var text: String = ""

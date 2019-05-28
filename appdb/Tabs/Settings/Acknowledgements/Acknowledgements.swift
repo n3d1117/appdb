@@ -14,6 +14,7 @@ struct License {
 }
 
 class Acknowledgements: LoadingTableView {
+    
     var licenses: [License] = [] {
         didSet {
             tableView.spr_endRefreshingAll()

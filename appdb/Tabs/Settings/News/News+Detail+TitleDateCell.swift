@@ -10,6 +10,7 @@ import UIKit
 import Cartography
 
 class NewsDetailTitleDateCell: UITableViewCell {
+    
     var title: UILabel!
     var date: UILabel!
 

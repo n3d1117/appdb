@@ -9,6 +9,7 @@
 import UIKit
 
 class PaddingLabel: UILabel {
+    
     let topInset = CGFloat(0.7), bottomInset = CGFloat(0.7), leftInset = CGFloat(6), rightInset = CGFloat(6)
 
     override func drawText(in rect: CGRect) {

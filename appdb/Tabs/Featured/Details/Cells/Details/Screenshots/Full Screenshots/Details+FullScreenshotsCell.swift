@@ -11,6 +11,7 @@ import Cartography
 import Alamofire
 
 class DetailsFullScreenshotCell: UICollectionViewCell {
+    
     var image: UIImageView!
 
     required init?(coder aDecoder: NSCoder) {

@@ -13,6 +13,7 @@ import UIKit
 // Source: https://stackoverflow.com/a/41780021
 
 extension UIAlertController {
+    
     private enum AssociatedKeys {
         static var blurStyleKey = "UIAlertController.blurStyleKey"
     }

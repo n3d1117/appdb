@@ -9,6 +9,7 @@
 import UIKit
 
 class SnappableFlowLayout: UICollectionViewFlowLayout {
+    
     var width: CGFloat!
     var spacing: CGFloat!
     var magic: CGFloat!
