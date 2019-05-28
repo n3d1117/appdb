@@ -146,7 +146,7 @@ class SeeAll: LoadingTableView {
         }
     }
 
-    private func loadItems<T>(type: T.Type) where T: Mappable, T: Item {
+    private func loadItems<T>(type: T.Type) where T: Item {
         API.search(type: type, order: order, price: price, genre: categoryId, dev: devId, page: currentPage, success: { [weak self] array in
             guard let self = self else { return }
 
@@ -257,7 +257,7 @@ extension SeeAll: UISearchResultsUpdating {
         }
     }
 
-    func quickSearch<T>(type: T.Type) where T: Mappable, T: Item {
+    func quickSearch<T>(type: T.Type) where T: Item {
         API.search(type: type, q: query, success: { [weak self] results in
             guard let self = self else { return }
             self.filteredItems = results

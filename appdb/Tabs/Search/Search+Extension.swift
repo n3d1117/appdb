@@ -47,7 +47,7 @@ extension Search {
         })
     }
 
-    func searchAndUpdate<T>(_ type: T.Type, query: String = "", page: Int = 1) where T: Mappable, T: Item {
+    func searchAndUpdate<T>(_ type: T.Type, query: String = "", page: Int = 1) where T: Item {
         var tmp: [SearchCell] = []
         if page == 1 { results = [] }
 

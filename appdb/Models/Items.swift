@@ -7,9 +7,13 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class Item: Hashable {
-    
+class Item: Hashable, Mappable {
+
+    required init?(map: Map) { }
+    func mapping(map: Map) { }
+
     var id: String = ""
 
     class func type() -> ItemType {

@@ -10,8 +10,10 @@ import SwiftyJSON
 import ObjectMapper
 
 class Book: Item {
-    
-    required init?(map: Map) { }
+
+    required init?(map: Map) {
+        super.init(map: map)
+    }
 
     override var id: String {
         get { return super.id }
@@ -58,10 +60,8 @@ class Book: Item {
 
     // Related Apps
     var reviews = [Review]()
-}
 
-extension Book: Mappable {
-    func mapping(map: Map) {
+    override func mapping(map: Map) {
         name <- map["name"]
         id <- map["id"]
         image <- map["image"]

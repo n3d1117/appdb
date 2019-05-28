@@ -10,8 +10,10 @@ import SwiftyJSON
 import ObjectMapper
 
 class MyAppStoreApp: Item {
-    
-    required init?(map: Map) { }
+
+    required init?(map: Map) {
+        super.init(map: map)
+    }
 
     override class func type() -> ItemType {
         return .myAppstore
@@ -27,10 +29,8 @@ class MyAppStoreApp: Item {
     var version: String = ""
     var uploadedAt: String = ""
     var size: String = ""
-}
 
-extension MyAppStoreApp: Mappable {
-    func mapping(map: Map) {
+    override func mapping(map: Map) {
         name <- map["name"]
         id <- map["id"]
         bundleId <- map["bundle_id"]

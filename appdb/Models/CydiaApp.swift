@@ -10,8 +10,10 @@ import SwiftyJSON
 import ObjectMapper
 
 class CydiaApp: Item {
-    
-    required init?(map: Map) { }
+
+    required init?(map: Map) {
+        super.init(map: map)
+    }
 
     override var id: String {
         get { return super.id }
@@ -54,10 +56,8 @@ class CydiaApp: Item {
     // Screenshots
     var screenshotsIphone = [Screenshot]()
     var screenshotsIpad = [Screenshot]()
-}
 
-extension CydiaApp: Mappable {
-    func mapping(map: Map) {
+    override func mapping(map: Map) {
         name <- map["name"]
         id <- map["id"]
         image <- map["image"]
