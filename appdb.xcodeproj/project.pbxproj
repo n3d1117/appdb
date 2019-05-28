@@ -972,6 +972,7 @@
 			children = (
 				816D1F211F91656E00172094 /* iPad */,
 				816D1F201F91655F00172094 /* iPhone */,
+				819E69881F8E8C2700C4608F /* SearchCell.swift */,
 				81190B46216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift */,
 				819E69931F8FCD1000C4608F /* LandscapeScreenshotSearchCell.swift */,
 				81190B48216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift */,
@@ -983,7 +984,6 @@
 				81485A78216777230004184F /* NoScreenshotsSearchCell~Book.swift */,
 				81190B3C21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift */,
 				816010CE1F8FEFF5003BA61E /* PortraitScreenshotSearchCell.swift */,
-				819E69881F8E8C2700C4608F /* SearchCell.swift */,
 				81190B44216A2FF200C81BEB /* ThreePortraitScreenshotsSearchCell+Stars.swift */,
 				814F34001F9350F000FF062B /* ThreePortraitScreenshotsSearchCell.swift */,
 				81190B42216A2FC800C81BEB /* TwoPortraitScreenshotsSearchCell+Stars.swift */,

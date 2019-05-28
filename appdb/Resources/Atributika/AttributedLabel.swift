@@ -48,7 +48,10 @@ open class AttributedLabel: UIView {
     }
     
     open var font: UIFont {
-        set { changeLabel {  $0.font = newValue } }
+        set { changeLabel {
+            $0.font = newValue
+            $0.makeDynamicFont()
+        } }
         get { return label.font }
     }
     

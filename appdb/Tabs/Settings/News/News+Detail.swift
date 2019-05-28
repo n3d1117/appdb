@@ -9,11 +9,13 @@
 import UIKit
 
 class NewsDetail: LoadingTableView {
+
     private var item: SingleNews! {
         didSet {
             shareButton.isEnabled = true
         }
     }
+
     var id: String!
 
     private var shareButton: UIBarButtonItem!
