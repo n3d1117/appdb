@@ -170,7 +170,7 @@ extension DetailsCell {
     func addSeparator(full: Bool = false) {
         let line = UIView()
         line.theme_backgroundColor = Color.borderColor
-        addSubview(line)
+        contentView.addSubview(line)
         constrain(line) { line in
             line.height ~== 1 / UIScreen.main.scale
             line.left ~== line.superview!.left ~+ (full ? 0 : Global.Size.margin.value)
@@ -184,7 +184,7 @@ class TableViewHeader: UITableViewHeaderFooterView {
     func addSeparator(full: Bool = false) {
         let line = UIView()
         line.theme_backgroundColor = Color.borderColor
-        addSubview(line)
+        contentView.addSubview(line)
         constrain(line) { line in
             line.height ~== 1 / UIScreen.main.scale
             line.left ~== line.superview!.left ~+ (full ? 0 : Global.Size.margin.value)

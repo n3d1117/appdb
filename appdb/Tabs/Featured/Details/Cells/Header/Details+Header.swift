@@ -85,7 +85,7 @@ class DetailsHeader: DetailsCell {
             }
 
             if let url = URL(string: app.image) {
-                icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: 100), imageTransition: .crossDissolve(0.2))
+                icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
             }
 
             self.devId = app.artistId
@@ -102,7 +102,7 @@ class DetailsHeader: DetailsCell {
 
             icon.layer.cornerRadius = Global.cornerRadius(from: (130 ~~ 100))
             if let url = URL(string: cydiaApp.image) {
-                icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: 100), imageTransition: .crossDissolve(0.2))
+                icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
             }
 
             self.devId = cydiaApp.developerId

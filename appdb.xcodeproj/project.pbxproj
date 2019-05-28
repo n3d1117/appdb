@@ -163,6 +163,9 @@
 		81DD29D72288CD3200412BE6 /* LanguageChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DD29D62288CD3200412BE6 /* LanguageChooser.swift */; };
 		81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DEB2A81E7DD03100A94B26 /* Details+DownloadCell.swift */; };
 		81DEB2AE1E7DDF3200A94B26 /* Details+VersionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DEB2AD1E7DDF3200A94B26 /* Details+VersionHeader.swift */; };
+		81DFE215229D4BFD009BD7C1 /* API+CheckAppUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFE214229D4BFD009BD7C1 /* API+CheckAppUpdate.swift */; };
+		81DFE218229DC2C6009BD7C1 /* AppUpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFE217229DC2C6009BD7C1 /* AppUpdateController.swift */; };
+		81DFE21B229DCA66009BD7C1 /* AppUpdateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFE21A229DCA66009BD7C1 /* AppUpdateHeader.swift */; };
 		81E1702E2170D07400A38380 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E1702D2170D07400A38380 /* TagListView.swift */; };
 		81E170302170D09000A38380 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E1702F2170D08F00A38380 /* TagButton.swift */; };
 		81E48B101E707C46005FBBEC /* Details+Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E48B0F1E707C46005FBBEC /* Details+Review.swift */; };
@@ -382,6 +385,9 @@
 		81DD29D62288CD3200412BE6 /* LanguageChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChooser.swift; sourceTree = "<group>"; };
 		81DEB2A81E7DD03100A94B26 /* Details+DownloadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+DownloadCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81DEB2AD1E7DDF3200A94B26 /* Details+VersionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+VersionHeader.swift"; sourceTree = "<group>"; };
+		81DFE214229D4BFD009BD7C1 /* API+CheckAppUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+CheckAppUpdate.swift"; sourceTree = "<group>"; };
+		81DFE217229DC2C6009BD7C1 /* AppUpdateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateController.swift; sourceTree = "<group>"; };
+		81DFE21A229DCA66009BD7C1 /* AppUpdateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateHeader.swift; sourceTree = "<group>"; };
 		81E1702D2170D07400A38380 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		81E1702F2170D08F00A38380 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		81E48B0F1E707C46005FBBEC /* Details+Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Review.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -546,10 +552,10 @@
 		81324069205BE4C700945CE9 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				814B76F9205ADE6D004D46DD /* News.swift */,
 				8182756520792464000E9F87 /* News+Detail+HTMLCell.swift */,
 				8182756320791DE9000E9F87 /* News+Detail+TitleDateCell.swift */,
 				8132406A205BE50000945CE9 /* News+Detail.swift */,
-				814B76F9205ADE6D004D46DD /* News.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -773,9 +779,9 @@
 		817FF9ED1E59CC900056960F /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				81F1FE811E5B120500C1CD44 /* Cells */,
 				81D661751E5A0B6C00BB6461 /* Details+Extension.swift */,
 				817FF9EE1E59CCE60056960F /* Details.swift */,
+				81F1FE811E5B120500C1CD44 /* Cells */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -848,9 +854,9 @@
 			isa = PBXGroup;
 			children = (
 				8148D857226DD219006AD9E0 /* Downloads.swift */,
-				81FCAFCC226E1012004FAFD6 /* Downloading */,
 				81FCAFCB226E1007004FAFD6 /* Library */,
 				81FCAFCA226E0FF9004FAFD6 /* Queued Apps */,
+				81FCAFCC226E1012004FAFD6 /* Downloading */,
 			);
 			path = Downloads;
 			sourceTree = "<group>";
@@ -1053,6 +1059,7 @@
 			children = (
 				817610E621515A3100602FF2 /* API.swift */,
 				817610EB21515A3200602FF2 /* API+Configuration.swift */,
+				81DFE214229D4BFD009BD7C1 /* API+CheckAppUpdate.swift */,
 				817610EA21515A3200602FF2 /* API+DeviceLink.swift */,
 				817610EC21515A3200602FF2 /* API+DeviceStatus.swift */,
 				817610E721515A3100602FF2 /* API+Genres.swift */,
@@ -1099,6 +1106,15 @@
 				819AE78D1E63732F009D6AF3 /* Tweaked Notice */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		81DFE219229DCA3E009BD7C1 /* Update Prompt */ = {
+			isa = PBXGroup;
+			children = (
+				81DFE217229DC2C6009BD7C1 /* AppUpdateController.swift */,
+				81DFE21A229DCA66009BD7C1 /* AppUpdateHeader.swift */,
+			);
+			path = "Update Prompt";
 			sourceTree = "<group>";
 		};
 		81E1702C2170D05D00A38380 /* TagView */ = {
@@ -1163,10 +1179,11 @@
 		81EC00631DAD74EC009EEFFA /* Featured */ = {
 			isa = PBXGroup;
 			children = (
+				81F1FE801E5B103700C1CD44 /* Featured */,
 				816CEED71DBCE88E002CFF6E /* Categories */,
 				817FF9ED1E59CC900056960F /* Details */,
-				81F1FE801E5B103700C1CD44 /* Featured */,
 				8133C45A208B627E00F2F9F5 /* See All */,
+				81DFE219229DCA3E009BD7C1 /* Update Prompt */,
 			);
 			path = Featured;
 			sourceTree = "<group>";
@@ -1479,6 +1496,7 @@
 				81F1FEA41E5B7DEF00C1CD44 /* AlamofireObjectMapper.swift in Sources */,
 				81F055ED2298147200E76874 /* KeychainItemAccessibility.swift in Sources */,
 				8148D85C226DE68E006AD9E0 /* Downloading.swift in Sources */,
+				81DFE21B229DCA66009BD7C1 /* AppUpdateHeader.swift in Sources */,
 				818A55AC20584F2B00162E51 /* BannerImage.swift in Sources */,
 				81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */,
 				818A55A120583D4F00162E51 /* Updates.swift in Sources */,
@@ -1524,6 +1542,7 @@
 				81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */,
 				817610EF21515A3200602FF2 /* API+SystemStatus.swift in Sources */,
 				81BE066C1E6C2EA500AD9827 /* Details+ExternalLink.swift in Sources */,
+				81DFE218229DC2C6009BD7C1 /* AppUpdateController.swift in Sources */,
 				81190B47216A301900C81BEB /* LandscapeScreenshotSearchCell+Stars.swift in Sources */,
 				81E170302170D09000A38380 /* TagButton.swift in Sources */,
 				81485A77216617980004184F /* Search+Extension.swift in Sources */,
@@ -1590,6 +1609,7 @@
 				81190B4B216A303C00C81BEB /* MixedScreenshotsSearchCell_P->L+Stars.swift in Sources */,
 				811BEE282151538600F1F56A /* Items.swift in Sources */,
 				817610F621515A3200602FF2 /* API+DeviceStatus.swift in Sources */,
+				81DFE215229D4BFD009BD7C1 /* API+CheckAppUpdate.swift in Sources */,
 				81190B49216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift in Sources */,
 				8173FBF4207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift in Sources */,
 				812C3544207D237300D39748 /* ConfigServer.swift in Sources */,

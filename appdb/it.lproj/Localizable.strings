@@ -264,6 +264,11 @@
 "Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'." = "App installate da una sorgente esterna, tipo l'App Store o distribuzione OTA, non possono essere aggiornate da appdb per questioni di sicurezza. Lo rispettiamo!\n\nPer aggiornare queste app, rimuovile e reinstallale da appdb.\n\nPer nascondere questi aggiornamenti, invece, scorri a sinistra su uno di essi e premi 'Ignora'.";
 "No ignored updates" = "Nessun aggiornamento ignorato";
 "Swipe left on any update to add it to this list" = "Scorri a sinistra su un aggiornamento per aggiungerlo a questa lista";
+"Update" = "Aggiorna"; // green UPDATE button
+"Your version: %@" = "La tua versione: %@";
+"New version: %@" = "Nuova versione: %@";
+"Update Available" = "Aggiornamento disponibile";
+"What's New in version %@" = "Cambiamenti nella versione %@";
 
 ////////////////////
 //     ERRORS     //

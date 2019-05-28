@@ -99,6 +99,17 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 
             // Reload tableView (animated), hide spinner
             state = .done
+
+            // Check if there is a new update available
+            API.checkIfUpdateIsAvailable(success: { [weak self] (update: CydiaApp, linkId: String) in
+                guard let self = self else { return }
+
+                let appUpdateController = AppUpdateController(updatedApp: update, linkId: linkId)
+                let nav = AppUpdateNavController(rootViewController: appUpdateController)
+                appUpdateController.delegate = nav
+                let segue = Messages.shared.generateModalSegue(vc: nav, source: self)
+                segue.perform()
+            })
         }
     }
 

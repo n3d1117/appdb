@@ -118,7 +118,7 @@ class ObserveQueuedApps {
                             } else {
                                 var newStatus: String = item.statusShort + "\n" + item.statusText
                                 if newStatus == "\n" { newStatus = "Waiting...".localized() }
-                                if newStatus.hasSuffix("requesting installation") { newStatus = "ok\nSigned, requesting installation..." }
+                                if newStatus.hasSuffix("requesting installation") { newStatus = "ok\nSigned, requesting installation" }
                                 self.updateStatus(linkId: item.linkId, status: newStatus)
                             }
                         }
