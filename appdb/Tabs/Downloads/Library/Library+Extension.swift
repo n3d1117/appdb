@@ -223,7 +223,7 @@ extension Library {
 
                 vc.heightDelegate = nav
 
-                let segue = Messages.shared.generateModalSegue(vc: nav, source: self)
+                let segue = Messages.shared.generateModalSegue(vc: nav, source: self, trackKeyboard: true)
 
                 delay(0.3) {
                     segue.perform()
