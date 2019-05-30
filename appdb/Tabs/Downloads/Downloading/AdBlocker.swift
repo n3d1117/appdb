@@ -67,6 +67,9 @@ let blockRules = """
 """
 
 let ads: Set = [
+    "preskalyn.com",
+    "www.friendlyduck.com",
+    "evengtofundrew.pro",
     "tavertotsand.info",
     "xml.popunder.bid",
     "static-e-2-at-wqps7yvkz.stackpathdns.com",
