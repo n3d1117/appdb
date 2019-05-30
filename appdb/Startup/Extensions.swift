@@ -148,6 +148,23 @@ extension String {
         return ""
     }
 
+    //
+    // Returns short formatted string from revocation date
+    // E.G. "Revocation Time: May 30 22:03:50 2019 GMT" -> "May 31, 2019 at 12:03 AM"
+    //
+    var revokedDateDecoded: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d HH:mm:ss yyyy Z"
+        formatter.locale = Locale(identifier: "en_US")
+        if let date = formatter.date(from: self.replacingOccurrences(of: "Revocation Time: ", with: "")) {
+            formatter.locale = Locale(identifier: Localize.currentLanguage())
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            return formatter.string(from: date)
+        }
+        return ""
+    }
+
     // Returns string without ending \n
     func trimTrailingWhitespace() -> String {
         if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {

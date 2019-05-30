@@ -162,14 +162,16 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         guard let proExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
         guard let proDisabled = row.context?["disabled"] as? Bool else { return }
         guard let proRevoked = row.context?["revoked"] as? Bool else { return }
-        guard let proRevokedOn = (row.context?["revokedOn"] as? String)?.rfc2822decodedShort else { return }
+        guard let proRevokedOn = (row.context?["revokedOn"] as? String)?.revokedDateDecoded else { return }
 
         if proRevoked {
             activeLabel.theme_textColor = Color.softRed
             expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
             activeLabel.text = "Revoked".localized()
-            selectionStyle = .none
-            accessoryType = .none
+            accessoryType = .disclosureIndicator
+            let bgColorView = UIView()
+            bgColorView.theme_backgroundColor = Color.cellSelectionColor
+            selectedBackgroundView = bgColorView
         } else if proDisabled {
             activeLabel.theme_textColor = Color.softRed
             activeLabel.text = "Disabled".localized()

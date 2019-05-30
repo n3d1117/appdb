@@ -92,7 +92,7 @@ extension Settings {
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
 
                 Row(text: "PRO Status".localized(), selection: { [unowned self] _ in
-                    if !Preferences.proRevoked, !Preferences.proDisabled, !Preferences.pro {
+                    if (Preferences.proRevoked) || (!Preferences.proDisabled && !Preferences.pro) {
                         self.openInSafari(self.proSite)
                     }
                 }, cellClass: SimpleStaticPROStatusCell.self, context: ["active": Preferences.pro, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "disabled": Preferences.proDisabled]),
