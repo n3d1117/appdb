@@ -52,9 +52,11 @@
 	<array>
 		<string>ms-outlook</string>
 		<string>tg</string>
+		<string>twitter</string>
 		<string>googlegmail</string>
 		<string>readdle-spark</string>
 		<string>ymail</string>
+		<string>tweetbot</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

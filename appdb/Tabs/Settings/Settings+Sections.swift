@@ -59,6 +59,9 @@ extension Settings {
             ]),
 
             Section(header: .title("About".localized()), rows: [
+                Row(text: "Credits".localized(), selection: { [unowned self] _ in
+                    self.pushCredits()
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Acknowledgements".localized(), selection: { [unowned self] _ in
                     self.pushAcknowledgements()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),

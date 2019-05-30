@@ -147,6 +147,18 @@ class Settings: TableViewController {
         }
     }
 
+    // Push credits controller
+    func pushCredits() {
+        let credits = Credits()
+        if Global.isIpad {
+            let nav = DismissableModalNavController(rootViewController: credits)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.pushViewController(credits, animated: true)
+        }
+    }
+
     // Push system status controller
     func pushSystemStatus() {
         let statusViewController = SystemStatus()
@@ -212,7 +224,7 @@ class Settings: TableViewController {
 
     // Opens link to contact dev
     func openTelegramLink() {
-        let username = "ne_do"
+        let username = Global.telegramUsername
         let link = "tg://resolve?domain=\(username)"
         if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.openURL(url)
@@ -276,6 +288,7 @@ extension Settings: UIViewControllerPreviewingDelegate {
         case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
         case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
         case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
+        case "Credits".localized(): return UINavigationController(rootViewController: Credits())
         case "News".localized():
             let news = News()
             news.isPeeking = true
@@ -409,7 +422,7 @@ extension Settings: MFMailComposeViewControllerDelegate {
     // Compose email to dev
     func selectEmail(indexPath: IndexPath) {
 
-        let recipient = "appdb.ned@gmail.com"
+        let recipient = Global.email
         let subject = "appdb \(Global.appVersion) — Support"
 
         guard let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
@@ -421,8 +434,8 @@ extension Settings: MFMailComposeViewControllerDelegate {
         } else if services.count == 1, let service = services.first {
             compose(service: service, subject: subjectEncoded, recipient: recipient)
         } else {
-            // Show mail options
 
+            // Show mail options
             let alertController = UIAlertController(title: nil, message: "Select a service".localized(), preferredStyle: .actionSheet, adaptive: true)
             alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
 

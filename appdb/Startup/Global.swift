@@ -21,7 +21,11 @@ func debugLog(_ arg: Any) {
 
 enum Global {
 
-    static let isIpad = UIDevice.current.userInterfaceIdiom == .pad
+    static let mainSite: String = "https://appdb.to/"
+    static let email: String = "appdb.ned@gmail.com"
+    static let telegramUsername: String = "ne_do"
+
+    static let isIpad: Bool = UIDevice.current.userInterfaceIdiom == .pad
 
     static var hasNotch: Bool {
         if #available(iOS 11, *) {
@@ -32,8 +36,6 @@ enum Global {
             return false
         }
     }
-
-    static let mainSite: String = "https://appdb.to/"
 
     // Returns App Version
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? tilde

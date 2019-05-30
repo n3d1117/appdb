@@ -178,6 +178,14 @@ extension String {
     func toBase64() -> String {
         return Data(self.utf8).base64EncodedString()
     }
+
+    // Decodes image from base 64 string
+    func imageFromBase64() -> UIImage? {
+        if let url = URL(string: self), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+            return image
+        }
+        return nil
+    }
 }
 
 // MARK: - Separators

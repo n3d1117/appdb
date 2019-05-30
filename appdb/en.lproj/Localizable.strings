@@ -319,6 +319,16 @@
 "Enter a reason for your report" = "Enter a reason for your report";
 "Link reported successfully!" = "Link reported successfully!";
 
+/////////////////////
+//     CREDITS     //
+/////////////////////
+"Credits" = "Credits";
+"Developer" = "Developer";
+"Special Thanks" = "Special Thanks";
+"Translations" = "Translations";
+"appdb team" = "appdb team";
+"Icon and banner designer" = "Icon and banner designer";
+
 ///////////////////
 //     OTHER     //
 ///////////////////
