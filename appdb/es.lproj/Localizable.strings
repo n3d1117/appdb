@@ -1,0 +1,347 @@
+/* 
+  Localizable.strings
+  appdb
+
+  Created by ned on 31/01/2017.
+  Copyright © 2017 ned. All rights reserved.
+*/
+
+/////////////////////
+//  APPDB RELATED  //
+/////////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "No alojamos ningún contenido ilegal. Todos los datos son públicamente obtenidos desde el API de iTunes.";
+
+//////////////////////
+//  TAB BAR TITLES  //
+//////////////////////
+
+"Featured" = "Destacado";
+"Search" = "Buscar";
+"Downloads" = "Descargas";
+"Settings" = "Ajustes";
+"Updates" = "Actualizaciones";
+
+//////////////////////
+//    NETWORKING    //
+//////////////////////
+
+"Cannot connect" = "Imposible de conectar";
+"Retry" = "Reintentar";
+"Waiting..." = "Cargando...";
+"Checking..." = "Comprobando...";
+"Operation has been cancelled." = "Operación cancelada.";
+
+//////////////////////
+//    CATEGORIES    //
+//////////////////////
+
+"All Categories" = "Todas las categorías";
+"Categories" = "Categorías";
+"Select Category" = "Seleccionar categoría";
+"iOS" = "iOS";
+"Cydia" = "Cydia";
+"Books" = "Libros";
+
+/////////////////////////////
+//    FEATURED SECTIONS    //
+/////////////////////////////
+
+"Custom Apps" = "Apps personalizadas";
+"New and Noteworthy" = "Nuevo";
+"Top Paid" = "Top pago";
+"Popular This Week" = "Popular esta semana";
+"Best Games" = "Los mejores juegos";
+"Top Books" = "Top libros";
+"See All" = "Ver todo";
+"News" = "Noticias";
+"Settings" = "Ajustes";
+"System Status" = "Estado del sistema";
+
+//////////////////////////
+//     APPS & BOOKS     //
+//////////////////////////
+
+"Description" = "Descripción";
+"What's New" = "Qué hay de nuevo";
+"Tweaked Version Notice" = "Versión modificada";
+"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "Esta app ha sido modificada para tener más funcionalidades. Asegúrate de descargarlo de crackers verificados ya que nadie puede confirmar y garantizar que la app tenga algún código malicioso.";
+"iPad only" = "Solo Ipad";
+"Information" = "Información";
+"Seller" = "Vendedor";
+"Developer" = "Desarrollador";
+"Category" = "Categorías";
+"Price" = "Precio";
+"Updated" = "Actualizado";
+"Version" = "Versión";
+"Compatibility" = "Compatibilidad";
+"Size" = "Tamaño";
+"Language" = "Idioma";
+"Languages" = "Idiomas";
+"Bundle ID" = "ID del paquete";
+"Author" = "Autor";
+"Print Length" = "Longitud de impresión";
+"Requirements" = "Requerimientos";
+"Rating" = "Valoraciónes";
+"Developer Apps" = "Apps del desarrollador";
+"Developer Website" = "Página del desarrolador";
+"Developer Support" = "Ayuda del desarrollador";
+"More by this author" = "Más de este autor";
+"Unknown" = "Desconocido";
+"See Original" = "Ver Original";
+"Details" = "Detalles";
+"Reviews" = "Reseñas";
+"Download" = "Descargas";
+"Install" = "Instalar";
+"Requesting..." = "Solicitando...";
+"Requested" = "Solicitado";
+"by" = "por";
+"Related Apps" = "Apps relacionadas";
+"Related Books" = "Libros relacionadas";
+"Reviews are from Apple's iTunes Store ©" = "Las reseñas son del iTunes Store de Apple ©";
+"Check out '%@' on appdb!" = "¡Encuentra '%@' en appdb!";
+"Installation has been queued to your device" = "La instalación ha sido solicitada para tu dispositivo";
+"Installation options" = "Opciones de la instalación";
+"Duplicate app" = "App duplicada";
+"New ID" = "Nuevo ID";
+"New display name" = "Nuevo nombre";
+"Use Original" = "Usar original";
+"Cracked by %@" = "Modificado por %@";
+"Uploaded by %@" = "Subido por %@";
+"Cracked and uploaded by %@" = "Modificado y subido por %@";
+
+//////////////////////////////////
+//     DEVICE LINK TUTORIAL     //
+//////////////////////////////////
+
+"Authorization" = "Autorización";
+"Authorize App" = "Autorizar app";
+"Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles." = "¿Está tu dispositivo vinculado a appdb? Puedes comprobarlo si tienes el perfil de appdb en Ajustes -> General -> Gestión de perfiles y dispositivos.";
+"Continue" = "Continuar";
+"Enter Link Code" = "Introducir código de vinculación";
+"Enter link code here" = "Introducir código aquí";
+"Please enter a valid email address." = "Por favor introduce un email válido.";
+"Paste the 8 digits case sensitive link code you see on this page:" = "Pega los 8 dígitos que hay en esta página:";
+"Go Back" = "Atrás";
+"Enter Email" = "Introducir email";
+"Please enter your email address below and click Continue. You will be redirected to the Settings app where you can proceed with appdb profile installation." = "Por favor introduce tu correo y pulsa en continuar. Serás redirigido a los Ajustes donde tendrás que instalar el perfil.";
+"Success" = "Hecho";
+"Well done! This app is now authorized to install apps on your device." = "¡Bien! Esta app ya está autorizada para instalar aplicaciones.";
+"Start using appdb!" = "¡Empieza a usar appdb!";
+"Unable to complete" = "Imposible de completar";
+"Yes, already linked" = "Si, ya viculado";
+"No, not yet linked" = "No, no viculado aún";
+"name@example.com" = "nombre@ejemplo.com";
+"Deauthorization" = "Desautorizar";
+"Deauthorized" = "Desautorizado";
+"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "¿Estás seguro de desautorizar esta app para instalar aplicaciones?\n\nNOTA: Esto no desvinculará appdb de tu dispositivo. Si quieres hacerlo entra en Ajustes -> General -> Gestión de perfiles y dispositivos.";
+"App was deauthorized successfully." = "App desautorizado correctamente";
+
+////////////////////
+//     SEARCH     //
+////////////////////
+
+"Search iOS Apps" = "Buscar apps";
+"Search Cydia Apps" = "Buscar appd de Cydia";
+"Search Books" = "Buscar libros";
+"Trending iOS Apps" = "Top Apps para iOS";
+"Trending Cydia Apps" = "Top Cydia Apps";
+"Trending Books" = "Top libros";
+"No results found" = "No encontrado";
+"No results were found for '%@'" = "No hay resultados de '%@'";
+"Please search at least two characters" = "Introduce al menos dos caracteres";
+"Search News" = "Buscar noticias";
+
+///////////////////////
+//     DOWNLOADS     //
+///////////////////////
+
+"Queued" = "En cola";
+"Library" = "Librería";
+"Downloading" = "Descargando";
+"No queued downloads"  = "No hay descargas en la cola";
+"File download has started" = "La descarga ha comenzado";
+"Enter URL" = "Introducir URL";
+"Enter below the URL of the .ipa file you want to download" = "Introduce aquí la URL del archivo .ipa que quieres descargar";
+"https://example.com/file.ipa" = "https://ejemplo.com/archivo.ipa";
+"Load" = "Descargar";
+"Uploaded on %@" = "Subido el %@"; // e.g. Uploaded on %date%
+"Pause" = "Pausa";
+"Paused" = "Pausado";
+"Resume" = "Continuar";
+"Stop" = "Parar";
+"Install without signing" = "Instalar sin firmar";
+"Upload to MyAppStore" = "Subirlo a MyAppStore";
+"Open in..." = "Abrir en...";
+"Rename" = "Renombrar";
+"Rename File" = "Renombrar archivo";
+"Delete" = "Eliminar";
+"Delete all" = "Eliminar todos";
+"No Local IPAs Found" = "Ningún archivo IPA encontrado en el dispositivo";
+"Use iTunes File Sharing or import them from other apps" = "Usa iTunes para compartir archivos";
+"No MyAppStore apps" = "No hay apps en MyAppStore";
+"This is your personal IPA library! Apps you upload over time will appear here" = "¡Esta es tu librería personal! Godas las apps subidas aparecerán aquí";
+"Please cancel any pending uploads before deleting local files" = "Por favor cancelar cualquier subida después de eliminar los archivos locales";
+"Delete 1 file?" = "Eliminar 1 archivo?";
+"Local Files" = "Archivos en este dispositivo";
+"Are you sure you want to delete %@ files?" = "¿Estás seguro que quieres eliminar estos %@ archivos?"; // %@ is the number of files to delete
+"Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@" = "Puedes poner tus archivos .ipa (or .zip) localmente en este directorio, usando iTunes File Sharing, la app de Archivos o importando desde otras apps.\n\nEl directorio es:\n\n%@";
+"appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'" = "appdb te presenta MyAppStore - tu propia AppStore. ¡Una nueva manera de instalar apps!\n\n• Sube tus apps personales a appdb\n• Compartelos a través de tus dispositivos con tu email\n• Guarda archivos hasta 4GB\n• Sube varios archivos a la vez.\n\nPara empezar, haz click en tus archivos locales y selecciona 'Subir a MyAppStore'";
+"No active downloads" = "No hay descargas activas";
+"Remove from list" = "Eliminar de la lista";
+"File downloaded successfully" = "Archivo descargado correctamente";
+"File downloaded successfully, added to Library" = "Archivo descargado correctamente, añadido a tu librería";
+"Uploading %@ of %@ (%@)" = "Subiendo %@ de %@ (%@)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
+"Uploading" = "Subiendo"; // please use same translation used above, before first %@
+"Downloading %@ of %@ (%@)" = "Descargando %@ de %@ (%@)"; // e.g. "Downloading 7.4 MB of 15.2 MB (49%)"
+"Descargando %@" = "Downloading %@"; // e.g. "Downloading 3 MB"
+"Downloading" = "Descargando"; // please use same translation used above, before %@
+"File uploaded successfully" = "Archivo subido correctamente";
+
+//////////////////////
+//     SETTINGS     //
+//////////////////////
+
+"Device Configuration" = "Ajustes del dispositivo";
+"Link Code" = "Código de vinculación";
+"Jailbroken w/ Appsync" = "Jailbroken con Appsync";
+"Compatibility Checks" = "Comprobación de compatibilidad";
+"Ask for installation options" = "Pedir opciones de descarga";
+"Deauthorize" = "Desautorizar";
+"User Interface" = "Interfaz del usuario";
+"Choose Theme" = "Seleccionar tema";
+"Choose Language" = "Seleccionar idioma";
+"Language set, please restart the app to apply changes" = "Idioma elegido, por favor relanza esta app para aplicar el idioma";
+"Dark" = "Oscuro";
+"Light" = "Claro";
+"Support" = "Soporte";
+"Visit appdb forum" = "Visit appdb forums";
+"About" = "Sobre la aplicación";
+"Acknowledgements" = "Agradecimientos";
+"General" = "General";
+"Device" = "Dispositivo";
+"Authorize App" = "Autorizar App";
+"Authorize app with link code from appdb website and enjoy unlimited app installs!" = "¡Autoriza esta app con el código de vinculación desde la página para disfrutar esta app!";
+"PRO Status" = "Estado del PRO";
+"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.";
+"Device Status" = "Estado del dispositivo";
+"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Para desvicular tu cuenta completamente de appdb entra en Ajustes -> General -> Gestiónde perfiles y dispositivos.";
+"Active" = "Activo";
+"Inactive" = "Inactivo";
+"Expires on %@" = "Expira el %@";
+"Clear command queue?" = "¿Limpiar lista de comandos?";
+"Clear" = "Limpiar";
+"Fix" = "Arreglar"; // as in fix command from device status
+"Disabled" = "Desactivado"; // as in 'PRO disabled'
+"Revoked" = "Revocado";
+"Revoked on %@" = "Revocado el %@";
+"Show badge for updates" = "Enseñar globos de notificaciones para las actualizaciones";
+"Available Languages" = "Idiomas disponibles";
+"Available Themes" = "Temas disponibles";
+"Tap to know more" = "Pulsa para saber más";
+"Contact Developer" = "Contactar con el desarrolador";
+"Choose an option" = "Seleccionar opción";
+"Select a service" = "Seleccionar servicios";
+"Email" = "Correo";
+"Telegram" = "Telegram";
+"Could not find email service." = "Imposible de encontrar el servicio de correo.";
+
+/////////////////////
+//     UPDATES     //
+/////////////////////
+
+"Ignore" = " Ignorar";
+"No updates found" = "Sin actualizaciones";
+"Please authorize app from Settings first" = "Por favor autoriza la app desde ajustes primero";
+"%@ Updateable app" = "%@ app(s) para actualizar";  // e.g. 1 Updateable app
+"%@ Updateable apps" = "%@ app(s) para actualizar"; // e.g. 6 Updateable apps
+"%@ Non updateable app" = "%@ app(s) imposibles de actualizar";
+"%@ Non updateable apps" = "%@ app(s) imposibles de actualizar";
+"Non Updateable Apps" = "Apps imposibles de actualizar";
+"Ignored" = "Ignorado";
+"Ignored Updates" = "Actualizaciones ignoradas";
+"No ignored updates" = "Actualizaciones sin ignorar";
+"Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'." = "Las aplicaciones instaladas desde una fuente externa, como la App Store o la distribución OTA, no pueden actualizarse a través de appdb debido a limitaciones de seguridad.  ¡Respetamos esto! \n\nPara actualizar estas aplicaciones, elimínelas y vuelva a instalarlas desde appdb. \n\nPara ocultar estas actualizaciones, deslice el dedo hacia la izquierda en cualquiera de ellas y seleccione 'Ignorar'.";
+"Swipe left on any update to add it to this list" = "Desliza a la izquierda en cualquier actualización para agregarla a esta lista";
+"Update" = "Actualizar"; // green UPDATE button
+"Your version: %@" = "Tu versión: %@";
+"New version: %@" = "Nueva versión: %@";
+"Update Available" = "Actualización disponible";
+"What's New in version %@" = "Quéhay de nuevo en la versión %@";
+
+////////////////////
+//     ERRORS     //
+////////////////////
+
+"Maintenance mode active. We will be back soon!" = "Modo mantenimiento. ¡Volveremos pronto!";
+"No links found." = "Ningún link encontrado.";
+"Not found" = "No encontrado";
+"Couldn't find content with id %@ in our database" = "No econtramos ningún contenido con este id %@ en nuestra base de datos";
+"An error has occurred" = "Ha ocurrido un eror";
+"Invalid link code." = "Código de vinculación inválida.";
+"Invalid email address." = "Correo inválido.";
+"Link code cannot be empty." = "El código de vinculación no puede estar vacío.";
+"Please enter a valid email address." = "Por favor introduce un correo válido.";
+"No device linked." = "Ningún dispositivo vinculado.";
+"Unable to fetch device token." = "Imposible de emparejar el dispositivo con el token.";
+"Use link code instead." = "Utiliza el código de vinculación.";
+"Oops! Something went wrong. Please try again later." = "¡Ups! Algo ha pasado. Por favor inténtelo más tarde.";
+"Missing link code or email." = "Falta código de vinculación o correo.";
+"Could not parse plist file." = "Imposible de emparejar el archivo plist.";
+"Device status is empty" = "El estado del dispositivo está vacío.";
+"The request timed out" = "Tiempo terminado";
+"Your device is not compatible with this app" = "Tu dispositivo no es compatible";
+"Error: malformed url" = "Error: url inválida";
+"IPA Not found" = "IPA no encontrado";
+"IPA is missing Payload folder" = "Al IPA le falta la carpeta Payload";
+"IPA is missing .app folder" = "Al IPA le falta la carpeta .app";
+"IPA is missing Info.plist file" = "Al IPA le falta el archivo Info.plist";
+"Unable to read contents of Info.plist file" = "Imposible de leer el contenido del archivo Info.plist";
+"Unable to encode Info.plist file" = "Imposible de encriptar el archivo Info.plist";
+"File not found at given path" = "Archivo no encontrado en el directorio dado";
+"File size not found in resource values" = "Inválido archivo con los valores dados";
+"A report has already been submitted" = "El reporte ha sido enviado";
+"Installation failed, but can be fixed from Settings -> Device Status" = "Instalación fallida, pero se puede arreglar en los ajustes de la app -> Estado del dispositivo";
+"An error has occurred: JSON mal formado" = "Un error ha ocurrido: ";
+"Your PRO subscription has expired." = "Tu subscripción PRO ha expirado.";
+"Your PRO subscription has been revoked by Apple." = "Tu suscripción PRO ha sido revocada por Apple.";
+"Your device doesn't seem to have a PRO subcription." = "Parece que tu dispositivo no tiene PRO.";
+"App duplication is currently supported on non-jailbroken devices with PRO." = "La duplicación de apps solo está disponible con subscripción PRO.";
+
+////////////////////////////
+//     LINK REPORTING     //
+////////////////////////////
+
+"Send" = "Enviar";
+"Report" = "Reportar";
+"Reporting a broken link for '%@'." = "Reportando enlace roto '%@'.";
+"Enter a reason for your report" = "Introducir la razón del reporte";
+"Link reported successfully!" = "¡Enlace reportado correctamente!";
+
+/////////////////////
+//     CREDITS     //
+/////////////////////
+"Credits" = "Créditos";
+"Developer" = "Desarrollador";
+"Special Thanks" = "Agradecimientos";
+"Translations" = "Traducciones";
+"appdb team" = "El equipo appdb";
+"Icon and banner designer" = "Diseñador del icono y del banner";
+
+///////////////////
+//     OTHER     //
+///////////////////
+
+"Cancel" = "Cancelar";
+"Dismiss" = "Quitar";
+"Yes" = "Si";
+"OK" = "OK";
+"No" = "No";
+"Done" = "Hecho";
+"more" = "más";
+"Open in Safari" = "Abrir en Safari";
+"%@s ago" = "hace %@s"; // seconds, e.g. 15s ago
+"%@m ago" = "hace %@m"; // minutes, e.g. 5m ago
+"%@h ago" = "hace %@h"; // hours, e.g. 6h ago
+"%@d ago" = "hace %@d"; // days, e.g. 3d ago
+"now" = "ahora mismo";
