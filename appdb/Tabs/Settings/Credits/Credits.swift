@@ -64,6 +64,8 @@ class Credits: TableViewController {
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
 
+        dataSource = DataSource(tableViewDelegate: self)
+
         var sections = [Static.Section]()
 
         sections.append(Section(header: .autoLayoutView(CreditsIconView(text: "appdb v\(Global.appVersion)", base64Image: appdbImage))))
@@ -124,6 +126,21 @@ class Credits: TableViewController {
                 } else {
                     UIApplication.shared.openURL(url)
                 }
+            }
+        }
+    }
+}
+
+extension Credits: UITableViewDelegate {
+
+    // Stick icon view to top
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let headerView = tableView.subviews.first(where: { $0 is CreditsIconView }), let nav = navigationController {
+            let minOff: CGFloat = -nav.navigationBar.frame.height - UIApplication.shared.statusBarFrame.height
+            if scrollView.contentOffset.y < minOff {
+                headerView.bounds.origin.y = minOff - scrollView.contentOffset.y
+            } else {
+                headerView.bounds.origin.y = 0
             }
         }
     }
