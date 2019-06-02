@@ -90,6 +90,7 @@ final class CreditsStaticCell: SimpleStaticCell {
 }
 
 class CreditsIconView: UIView {
+
     lazy var label: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: (15 ~~ 14))
@@ -132,11 +133,12 @@ class CreditsIconView: UIView {
     init(text: String, base64Image: String) {
         super.init(frame: .zero)
 
+        icon.isUserInteractionEnabled = true
         icon.image = base64Image.imageFromBase64()
         label.text = text
 
         let gesture = UITapGestureRecognizer(target: self, action: #selector(animate))
-        addGestureRecognizer(gesture)
+        icon.addGestureRecognizer(gesture)
 
         addSubview(icon)
         addSubview(label)
@@ -175,15 +177,21 @@ class CreditsIconView: UIView {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        UIView.animate(withDuration: 0.08) {
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+
+        if let touch = touches.first, touch.view is UIImageView {
+            UIView.animate(withDuration: 0.08) {
+                self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+            }
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        UIView.animate(withDuration: 0.08) {
-            self.transform = .identity
+
+        if let touch = touches.first, touch.view is UIImageView {
+            UIView.animate(withDuration: 0.08) {
+                self.transform = .identity
+            }
         }
     }
 }
