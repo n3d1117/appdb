@@ -23,7 +23,7 @@ class LanguageChooser: UITableViewController {
         return bgColorView
     }()
 
-    let availableLanguages = Localize.availableLanguages().filter({ !Localize.displayNameForLanguage($0).isEmpty }).sorted()
+    let availableLanguages = Localize.availableLanguages().filter({ !Localize.displayNameForLanguage($0).isEmpty }).sorted(by: { Localize.displayNameForLanguage($1) > Localize.displayNameForLanguage($0) })
 
     var currentLanguage: String {
         return Localize.currentLanguage()
