@@ -66,7 +66,7 @@
 "What's New" = "Qué hay de nuevo";
 "Tweaked Version Notice" = "Versión modificada";
 "This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "Esta app ha sido modificada para tener más funcionalidades. Asegúrate de descargarlo de crackers verificados ya que nadie puede confirmar y garantizar que la app tenga algún código malicioso.";
-"iPad only" = "Solo Ipad";
+"iPad only" = "Solo iPad";
 "Information" = "Información";
 "Seller" = "Vendedor";
 "Developer" = "Desarrollador";
@@ -194,7 +194,7 @@
 "Uploading %@ of %@ (%@)" = "Subiendo %@ de %@ (%@)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
 "Uploading" = "Subiendo"; // please use same translation used above, before first %@
 "Downloading %@ of %@ (%@)" = "Descargando %@ de %@ (%@)"; // e.g. "Downloading 7.4 MB of 15.2 MB (49%)"
-"Descargando %@" = "Downloading %@"; // e.g. "Downloading 3 MB"
+"Downloading %@" = "Descargando %@"; // e.g. "Downloading 3 MB"
 "Downloading" = "Descargando"; // please use same translation used above, before %@
 "File uploaded successfully" = "Archivo subido correctamente";
 
@@ -223,7 +223,7 @@
 "Authorize App" = "Autorizar App";
 "Authorize app with link code from appdb website and enjoy unlimited app installs!" = "¡Autoriza esta app con el código de vinculación desde la página para disfrutar esta app!";
 "PRO Status" = "Estado del PRO";
-"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.";
+"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Usa este código para vincular nuevos dispositivos a appdb. Manten pulsado para copiar o pulsa para generar uno nuevo.";
 "Device Status" = "Estado del dispositivo";
 "To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Para desvicular tu cuenta completamente de appdb entra en Ajustes -> General -> Gestiónde perfiles y dispositivos.";
 "Active" = "Activo";
@@ -235,7 +235,7 @@
 "Disabled" = "Desactivado"; // as in 'PRO disabled'
 "Revoked" = "Revocado";
 "Revoked on %@" = "Revocado el %@";
-"Show badge for updates" = "Enseñar globos de notificaciones para las actualizaciones";
+"Show badge for updates" = "Activar notificaciones para las actualizaciones";
 "Available Languages" = "Idiomas disponibles";
 "Available Themes" = "Temas disponibles";
 "Tap to know more" = "Pulsa para saber más";
