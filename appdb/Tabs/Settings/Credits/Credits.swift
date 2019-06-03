@@ -68,7 +68,7 @@ class Credits: TableViewController {
 
         var sections = [Static.Section]()
 
-        sections.append(Section(header: .autoLayoutView(CreditsIconView(text: "appdb v\(Global.appVersion)", base64Image: appdbImage))))
+        sections.append(Section(header: .autoLayoutView(CreditsIconView(text: "appdb v\(Global.appVersion)", base64Image: appdbImage, easterDelegate: self))))
 
         for creditType in CreditType.allCases {
             var section: Static.Section = Section(header: .title(creditType.rawValue.localized()), rows: [])
@@ -76,7 +76,7 @@ class Credits: TableViewController {
                 section.rows.append(
                     Row(text: credit.name.localized(), detailText: credit.detail, selection: { [unowned self] _ in
                         self.handleTap(for: credit.handle)
-                    }, accessory: .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["base64Image": credit.base64Image])
+                    }, accessory: .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["base64Image": credit.base64Image, "delegate": self])
                 )
             }
             if !section.rows.isEmpty { sections.append(section) }
@@ -143,5 +143,12 @@ extension Credits: UITableViewDelegate {
                 headerView.bounds.origin.y = 0
             }
         }
+    }
+}
+
+// It's easter time!
+extension Credits: Easter {
+    func easterTime() {
+        Messages.shared.showMinimal(message: "Phew, for a minute there\nI lost myself, I lost myself", iconStyle: .none, color: Color.darkMainTint, duration: .forever, context: Global.isIpad ? .viewController(self) : nil)
     }
 }

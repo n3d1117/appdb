@@ -10,6 +10,10 @@ import Static
 import UIKit
 import Cartography
 
+protocol Easter: class {
+    func easterTime()
+}
+
 final class CreditsStaticCell: SimpleStaticCell {
 
     var primaryLabel: UILabel!
@@ -91,6 +95,8 @@ final class CreditsStaticCell: SimpleStaticCell {
 
 class CreditsIconView: UIView {
 
+    weak var easterDelegate: Easter?
+
     lazy var label: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: (15 ~~ 14))
@@ -130,8 +136,10 @@ class CreditsIconView: UIView {
         return button
     }()*/
 
-    init(text: String, base64Image: String) {
+    init(text: String, base64Image: String, easterDelegate: Easter) {
         super.init(frame: .zero)
+
+        self.easterDelegate = easterDelegate
 
         icon.isUserInteractionEnabled = true
         icon.image = base64Image.imageFromBase64()
@@ -169,13 +177,10 @@ class CreditsIconView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // It's easter time!
     @objc private func longPressed(recognizer: UILongPressGestureRecognizer) {
         if recognizer.state == .began {
-            Messages.shared.showMinimal(message: """
-                Phew, for a minute there
-                I lost myself, I lost myself
-            """, iconStyle: .none, color: Color.darkMainTint, duration: .forever)
+
+            easterDelegate?.easterTime()
 
             UIView.animate(withDuration: 0.08) {
                 self.transform = .identity
