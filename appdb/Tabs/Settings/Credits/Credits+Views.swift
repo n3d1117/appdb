@@ -140,6 +140,10 @@ class CreditsIconView: UIView {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(animate))
         icon.addGestureRecognizer(gesture)
 
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
+        longPressGesture.minimumPressDuration = 10
+        icon.addGestureRecognizer(longPressGesture)
+
         addSubview(icon)
         addSubview(label)
         addSubview(shrug)
@@ -165,7 +169,21 @@ class CreditsIconView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc func animate() {
+    // It's easter time!
+    @objc private func longPressed(recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            Messages.shared.showMinimal(message: """
+                Phew, for a minute there
+                I lost myself, I lost myself
+            """, iconStyle: .none, color: Color.darkMainTint, duration: .forever)
+
+            UIView.animate(withDuration: 0.08) {
+                self.transform = .identity
+            }
+        }
+    }
+
+    @objc private func animate() {
         UIView.animate(withDuration: 0.08, animations: {
             self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
         }, completion: { _ in
@@ -188,10 +206,8 @@ class CreditsIconView: UIView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
 
-        if let touch = touches.first, touch.view is UIImageView {
-            UIView.animate(withDuration: 0.08) {
-                self.transform = .identity
-            }
+        UIView.animate(withDuration: 0.08) {
+            self.transform = .identity
         }
     }
 }

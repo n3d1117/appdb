@@ -7,6 +7,7 @@
 //
 
 import SwiftMessages
+import SwiftTheme
 
 struct Messages {
 
@@ -21,21 +22,21 @@ struct Messages {
         var config = SwiftMessages.Config()
         config.presentationStyle = .bottom
         config.presentationContext = context ?? .automatic
-        config.duration = .seconds(seconds: 2.5)
         config.dimMode = .none
         return config
     }
 
     @discardableResult
-    private mutating func show(message: String, theme: Theme, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
+    private mutating func show(message: String, theme: Theme, context: SwiftMessages.PresentationContext? = nil, iconStyle: IconStyle = .subtle, color: ThemeColorPicker? = nil, duration: SwiftMessages.Duration = .seconds(seconds: 2.5)) -> MessageView {
         let view = MessageView.viewFromNib(layout: .cardView)
-        let config = getConfig(context)
+        var config = getConfig(context)
+        config.duration = duration
         view.configureContent(title: nil, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: nil, buttonTapHandler: nil)
         if Global.isIpad { view.configureBackgroundView(width: 600) }
-        view.configureTheme(theme, iconStyle: .subtle)
+        view.configureTheme(theme, iconStyle: iconStyle)
         view.button?.isHidden = true
         view.titleLabel?.isHidden = true
-        view.backgroundView.theme_backgroundColor = theme == .success ? Color.softGreen : Color.softRed
+        view.backgroundView.theme_backgroundColor = color ?? (theme == .success ? Color.softGreen : Color.softRed)
         SwiftMessages.show(config: config, view: view)
         return view
     }
@@ -48,6 +49,11 @@ struct Messages {
     @discardableResult
     mutating func showError(message: String, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
         return show(message: message, theme: .error, context: context)
+    }
+
+    @discardableResult
+    mutating func showMinimal(message: String, iconStyle: IconStyle, color: ThemeColorPicker, duration: SwiftMessages.Duration, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
+        return show(message: message, theme: .success, context: context, iconStyle: iconStyle, color: color, duration: duration)
     }
 
     func generateModalSegue(vc: UIViewController, source: UIViewController, trackKeyboard: Bool = false) -> SwiftMessagesSegue {

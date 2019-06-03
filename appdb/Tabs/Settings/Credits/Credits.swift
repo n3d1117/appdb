@@ -136,7 +136,7 @@ extension Credits: UITableViewDelegate {
     // Stick icon view to top
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let headerView = tableView.subviews.first(where: { $0 is CreditsIconView }), let nav = navigationController {
-            let minOff: CGFloat = -nav.navigationBar.frame.height - UIApplication.shared.statusBarFrame.height
+            let minOff: CGFloat = (-nav.navigationBar.frame.height) ~~ (-nav.navigationBar.frame.height - UIApplication.shared.statusBarFrame.height)
             if scrollView.contentOffset.y < minOff {
                 headerView.bounds.origin.y = minOff - scrollView.contentOffset.y
             } else {
