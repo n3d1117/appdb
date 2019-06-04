@@ -13,7 +13,7 @@ extension API {
 
     static func checkIfUpdateIsAvailable(success:@escaping (CydiaApp, String) -> Void) {
 
-        let trackid: String = "xxx" // todo change
+        let trackid: String = "1900000538"
         let currentVersion: String = Global.appVersion
 
         API.search(type: CydiaApp.self, trackid: trackid, success: { apps in
