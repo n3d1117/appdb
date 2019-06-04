@@ -34,8 +34,11 @@ class Credits: TableViewController {
 
     lazy var credits: [Credit] = [
         Credit(name: "ned", detail: nil, base64Image: nedImage, type: .developer, handle: .telegram(username: Global.telegramUsername)),
+        Credit(name: "View project on GitHub".localized(), detail: nil, base64Image: githubImage, type: .developer, handle: .website(site: Global.githubSite)),
+
         Credit(name: "appdb team", detail: nil, base64Image: appdbImage, type: .specialThanks, handle: .website(site: Global.mainSite)),
         Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), base64Image: aesignImage, type: .specialThanks, handle: .website(site: "https://aesign.me")),
+
         Credit(name: "TNT 🇪🇸", detail: nil, base64Image: tntImage, type: .translations, handle: .twitter(username: "tnttaolin2"))
     ]
 
@@ -76,7 +79,7 @@ class Credits: TableViewController {
                 section.rows.append(
                     Row(text: credit.name.localized(), detailText: credit.detail, selection: { [unowned self] _ in
                         self.handleTap(for: credit.handle)
-                    }, accessory: .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["base64Image": credit.base64Image, "delegate": self])
+                    }, accessory: .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["base64Image": credit.base64Image])
                 )
             }
             if !section.rows.isEmpty { sections.append(section) }

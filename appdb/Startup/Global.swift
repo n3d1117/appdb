@@ -22,6 +22,7 @@ func debugLog(_ arg: Any) {
 enum Global {
 
     static let mainSite: String = "https://appdb.to/"
+    static let githubSite: String = "https://github.com/n3d1117/appdb"
     static let email: String = "appdb.ned@gmail.com"
     static let telegramUsername: String = "ne_do"
 
