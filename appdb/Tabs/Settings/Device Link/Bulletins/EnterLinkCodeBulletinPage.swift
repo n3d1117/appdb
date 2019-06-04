@@ -40,7 +40,7 @@ class EnterLinkCodeBulletinPage: BLTNPageItem {
         textField.theme_backgroundColor = Color.invertedTitle
         textField.theme_textColor = Color.title
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#AAAAAA")])
-        textField.theme_keyboardAppearance = [.light, .dark]
+        textField.theme_keyboardAppearance = [.light, .dark, .dark]
 
         descriptionLabel?.theme_textColor = Color.title
 

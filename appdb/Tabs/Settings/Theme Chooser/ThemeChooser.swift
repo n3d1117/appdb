@@ -16,10 +16,6 @@ class ThemeChooser: UITableViewController {
 
     weak var changedThemeDelegate: ChangedTheme?
 
-    private var lightTheme: Bool {
-        return !Themes.isNight
-    }
-
     private var bgColorView: UIView = {
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
@@ -59,18 +55,15 @@ class ThemeChooser: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return Themes.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = indexPath.row == 0 ? "Light".localized() : "Dark".localized()
+        cell.textLabel?.text = Themes(rawValue: indexPath.row)?.toString
         cell.textLabel?.makeDynamicFont()
         cell.textLabel?.theme_textColor = Color.title
-        switch indexPath.row {
-        case 0: cell.accessoryType = lightTheme ? .checkmark : .none
-        default: cell.accessoryType = !lightTheme ? .checkmark : .none
-        }
+        cell.accessoryType = Themes.current == Themes(rawValue: indexPath.row) ? .checkmark : .none
         cell.contentView.theme_backgroundColor = Color.veryVeryLightGray
         cell.theme_backgroundColor = Color.veryVeryLightGray
         cell.selectedBackgroundView = bgColorView
@@ -78,10 +71,8 @@ class ThemeChooser: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0: if Themes.isNight { Themes.switchTo(theme: .light) }
-        default: if !Themes.isNight { Themes.switchTo(theme: .dark) }
-        }
+        guard let theme = Themes(rawValue: indexPath.row) else { return }
+        Themes.switchTo(theme: theme)
         changedThemeDelegate?.changedTheme()
         tableView.reloadData()
     }

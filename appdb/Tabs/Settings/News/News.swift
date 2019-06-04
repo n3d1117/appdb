@@ -69,7 +69,7 @@ class News: LoadingTableView {
         }
         searchController.searchBar.placeholder = "Search News".localized()
         searchController.searchBar.textField?.theme_textColor = Color.title
-        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
+        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark, .dark]
         definesPresentationContext = true
         if #available(iOS 11.0, *) {
             // Fixes weird crash on peek

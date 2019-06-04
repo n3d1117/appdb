@@ -119,7 +119,7 @@ extension ILTranslucentView {
 
         let _toolbarBG = UIToolbar(frame: rect)
         _toolbarBG.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        _toolbarBG.theme_barStyle = [.default, .black] /* Support dark mode */
+        _toolbarBG.theme_barStyle = [.default, .black, .black] /* Support dark mode */
         self.toolbarBG = _toolbarBG
 
         self.toolbarContainerClipView!.addSubview(self.toolbarBG!)

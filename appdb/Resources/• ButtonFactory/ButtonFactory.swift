@@ -42,7 +42,7 @@ enum ButtonFactory {
         let button = BouncyButtonWithColoredBorder()
 
         button.setTitle(text, for: .normal)
-        button.theme_setImage(["bolt_dark", "bolt_light"], forState: .normal)
+        button.theme_setImage(["bolt_dark", "bolt_light", "bolt_light"], forState: .normal)
         button.setImage(button.imageView!.image!.withRenderingMode(.alwaysTemplate), for: .normal)
         button.imageView?.theme_tintColor = color
         button.theme_setTitleColor(color, forState: .normal)

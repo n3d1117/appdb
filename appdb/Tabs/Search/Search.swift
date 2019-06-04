@@ -102,7 +102,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         searchController.searchBar.placeholder = "Search iOS Apps".localized()
         searchController.searchBar.textField?.theme_textColor = Color.title
         searchController.searchBar.textField?.enablesReturnKeyAutomatically = false
-        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
+        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark, .dark]
         definesPresentationContext = true
 
         if #available(iOS 11.0, *) {

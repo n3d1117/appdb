@@ -14,7 +14,7 @@ class DetailsVersionHeader: TableViewHeader {
 
     var version: UILabel!
     static var height: CGFloat { return 25 }
-    private let backgroundGray: ThemeColorPicker = ["#E3E3E3", "#3E3E3E"]
+    private let backgroundGray: ThemeColorPicker = ["#E3E3E3", "#3E3E3E", "#313131"]
 
     convenience init(_ versionNumber: String, isLatest: Bool) {
         self.init(frame: .zero)

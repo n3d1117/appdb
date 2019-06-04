@@ -160,7 +160,7 @@ extension Library {
             textField.addTarget(self, action: #selector(self.renameTextChanged), for: .editingChanged)
             textField.placeholder = String(file.filename.dropLast(4))
             textField.text = String(file.filename.dropLast(4))
-            textField.theme_keyboardAppearance = [.light, .dark]
+            textField.theme_keyboardAppearance = [.light, .dark, .dark]
             textField.clearButtonMode = .whileEditing
         })
 

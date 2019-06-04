@@ -324,7 +324,7 @@ class Details: LoadingTableView {
 
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "Enter a reason for your report".localized()
-            textField.theme_keyboardAppearance = [.light, .dark]
+            textField.theme_keyboardAppearance = [.light, .dark, .dark]
             textField.addTarget(self, action: #selector(self.reportTextfieldTextChanged), for: .editingChanged)
             textField.clearButtonMode = .whileEditing
         })

@@ -30,7 +30,7 @@ extension Settings {
         return [
             Section(header: .title("User Interface".localized()), rows: [
                 Row(text: "Choose Theme".localized(),
-                    detailText: Themes.isNight ? "Dark".localized() : "Light".localized(), selection: { [unowned self] _ in
+                    detailText: Themes.current.toString, selection: { [unowned self] _ in
                         self.pushThemeChooser()
                     }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Choose Language".localized(),

@@ -90,7 +90,7 @@ class SeeAll: LoadingTableView {
         default: break
         }
         searchController.searchBar.textField?.theme_textColor = Color.title
-        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark]
+        searchController.searchBar.textField?.theme_keyboardAppearance = [.light, .dark, .dark]
         definesPresentationContext = true
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController

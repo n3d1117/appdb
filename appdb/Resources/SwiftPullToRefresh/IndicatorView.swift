@@ -36,7 +36,7 @@ class IndicatorView: RefreshView {
         self.isHeader = isHeader
         super.init(style: isHeader ? .header : .footer, height: height, action: action)
         
-        indicator.theme_activityIndicatorViewStyle = [.gray, .white]
+        indicator.theme_activityIndicatorViewStyle = [.gray, .white, .white]
         
         layer.addSublayer(arrowLayer)
         addSubview(indicator)

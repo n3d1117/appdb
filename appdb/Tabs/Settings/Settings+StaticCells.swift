@@ -269,7 +269,7 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         textField.backgroundColor = .clear
         textField.textAlignment = .right
         textField.theme_textColor = Color.title
-        textField.theme_keyboardAppearance = [.light, .dark]
+        textField.theme_keyboardAppearance = [.light, .dark, .dark]
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
         contentView.addSubview(textField)

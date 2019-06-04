@@ -199,7 +199,7 @@ extension Downloads {
             textField.addTarget(self, action: #selector(self.urlTextChanged), for: .editingChanged)
             textField.placeholder = "https://example.com/file.ipa".localized()
             textField.keyboardType = .URL
-            textField.theme_keyboardAppearance = [.light, .dark]
+            textField.theme_keyboardAppearance = [.light, .dark, .dark]
             textField.clearButtonMode = .whileEditing
         })
 

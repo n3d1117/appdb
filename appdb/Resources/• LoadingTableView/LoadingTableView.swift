@@ -42,7 +42,7 @@ class LoadingTableView: UITableViewController {
 
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.theme_activityIndicatorViewStyle = [.gray, .white]
+        activityIndicator.theme_activityIndicatorViewStyle = [.gray, .white, .white]
         activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()

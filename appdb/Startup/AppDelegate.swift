@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         self.window?.theme_tintColor = Color.mainTint
 
         // Theme Status Bar
-        UIApplication.shared.theme_setStatusBarStyle([.default, .lightContent], animated: true)
+        UIApplication.shared.theme_setStatusBarStyle([.default, .lightContent, .lightContent], animated: true)
 
         // Theme navigation bar
         let navigationBar = UINavigationBar.appearance()
@@ -45,13 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 AttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16.5)
             ]
         }
-        navigationBar.theme_barStyle = [.default, .black]
+        navigationBar.theme_barStyle = [.default, .black, .black]
         navigationBar.theme_tintColor = Color.mainTint
         navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithAttributes(titleAttributes)
 
         // Theme Tab Bar
         let tabBar = UITabBar.appearance()
-        tabBar.theme_barStyle = [.default, .black]
+        tabBar.theme_barStyle = [.default, .black, .black]
 
         // Theme UISwitch
         UISwitch.appearance().theme_onTintColor = Color.mainTint

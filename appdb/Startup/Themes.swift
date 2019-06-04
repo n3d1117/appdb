@@ -8,21 +8,32 @@
 
 import SwiftTheme
 
-enum Themes: Int {
+enum Themes: Int, CaseIterable {
 
     case light = 0
     case dark = 1
+    case darker = 2
+
+    var toString: String {
+        switch self {
+        case .light: return "Light".localized()
+        case .dark: return "Dark".localized()
+        case .darker: return "Darker".localized() // todo
+        }
+    }
 
     static var current: Themes { return Themes(rawValue: ThemeManager.currentThemeIndex)! }
 
     // MARK: - Switch Theme
 
     static func switchTo(theme: Themes) {
-        ThemeManager.setTheme(index: theme.rawValue)
-        saveCurrentTheme()
+        if theme != current {
+            ThemeManager.setTheme(index: theme.rawValue)
+            saveCurrentTheme()
+        }
     }
 
-    static var isNight: Bool { return current == .dark }
+    static var isNight: Bool { return current != .light }
 
     // MARK: - Save & Restore
 
