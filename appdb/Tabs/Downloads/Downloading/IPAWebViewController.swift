@@ -178,9 +178,11 @@ extension IPAWebViewController {
 
         if let url = navigationResponse.response.url, let filename = navigationResponse.response.suggestedFilename {
             // DEBUG
-            //if filename.hasSuffix(".ipa") {
-                //debugLog((navigationResponse.response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String)
-            //}
+            #if DEBUG
+                if filename.hasSuffix(".ipa") {
+                    debugLog((navigationResponse.response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String ?? "")
+                }
+            #endif
 
             if let contentType = (navigationResponse.response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String {
                 if allowedContentTypes.contains(contentType), filename.hasSuffix(".ipa") {
@@ -222,9 +224,11 @@ extension IPAWebViewController {
         }
 
         // DEBUG
-        //if !BlockAds.shared.shouldBlock(host: host) {
-        //    debugLog("HOST: \(host)")
-        //}
+        #if DEBUG
+            if !AdBlocker.shared.shouldBlock(host: host) {
+                debugLog("HOST: \(host)")
+            }
+        #endif
 
         decisionHandler(.allow)
     }

@@ -67,6 +67,10 @@ let blockRules = """
 """
 
 let ads: Set = [
+    "parronnotandone.info",
+    "1d619628c5f.traffic-c.com",
+    "traffic-clicks.clickbyte-media.net",
+    "arescadon.com",
     "preskalyn.com",
     "www.friendlyduck.com",
     "evengtofundrew.pro",
