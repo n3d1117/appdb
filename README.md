@@ -28,6 +28,21 @@ A fully-featured iOS client for [appdb.to](https://appdb.to) written in Swift 5.
 * [swifter](https://github.com/httpswift/swifter) - Tiny http server engine written in Swift programming language
 * [ZIPFoundation](https://github.com/weichsel/ZIPFoundation) - Effortless ZIP Handling in Swift
 
+## URL Schemes available
+* `appdb-ios://?tab=featured`
+* `appdb-ios://?tab=search`
+* `appdb-ios://?tab=downloads`
+* `appdb-ios://?tab=settings`
+* `appdb-ios://?tab=updates`
+* `appdb-ios://?tab=news`
+* `appdb-ios://?tab=system_status`
+* `appdb-ios://?tab=device_status`
+* `appdb-ios://?trackid=1900000538&type=[ios, cydia, books]`
+* `appdb-ios://?q=facebook&type=[ios, cydia, books]`
+* `appdb-ios://?url=https://appdb.to`
+* `appdb-ios://?news_id=308`
+* `appdb-ios://?action=authorize&code=xxx`
+
 ## Download
 You can download the latest .ipa from [here](https://github.com/n3d1117/appdb/releases).
 
