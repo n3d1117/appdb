@@ -107,12 +107,6 @@ extension Library {
     // MARK: - Custom install
 
     internal func customInstall(ipa: LocalIPAFile, indexPath: IndexPath) {
-        guard Preferences.deviceIsLinked else {
-            Messages.shared.showError(message: "Please authorize app from Settings first".localized())
-            return
-        }
-
-        let queue = DispatchQueue(label: "it.ned.custom_install_\(Global.randomString(length: 5))", attributes: .concurrent)
 
         guard let cell = self.collectionView.cellForItem(at: indexPath) as? LocalIPACell else { return }
 
@@ -122,30 +116,59 @@ extension Library {
 
         delay(0.3) {
 
-            queue.async {
+            IPAFileManager.shared.startServer()
+            let link = IPAFileManager.shared.getIpaLocalUrl(from: ipa)
 
-                IPAFileManager.shared.startServer()
+            if Preferences.deviceIsLinked {
 
-                guard let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa) else {
-                    DispatchQueue.main.async {
-                        cell.updateText(ipa.size)
-                        IPAFileManager.shared.stopServer()
-                    }
-                    return
-                }
+                let queue = DispatchQueue(label: "it.ned.custom_install_\(Global.randomString(length: 5))", attributes: .concurrent)
 
-                let link = IPAFileManager.shared.getIpaLocalUrl(from: ipa)
+                queue.async {
 
-                API.requestInstallJB(plist: plist, icon: " ", link: link, completion: { error in
-                    DispatchQueue.main.async {
-                        cell.updateText(ipa.size)
-                        if let error = error {
-                            Messages.shared.showError(message: error.prettified)
+                    guard let plist = IPAFileManager.shared.base64ToJSONInfoPlist(from: ipa) else {
+                        DispatchQueue.main.async {
+                            cell.updateText(ipa.size)
                             IPAFileManager.shared.stopServer()
-                        } else {
+                        }
+                        return
+                    }
+
+                    API.requestInstallJB(plist: plist, icon: " ", link: link, completion: { error in
+                        DispatchQueue.main.async {
+                            cell.updateText(ipa.size)
+                            if let error = error {
+                                Messages.shared.showError(message: error.prettified)
+                                IPAFileManager.shared.stopServer()
+                            } else {
+                                // Allowing up to 3 mins for app to install...
+                                delay(180) { IPAFileManager.shared.stopServer() }
+                            }
+                        }
+                    })
+                }
+            } else {
+
+                // Install ipa without signing and without appdb, using itms-services directly
+                // Uses https://itms-plist-helper.vapor.cloud/
+                // See https://github.com/n3d1117/itms-helper
+
+                guard let bundleId = IPAFileManager.shared.getBundleId(from: ipa) else { return }
+
+                API.getPlistFromItmsHelper(bundleId: bundleId, localIpaUrlString: link, title: ipa.filename, completion: { plistUrlString in
+                    if let plistUrlString = plistUrlString {
+                        if let url = URL(string: "itms-services://?action=download-manifest&url=\(plistUrlString)") {
+                            UIApplication.shared.openURL(url)
+                            cell.updateText(ipa.size)
                             // Allowing up to 3 mins for app to install...
                             delay(180) { IPAFileManager.shared.stopServer() }
+                        } else {
+                            cell.updateText(ipa.size)
+                            IPAFileManager.shared.stopServer()
                         }
+                    } else {
+                        cell.updateText(ipa.size)
+                        Messages.shared.showError(message: "Oops! Something went wrong. Please try again later.".localized())
+                        IPAFileManager.shared.stopServer()
                     }
                 })
             }

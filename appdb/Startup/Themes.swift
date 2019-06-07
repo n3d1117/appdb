@@ -18,7 +18,7 @@ enum Themes: Int, CaseIterable {
         switch self {
         case .light: return "Light".localized()
         case .dark: return "Dark".localized()
-        case .darker: return "Darker".localized() // todo
+        case .darker: return "Darker".localized()
         }
     }
 

@@ -300,6 +300,7 @@
 "Unable to read contents of Info.plist file" = "Unable to read contents of Info.plist file";
 "Unable to encode Info.plist file" = "Unable to encode Info.plist file";
 "File not found at given path" = "File not found at given path";
+"Unable to find bundle id in Info.plist" = "Unable to find bundle id in Info.plist";
 "File size not found in resource values" = "File size not found in resource values";
 "A report has already been submitted" = "A report has already been submitted";
 "Installation failed, but can be fixed from Settings -> Device Status" = "Installation failed, but can be fixed from Settings -> Device Status";

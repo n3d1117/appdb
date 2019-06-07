@@ -300,6 +300,7 @@
 "Unable to read contents of Info.plist file" = "Imposible de leer el contenido del archivo Info.plist";
 "Unable to encode Info.plist file" = "Imposible de encriptar el archivo Info.plist";
 "File not found at given path" = "Archivo no encontrado en el directorio dado";
+"Unable to find bundle id in Info.plist" = "ID del paquete no encontrado en el archivo Info.plist";
 "File size not found in resource values" = "Inválido archivo con los valores dados";
 "A report has already been submitted" = "El reporte ha sido enviado";
 "Installation failed, but can be fixed from Settings -> Device Status" = "Instalación fallida, pero se puede arreglar en los ajustes de la app -> Estado del dispositivo";

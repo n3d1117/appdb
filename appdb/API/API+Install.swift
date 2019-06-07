@@ -44,4 +44,21 @@ extension API {
                 }
             }
     }
+
+    static func getPlistFromItmsHelper(bundleId: String, localIpaUrlString: String, title: String, completion:@escaping (_ plistUrl: String?) -> Void) {
+        Alamofire.request(itmsHelperEndpoint + "request", method: .get, parameters: ["bundle": bundleId, "link": localIpaUrlString, "title": title], headers: headers).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let uuid = json["uuid"].stringValue
+                if !uuid.isEmpty {
+                    completion(itmsHelperEndpoint + "plists/" + uuid + ".plist")
+                } else {
+                    completion(nil)
+                }
+            case .failure:
+                completion(nil)
+            }
+        }
+    }
 }
