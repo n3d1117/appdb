@@ -1,0 +1,350 @@
+/* 
+  Localizable.strings
+  appdb
+
+  Created by ZonD80 on 14/06/2019.
+  Copyright © 2019 ZonD80. All rights reserved.
+*/
+
+/////////////////////
+//  APPDB RELATED  //
+/////////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "Мы не хостим запрещенный контент. Все данные доступны через iTunes API.";
+
+//////////////////////
+//  TAB BAR TITLES  //
+//////////////////////
+
+"Featured" = "Новое";
+"Search" = "Поиск";
+"Downloads" = "Загрузки";
+"Settings" = "Настройки";
+"Updates" = "Обновления";
+
+//////////////////////
+//    NETWORKING    //
+//////////////////////
+
+"Cannot connect" = "Обрыв связи";
+"Retry" = "Повторить";
+"Waiting..." = "Ожидаю...";
+"Checking..." = "Проверяю...";
+"Operation has been cancelled." = "Операциия отменена.";
+
+//////////////////////
+//    CATEGORIES    //
+//////////////////////
+
+"All Categories" = "Все категории";
+"Categories" = "Категории";
+"Select Category" = "Выберите категорию";
+"iOS" = "iOS";
+"Cydia" = "Cydia";
+"Books" = "Книги";
+
+/////////////////////////////
+//    FEATURED SECTIONS    //
+/////////////////////////////
+
+"Custom Apps" = "Кастомные приложения";
+"New and Noteworthy" = "Новое";
+"Top Paid" = "Топ платных";
+"Popular This Week" = "Популярны на этой неделе";
+"Best Games" = "Лучшие игры";
+"Top Books" = "Лучшие книги";
+"See All" = "Посмотреть все";
+"News" = "Новости";
+"Settings" = "Настройки";
+"System Status" = "Статус системы";
+
+//////////////////////////
+//     APPS & BOOKS     //
+//////////////////////////
+
+"Description" = "Описание";
+"What's New" = "Что нового";
+"Tweaked Version Notice" = "Уведомление о Твике";
+"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "Это приложение было изменено для предоставления улучшенных возможностей. Загружайте такие приложения только от проверенных взломщиков, т.к. никто кроме них не сможет гарантировать, что приложение не содержит вредоносного кода.";
+"iPad only" = "только для iPad";
+"Information" = "Информация";
+"Seller" = "Продавец";
+"Developer" = "Разработчик";
+"Category" = "Категория";
+"Price" = "Цена";
+"Updated" = "Обновлено";
+"Version" = "Версия";
+"Compatibility" = "Совместимость";
+"Size" = "Размер";
+"Language" = "Язык";
+"Languages" = "Языки";
+"Bundle ID" = "Bundle ID";
+"Author" = "Автор";
+"Print Length" = "Кол-во страниц";
+"Requirements" = "Системные требования";
+"Rating" = "Рейтинг";
+"Developer Apps" = "Приложения этого разработчика";
+"Developer Website" = "Сайт разработчика";
+"Developer Support" = "Поддержка разработчика";
+"More by this author" = "Еще от этого разработчика";
+"Unknown" = "Неизвестно";
+"See Original" = "Посмотреть оригинальное приложение";
+"Details" = "Подробно";
+"Reviews" = "Отзывы";
+"Download" = "Скачать";
+"Install" = "Установить";
+"Requesting..." = "Запрашиваю...";
+"Requested" = "Запрошено";
+"by" = "от";
+"Related Apps" = "Связанные приложения";
+"Related Books" = "Связанные книги";
+"Reviews are from Apple's iTunes Store ©" = "Отзывы из Apple AppStore ©";
+"Check out '%@' on appdb!" = "Смотрите '%@' на appdb!";
+"Installation has been queued to your device" = "Установка поставлена в очередь вашему устройству";
+"Installation options" = "Опции установки";
+"Duplicate app" = "Дубликат приложения";
+"New ID" = "Новый ID";
+"New display name" = "Новое имя";
+"Use Original" = "Использовать оригинал";
+"Cracked by %@" = "Взломано %@";
+"Uploaded by %@" = "Загружено %@";
+"Cracked and uploaded by %@" = "Взломано и загружено %@";
+
+//////////////////////////////////
+//     DEVICE LINK TUTORIAL     //
+//////////////////////////////////
+
+"Authorization" = "Авторизация";
+"Authorize App" = "Авторизировать приложение";
+"Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles." = "Вы уже привязали устройство к appdb? Вы можете проверить профиль appdb в Настройки -> Общее -> Профили.";
+"Continue" = "Продолжить";
+"Enter Link Code" = "Введите одноразовый код привязки";
+"Enter link code here" = "Введите код тут";
+"Please enter a valid email address." = "Введите правильный Email.";
+"Paste the 8 digits case sensitive link code you see on this page:" = "Скопируйте и вставьте регистрозависимый 8-символьный код, который вы увидите на этой странице:";
+"Go Back" = "Назад";
+"Enter Email" = "Введите Email";
+"Please enter your email address below and click Continue. You will be redirected to the Settings app where you can proceed with appdb profile installation." = "Введите ваш email ниже и нажмите Продолжить. Вас перенаправит в Настройки, где вы сможете продолжить привязку устройства к appdb.";
+"Success" = "Успех!";
+"Well done! This app is now authorized to install apps on your device." = "Молодец! Теперь это приложение может устанавливать приложения на вашем устройстве.";
+"Start using appdb!" = "Начать использовать appdb!";
+"Unable to complete" = "Невозможно продолжить";
+"Yes, already linked" = "Да, привязано";
+"No, not yet linked" = "Нет, не привязано";
+"name@example.com" = "name@example.com";
+"Deauthorization" = "Отозвать авторизацию";
+"Deauthorized" = "Авторизация отозвано";
+"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Вы уверены, что хотите отозвать возможность этого приложения устанавливать другие приложения на вагему устройстве через appdb?\n\nВНИМАНИЕ: Это действие не отвяжет ваше устройство от appdb. Чтобы отвязать его, посетите Настройки -> Общее -> Профильи.";
+"App was deauthorized successfully." = "Авторизация приложения успешно отозвана.";
+
+////////////////////
+//     SEARCH     //
+////////////////////
+
+"Search iOS Apps" = "Искать iOS приложения";
+"Search Cydia Apps" = "Искать Cydia приложения";
+"Search Books" = "Искать книни";
+"Trending iOS Apps" = "Популярные iOS приложения";
+"Trending Cydia Apps" = "Популярные Cydia приложения";
+"Trending Books" = "Популярные книги";
+"No results found" = "Ничего не найдено";
+"No results were found for '%@'" = "Ничего не найдено по запросу '%@'";
+"Please search at least two characters" = "Введите по крайне мере 2 символа";
+"Search News" = "Искать новости";
+
+///////////////////////
+//     DOWNLOADS     //
+///////////////////////
+
+"Queued" = "В очереди";
+"Library" = "Библиотека";
+"Downloading" = "Скачивается";
+"No queued downloads"  = "Нет скачиваний в очереди";
+"File download has started" = "Скачивание началась";
+"Enter URL" = "Введите URL";
+"Enter below the URL of the .ipa file you want to download" = "Введите URL .ipa файла, который хотите скачать";
+"https://example.com/file.ipa" = "https://example.com/file.ipa";
+"Load" = "Загрузить";
+"Uploaded on %@" = "Загружено в %@"; // e.g. Uploaded on %date%
+"Pause" = "Пауза";
+"Paused" = "Приостановлено";
+"Resume" = "Возобновить";
+"Stop" = "Остановить";
+"Install without signing" = "Установить без подписи";
+"Upload to MyAppStore" = "Выгрузить в MyAppStore";
+"Open in..." = "Открыть в...";
+"Rename" = "Переименовать";
+"Rename File" = "Переименовать файл";
+"Delete" = "Удалить";
+"Delete all" = "Удалить все";
+"No Local IPAs Found" = "Локальных IPA файлов не найдено";
+"Use iTunes File Sharing or import them from other apps" = "Используйте iTunes File Sharing или импортируйте их из других приложений";
+"No MyAppStore apps" = "В MyAppStore ничего не загружено";
+"This is your personal IPA library! Apps you upload over time will appear here" = "Это ваша персональная библиотека приложений! Все ваши загруженные приложения будут храниться тут";
+"Please cancel any pending uploads before deleting local files" = "Пожалуйста остановите все загрузки перед удалением локальных файлов";
+"Delete 1 file?" = "Удалить 1 файл?";
+"Local Files" = "Локальные файлы";
+"Are you sure you want to delete %@ files?" = "Вы уверены, что хотите удалить %@ файлов?"; // %@ is the number of files to delete
+"Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@" = "Поместите ваши локальные .ipa (или .zip) файлы в директорию документов, через iTunes File Sharing, или импортируйте их из других приложений:\n\n%@";
+"appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'" = "appdb представляет MyAppStore - ваш личный AppStore. Новый установщик приложений, который трансформировался в вашу личную библиотеку приложений!\n\n• Сохраняйте ваши личные приложения на appdb\n• Распределите их среди ваших устройств, привязанных с одним и тем же Email\n• Храните приложения до 4ГБ\n• Загружайте несколько приложений сразу\n\nЧтобы начать, нажмите на локальный файл и выберите 'Выгрузить в MyAppStore'";
+"No active downloads" = "Нет активных щаг";
+"Remove from list" = "Удалить";
+"File downloaded successfully" = "Файл успешно скачан";
+"File downloaded successfully, added to Library" = "Файл успешно скачан, добавлен в библиотеку";
+"Uploading %@ of %@ (%@)" = "Выгружаю %@ из %@ (%@)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
+"Uploading" = "Uploading"; // please use same translation used above, before first %@
+"Downloading %@ of %@ (%@)" = "Скачиваю %@ из %@ (%@)"; // e.g. "Downloading 7.4 MB of 15.2 MB (49%)"
+"Downloading %@" = "Скачиваю %@"; // e.g. "Downloading 3 MB"
+"Downloading" = "Скачиваю"; // please use same translation used above, before %@
+"File uploaded successfully" = "Файл выгружен успешно";
+
+//////////////////////
+//     SETTINGS     //
+//////////////////////
+
+"Device Configuration" = "Настройка устройства";
+"Link Code" = "Код привязки";
+"Jailbroken w/ Appsync" = "Взломано w/ Appsync";
+"Compatibility Checks" = "Проверки совместимости";
+"Ask for installation options" = "Спрашивать об опциях установки";
+"Deauthorize" = "Отозвать авторизацию";
+"User Interface" = "Интерфейс";
+"Choose Theme" = "Выберите тему";
+"Choose Language" = "Выберите язык";
+"Language set, please restart the app to apply changes" = "Язык установлен, перезапустите приложения для применения настроек";
+"Dark" = "Темная";
+"Darker" = "Темнее";
+"Light" = "Светлая";
+"Support" = "Поддержка";
+"Visit appdb forum" = "Посетить форумы appdb";
+"About" = "О нас";
+"Acknowledgements" = "Упоминания";
+"General" = "Общие";
+"Device" = "Устройства";
+"Authorize App" = "Авторизировать приложение";
+"Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Авторизируйте приложение с помощью кода привязки с сайта appdb и наслаждайтесь безлимитными установками приложений!";
+"PRO Status" = "Статус PRO";
+"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Используйте этот код привязки чтобы привязать новые устройства к appdb. Долго удерживайте, чтобы скопировать код. Тапните, чтобы сгенерировать новый.";
+"Device Status" = "Статус устройства";
+"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Чтобы полностью отвязать устройство от appdb, посетите Настройки -> Общие -> Профили.";
+"Active" = "Активно";
+"Inactive" = "Неактивно";
+"Expires on %@" = "Истекает %@";
+"Clear command queue?" = "Очистить очередь команд?";
+"Clear" = "Очистить";
+"Fix" = "Исправить"; // as in fix command from device status
+"Disabled" = "Отключено"; // as in 'PRO disabled'
+"Revoked" = "Отозвано";
+"Revoked on %@" = "Дата отзыва %@";
+"Show badge for updates" = "Показывать иконку уведомлений";
+"Available Languages" = "Доступные языки";
+"Available Themes" = "Доступные темы";
+"Tap to know more" = "Тапните чтобы узнать больше";
+"Contact Developer" = "Связаться с разработчиком";
+"Choose an option" = "Выберите опцию";
+"Select a service" = "Выберите сервис";
+"Email" = "Email";
+"Telegram" = "Telegram";
+"Could not find email service." = "Не могу найти сервис почты.";
+
+/////////////////////
+//     UPDATES     //
+/////////////////////
+
+"Ignore" = "Игнорировать";
+"No updates found" = "Обновлений не найдено";
+"Please authorize app from Settings first" = "Пожалуйста, сначала авторизируйте приложение из Настроек";
+"%@ Updateable app" = "%@ приложение можно обновить";  // e.g. 1 Updateable app
+"%@ Updateable apps" = "%@ приложений можно обновить"; // e.g. 6 Updateable apps
+"%@ Non updateable app" = "%@ приложение нельзя обновить";
+"%@ Non updateable apps" = "%@ приложений нельзя обновить";
+"Non Updateable Apps" = "Необновляемые приложений";
+"Ignored" = "Игнорируется";
+"Ignored Updates" = "Игнорируемые обновления";
+"No ignored updates" = "Нет игнорируемых обновлений";
+"Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'." = "Приложения, установленные через AppStore или OTA не могут быть обновлены через appdb из-за ограничений безопасности. Мы их уважаем!\n\nЧтобы обновить эти приложения, удалите их и установите через appdb.\n\nЧтобы скрыть эти обновления, свайпните влево и выберите 'Игнорировать'.";
+"Swipe left on any update to add it to this list" = "Свайпните влево на любом обновлении чтобы добавить его в этот список";
+"Update" = "Обновить"; // green UPDATE button
+"Your version: %@" = "Ваша версия: %@";
+"New version: %@" = "Новая версия: %@";
+"Update Available" = "Доступно обновление";
+"What's New in version %@" = "Что нового в версии %@";
+
+////////////////////
+//     ERRORS     //
+////////////////////
+
+"Maintenance mode active. We will be back soon!" = "Производятся работы по обслуживанию. Скоро все заработает!";
+"No links found." = "Ссылок не найдено.";
+"Not found" = "Ничего не найдено";
+"Couldn't find content with id %@ in our database" = "Контента с идентификатором %@ нет в нашей базе данных";
+"An error has occurred" = "Произошла ошибка";
+"Invalid link code." = "Неверный код привязки.";
+"Invalid email address." = "Неверный email.";
+"Link code cannot be empty." = "Необходим код привязки.";
+"Please enter a valid email address." = "Введите корректный email адрес.";
+"No device linked." = "Устройство не привязано.";
+"Unable to fetch device token." = "Невозможно получить токен устройства.";
+"Use link code instead." = "Используйте код привязки с предыдущего устройства вместо email.";
+"Oops! Something went wrong. Please try again later." = "Упс! Что-то пошло не так, кто-то неправ. Попробуйте еще раз позже.";
+"Missing link code or email." = "Отсутствует код привязки или email.";
+"Could not parse plist file." = "Ошибка разбора файла plist.";
+"Device status is empty" = "Статус устойства пуст";
+"The request timed out" = "Превышено время ожидания ответа";
+"Your device is not compatible with this app" = "Ваше устройство не совместимо с этим приложением";
+"Error: malformed url" = "Ошибка: некорректный URL";
+"IPA Not found" = "IPA не найден";
+"IPA is missing Payload folder" = "Внутри IPA отсутствует папка Payload";
+"IPA is missing .app folder" = "Внутри IPA отсутствует папка .app";
+"IPA is missing Info.plist file" = "Внутри IPA остуствует файл Info.plist";
+"Unable to read contents of Info.plist file" = "Невозможно прочитать Info.plist";
+"Unable to encode Info.plist file" = "Невозможно создать Info.plist";
+"File not found at given path" = "По указанному пути не найден файл";
+"Unable to find bundle id in Info.plist" = "В Info.plist отсутствует идентификатор приложения";
+"File size not found in resource values" = "Размер файла не указан";
+"A report has already been submitted" = "Отзыв уже был отправлен";
+"Installation failed, but can be fixed from Settings -> Device Status" = "Установка завершилась неудачей. Это может быть исправлено из Настройки -> Статус устройства";
+"An error has occurred: malformed JSON" = "Ошибка: некорректный JSON";
+"Your PRO subscription has expired." = "Ваш PRO статус закончился.";
+"Your PRO subscription has been revoked by Apple." = "Ваш PRO статус был отозван корпорацией Apple.";
+"Your device doesn't seem to have a PRO subcription." = "У вашего устройства нет статуса PRO.";
+"App duplication is currently supported on non-jailbroken devices with PRO." = "Установка дубликатов приложений поддерживается только на невзломанных устройствах с PRO.";
+
+////////////////////////////
+//     LINK REPORTING     //
+////////////////////////////
+
+"Send" = "Отправить";
+"Report" = "Сообщить о проблеме";
+"Reporting a broken link for '%@'." = "Сообщаем о проблеме с '%@'.";
+"Enter a reason for your report" = "Введите причину сообщения";
+"Link reported successfully!" = "Ваш отзыв о проблеме отправлен!";
+
+/////////////////////
+//     CREDITS     //
+/////////////////////
+"Credits" = "Создатели";
+"Developer" = "Разработчики";
+"Special Thanks" = "Особое спасибо";
+"Translations" = "Переводчики";
+"appdb team" = "Команда appdb";
+"Icon and banner designer" = "Дизайнер иконки и баннера";
+"View project on GitHub" = "Посмотреть исходный код GitHub";
+
+///////////////////
+//     OTHER     //
+///////////////////
+
+"Cancel" = "Отмена";
+"Dismiss" = "Скрыть";
+"Yes" = "Да";
+"OK" = "OK";
+"No" = "Нет";
+"Done" = "Готово";
+"more" = "еще";
+"Open in Safari" = "Открыть Safari";
+"%@s ago" = "%@ сек назад"; // seconds, e.g. 15s ago
+"%@m ago" = "%@ мин назад"; // minutes, e.g. 5m ago
+"%@h ago" = "%@ часов назад"; // hours, e.g. 6h ago
+"%@d ago" = "%@ дней назад"; // days, e.g. 3d ago
+"now" = "только что";

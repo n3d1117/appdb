@@ -433,6 +433,7 @@
 		81FF1C501F9211B00086EEE0 /* Localize_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localize_Swift.framework; path = Carthage/Build/iOS/Localize_Swift.framework; sourceTree = "<group>"; };
 		81FF1C511F9211B00086EEE0 /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = Carthage/Build/iOS/Cosmos.framework; sourceTree = "<group>"; };
 		81FF1C521F9211B00086EEE0 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		88BEFFC722B3A24A008FD371 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1403,6 +1404,7 @@
 				Base,
 				it,
 				es,
+				ru,
 			);
 			mainGroup = 8167A6061DAC246000F96AC2;
 			productRefGroup = 8167A6101DAC246000F96AC2 /* Products */;
@@ -1685,6 +1687,7 @@
 				819EC2D11E41013D00BA7A50 /* en */,
 				819EC2D31E41016D00BA7A50 /* it */,
 				817962D722A43F65005BB1F0 /* es */,
+				88BEFFC722B3A24A008FD371 /* ru */,
 			);
 			name = Localizable.strings;
 			path = .;
