@@ -39,7 +39,8 @@ class Credits: TableViewController {
         Credit(name: "appdb team", detail: nil, base64Image: appdbImage, type: .specialThanks, handle: .website(site: Global.mainSite)),
         Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), base64Image: aesignImage, type: .specialThanks, handle: .website(site: "https://aesign.me")),
 
-        Credit(name: "TNT 🇪🇸", detail: nil, base64Image: tntImage, type: .translations, handle: .twitter(username: "tnttaolin2"))
+        Credit(name: "TNT 🇪🇸", detail: nil, base64Image: tntImage, type: .translations, handle: .twitter(username: "tnttaolin2")),
+        Credit(name: "Zond80 🇷🇺", detail: nil, base64Image: zondImage, type: .translations, handle: .website(site: "https://github.com/Zond80"))
     ]
 
     convenience init() {
