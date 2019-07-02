@@ -63,44 +63,92 @@ extension Library {
             cell.updateText("Waiting...".localized())
         }
 
-        delay(0.3) {
+        func upload(filename: String) {
 
-            let randomString = Global.randomString(length: 30)
-            guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
-            let url = IPAFileManager.shared.url(for: ipa)
+            delay(0.3) {
 
-            self.uploadBackgroundTask = BackgroundTaskUtil()
-            self.uploadBackgroundTask?.start()
+                let randomString = Global.randomString(length: 30)
+                guard let jobId = SHA1.hexString(from: randomString)?.replacingOccurrences(of: " ", with: "").lowercased() else { return }
+                let url = IPAFileManager.shared.urlFromFilename(filename: filename)
 
-            API.addToMyAppStore(jobId: jobId, fileURL: url, request: { [weak self] req in
-                guard let self = self else { return }
+                self.uploadBackgroundTask = BackgroundTaskUtil()
+                self.uploadBackgroundTask?.start()
 
-                self.uploadRequestsAtIndex[indexPath] = LocalIPAUploadUtil(req)
-                self.collectionView.reloadItems(at: [indexPath])
-            }, completion: { [weak self] error in
-                guard let self = self else { return }
+                guard let ipa = self.localIpas.first(where: { $0.filename == filename }), let index = self.localIpas.firstIndex(of: ipa) else { return }
+                let newIndex = IndexPath(row: index, section: 0)
 
-                self.uploadRequestsAtIndex.removeValue(forKey: indexPath)
-                self.collectionView.reloadItems(at: [indexPath])
+                API.addToMyAppStore(jobId: jobId, fileURL: url, request: { [weak self] req in
+                    guard let self = self else { return }
 
-                if let error = error {
-                    Messages.shared.showError(message: error.prettified)
-                    self.uploadBackgroundTask = nil
-                } else {
-                    delay(0.8) {
-                        API.analyzeJob(jobId: jobId, completion: { [weak self] error in
-                            guard let self = self else { return }
+                    self.uploadRequestsAtIndex[newIndex] = LocalIPAUploadUtil(req)
+                    self.collectionView.reloadItems(at: [newIndex])
+                }, completion: { [weak self] error in
+                    guard let self = self else { return }
 
-                            self.uploadBackgroundTask = nil
-                            if let error = error {
-                                Messages.shared.showError(message: error.prettified)
-                            } else {
-                                Messages.shared.showSuccess(message: "File uploaded successfully".localized())
-                            }
-                        })
+                    self.uploadRequestsAtIndex.removeValue(forKey: indexPath)
+                    self.collectionView.reloadItems(at: [indexPath])
+
+                    if let error = error {
+                        Messages.shared.showError(message: error.prettified)
+                        self.uploadBackgroundTask = nil
+                    } else {
+                        delay(1) {
+                            API.analyzeJob(jobId: jobId, completion: { [weak self] error in
+                                guard let self = self else { return }
+
+                                self.uploadBackgroundTask = nil
+                                if let error = error {
+                                    Messages.shared.showError(message: error.prettified)
+                                } else {
+                                    Messages.shared.showSuccess(message: "File uploaded successfully".localized())
+                                }
+                            })
+                        }
+                    }
+                })
+            }
+        }
+
+        if Preferences.changeBundleBeforeUpload {
+
+            delay(0.1) {
+                guard let bundleId = IPAFileManager.shared.getBundleId(from: ipa) else { return }
+
+                let vc = AskBundleBeforeUploadViewController(originalBundleId: bundleId)
+                let nav = AskBundleBeforeUploadNavController(rootViewController: vc)
+
+                let segue = Messages.shared.generateModalSegue(vc: nav, source: self, trackKeyboard: true)
+                segue.perform()
+
+                // If vc.cancelled is true, modal was dismissed either through 'Cancel' button or background tap
+                segue.eventListeners.append { event in
+                    if case .didHide = event, vc.cancelled {
+                        cell.updateText(ipa.size)
                     }
                 }
-            })
+
+                vc.onCompletion = { (newBundleId: String, overwriteFile: Bool) in
+
+                    if newBundleId == bundleId {
+                        upload(filename: ipa.filename)
+                    } else {
+
+                        // change bundle id, save file and then upload
+                        DispatchQueue.main.async {
+                            cell.updateText("Changing bundle id...".localized())
+                        }
+
+                        delay(0.2) {
+                            cell.updateText(ipa.size)
+                            if let filename = IPAFileManager.shared.changeBundleId(for: ipa, to: newBundleId, overwriteFile: overwriteFile) {
+                                upload(filename: filename)
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            upload(filename: ipa.filename)
         }
     }
 

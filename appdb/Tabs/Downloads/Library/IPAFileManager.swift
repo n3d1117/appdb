@@ -42,6 +42,10 @@ struct IPAFileManager {
         return documentsDirectoryURL().appendingPathComponent(ipa.filename)
     }
 
+    func urlFromFilename(filename: String) -> URL {
+        return documentsDirectoryURL().appendingPathComponent(filename)
+    }
+
     // MARK: - Clear temporary folder - there may be leftovers
 
     func clearTmpDirectory() {
@@ -196,6 +200,72 @@ struct IPAFileManager {
             guard let bundleId = dict["CFBundleIdentifier"] as? String else { return exit("Unable to find bundle id in Info.plist") }
             try FileManager.default.removeItem(atPath: tmp.path)
             return bundleId
+        } catch let error {
+            Messages.shared.showError(message: error.localizedDescription)
+            do {
+                try FileManager.default.removeItem(atPath: tmp.path)
+                return nil
+            } catch {
+                return nil
+            }
+        }
+    }
+
+    // MARK: - Change bundle id and return eventual new filename
+
+    func changeBundleId(for file: LocalIPAFile, to newBundleId: String, overwriteFile: Bool) -> String? {
+
+        let randomName = Global.randomString(length: 5)
+        let tmp = documentsDirectoryURL().appendingPathComponent(randomName, isDirectory: true)
+
+        func exit(_ errorMessage: String) -> String? {
+            Messages.shared.showError(message: errorMessage.prettified)
+            do {
+                try FileManager.default.removeItem(atPath: tmp.path)
+                return nil
+            } catch {
+                return nil
+            }
+        }
+        do {
+            let ipaUrl = documentsDirectoryURL().appendingPathComponent(file.filename)
+
+            debugLog(ipaUrl.absoluteString)
+
+            guard FileManager.default.fileExists(atPath: ipaUrl.path) else { return exit("IPA Not found") }
+            if FileManager.default.fileExists(atPath: tmp.path) { try FileManager.default.removeItem(atPath: tmp.path) }
+            try FileManager.default.createDirectory(atPath: tmp.path, withIntermediateDirectories: true)
+            try FileManager.default.unzipItem(at: ipaUrl, to: tmp)
+            let payload = tmp.appendingPathComponent("Payload", isDirectory: true)
+            guard FileManager.default.fileExists(atPath: payload.path) else { return exit("IPA is missing Payload folder") }
+            let contents = try FileManager.default.contentsOfDirectory(at: payload, includingPropertiesForKeys: nil)
+            guard let dotApp = contents.first(where: { $0.pathExtension == "app" }) else { return exit("IPA is missing .app folder") }
+            let infoPlist = dotApp.appendingPathComponent("Info.plist", isDirectory: false)
+            guard FileManager.default.fileExists(atPath: infoPlist.path) else { return exit("IPA is missing Info.plist file") }
+
+            guard let dict = NSMutableDictionary(contentsOfFile: infoPlist.path) else { return exit("Unable to read contents of Info.plist file") }
+
+            dict.setValue(newBundleId, forKey: "CFBundleIdentifier")
+            dict.write(to: infoPlist, atomically: true)
+
+            var destinationUrl: URL!
+
+            if !overwriteFile {
+                destinationUrl = documentsDirectoryURL().appendingPathComponent(file.filename.dropLast(4) + " (\(newBundleId)).ipa")
+                var i: Int = 0
+                while FileManager.default.fileExists(atPath: destinationUrl.path) {
+                    i += 1
+                    destinationUrl = documentsDirectoryURL().appendingPathComponent(file.filename.dropLast(4) + " (\(newBundleId))_\(i).ipa")
+                }
+            } else {
+                destinationUrl = ipaUrl
+                try FileManager.default.removeItem(atPath: ipaUrl.path)
+            }
+
+            try FileManager.default.zipItem(at: payload, to: destinationUrl, compressionMethod: .deflate)
+            try FileManager.default.removeItem(atPath: tmp.path)
+
+            return destinationUrl.lastPathComponent
         } catch let error {
             Messages.shared.showError(message: error.localizedDescription)
             do {

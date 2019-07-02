@@ -91,6 +91,7 @@ extension Settings {
 
     var deviceLinkedSections: [Static.Section] {
         return themeSection + [
+
             Section(header: .title("General".localized()), rows: [
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
 
@@ -119,12 +120,18 @@ extension Settings {
 
                 Row(text: "Ask for installation options".localized(), accessory: .switchToggle(value: Preferences.askForInstallationOptions) { newValue in
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-
-                Row(text: "Show badge for updates".localized(), cellClass: SwitchCell.self, context: ["valueChange": { [unowned self] new in
-                    self.setShowsBadgeForUpdates(new)
-                }, "value": Preferences.showBadgeForUpdates])
+                }, cellClass: SimpleStaticCell.self)
             ]),
+
+            Section(rows: [
+                Row(text: "Show badge for updates".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
+                    Preferences.set(.showBadgeForUpdates, to: new)
+                }, "value": Preferences.showBadgeForUpdates]),
+
+                Row(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
+                    Preferences.set(.changeBundleBeforeUpload, to: new)
+                }, "value": Preferences.changeBundleBeforeUpload])
+            ], footer: .title("Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.".localized())),
 
             Section(rows: [
                 Row(text: "Device Status".localized(), selection: { [unowned self] _ in
@@ -132,6 +139,7 @@ extension Settings {
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ])
         ] + commonSections + [
+
             Section(rows: [
                 Row(text: "Deauthorize".localized(), selection: { [unowned self] _ in
                     self.showDeauthorizeConfirmation()

@@ -16,6 +16,7 @@ extension Defaults.Keys {
     static let ignoreCompatibility = Key<Bool>("ignoreCompatibility", default: false)
     static let askForInstallationOptions = Key<Bool>("askForInstallationOptions", default: false)
     static let showBadgeForUpdates = Key<Bool>("showBadgeForUpdates", default: true)
+    static let changeBundleBeforeUpload = Key<Bool>("changeBundleBeforeUpload", default: false)
     static let ignoredUpdateableApps = Key<[IgnoredApp]>("ignoredUpdateableApps", default: [])
     static let genres = Key<[Genre]>("genres", default: [])
 }
@@ -89,6 +90,10 @@ enum Preferences {
         return defaults[.showBadgeForUpdates]
     }
 
+    static var changeBundleBeforeUpload: Bool {
+        return defaults[.changeBundleBeforeUpload]
+    }
+
     static var theme: Int {
         return defaults[.theme]
     }
@@ -134,6 +139,7 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.askForInstallationOptions.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoreCompatibility.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.showBadgeForUpdates.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.changeBundleBeforeUpload.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)
     }
 

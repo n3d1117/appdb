@@ -237,6 +237,14 @@
 "Revoked" = "Отозвано";
 "Revoked on %@" = "Дата отзыва %@";
 "Show badge for updates" = "Показывать иконку уведомлений";
+"Change bundle id before upload" = "Изменить идентификатор перед загрузкой";
+"Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app." = "Изменение идентификатора (bundle id) перед выгрузской в MyAppStore может быть полезно при работе с несколькими копиями одного приложения.";
+"New bundle id" = "Новый идетификатор";
+"Tap to generate random" = "Сгенерировать произвольный";
+"Overwrite file" = "Перезаписать файл";
+"Bundle ID Change" = "Изменение bundle id";
+"Change" = "Изменить";
+"Changing bundle id..." = "Изменяю bundle id...";
 "Available Languages" = "Доступные языки";
 "Available Themes" = "Доступные темы";
 "Tap to know more" = "Тапните чтобы узнать больше";

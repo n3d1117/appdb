@@ -106,11 +106,6 @@ class Settings: TableViewController {
         deauthorizeBulletinManager.showBulletin(above: tabBarController ?? self)
     }
 
-    // Update badge for Updates tab
-    func setShowsBadgeForUpdates(_ show: Bool) {
-        Preferences.set(.showBadgeForUpdates, to: show)
-    }
-
     // Push device status controller
     func pushDeviceStatus() {
         let deviceStatusController = DeviceStatus()

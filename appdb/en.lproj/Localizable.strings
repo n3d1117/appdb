@@ -237,6 +237,14 @@
 "Revoked" = "Revoked";
 "Revoked on %@" = "Revoked on %@";
 "Show badge for updates" = "Show badge for updates";
+"Change bundle id before upload" = "Change bundle id before upload";
+"Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app." = "Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.";
+"New bundle id" = "New bundle id";
+"Tap to generate random" = "Tap to generate random";
+"Overwrite file" = "Overwrite file";
+"Bundle ID Change" = "Bundle ID Change";
+"Change" = "Change";
+"Changing bundle id..." = "Changing bundle id...";
 "Available Languages" = "Available Languages";
 "Available Themes" = "Available Themes";
 "Tap to know more" = "Tap to know more";

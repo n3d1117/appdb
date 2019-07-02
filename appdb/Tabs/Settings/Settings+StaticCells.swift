@@ -256,7 +256,7 @@ final class SwitchCell: SimpleStaticCell {
     }
 }
 
-final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
+class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
     var textfieldDidEndEditing: ((String) -> Void)?
 
     var textField: UITextField!
@@ -275,7 +275,7 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         contentView.addSubview(textField)
 
         constrain(textField) { textField in
-            textField.right ~== textField.superview!.layoutMarginsGuide.right ~- 3
+            textField.right ~== textField.superview!.layoutMarginsGuide.right// ~- 3
             textField.top ~== textField.superview!.top
             textField.bottom ~== textField.superview!.bottom
             textField.left ~== textField.superview!.centerX
@@ -289,6 +289,9 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
     override func configure(row: Row) {
         textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
+        if let initialText = row.context?["initialText"] as? String {
+            textField.text = initialText
+        }
         if let placeholder = row.context?["placeholder"] as? String {
             textField.placeholder = placeholder
             textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: textLabel?.font?.pointSize ?? (17 ~~ 16))])
@@ -306,6 +309,63 @@ final class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+final class StaticSubtitleTextFieldCell: StaticTextFieldCell {
+
+    private var title: UILabel!
+    private var subtitle: UILabel!
+
+    private var dummy: UIView!
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        title = UILabel()
+        title.font = .systemFont(ofSize: (17 ~~ 16))
+        title.makeDynamicFont()
+        title.textAlignment = .left
+
+        subtitle = UILabel()
+        subtitle.font = .systemFont(ofSize: (12 ~~ 11))
+        subtitle.makeDynamicFont()
+        subtitle.textAlignment = .left
+
+        dummy = UIView()
+        dummy.isHidden = true
+
+        contentView.addSubview(title)
+        contentView.addSubview(subtitle)
+        contentView.addSubview(dummy)
+
+        constrain(title, subtitle, dummy) { title, subtitle, dummy in
+
+            dummy.height ~== 1
+            dummy.centerY ~== dummy.superview!.centerY
+
+            title.leading == title.superview!.leadingMargin
+            subtitle.leading == title.leading
+
+            title.bottom ~== dummy.top ~+ 4
+            subtitle.top ~== dummy.bottom ~+ 3
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func configure(row: Row) {
+        super.configure(row: row)
+
+        selectionStyle = .none
+
+        title.text = row.context?["title"] as? String
+        title.theme_textColor = Color.title
+
+        subtitle.text = row.context?["subtitle"] as? String
+        subtitle.theme_textColor = Color.darkGray
     }
 }
 

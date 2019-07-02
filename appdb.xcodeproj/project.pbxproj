@@ -159,6 +159,7 @@
 		81BE066F1E6C52FE00AD9827 /* Details+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE066E1E6C52FE00AD9827 /* Details+Publisher.swift */; };
 		81BE06721E6CB6DE00AD9827 /* Details+SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */; };
 		81C274D8229FFA57000D8BEB /* Credits+Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C274D7229FFA57000D8BEB /* Credits+Views.swift */; };
+		81C82B7B22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */; };
 		81D3F72B2163E1DA001EC9F2 /* Item+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D3F72A2163E1DA001EC9F2 /* Item+Properties.swift */; };
 		81D661761E5A0B6C00BB6461 /* Details+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D661751E5A0B6C00BB6461 /* Details+Extension.swift */; };
 		81DAB7DF2298895C00729424 /* IgnoredApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DAB7DE2298895C00729424 /* IgnoredApp.swift */; };
@@ -385,6 +386,7 @@
 		81C114C11E60699A00EE17A6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		81C274D7229FFA57000D8BEB /* Credits+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Credits+Views.swift"; sourceTree = "<group>"; };
+		81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskBundleBeforeUploadViewController.swift; sourceTree = "<group>"; };
 		81D3F72A2163E1DA001EC9F2 /* Item+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Properties.swift"; sourceTree = "<group>"; };
 		81D661751E5A0B6C00BB6461 /* Details+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81DAB7DE2298895C00729424 /* IgnoredApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredApp.swift; sourceTree = "<group>"; };
@@ -817,6 +819,7 @@
 			children = (
 				81892558227CC9490096F661 /* • AdaptiveUIAlertController */,
 				811A824B2289D14300969946 /* • AdditionalInstallOptionsView */,
+				81C82B7922C3DB8A008BB076 /* • AskBundleBeforeUploadView */,
 				815234D32278C0EE00B1AE65 /* • BackgroundTaskUtil */,
 				81236AC71E3B6870009748E0 /* • ButtonFactory */,
 				81F504E71E5CE6AB0000FACC /* • DimmableView */,
@@ -1071,6 +1074,14 @@
 				81BE066E1E6C52FE00AD9827 /* Details+Publisher.swift */,
 			);
 			path = Publisher;
+			sourceTree = "<group>";
+		};
+		81C82B7922C3DB8A008BB076 /* • AskBundleBeforeUploadView */ = {
+			isa = PBXGroup;
+			children = (
+				81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */,
+			);
+			path = "• AskBundleBeforeUploadView";
 			sourceTree = "<group>";
 		};
 		81D60A1D215159DC00CDF94C /* API */ = {
@@ -1496,6 +1507,7 @@
 				8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */,
 				818A559F20583D4600162E51 /* Settings.swift in Sources */,
 				81395199219B479200329223 /* UpdatesSectionHeaderView.swift in Sources */,
+				81C82B7B22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift in Sources */,
 				81262019215444A400B06F88 /* AttributedLabel.swift in Sources */,
 				81190B45216A2FF200C81BEB /* ThreePortraitScreenshotsSearchCell+Stars.swift in Sources */,
 				81DD29D72288CD3200412BE6 /* LanguageChooser.swift in Sources */,
