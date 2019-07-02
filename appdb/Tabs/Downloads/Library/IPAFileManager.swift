@@ -213,7 +213,7 @@ struct IPAFileManager {
 
     // MARK: - Change bundle id and return eventual new filename
 
-    func changeBundleId(for file: LocalIPAFile, to newBundleId: String, overwriteFile: Bool) -> String? {
+    func changeBundleId(for file: LocalIPAFile, from oldBundleId: String, to newBundleId: String, overwriteFile: Bool) -> String? {
 
         let randomName = Global.randomString(length: 5)
         let tmp = documentsDirectoryURL().appendingPathComponent(randomName, isDirectory: true)
@@ -229,9 +229,6 @@ struct IPAFileManager {
         }
         do {
             let ipaUrl = documentsDirectoryURL().appendingPathComponent(file.filename)
-
-            debugLog(ipaUrl.absoluteString)
-
             guard FileManager.default.fileExists(atPath: ipaUrl.path) else { return exit("IPA Not found") }
             if FileManager.default.fileExists(atPath: tmp.path) { try FileManager.default.removeItem(atPath: tmp.path) }
             try FileManager.default.createDirectory(atPath: tmp.path, withIntermediateDirectories: true)
@@ -240,13 +237,24 @@ struct IPAFileManager {
             guard FileManager.default.fileExists(atPath: payload.path) else { return exit("IPA is missing Payload folder") }
             let contents = try FileManager.default.contentsOfDirectory(at: payload, includingPropertiesForKeys: nil)
             guard let dotApp = contents.first(where: { $0.pathExtension == "app" }) else { return exit("IPA is missing .app folder") }
-            let infoPlist = dotApp.appendingPathComponent("Info.plist", isDirectory: false)
-            guard FileManager.default.fileExists(atPath: infoPlist.path) else { return exit("IPA is missing Info.plist file") }
 
-            guard let dict = NSMutableDictionary(contentsOfFile: infoPlist.path) else { return exit("Unable to read contents of Info.plist file") }
+            // Search recursively in .app folder for files named 'Info.plist'
+            let enumerator = FileManager.default.enumerator(atPath: dotApp.path)
+            if let filePaths = enumerator?.allObjects as? [String] {
+                let infoPlists = filePaths.filter { $0.contains("Info.plist") }
 
-            dict.setValue(newBundleId, forKey: "CFBundleIdentifier")
-            dict.write(to: infoPlist, atomically: true)
+                // For each file found, replace old bundle id with new one
+                for plist in infoPlists {
+                    let infoPlist = dotApp.appendingPathComponent(plist, isDirectory: false)
+                    if FileManager.default.fileExists(atPath: infoPlist.path), let dict = NSMutableDictionary(contentsOfFile: infoPlist.path) {
+                        if let oldValue = dict["CFBundleIdentifier"] as? String, oldValue.contains(oldBundleId) {
+                            let newValue = oldValue.replacingOccurrences(of: oldBundleId, with: newBundleId)
+                            dict.setValue(newValue, forKey: "CFBundleIdentifier")
+                            dict.write(to: infoPlist, atomically: true)
+                        }
+                    }
+                }
+            }
 
             var destinationUrl: URL!
 

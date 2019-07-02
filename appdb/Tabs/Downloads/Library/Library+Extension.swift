@@ -140,7 +140,7 @@ extension Library {
 
                         delay(0.2) {
                             cell.updateText(ipa.size)
-                            if let filename = IPAFileManager.shared.changeBundleId(for: ipa, to: newBundleId, overwriteFile: overwriteFile) {
+                            if let filename = IPAFileManager.shared.changeBundleId(for: ipa, from: bundleId, to: newBundleId, overwriteFile: overwriteFile) {
                                 upload(filename: filename)
                             }
                         }
