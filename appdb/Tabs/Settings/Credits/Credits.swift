@@ -27,20 +27,20 @@ class Credits: TableViewController {
     struct Credit {
         var name: String
         var detail: String?
-        var base64Image: String
+        var imageName: String
         var type: CreditType
         var handle: Handle
     }
 
     lazy var credits: [Credit] = [
-        Credit(name: "ned", detail: nil, base64Image: nedImage, type: .developer, handle: .telegram(username: Global.telegramUsername)),
-        Credit(name: "View project on GitHub".localized(), detail: nil, base64Image: githubImage, type: .developer, handle: .website(site: Global.githubSite)),
+        Credit(name: "ned", detail: nil, imageName: "ned", type: .developer, handle: .telegram(username: Global.telegramUsername)),
+        Credit(name: "View project on GitHub".localized(), detail: nil, imageName: "github", type: .developer, handle: .website(site: Global.githubSite)),
 
-        Credit(name: "appdb team", detail: nil, base64Image: appdbImage, type: .specialThanks, handle: .website(site: Global.mainSite)),
-        Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), base64Image: aesignImage, type: .specialThanks, handle: .website(site: "https://aesign.me")),
+        Credit(name: "appdb team", detail: nil, imageName: "appdb", type: .specialThanks, handle: .website(site: Global.mainSite)),
+        Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), imageName: "aesign", type: .specialThanks, handle: .website(site: "https://aesign.me")),
 
-        Credit(name: "TNT 🇪🇸", detail: nil, base64Image: tntImage, type: .translations, handle: .twitter(username: "tnttaolin2")),
-        Credit(name: "Zond80 🇷🇺", detail: nil, base64Image: zondImage, type: .translations, handle: .website(site: "https://github.com/Zond80"))
+        Credit(name: "TNT 🇪🇸", detail: nil, imageName: "tnt", type: .translations, handle: .twitter(username: "tnttaolin2")),
+        Credit(name: "Zond80 🇷🇺", detail: nil, imageName: "zond", type: .translations, handle: .website(site: "https://github.com/Zond80"))
     ]
 
     convenience init() {
@@ -72,7 +72,7 @@ class Credits: TableViewController {
 
         var sections = [Static.Section]()
 
-        sections.append(Section(header: .autoLayoutView(CreditsIconView(text: "appdb v\(Global.appVersion)", base64Image: appdbImage, easterDelegate: self))))
+        sections.append(Section(header: .autoLayoutView(CreditsIconView(text: "appdb v\(Global.appVersion)", imageName: "appdb", easterDelegate: self))))
 
         for creditType in CreditType.allCases {
             var section: Static.Section = Section(header: .title(creditType.rawValue.localized()), rows: [])
@@ -80,7 +80,7 @@ class Credits: TableViewController {
                 section.rows.append(
                     Row(text: credit.name.localized(), detailText: credit.detail, selection: { [unowned self] _ in
                         self.handleTap(for: credit.handle)
-                    }, accessory: .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["base64Image": credit.base64Image])
+                    }, accessory: .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["imageName": credit.imageName])
                 )
             }
             if !section.rows.isEmpty { sections.append(section) }

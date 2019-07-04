@@ -56,8 +56,8 @@ final class CreditsStaticCell: SimpleStaticCell {
 
         accessoryType = row.accessory.type
 
-        if let base64ImageString = row.context?["base64Image"] as? String {
-            icon.image = base64ImageString.imageFromBase64()
+        if let imageName = row.context?["imageName"] as? String {
+            icon.image = UIImage(named: imageName)
         }
 
         primaryLabel.text = row.text
@@ -136,13 +136,13 @@ class CreditsIconView: UIView {
         return button
     }()*/
 
-    init(text: String, base64Image: String, easterDelegate: Easter) {
+    init(text: String, imageName: String, easterDelegate: Easter) {
         super.init(frame: .zero)
 
         self.easterDelegate = easterDelegate
 
         icon.isUserInteractionEnabled = true
-        icon.image = base64Image.imageFromBase64()
+        icon.image = UIImage(named: imageName)
         label.text = text
 
         let gesture = UITapGestureRecognizer(target: self, action: #selector(animate))

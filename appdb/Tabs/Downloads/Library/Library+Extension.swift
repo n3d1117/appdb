@@ -336,6 +336,7 @@ extension Library {
             if let error = error {
                 Messages.shared.showError(message: error.prettified)
             } else {
+                guard self.myAppstoreIpas.indices.contains(indexPath.row) else { return }
                 self.myAppstoreIpas.remove(at: indexPath.row)
                 self.collectionView.deleteItems(at: [indexPath])
                 if self.myAppstoreIpas.isEmpty {
