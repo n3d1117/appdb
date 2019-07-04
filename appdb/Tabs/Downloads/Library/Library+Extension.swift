@@ -101,6 +101,9 @@ extension Library {
                                     Messages.shared.showError(message: error.prettified)
                                 } else {
                                     Messages.shared.showSuccess(message: "File uploaded successfully".localized())
+                                    delay(1) {
+                                        (self.tabBarController as? TabBarController)?.showInterstitialIfReady()
+                                    }
                                 }
                             })
                         }

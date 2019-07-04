@@ -46,6 +46,10 @@
 		8126201E215444A400B06F88 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262018215444A400B06F88 /* String+Detection.swift */; };
 		812C3542207D235300D39748 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812C3541207D235300D39748 /* Swifter.framework */; };
 		812C3544207D237300D39748 /* ConfigServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812C3543207D237300D39748 /* ConfigServer.swift */; };
+		812D1A5522CBA53500035DCC /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812D1A5122CBA53400035DCC /* GoogleMobileAds.framework */; };
+		812D1A5622CBA53500035DCC /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812D1A5222CBA53400035DCC /* GoogleAppMeasurement.framework */; };
+		812D1A5722CBA53500035DCC /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812D1A5322CBA53400035DCC /* GoogleUtilities.framework */; };
+		812D1A5822CBA53500035DCC /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812D1A5422CBA53500035DCC /* nanopb.framework */; };
 		81324068205BD86000945CE9 /* Settings+StaticCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81324067205BD86000945CE9 /* Settings+StaticCells.swift */; };
 		8132406B205BE50000945CE9 /* News+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132406A205BE50000945CE9 /* News+Detail.swift */; };
 		8133C45C208B629600F2F9F5 /* SeeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133C45B208B629600F2F9F5 /* SeeAll.swift */; };
@@ -134,6 +138,7 @@
 		818A55A920584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A720584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift */; };
 		818A55AA20584D9100162E51 /* LNZInfiniteCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A820584D9100162E51 /* LNZInfiniteCollectionViewLayout.swift */; };
 		818A55AC20584F2B00162E51 /* BannerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55AB20584F2B00162E51 /* BannerImage.swift */; };
+		818D75F222CCF32900A69C56 /* AdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D75F122CCF32900A69C56 /* AdHelper.swift */; };
 		818DE6361E87F4E700E41B51 /* Details+FullScreenshotsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818DE6351E87F4E700E41B51 /* Details+FullScreenshotsCell.swift */; };
 		81939B471E3BA98D00179615 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B461E3BA98D00179615 /* Themes.swift */; };
 		819AE78C1E63135A009D6AF3 /* Details+Changelog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AE78B1E63135A009D6AF3 /* Details+Changelog.swift */; };
@@ -263,6 +268,14 @@
 		81262018215444A400B06F88 /* String+Detection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Detection.swift"; sourceTree = "<group>"; };
 		812C3541207D235300D39748 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		812C3543207D237300D39748 /* ConfigServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServer.swift; sourceTree = "<group>"; };
+		812D1A4922CBA3D500035DCC /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = "../../../Downloads/GoogleMobileAdsSdkiOS-7.46.0/GoogleUtilities.framework"; sourceTree = "<group>"; };
+		812D1A4A22CBA3D500035DCC /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "../../../Downloads/GoogleMobileAdsSdkiOS-7.46.0/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
+		812D1A4B22CBA3D500035DCC /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = "../../../Downloads/GoogleMobileAdsSdkiOS-7.46.0/nanopb.framework"; sourceTree = "<group>"; };
+		812D1A4C22CBA3D500035DCC /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../../../Downloads/GoogleMobileAdsSdkiOS-7.46.0/GoogleMobileAds.framework"; sourceTree = "<group>"; };
+		812D1A5122CBA53400035DCC /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		812D1A5222CBA53400035DCC /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		812D1A5322CBA53400035DCC /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
+		812D1A5422CBA53500035DCC /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = nanopb.framework; sourceTree = "<group>"; };
 		81324067205BD86000945CE9 /* Settings+StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+StaticCells.swift"; sourceTree = "<group>"; };
 		8132406A205BE50000945CE9 /* News+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail.swift"; sourceTree = "<group>"; };
 		8133C45B208B629600F2F9F5 /* SeeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAll.swift; sourceTree = "<group>"; };
@@ -343,8 +356,6 @@
 		8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticLabel.swift; sourceTree = "<group>"; };
 		8188E8D71DB198B800462256 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8188E8D81DB198B800462256 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/iOS/Cartography.framework; sourceTree = "<group>"; };
-		8188E8DB1DB198B800462256 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		8188E8DC1DB198B800462256 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		81892559227CC9690096F661 /* AdaptiveUIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveUIAlertController.swift; sourceTree = "<group>"; };
 		818979402284853A00EC87B2 /* DownloadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingCell.swift; sourceTree = "<group>"; };
@@ -359,6 +370,7 @@
 		818A55A820584D9100162E51 /* LNZInfiniteCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNZInfiniteCollectionViewLayout.swift; sourceTree = "<group>"; };
 		818A55AB20584F2B00162E51 /* BannerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImage.swift; sourceTree = "<group>"; };
 		818CB5D41E787AB400A69213 /* Details+FullScreenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+FullScreenshots.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		818D75F122CCF32900A69C56 /* AdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHelper.swift; sourceTree = "<group>"; };
 		818DE6351E87F4E700E41B51 /* Details+FullScreenshotsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+FullScreenshotsCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81939B461E3BA98D00179615 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Themes.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		819AE78B1E63135A009D6AF3 /* Details+Changelog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Changelog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -375,7 +387,6 @@
 		819EC27920A76EAD007138CF /* ThemeChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChooser.swift; sourceTree = "<group>"; };
 		819EC2D11E41013D00BA7A50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
 		819EC2D31E41016D00BA7A50 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
-		81AA80B920D026DF00CC15AD /* Ferrara.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ferrara.framework; path = Carthage/Build/iOS/Ferrara.framework; sourceTree = "<group>"; };
 		81AB37AD1DAC30BD003A586F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabBarController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81AF3531215115B200A798D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		81BE066B1E6C2EA500AD9827 /* Details+ExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+ExternalLink.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -443,8 +454,11 @@
 			files = (
 				815234CF2278479000B1AE65 /* ZIPFoundation.framework in Frameworks */,
 				817D2EDA1E8EBBE500B8AE0D /* Alamofire.framework in Frameworks */,
+				812D1A5822CBA53500035DCC /* nanopb.framework in Frameworks */,
+				812D1A5622CBA53500035DCC /* GoogleAppMeasurement.framework in Frameworks */,
 				817D2EDD1E8EBBE500B8AE0D /* Cartography.framework in Frameworks */,
 				816B343C20B727500019DE5C /* DeepDiff.framework in Frameworks */,
+				812D1A5722CBA53500035DCC /* GoogleUtilities.framework in Frameworks */,
 				8138538C1F2B7EA300DC7C54 /* Kanna.framework in Frameworks */,
 				81FF1C531F9211B00086EEE0 /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				81FF1C541F9211B00086EEE0 /* SwiftTheme.framework in Frameworks */,
@@ -456,6 +470,7 @@
 				81876E35227B725C00E27CB8 /* SwiftMessages.framework in Frameworks */,
 				817D2EE11E8EBBE500B8AE0D /* SwiftyJSON.framework in Frameworks */,
 				814B76F8205ADB63004D46DD /* Static.framework in Frameworks */,
+				812D1A5522CBA53500035DCC /* GoogleMobileAds.framework in Frameworks */,
 				812C3542207D235300D39748 /* Swifter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1032,9 +1047,16 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				812D1A4A22CBA3D500035DCC /* GoogleAppMeasurement.framework */,
+				812D1A5222CBA53400035DCC /* GoogleAppMeasurement.framework */,
+				812D1A4C22CBA3D500035DCC /* GoogleMobileAds.framework */,
+				812D1A4922CBA3D500035DCC /* GoogleUtilities.framework */,
+				812D1A4B22CBA3D500035DCC /* nanopb.framework */,
+				812D1A5122CBA53400035DCC /* GoogleMobileAds.framework */,
+				812D1A5322CBA53400035DCC /* GoogleUtilities.framework */,
+				812D1A5422CBA53500035DCC /* nanopb.framework */,
 				81876E34227B725C00E27CB8 /* SwiftMessages.framework */,
 				815234CE2278479000B1AE65 /* ZIPFoundation.framework */,
-				81AA80B920D026DF00CC15AD /* Ferrara.framework */,
 				817236A520BB1F8E0014F61A /* BLTNBoard.framework */,
 				816B343B20B727500019DE5C /* DeepDiff.framework */,
 				812C3541207D235300D39748 /* Swifter.framework */,
@@ -1051,8 +1073,6 @@
 				8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */,
 				8188E8D71DB198B800462256 /* Alamofire.framework */,
 				8188E8D81DB198B800462256 /* Cartography.framework */,
-				8188E8DB1DB198B800462256 /* Realm.framework */,
-				8188E8DC1DB198B800462256 /* RealmSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1218,6 +1238,7 @@
 		81EC00661DAD76BE009EEFFA /* Startup */ = {
 			isa = PBXGroup;
 			children = (
+				818D75F122CCF32900A69C56 /* AdHelper.swift */,
 				8167A6121DAC246000F96AC2 /* AppDelegate.swift */,
 				8142FCD021987131003CD6DE /* BadgeManager.swift */,
 				81EC00691DAD7704009EEFFA /* Colors.swift */,
@@ -1516,6 +1537,7 @@
 				8142FCD32198E1FE003CD6DE /* Updates+Extension.swift in Sources */,
 				8126201B215444A400B06F88 /* NSScanner+Swift.swift in Sources */,
 				817418A52165368A00BB70EB /* LoadingCollectionView.swift in Sources */,
+				818D75F222CCF32900A69C56 /* AdHelper.swift in Sources */,
 				81FC8B4122735E5E003788F3 /* API+MyAppstore.swift in Sources */,
 				814F4FB92196F5F9005A8111 /* API+Updates.swift in Sources */,
 				8105175B20D0283300B3E1FB /* Identifiable.swift in Sources */,
@@ -1761,7 +1783,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1824,7 +1849,10 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1851,6 +1879,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = appdb/Other/Info.plist;
@@ -1882,6 +1911,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = appdb/Other/Info.plist;

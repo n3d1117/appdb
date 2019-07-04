@@ -20,7 +20,7 @@ struct Messages {
 
     func getConfig(_ context: SwiftMessages.PresentationContext? = nil) -> SwiftMessages.Config {
         var config = SwiftMessages.Config()
-        config.presentationStyle = .bottom
+        config.presentationStyle = Preferences.adBannerHeight > 0 ? .top : .bottom
         config.presentationContext = context ?? .automatic
         config.dimMode = .none
         return config

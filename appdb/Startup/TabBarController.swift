@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import GoogleMobileAds
+import Cartography
 
 class TabBarController: UITabBarController {
+
+    private var interstitialView: GADInterstitial?
+    private var bannerView: GADBannerView?
+    private var bannerGroup = ConstraintGroup()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +35,9 @@ class TabBarController: UITabBarController {
         updatesNav.tabBarItem = UITabBarItem(title: "Updates".localized(), image: #imageLiteral(resourceName: "updates"), tag: 4)
 
         viewControllers = [featuredNav, searchNav, downloadsNav, settingsNav, updatesNav]
+
+        bannerView = AdHelper.generateBanner(on: self)
+        interstitialView = AdHelper.generateInterstitial(on: self)
     }
 
     // Bounce animation
@@ -42,5 +51,60 @@ class TabBarController: UITabBarController {
                 }
             })
         }
+    }
+}
+
+extension TabBarController: GADBannerViewDelegate {
+
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        guard self.bannerView != nil else { return }
+        Preferences.set(.adBannerHeight, to: 0)
+    }
+
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        guard self.bannerView != nil else { return }
+        bannerView.alpha = 0
+        view.addSubview(bannerView)
+        constrainBanner()
+        UIView.animate(withDuration: 0.3, animations: {
+            bannerView.alpha = 1
+        })
+        Preferences.set(.adBannerHeight, to: Int(bannerView.frame.size.height))
+    }
+
+    func constrainBanner() {
+        guard let bannerView = bannerView else { return }
+        constrain(bannerView, replace: bannerGroup) { banner in
+            banner.leading ~== banner.superview!.leading
+            banner.trailing ~== banner.superview!.trailing
+            banner.bottom ~== banner.superview!.bottom - tabBar.frame.height
+        }
+    }
+
+    // React to orientation changes
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            guard let bannerView = self.bannerView else { return }
+            if bannerView.isDescendant(of: self.view) {
+                bannerView.adSize = AdHelper.adSize
+                self.constrainBanner()
+            }
+        }, completion: nil)
+    }
+}
+
+extension TabBarController: GADInterstitialDelegate {
+
+    func showInterstitialIfReady() {
+        guard let interstitialView = interstitialView else { return }
+        if interstitialView.isReady, Bool.random() {
+            interstitialView.present(fromRootViewController: self)
+        }
+    }
+
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitialView = AdHelper.generateInterstitial(on: self)
     }
 }

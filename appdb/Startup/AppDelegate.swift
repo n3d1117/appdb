@@ -9,6 +9,7 @@
 import UIKit
 import SwiftTheme
 import AlamofireNetworkActivityIndicator
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
@@ -29,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         Global.deleteEventualKeychainData()
         Global.restoreLanguage()
         Themes.restoreLastTheme()
+        Preferences.set(.adBannerHeight, to: 0)
 
         // Set main tint color
         self.window?.theme_backgroundColor = Color.tableViewBackgroundColor
@@ -59,6 +61,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         // Show network activity indicator
         NetworkActivityIndicatorManager.shared.startDelay = 0.3
         NetworkActivityIndicatorManager.shared.isEnabled = true
+
+        // Initialize mobile ads
+        if !Preferences.pro {
+            GADMobileAds.sharedInstance().start(completionHandler: nil)
+        }
 
         return true
     }

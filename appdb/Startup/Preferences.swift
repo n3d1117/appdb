@@ -17,6 +17,7 @@ extension Defaults.Keys {
     static let askForInstallationOptions = Key<Bool>("askForInstallationOptions", default: false)
     static let showBadgeForUpdates = Key<Bool>("showBadgeForUpdates", default: true)
     static let changeBundleBeforeUpload = Key<Bool>("changeBundleBeforeUpload", default: false)
+    static let adBannerHeight = Key<Int>("adBannerHeight", default: 0)
     static let ignoredUpdateableApps = Key<[IgnoredApp]>("ignoredUpdateableApps", default: [])
     static let genres = Key<[Genre]>("genres", default: [])
 }
@@ -76,6 +77,10 @@ enum Preferences {
 
     static var appsync: Bool {
         return defaults[.appsync]
+    }
+
+    static var adBannerHeight: Int {
+        return defaults[.adBannerHeight]
     }
 
     static var ignoresCompatibility: Bool {
@@ -138,6 +143,7 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.appsync.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.askForInstallationOptions.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoreCompatibility.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.adBannerHeight.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.showBadgeForUpdates.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.changeBundleBeforeUpload.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)

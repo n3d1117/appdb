@@ -372,6 +372,11 @@ class Details: LoadingTableView {
 extension Details: SwitchDetailsSegmentDelegate {
     func segmentSelected(_ state: DetailsSelectedSegmentState) {
         indexForSegment = state
+
+        if indexForSegment == .download {
+            (tabBarController as? TabBarController)?.showInterstitialIfReady()
+        }
+
         tableView.reloadData()
     }
 }
@@ -456,6 +461,9 @@ extension Details: IPAWebViewControllerDelegate {
     func didDismiss() {
         delay(0.8) {
             Messages.shared.showSuccess(message: "File download has started".localized(), context: Global.isIpad ? .viewController(self) : nil)
+            delay(1) {
+                (self.tabBarController as? TabBarController)?.showInterstitialIfReady()
+            }
         }
     }
 }

@@ -39,6 +39,8 @@ class Settings: TableViewController {
 
     var urlSchemeLinkCodeBulletinManager: BLTNItemManager?
 
+    var adChangeObservation: DefaultsObservation?
+
     deinit { NotificationCenter.default.removeObserver(self) }
 
     convenience init() {
@@ -93,6 +95,13 @@ class Settings: TableViewController {
                 }
             })
         }
+
+        adMobAdjustContentInsetsIfNeeded()
+
+        adChangeObservation = defaults.observe(.adBannerHeight) { [weak self] _ in
+            guard let self = self else { return }
+            self.adMobAdjustContentInsetsIfNeeded()
+        }
     }
 
     // Deauthorize app (clean link code and token)
@@ -109,6 +118,11 @@ class Settings: TableViewController {
     // Push device status controller
     func pushDeviceStatus() {
         let deviceStatusController = DeviceStatus()
+
+        delay(1) {
+            (self.tabBarController as? TabBarController)?.showInterstitialIfReady()
+        }
+
         if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: deviceStatusController)
             nav.modalPresentationStyle = .formSheet

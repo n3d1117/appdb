@@ -72,6 +72,8 @@ class LoadingTableView: UITableViewController {
         return refreshButton
     }()
 
+    var adChangeObservation: DefaultsObservation?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,6 +87,13 @@ class LoadingTableView: UITableViewController {
         refreshButton.isHidden = true
 
         setConstraints(.loading)
+
+        adMobAdjustContentInsetsIfNeeded()
+
+        adChangeObservation = defaults.observe(.adBannerHeight) { [weak self] _ in
+            guard let self = self else { return }
+            self.adMobAdjustContentInsetsIfNeeded()
+        }
     }
 
     private func animate() {
