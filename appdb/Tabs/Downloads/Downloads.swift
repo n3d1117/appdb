@@ -89,21 +89,11 @@ class Downloads: UIViewController {
     // MARK: - Constraints
 
     private func setConstraints() {
-        constrain(view, headerView, control, line, replace: group) { view, header, control, line in
-            // Calculate navBar + status bar height
-            var height: CGFloat = 0
-            if let nav = navigationController {
-                height = nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height
-            }
+        constrain(headerView, control, line, replace: group) { header, control, line in
 
-            // Fixes hotspot status bar on non X devices
-            if !Global.hasNotch, UIApplication.shared.statusBarFrame.height > 20.0 {
-                height -= (UIApplication.shared.statusBarFrame.height - 20.0)
-            }
-
-            header.top ~== view.top ~+ height
-            header.left ~== view.left
-            header.right ~== view.right
+            header.top ~== header.superview!.topMargin
+            header.left ~== header.superview!.left
+            header.right ~== header.superview!.right
             header.height ~== 40
 
             line.height ~== 1 / UIScreen.main.scale

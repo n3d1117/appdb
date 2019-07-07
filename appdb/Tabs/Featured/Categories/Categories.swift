@@ -127,22 +127,11 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Constraints
 
     private func setConstraints() {
-        constrain(view, tableView, headerView, control, line, replace: group) { view, tableView, header, control, line in
-            // Calculate navBar + eventual Status bar height
-            var height: CGFloat = 0
-            if let nav = navigationController {
-                // If it's inside a popover, we don't need to add statusBar height
-                height = (nav.navigationBar.frame.height) ~~ (nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height)
-            }
+        constrain(tableView, headerView, control, line, replace: group) { tableView, header, control, line in
 
-            // Fixes hotspot status bar on non X devices
-            if !Global.hasNotch, UIApplication.shared.statusBarFrame.height > 20.0 {
-                height -= (UIApplication.shared.statusBarFrame.height - 20.0)
-            }
-
-            header.top ~== view.top ~+ height
-            header.left ~== view.left
-            header.right ~== view.right
+            header.top ~== header.superview!.topMargin
+            header.left ~== header.superview!.left
+            header.right ~== header.superview!.right
             header.height ~== 40
 
             line.height ~== (1 / UIScreen.main.scale)
@@ -155,9 +144,9 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
             control.width ~== 280
 
             tableView.top ~== header.bottom
-            tableView.bottom ~== view.bottom
-            tableView.right ~== view.right
-            tableView.left ~== view.left
+            tableView.bottom ~== tableView.superview!.bottom
+            tableView.right ~== tableView.superview!.right
+            tableView.left ~== tableView.superview!.left
         }
     }
 

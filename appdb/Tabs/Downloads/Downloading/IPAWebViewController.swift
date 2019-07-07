@@ -119,19 +119,8 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
 
     private var group = ConstraintGroup()
     private func setConstraints() {
-        // Calculate navBar + eventual Status bar height
-        var offset: CGFloat = 0
-        if let nav = navigationController {
-            offset = nav.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height
-        }
-
-        // Fixes hotspot status bar on non X devices
-        if !Global.hasNotch, UIApplication.shared.statusBarFrame.height > 20.0 {
-            offset -= (UIApplication.shared.statusBarFrame.height - 20.0)
-        }
-
         constrain(progressView, replace: group) { progress in
-            progress.top ~== progress.superview!.top ~+ offset
+            progress.top ~== progress.superview!.topMargin
             progress.left ~== progress.superview!.left
             progress.right ~== progress.superview!.right
         }
