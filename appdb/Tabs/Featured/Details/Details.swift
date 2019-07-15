@@ -162,16 +162,19 @@ class Details: LoadingTableView {
                 } else { return UITableViewCell() }
             case .download:
                 if !versions.isEmpty {
+
                     let link = versions[indexPath.section - 2].links[indexPath.row]
+                    let shouldHideDisclosureIndicator = contentType == .books || link.hidden || link.host.hasSuffix(".onion")
+
                     if link.cracker == link.uploader {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: "downloadUnified", for: indexPath) as? DetailsDownloadUnified else { return UITableViewCell() }
-                        cell.accessoryType = contentType == .books ? .none : .disclosureIndicator
+                        cell.accessoryType = shouldHideDisclosureIndicator ? .none : .disclosureIndicator
                         cell.configure(with: link)
                         cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                         return cell
                     } else {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as? DetailsDownload else { return UITableViewCell() }
-                        cell.accessoryType = contentType == .books ? .none : .disclosureIndicator
+                        cell.accessoryType = shouldHideDisclosureIndicator ? .none : .disclosureIndicator
                         cell.configure(with: link)
                         cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                         return cell
@@ -205,7 +208,12 @@ class Details: LoadingTableView {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if indexForSegment == .download, indexPath.section > 1, contentType != .books {
-            if let url = URL(string: versions[indexPath.section - 2].links[indexPath.row].link) {
+
+            let link = versions[indexPath.section - 2].links[indexPath.row]
+            let isClickable = contentType != .books && !link.hidden && !link.host.hasSuffix(".onion")
+            guard isClickable else { return }
+
+            if let url = URL(string: link.link) {
                 let webVc = IPAWebViewController(delegate: self, url: url, appIcon: content.itemIconUrl)
                 let nav = IPAWebViewNavController(rootViewController: webVc)
                 present(nav, animated: true)
