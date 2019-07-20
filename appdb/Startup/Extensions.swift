@@ -224,7 +224,8 @@ extension Notification.Name {
 
 extension UISearchBar {
     var textField: UITextField? {
-        return value(forKey: "searchField") as? UITextField
+        let subViews = subviews.flatMap { $0.subviews }
+        return subViews.first(where: { $0 is UITextField }) as? UITextField
     }
 }
 
