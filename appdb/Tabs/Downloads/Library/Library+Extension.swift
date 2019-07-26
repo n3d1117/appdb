@@ -352,11 +352,13 @@ extension Library {
     // MARK: - Open in...
 
     internal func openIn(ipa: LocalIPAFile, indexPath: IndexPath) {
-        self.documentController = UIDocumentInteractionController(url: IPAFileManager.shared.url(for: ipa))
-        if let attributes = self.collectionView.layoutAttributesForItem(at: indexPath) {
-            let rect = self.collectionView.convert(attributes.frame, to: self.collectionView.superview)
-            self.documentController!.presentOpenInMenu(from: rect, in: self.collectionView, animated: true)
-            self.documentController = nil
+        DispatchQueue.main.async {
+            self.documentController = UIDocumentInteractionController(url: IPAFileManager.shared.url(for: ipa))
+            self.documentController?.delegate = self
+            if let attributes = self.collectionView.layoutAttributesForItem(at: indexPath) {
+                let rect = self.collectionView.convert(attributes.frame, to: self.collectionView.superview)
+                self.documentController?.presentOpenInMenu(from: rect, in: self.collectionView, animated: true)
+            }
         }
     }
 
@@ -514,5 +516,11 @@ extension Library: UICollectionViewDelegateFlowLayout {
         if let header = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: Section.local.rawValue)) as? LibrarySectionHeaderView {
             header.trashButton.isEnabled = enabled
         }
+    }
+}
+
+extension Library: UIDocumentInteractionControllerDelegate {
+    func documentInteractionControllerDidDismissOpenInMenu(_ controller: UIDocumentInteractionController) {
+        documentController = nil
     }
 }

@@ -73,7 +73,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         // Handle IPA
         if url.isFileURL && IPAFileManager.shared.supportedFileExtensions.contains(url.pathExtension) {
-            IPAFileManager.shared.moveToDocuments(url: url)
+
+            if !FileManager.default.isReadableFile(atPath: url.path) {
+                // Handle 'Open in appdb' from share sheet
+                if url.startAccessingSecurityScopedResource() {
+                    IPAFileManager.shared.moveToDocuments(url: url)
+                    url.stopAccessingSecurityScopedResource()
+                }
+            } else {
+                // Handle 'Copy to appdb' from share sheet
+                IPAFileManager.shared.moveToDocuments(url: url)
+            }
+
             guard let tabController = window?.rootViewController as? TabBarController else { return false }
             tabController.selectedIndex = 2
             guard let nav = tabController.viewControllers?[2] as? UINavigationController else { return false }
