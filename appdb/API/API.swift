@@ -35,7 +35,7 @@ enum DeviceType: String {
     case ipad
 }
 
-enum ItemType: String {
+enum ItemType: String, Codable {
     case ios = "ios"
     case books = "books"
     case cydia = "cydia"

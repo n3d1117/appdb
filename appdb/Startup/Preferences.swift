@@ -19,6 +19,7 @@ extension Defaults.Keys {
     static let changeBundleBeforeUpload = Key<Bool>("changeBundleBeforeUpload", default: false)
     static let adBannerHeight = Key<Int>("adBannerHeight", default: 0)
     static let ignoredUpdateableApps = Key<[IgnoredApp]>("ignoredUpdateableApps", default: [])
+    static let resumeQueuedApps = Key<[RequestedApp]>("resumeQueuedApps", default: [])
     static let genres = Key<[Genre]>("genres", default: [])
 }
 
@@ -107,6 +108,10 @@ enum Preferences {
         return defaults[.ignoredUpdateableApps]
     }
 
+    static var resumeQueuedApps: [RequestedApp] {
+        return defaults[.resumeQueuedApps]
+    }
+
     static var genres: [Genre] {
         return defaults[.genres]
     }
@@ -147,6 +152,7 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.showBadgeForUpdates.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.changeBundleBeforeUpload.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.resumeQueuedApps.name)
     }
 
     // Remove secure keys
@@ -167,6 +173,16 @@ extension Preferences {
 
     static func remove(_ key: Defaults.Key<[IgnoredApp]>, at index: Int) {
         defaults[key].remove(at: index)
+    }
+
+    // Append / Remove value to RequestedApp array
+
+    static func append(_ key: Defaults.Key<[RequestedApp]>, element: RequestedApp) {
+        defaults[key].append(element)
+    }
+
+    static func removeAll(_ key: Defaults.Key<[RequestedApp]>) {
+        defaults[key].removeAll()
     }
 
     // Append / Remove value to Genres array

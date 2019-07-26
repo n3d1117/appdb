@@ -33,6 +33,13 @@ class QueuedApps: LoadingCollectionView {
 
         setErrorMessageIfEmpty()
 
+        // Resume any pending queued app
+        for resumableApp in Preferences.resumeQueuedApps {
+            ObserveQueuedApps.shared.addApp(app: resumableApp)
+        }
+        // And then clear all queued apps from UserDefaults
+        Preferences.removeAll(.resumeQueuedApps)
+
         // Update collection view every time new data comes
         ObserveQueuedApps.shared.onUpdate = { [unowned self] apps in
             self.updateCollection(with: apps)

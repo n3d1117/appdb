@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func applicationWillTerminate(_ application: UIApplication) {
         IPAFileManager.shared.clearTmpDirectory()
         //IPAFileManager.shared.clearCacheDirectory()
+
+        // If there are any queued apps still pending, add them to UserDefaults
+        for app in ObserveQueuedApps.shared.requestedApps where !Preferences.resumeQueuedApps.contains(app) {
+            Preferences.append(.resumeQueuedApps, element: app)
+        }
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {

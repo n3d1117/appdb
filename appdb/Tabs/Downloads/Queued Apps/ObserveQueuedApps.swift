@@ -19,7 +19,7 @@ class ObserveQueuedApps {
     static var shared = ObserveQueuedApps()
     private init() { }
 
-    private var requestedApps = [RequestedApp]()
+    var requestedApps = [RequestedApp]()
     private var timer: Timer?
     private var numberOfQueuedApps: Int = 0
 
@@ -31,6 +31,10 @@ class ObserveQueuedApps {
     deinit {
         timer?.invalidate()
         timer = nil
+    }
+
+    func addApp(app: RequestedApp) {
+        addApp(type: app.type, linkId: app.linkId, name: app.name, image: app.image, bundleId: app.bundleId)
     }
 
     func addApp(type: ItemType, linkId: String, name: String, image: String, bundleId: String) {

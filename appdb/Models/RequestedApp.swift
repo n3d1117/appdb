@@ -6,7 +6,7 @@
 //  Copyright © 2019 ned. All rights reserved.
 //
 
-struct RequestedApp: Matchable {
+struct RequestedApp: Matchable, Codable, Equatable {
 
     var linkId: String = ""
     var type: ItemType = .ios
@@ -28,5 +28,9 @@ struct RequestedApp: Matchable {
         guard let app = object as? RequestedApp else { return .none }
         guard linkId == app.linkId else { return .none }
         return status == app.status ? .equal : .change
+    }
+
+    static func == (lhs: RequestedApp, rhs: RequestedApp) -> Bool {
+        return lhs.linkId == rhs.linkId
     }
 }
