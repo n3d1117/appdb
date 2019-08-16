@@ -34,7 +34,7 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     var appIcon: String = ""
     var url: URL!
 
-    let allowedContentTypes: Set = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary", "application/x-ios-app", "application/x-zip-compressed", "application/x-download", "application/force-download"]
+    let allowedContentTypes: Set = ["application/octet-stream", "application/x-zip", "binary/octet-stream", "application/zip", "application/binary", "application/x-ios-app", "application/x-zip-compressed", "application/x-download", "application/force-download", "application/x-itunes-ipa"]
 
     init(delegate: IPAWebViewControllerDelegate, url: URL, appIcon: String = "") {
         self.url = url
