@@ -118,6 +118,10 @@ class Details: LoadingTableView {
             case .reviews: return indexPath.row == content.itemReviews.count ? UITableView.automaticDimension : DetailsReview.height
             case .download:
                 if versions.isEmpty { return DetailsDownloadEmptyCell.height }
+
+                guard versions.indices.contains(indexPath.section - 2) else { return 0 }
+                guard versions[indexPath.section - 2].links.indices.contains(indexPath.row) else { return 0 }
+
                 let link = versions[indexPath.section - 2].links[indexPath.row]
                 return link.cracker == link.uploader ? DetailsDownloadUnified.height : DetailsDownload.height
             }
@@ -162,6 +166,9 @@ class Details: LoadingTableView {
                 } else { return UITableViewCell() }
             case .download:
                 if !versions.isEmpty {
+
+                    guard versions.indices.contains(indexPath.section - 2) else { return UITableViewCell() }
+                    guard versions[indexPath.section - 2].links.indices.contains(indexPath.row) else { return UITableViewCell() }
 
                     let link = versions[indexPath.section - 2].links[indexPath.row]
                     let shouldHideDisclosureIndicator = contentType == .books || link.hidden || link.host.hasSuffix(".onion")
