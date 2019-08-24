@@ -22,10 +22,7 @@ Carthage/Build
 /Cartfile.resolved
 /exportOptions.plist
 .DS_Store
-nanopb.framework/
-GoogleUtilities.framework/
-GoogleMobileAds.framework/
-GoogleAppMeasurement.framework/
 /install
 /build
 /AppDB.sketch
+/StartApp.framework

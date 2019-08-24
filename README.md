@@ -55,6 +55,7 @@ $ cd appdb/
 $ carthage update --platform iOS
 $ open appdb.xcodeproj
 ```
+Note: this project references the StartApp SDK. You will need to download it from [here](https://portal.startapp.com/#/pub/resource-center), unzip it and import `StartApp.framework` inside the project's `Frameworks` folder. Make sure to select `Copy items if needed` when copying the file.
 
 ## License
 MIT License. See [LICENSE](LICENSE) file for further information.
