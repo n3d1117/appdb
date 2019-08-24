@@ -120,7 +120,8 @@ class Settings: TableViewController {
         let deviceStatusController = DeviceStatus()
 
         delay(1) {
-            (self.tabBarController as? TabBarController)?.showInterstitialIfReady()
+            let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
+            tabBarController?.showInterstitialIfReady()
         }
 
         if Global.isIpad {

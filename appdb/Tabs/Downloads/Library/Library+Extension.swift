@@ -102,7 +102,8 @@ extension Library {
                                 } else {
                                     Messages.shared.showSuccess(message: "File uploaded successfully".localized())
                                     delay(1) {
-                                        (self.tabBarController as? TabBarController)?.showInterstitialIfReady()
+                                        let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
+                                        tabBarController?.showInterstitialIfReady()
                                     }
                                 }
                             })

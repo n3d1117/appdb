@@ -6,45 +6,27 @@
 //  Copyright © 2019 ned. All rights reserved.
 //
 
-import GoogleMobileAds
 import Static
 
 enum AdHelper {
 
-    static let bannerUnitID: String = "YOUR_BANNER_ID"
-    static let interstitialUnitID: String = "YOUR_INTERSTITIAL_ID"
-
-    static var adSize: GADAdSize {
-        return UIApplication.shared.statusBarOrientation.isLandscape ? kGADAdSizeSmartBannerLandscape : kGADAdSizeSmartBannerPortrait
-    }
+    static let appID: String = "YOUR_APP_ID"
+    static let devID: String = "YOUR_DEV_ID"
 
     static var adAwareContentInsets: UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: CGFloat(Preferences.adBannerHeight), right: 0)
     }
 
-    static func generateBanner(on viewController: UIViewController) -> GADBannerView? {
+    static func generateBanner(on viewController: UIViewController) -> STABannerView? {
         guard !Preferences.pro else { return nil }
-        let banner = GADBannerView(adSize: AdHelper.adSize)
-        banner.delegate = viewController as? GADBannerViewDelegate
-        banner.adUnitID = AdHelper.bannerUnitID
-        banner.rootViewController = viewController
-        let request = GADRequest()
-        #if DEBUG
-        request.testDevices = [kGADSimulatorID]
-        #endif
-        banner.load(request)
+        let banner = STABannerView(size: STA_AutoAdSize, autoOrigin: STAAdOrigin_Bottom, withDelegate: viewController as? STABannerDelegateProtocol)
+        debugLog(banner == nil)
         return banner
     }
 
-    static func generateInterstitial(on viewController: UIViewController) -> GADInterstitial? {
+    static func generateInterstitial() -> STAStartAppAd? {
         guard !Preferences.pro else { return nil }
-        let interstitial = GADInterstitial(adUnitID: AdHelper.interstitialUnitID)
-        interstitial.delegate = viewController as? GADInterstitialDelegate
-        let request = GADRequest()
-        #if DEBUG
-        request.testDevices = [kGADSimulatorID]
-        #endif
-        interstitial.load(request)
+        let interstitial = STAStartAppAd()
         return interstitial
     }
 }

@@ -9,7 +9,6 @@
 import UIKit
 import SwiftTheme
 import AlamofireNetworkActivityIndicator
-import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
@@ -69,7 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
         // Initialize mobile ads
         if !Preferences.pro {
-            GADMobileAds.sharedInstance().start(completionHandler: nil)
+            if let sdk = STAStartAppSDK.sharedInstance() {
+                sdk.appID = AdHelper.appID
+                sdk.devID = AdHelper.devID
+            }
         }
 
         return true
