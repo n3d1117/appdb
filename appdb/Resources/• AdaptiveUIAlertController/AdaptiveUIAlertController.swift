@@ -43,6 +43,7 @@ extension UIAlertController {
     public convenience init(title: String?, message: String?, preferredStyle: UIAlertController.Style, adaptive: Bool) {
         self.init(title: title, message: message, preferredStyle: preferredStyle)
 
+        if #available(iOS 13.0, *) { return }
         guard adaptive, !Global.isIpad else { return }
 
         let blurStyle: UIBlurEffect.Style = Themes.isNight ? .dark : .light
@@ -64,6 +65,7 @@ extension UIAlertController {
 
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        if #available(iOS 13.0, *) { return }
         if !Global.isIpad {
             visualEffectView?.effect = UIBlurEffect(style: blurStyle)
             cancelActionView?.backgroundColor = cancelButtonColor

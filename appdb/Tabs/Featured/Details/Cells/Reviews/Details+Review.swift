@@ -37,7 +37,7 @@ class DetailsReview: DetailsCell {
         addSeparator()
 
         // UI
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
         theme_backgroundColor = Color.veryVeryLightGray
 
         // Name

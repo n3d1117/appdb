@@ -38,6 +38,32 @@ enum Global {
         }
     }
 
+    static var isDarkSystemAppearance: Bool {
+        if #available(iOS 13.0, *) {
+            return UIScreen.main.traitCollection.userInterfaceStyle == .dark
+        } else {
+            return false
+        }
+    }
+
+    static func refreshAppearanceForCurrentTheme() {
+        if #available(iOS 13.0, *) {
+            var style: UIUserInterfaceStyle = Themes.current == .light ? .light : .dark
+            if Preferences.followSystemAppearance { style = .unspecified }
+            if UINavigationBar.appearance().overrideUserInterfaceStyle != style {
+                UINavigationBar.appearance().overrideUserInterfaceStyle = style
+                UITabBar.appearance().overrideUserInterfaceStyle = style
+                UISegmentedControl.appearance().overrideUserInterfaceStyle = style
+                UIToolbar.appearance().overrideUserInterfaceStyle = style
+                UIView.appearance().overrideUserInterfaceStyle = style
+                UIWindow.appearance().overrideUserInterfaceStyle = style
+                UILabel.appearance().overrideUserInterfaceStyle = style
+                UIButton.appearance().overrideUserInterfaceStyle = style
+                UITableViewHeaderFooterView.appearance().overrideUserInterfaceStyle = style
+            }
+        }
+    }
+
     // Returns App Version
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? tilde
 

@@ -42,7 +42,15 @@ enum Themes: Int, CaseIterable {
     }
 
     static func restoreLastTheme() {
-        guard let theme = Themes(rawValue: Preferences.theme) else { return }
-        switchTo(theme: theme)
+        if Preferences.followSystemAppearance {
+            if Global.isDarkSystemAppearance {
+                switchTo(theme: Preferences.shouldSwitchToDarkerTheme ? .darker : .dark)
+            } else {
+                switchTo(theme: .light)
+            }
+        } else {
+            guard let theme = Themes(rawValue: Preferences.theme) else { return }
+            switchTo(theme: theme)
+        }
     }
 }

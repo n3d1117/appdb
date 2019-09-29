@@ -101,7 +101,7 @@ class DetailsScreenshots: DetailsCell {
 
             collectionView.theme_backgroundColor = Color.veryVeryLightGray
             theme_backgroundColor = Color.veryVeryLightGray
-            contentView.theme_backgroundColor = Color.veryVeryLightGray
+            setBackgroundColor(Color.veryVeryLightGray)
 
             contentView.addSubview(collectionView)
 

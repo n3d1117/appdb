@@ -10,7 +10,7 @@ import Foundation
 
 // Non sensitive data can be stored in UserDefaults
 extension Defaults.Keys {
-    static let theme = Key<Int>("theme", default: 0)
+    static let theme = Key<Int>("theme", default: Global.isDarkSystemAppearance ? 1 : 0)
     static let didSpecifyPreferredLanguage = Key<Bool>("didSpecifyPreferredLanguage", default: false)
     static let appsync = Key<Bool>("appsync", default: false)
     static let ignoreCompatibility = Key<Bool>("ignoreCompatibility", default: false)
@@ -21,6 +21,8 @@ extension Defaults.Keys {
     static let ignoredUpdateableApps = Key<[IgnoredApp]>("ignoredUpdateableApps", default: [])
     static let resumeQueuedApps = Key<[RequestedApp]>("resumeQueuedApps", default: [])
     static let genres = Key<[Genre]>("genres", default: [])
+    static let followSystemAppearance = Key<Bool>("followSystemAppearance", default: true)
+    static let shouldSwitchToDarkerTheme = Key<Bool>("shouldSwitchToDarkerTheme", default: false)
 }
 
 // Sensitive data is stored in Keychain
@@ -115,6 +117,14 @@ enum Preferences {
     static var genres: [Genre] {
         return defaults[.genres]
     }
+
+    static var followSystemAppearance: Bool {
+        return defaults[.followSystemAppearance]
+    }
+
+    static var shouldSwitchToDarkerTheme: Bool {
+        return defaults[.shouldSwitchToDarkerTheme]
+    }
 }
 
 extension Preferences {
@@ -153,6 +163,8 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.changeBundleBeforeUpload.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.resumeQueuedApps.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.followSystemAppearance.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.shouldSwitchToDarkerTheme.name)
     }
 
     // Remove secure keys

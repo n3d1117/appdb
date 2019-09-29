@@ -11,6 +11,8 @@ import Cartography
 import Kanna
 import Localize_Swift
 import DeepDiff
+import SwiftTheme
+import Static
 
 // Delay function
 func delay(_ delay: Double, closure: @escaping () -> Void) {
@@ -277,6 +279,101 @@ extension NSTextAttachment {
         guard let image = image else { return }
         let ratio = image.size.width / image.size.height
         bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: width, height: width / ratio)
+    }
+}
+
+// MARK: - UITableViewCell setEnabled
+extension UITableViewCell {
+    func setEnabled(on: Bool) {
+        isUserInteractionEnabled = on
+        for view in contentView.subviews {
+            view.isUserInteractionEnabled = on
+            view.alpha = on ? 1 : 0.5
+        }
+    }
+}
+
+// MARK: - traitCollectionDidChange
+
+extension UIViewController {
+    @available(iOS 13.0, *)
+    func updateAppearance(style: UIUserInterfaceStyle) {
+        if Preferences.followSystemAppearance {
+            switch style {
+            case .light:
+                if Themes.isNight {
+                    Themes.switchTo(theme: .light)
+                }
+            default:
+                if !Themes.isNight {
+                    Themes.switchTo(theme: Preferences.shouldSwitchToDarkerTheme ? .darker : .dark)
+                }
+            }
+        }
+        Global.refreshAppearanceForCurrentTheme()
+    }
+}
+
+extension TableViewController {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        guard #available(iOS 13.0, *), traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        updateAppearance(style: traitCollection.userInterfaceStyle)
+        if let self = self as? Settings {
+            self.refreshSources()
+        }
+    }
+}
+
+extension UINavigationController {
+    override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        guard #available(iOS 13.0, *), traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        updateAppearance(style: traitCollection.userInterfaceStyle)
+    }
+}
+
+extension UITabBarController {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        guard #available(iOS 13.0, *), traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        updateAppearance(style: traitCollection.userInterfaceStyle)
+    }
+}
+
+extension UITableViewController {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        guard #available(iOS 13.0, *), traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        updateAppearance(style: traitCollection.userInterfaceStyle)
+        if self is ThemeChooser {
+            tableView.reloadData()
+        }
+    }
+}
+
+extension UICollectionViewController {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        guard #available(iOS 13.0, *), traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        updateAppearance(style: traitCollection.userInterfaceStyle)
+    }
+}
+
+// MARK: - Glue for UITableViewCell iOS 13 background color changes
+extension UITableViewCell {
+    func setBackgroundColor(_ color: ThemeColorPicker) {
+        if #available(iOS 13.0, *) {
+            contentView.backgroundColor = nil
+            contentView.isOpaque = false
+        } else {
+            contentView.theme_backgroundColor = color
+        }
     }
 }
 

@@ -20,7 +20,7 @@ class SimpleStaticCell: UITableViewCell, Cell {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
 
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
 
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title
@@ -58,7 +58,7 @@ final class SimpleSubtitleCell: UITableViewCell, Cell {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
 
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
@@ -103,8 +103,10 @@ final class SimpleStaticButtonCell: UITableViewCell, Cell {
         textLabel?.textAlignment = .center
 
         textLabel?.text = row.text?.uppercased()
-        theme_backgroundColor = row.context?["bgColor"] as? ThemeColorPicker
-        contentView.theme_backgroundColor = row.context?["bgColor"] as? ThemeColorPicker
+        if let color = row.context?["bgColor"] as? ThemeColorPicker {
+            theme_backgroundColor = color
+            setBackgroundColor(color)
+        }
 
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = row.context?["bgHover"] as? ThemeColorPicker
@@ -141,7 +143,7 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         expirationLabel.textAlignment = .right
 
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
 
         textLabel?.makeDynamicFont()
         textLabel?.theme_textColor = Color.title

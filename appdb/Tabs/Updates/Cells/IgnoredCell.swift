@@ -36,7 +36,7 @@ class IgnoredCell: UITableViewCell {
         separatorInset.left = 0
 
         // UI
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
         theme_backgroundColor = Color.veryVeryLightGray
         selectionStyle = .none
 

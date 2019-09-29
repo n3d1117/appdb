@@ -52,7 +52,7 @@ class DetailsDownload: DetailsCell {
         addSeparator(full: true)
 
         // UI
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
         theme_backgroundColor = Color.veryVeryLightGray
         selectedBackgroundView = bgColorView
 
@@ -144,7 +144,7 @@ class DetailsDownloadUnified: DetailsCell {
         addSeparator(full: true)
 
         // UI
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
         theme_backgroundColor = Color.veryVeryLightGray
         selectedBackgroundView = bgColorView
 

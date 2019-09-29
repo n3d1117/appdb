@@ -36,7 +36,7 @@ class DetailsDescription: DetailsCell {
         addSeparator()
 
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
 
         title = UILabel()
         title.theme_textColor = Color.title

@@ -24,7 +24,7 @@ class DetailsDownloadEmptyCell: DetailsCell {
         selectionStyle = .none
 
         // UI
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
         theme_backgroundColor = Color.veryVeryLightGray
 
         error = UILabel()

@@ -28,7 +28,7 @@ class CategoryCell: UITableViewCell {
         separatorInset.left = Global.Size.margin.value
 
         // UI
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
         theme_backgroundColor = Color.veryVeryLightGray
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor

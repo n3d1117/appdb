@@ -90,7 +90,7 @@ class LanguageChooser: UITableViewController {
         cell.textLabel?.theme_textColor = Color.title
         cell.textLabel?.makeDynamicFont()
         cell.accessoryType = language == currentLanguage ? .checkmark : .none
-        cell.contentView.theme_backgroundColor = Color.veryVeryLightGray
+        cell.setBackgroundColor(Color.veryVeryLightGray)
         cell.theme_backgroundColor = Color.veryVeryLightGray
         cell.selectedBackgroundView = bgColorView
         return cell

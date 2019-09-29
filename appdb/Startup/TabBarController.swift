@@ -98,6 +98,7 @@ extension TabBarController: STABannerDelegateProtocol {
             banner.leading ~== banner.superview!.leading
             banner.trailing ~== banner.superview!.trailing
             banner.bottom ~== banner.superview!.bottom
+            (banner.top ~== banner.superview!.top) ~ Global.notMaxPriority
         }
     }
 

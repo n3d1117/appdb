@@ -64,7 +64,7 @@ class SeeAllCellWithStars: UITableViewCell {
     private func sharedInit() {
         //UI
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor
         selectedBackgroundView = bgColorView

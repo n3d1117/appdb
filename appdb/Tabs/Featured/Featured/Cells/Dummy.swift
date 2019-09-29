@@ -22,6 +22,6 @@ class Dummy: FeaturedCell {
         separatorInset.left = 0
         layoutMargins.left = 0
         theme_backgroundColor = Color.tableViewBackgroundColor
-        contentView.theme_backgroundColor = Color.tableViewBackgroundColor
+        setBackgroundColor(Color.tableViewBackgroundColor)
     }
 }

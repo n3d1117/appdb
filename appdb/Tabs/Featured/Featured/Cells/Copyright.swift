@@ -22,7 +22,7 @@ class Copyright: FeaturedCell {
         separatorInset.left = 10000
         layoutMargins = .zero
         theme_backgroundColor = Color.tableViewBackgroundColor
-        contentView.theme_backgroundColor = Color.tableViewBackgroundColor
+        setBackgroundColor(Color.tableViewBackgroundColor)
 
         // Hide ugly white line on iOS 8
         layer.theme_borderColor = Color.tableViewCGBackgroundColor

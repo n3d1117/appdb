@@ -32,7 +32,7 @@ class DetailsExternalLink: DetailsCell {
         self.devName = devName
 
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
 
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor

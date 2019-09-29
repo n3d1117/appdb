@@ -48,7 +48,7 @@ class AppUpdateHeader: UITableViewCell {
 
         //UI
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
 
         // Name
         name = UILabel()

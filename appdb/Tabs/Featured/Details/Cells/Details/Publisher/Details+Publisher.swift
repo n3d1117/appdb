@@ -23,7 +23,7 @@ class DetailsPublisher: DetailsCell {
         separatorInset.left = 10000
         layoutMargins = .zero
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
 
         label = UILabel()
         label.theme_textColor = Color.copyrightText

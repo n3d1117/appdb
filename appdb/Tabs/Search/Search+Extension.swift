@@ -398,7 +398,7 @@ class SmallTableViewController: UITableViewController {
         default: cell.textLabel?.text = "Books".localized()
         }
         cell.accessoryType = indexPath.row == selectedType ? .checkmark : .none
-        cell.contentView.theme_backgroundColor = Color.veryVeryLightGray
+        cell.setBackgroundColor(Color.veryVeryLightGray)
         cell.theme_backgroundColor = Color.veryVeryLightGray
         cell.textLabel?.theme_textColor = Color.title
         cell.selectedBackgroundView = bgColorView

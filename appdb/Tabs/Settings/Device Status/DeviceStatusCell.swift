@@ -38,7 +38,7 @@ class DeviceStatusCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         // UI
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
         theme_backgroundColor = Color.veryVeryLightGray
 
         // Add separator

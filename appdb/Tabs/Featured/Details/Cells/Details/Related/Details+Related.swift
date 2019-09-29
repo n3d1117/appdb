@@ -72,7 +72,7 @@ class DetailsRelated: DetailsCell {
 
         if !relatedContent.isEmpty {
             theme_backgroundColor = Color.veryVeryLightGray
-            contentView.theme_backgroundColor = Color.veryVeryLightGray
+            setBackgroundColor(Color.veryVeryLightGray)
 
             title = UILabel()
             title.theme_textColor = Color.title

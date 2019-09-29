@@ -52,7 +52,7 @@ class DetailsHeader: DetailsCell {
 
         //UI
         theme_backgroundColor = Color.veryVeryLightGray
-        contentView.theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
 
         // Name
         name = UILabel()

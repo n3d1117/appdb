@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         Global.deleteEventualKeychainData()
         Global.restoreLanguage()
         Themes.restoreLastTheme()
+        Global.refreshAppearanceForCurrentTheme()
         Preferences.set(.adBannerHeight, to: 0)
 
         // Set main tint color
@@ -41,7 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         self.window?.theme_tintColor = Color.mainTint
 
         // Theme Status Bar
-        UIApplication.shared.theme_setStatusBarStyle([.default, .lightContent, .lightContent], animated: true)
+        if #available(iOS 13.0, *) {
+            UIApplication.shared.theme_setStatusBarStyle([.darkContent, .lightContent, .lightContent], animated: true)
+        } else {
+            UIApplication.shared.theme_setStatusBarStyle([.default, .lightContent, .lightContent], animated: true)
+        }
 
         // Theme navigation bar
         let navigationBar = UINavigationBar.appearance()
@@ -53,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         }
         navigationBar.theme_barStyle = [.default, .black, .black]
         navigationBar.theme_tintColor = Color.mainTint
-        navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithAttributes(titleAttributes)
+        navigationBar.theme_titleTextAttributes = ThemeStringAttributesPicker.pickerWithAttributes(titleAttributes)
 
         // Theme Tab Bar
         let tabBar = UITabBar.appearance()
@@ -71,6 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             if let sdk = STAStartAppSDK.sharedInstance() {
                 sdk.appID = AdHelper.appID
                 sdk.devID = AdHelper.devID
+                sdk.disableReturnAd()
             }
         }
 

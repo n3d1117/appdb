@@ -113,7 +113,7 @@ class Acknowledgements: LoadingTableView {
         cell.textLabel?.font = .systemFont(ofSize: (15 ~~ 14))
         cell.textLabel?.theme_textColor = Color.darkGray
         cell.textLabel?.makeDynamicFont()
-        cell.contentView.theme_backgroundColor = Color.veryVeryLightGray
+        cell.setBackgroundColor(Color.veryVeryLightGray)
         cell.theme_backgroundColor = Color.veryVeryLightGray
         cell.textLabel?.numberOfLines = 0
         cell.selectionStyle = .none
