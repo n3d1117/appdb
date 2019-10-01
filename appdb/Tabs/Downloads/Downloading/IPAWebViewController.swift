@@ -130,6 +130,7 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            guard self.progressView != nil else { return }
             self.setConstraints()
         }, completion: nil)
     }

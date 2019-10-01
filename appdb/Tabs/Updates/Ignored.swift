@@ -114,6 +114,7 @@ class Ignored: LoadingTableView {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            guard self.tableView != nil else { return }
             if !self.apps.isEmpty { self.tableView.reloadData() }
         }, completion: nil)
     }

@@ -194,6 +194,7 @@ extension Details {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            guard self.tableView != nil else { return }
             if self.indexForSegment != .download { self.tableView.reloadData() }
         }, completion: nil)
     }

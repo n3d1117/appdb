@@ -155,6 +155,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            guard self.tableView != nil else { return }
             self.setConstraints()
         }, completion: nil)
     }

@@ -269,6 +269,7 @@ class Updates: LoadingTableView {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            guard self.tableView != nil else { return }
             if self.updateableApps.count + self.nonUpdateableApps.count > 0 { self.tableView.reloadData() }
         }, completion: nil)
     }

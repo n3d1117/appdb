@@ -115,6 +115,7 @@ class Downloads: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            guard self.headerView != nil else { return }
             self.setConstraints()
         }, completion: nil)
     }
