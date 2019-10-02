@@ -62,6 +62,7 @@ extension String {
         case "ERROR_REQUEST_STATUS_CANT_BE_SET": return "This request status can't be set.".localized()
         case "ERROR_SUCH_REQUEST_EXISTS": return "Such request already exists. But we have added you as requester as well.".localized()
         case "ERROR_SUCH_VERSION_EXISTS_AND_LINKS_AVAILABLE": return "Such version is already on appdb and it has links available.".localized()
+        case "ERROR_INVALID_APPSTORE_URL": return "Invalid AppStore URL.".localized()
         case "JSON could not be serialized because of error:\nThe data couldn’t be read because it isn’t in the correct format.": return "An error has occurred: malformed JSON".localized()
         default: return self.localized()
         }

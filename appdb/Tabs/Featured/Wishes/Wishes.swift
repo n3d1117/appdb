@@ -162,9 +162,9 @@ extension Wishes {
             guard let url = URL(string: text) else { return }
             API.createPublishRequest(appStoreUrl: url.absoluteString) { error in
                 if let error = error {
-                    Messages.shared.showError(message: error, context: Global.isIpad ? .viewController(self) : nil)
+                    Messages.shared.showError(message: error.prettified, context: .viewController(self))
                 } else {
-                    Messages.shared.showSuccess(message: "App has been requested successfully!".localized(), context: Global.isIpad ? .viewController(self) : nil)
+                    Messages.shared.showSuccess(message: "App has been requested successfully!".localized(), context: .viewController(self))
                 }
             }
         })
