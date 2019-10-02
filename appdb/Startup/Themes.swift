@@ -42,7 +42,7 @@ enum Themes: Int, CaseIterable {
     }
 
     static func restoreLastTheme() {
-        if Preferences.followSystemAppearance {
+        if #available(iOS 13.0, *), Preferences.followSystemAppearance {
             if Global.isDarkSystemAppearance {
                 switchTo(theme: Preferences.shouldSwitchToDarkerTheme ? .darker : .dark)
             } else {
