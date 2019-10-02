@@ -67,6 +67,23 @@ let blockRules = """
 """
 
 let ads: Set = [
+    "arcaptart.site",
+    "psadsoob.com",
+    "usa.mohini-ger.com",
+    "thefuncoolstuff.com",
+    "www.performanceonclick.com",
+    "app.appsflyer.com",
+    "apps.apple.com",
+    "centralcoasttrck.com",
+    "tighted-grable.com",
+    "protection-for-safari.com",
+    "365-care-com.pw",
+    "bzlle.yourchances.net",
+    "a1233.secureleadtrack.com",
+    "track.friendpassion.com",
+    "etiquetteentente.club",
+    "offers.wildbearads.bid",
+    "rumimorigu.info",
     "backupvpn.com",
     "rest-slot.com",
     "xml.realtime-bid.com",
