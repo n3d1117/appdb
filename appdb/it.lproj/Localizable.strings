@@ -254,6 +254,8 @@
 "Email" = "Email";
 "Telegram" = "Telegram";
 "Could not find email service." = "Impossibile trovare il servizio email collegato.";
+"Follow System Appearance" = "Segui tema del sistema";
+"Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Passa automaticamente tra tema scuro e chiaro in base alle impostazioni di sistema. Per passare al tema più scuro, invece, selezionalo manualmente una volta.\n\nNOTA: Se rilevi dei problemi (tema che non cambia in automatico, oppure temi chiaro e scuro mischiati) chiudi l'app dal multitasking e riaprila.";
 
 /////////////////////
 //     UPDATES     //
@@ -338,6 +340,24 @@
 "appdb team" = "Team di appdb";
 "Icon and banner designer" = "Designer di icona e banner";
 "View project on GitHub" = "Vedi progetto su GitHub";
+
+/////////////////////////////////////////
+//     WISHES / AUTOMATIC REQUESTS     //
+/////////////////////////////////////////
+"Wishes" = "Desideri";
+"New" = "Nuovo";
+"Processing" = "In elaborazione";
+"Failed" = "Fallito";
+"Fulfilled" = "Aggiunto";
+"Free" = "Gratis";
+"Enter AppStore URL" = "Inserisci URL AppStore";
+"Enter below the AppStore URL of the app you'd like to request" = "Inserisci qui l'URL AppStore dell'app che vorrestu richiedere";
+"Add" = "Aggiungi";
+"App has been requested successfully!" = "App richiesta con successo!";
+"Price: %@" = "Prezzo: %@";
+"Version: %@" = "Versione: %@";
+"No new wishes to show" = "Nessun nuovo desiderio da mostrare";
+"No fulfilled wishes to show" = "Nessun desiderio esaurito da mostrare";
 
 ///////////////////
 //     OTHER     //

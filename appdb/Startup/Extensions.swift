@@ -55,6 +55,13 @@ extension String {
         case "NOT_READY": return "The request timed out".localized()
         case "NOT_COMPATIBLE_WITH_DEVICE": return "Your device is not compatible with this app".localized()
         case "REPORT_ALREADY_SUBMITTED": return "A report has already been submitted".localized()
+        case "ERROR_PRO_REQUIRED": return "Your device needs to be PRO in order to request paid apps to be uploaded automatically.".localized()
+        case "ERROR_PAID_APPS_REQUESTS_LIMIT_REACHED": return "Paid apps request limit reached. You can request up to 1 paid apps per week.".localized()
+        case "ERROR_REQUEST_APPLE_APP": return "This app can not be requested, it is native iOS/iPadOS/tvOS app.".localized()
+        case "ERROR_REQUEST_ONLY_IOS_APPS_SUPPORTED": return "Only iOS Apps From AppStore are supported in automatic requests.".localized()
+        case "ERROR_REQUEST_STATUS_CANT_BE_SET": return "This request status can't be set.".localized()
+        case "ERROR_SUCH_REQUEST_EXISTS": return "Such request already exists. But we have added you as requester as well.".localized()
+        case "ERROR_SUCH_VERSION_EXISTS_AND_LINKS_AVAILABLE": return "Such version is already on appdb and it has links available.".localized()
         case "JSON could not be serialized because of error:\nThe data couldn’t be read because it isn’t in the correct format.": return "An error has occurred: malformed JSON".localized()
         default: return self.localized()
         }

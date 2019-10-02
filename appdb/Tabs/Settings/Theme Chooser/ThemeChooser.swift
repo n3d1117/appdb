@@ -76,7 +76,7 @@ class ThemeChooser: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if #available(iOS 13.0, *), indexPath.section > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = "Follow System Appearance".localized() // todo localize
+            cell.textLabel?.text = "Follow System Appearance".localized()
             cell.textLabel?.makeDynamicFont()
             cell.textLabel?.theme_textColor = Color.title
             cell.setBackgroundColor(Color.veryVeryLightGray)
@@ -117,12 +117,17 @@ class ThemeChooser: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if #available(iOS 13.0, *), section > 0 {
+            return "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it.".localized()
+        }
+        return nil
+    }
+
     @objc func appearanceToggleValueChanged(sender: UISwitch) {
         Preferences.set(.followSystemAppearance, to: sender.isOn)
 
         disableUserInteractionIfNeeded()
-
-        debugLog("system appearance: \(Global.isDarkSystemAppearance ? "Dark" : "Light")")
 
         if Preferences.followSystemAppearance {
             switch Themes.current {
@@ -136,6 +141,8 @@ class ThemeChooser: UITableViewController {
                 }
             }
         }
+
+        Global.refreshAppearanceForCurrentTheme()
     }
 
     func disableUserInteractionIfNeeded() {
@@ -153,7 +160,6 @@ class ThemeChooser: UITableViewController {
             Themes.switchTo(theme: theme)
             changedThemeDelegate?.changedTheme()
             tableView.reloadData()
-            Global.refreshAppearanceForCurrentTheme()
         }
     }
 }

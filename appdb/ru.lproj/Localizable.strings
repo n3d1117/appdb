@@ -254,6 +254,8 @@
 "Email" = "Email";
 "Telegram" = "Telegram";
 "Could not find email service." = "Не могу найти сервис почты.";
+"Follow System Appearance" = "Как у системы";
+"Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Автоматически переключать тему в зависимости от настроек системы. Чтобы вручную указать тему, просто выберите ее однажды.\n\nПРИМЕЧАНИЕ: Если вы испытываете проблемы с переключением тем, просто закройте приложение из меню многозадачности и откройте его снова.";
 
 /////////////////////
 //     UPDATES     //
@@ -338,6 +340,24 @@
 "appdb team" = "Команда appdb";
 "Icon and banner designer" = "Дизайнер иконки и баннера";
 "View project on GitHub" = "Посмотреть исходный код GitHub";
+
+/////////////////////////////////////////
+//     WISHES / AUTOMATIC REQUESTS     //
+/////////////////////////////////////////
+"Wishes" = "Желания";
+"New" = "Новое";
+"Processing" = "Подождите...";
+"Failed" = "Неудача";
+"Fulfilled" = "Выполнено";
+"Free" = "Бесплатно";
+"Enter AppStore URL" = "Введите ссылку на AppStore";
+"Enter below the AppStore URL of the app you'd like to request" = "Введите ниже URL адрес приложения в AppStore (кнопка поделиться)";
+"Add" = "Добавить";
+"App has been requested successfully!" = "Ваш запрос отправлен!";
+"Price: %@" = "Цена: %@";
+"Version: %@" = "Версия: %@";
+"No new wishes to show" = "Нет новых желаний";
+"No fulfilled wishes to show" = "Нет выполненных желаний";
 
 ///////////////////
 //     OTHER     //

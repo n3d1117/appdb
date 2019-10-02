@@ -49,6 +49,12 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         navigationItem.leftBarButtonItem = categoriesButton
         navigationItem.leftBarButtonItem?.isEnabled = false
 
+        // Add wishes button
+
+        let wishesButton = UIBarButtonItem(image: UIImage(named: "wishes"), style: .plain, target: self, action: #selector(self.openWishes))
+        navigationItem.rightBarButtonItem = wishesButton
+        navigationItem.rightBarButtonItem?.isEnabled = false
+
         // Fix random separator margin issues
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
 
@@ -58,6 +64,9 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 
             // Enable categories button
             self.navigationItem.leftBarButtonItem?.isEnabled = true
+
+            // Enable wishes button
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         })
 
         // Wait for data to be fetched, reload tableView on completion
@@ -125,6 +134,9 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 
                 // Enable categories button
                 self.navigationItem.leftBarButtonItem?.isEnabled = true
+
+                // Enable wishes button
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
             })
 
             for cell in self.cells.compactMap({$0 as? ItemCollection}) { cell.requestItems() }
@@ -149,6 +161,18 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return state == .done ? cells[indexPath.row].height : 0
+    }
+
+    // Open wishes
+    @objc func openWishes(_ sender: AnyObject) {
+        let wishesController = Wishes()
+        if Global.isIpad {
+            let nav = DismissableModalNavController(rootViewController: wishesController)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.present(UINavigationController(rootViewController: wishesController), animated: true)
+        }
     }
 }
 

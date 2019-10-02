@@ -81,6 +81,8 @@ enum Actions: String {
     case deleteIpa = "delete_ipa"
     case addIpa = "add_ipa"
     case analyzeIpa = "get_ipa_analyze_jobs"
+    case createPublishRequest = "create_publish_request"
+    case getPublishRequests = "get_publish_requests"
 }
 
 enum ConfigurationParameters: String {

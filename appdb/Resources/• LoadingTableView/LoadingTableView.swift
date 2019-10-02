@@ -88,11 +88,16 @@ class LoadingTableView: UITableViewController {
 
         setConstraints(.loading)
 
-        adMobAdjustContentInsetsIfNeeded()
+        // Wishes are presented modally so you don't need to set bottom insets
+        if !(self is NewWishes) && !(self is FulfilledWishes) {
+            adMobAdjustContentInsetsIfNeeded()
+        }
 
         adChangeObservation = defaults.observe(.adBannerHeight) { [weak self] _ in
             guard let self = self else { return }
-            self.adMobAdjustContentInsetsIfNeeded()
+            if !(self is NewWishes) && !(self is FulfilledWishes) {
+                self.adMobAdjustContentInsetsIfNeeded()
+            }
         }
     }
 

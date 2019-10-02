@@ -76,7 +76,7 @@ class AskBundleBeforeUploadViewController: TableViewController {
                     ["initialText": self.newBundleId, "callback": { [unowned self] (newBundleId: String) in
                         self.newBundleId = newBundleId
                         self.setUploadButtonEnabled()
-                    }, "title": "New bundle id".localized(), "subtitle": "Tap to generate random".localized()] // todo localize
+                    }, "title": "New bundle id".localized(), "subtitle": "Tap to generate random".localized()]
                 ),
                 Row(text: "Overwrite file".localized(), accessory: .switchToggle(value: overwriteFile) { [unowned self] newValue in
                     self.overwriteFile = newValue

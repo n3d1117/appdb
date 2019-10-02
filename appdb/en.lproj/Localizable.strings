@@ -254,6 +254,8 @@
 "Email" = "Email";
 "Telegram" = "Telegram";
 "Could not find email service." = "Could not find email service.";
+"Follow System Appearance" = "Follow System Appearance";
+"Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it.";
 
 /////////////////////
 //     UPDATES     //
@@ -338,6 +340,24 @@
 "appdb team" = "appdb team";
 "Icon and banner designer" = "Icon and banner designer";
 "View project on GitHub" = "View project on GitHub";
+
+/////////////////////////////////////////
+//     WISHES / AUTOMATIC REQUESTS     //
+/////////////////////////////////////////
+"Wishes" = "Wishes";
+"New" = "New";
+"Processing" = "Processing";
+"Failed" = "Failed";
+"Fulfilled" = "Fulfilled";
+"Free" = "Free";
+"Enter AppStore URL" = "Enter AppStore URL";
+"Enter below the AppStore URL of the app you'd like to request" = "Enter below the AppStore URL of the app you'd like to request";
+"Add" = "Add";
+"App has been requested successfully!" = "App has been requested successfully!";
+"Price: %@" = "Price: %@";
+"Version: %@" = "Version: %@";
+"No new wishes to show" = "No new wishes to show";
+"No fulfilled wishes to show" = "No fulfilled wishes to show";
 
 ///////////////////
 //     OTHER     //

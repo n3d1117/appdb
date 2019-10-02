@@ -73,6 +73,12 @@
 		814F4FBB2196FA35005A8111 /* UpdateableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F4FBA2196FA35005A8111 /* UpdateableApp.swift */; };
 		814F4FBD21974A5B005A8111 /* Ignored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F4FBC21974A5B005A8111 /* Ignored.swift */; };
 		814F4FBF2197589E005A8111 /* IgnoredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F4FBE2197589E005A8111 /* IgnoredCell.swift */; };
+		815016932312DA8200E06E1E /* API+Wishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815016922312DA8200E06E1E /* API+Wishes.swift */; };
+		815016952312DAAE00E06E1E /* WishApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815016942312DAAE00E06E1E /* WishApp.swift */; };
+		815016A12312DAFE00E06E1E /* WishAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150169B2312DAFE00E06E1E /* WishAppCell.swift */; };
+		815016A22312DAFE00E06E1E /* Wishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150169C2312DAFE00E06E1E /* Wishes.swift */; };
+		815016A32312DAFE00E06E1E /* NewWishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150169E2312DAFE00E06E1E /* NewWishes.swift */; };
+		815016A42312DAFE00E06E1E /* FulfilledWishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815016A02312DAFE00E06E1E /* FulfilledWishes.swift */; };
 		815234CF2278479000B1AE65 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 815234CE2278479000B1AE65 /* ZIPFoundation.framework */; };
 		815234D22278A6BF00B1AE65 /* SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815234D12278A6BF00B1AE65 /* SHA1.swift */; };
 		815234D52278C10A00B1AE65 /* BackgroundTaskUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815234D42278C10A00B1AE65 /* BackgroundTaskUtil.swift */; };
@@ -155,6 +161,7 @@
 		81A9DBB8214D36BD00AB1A8C /* Acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 819EC27220A72472007138CF /* Acknowledgements.plist */; };
 		81AB37AE1DAC30BD003A586F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB37AD1DAC30BD003A586F /* TabBarController.swift */; };
 		81AF3532215115B200A798D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF3531215115B200A798D7 /* RoundedButton.swift */; };
+		81B0A9802341387C00E14A71 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81B0A97F2341387C00E14A71 /* StoreKit.framework */; };
 		81BE066C1E6C2EA500AD9827 /* Details+ExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE066B1E6C2EA500AD9827 /* Details+ExternalLink.swift */; };
 		81BE066F1E6C52FE00AD9827 /* Details+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE066E1E6C52FE00AD9827 /* Details+Publisher.swift */; };
 		81BE06721E6CB6DE00AD9827 /* Details+SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */; };
@@ -163,7 +170,6 @@
 		81BFC98B22F4CE41008073D8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BFC98A22F4CE41008073D8 /* CoreTelephony.framework */; };
 		81BFC98D22F4CE49008073D8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BFC98C22F4CE49008073D8 /* SystemConfiguration.framework */; };
 		81BFC98F22F4CE50008073D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BFC98E22F4CE50008073D8 /* CoreGraphics.framework */; };
-		81BFC99122F4CE57008073D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BFC99022F4CE57008073D8 /* StoreKit.framework */; };
 		81BFC99322F4CE64008073D8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BFC99222F4CE64008073D8 /* AdSupport.framework */; };
 		81BFC99522F4CE6C008073D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BFC99422F4CE6C008073D8 /* QuartzCore.framework */; };
 		81BFC99722F4CE73008073D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BFC99622F4CE72008073D8 /* CoreMedia.framework */; };
@@ -303,6 +309,12 @@
 		814F4FBA2196FA35005A8111 /* UpdateableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateableApp.swift; sourceTree = "<group>"; };
 		814F4FBC21974A5B005A8111 /* Ignored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ignored.swift; sourceTree = "<group>"; };
 		814F4FBE2197589E005A8111 /* IgnoredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredCell.swift; sourceTree = "<group>"; };
+		815016922312DA8200E06E1E /* API+Wishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Wishes.swift"; sourceTree = "<group>"; };
+		815016942312DAAE00E06E1E /* WishApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishApp.swift; sourceTree = "<group>"; };
+		8150169B2312DAFE00E06E1E /* WishAppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishAppCell.swift; sourceTree = "<group>"; };
+		8150169C2312DAFE00E06E1E /* Wishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wishes.swift; sourceTree = "<group>"; };
+		8150169E2312DAFE00E06E1E /* NewWishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWishes.swift; sourceTree = "<group>"; };
+		815016A02312DAFE00E06E1E /* FulfilledWishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfilledWishes.swift; sourceTree = "<group>"; };
 		815234CE2278479000B1AE65 /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZIPFoundation.framework; path = Carthage/Build/iOS/ZIPFoundation.framework; sourceTree = "<group>"; };
 		815234D12278A6BF00B1AE65 /* SHA1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA1.swift; sourceTree = "<group>"; };
 		815234D42278C10A00B1AE65 /* BackgroundTaskUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskUtil.swift; sourceTree = "<group>"; };
@@ -389,6 +401,7 @@
 		819EC2D31E41016D00BA7A50 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; usesTabs = 1; };
 		81AB37AD1DAC30BD003A586F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabBarController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81AF3531215115B200A798D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		81B0A97F2341387C00E14A71 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		81BE066B1E6C2EA500AD9827 /* Details+ExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+ExternalLink.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81BE066E1E6C52FE00AD9827 /* Details+Publisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+Publisher.swift"; sourceTree = "<group>"; };
 		81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+SegmentControl.swift"; sourceTree = "<group>"; };
@@ -397,7 +410,6 @@
 		81BFC98A22F4CE41008073D8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		81BFC98C22F4CE49008073D8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		81BFC98E22F4CE50008073D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		81BFC99022F4CE57008073D8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		81BFC99222F4CE64008073D8 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		81BFC99422F4CE6C008073D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		81BFC99622F4CE72008073D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -465,16 +477,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81BFC99922F4CE7B008073D8 /* AVFoundation.framework in Frameworks */,
+				81BFC98B22F4CE41008073D8 /* CoreTelephony.framework in Frameworks */,
+				81B0A9802341387C00E14A71 /* StoreKit.framework in Frameworks */,
 				81BFC99D22F4CE8B008073D8 /* libz.tbd in Frameworks */,
 				81BFC99B22F4CE81008073D8 /* WebKit.framework in Frameworks */,
-				81BFC99922F4CE7B008073D8 /* AVFoundation.framework in Frameworks */,
 				81BFC99722F4CE73008073D8 /* CoreMedia.framework in Frameworks */,
 				81BFC99522F4CE6C008073D8 /* QuartzCore.framework in Frameworks */,
 				81BFC99322F4CE64008073D8 /* AdSupport.framework in Frameworks */,
-				81BFC99122F4CE57008073D8 /* StoreKit.framework in Frameworks */,
 				81BFC98F22F4CE50008073D8 /* CoreGraphics.framework in Frameworks */,
 				81BFC98D22F4CE49008073D8 /* SystemConfiguration.framework in Frameworks */,
-				81BFC98B22F4CE41008073D8 /* CoreTelephony.framework in Frameworks */,
 				815234CF2278479000B1AE65 /* ZIPFoundation.framework in Frameworks */,
 				817D2EDA1E8EBBE500B8AE0D /* Alamofire.framework in Frameworks */,
 				817D2EDD1E8EBBE500B8AE0D /* Cartography.framework in Frameworks */,
@@ -583,8 +595,8 @@
 		812E97861E5772BD00C1379F /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				81485A76216617980004184F /* Search+Extension.swift */,
 				815C4A9F1F954FDA0002AB08 /* Search.swift */,
+				81485A76216617980004184F /* Search+Extension.swift */,
 				815C4AA11F9550340002AB08 /* SuggestionsWhileTyping.swift */,
 				81A060241F8A24E9004EEEE1 /* Search Cells */,
 				81603A69216E638E00F18E34 /* Trending View */,
@@ -665,6 +677,41 @@
 				812C3543207D237300D39748 /* ConfigServer.swift */,
 			);
 			path = "Device Link";
+			sourceTree = "<group>";
+		};
+		815016992312DAFE00E06E1E /* Wishes */ = {
+			isa = PBXGroup;
+			children = (
+				8150169C2312DAFE00E06E1E /* Wishes.swift */,
+				8150169A2312DAFE00E06E1E /* Cells */,
+				8150169D2312DAFE00E06E1E /* New */,
+				8150169F2312DAFE00E06E1E /* Fulfilled */,
+			);
+			path = Wishes;
+			sourceTree = "<group>";
+		};
+		8150169A2312DAFE00E06E1E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8150169B2312DAFE00E06E1E /* WishAppCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8150169D2312DAFE00E06E1E /* New */ = {
+			isa = PBXGroup;
+			children = (
+				8150169E2312DAFE00E06E1E /* NewWishes.swift */,
+			);
+			path = New;
+			sourceTree = "<group>";
+		};
+		8150169F2312DAFE00E06E1E /* Fulfilled */ = {
+			isa = PBXGroup;
+			children = (
+				815016A02312DAFE00E06E1E /* FulfilledWishes.swift */,
+			);
+			path = Fulfilled;
 			sourceTree = "<group>";
 		};
 		815234D02278A6AD00B1AE65 /* SHA1 */ = {
@@ -1068,6 +1115,7 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81B0A97F2341387C00E14A71 /* StoreKit.framework */,
 				81BFC98722F4CE0A008073D8 /* StartApp.framework */,
 				81BFC99C22F4CE8A008073D8 /* libz.tbd */,
 				81BFC99A22F4CE81008073D8 /* WebKit.framework */,
@@ -1075,7 +1123,6 @@
 				81BFC99622F4CE72008073D8 /* CoreMedia.framework */,
 				81BFC99422F4CE6C008073D8 /* QuartzCore.framework */,
 				81BFC99222F4CE64008073D8 /* AdSupport.framework */,
-				81BFC99022F4CE57008073D8 /* StoreKit.framework */,
 				81BFC98E22F4CE50008073D8 /* CoreGraphics.framework */,
 				81BFC98C22F4CE49008073D8 /* SystemConfiguration.framework */,
 				81BFC98A22F4CE41008073D8 /* CoreTelephony.framework */,
@@ -1138,6 +1185,7 @@
 				817610ED21515A3200602FF2 /* API+Links.swift */,
 				81FC8B4022735E5E003788F3 /* API+MyAppstore.swift */,
 				817610EE21515A3200602FF2 /* API+News.swift */,
+				815016922312DA8200E06E1E /* API+Wishes.swift */,
 				817610E821515A3100602FF2 /* API+Promotions.swift */,
 				817610E921515A3200602FF2 /* API+Search.swift */,
 				817610E521515A3100602FF2 /* API+SystemStatus.swift */,
@@ -1226,6 +1274,7 @@
 				811BEE1E2151538500F1F56A /* Items.swift */,
 				811BEE1F2151538600F1F56A /* Link.swift */,
 				81FC8B4222735EA8003788F3 /* MyAppstoreApp.swift */,
+				815016942312DAAE00E06E1E /* WishApp.swift */,
 				811BEE222151538600F1F56A /* Promotion.swift */,
 				81FCAFCF226E1D0C004FAFD6 /* RequestedApp.swift */,
 				811BEE252151538600F1F56A /* ServiceStatus.swift */,
@@ -1255,6 +1304,7 @@
 				816CEED71DBCE88E002CFF6E /* Categories */,
 				817FF9ED1E59CC900056960F /* Details */,
 				8133C45A208B627E00F2F9F5 /* See All */,
+				815016992312DAFE00E06E1E /* Wishes */,
 				81DFE219229DCA3E009BD7C1 /* Update Prompt */,
 			);
 			path = Featured;
@@ -1565,6 +1615,7 @@
 				817418A52165368A00BB70EB /* LoadingCollectionView.swift in Sources */,
 				818D75F222CCF32900A69C56 /* AdHelper.swift in Sources */,
 				81FC8B4122735E5E003788F3 /* API+MyAppstore.swift in Sources */,
+				815016A12312DAFE00E06E1E /* WishAppCell.swift in Sources */,
 				814F4FB92196F5F9005A8111 /* API+Updates.swift in Sources */,
 				8105175B20D0283300B3E1FB /* Identifiable.swift in Sources */,
 				81F271E221690B97005C7314 /* NoScreenshotsSearchCell~Book+Stars.swift in Sources */,
@@ -1572,12 +1623,14 @@
 				8133C45E208B874600F2F9F5 /* SeeAllCell.swift in Sources */,
 				81EC00751DAD89AF009EEFFA /* Dummy.swift in Sources */,
 				81F1FEA41E5B7DEF00C1CD44 /* AlamofireObjectMapper.swift in Sources */,
+				815016A42312DAFE00E06E1E /* FulfilledWishes.swift in Sources */,
 				81F055ED2298147200E76874 /* KeychainItemAccessibility.swift in Sources */,
 				8148D85C226DE68E006AD9E0 /* Downloading.swift in Sources */,
 				81DFE21B229DCA66009BD7C1 /* AppUpdateHeader.swift in Sources */,
 				818A55AC20584F2B00162E51 /* BannerImage.swift in Sources */,
 				81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */,
 				818A55A120583D4F00162E51 /* Updates.swift in Sources */,
+				815016932312DA8200E06E1E /* API+Wishes.swift in Sources */,
 				8126201D215444A400B06F88 /* NSAttributedString+Utils.swift in Sources */,
 				8189794922859EED00EC87B2 /* IPAWebViewController.swift in Sources */,
 				817A53D81E5F24540081ED26 /* Details+Description.swift in Sources */,
@@ -1626,7 +1679,9 @@
 				81485A77216617980004184F /* Search+Extension.swift in Sources */,
 				8126201C215444A400B06F88 /* Style.swift in Sources */,
 				81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */,
+				815016952312DAAE00E06E1E /* WishApp.swift in Sources */,
 				811BEE2D2151538600F1F56A /* App.swift in Sources */,
+				815016A22312DAFE00E06E1E /* Wishes.swift in Sources */,
 				81D661761E5A0B6C00BB6461 /* Details+Extension.swift in Sources */,
 				815234D22278A6BF00B1AE65 /* SHA1.swift in Sources */,
 				814B7710205B2DCA004D46DD /* RefreshView.swift in Sources */,
@@ -1682,6 +1737,7 @@
 				81431AA120A0CC1E00C830BE /* UIDeviceExtension.swift in Sources */,
 				8189794722848D8100EC87B2 /* ObserveDownloadingApps.swift in Sources */,
 				81AF3532215115B200A798D7 /* RoundedButton.swift in Sources */,
+				815016A32312DAFE00E06E1E /* NewWishes.swift in Sources */,
 				81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */,
 				819E69891F8E8C2700C4608F /* SearchCell.swift in Sources */,
 				818979412284853A00EC87B2 /* DownloadingCell.swift in Sources */,
