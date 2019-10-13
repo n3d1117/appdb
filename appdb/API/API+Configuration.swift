@@ -21,29 +21,23 @@ extension API {
                     if !json["success"].boolValue {
                         fail(json["errors"][0].stringValue)
                     } else {
-                        Alamofire.request(endpoint, parameters: ["action": Actions.checkRevoke.rawValue], headers: headersWithCookie)
-                            .responseJSON { response1 in
-                                switch response1.result {
-                                case .success(let value1):
-                                    let json2 = JSON(value1)
-                                    let data = json["data"]
 
-                                    Preferences.set(.appsync, to: data["appsync"].stringValue=="yes")
-                                    Preferences.set(.ignoreCompatibility, to: data["ignore_compatibility"].stringValue=="yes")
-                                    Preferences.set(.askForInstallationOptions, to: data["ask_for_installation_options"].stringValue=="yes")
+                        let data = json["data"]
+                        checkRevocation(completion: { isRevoked, revokedOn in
+                            Preferences.set(.appsync, to: data["appsync"].stringValue=="yes")
+                            Preferences.set(.ignoreCompatibility, to: data["ignore_compatibility"].stringValue=="yes")
+                            Preferences.set(.askForInstallationOptions, to: data["ask_for_installation_options"].stringValue=="yes")
 
-                                    Preferences.set(.pro, to: data["is_pro"].stringValue=="yes")
-                                    Preferences.set(.proDisabled, to: data["is_pro_disabled"].stringValue=="yes")
-                                    Preferences.set(.proRevoked, to: !json2["success"].boolValue)
-                                    Preferences.set(.proRevokedOn, to: json2["data"].stringValue)
-                                    Preferences.set(.proUntil, to: data["pro_till"].stringValue)
+                            Preferences.set(.pro, to: data["is_pro"].stringValue=="yes")
+                            Preferences.set(.proDisabled, to: data["is_pro_disabled"].stringValue=="yes")
+                            Preferences.set(.proRevoked, to: isRevoked)
+                            Preferences.set(.proRevokedOn, to: revokedOn)
+                            Preferences.set(.proUntil, to: data["pro_till"].stringValue)
 
-                                    success()
-
-                                case .failure(let error):
-                                    fail(error.localizedDescription)
-                                }
-                            }
+                            success()
+                        }, fail: { error in
+                            fail(error)
+                        })
                     }
                 case .failure(let error):
                     fail(error.localizedDescription)
@@ -77,5 +71,18 @@ extension API {
                     fail(error.localizedDescription)
                 }
             }
+    }
+
+    static func checkRevocation(completion: @escaping (_ revoked: Bool, _ revokedOn: String) -> Void, fail:@escaping (_ error: String) -> Void) {
+        Alamofire.request(endpoint, parameters: ["action": Actions.checkRevoke.rawValue], headers: headersWithCookie)
+        .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                completion(!json["success"].boolValue, json["data"].stringValue)
+            case .failure(let error):
+                fail(error.localizedDescription)
+            }
+        }
     }
 }
