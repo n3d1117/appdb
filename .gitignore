@@ -26,3 +26,7 @@ Carthage/Build
 /build
 /AppDB.sketch
 /StartApp.framework
+/nanopb.framework
+/GoogleUtilities.framework
+/GoogleMobileAds.framework
+/GoogleAppMeasurement.framework
