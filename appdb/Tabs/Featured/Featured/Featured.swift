@@ -169,9 +169,9 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: wishesController)
             nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
+            navigationController?.present(nav, animated: true)
         } else {
-            self.navigationController?.present(UINavigationController(rootViewController: wishesController), animated: true)
+            navigationController?.present(UINavigationController(rootViewController: wishesController), animated: true)
         }
     }
 }
@@ -202,7 +202,13 @@ extension Featured: ChangeCategory {
     }
 
     // Popover on ipad, modal on iphone
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle { return .fullScreen }
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        if #available(iOS 13.0, *) {
+            return .automatic
+        } else {
+            return .fullScreen
+        }
+    }
 
     // Reload Categories
     func reloadViewAfterCategoryChange(id: String, type: ItemType) {
