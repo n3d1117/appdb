@@ -48,6 +48,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>GADApplicationIdentifier</key>
+	<string>YOUR_GADAPPLICATIONIDENTIFIER</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>ms-outlook</string>

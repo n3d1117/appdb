@@ -390,7 +390,7 @@ extension Details: SwitchDetailsSegmentDelegate {
 
         if indexForSegment == .download {
             let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
-            tabBarController?.showInterstitialIfReady()
+            tabBarController?.showGADInterstitialIfReady()
         }
 
         tableView.reloadData()
@@ -479,7 +479,7 @@ extension Details: IPAWebViewControllerDelegate {
             Messages.shared.showSuccess(message: "File download has started".localized(), context: Global.isIpad ? .viewController(self) : nil)
             delay(1) {
                 let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
-                tabBarController?.showInterstitialIfReady()
+                tabBarController?.showGADInterstitialIfReady()
             }
         }
     }

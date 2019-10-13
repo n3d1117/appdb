@@ -121,7 +121,7 @@ class Settings: TableViewController {
 
         delay(1) {
             let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
-            tabBarController?.showInterstitialIfReady()
+            tabBarController?.showGADInterstitialIfReady()
         }
 
         if Global.isIpad {
