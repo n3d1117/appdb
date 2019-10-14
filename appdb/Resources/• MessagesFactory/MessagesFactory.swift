@@ -51,13 +51,13 @@ struct Messages {
     }
 
     @discardableResult
-    mutating func showSuccess(message: String, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
-        return show(message: message, theme: .success, context: context)
+    mutating func showSuccess(title: String = "", message: String, duration: Double = 2.5, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
+        return show(message: message, theme: .success, context: context, duration: .seconds(seconds: duration))
     }
 
     @discardableResult
-    mutating func showError(message: String, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
-        return show(message: message, theme: .error, context: context)
+    mutating func showError(title: String = "", message: String, duration: Double = 2.5, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
+        return show(message: message, theme: .error, context: context, duration: .seconds(seconds: duration))
     }
 
     @discardableResult

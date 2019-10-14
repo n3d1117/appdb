@@ -158,13 +158,10 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.appsync.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.askForInstallationOptions.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoreCompatibility.name)
-        UserDefaults.standard.removeObject(forKey: Defaults.Keys.adBannerHeight.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.showBadgeForUpdates.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.changeBundleBeforeUpload.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.resumeQueuedApps.name)
-        UserDefaults.standard.removeObject(forKey: Defaults.Keys.followSystemAppearance.name)
-        UserDefaults.standard.removeObject(forKey: Defaults.Keys.shouldSwitchToDarkerTheme.name)
     }
 
     // Remove secure keys

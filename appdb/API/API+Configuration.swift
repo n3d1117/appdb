@@ -28,11 +28,17 @@ extension API {
                             Preferences.set(.ignoreCompatibility, to: data["ignore_compatibility"].stringValue=="yes")
                             Preferences.set(.askForInstallationOptions, to: data["ask_for_installation_options"].stringValue=="yes")
 
-                            Preferences.set(.pro, to: data["is_pro"].stringValue=="yes")
                             Preferences.set(.proDisabled, to: data["is_pro_disabled"].stringValue=="yes")
                             Preferences.set(.proRevoked, to: isRevoked)
                             Preferences.set(.proRevokedOn, to: revokedOn)
+                            if Preferences.proRevoked || Preferences.proDisabled {
+                                Preferences.set(.pro, to: false)
+                            } else {
+                                Preferences.set(.pro, to: data["is_pro"].stringValue=="yes")
+                            }
                             Preferences.set(.proUntil, to: data["pro_till"].stringValue)
+
+                            Preferences.set(.adBannerHeight, to: Preferences.pro ? 0 : (90 ~~ 50))
 
                             success()
                         }, fail: { error in
