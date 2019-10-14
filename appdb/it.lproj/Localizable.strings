@@ -324,11 +324,11 @@
 //     LINK REPORTING     //
 ////////////////////////////
 
-"Send" = "Send";
-"Report" = "Report";
-"Reporting a broken link for '%@'." = "Reporting a broken link for '%@'.";
-"Enter a reason for your report" = "Enter a reason for your report";
-"Link reported successfully!" = "Link reported successfully!";
+"Send" = "Invia";
+"Report" = "Segnala";
+"Reporting a broken link for '%@'." = "Segnalazione di un link non valido per '%@'.";
+"Enter a reason for your report" = "Inserisci un motivo per la tua segnalazione";
+"Link reported successfully!" = "Link segnalato con successo!";
 
 /////////////////////
 //     CREDITS     //

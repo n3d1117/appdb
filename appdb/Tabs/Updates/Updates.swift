@@ -121,6 +121,7 @@ class Updates: LoadingTableView {
         API.getUpdates(ticket: ticket, success: { [weak self] apps in
             guard let self = self else { return }
 
+            self.retryCount = 0
             self.allApps = apps
             let mixed = apps.filter({ !$0.isIgnored }).sorted { $0.name.lowercased() < $1.name.lowercased() }
             self.updateableApps = mixed.filter { $0.updateable }

@@ -79,23 +79,27 @@ class Settings: TableViewController {
         refreshSources()
 
         // Refresh link code & configuration parameters
-        if Preferences.deviceIsLinked {
-            API.getLinkCode(success: {
-                API.getConfiguration(success: { [weak self] in
+        func reloadConfiguration() {
+            if Preferences.deviceIsLinked {
+                API.getLinkCode(success: {
+                    API.getConfiguration(success: { [weak self] in
+                        guard let self = self else { return }
+                        self.refreshSources()
+                    }, fail: { _ in })
+                }, fail: { [weak self] error in
                     guard let self = self else { return }
-                    self.refreshSources()
-                }, fail: { _ in })
-            }, fail: { [weak self] error in
-                guard let self = self else { return }
 
-                // Profile has been removed, so let's deauthorize the app as well
-                if error == "NO_DEVICE_LINKED" {
-                    self.deauthorize()
+                    // Profile has been removed, so let's deauthorize the app as well
+                    if error == "NO_DEVICE_LINKED" {
+                        self.deauthorize()
+                    }
+
                     self.refreshSources()
-                }
-            })
+                })
+            }
         }
 
+        reloadConfiguration()
         adMobAdjustContentInsetsIfNeeded()
 
         adChangeObservation = defaults.observe(.adBannerHeight) { [weak self] _ in
@@ -282,6 +286,7 @@ class Settings: TableViewController {
         } else {
             dataSource.sections = deviceNotLinkedSections
         }
+        tableView.spr_endRefreshing()
     }
 }
 

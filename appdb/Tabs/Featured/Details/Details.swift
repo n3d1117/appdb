@@ -389,8 +389,10 @@ extension Details: SwitchDetailsSegmentDelegate {
         indexForSegment = state
 
         if indexForSegment == .download {
-            let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
-            tabBarController?.showGADInterstitialIfReady()
+            delay(1) {
+                let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
+                tabBarController?.showGADInterstitialIfReady()
+            }
         }
 
         tableView.reloadData()
