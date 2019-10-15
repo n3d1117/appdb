@@ -38,8 +38,6 @@ extension API {
                             }
                             Preferences.set(.proUntil, to: data["pro_till"].stringValue)
 
-                            Preferences.set(.adBannerHeight, to: Preferences.pro ? 0 : (90 ~~ 50))
-
                             success()
                         }, fail: { error in
                             fail(error)

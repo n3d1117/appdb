@@ -120,7 +120,11 @@ extension Settings {
 
                 Row(text: "Ask for installation options".localized(), accessory: .switchToggle(value: Preferences.askForInstallationOptions) { newValue in
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self)
+                }, cellClass: SimpleStaticCell.self),
+
+                Row(text: "Advanced Options".localized(), selection: { [unowned self] _ in
+                    self.pushAdvancedOptions()
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ]),
 
             Section(rows: [

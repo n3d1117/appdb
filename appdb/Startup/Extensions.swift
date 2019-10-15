@@ -64,6 +64,10 @@ extension String {
         case "ERROR_SUCH_VERSION_EXISTS_AND_LINKS_AVAILABLE": return "Such version is already on appdb and it has links available.".localized()
         case "ERROR_INVALID_APPSTORE_URL": return "Invalid AppStore URL.".localized()
         case "JSON could not be serialized because of error:\nThe data couldn’t be read because it isn’t in the correct format.": return "An error has occurred: malformed JSON".localized()
+        case "ERROR_UNKNOWN_VOUCHER_PARTNER": return "Unknown voucher partner.".localized()
+        case "INVALID_VOUCHER": return "Invalid voucher.".localized()
+        case "VOUCHER_ALREADY_USED": return "Voucher already used.".localized()
+        case "NO_DEVICES_WITH_THIS_EMAIL": return "No devices with this email.".localized()
         default: return self.localized()
         }
     }

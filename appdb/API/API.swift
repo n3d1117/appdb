@@ -83,6 +83,11 @@ enum Actions: String {
     case analyzeIpa = "get_ipa_analyze_jobs"
     case createPublishRequest = "create_publish_request"
     case getPublishRequests = "get_publish_requests"
+    case validatePro = "validate_voucher"
+    case activatePro = "activate_pro"
+    case emailLinkCode = "email_link_code"
+    case getAppdbAppsBundleIdsTicket = "get_appdb_apps_bundle_ids_ticket"
+    case getAppdbAppsBundleIds = "get_appdb_apps_bundle_ids"
 }
 
 enum ConfigurationParameters: String {

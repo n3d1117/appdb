@@ -216,6 +216,18 @@ class Settings: TableViewController {
         }
     }
 
+    // Push advanced options controller
+    func pushAdvancedOptions() {
+        let advancedViewController = AdvancedOptions()
+        if Global.isIpad {
+            let nav = DismissableModalNavController(rootViewController: advancedViewController)
+            nav.modalPresentationStyle = .formSheet
+            self.navigationController?.present(nav, animated: true)
+        } else {
+            self.navigationController?.pushViewController(advancedViewController, animated: true)
+        }
+    }
+
     // Show contact developer options
     func contactDeveloper(indexPath: IndexPath) {
         let alertController = UIAlertController(title: nil, message: "Choose an option".localized(), preferredStyle: .actionSheet, adaptive: true)

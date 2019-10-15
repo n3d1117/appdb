@@ -116,4 +116,55 @@ extension API {
             }
         }
     }
+
+    static func emailLinkCode(email: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
+        Alamofire.request(endpoint, parameters: ["email": email, "action": Actions.emailLinkCode.rawValue], headers: headersWithCookie)
+        .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if !json["success"].boolValue {
+                    fail(json["errors"][0].stringValue)
+                } else {
+                    success()
+                }
+            case .failure(let error):
+                fail(error.localizedDescription)
+            }
+        }
+    }
+
+    static func getAppdbAppsBundleIdsTicket(success:@escaping (_ ticket: String) -> Void, fail:@escaping (_ error: String) -> Void) {
+        Alamofire.request(endpoint, parameters: ["action": Actions.getAppdbAppsBundleIdsTicket.rawValue], headers: headersWithCookie)
+        .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if !json["success"].boolValue {
+                    fail(json["errors"][0].stringValue)
+                } else {
+                    success(json["data"].stringValue)
+                }
+            case .failure(let error):
+                fail(error.localizedDescription)
+            }
+        }
+    }
+
+    static func getAppdbAppsBundleIds(ticket: String, success:@escaping (_ bundleIds: [String]) -> Void, fail:@escaping (_ error: String) -> Void) {
+        Alamofire.request(endpoint, parameters: ["t": ticket, "action": Actions.getAppdbAppsBundleIds.rawValue], headers: headersWithCookie)
+        .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if !json["success"].boolValue {
+                    fail(json["errors"][0].stringValue)
+                } else {
+                    success(json["data"].arrayValue.map { $0.stringValue})
+                }
+            case .failure(let error):
+                fail(error.localizedDescription)
+            }
+        }
+    }
 }

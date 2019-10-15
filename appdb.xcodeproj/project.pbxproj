@@ -14,6 +14,7 @@
 		810811D31E8D008E008C6EDB /* Details+DownloadEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810811D21E8D008E008C6EDB /* Details+DownloadEmptyCell.swift */; };
 		810C71FE20ACDAA900D6310E /* DeviceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C71FD20ACDAA900D6310E /* DeviceStatus.swift */; };
 		810F01D821728EA100937CDF /* KnownLandscapeScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810F01D721728EA100937CDF /* KnownLandscapeScreenshots.swift */; };
+		811228472354DDC600C75CC6 /* ListAppsManagedByAppdb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811228462354DDC500C75CC6 /* ListAppsManagedByAppdb.swift */; };
 		8115465A20826AA50031C9DA /* Settings+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8115465920826AA50031C9DA /* Settings+Sections.swift */; };
 		8117DDAA1F3B05BD00E817C5 /* String+Truncation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117DDA91F3B05BD00E817C5 /* String+Truncation.swift */; };
 		81190B3D21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81190B3C21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift */; };
@@ -213,6 +214,8 @@
 		81F0C0A4235357C400604A10 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0C0A0235357C300604A10 /* GoogleMobileAds.framework */; };
 		81F0C0A5235357C400604A10 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0C0A1235357C300604A10 /* nanopb.framework */; };
 		81F0C0A6235357C400604A10 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0C0A2235357C300604A10 /* GoogleUtilities.framework */; };
+		81F0C0A923535B5C00604A10 /* AdvancedOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0C0A823535B5C00604A10 /* AdvancedOptions.swift */; };
+		81F0C0AB2353BF5400604A10 /* API+Voucher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0C0AA2353BF5400604A10 /* API+Voucher.swift */; };
 		81F1FE7F1E5AF12400C1CD44 /* DismissableModalNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE7E1E5AF12400C1CD44 /* DismissableModalNavController.swift */; };
 		81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE821E5B123A00C1CD44 /* Details+Header.swift */; };
 		81F1FEA41E5B7DEF00C1CD44 /* AlamofireObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE941E5B73C700C1CD44 /* AlamofireObjectMapper.swift */; };
@@ -253,6 +256,7 @@
 		810811D21E8D008E008C6EDB /* Details+DownloadEmptyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+DownloadEmptyCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		810C71FD20ACDAA900D6310E /* DeviceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatus.swift; sourceTree = "<group>"; };
 		810F01D721728EA100937CDF /* KnownLandscapeScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownLandscapeScreenshots.swift; sourceTree = "<group>"; };
+		811228462354DDC500C75CC6 /* ListAppsManagedByAppdb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAppsManagedByAppdb.swift; sourceTree = "<group>"; };
 		8112C35B1F7FC6E30014EDB2 /* DynamicFontSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontSizeHelper.swift; sourceTree = "<group>"; };
 		8115465920826AA50031C9DA /* Settings+Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Sections.swift"; sourceTree = "<group>"; };
 		8117DDA91F3B05BD00E817C5 /* String+Truncation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Truncation.swift"; sourceTree = "<group>"; };
@@ -460,6 +464,8 @@
 		81F0C0A0235357C300604A10 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		81F0C0A1235357C300604A10 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = nanopb.framework; sourceTree = "<group>"; };
 		81F0C0A2235357C300604A10 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
+		81F0C0A823535B5C00604A10 /* AdvancedOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedOptions.swift; sourceTree = "<group>"; };
+		81F0C0AA2353BF5400604A10 /* API+Voucher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Voucher.swift"; sourceTree = "<group>"; };
 		81F1FE7E1E5AF12400C1CD44 /* DismissableModalNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DismissableModalNavController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F1FE821E5B123A00C1CD44 /* Details+Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Header.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F1FE941E5B73C700C1CD44 /* AlamofireObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireObjectMapper.swift; sourceTree = "<group>"; };
@@ -996,6 +1002,7 @@
 				810C71FC20ACDA9800D6310E /* Device Status */,
 				819EC27C20A76EB6007138CF /* Theme Chooser */,
 				81DD29D52288CD1A00412BE6 /* Language Chooser */,
+				81F0C0A723535B4000604A10 /* Advanced Options */,
 				81324069205BE4C700945CE9 /* News */,
 				81004A10209E2502002414F1 /* System Status */,
 				81638F56229E9CC200B2F891 /* Credits */,
@@ -1206,6 +1213,7 @@
 				817610E921515A3200602FF2 /* API+Search.swift */,
 				817610E521515A3100602FF2 /* API+SystemStatus.swift */,
 				814F4FB82196F5F9005A8111 /* API+Updates.swift */,
+				81F0C0AA2353BF5400604A10 /* API+Voucher.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1388,6 +1396,15 @@
 				81F055EC2298147200E76874 /* KeychainWrapper.swift */,
 			);
 			path = Keychain;
+			sourceTree = "<group>";
+		};
+		81F0C0A723535B4000604A10 /* Advanced Options */ = {
+			isa = PBXGroup;
+			children = (
+				81F0C0A823535B5C00604A10 /* AdvancedOptions.swift */,
+				811228462354DDC500C75CC6 /* ListAppsManagedByAppdb.swift */,
+			);
+			path = "Advanced Options";
 			sourceTree = "<group>";
 		};
 		81F1FE7D1E5AF0E700C1CD44 /* • Dismissable Modal Nav Controller */ = {
@@ -1735,6 +1752,7 @@
 				811BEE2A2151538600F1F56A /* DeviceStatusItem.swift in Sources */,
 				8182756620792464000E9F87 /* News+Detail+HTMLCell.swift in Sources */,
 				81E1702E2170D07400A38380 /* TagListView.swift in Sources */,
+				81F0C0A923535B5C00604A10 /* AdvancedOptions.swift in Sources */,
 				810811D31E8D008E008C6EDB /* Details+DownloadEmptyCell.swift in Sources */,
 				814F4FBD21974A5B005A8111 /* Ignored.swift in Sources */,
 				811BEE2E2151538600F1F56A /* CydiaApp.swift in Sources */,
@@ -1752,6 +1770,7 @@
 				81E7CBFB1E1FC0F2004AF156 /* LoadingTableView.swift in Sources */,
 				81431AA120A0CC1E00C830BE /* UIDeviceExtension.swift in Sources */,
 				8189794722848D8100EC87B2 /* ObserveDownloadingApps.swift in Sources */,
+				811228472354DDC600C75CC6 /* ListAppsManagedByAppdb.swift in Sources */,
 				81AF3532215115B200A798D7 /* RoundedButton.swift in Sources */,
 				815016A32312DAFE00E06E1E /* NewWishes.swift in Sources */,
 				81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */,
@@ -1780,6 +1799,7 @@
 				815234D52278C10A00B1AE65 /* BackgroundTaskUtil.swift in Sources */,
 				811BEE2C2151538600F1F56A /* Promotion.swift in Sources */,
 				81E48B101E707C46005FBBEC /* Details+Review.swift in Sources */,
+				81F0C0AB2353BF5400604A10 /* API+Voucher.swift in Sources */,
 				817610F321515A3200602FF2 /* API+Search.swift in Sources */,
 				81004A12209E2545002414F1 /* SystemStatus.swift in Sources */,
 				816CEEDB1DBD00E5002CFF6E /* CategoryCell.swift in Sources */,
