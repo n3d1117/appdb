@@ -319,6 +319,10 @@
 "Your PRO subscription has been revoked by Apple." = "Ваш PRO статус был отозван корпорацией Apple.";
 "Your device doesn't seem to have a PRO subcription." = "У вашего устройства нет статуса PRO.";
 "App duplication is currently supported on non-jailbroken devices with PRO." = "Установка дубликатов приложений поддерживается только на невзломанных устройствах с PRO.";
+"Unknown voucher partner." = "Предоставленный ваучер недействителен.";
+"Invalid voucher." = "Недействительный ваучер.";
+"Voucher already used." = "Этот ваучер уже был использован ранее.";
+"No devices with this email." = "Привязанных устройств с таким email нет.";
 
 ////////////////////////////
 //     LINK REPORTING     //

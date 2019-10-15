@@ -256,6 +256,24 @@
 "Could not find email service." = "Impossibile trovare il servizio email collegato.";
 "Follow System Appearance" = "Segui tema del sistema";
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Passa automaticamente tra tema scuro e chiaro in base alle impostazioni di sistema. Per passare al tema più scuro, invece, selezionalo manualmente una volta.\n\nNOTA: Se rilevi dei problemi (tema che non cambia in automatico, oppure temi chiaro e scuro mischiati) chiudi l'app dal multitasking e riaprila.";
+"Advanced Options" = "Opzioni Avanzate";
+"Check PRO Revocation" = "Controlla revocazione PRO";
+"Validate PRO Voucher" = "Controlla validità voucher PRO";
+"Activate PRO Voucher" = "Attiva PRO con voucher";
+"Email Link Code" = "Invia codice link per email";
+"List apps managed by appdb" = "Lista app gestite da appdb";
+"Your PRO has not been revoked!" = "Il tuo abbonamento PRO non è stato revocato!";
+"Enter Voucher" = "Inserisci voucher";
+"Paste here the PRO voucher obtained by a reseller:" = "Incolla qui il voucher ottenuto dal tuo rivenditore:";
+"Activate" = "Attiva";
+"Your PRO has been activated successfully!" = "Il tuo abbonamento PRO è stato attivato correttamente!";
+"Validate" = "Controlla";
+"Your PRO voucher is valid and can be activated!" = "Il tuo voucher PRO è valido e può essere attivato!";
+"Enter below the email address where the link code will be sent:" = "Inserisci qui l'indirizzo email al quale verrà inviato il codice link:";
+"Email was sent successfully!" = "Email inviata correttamente!";
+"Apps managed by appdb" = "App gestite da appdb";
+"Bundle IDs" = "Bundle ID";
+"Only apps that are managed by appdb will appear here." = "Solo le app gestite da appdb appariranno qui.";
 
 /////////////////////
 //     UPDATES     //
@@ -319,6 +337,10 @@
 "Your PRO subscription has been revoked by Apple." = "Il tuo abbonamento PRO è stato revocato da Apple.";
 "Your device doesn't seem to have a PRO subcription." = "Il tuo dispositivo non ha un abbonamento PRO attivo.";
 "App duplication is currently supported on non-jailbroken devices with PRO." = "La duplicazione di app è al momento supportata solo su dispositivi senza jailbreak e con abbonamento PRO";
+"Unknown voucher partner." = "Voucher ottenuto da un rivenditore non riconosciuto.";
+"Invalid voucher." = "Voucher non valido.";
+"Voucher already used." = "Questo voucher è già stato utilizzato.";
+"No devices with this email." = "Nessun dispositivo trovato con questa email.";
 
 ////////////////////////////
 //     LINK REPORTING     //

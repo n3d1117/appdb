@@ -256,6 +256,24 @@
 "Could not find email service." = "Could not find email service.";
 "Follow System Appearance" = "Follow System Appearance";
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it.";
+"Advanced Options" = "Advanced Options";
+"Check PRO Revocation" = "Check PRO Revocation";
+"Validate PRO Voucher" = "Validate PRO Voucher";
+"Activate PRO Voucher" = "Activate PRO Voucher";
+"Email Link Code" = "Email Link Code";
+"List apps managed by appdb" = "List apps managed by appdb";
+"Your PRO has not been revoked!" = "Your PRO has not been revoked!";
+"Enter Voucher" = "Enter Voucher";
+"Paste here the PRO voucher obtained by a reseller:" = "Paste here the PRO voucher obtained by a reseller:";
+"Activate" = "Activate";
+"Your PRO has been activated successfully!" = "Your PRO has been activated successfully!";
+"Validate" = "Validate";
+"Your PRO voucher is valid and can be activated!" = "Your PRO voucher is valid and can be activated!";
+"Enter below the email address where the link code will be sent:" = "Enter below the email address where the link code will be sent:";
+"Email was sent successfully!" = "Email was sent successfully!";
+"Apps managed by appdb" = "Apps managed by appdb";
+"Bundle IDs" = "Bundle IDs";
+"Only apps that are managed by appdb will appear here." = "Only apps that are managed by appdb will appear here.";
 
 /////////////////////
 //     UPDATES     //
@@ -319,6 +337,10 @@
 "Your PRO subscription has been revoked by Apple." = "Your PRO subscription has been revoked by Apple.";
 "Your device doesn't seem to have a PRO subcription." = "Your device doesn't seem to have a PRO subcription.";
 "App duplication is currently supported on non-jailbroken devices with PRO." = "App duplication is currently supported on non-jailbroken devices with PRO.";
+"Unknown voucher partner." = "Unknown voucher partner.";
+"Invalid voucher." = "Invalid voucher.";
+"Voucher already used." = "Voucher already used.";
+"No devices with this email." = "No devices with this email.";
 
 ////////////////////////////
 //     LINK REPORTING     //
