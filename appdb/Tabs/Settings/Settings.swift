@@ -102,6 +102,11 @@ class Settings: TableViewController {
         reloadConfiguration()
         adMobAdjustContentInsetsIfNeeded()
 
+        // Refresh action
+        tableView.spr_setIndicatorHeader {
+            reloadConfiguration()
+        }
+
         adChangeObservation = defaults.observe(.adBannerHeight) { [weak self] _ in
             guard let self = self else { return }
             self.adMobAdjustContentInsetsIfNeeded()
