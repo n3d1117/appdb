@@ -96,6 +96,8 @@ class Settings: TableViewController {
 
                     self.refreshSources()
                 })
+            } else {
+                tableView.spr_endRefreshing()
             }
         }
 
