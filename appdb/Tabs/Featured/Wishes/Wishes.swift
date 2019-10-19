@@ -159,7 +159,10 @@ extension Wishes {
             if !text.hasPrefix("http://"), !text.hasPrefix("https://") {
                 text = "https://" + text
             }
-            guard let url = URL(string: text) else { return }
+            guard let url = URL(string: text) else {
+                Messages.shared.showError(message: "Error: malformed url".localized(), context: .viewController(self))
+                return
+            }
             API.createPublishRequest(appStoreUrl: url.absoluteString) { error in
                 if let error = error {
                     Messages.shared.showError(message: error.prettified, context: .viewController(self))

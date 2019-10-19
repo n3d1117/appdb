@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         // Handle IPA
-        if url.isFileURL && IPAFileManager.shared.supportedFileExtensions.contains(url.pathExtension) {
+        if url.isFileURL && IPAFileManager.shared.supportedFileExtensions.contains(url.pathExtension.lowercased()) {
 
             if !FileManager.default.isReadableFile(atPath: url.path) {
                 // Handle 'Open in appdb' from share sheet

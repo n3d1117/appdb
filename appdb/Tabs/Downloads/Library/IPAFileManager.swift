@@ -310,7 +310,7 @@ struct IPAFileManager {
     func moveEventualIPAFilesToDocumentsDirectory(from directory: URL) {
         guard FileManager.default.fileExists(atPath: directory.path) else { return }
         let inboxContents = try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
-        let ipas = inboxContents?.filter { supportedFileExtensions.contains($0.pathExtension) }
+        let ipas = inboxContents?.filter { supportedFileExtensions.contains($0.pathExtension.lowercased()) }
         for ipa in ipas ?? [] {
             let url = directory.appendingPathComponent(ipa.lastPathComponent)
             moveToDocuments(url: url)
@@ -325,7 +325,7 @@ struct IPAFileManager {
         moveEventualIPAFilesToDocumentsDirectory(from: inboxDirectoryURL())
 
         let contents = try? FileManager.default.contentsOfDirectory(at: documentsDirectoryURL(), includingPropertiesForKeys: nil)
-        let ipas = contents?.filter { supportedFileExtensions.contains($0.pathExtension) }
+        let ipas = contents?.filter { supportedFileExtensions.contains($0.pathExtension.lowercased()) }
         for ipa in ipas ?? [] {
             let filename = ipa.lastPathComponent
             let size = getSize(from: filename)
