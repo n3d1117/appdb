@@ -256,6 +256,24 @@
 "Could not find email service." = "Не могу найти сервис почты.";
 "Follow System Appearance" = "Как у системы";
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Автоматически переключать тему в зависимости от настроек системы. Чтобы вручную указать тему, просто выберите ее однажды.\n\nПРИМЕЧАНИЕ: Если вы испытываете проблемы с переключением тем, просто закройте приложение из меню многозадачности и откройте его снова.";
+"Advanced Options" = "Расширенные опции";
+"Check PRO Revocation" = "Проверить отзыв PRO";
+"Validate PRO Voucher" = "Проверить PRO ваучер";
+"Activate PRO Voucher" = "Активировать PRO ваучер";
+"Email Link Code" = "Получить код привязки на почту";
+"List apps managed by appdb" = "Посмотреть список приложений от appdb";
+"Your PRO has not been revoked!" = "Ваш PRO был отозван Apple!";
+"Enter Voucher" = "Введите ваучер";
+"Paste here the PRO voucher obtained by a reseller:" = "Вставьте сюда PRO ваучер, полученный от реселлера:";
+"Activate" = "Активировать";
+"Your PRO has been activated successfully!" = "PRO статус для этого устройства успешно активирован!";
+"Validate" = "Проверить";
+"Your PRO voucher is valid and can be activated!" = "Ваш PRO ваучер действителен и может быть активирован!";
+"Enter below the email address where the link code will be sent:" = "Введите email, куда будет отправлен одноразовый код привязки:";
+"Email was sent successfully!" = "Письмо успешно отправлено!";
+"Apps managed by appdb" = "Приложения с appdb";
+"Bundle IDs" = "Идентификаторы";
+"Only apps that are managed by appdb will appear here." = "Тут отображаются приложения, установленные через appdb";
 
 /////////////////////
 //     UPDATES     //
