@@ -355,6 +355,7 @@
 /////////////////////
 //     CREDITS     //
 /////////////////////
+
 "Credits" = "Credits";
 "Developer" = "Developer";
 "Special Thanks" = "Special Thanks";
@@ -366,6 +367,7 @@
 /////////////////////////////////////////
 //     WISHES / AUTOMATIC REQUESTS     //
 /////////////////////////////////////////
+
 "Wishes" = "Wishes";
 "New" = "New";
 "Processing" = "Processing";

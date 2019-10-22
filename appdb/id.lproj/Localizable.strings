@@ -355,6 +355,7 @@
 /////////////////////
 //     CREDITS     //
 /////////////////////
+
 "Credits" = "Kredit";
 "Developer" = "Developer";
 "Special Thanks" = "Terima kasih";
@@ -366,6 +367,7 @@
 /////////////////////////////////////////
 //     WISHES / AUTOMATIC REQUESTS     //
 /////////////////////////////////////////
+
 "Wishes" = "Keinginan";
 "New" = "Baru";
 "Processing" = "diproses";

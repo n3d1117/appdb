@@ -355,6 +355,7 @@
 /////////////////////
 //     CREDITS     //
 /////////////////////
+
 "Credits" = "Créditos";
 "Developer" = "Desarrollador";
 "Special Thanks" = "Agradecimientos";
@@ -366,6 +367,7 @@
 /////////////////////////////////////////
 //     WISHES / AUTOMATIC REQUESTS     //
 /////////////////////////////////////////
+
 "Wishes" = "Pedidos";
 "New" = "Nuevo";
 "Processing" = "Procesando";
@@ -380,7 +382,6 @@
 "Version: %@" = "Versión: %@";
 "No new wishes to show" = "No hay nuevos pedidos para mostrar";
 "No fulfilled wishes to show" = "Mo hay pedidos completados para mostrar";
-"No new wishes to show" = "No hay pedidos para mostrar";
 
 ///////////////////
 //     OTHER     //
