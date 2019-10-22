@@ -40,7 +40,8 @@ class Credits: TableViewController {
         Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), imageName: "aesign", type: .specialThanks, handle: .website(site: "https://aesign.me")),
 
         Credit(name: "TNT 🇪🇸", detail: nil, imageName: "tnt", type: .translations, handle: .twitter(username: "tnttaolin2")),
-        Credit(name: "Zond80 🇷🇺", detail: nil, imageName: "zond", type: .translations, handle: .website(site: "https://github.com/Zond80"))
+        Credit(name: "Zond80 🇷🇺", detail: nil, imageName: "zond", type: .translations, handle: .website(site: "https://github.com/Zond80")),
+        Credit(name: "Am1nCmd 🇮🇩", detail: nil, imageName: "Am1nCmd", type: .translations, handle: .website(site: "https://am1ncmd.id"))
     ]
 
     convenience init() {
