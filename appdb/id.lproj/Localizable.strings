@@ -99,7 +99,7 @@
 "Related Apps" = "Aplikasi Terkait";
 "Related Books" = "Buku Terkait";
 "Reviews are from Apple's iTunes Store ©" = "Ulasan dari Apple Store Store ©";
-"Check out '%@' on appdb!" = "Lihat '% @' di appdb!";
+"Check out '%@' on appdb!" = "Lihat '%@' di appdb!";
 "Installation has been queued to your device" = "Instalasi telah diantrekan ke perangkat Anda";
 "Installation options" = "Opsi pemasangan";
 "Duplicate app" = "Duplikat Aplikasi";
@@ -393,8 +393,8 @@
 "Done" = "Selesai";
 "more" = "lebih banyak";
 "Open in Safari" = "Buka di Safari";
-"%@s lalu" = "%@s ago"; // seconds, e.g. 15s ago
-"%@m lalu" = "%@m ago"; // minutes, e.g. 5m ago
-"%@h lalu" = "%@h ago"; // hours, e.g. 6h ago
-"%@d lalu" = "%@d ago"; // days, e.g. 3d ago
+"%@s ago" = "%@s lalu"; // seconds, e.g. 15s ago
+"%@m ago" = "%@m lalu"; // minutes, e.g. 5m ago
+"%@h ago" = "%@h lalu"; // hours, e.g. 6h ago
+"%@d ago" = "%@d lalu"; // days, e.g. 3d ago
 "now" = "sekarang";
