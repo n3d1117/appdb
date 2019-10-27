@@ -431,6 +431,7 @@
 		81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskBundleBeforeUploadViewController.swift; sourceTree = "<group>"; };
 		81D3F72A2163E1DA001EC9F2 /* Item+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Properties.swift"; sourceTree = "<group>"; };
 		81D661751E5A0B6C00BB6461 /* Details+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		81D873332365BAD800F7240E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		81DAB7DE2298895C00729424 /* IgnoredApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredApp.swift; sourceTree = "<group>"; };
 		81DBDB55208CD67F00BDE600 /* SeeAllCell+WithStars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SeeAllCell+WithStars.swift"; sourceTree = "<group>"; };
 		81DCAF16235EEBBF00B7706F /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = appdb/id.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -1544,6 +1545,7 @@
 				es,
 				ru,
 				id,
+				fr,
 			);
 			mainGroup = 8167A6061DAC246000F96AC2;
 			productRefGroup = 8167A6101DAC246000F96AC2 /* Products */;
@@ -1839,6 +1841,7 @@
 				817962D722A43F65005BB1F0 /* es */,
 				88BEFFC722B3A24A008FD371 /* ru */,
 				81DCAF16235EEBBF00B7706F /* id */,
+				81D873332365BAD800F7240E /* fr */,
 			);
 			name = Localizable.strings;
 			path = .;

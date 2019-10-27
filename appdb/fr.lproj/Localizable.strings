@@ -1,0 +1,402 @@
+/*
+  Localizable.strings
+  appdb
+
+  Created by ned on 31/01/2017.
+  Copyright © 2017 ned. All rights reserved.
+*/
+
+/////////////////////
+//  APPDB RELATED  //
+/////////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "Nous n'hébergeons aucun contenu interdit. Toutes les données sont accessibles au public via l'API iTunes.";
+
+//////////////////////
+//  TAB BAR TITLES  //
+//////////////////////
+
+"Featured" = "En vedette";
+"Search" = "Chercher";
+"Downloads" = "Téléchargements";
+"Settings" = "Paramètres";
+"Updates" = "Mises à jour";
+
+//////////////////////
+//    NETWORKING    //
+//////////////////////
+
+"Cannot connect" = "Peut pas se connecter";
+"Retry" = "Recommencez";
+"Waiting..." = "Attendre...";
+"Checking..." = "Vérification...";
+"Operation has been cancelled." = "L'opération a été annulée.";
+
+//////////////////////
+//    CATEGORIES    //
+//////////////////////
+
+"All Categories" = "Toutes catégories";
+"Categories" = "Catégories";
+"Select Category" = "Choisir une catégorie";
+"iOS" = "iOS";
+"Cydia" = "Cydia";
+"Books" = "Livres";
+
+/////////////////////////////
+//    FEATURED SECTIONS    //
+/////////////////////////////
+
+"Custom Apps" = "Applications personnalisées";
+"New and Noteworthy" = "Nouveau et remarquable";
+"Top Paid" = "Top payé";
+"Popular This Week" = "Populaire cette semaine";
+"Best Games" = "Meilleurs jeux";
+"Top Books" = "Top livres";
+"See All" = "Voir tout";
+"News" = "Nouvelles";
+"Settings" = "Paramètres";
+"System Status" = "État du système";
+
+//////////////////////////
+//     APPS & BOOKS     //
+//////////////////////////
+
+"Description" = "La description";
+"What's New" = "Quoi de neuf";
+"Tweaked Version Notice" = "Avis de version modifié";
+"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "Cette application a été modifiée pour fournir des fonctionnalités supplémentaires. Assurez-vous de le télécharger uniquement à partir de pirates vérifiés, car personne à part eux ne peut garantir qu'il ne contient aucun code malveillant.";
+"iPad only" = "iPad seulement";
+"Information" = "Information";
+"Seller" = "Vendeur";
+"Developer" = "Développeur";
+"Category" = "Catégorie";
+"Price" = "Prix";
+"Updated" = "Mis à jour";
+"Version" = "Version";
+"Compatibility" = "Compatibilité";
+"Size" = "Taille";
+"Language" = "La langue";
+"Languages" = "Langages";
+"Bundle ID" = "Bundle ID";
+"Author" = "Auteur";
+"Print Length" = "Longueur d'impression";
+"Requirements" = "Exigences";
+"Rating" = "Évaluation";
+"Developer Apps" = "Applications pour développeurs";
+"Developer Website" = "Site du développeur";
+"Developer Support" = "Support aux développeurs";
+"More by this author" = "Plus par cet auteur";
+"Unknown" = "Inconnu";
+"See Original" = "Voir l'original";
+"Details" = "Details";
+"Reviews" = "Commentaires";
+"Download" = "Télécharger";
+"Install" = "Installer";
+"Requesting..." = "Demander ...";
+"Requested" = "Demandé";
+"by" = "par";
+"Related Apps" = "Applications connexes";
+"Related Books" = "Livres connexes";
+"Reviews are from Apple's iTunes Store ©" = "Les commentaires proviennent de l'iTunes Store d'Apple.©";
+"Check out '%@' on appdb!" = "Découvrez '% @' sur appdb!";
+"Installation has been queued to your device" = "L'installation a été mise en file d'attente sur votre appareil";
+"Installation options" = "Options d'installation";
+"Duplicate app" = "Dupliquer l'application";
+"New ID" = "Nouvelle ID";
+"New display name" = "Nouveau nom d'affichage";
+"Use Original" = "Utiliser l'original";
+"Cracked by %@" = "Cracker par %@";
+"Uploaded by %@" = "telechargé par %@";
+"Cracked and uploaded by %@" = "Cracked et téléchargé par %@";
+
+//////////////////////////////////
+//     DEVICE LINK TUTORIAL     //
+//////////////////////////////////
+
+"Authorization" = "Autorisation";
+"Authorize App" = "Autoriser l'App";
+"Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles." = "Votre appareil est-il déjà lié à appdb? Vous pouvez vérifier si le profil appdb est installé dans Paramètres -> Général -> Profils.";
+"Continue" = "Continuez";
+"Enter Link Code" = "Entrer le code du lien";
+"Enter link code here" = "Entrez le code du lien ici";
+"Please enter a valid email address." = "S'il vous plaît, mettez une adresse email valide.";
+"Paste the 8 digits case sensitive link code you see on this page:" = "Collez le code de lien sensible à la casse à 8 chiffres que vous voyez sur cette page:";
+"Go Back" = "Retourner";
+"Enter Email" = "Entrer Email";
+"Please enter your email address below and click Continue. You will be redirected to the Settings app where you can proceed with appdb profile installation." = "Veuillez entrer votre adresse e-mail ci-dessous et cliquez sur Continuer. Vous serez redirigé vers l'application Paramètres où vous pourrez procéder à l'installation du profil appdb.";
+"Success" = "Succès";
+"Well done! This app is now authorized to install apps on your device." = "Bien joué! Cette application est maintenant autorisée à installer des applications sur votre appareil.";
+"Start using appdb!" = "Commencez à utiliser appdb!";
+"Unable to complete" = "Impossible de terminer";
+"Yes, already linked" = "Oui, déjà lié";
+"No, not yet linked" = "Non, pas encore lié";
+"name@example.com" = "name@example.com";
+"Deauthorization" = "Désautorisation";
+"Deauthorized" = "Désautorisé";
+"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Voulez-vous vraiment supprimer l'autorisation de cette application d'installer des applications sur votre appareil? \ N \ nNOTE: Cela ne dissoudra pas votre appareil de lier appdb. Pour ce faire, supprimez son profil dans Paramètres -> Général -> Profils.";
+"App was deauthorized successfully." = "L'application a été annulée avec succès.";
+
+////////////////////
+//     SEARCH     //
+////////////////////
+
+"Search iOS Apps" = "Rechercher des applications iOS";
+"Search Cydia Apps" = "Rechercher des applications Cydia";
+"Search Books" = "Rechercher des livres";
+"Trending iOS Apps" = "Tendance Apps iOS";
+"Trending Cydia Apps" = "Tendance Cydia Apps";
+"Trending Books" = "Livres tendances";
+"No results found" = "Aucun résultat trouvé";
+"No results were found for '%@'" = "Aucun résultat trouvé pour '%@'";
+"Please search at least two characters" = "Veuillez rechercher au moins deux caractères.";
+"Search News" = "Rechercher des nouvelles";
+
+///////////////////////
+//     DOWNLOADS     //
+///////////////////////
+
+"Queued" = "En file d'attente";
+"Library" = "Bibliothèque";
+"Downloading" = "Téléchargement";
+"No queued downloads"  = "Aucun téléchargement en file d'attente";
+"File download has started" = "Le téléchargement du fichier a commencé";
+"Enter URL" = "Entrer l'URL";
+"Enter below the URL of the .ipa file you want to download" = "Entrez ci-dessous l'URL du fichier .ipa que vous souhaitez télécharger";
+"https://example.com/file.ipa" = "https://example.com/file.ipa";
+"Load" = "Charge";
+"Uploaded on %@" = "Téléchargé sur %@"; // e.g. Uploaded on %date%
+"Pause" = "Pause";
+"Paused" = "En pause";
+"Resume" = "Resume";
+"Stop" = "Arrêtez";
+"Install without signing" = "Installer sans signer";
+"Upload to MyAppStore" = "Transférer vers MyAppStore";
+"Open in..." = "Ouvrir dans...";
+"Rename" = "Renommer";
+"Rename File" = "Renommer le fichier";
+"Delete" = "Effacer";
+"Delete all" = "Supprimer tout";
+"No Local IPAs Found" = "Aucun IPA local trouvé";
+"Use iTunes File Sharing or import them from other apps" = "Utilisez le partage de fichiers iTunes ou importez-les à partir d'autres applications";
+"No MyAppStore apps" = "Aucune application MyAppStore";
+"This is your personal IPA library! Apps you upload over time will appear here" = "Ceci est votre bibliothèque personnelle IPA! Les applications que vous téléchargez au fil du temps apparaîtront ici";
+"Please cancel any pending uploads before deleting local files" = "Veuillez annuler tout téléchargement en attente avant de supprimer des fichiers locaux.";
+"Delete 1 file?" = "Supprimer 1 fichier?";
+"Local Files" = "Fichiers locaux";
+"Are you sure you want to delete %@ files?" = "Etes-vous sûr que vous voulez supprimer %@ files?"; // %@ is the number of files to delete
+"Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@" = "Placez vos fichiers .ipa (ou .zip) locaux dans le répertoire de documents, à l'aide du partage de fichiers iTunes ou de l'application Fichiers, ou importez-les à partir d'autres applications. \ N \ nPath vers le répertoire de documents:\n\n%@";
+"appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'" = "appdb présente MyAppStore - votre propre AppStore. Un tout nouvel installateur d'applications personnalisées transformé en votre bibliothèque IPA personnelle! \ N \ n • Enregistrez vos applications personnelles sur appdb \ n • Partagées sur tous vos appareils sous le même courrier électronique \ n • Stockez les applications jusqu'à 4 Go \ n • Téléchargez plusieurs applications. immédiatement \ n \ nPour commencer, cliquez sur une adresse IPA locale, puis sélectionnez 'Transférer vers MyAppStore'.";
+"No active downloads" = "Aucun téléchargement actif";
+"Remove from list" = "Retirer de la liste";
+"File downloaded successfully" = "Fichier téléchargé avec succès";
+"File downloaded successfully, added to Library" = "Fichier téléchargé avec succès, ajouté à la bibliothèque";
+"Uploading %@ of %@ (%@)" = "Téléchargement %@ of %@ (%@)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
+"Uploading" = "Téléchargement"; // please use same translation used above, before first %@
+"Downloading %@ of %@ (%@)" = "Téléchargement %@ of %@ (%@)"; // e.g. "Downloading 7.4 MB of 15.2 MB (49%)"
+"Downloading %@" = "Téléchargement %@"; // e.g. "Downloading 3 MB"
+"Downloading" = "Téléchargement"; // please use same translation used above, before %@
+"File uploaded successfully" = "Fichier chargé avec succès";
+
+//////////////////////
+//     SETTINGS     //
+//////////////////////
+
+"Device Configuration" = "Configuration de l'appareil";
+"Link Code" = "Code de lien";
+"Jailbroken w/ Appsync" = "Jailbreaké avec Appsync";
+"Compatibility Checks" = "Vérifications de compatibilité";
+"Ask for installation options" = "Demander les options d'installation";
+"Deauthorize" = "Annuler l'autorisation";
+"User Interface" = "Interface utilisateur";
+"Choose Theme" = "Choisissez un thème";
+"Choose Language" = "Choisissez la langue";
+"Language set, please restart the app to apply changes" = "Langue définie, veuillez redémarrer l'application pour appliquer les modifications";
+"Dark" = "Sombre";
+"Darker" = "Plus sombre";
+"Light" = "Blanc";
+"Support" = "Soutien";
+"Visit appdb forum" = "Visiter les forums appdb";
+"About" = "À propos";
+"Acknowledgements" = "Remerciements";
+"General" = "Général";
+"Device" = "Dispositif";
+"Authorize App" = "Autoriser l'App";
+"Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Autorisez l'application avec le code de lien du site Web appdb et profitez d'installations d'application illimitées!";
+"PRO Status" = "Statut PRO";
+"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Utilisez ce code si vous souhaitez lier de nouveaux périphériques à appdb. Maintenez la cellule enfoncée pour la copier ou appuyez dessus pour en générer une nouvelle.";
+"Device Status" = "Statut du périphérique";
+"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Pour dissocier complètement votre appareil d’appdb, supprimez son profil dans Paramètres -> Général -> Profils.";
+"Active" = "Actif";
+"Inactive" = "Inactif";
+"Expires on %@" = "Expire le %@";
+"Clear command queue?" = "Effacer la file d'attente de commandes?";
+"Clear" = "Clear";
+"Fix" = "Fix"; // as in fix command from device status
+"Disabled" = "désactivé"; // as in 'PRO disabled'
+"Revoked" = "Révoqué";
+"Revoked on %@" = "Révoqué le %@";
+"Show badge for updates" = "Afficher le badge pour les mises à jour";
+"Change bundle id before upload" = "Changer l'identifiant du paquet avant le téléchargement";
+"Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app." = "La modification de l'identifiant de l'ensemble avant le téléchargement sur MyAppStore peut s'avérer utile lorsque vous utilisez plusieurs versions de la même application.";
+"New bundle id" = "Nouveau bundle id";
+"Tap to generate random" = "Tap to generate random";
+"Overwrite file" = "Écraser le fichier";
+"Bundle ID Change" = "Bundle ID Change";
+"Change" = "Changement";
+"Changing bundle id..." = "Changer bundle id...";
+"Available Languages" = "Langues disponibles";
+"Available Themes" = "Thèmes disponibles";
+"Tap to know more" = "Appuyez pour en savoir plus";
+"Contact Developer" = "Contact le Développeur";
+"Choose an option" = "Choisis une option";
+"Select a service" = "Sélectionnez un service";
+"Email" = "Email";
+"Telegram" = "Telegram";
+"Could not find email service." = "Impossible de trouver le service de messagerie.";
+"Follow System Appearance" = "Suivre l'apparence du système";
+"Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Basculez automatiquement entre les thèmes clair et sombre en fonction de l'apparence du système. Pour basculer vers le thème plus sombre, sélectionnez-le une seule fois manuellement. \n REMARQUE: si vous rencontrez des problèmes (le thème ne bascule pas automatiquement ou avec des thèmes mélangés), fermez simplement l'application multitâche, puis rouvrez-la.";
+"Advanced Options" = "Options avancées";
+"Check PRO Revocation" = "Vérifier la révocation de PRO";
+"Validate PRO Voucher" = "Valider le bon PRO";
+"Activate PRO Voucher" = "Activer le bon PRO";
+"Email Link Code" = "Email Link Code";
+"List apps managed by appdb" = "Liste des applications gérées par appdb";
+"Your PRO has not been revoked!" = "Votre PRO n'a pas été révoqué!";
+"Enter Voucher" = "Entrer le bon";
+"Paste here the PRO voucher obtained by a reseller:" = "Collez ici le voucher PRO obtenu par un revendeur:";
+"Activate" = "Activer";
+"Your PRO has been activated successfully!" = "Votre PRO a été activé avec succès!";
+"Validate" = "Valider";
+"Your PRO voucher is valid and can be activated!" = "Votre voucher PRO est valide et peut être activé!";
+"Enter below the email address where the link code will be sent:" = "Entrez ci-dessous l'adresse e-mail où le code du lien sera envoyé:";
+"Email was sent successfully!" = "Email a été envoyé avec succès!";
+"Apps managed by appdb" = "Applications gérées par appdb";
+"Bundle IDs" = "Bundle IDs";
+"Only apps that are managed by appdb will appear here." = "Seules les applications gérées par appdb apparaissent ici.";
+
+/////////////////////
+//     UPDATES     //
+/////////////////////
+
+"Ignore" = "Ignorer";
+"No updates found" = "Aucune mise à jour trouvée";
+"Please authorize app from Settings first" = "S'il vous plaît autoriser l'application à partir des paramètres d'abord";
+"%@ Updateable app" = "%@ Applications pouvant être mises à jour";  // e.g. 1 Updateable app
+"%@ Updateable apps" = "%@ Applications pouvant être mises à jour"; // e.g. 6 Updateable apps
+"%@ Non updateable app" = "%@ Applications non mise a jour";
+"%@ Non updateable apps" = "%@ Applications non mise a jour";
+"Non Updateable Apps" = "Applications non mise a jour";
+"Ignored" = "Ignoré";
+"Ignored Updates" = "Mises à jour ignorées";
+"No ignored updates" = "Aucune mise à jour ignorée";
+"Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'." = "Les applications installées à partir d'une source externe, telle que l'App Store ou la distribution OTA, ne peuvent pas être mises à jour via appdb en raison de contraintes de sécurité. Nous respectons cela! \n Pour mettre à jour ces applications, supprimez-les et réinstallez-les à partir de appdb. \n \ nPour masquer ces mises à jour, faites glisser votre doigt sur l'une d'entre elles et sélectionnez 'Ignorer'.";
+"Swipe left on any update to add it to this list" = "Balayez à gauche sur n'importe quelle mise à jour pour l'ajouter à cette liste.";
+"Update" = "Mise à jour"; // green UPDATE button
+"Your version: %@" = "Ta version: %@";
+"New version: %@" = "Nouvelle version: %@";
+"Update Available" = "Mise à jour disponible";
+"What's New in version %@" = "Quoi de neuf dans la version %@";
+
+////////////////////
+//     ERRORS     //
+////////////////////
+
+"Maintenance mode active. We will be back soon!" = "Mode maintenance actif. Nous serons de retour bientôt!";
+"No links found." = "Aucun lien trouvé.";
+"Not found" = "Pas trouvé";
+"Couldn't find content with id %@ in our database" = "Impossible de trouver le contenu portant l'id% @ dans notre base de données";
+"An error has occurred" = "Une erreur est survenue";
+"Invalid link code." = "Code de lien invalide.";
+"Invalid email address." = "Email invalide.";
+"Link code cannot be empty." = "Le code de lien ne peut pas être vide.";
+"Please enter a valid email address." = "S'il vous plaît, mettez une adresse email valide.";
+"No device linked." = "Aucun appareil lié.";
+"Unable to fetch device token." = "Impossible de récupérer le jeton de périphérique.";
+"Use link code instead." = "Utilisez le code de lien à la place.";
+"Oops! Something went wrong. Please try again later." = "Oops! Quelque chose s'est mal passé. Veuillez réessayer plus tard.";
+"Missing link code or email." = "Code de lien ou email manquant.";
+"Could not parse plist file." = "Impossible d'analyser le fichier plist.";
+"Device status is empty" = "Le statut de l'appareil est vide";
+"The request timed out" = "La demande a expiré";
+"Your device is not compatible with this app" = "Votre appareil n'est pas compatible avec cette application";
+"Error: malformed url" = "Erreur: URL malformée";
+"IPA Not found" = "IPA non trouvé";
+"IPA is missing Payload folder" = "Le dossier de charge utile manque dans l'IPA";
+"IPA is missing .app folder" = "Le dossier .app est manquant dans l'IPA";
+"IPA is missing Info.plist file" = "Le fichier Info.plist est manquant dans l'IPA";
+"Unable to read contents of Info.plist file" = "Impossible de lire le contenu du fichier Info.plist";
+"Unable to encode Info.plist file" = "Impossible de coder le fichier Info.plist";
+"File not found at given path" = "Fichier non trouvé à un chemin donné";
+"Unable to find bundle id in Info.plist" = "Impossible de trouver l'identifiant du paquet dans Info.plist";
+"File size not found in resource values" = "Taille de fichier non trouvée dans les valeurs de ressource";
+"A report has already been submitted" = "Un rapport a déjà été soumis";
+"Installation failed, but can be fixed from Settings -> Device Status" = "L'installation a échoué, mais peut être corrigée depuis Paramètres -> État du périphérique";
+"An error has occurred: malformed JSON" = "Une erreur s'est produite: JSON mal formé";
+"Your PRO subscription has expired." = "Votre abonnement PRO a expiré.";
+"Your PRO subscription has been revoked by Apple." = "Votre abonnement PRO a été révoqué par Apple.";
+"Your device doesn't seem to have a PRO subcription." = "Votre appareil ne semble pas avoir d'abonnement PRO.";
+"App duplication is currently supported on non-jailbroken devices with PRO." = "La duplication d'applications est actuellement prise en charge sur les appareils non-jailbreakés avec PRO.";
+"Unknown voucher partner." = "Partenaire de coupon inconnu.";
+"Invalid voucher." = "Coupon invalide.";
+"Voucher already used." = "Bon déjà utilisé.";
+"No devices with this email." = "Aucun appareil avec cet email.";
+
+////////////////////////////
+//     LINK REPORTING     //
+////////////////////////////
+
+"Send" = "Envoyer";
+"Report" = "rapport";
+"Reporting a broken link for '%@'." = "Signaler un lien brisé pour '%@'.";
+"Enter a reason for your report" = "Entrez une raison pour votre rapport";
+"Link reported successfully!" = "Lien signalé avec succès!";
+
+/////////////////////
+//     CREDITS     //
+/////////////////////
+
+"Credits" = "Crédits";
+"Developer" = "Développeur";
+"Special Thanks" = "Remerciement spécial";
+"Translations" = "Traductions";
+"appdb team" = "équipe appdb";
+"Icon and banner designer" = "Concepteur d'icônes et de bannières";
+"View project on GitHub" = "Voir le projet sur GitHub";
+
+/////////////////////////////////////////
+//     WISHES / AUTOMATIC REQUESTS     //
+/////////////////////////////////////////
+
+"Wishes" = "Vœux";
+"New" = "Nouveau";
+"Processing" = "En traitement";
+"Failed" = "Échoué";
+"Fulfilled" = "Rempli";
+"Free" = "Gratuit";
+"Enter AppStore URL" = "Entrer le lien de l'AppStore";
+"Enter below the AppStore URL of the app you'd like to request" = "Entrez ci-dessous l'URL AppStore de l'application que vous souhaitez demander.";
+"Add" = "Ajouter";
+"App has been requested successfully!" = "L'application a été demandée avec succès!";
+"Price: %@" = "Prix: %@";
+"Version: %@" = "Version: %@";
+"No new wishes to show" = "Aucun nouveau souhait à afficher";
+"No fulfilled wishes to show" = "Aucun souhait accompli à montrer";
+
+///////////////////
+//     OTHER     //
+///////////////////
+
+"Cancel" = "Annuler";
+"Dismiss" = "Rejeter";
+"Yes" = "Oui";
+"OK" = "OK";
+"No" = "Non";
+"Done" = "Terminé";
+"more" = "plus";
+"Open in Safari" = "Ouvrir sur Safari";
+"%@s ago" = "%@s depuis"; // seconds, e.g. 15s ago
+"%@m ago" = "%@m depuis"; // minutes, e.g. 5m ago
+"%@h ago" = "%@h depuis"; // hours, e.g. 6h ago
+"%@d ago" = "%@d depuis"; // days, e.g. 3d ago
+"now" = "maintenant";

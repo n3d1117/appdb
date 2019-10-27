@@ -41,7 +41,8 @@ class Credits: TableViewController {
 
         Credit(name: "TNT 🇪🇸", detail: nil, imageName: "tnt", type: .translations, handle: .twitter(username: "tnttaolin2")),
         Credit(name: "Zond80 🇷🇺", detail: nil, imageName: "zond", type: .translations, handle: .website(site: "https://github.com/Zond80")),
-        Credit(name: "Am1nCmd 🇮🇩", detail: nil, imageName: "Am1nCmd", type: .translations, handle: .website(site: "https://am1ncmd.id"))
+        Credit(name: "Am1nCmd 🇮🇩", detail: nil, imageName: "Am1nCmd", type: .translations, handle: .website(site: "https://am1ncmd.id")),
+        Credit(name: "DzMohaipa 🇫🇷", detail: nil, imageName: "DzMoha_31", type: .translations, handle: .twitter(username: "DzMoha_31"))
     ]
 
     convenience init() {
