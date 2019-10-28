@@ -1,0 +1,402 @@
+/*
+  Localizable.strings
+  appdb
+
+  Created by Eskaseptian Team on 28/10/2019.
+  Copyright © 2017 ned. All rights reserved.
+*/
+
+/////////////////////
+//  APPDB RELATED  //
+/////////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "Ora nge-host konten terlarang. kabeh data tersedia nggo umum lewat iTunes API.";
+
+//////////////////////
+//  TAB BAR TITLES  //
+//////////////////////
+
+"Featured" = "Fitur";
+"Search" = "Nggoleki";
+"Downloads" = "Donlotan";
+"Settings" = "Pengaturan";
+"Updates" = "Pembaruan";
+
+//////////////////////
+//    NETWORKING    //
+//////////////////////
+
+"Cannot connect" = "Ora iso konek";
+"Retry" = "Cobaen maneh";
+"Waiting..." = "Ngenteni...";
+"Checking..." = "Mrikso...";
+"Operation has been cancelled." = "Operasi dibatalke.";
+
+//////////////////////
+//    CATEGORIES    //
+//////////////////////
+
+"All Categories" = "Kabeh Kategori";
+"Categories" = "Kategori";
+"Select Category" = "Pileh Kategori";
+"iOS" = "iOS";
+"Cydia" = "Cydia";
+"Books" = "Buku";
+
+/////////////////////////////
+//    FEATURED SECTIONS    //
+/////////////////////////////
+
+"Custom Apps" = "Aplikasi Modifan";
+"New and Noteworthy" = "Paling Anyar";
+"Top Paid" = "Berbayar Paling Apik";
+"Popular This Week" = "Populer Minggu Iki";
+"Best Games" = "Game Paling Apik";
+"Top Books" = "Buku Paling Apik";
+"See All" = "Ndelok Kabeh";
+"News" = "Warto";
+"Settings" = "Pengaturan";
+"System Status" = "Status e Sistem";
+
+//////////////////////////
+//     APPS & BOOKS     //
+//////////////////////////
+
+"Description" = "Penjelasan";
+"What's New" = "Opo Sing Anyar";
+"Tweaked Version Notice" = "Panuduhan Versi Tweaked";
+"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "Aplikasi iki di-tweak nggawe ngewenehi fitur tambahan. pastekno ngedownload soko cracker seng wis diakui, amergo ora ono salah sijine wong kecuali dek e seng njamin lek aplikasi iku ngandung kode seng bahaya.";
+"iPad only" = "Mung kanggo iPad";
+"Information" = "Informasine";
+"Seller" = "Seng adol";
+"Developer" = "Developere";
+"Category" = "Kategorine";
+"Price" = "Hargane";
+"Updated" = "Pembaruane";
+"Version" = "Versine";
+"Compatibility" = "Kompabilitase";
+"Size" = "Ukurane";
+"Language" = "Bosone";
+"Languages" = "Bosone";
+"Bundle ID" = "Bundle ID ne";
+"Author" = "Penyediane";
+"Print Length" = "Dowo cetakanne";
+"Requirements" = "Syarate";
+"Rating" = "Peringkate";
+"Developer Apps" = "Aplikasine Developer";
+"Developer Website" = "Website e Developer";
+"Developer Support" = "Tulungane Developer";
+"More by this author" = "Luweh akeh soko author iki";
+"Unknown" = "Ora jelas";
+"See Original" = "Ndelok Asline";
+"Details" = "Gamblange";
+"Reviews" = "Ulasane";
+"Download" = "Donlot";
+"Install" = "Install";
+"Requesting..." = "Njaluk...";
+"Requested" = "Kasil lek njaluk";
+"by" = "dening";
+"Related Apps" = "Aplikasi Sing meh podo";
+"Related Books" = "Buku Sing meh podo";
+"Reviews are from Apple's iTunes Store ©" = "Ulasan soko Apple Store Store ©";
+"Check out '%@' on appdb!" = "Ndelok '%@' neng appdb!";
+"Installation has been queued to your device" = "Instalasine wes di antrekno neng perangkatmu";
+"Installation options" = "Pilihan Masange";
+"Duplicate app" = "Duplikat Aplikasine";
+"New ID" = "ID Anyare";
+"New display name" = "Jeneng Tampilane";
+"Use Original" = "Nggawe Asline";
+"Cracked by %@" = "di Crack dening %@";
+"Uploaded by %@" = "di Aplot dening %@";
+"Cracked and uploaded by %@" = "di Crack lan di Aplot dening %@";
+
+//////////////////////////////////
+//     DEVICE LINK TUTORIAL     //
+//////////////////////////////////
+
+"Authorization" = "Otorisasi";
+"Authorize App" = "Ngesahne Aplikasi";
+"Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles." = "Opo perangkatmu wes di nyantol neng appdb? Awakmu iso ngecek lak awakmu wis masang profil appdb neng Pengaturan -> Umum -> Profil";
+"Continue" = "terusne";
+"Enter Link Code" = "Lebokne Kode QR ";
+"Enter link code here" = "Lebokne kode QR neng kene";
+"Please enter a valid email address." = "Lebokno email seng bener";
+"Paste the 8 digits case sensitive link code you see on this page:" = "Tempelke kode sensitif 8 digit seng kok delok neng halaman iki:";
+"Go Back" = "Mbalik";
+"Enter Email" = "Lebokne Email";
+"Please enter your email address below and click Continue. You will be redirected to the Settings app where you can proceed with appdb profile installation." = "Lebokno emailmu nang ngisor kene trus pencet Terusne. Awakmu mengko diarahne nang Pengaturanmu trus awakmu iso nerusne masang profil appdb.";
+"Success" = "Rampung";
+"Well done! This app is now authorized to install apps on your device." = "Wis Mari! Aplikasine saiki wis duwe ijin gawe masang nang perangkatmu.";
+"Start using appdb!" = "Mulai gawe appdb!";
+"Unable to complete" = "Gak iso marekno";
+"Yes, already linked" = "Wis mari dicantolne";
+"No, not yet linked" = "Durung dicantolne";
+"name@example.com" = "jenengmu@conto.com";
+"Deauthorization" = "Deauthorization";
+"Deauthorized" = "Ora diotorisasi";
+"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Opo awakmu yakin pengen mbatalno otorisasi aplikasi iki soko nginstall aplikasi seng ono neng perangkatmu?\n\nNOTE: Iki ora mbatalne tautan neng perangkatmu soko appdb. lak pengen mbatalno tautan, busek profil neng Pengaturan -> Umum -> Profil";
+"App was deauthorized successfully." = "Aplikasi iki uwes sukses diautorisasi.";
+
+////////////////////
+//     SEARCH     //
+////////////////////
+
+"Search iOS Apps" = "Nggoleki Aplikasi iOS ";
+"Search Cydia Apps" = "Nggoleki Aplikasi Cydia";
+"Search Books" = "Nggoleki Buku";
+"Trending iOS Apps" = "Tren Aplikasi iOS";
+"Trending Cydia Apps" = "Tren Aplikasi Cydia";
+"Trending Books" = "Tren Buku";
+"No results found" = "Ora ditemokne";
+"No results were found for '%@'" = "Ora ditemokne nggo '%@'";
+"Please search at least two characters" = "Gunakke minimal 2 karakter";
+"Search News" = "Golek Warto";
+
+///////////////////////
+//     DOWNLOADS     //
+///////////////////////
+
+"Queued" = "Ngantri";
+"Library" = "Perpustakaan";
+"Downloading" = "Ngedonlot";
+"No queued downloads"  = "Ora ono donlotan seng ngantri";
+"File download has started" = "Mulai ngedonlot file";
+"Enter URL" = "Lebokno URL e";
+"Enter below the URL of the .ipa file you want to download" = "Lebokno nang ngisor iki URL file .ipa seng pengen kok donlot";
+"https://example.com/file.ipa" = "https://contoe.com/file.ipa";
+"Load" = "Enteni sik";
+"Uploaded on %@" = "diunggah nang %@"; // e.g. diunggah pas %date%
+"Pause" = "Mandek";
+"Paused" = "Mandek disik";
+"Resume" = "Terusne";
+"Stop" = "Mandek Jegrek";
+"Install without signing" = "Install tanpa signing";
+"Upload to MyAppStore" = "Unggah nang  MyAppStore";
+"Open in..." = "Buka nang...";
+"Rename" = "Ngganti jeneng";
+"Rename File" = "Ngganti jeneng File";
+"Delete" = "Busek";
+"Delete all" = "Busek kabueh";
+"No Local IPAs Found" = "Gak nemu IPA lokal";
+"Use iTunes File Sharing or import them from other apps" = "Nggaweo Andum File iTunes utomo njupuk tekan aplikasi liyo";
+"No MyAppStore apps" = "Gak enek aplikasi nang MyAppStore";
+"This is your personal IPA library! Apps you upload over time will appear here" = "Iki perpustakaan IPA pribadimu! Aplikasi sing mbok unggah tekan biyen sampe saiki bakal metu nang kene";
+"Please cancel any pending uploads before deleting local files" = "Tulung batalno kabeh unggahan sing tertunda sakdurunge mbusek file";
+"Delete 1 file?" = "mBusek 1 file? ";
+"Local Files" = "File Lokal ";
+"Are you sure you want to delete %@ files?" = "Awakmu yakin a mbusek file %@ ?"; // %@ iku jumlah file sing arep dibusek
+"Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@" = "Delehen file .ipa (utowo .zip) tekmu nang direktori dokumen, nggawe iTunes File Andum, aplikasi Files utowo njupuk tekan aplikasi liyo.\n\nPath nang direktorine dokumen: \n\n%@";
+"appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'" = "appdb nekakne MyAppStore - AppStore tekmu dewe. Nggo masang aplikasi khusus seng anyar diubah dadi perpustakaan IPA pribadimu\n\n• Simpen aplikasimu nang appdb \n• Andum nang kabeh perangkatmu sing sak email \n• Simpen aplikasi sampe 4GB \n• Unggah akeh aplikasi barengan \n\n Gawe mulai, klik IPA lokal lan pilih 'Unggah nang MyAppStore'";
+"No active downloads" = "Gak enek donlotan urip";
+"Remove from list" = "Busek tekan daftar";
+"File downloaded successfully" = "File wis berhasil didonlot";
+"File downloaded successfully, added to Library" = "File wis berhasil didonlot, ditambahne nang Perpustakaan";
+"Uploading %@ of %@ (%@)" = "Ngunggah %@ tekan %@ (%@)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
+"Uploading" = "Ngunggah"; // please use same translation used above, before first %@
+"Downloading %@ of %@ (%@)" = "Ngunduh %@ tekan %@ (%@)"; // e.g. "Downloading 7.4 MB of 15.2 MB (49%)"
+"Downloading %@" = "Ngunduh %@"; // e.g. "Downloading 3 MB"
+"Downloading" = "Ngunduh"; // please use same translation used above, before %@
+"File uploaded successfully" = "File wes berhasil diunggah";
+
+//////////////////////
+//     SETTINGS     //
+//////////////////////
+
+"Device Configuration" = "Konfigurasi perangkat";
+"Link Code" = "Kode Tautan";
+"Jailbroken w/ Appsync" = "Jailbreak nganggo Appsync";
+"Compatibility Checks" = "Cek Kompabilitase";
+"Ask for installation options" = "Takok pilihan instalasine";
+"Deauthorize" = "Mbatalno otorisasi";
+"User Interface" = "Penampilane";
+"Choose Theme" = "Milih Temane";
+"Choose Language" = "Milih Bosone";
+"Language set, please restart the app to apply changes" = "Boso dipilih, monggo di restart aplikasine nggo nerapke perubahan";
+"Dark" = "Ireng";
+"Darker" = "Ireng Puool";
+"Light" = "Padang";
+"Support" = "Dukungane";
+"Visit appdb forum" = "Mampir nang forum appdb";
+"About" = "Babagan";
+"Acknowledgements" = "Matursuwun";
+"General" = "Umum";
+"Device" = "Perangkat";
+"Authorize App" = "Ijinke Aplikasi";
+"Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Ijinke aplikasi nggawe kode sing dicantolne tekan situs web appdb lan enakne masang aplikasi sing gak enek batese!";
+"PRO Status" = "PRO Status";
+"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Gawenen kode iki lek awakmu pengen nyantolne perangkat anyar nang appdb. Pijet karo tahan sel nggo ngecopy, utowo nggwe seng anyar.";
+"Device Status" = "Statuse Perangkat";
+"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Nggo mutuske tautan perangkatmu soko appdb, hapusen profile seng enek neng Pengaturan -> Umum -> Profil. ";
+"Active" = "Aktif";
+"Inactive" = "Ora aktif";
+"Expires on %@" = "Kedaluarsone %@";
+"Clear command queue?" = "Ngresiki command ngantrine";
+"Clear" = "Ngresiki";
+"Fix" = "Benakne"; // as in fix command from device status
+"Disabled" = "Mateni"; // as in 'PRO disabled'
+"Revoked" = "Dijabel";
+"Revoked on %@" = "Dijabel %@";
+"Show badge for updates" = "Nampilke tondo nggo pembaruan";
+"Change bundle id before upload" = "Ngganti bundel id sakdurunge aplot";
+"Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app." = "Ngganti pengidentifikasi bundel sakdurunge ngunggah nang MyAppStore iso ugo migunani pas digawe bareng aplikasi sing podo versine.";
+"New bundle id" = "Bundle id anyar";
+"Tap to generate random" = "Jawilen lek pengen gawe acak";
+"Overwrite file" = "Tindes file";
+"Bundle ID Change" = "Ngrubah Bundle ID";
+"Change" = "Ngrubah";
+"Changing bundle id..." = "Ngrubah bundle id...";
+"Available Languages" = "Boso sing onok";
+"Available Themes" = "Tema sing onok";
+"Tap to know more" = "Jawil ben akeh weruhe";
+"Contact Developer" = "Kontak Developer e";
+"Choose an option" = "Milih opsi";
+"Select a service" = "Milih pelayanan";
+"Email" = "Email";
+"Telegram" = "Telegram";
+"Could not find email service." = "Gak iso nemu layanan email.";
+"Follow System Appearance" = "Melu Tampilan Sistem";
+"Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Otomatis pindah tekan tema padang nang peteng sesuai karo tampilane sistem. Gawe pindah nang tema sing luwih peteng, cukup pilih tema manual pisan ae.\n\nTambahan: Lek awakmu ngrasakne onok masalah (tema gak pindah dewe utowo tema campur) cukup tutup aplikasi tekan multitasking trus bukaen maneh. ";
+"Advanced Options" = "Opsi Liyane";
+"Check PRO Revocation" = "Cek PRO Revocation";
+"Validate PRO Voucher" = "Validasi PRO Voucher";
+"Activate PRO Voucher" = "Aktivasi PRO Voucher";
+"Email Link Code" = "Email Kode Cantolan";
+"List apps managed by appdb" = "Daftar aplikasi sing diopeni karo appdb";
+"Your PRO has not been revoked!" = "Akun PROmu durung dicabut!";
+"Enter Voucher" = "Lebokno Voucher";
+"Paste here the PRO voucher obtained by a reseller:" = "Templekne voucher PRO nang kene sing awakmu oleh tekan pengecer:";
+"Activate" = "Aktivasi";
+"Your PRO has been activated successfully!" = "PROmu wis sukses diuripne!";
+"Validate" = "Validasi";
+"Your PRO voucher is valid and can be activated!" = "Voucher PROmu valid lan iso diuripi! ";
+"Enter below the email address where the link code will be sent:" = "Lebokno alamat email nang panggen kode cantolan bakal dikirim:";
+"Email was sent successfully!" = "Email wis sukses dikirim! ";
+"Apps managed by appdb" = "Aplikasi sing diopeni karo appdb ";
+"Bundle IDs" = "Bundle IDs";
+"Only apps that are managed by appdb will appear here." = "Mung aplikasi sing diopeni karo appdb sing bakal metu nang kene. ";
+
+/////////////////////
+//     UPDATES     //
+/////////////////////
+
+"Ignore" = "Jarno";
+"No updates found" = "Ora ono pembaruan";
+"Please authorize app from Settings first" = "Monggo otorisasi aplikasi neng Pengaturan disek. ";
+"%@ Updateable app" = "%@ Aplikasi seng kenek diperbarui";  // e.g. 1 Updateable app
+"%@ Updateable apps" = "%@ Aplikasi seng kenek diperbarui"; // e.g. 6 Updateable apps
+"%@ Non updateable app" = "%@ Aplikasi seng gak kenek diperbarui";
+"%@ Non updateable apps" = "%@ Aplikasi seng gak kenek diperbarui";
+"Non Updateable Apps" = "Aplikasi seng gak kenek diperbarui";
+"Ignored" = "Dijarno";
+"Ignored Updates" = "Update Dijarno";
+"No ignored updates" = "Gak ono pembaruan seng dijarno";
+"Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'." = "Aplikasi seng di install soko sumber njobo,koyok AppStore utowo distribusi OTA, ora iso diapdet lewat appdb amergo alesan keamanan. Awake ngehargai iki!\n\nNggo ngapdet aplikasi iki, kudu mbusek lan masang maneh soko appdb\n\nNggo ndelikne apdetan iki, geser ngiwo neng salah sijine lan pilih 'Jarno'.";
+"Swipe left on any update to add it to this list" = "Geser ngiwo neng apdetan opo wae nggo nambahne neng daftar iki";
+"Update" = "Pembaruan"; // green UPDATE button
+"Your version: %@" = "Versi saiki: %@";
+"New version: %@" = "Versi anyar e: %@";
+"Update Available" = "Onok Pembaruan";
+"What's New in version %@" = "Opo seng anyar neng versi %@";
+
+////////////////////
+//     ERRORS     //
+////////////////////
+
+"Maintenance mode active. We will be back soon!" = "Mode pemeliharaan lagi murup. Kene bakal balik sak cepete!";
+"No links found." = "Gak ono tautan seng ditemokno.";
+"Not found" = "Gak ditemokno";
+"Couldn't find content with id %@ in our database" = "Gak nemu konten id %@ ndek database e awake dewe";
+"An error has occurred" = "kedaden suatu kesalahan";
+"Invalid link code." = "Kode tautan gak bener.";
+"Invalid email address." = "Email gak valid.";
+"Link code cannot be empty." = "Kode tautan gak oleh kosong.";
+"Please enter a valid email address." = "Monggo diisi alamat email seng bener.";
+"No device linked." = "Gak ono perangkat seng ditautno.";
+"Unable to fetch device token." = "Gak iso njupuk token e perangkat.";
+"Use link code instead." = "Gunakno kode tautan kanggo penggantine.";
+"Oops! Something went wrong. Please try again later." = "Jooh! Ono seng salah. Monggo engko dicoba maneh.";
+"Missing link code or email." = "Kode tautan atau email ilang.";
+"Could not parse plist file." = "Gak iso nguraino file plist.";
+"Device status is empty" = "Status perangkat kosong";
+"The request timed out" = "Waktu e entek gawe njaluk";
+"Your device is not compatible with this app" = "Perangkatmu gak cocok kanggo aplikasi iki";
+"Error: malformed url" = "Error: url salah";
+"IPA Not found" = "IPA Gak ditemokno";
+"IPA is missing Payload folder" = "IPA e gak ono folder Payload e";
+"IPA is missing .app folder" = "IPA e gak ono folder .app e";
+"IPA is missing Info.plist file" = "IPA e gak ono file Info.plist e";
+"Unable to read contents of Info.plist file" = "Gak iso moco isi e file Info.plist";
+"Unable to encode Info.plist file" = "Gak iso nyandekke file Info.plist";
+"File not found at given path" = "File gak ditemokno nang path seng ditentuno";
+"Unable to find bundle id in Info.plist" = "Gak iso nemokno bundel id ndek Info.plist";
+"File size not found in resource values" = "Ukuran file e gak ditemuno nang njero nilai resource e";
+"A report has already been submitted" = "Laporan wes dikirimno";
+"Installation failed, but can be fixed from Settings -> Device Status" = "Gagal masang, tapi iso dibebakno teko Pengaturan -> Status Perangkat";
+"An error has occurred: malformed JSON" = "Kedaden kesalahan: JSON e salah format";
+"Your PRO subscription has expired." = "Langganan PROmu wes entek.";
+"Your PRO subscription has been revoked by Apple." = "Langganan PROmu Anda wes dicabut karo Apple.";
+"Your device doesn't seem to have a PRO subcription." = "Perangkatmu koyoke gak langganan PRO.";
+"App duplication is currently supported on non-jailbroken devices with PRO." = "Ndobel aplikasi saiki mek didukung nang perangkat seng gak di-jailbreak seng langganan PRO.";
+"Unknown voucher partner." = " Voucher teko partner gak dikenali.";
+"Invalid voucher." = "Voucher gak bener.";
+"Voucher already used." = "Voucher wes digawe.";
+"No devices with this email." = "Ga ono perangkat seng kesambung karo email iki.";
+
+////////////////////////////
+//     LINK REPORTING     //
+////////////////////////////
+
+"Send" = "Kirimke";
+"Report" = "Laporke";
+"Reporting a broken link for '%@'." = "Laporke link seng rusak nggo '%@'.";
+"Enter a reason for your report" = "Lebokke alesanmu nglaporke";
+"Link reported successfully!" = "Tautan wes dilaporke!";
+
+/////////////////////
+//     CREDITS     //
+/////////////////////
+
+"Credits" = "Kredit";
+"Developer" = "Developer";
+"Special Thanks" = "Ucapan Spesial";
+"Translations" = "Seng Ngartekno";
+"appdb team" = "tim appdb";
+"Icon and banner designer" = "Desainer ikon lan spanduk";
+"View project on GitHub" = "Ndelok projekan e neng GitHub";
+
+/////////////////////////////////////////
+//     WISHES / AUTOMATIC REQUESTS     //
+/////////////////////////////////////////
+
+"Wishes" = "Seng Dipingini";
+"New" = "Anyar";
+"Processing" = "Diproses";
+"Failed" = "Gagal";
+"Fulfilled" = "Wes dipenuhi";
+"Free" = "Gratis";
+"Enter AppStore URL" = "Lebokno URL Appstore";
+"Enter below the AppStore URL of the app you'd like to request" = "Lebokno URL Aplikasi teko AppStore seng pingin mbok karepno";
+"Add" = "Tambahke";
+"App has been requested successfully!" = "Aplikasi wes sukses dijaluk!";
+"Price: %@" = "Rego: %@";
+"Version: %@" = "Versi: %@";
+"No new wishes to show" = "Gak ono kepinginan anyar kanggo ditampilno";
+"No fulfilled wishes to show" = "Ga ono kepinginan seng dipenuhi kanggo ditampilno ";
+
+///////////////////
+//     OTHER     //
+///////////////////
+
+"Cancel" = "Batalne";
+"Dismiss" = "Ngendekne";
+"Yes" = "Iyo";
+"OK" = "OK";
+"No" = "Ora";
+"Done" = "Rampung";
+"more" = "luweh okeh";
+"Open in Safari" = "Bukak neng Safari";
+"%@s ago" = "%@detik mau"; // seconds, e.g. 15s ago
+"%@m ago" = "%@menit mau"; // minutes, e.g. 5m ago
+"%@h ago" = "%@jam mau"; // hours, e.g. 6h ago
+"%@d ago" = "%@dino mau"; // days, e.g. 3d ago
+"now" = "saiki";

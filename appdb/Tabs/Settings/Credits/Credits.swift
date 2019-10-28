@@ -42,7 +42,8 @@ class Credits: TableViewController {
         Credit(name: "TNT 🇪🇸", detail: nil, imageName: "tnt", type: .translations, handle: .twitter(username: "tnttaolin2")),
         Credit(name: "Zond80 🇷🇺", detail: nil, imageName: "zond", type: .translations, handle: .website(site: "https://github.com/Zond80")),
         Credit(name: "Am1nCmd 🇮🇩", detail: nil, imageName: "Am1nCmd", type: .translations, handle: .website(site: "https://am1ncmd.id")),
-        Credit(name: "DzMohaipa 🇫🇷", detail: nil, imageName: "DzMoha_31", type: .translations, handle: .twitter(username: "DzMoha_31"))
+        Credit(name: "DzMohaipa 🇫🇷", detail: nil, imageName: "DzMoha_31", type: .translations, handle: .twitter(username: "DzMoha_31")),
+        Credit(name: "Eskaseptian Team 🇮🇩", detail: nil, imageName: "EskaseptianTeam", type: .translations, handle: .website(site: "https://www.instagram.com/eskaseptian/"))
     ]
 
     convenience init() {
@@ -76,7 +77,7 @@ class Credits: TableViewController {
 
         sections.append(Section(header: .autoLayoutView(CreditsIconView(text: "appdb v\(Global.appVersion)", imageName: "appdb", easterDelegate: self))))
 
-        for creditType in CreditType.allCases {
+        for (index, creditType) in CreditType.allCases.enumerated() {
             var section: Static.Section = Section(header: .title(creditType.rawValue.localized()), rows: [])
             for credit in credits where credit.type == creditType {
                 section.rows.append(
@@ -85,6 +86,7 @@ class Credits: TableViewController {
                     }, accessory: .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["imageName": credit.imageName])
                 )
             }
+            if index == CreditType.allCases.endIndex - 1 { section.footer = .title("\n\n") } // just to add some bottom padding
             if !section.rows.isEmpty { sections.append(section) }
         }
 
