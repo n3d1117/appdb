@@ -285,6 +285,28 @@ struct IPAFileManager {
         }
     }
 
+    // MARK: - Copy file
+
+    func copyToDocuments(url: URL) {
+        guard FileManager.default.fileExists(atPath: url.path) else { return }
+        var endURL = documentsDirectoryURL().appendingPathComponent(url.lastPathComponent)
+        if !FileManager.default.fileExists(atPath: endURL.path) {
+            do {
+                try FileManager.default.copyItem(at: url, to: endURL)
+            } catch {}
+        } else {
+            var i: Int = 0
+            while FileManager.default.fileExists(atPath: endURL.path) {
+                i += 1
+                let newName = url.deletingPathExtension().lastPathComponent + "_\(i).\(url.pathExtension)"
+                endURL = documentsDirectoryURL().appendingPathComponent(newName)
+            }
+            do {
+                try FileManager.default.copyItem(at: url, to: endURL)
+            } catch {}
+        }
+    }
+
     // MARK: - Move files
 
     func moveToDocuments(url: URL) {

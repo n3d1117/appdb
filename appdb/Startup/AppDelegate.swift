@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             if !FileManager.default.isReadableFile(atPath: url.path) {
                 // Handle 'Open in appdb' from share sheet
                 if url.startAccessingSecurityScopedResource() {
-                    IPAFileManager.shared.moveToDocuments(url: url)
+                    IPAFileManager.shared.copyToDocuments(url: url)
                     url.stopAccessingSecurityScopedResource()
                 }
             } else {
