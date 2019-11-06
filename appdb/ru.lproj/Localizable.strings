@@ -143,7 +143,7 @@
 
 "Search iOS Apps" = "Искать iOS приложения";
 "Search Cydia Apps" = "Искать Cydia приложения";
-"Search Books" = "Искать книни";
+"Search Books" = "Искать книги";
 "Trending iOS Apps" = "Популярные iOS приложения";
 "Trending Cydia Apps" = "Популярные Cydia приложения";
 "Trending Books" = "Популярные книги";
@@ -187,7 +187,7 @@
 "Are you sure you want to delete %@ files?" = "Вы уверены, что хотите удалить %@ файлов?"; // %@ is the number of files to delete
 "Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@" = "Поместите ваши локальные .ipa (или .zip) файлы в директорию документов, через iTunes File Sharing, или импортируйте их из других приложений:\n\n%@";
 "appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'" = "appdb представляет MyAppStore - ваш личный AppStore. Новый установщик приложений, который трансформировался в вашу личную библиотеку приложений!\n\n• Сохраняйте ваши личные приложения на appdb\n• Распределите их среди ваших устройств, привязанных с одним и тем же Email\n• Храните приложения до 4ГБ\n• Загружайте несколько приложений сразу\n\nЧтобы начать, нажмите на локальный файл и выберите 'Выгрузить в MyAppStore'";
-"No active downloads" = "Нет активных щаг";
+"No active downloads" = "Нет активных скачиваний";
 "Remove from list" = "Удалить";
 "File downloaded successfully" = "Файл успешно скачан";
 "File downloaded successfully, added to Library" = "Файл успешно скачан, добавлен в библиотеку";
@@ -237,8 +237,8 @@
 "Revoked" = "Отозвано";
 "Revoked on %@" = "Дата отзыва %@";
 "Show badge for updates" = "Показывать иконку уведомлений";
-"Change bundle id before upload" = "Изменить идентификатор перед загрузкой";
-"Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app." = "Изменение идентификатора (bundle id) перед выгрузской в MyAppStore может быть полезно при работе с несколькими копиями одного приложения.";
+"Change bundle id before upload" = "Изменить идентификатор";
+"Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app." = "Изменение идентификатора (bundle id) перед выгрузкой в MyAppStore может быть полезно при работе с несколькими копиями одного приложения.";
 "New bundle id" = "Новый идетификатор";
 "Tap to generate random" = "Сгенерировать произвольный";
 "Overwrite file" = "Перезаписать файл";
@@ -261,8 +261,8 @@
 "Validate PRO Voucher" = "Проверить PRO ваучер";
 "Activate PRO Voucher" = "Активировать PRO ваучер";
 "Email Link Code" = "Получить код привязки на почту";
-"List apps managed by appdb" = "Посмотреть список приложений от appdb";
-"Your PRO has not been revoked!" = "Ваш PRO был отозван Apple!";
+"List apps managed by appdb" = "Приложения от appdb";
+"Your PRO has not been revoked!" = "С вашим PRO все хорошо!";
 "Enter Voucher" = "Введите ваучер";
 "Paste here the PRO voucher obtained by a reseller:" = "Вставьте сюда PRO ваучер, полученный от реселлера:";
 "Activate" = "Активировать";
