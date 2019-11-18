@@ -109,10 +109,14 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             // Reload tableView (animated), hide spinner
             state = .done
 
+            // Haptic feedback
+            if #available(iOS 10.0, *) { UIImpactFeedbackGenerator(style: .light).impactOccurred() }
+
             // Check if there is a new update available
             API.checkIfUpdateIsAvailable(success: { [weak self] (update: CydiaApp, linkId: String) in
                 guard let self = self else { return }
 
+                if #available(iOS 10.0, *) { UIImpactFeedbackGenerator(style: .light).impactOccurred() }
                 let appUpdateController = AppUpdateController(updatedApp: update, linkId: linkId)
                 let nav = AppUpdateNavController(rootViewController: appUpdateController)
                 appUpdateController.delegate = nav

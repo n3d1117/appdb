@@ -243,6 +243,7 @@ extension Downloads {
 //
 extension Downloads: IPAWebViewControllerDelegate {
     func didDismiss() {
+        if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
         delay(0.8) {
             Messages.shared.showSuccess(message: "File download has started".localized())
         }

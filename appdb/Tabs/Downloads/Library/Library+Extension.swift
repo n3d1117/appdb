@@ -100,6 +100,7 @@ extension Library {
                                 if let error = error {
                                     Messages.shared.showError(message: error.prettified)
                                 } else {
+                                    if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
                                     Messages.shared.showSuccess(message: "File uploaded successfully".localized())
                                     delay(1) {
                                         let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController

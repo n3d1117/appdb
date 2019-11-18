@@ -120,6 +120,7 @@ enum DeviceLinkIntroBulletins {
     }
 
     static func makeCompletionPage() -> BLTNPageItem {
+        if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
         let page = DummyBulletinPage(title: "Success".localized())
         page.image = #imageLiteral(resourceName: "completed")
         page.appearance.theme_actionButtonColor = Color.softGreen
@@ -141,6 +142,7 @@ enum DeviceLinkIntroBulletins {
     }
 
     static func makeErrorPage(with error: String, displayBackButton: Bool = true) -> BLTNPageItem {
+        if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.error) }
         let page = DummyBulletinPage(title: "Unable to complete".localized())
         page.image = #imageLiteral(resourceName: "error")
         page.appearance.theme_imageViewTintColor = Color.softRed

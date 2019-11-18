@@ -266,6 +266,8 @@ class Details: LoadingTableView {
                     } else {
                         setButtonTitle("Requested")
 
+                        if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
+
                         Messages.shared.showSuccess(message: "Installation has been queued to your device".localized(), context: Global.isIpad ? .viewController(self) : nil)
 
                         if self.contentType != .books {
@@ -477,6 +479,7 @@ extension Details: DetailsSellerRedirectionDelegate {
 //
 extension Details: IPAWebViewControllerDelegate {
     func didDismiss() {
+        if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
         delay(0.8) {
             Messages.shared.showSuccess(message: "File download has started".localized(), context: Global.isIpad ? .viewController(self) : nil)
             delay(1) {

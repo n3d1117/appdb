@@ -174,6 +174,9 @@ class AppUpdateController: UITableViewController {
                 }
             } else {
                 setButtonTitle("Requested")
+
+                if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
+
                 Messages.shared.showSuccess(message: "Installation has been queued to your device".localized())
 
                 ObserveQueuedApps.shared.addApp(type: .cydia, linkId: sender.linkId, name: self.updatedApp.name, image: self.updatedApp.image, bundleId: self.updatedApp.bundleId)
