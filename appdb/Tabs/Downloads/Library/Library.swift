@@ -236,3 +236,105 @@ class Library: LoadingCollectionView {
         }
     }
 }
+
+// MARK: - iOS 13 Context Menus
+
+@available(iOS 13.0, *)
+extension Library {
+
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        if indexPath.section == Section.local.rawValue {
+
+            guard self.localIpas.indices.contains(indexPath.row) else { return nil }
+            let ipa = self.localIpas[indexPath.row]
+
+            if let upload = uploadRequestsAtIndex[indexPath] {
+
+                return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: nil) { _ in
+
+                    var playPauseAction: UIAction!
+                    if !upload.isPaused {
+                        playPauseAction = UIAction(title: "Pause".localized(), image: UIImage(systemName: "pause.circle")) { _ in
+                            upload.pause()
+                        }
+                    } else {
+                        playPauseAction = UIAction(title: "Resume".localized(), image: UIImage(systemName: "play.circle")) { _ in
+                            upload.resume()
+                        }
+                    }
+                    let stop = UIAction(title: "Stop".localized(), image: UIImage(systemName: "stop.circle"), attributes: .destructive) { _ in
+                        upload.stop()
+                    }
+                    return UIMenu(title: "", children: [playPauseAction, stop])
+                }
+            } else {
+
+                return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: nil) { _ in
+
+                    let installWithoutSigning = UIAction(title: "Install without signing".localized(), image: UIImage(systemName: "square.and.arrow.down")) { _ in
+                        self.customInstall(ipa: ipa, indexPath: indexPath)
+                    }
+
+                    let uploadToMyAppstore = UIAction(title: "Upload to MyAppStore".localized(), image: UIImage(systemName: "icloud.and.arrow.up")) { _ in
+                        self.addToMyAppStore(ipa: ipa, indexPath: indexPath)
+                    }
+
+                    let openIn = UIAction(title: "Open in...".localized(), image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                        self.openIn(ipa: ipa, indexPath: indexPath)
+                    }
+
+                    let rename = UIAction(title: "Rename".localized(), image: UIImage(systemName: "square.and.pencil")) { _ in
+                        self.handleRename(for: ipa, at: indexPath)
+                    }
+
+                    let deleteCancel = UIAction(title: "Cancel".localized(), image: UIImage(systemName: "xmark")) { _ in }
+                    let deleteConfirmation = UIAction(title: "Delete".localized(), image: UIImage(systemName: "checkmark"), attributes: .destructive) { _ in
+                        self.deleteLocalIpa(ipa: ipa, indexPath: indexPath)
+                    }
+
+                    let delete = UIMenu(title: "Delete".localized(), image: UIImage(systemName: "trash"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+
+                    return UIMenu(title: ipa.filename, children: [installWithoutSigning, uploadToMyAppstore, openIn, rename, delete])
+                }
+            }
+        } else if indexPath.section == Section.myappstore.rawValue {
+
+            guard self.myAppstoreIpas.indices.contains(indexPath.row) else { return nil }
+            let app = self.myAppstoreIpas[indexPath.row]
+
+            return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: nil) { _ in
+
+                let title = "Uploaded on %@".localizedFormat(app.uploadedAt.unixToDetailedString)
+
+                let install = UIAction(title: "Install".localized(), image: UIImage(systemName: "square.and.arrow.down")) { _ in
+                    if let cell = self.collectionView.cellForItem(at: indexPath) as? MyAppStoreCell {
+                        if let button = cell.installButton {
+                            self.installMyAppStoreApp(sender: button)
+                        }
+                    }
+                }
+
+                let deleteCancel = UIAction(title: "Cancel".localized(), image: UIImage(systemName: "xmark")) { _ in }
+                let deleteConfirmation = UIAction(title: "Delete".localized(), image: UIImage(systemName: "checkmark"), attributes: .destructive) { _ in
+                   self.deleteMyAppStoreApp(id: app.id, indexPath: indexPath)
+                }
+
+                let delete = UIMenu(title: "Delete".localized(), image: UIImage(systemName: "trash"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+
+                return UIMenu(title: title, children: [install, delete])
+            }
+        }
+        return nil
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let indexPath = configuration.identifier as? IndexPath else { return nil }
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        if let collectionViewCell = collectionView.cellForItem(at: indexPath) {
+            return UITargetedPreview(view: collectionViewCell.contentView, parameters: parameters)
+        }
+        return nil
+    }
+}

@@ -309,20 +309,14 @@ class Settings: TableViewController {
     }
 }
 
-// MARK: - 3D Touch
-
-extension Settings: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        guard let row = dataSource.row(at: location) else { return nil }
-        previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
-
-        // Wrap it into a UINavigationController to see viewController's title on peek
-        switch row.text {
+extension Settings {
+    fileprivate func getNavControllerForText(_ text: String) -> UINavigationController? {
+        switch text {
         case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
         case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
         case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
         case "Credits".localized(): return UINavigationController(rootViewController: Credits())
+        case "Advanced Options".localized(): return UINavigationController(rootViewController: AdvancedOptions())
         case "News".localized():
             let news = News()
             news.isPeeking = true
@@ -337,6 +331,46 @@ extension Settings: UIViewControllerPreviewingDelegate {
             return UINavigationController(rootViewController: vc)
         default: return nil
         }
+    }
+}
+
+extension Settings: UITableViewDelegate {
+
+    // Call contactDeveloper() on cell tap, I do this here because I need the indexPath
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath) is ContactDevStaticCell {
+            contactDeveloper(indexPath: indexPath)
+        }
+    }
+
+    // iOS 13 Context Menus
+
+    @available(iOS 13.0, *)
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let row = dataSource.row(at: point) else { return nil }
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { self.getNavControllerForText(row.text ?? "") })
+    }
+
+    @available(iOS 13.0, *)
+    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            if let nav = animator.previewViewController as? UINavigationController {
+                self.show(nav.viewControllers[0], sender: self)
+            }
+        }
+    }
+}
+
+// MARK: - 3D Touch
+
+extension Settings: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        guard let row = dataSource.row(at: location) else { return nil }
+        previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+
+        // Wrap it into a UINavigationController to see viewController's title on peek
+        return getNavControllerForText(row.text ?? "")
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
@@ -374,16 +408,6 @@ extension Settings {
             urlSchemeLinkCodeBulletinManager?.backgroundViewStyle = .blurredDark
         }
         urlSchemeLinkCodeBulletinManager?.showBulletin(above: tabBarController ?? self)
-    }
-}
-
-// MARK: - Call contactDeveloper() on cell tap, I do this here because I need the indexPath
-
-extension Settings: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath) is ContactDevStaticCell {
-            contactDeveloper(indexPath: indexPath)
-        }
     }
 }
 

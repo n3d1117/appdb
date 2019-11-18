@@ -188,6 +188,26 @@ extension News: UISearchResultsUpdating {
     }
 }
 
+// MARK: - iOS 13 Context Menus
+
+@available(iOS 13.0, *)
+extension News {
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let item = isFiltering() ? filteredNews[indexPath.row] : displayedNews[indexPath.row]
+        guard !item.id.isEmpty else { return nil }
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { NewsDetail(with: item.id) })
+    }
+
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            if let viewController = animator.previewViewController {
+                self.show(viewController, sender: self)
+            }
+        }
+    }
+}
+
 // MARK: - 3D Touch Peek and Pop
 
 extension News: UIViewControllerPreviewingDelegate {

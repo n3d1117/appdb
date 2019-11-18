@@ -145,6 +145,57 @@ class Downloading: LoadingCollectionView {
     }
 }
 
+// MARK: - iOS 13 Context Menus
+
+@available(iOS 13.0, *)
+extension Downloading {
+
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard downloadingApps.indices.contains(indexPath.row) else { return nil }
+        let app = downloadingApps[indexPath.row]
+
+        return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: nil) { _ in
+
+            if let util = app.util {
+                var playPauseAction: UIAction!
+
+                if !util.isPaused {
+                    playPauseAction = UIAction(title: "Pause".localized(), image: UIImage(systemName: "pause.circle")) { _ in
+                        util.pause()
+                    }
+                } else {
+                    playPauseAction = UIAction(title: "Resume".localized(), image: UIImage(systemName: "play.circle")) { _ in
+                        util.resume()
+                    }
+                }
+                let stop = UIAction(title: "Stop".localized(), image: UIImage(systemName: "stop.circle"), attributes: .destructive) { _ in
+                    util.stop()
+                }
+                return UIMenu(title: "", children: [playPauseAction, stop])
+            } else {
+                let remove = UIAction(title: "Remove from list".localized(), image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
+                    self.downloadingApps.remove(at: indexPath.row)
+                    self.collectionView.deleteItems(at: [IndexPath(row: indexPath.row, section: 0)])
+                    if self.downloadingApps.isEmpty {
+                        self.setErrorMessageIfEmpty()
+                    }
+                }
+                return UIMenu(title: "", children: [remove])
+            }
+        }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let indexPath = configuration.identifier as? IndexPath else { return nil }
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        if let collectionViewCell = collectionView.cellForItem(at: indexPath) {
+            return UITargetedPreview(view: collectionViewCell.contentView, parameters: parameters)
+        }
+        return nil
+    }
+}
 // MARK: - ETCollectionViewDelegateWaterfallLayout
 
 extension Downloading: ETCollectionViewDelegateWaterfallLayout {

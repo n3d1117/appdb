@@ -126,6 +126,7 @@ class SearchCell: UICollectionViewCell {
     // Hover animation
     override var isHighlighted: Bool {
         didSet {
+            if #available(iOS 13.0, *) { return } // iOS 13 Context Menus do this automatically
             if isHighlighted {
                 UIView.animate(withDuration: 0.1) {
                     self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)

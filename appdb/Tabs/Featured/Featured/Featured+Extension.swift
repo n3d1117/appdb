@@ -95,6 +95,50 @@ extension Featured {
     }
 }
 
+// MARK: - iOS 13 Context Menus
+
+@available(iOS 13.0, *)
+extension Featured {
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? ItemCollection else { return nil }
+        guard let index = cell.collectionView.indexPathForItem(at: self.view.convert(point, to: cell.collectionView)) else { return nil }
+        guard cell.items.indices.contains(index.row) else { return nil }
+
+        let indexPathsIdentifiers: [IndexPath] = [indexPath, index]
+
+        return UIContextMenuConfiguration(identifier: indexPathsIdentifiers as NSCopying, previewProvider: { Details(content: cell.items[index.row]) })
+    }
+
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            if let viewController = animator.previewViewController {
+                self.show(viewController, sender: self)
+            }
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+
+        guard let ids = configuration.identifier as? [IndexPath] else { return nil }
+        guard ids.indices.contains(0), ids.indices.contains(1) else { return nil }
+        let firstIndex = ids[0], secondIndex = ids[1]
+
+        guard let cell = tableView.cellForRow(at: firstIndex) as? ItemCollection else { return nil }
+        guard cell.items.indices.contains(secondIndex.row) else { return nil }
+
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        if let collectionViewCell = cell.collectionView.cellForItem(at: secondIndex) {
+            return UITargetedPreview(view: collectionViewCell.contentView, parameters: parameters)
+        }
+
+        return nil
+    }
+}
+
 // MARK: - 3D Touch Peek and Pop on icons
 
 extension Featured: UIViewControllerPreviewingDelegate {

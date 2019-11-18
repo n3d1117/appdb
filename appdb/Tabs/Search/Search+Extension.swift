@@ -276,6 +276,41 @@ extension Search: ETCollectionViewDelegateWaterfallLayout {
     }
 }
 
+// MARK: - iOS 13 Context Menus
+
+@available(iOS 13.0, *)
+extension Search {
+
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard currentPhase == .showResults else { return nil }
+         guard results.indices.contains(indexPath.row) else { return nil }
+        let item = results[indexPath.row]
+        return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: { Details(content: item) })
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            if let viewController = animator.previewViewController {
+                self.show(viewController, sender: self)
+            }
+        }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+
+        guard let indexPath = configuration.identifier as? IndexPath else { return nil }
+
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        if let collectionViewCell = collectionView.cellForItem(at: indexPath) {
+            return UITargetedPreview(view: collectionViewCell.contentView, parameters: parameters)
+        }
+
+        return nil
+    }
+}
+
 // MARK: - 3D Touch Peek and Pop on results
 
 extension Search: UIViewControllerPreviewingDelegate {

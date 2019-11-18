@@ -131,6 +131,27 @@ extension Updates: IgnoredAppsListChanged {
     }
 }
 
+// MARK: - iOS 13 Context Menus
+
+@available(iOS 13.0, *)
+extension Updates {
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let apps = indexPath.section == 0 ? updateableApps : nonUpdateableApps
+        guard apps.indices.contains(indexPath.row) else { return nil }
+        let item = apps[indexPath.row]
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { Details(type: item.itemType, trackid: item.trackid) })
+    }
+
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            if let viewController = animator.previewViewController {
+                self.show(viewController, sender: self)
+            }
+        }
+    }
+}
+
 // MARK: - 3D Touch Peek and Pop on updates
 
 extension Updates: UIViewControllerPreviewingDelegate {
@@ -138,6 +159,7 @@ extension Updates: UIViewControllerPreviewingDelegate {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         let apps = indexPath.section == 0 ? updateableApps : nonUpdateableApps
+        guard apps.indices.contains(indexPath.row) else { return nil }
         let item = apps[indexPath.row]
         let vc = Details(type: item.itemType, trackid: item.trackid)
         return vc

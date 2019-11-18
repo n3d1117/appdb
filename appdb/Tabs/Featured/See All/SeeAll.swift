@@ -270,6 +270,25 @@ extension SeeAll: UISearchResultsUpdating {
     }
 }
 
+// MARK: - iOS 13 Context Menus
+
+@available(iOS 13.0, *)
+extension SeeAll {
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let item = isFiltering() ? filteredItems[indexPath.row] : items[indexPath.row]
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { Details(content: item) })
+    }
+
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            if let viewController = animator.previewViewController {
+                self.show(viewController, sender: self)
+            }
+        }
+    }
+}
+
 // MARK: - 3D Touch Peek and Pop
 
 extension SeeAll: UIViewControllerPreviewingDelegate {

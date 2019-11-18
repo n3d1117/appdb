@@ -200,7 +200,53 @@ extension Details {
     }
 }
 
+// MARK: - iOS 13 Context Menus
+
+@available(iOS 13.0, *)
+extension Details {
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? DetailsRelated else { return nil }
+
+        guard let index = cell.collectionView.indexPathForItem(at: self.view.convert(point, to: cell.collectionView)) else { return nil }
+        guard cell.relatedContent.indices.contains(index.row) else { return nil }
+
+        let indexPathsIdentifiers: [IndexPath] = [indexPath, index]
+
+        return UIContextMenuConfiguration(identifier: indexPathsIdentifiers as NSCopying, previewProvider: { Details(type: self.contentType, trackid: cell.relatedContent[index.row].id) })
+    }
+
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            if let viewController = animator.previewViewController {
+                self.show(viewController, sender: self)
+            }
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+
+        guard let ids = configuration.identifier as? [IndexPath] else { return nil }
+        guard ids.indices.contains(0), ids.indices.contains(1) else { return nil }
+        let firstIndex = ids[0], secondIndex = ids[1]
+
+        guard let cell = tableView.cellForRow(at: firstIndex) as? DetailsRelated else { return nil }
+        guard cell.relatedContent.indices.contains(secondIndex.row) else { return nil }
+
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        if let collectionViewCell = cell.collectionView.cellForItem(at: secondIndex) {
+            return UITargetedPreview(view: collectionViewCell.contentView, parameters: parameters)
+        }
+
+        return nil
+    }
+}
+
 // MARK: - 3D Touch Peek and Pop on icons
+
 extension Details: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
