@@ -30,10 +30,10 @@ enum SecureKeys: String, CaseIterable {
     case token
     case linkCode
     case pro
-    case proDisabled
     case proUntil
     case proRevoked
     case proRevokedOn
+    case usesCustomDeveloperIdentity
 }
 
 enum Preferences {
@@ -52,16 +52,16 @@ enum Preferences {
         return KeychainWrapper.standard.string(forKey: SecureKeys.proUntil.rawValue) ?? ""
     }
 
-    static var proDisabled: Bool {
-        return KeychainWrapper.standard.bool(forKey: SecureKeys.proDisabled.rawValue) ?? false
-    }
-
     static var proRevoked: Bool {
         return KeychainWrapper.standard.bool(forKey: SecureKeys.proRevoked.rawValue) ?? false
     }
 
     static var proRevokedOn: String {
         return KeychainWrapper.standard.string(forKey: SecureKeys.proRevokedOn.rawValue) ?? ""
+    }
+
+    static var usesCustomDeveloperIdentity: Bool {
+        return KeychainWrapper.standard.bool(forKey: SecureKeys.usesCustomDeveloperIdentity.rawValue) ?? false
     }
 
     static var linkCode: String {

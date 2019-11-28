@@ -125,6 +125,8 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
     private var activeLabel: UILabel!
     private var expirationLabel: UILabel!
 
+    private var constraintGroup = ConstraintGroup()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
 
@@ -162,11 +164,16 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
 
         guard let pro = row.context?["active"] as? Bool else { return }
         guard let proExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
-        guard let proDisabled = row.context?["disabled"] as? Bool else { return }
         guard let proRevoked = row.context?["revoked"] as? Bool else { return }
         guard let proRevokedOn = (row.context?["revokedOn"] as? String)?.revokedDateDecoded else { return }
+        guard let usesCustomDeveloperIdentity = row.context?["usesCustomDevIdentity"] as? Bool else { return }
 
-        if proRevoked {
+        if usesCustomDeveloperIdentity {
+            activeLabel.theme_textColor = Color.softGreen
+            activeLabel.text = "Custom Developer Identity".localized()
+            selectionStyle = .none
+            accessoryType = .none
+        } else if proRevoked {
             activeLabel.theme_textColor = Color.softRed
             expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
             activeLabel.text = "Revoked".localized()
@@ -174,11 +181,6 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
             let bgColorView = UIView()
             bgColorView.theme_backgroundColor = Color.cellSelectionColor
             selectedBackgroundView = bgColorView
-        } else if proDisabled {
-            activeLabel.theme_textColor = Color.softRed
-            activeLabel.text = "Disabled".localized()
-            selectionStyle = .none
-            accessoryType = .none
         } else {
             if pro {
                 activeLabel.theme_textColor = Color.softGreen
@@ -197,15 +199,15 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
             }
         }
 
-        if proDisabled {
-            expirationLabel.isHidden = true
+        expirationLabel.isHidden = usesCustomDeveloperIdentity
 
-            constrain(activeLabel) { active in
+        if usesCustomDeveloperIdentity {
+            constrain(activeLabel, replace: constraintGroup) { active in
                 active.centerY ~== active.superview!.centerY
                 active.trailing ~== active.superview!.trailingMargin
             }
         } else {
-            constrain(activeLabel, expirationLabel, dummy) { active, expiration, dummy in
+            constrain(activeLabel, expirationLabel, dummy, replace: constraintGroup) { active, expiration, dummy in
                 dummy.height ~== 1
                 dummy.centerY ~== dummy.superview!.centerY
 

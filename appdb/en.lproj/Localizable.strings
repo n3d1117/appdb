@@ -274,6 +274,7 @@
 "Apps managed by appdb" = "Apps managed by appdb";
 "Bundle IDs" = "Bundle IDs";
 "Only apps that are managed by appdb will appear here." = "Only apps that are managed by appdb will appear here.";
+"Custom Developer Identity" = "Custom Developer Identity";
 
 /////////////////////
 //     UPDATES     //

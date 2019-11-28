@@ -274,6 +274,7 @@
 "Apps managed by appdb" = "Приложения с appdb";
 "Bundle IDs" = "Идентификаторы";
 "Only apps that are managed by appdb will appear here." = "Тут отображаются приложения, установленные через appdb";
+"Custom Developer Identity" = "Ваш профиль разработчика";
 
 /////////////////////
 //     UPDATES     //

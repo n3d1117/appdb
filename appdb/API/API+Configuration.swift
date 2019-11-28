@@ -28,15 +28,24 @@ extension API {
                             Preferences.set(.ignoreCompatibility, to: data["ignore_compatibility"].stringValue=="yes")
                             Preferences.set(.askForInstallationOptions, to: data["ask_for_installation_options"].stringValue=="yes")
 
-                            Preferences.set(.proDisabled, to: data["is_pro_disabled"].stringValue=="yes")
                             Preferences.set(.proRevoked, to: isRevoked)
                             Preferences.set(.proRevokedOn, to: revokedOn)
-                            if Preferences.proRevoked || Preferences.proDisabled {
+                            if Preferences.proRevoked {
                                 Preferences.set(.pro, to: false)
                             } else {
                                 Preferences.set(.pro, to: data["is_pro"].stringValue=="yes")
                             }
                             Preferences.set(.proUntil, to: data["pro_till"].stringValue)
+
+                            if !data["p12_password"].stringValue.isEmpty, !data["p12"].stringValue.isEmpty, !data["provision"].stringValue.isEmpty {
+                                if Preferences.pro {
+                                    Preferences.set(.usesCustomDeveloperIdentity, to: data["is_pro_disabled"].stringValue=="yes")
+                                } else {
+                                    Preferences.set(.usesCustomDeveloperIdentity, to: true)
+                                }
+                            } else {
+                                Preferences.set(.usesCustomDeveloperIdentity, to: false)
+                            }
 
                             success()
                         }, fail: { error in

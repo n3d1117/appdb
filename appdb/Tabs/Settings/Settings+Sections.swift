@@ -96,10 +96,10 @@ extension Settings {
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
 
                 Row(text: "PRO Status".localized(), selection: { [unowned self] _ in
-                    if (Preferences.proRevoked) || (!Preferences.proDisabled && !Preferences.pro) {
+                    if !Preferences.usesCustomDeveloperIdentity && (Preferences.proRevoked || !Preferences.pro) {
                         self.openInSafari(self.proSite)
                     }
-                }, cellClass: SimpleStaticPROStatusCell.self, context: ["active": Preferences.pro, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "disabled": Preferences.proDisabled]),
+                    }, cellClass: SimpleStaticPROStatusCell.self, context: ["active": Preferences.pro, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "usesCustomDevIdentity": Preferences.usesCustomDeveloperIdentity]),
 
                 Row(text: "Link Code".localized(), detailText: Preferences.linkCode, selection: { [unowned self] _ in
                         API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })
