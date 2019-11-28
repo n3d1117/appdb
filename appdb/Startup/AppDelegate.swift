@@ -148,17 +148,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 tab.selectedIndex = 3
                 guard let nav = tab.viewControllers?[3] as? UINavigationController else { break }
                 guard let settings = nav.viewControllers[0] as? Settings else { break }
-                settings.pushNews()
+                settings.push(News())
             case "system_status":
                 tab.selectedIndex = 3
                 guard let nav = tab.viewControllers?[3] as? UINavigationController else { break }
                 guard let settings = nav.viewControllers[0] as? Settings else { break }
-                settings.pushSystemStatus()
+                settings.push(SystemStatus())
             case "device_status":
                 tab.selectedIndex = 3
                 guard let nav = tab.viewControllers?[3] as? UINavigationController else { break }
                 guard let settings = nav.viewControllers[0] as? Settings else { break }
-                settings.pushDeviceStatus()
+                settings.push(DeviceStatus())
             default: break
             }
 
@@ -229,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             tab.selectedIndex = 3
             guard let nav = tab.viewControllers?[3] as? UINavigationController else { return false }
             guard let settings = nav.viewControllers[0] as? Settings else { return false }
-            settings.pushNews()
+            settings.push(News())
 
             let newsDetailViewController = NewsDetail(with: id)
 

@@ -114,7 +114,13 @@ extension Featured {
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         animator.addCompletion {
             if let viewController = animator.previewViewController {
-                self.show(viewController, sender: self)
+                if Global.isIpad {
+                    let nav = DismissableModalNavController(rootViewController: viewController)
+                    nav.modalPresentationStyle = .formSheet
+                    self.navigationController?.present(nav, animated: true)
+                } else {
+                    self.show(viewController, sender: self)
+                }
             }
         }
     }

@@ -126,107 +126,30 @@ class Settings: TableViewController {
         deauthorizeBulletinManager.showBulletin(above: tabBarController ?? self)
     }
 
-    // Push device status controller
-    func pushDeviceStatus() {
-        let deviceStatusController = DeviceStatus()
+    func push(_ viewController: UIViewController) {
 
-        delay(1) {
-            let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
-            tabBarController?.showGADInterstitialIfReady()
+        // Show ad if needed
+        if viewController is DeviceStatus {
+            delay(1) {
+                let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
+                tabBarController?.showGADInterstitialIfReady()
+            }
         }
 
+        // Set delegates for view controllers that require one
+        if let themeChooser = viewController as? ThemeChooser {
+            themeChooser.changedThemeDelegate = self
+        } else if let languageChooser = viewController as? LanguageChooser {
+            languageChooser.changedLanguageDelegate = self
+        }
+
+        // Show view controller
         if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: deviceStatusController)
+            let nav = DismissableModalNavController(rootViewController: viewController)
             nav.modalPresentationStyle = .formSheet
             self.navigationController?.present(nav, animated: true)
         } else {
-            self.navigationController?.pushViewController(deviceStatusController, animated: true)
-        }
-    }
-
-    // Push news controller
-    func pushNews() {
-        let newsViewController = News()
-        if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: newsViewController)
-            nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
-        } else {
-            self.navigationController?.pushViewController(newsViewController, animated: true)
-        }
-    }
-
-    // Push acknowledgements controller
-    func pushAcknowledgements() {
-        let acknowledgementsViewController = Acknowledgements()
-        if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: acknowledgementsViewController)
-            nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
-        } else {
-            self.navigationController?.pushViewController(acknowledgementsViewController, animated: true)
-        }
-    }
-
-    // Push credits controller
-    func pushCredits() {
-        let credits = Credits()
-        if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: credits)
-            nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
-        } else {
-            self.navigationController?.pushViewController(credits, animated: true)
-        }
-    }
-
-    // Push system status controller
-    func pushSystemStatus() {
-        let statusViewController = SystemStatus()
-        if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: statusViewController)
-            nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
-        } else {
-            self.navigationController?.pushViewController(statusViewController, animated: true)
-        }
-    }
-
-    // Push theme chooser controller
-    func pushThemeChooser() {
-        let themeViewController = ThemeChooser()
-        themeViewController.changedThemeDelegate = self
-        if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: themeViewController)
-            nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
-        } else {
-            self.navigationController?.pushViewController(themeViewController, animated: true)
-        }
-    }
-
-    // Push language chooser controller
-    func pushLanguageChooser() {
-        let languageViewController = LanguageChooser()
-        languageViewController.changedLanguageDelegate = self
-        if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: languageViewController)
-            nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
-        } else {
-            self.navigationController?.pushViewController(languageViewController, animated: true)
-        }
-    }
-
-    // Push advanced options controller
-    func pushAdvancedOptions() {
-        let advancedViewController = AdvancedOptions()
-        if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: advancedViewController)
-            nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
-        } else {
-            self.navigationController?.pushViewController(advancedViewController, animated: true)
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
 
@@ -355,7 +278,7 @@ extension Settings: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         animator.addCompletion {
             if let nav = animator.previewViewController as? UINavigationController {
-                self.show(nav.viewControllers[0], sender: self)
+                self.push(nav.viewControllers[0])
             }
         }
     }

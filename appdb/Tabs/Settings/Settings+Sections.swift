@@ -31,11 +31,11 @@ extension Settings {
             Section(header: .title("User Interface".localized()), rows: [
                 Row(text: "Choose Theme".localized(),
                     detailText: Themes.current.toString, selection: { [unowned self] _ in
-                        self.pushThemeChooser()
+                        self.push(ThemeChooser())
                     }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Choose Language".localized(),
                     detailText: Localize.displayNameForLanguage(Localize.currentLanguage()), selection: { [unowned self] _ in
-                        self.pushLanguageChooser()
+                        self.push(LanguageChooser())
                     }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ])
         ]
@@ -47,10 +47,10 @@ extension Settings {
         return [
             Section(header: .title("Support".localized()), rows: [
                 Row(text: "News".localized(), selection: { [unowned self] _ in
-                    self.pushNews()
+                    self.push(News())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "System Status".localized(), selection: { [unowned self] _ in
-                    self.pushSystemStatus()
+                    self.push(SystemStatus())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Contact Developer".localized(), selection: { _ in }, accessory: .disclosureIndicator, cellClass: ContactDevStaticCell.self),
                 Row(text: "Visit appdb forum".localized(), detailText: forumSite, selection: { [unowned self] _ in
@@ -60,10 +60,10 @@ extension Settings {
 
             Section(header: .title("About".localized()), rows: [
                 Row(text: "Credits".localized(), selection: { [unowned self] _ in
-                    self.pushCredits()
+                    self.push(Credits())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Acknowledgements".localized(), selection: { [unowned self] _ in
-                    self.pushAcknowledgements()
+                    self.push(Acknowledgements())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Version".localized(), detailText: "\(Global.appVersion)", cellClass: SimpleStaticCell.self)
             ])
@@ -123,7 +123,7 @@ extension Settings {
                 }, cellClass: SimpleStaticCell.self),
 
                 Row(text: "Advanced Options".localized(), selection: { [unowned self] _ in
-                    self.pushAdvancedOptions()
+                    self.push(AdvancedOptions())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ]),
 
@@ -139,7 +139,7 @@ extension Settings {
 
             Section(rows: [
                 Row(text: "Device Status".localized(), selection: { [unowned self] _ in
-                    self.pushDeviceStatus()
+                    self.push(DeviceStatus())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ])
         ] + commonSections + [

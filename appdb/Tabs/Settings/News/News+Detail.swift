@@ -181,6 +181,7 @@ extension AttributedLabel {
         //}
 
         // Apply styles
+        // swiftlint:disable:next comma
         let str = text.style(tags: [b, i, strong, u,/* img,*/ link], transformers: transformers).styleLinks(link)
 
         // Create NSMutableAttributedString
