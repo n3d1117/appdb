@@ -98,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 }
             } else {
                 // Handle 'Copy to appdb' from share sheet
-                IPAFileManager.shared.moveToDocuments(url: url)
+                IPAFileManager.shared.copyToDocuments(url: url)
             }
 
             guard let tabController = window?.rootViewController as? TabBarController else { return false }
