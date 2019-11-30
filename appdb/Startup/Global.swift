@@ -26,6 +26,68 @@ enum Global {
     static let email: String = "appdb.ned@gmail.com"
     static let telegramUsername: String = "ne_do"
 
+    // Homescreen shortcut items
+    enum ShortcutItem: String {
+        case search, wishes, updates, news
+
+        static func createItems(for items: [ShortcutItem]) -> [UIApplicationShortcutItem] {
+            return items.map { createItem(for: $0) }
+        }
+
+        static func createItem(for item: ShortcutItem) -> UIApplicationShortcutItem {
+            return UIApplicationShortcutItem(type: item.rawValue, localizedTitle: item.title, localizedSubtitle: nil, icon: item.icon, userInfo: nil)
+        }
+
+        var icon: UIApplicationShortcutIcon {
+            switch self {
+            case .search:
+                return UIApplicationShortcutIcon(type: .search)
+            case .wishes:
+                if #available(iOS 13.0, *) {
+                    return UIApplicationShortcutIcon(systemImageName: "gift")
+                } else  if #available(iOS 9.1, *) {
+                    return UIApplicationShortcutIcon(type: .love)
+                } else {
+                    return UIApplicationShortcutIcon(type: .add)
+                }
+            case .updates:
+                if #available(iOS 13.0, *) {
+                    return UIApplicationShortcutIcon(systemImageName: "square.and.arrow.down")
+                } else  if #available(iOS 9.1, *) {
+                    return UIApplicationShortcutIcon(type: .update)
+                } else {
+                    return UIApplicationShortcutIcon(systemImageName: "updates")
+                }
+            case .news:
+                if #available(iOS 13.0, *) {
+                    return UIApplicationShortcutIcon(systemImageName: "bubble.left")
+                } else  if #available(iOS 9.1, *) {
+                    return UIApplicationShortcutIcon(type: .message)
+                } else {
+                    return UIApplicationShortcutIcon(type: .compose)
+                }
+            }
+        }
+
+        var title: String {
+            switch self {
+            case .search: return "Search".localized()
+            case .wishes: return "Wishes".localized()
+            case .updates: return "Updates".localized()
+            case .news: return "News".localized()
+            }
+        }
+
+        var resolvedUrl: URL {
+            switch self {
+            case .search: return URL(string: "appdb-ios://?tab=search")!
+            case .wishes: return URL(string: "appdb-ios://?tab=wishes")!
+            case .updates: return URL(string: "appdb-ios://?tab=updates")!
+            case .news: return URL(string: "appdb-ios://?tab=news")!
+            }
+        }
+    }
+
     static let isIpad: Bool = UIDevice.current.userInterfaceIdiom == .pad
 
     static var hasNotch: Bool {

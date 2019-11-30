@@ -44,9 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
         // Theme Status Bar
         if #available(iOS 13.0, *) {
-            UIApplication.shared.theme_setStatusBarStyle([.darkContent, .lightContent, .lightContent], animated: true)
+            application.theme_setStatusBarStyle([.darkContent, .lightContent, .lightContent], animated: true)
         } else {
-            UIApplication.shared.theme_setStatusBarStyle([.default, .lightContent, .lightContent], animated: true)
+            application.theme_setStatusBarStyle([.default, .lightContent, .lightContent], animated: true)
         }
 
         // Theme navigation bar
@@ -83,7 +83,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             }
         }
 
+        application.shortcutItems = Global.ShortcutItem.createItems(for: [.search, .wishes, .updates, .news])
+
         return true
+    }
+
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if let item = Global.ShortcutItem(rawValue: shortcutItem.type) {
+            delay(0.7) { application.openURL(item.resolvedUrl) }
+        }
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -159,6 +167,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 guard let nav = tab.viewControllers?[3] as? UINavigationController else { break }
                 guard let settings = nav.viewControllers[0] as? Settings else { break }
                 settings.push(DeviceStatus())
+            case "wishes":
+                tab.selectedIndex = 0
+                guard let nav = tab.viewControllers?[0] as? UINavigationController else { break }
+                if Global.isIpad {
+                    let modalNav = DismissableModalNavController(rootViewController: Wishes())
+                    modalNav.modalPresentationStyle = .formSheet
+                    nav.present(modalNav, animated: true)
+                } else {
+                    nav.present(UINavigationController(rootViewController: Wishes()), animated: true)
+                }
             default: break
             }
 
