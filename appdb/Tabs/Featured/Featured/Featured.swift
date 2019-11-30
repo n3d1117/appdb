@@ -118,6 +118,19 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             // Haptic feedback
             if #available(iOS 10.0, *) { UIImpactFeedbackGenerator(style: .light).impactOccurred() }
 
+            // Pull to refresh
+            tableView.scrollIndicatorInsets.top = banner.height
+            tableView.spr_setIndicatorHeader(height: 80, positiveOffset: banner.height - 10) { [weak self] in
+                delay(0.3) {
+                    for cell in self?.cells ?? [] {
+                        if let collection = cell as? ItemCollection {
+                            collection.reloadAfterCategoryChange(id: collection.currentCategory, type: collection.currentType)
+                        }
+                    }
+                    self?.tableView.spr_endRefreshing()
+                }
+            }
+
             // Check if there is a new update available
             API.checkIfUpdateIsAvailable(success: { [weak self] (update: CydiaApp, linkId: String) in
                 guard let self = self else { return }
