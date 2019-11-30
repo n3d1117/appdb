@@ -204,7 +204,6 @@ class ItemCollection: FeaturedCell {
     // MARK: - Networking
 
     func requestItems() {
-        self.response.success = false; self.response.errorDescription = ""
         if let id = reuseIdentifier {
             if let type = Featured.CellType(rawValue: id) {
                 switch type {
@@ -220,6 +219,8 @@ class ItemCollection: FeaturedCell {
     }
 
     func getItems<T>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") where T: Item {
+        self.response.success = false
+        self.response.errorDescription = ""
         API.search(type: type, order: order, price: price, genre: genre, success: { [weak self] array in
             guard let self = self else { return }
 

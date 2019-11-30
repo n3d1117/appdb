@@ -45,7 +45,7 @@ enum Global {
                 return UIApplicationShortcutIcon(type: .search)
             case .wishes:
                 if #available(iOS 13.0, *) {
-                    return UIApplicationShortcutIcon(systemImageName: "gift")
+                    return UIApplicationShortcutIcon(systemImageName: "wand.and.stars")
                 } else  if #available(iOS 9.1, *) {
                     return UIApplicationShortcutIcon(type: .love)
                 } else {

@@ -121,14 +121,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             // Pull to refresh
             tableView.scrollIndicatorInsets.top = banner.height
             tableView.spr_setIndicatorHeader(height: 80, positiveOffset: banner.height - 10) { [weak self] in
-                delay(0.3) {
-                    for cell in self?.cells ?? [] {
-                        if let collection = cell as? ItemCollection {
-                            collection.reloadAfterCategoryChange(id: collection.currentCategory, type: collection.currentType)
-                        }
-                    }
-                    self?.tableView.spr_endRefreshing()
-                }
+                self?.pullToRefreshAction()
             }
 
             // Check if there is a new update available
@@ -146,6 +139,24 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     }
 
     // MARK: - Retry Loading
+
+    func pullToRefreshAction() {
+        let itemCells = self.cells.compactMap {$0 as? ItemCollection}
+        for cell in itemCells {
+            cell.reloadAfterCategoryChange(id: cell.currentCategory, type: cell.currentType)
+        }
+        delay(0.3) {
+            if itemCells.count != (itemCells.filter {$0.response.success}.count) {
+                if !itemCells.filter({!$0.response.errorDescription.isEmpty}).isEmpty {
+                    self.tableView.spr_endRefreshing()
+                } else {
+                    delay(0.3) { self.pullToRefreshAction() }
+                }
+            } else {
+                self.tableView.spr_endRefreshing()
+            }
+        }
+    }
 
     @objc func retry() {
         state = .loading
