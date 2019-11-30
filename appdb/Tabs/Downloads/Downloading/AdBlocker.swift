@@ -67,6 +67,11 @@ let blockRules = """
 """
 
 let ads: Set = [
+    "usa.godabert-nap.com",
+    "you-have-1-message-about-your-device.mujohiy.com",
+    "track-my-vpn.com",
+    "usd.mohini-ger.com",
+    "rasesuggedrail.info",
     "arcaptart.site",
     "psadsoob.com",
     "usa.mohini-ger.com",
