@@ -92,8 +92,6 @@
 		81603A6B216E63A400F18E34 /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81603A6A216E63A400F18E34 /* TrendingCollectionViewCell.swift */; };
 		81638F58229E9CE400B2F891 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81638F57229E9CE400B2F891 /* Credits.swift */; };
 		8167A6131DAC246000F96AC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8167A6121DAC246000F96AC2 /* AppDelegate.swift */; };
-		8167DE8F2347726A00E5C977 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8167DE8E2347726A00E5C977 /* StartApp.framework */; };
-		8167DE912347728000E5C977 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8167DE902347727F00E5C977 /* StartApp.bundle */; };
 		816B343C20B727500019DE5C /* DeepDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 816B343B20B727500019DE5C /* DeepDiff.framework */; };
 		816CEED91DBCE8A2002CFF6E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816CEED81DBCE8A2002CFF6E /* Categories.swift */; };
 		816CEEDB1DBD00E5002CFF6E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */; };
@@ -338,8 +336,6 @@
 		8167A61E1DAC246000F96AC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8167A6201DAC246000F96AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8167A6261DAC24F700F96AC2 /* appdb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appdb.entitlements; sourceTree = "<group>"; };
-		8167DE8E2347726A00E5C977 /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StartApp.framework; sourceTree = "<group>"; };
-		8167DE902347727F00E5C977 /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StartApp.bundle; sourceTree = "<group>"; };
 		816B343B20B727500019DE5C /* DeepDiff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeepDiff.framework; path = Carthage/Build/iOS/DeepDiff.framework; sourceTree = "<group>"; };
 		816CEED81DBCE8A2002CFF6E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Categories.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -423,7 +419,6 @@
 		81BFC99822F4CE7A008073D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		81BFC99A22F4CE81008073D8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		81BFC99C22F4CE8A008073D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		81BFC99E22F4CED8008073D8 /* appdb-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "appdb-Bridging-Header.h"; sourceTree = "<group>"; };
 		81C114C11E60699A00EE17A6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		81C274D7229FFA57000D8BEB /* Credits+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Credits+Views.swift"; sourceTree = "<group>"; };
@@ -504,7 +499,6 @@
 				81BFC98D22F4CE49008073D8 /* SystemConfiguration.framework in Frameworks */,
 				815234CF2278479000B1AE65 /* ZIPFoundation.framework in Frameworks */,
 				817D2EDA1E8EBBE500B8AE0D /* Alamofire.framework in Frameworks */,
-				8167DE8F2347726A00E5C977 /* StartApp.framework in Frameworks */,
 				817D2EDD1E8EBBE500B8AE0D /* Cartography.framework in Frameworks */,
 				816B343C20B727500019DE5C /* DeepDiff.framework in Frameworks */,
 				8138538C1F2B7EA300DC7C54 /* Kanna.framework in Frameworks */,
@@ -914,7 +908,6 @@
 		8188E8E31DB1993700462256 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8167DE902347727F00E5C977 /* StartApp.bundle */,
 				81892558227CC9490096F661 /* • AdaptiveUIAlertController */,
 				811A824B2289D14300969946 /* • AdditionalInstallOptionsView */,
 				81C82B7922C3DB8A008BB076 /* • AskBundleBeforeUploadView */,
@@ -1138,7 +1131,6 @@
 				81F0C0A0235357C300604A10 /* GoogleMobileAds.framework */,
 				81F0C0A2235357C300604A10 /* GoogleUtilities.framework */,
 				81F0C0A1235357C300604A10 /* nanopb.framework */,
-				8167DE8E2347726A00E5C977 /* StartApp.framework */,
 				81BFC99C22F4CE8A008073D8 /* libz.tbd */,
 				81BFC99A22F4CE81008073D8 /* WebKit.framework */,
 				81BFC99822F4CE7A008073D8 /* AVFoundation.framework */,
@@ -1310,7 +1302,6 @@
 		81EC00621DAD74D9009EEFFA /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				81BFC99E22F4CED8008073D8 /* appdb-Bridging-Header.h */,
 				819EC27220A72472007138CF /* Acknowledgements.plist */,
 				818A55A42058439B00162E51 /* Images.xcassets */,
 				8167A6201DAC246000F96AC2 /* Info.plist */,
@@ -1563,7 +1554,6 @@
 				81A9DBB8214D36BD00AB1A8C /* Acknowledgements.plist in Resources */,
 				81A9DBB7214D36AB00AB1A8C /* Images.xcassets in Resources */,
 				81A9DBB6214D36A800AB1A8C /* LaunchScreen.storyboard in Resources */,
-				8167DE912347728000E5C977 /* StartApp.bundle in Resources */,
 				81A9DBB5214D36A400AB1A8C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2015,7 +2005,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "appdb/Other/appdb-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2048,7 +2038,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "appdb/Other/appdb-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

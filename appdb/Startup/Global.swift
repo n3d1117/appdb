@@ -28,6 +28,7 @@ enum Global {
 
     // Homescreen shortcut items
     enum ShortcutItem: String {
+
         case search, wishes, updates, news
 
         static func createItems(for items: [ShortcutItem]) -> [UIApplicationShortcutItem] {

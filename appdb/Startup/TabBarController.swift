@@ -12,18 +12,11 @@ import GoogleMobileAds
 
 class TabBarController: UITabBarController {
 
-    private var SAInterstitialAd: STAStartAppAd?
-    private var SABannerAd: STABannerView?
-    private var SAAdContainerView: UIView?
-
     private var GADInterstitialView: GADInterstitial?
     private var GADBannerView: GADBannerView?
 
     private var bannerGroup = ConstraintGroup()
     private var interstitialReady: Bool = true
-
-    private var admobBannerFailed: Bool = false
-    private var admobInterstitialFailed: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,26 +40,6 @@ class TabBarController: UITabBarController {
 
         GADBannerView = GADAdHelper.generateBanner(on: self)
         GADInterstitialView = GADAdHelper.generateInterstitial(on: self)
-
-        SAInterstitialAd = StartAppAdsHelper.generateInterstitial()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        SAInterstitialAd?.load()
-
-        if SABannerAd == nil {
-            SABannerAd = StartAppAdsHelper.generateBanner(on: self)
-
-            if let bannerAd = SABannerAd {
-                SAAdContainerView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: tabBar.frame.origin.y - tabBar.frame.height), size: CGSize(width: view.frame.size.width, height: 90 ~~ 50)))
-                SAAdContainerView?.addSubview(bannerAd)
-                SAAdContainerView?.alpha = 0
-                view.addSubview(SAAdContainerView!)
-                setSTABannerConstraints()
-            }
-        }
     }
 
     // Bounce animation
@@ -87,11 +60,7 @@ class TabBarController: UITabBarController {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { (_: UIViewControllerTransitionCoordinatorContext!) -> Void in
-            if self.admobBannerFailed {
-                self.setSTABannerConstraints()
-            } else {
-                self.setGADBannerConstraints()
-            }
+            self.setGADBannerConstraints()
         }, completion: nil)
     }
 }
@@ -101,14 +70,12 @@ class TabBarController: UITabBarController {
 extension TabBarController: GADBannerViewDelegate {
 
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        admobBannerFailed = false
         guard self.GADBannerView != nil else { return }
         bannerView.alpha = 0
         view.addSubview(bannerView)
         setGADBannerConstraints()
         UIView.animate(withDuration: 0.3, animations: {
             bannerView.alpha = 1
-            self.SAAdContainerView?.alpha = 0
         })
         Preferences.set(.adBannerHeight, to: Int(bannerView.frame.size.height))
     }
@@ -116,7 +83,6 @@ extension TabBarController: GADBannerViewDelegate {
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         guard self.GADBannerView != nil else { return }
         debugLog("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-        admobBannerFailed = true
         GADBannerView?.alpha = 0
     }
 
@@ -134,7 +100,6 @@ extension TabBarController: GADBannerViewDelegate {
 extension TabBarController: GADInterstitialDelegate {
 
     func showGADInterstitialIfReady() {
-        if admobInterstitialFailed { showSAInterstitialIfReady(); return }
         guard let interstitialView = GADInterstitialView else { return }
         if interstitialReady, interstitialView.isReady, Int.random(in: 1..<4) == 3 {
             interstitialReady = false
@@ -146,67 +111,11 @@ extension TabBarController: GADInterstitialDelegate {
         }
     }
 
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        admobInterstitialFailed = false
-    }
-
     func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
         debugLog("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
-        admobInterstitialFailed = true
     }
 
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         GADInterstitialView = GADAdHelper.generateInterstitial(on: self)
-    }
-}
-
-// MARK: - STAAds
-
-extension TabBarController: STABannerDelegateProtocol {
-
-    func didDisplayBannerAd(_ banner: STABannerView!) {
-        if admobBannerFailed {
-            GADBannerView?.alpha = 0
-            SAAdContainerView?.alpha = 1
-            Preferences.set(.adBannerHeight, to: Int(banner.frame.size.height))
-        } else {
-            SAAdContainerView?.alpha = 0
-        }
-    }
-
-    func failedLoadBannerAd(_ banner: STABannerView!, withError error: Error!) {
-        GADBannerView?.alpha = 0
-        SAAdContainerView?.alpha = 0
-        Preferences.set(.adBannerHeight, to: 0)
-    }
-
-    // Set container view on top of tab bar, and add banner inside it
-    func setSTABannerConstraints() {
-        guard let bannerAd = SABannerAd, let adContainerView = SAAdContainerView else { return }
-
-        bannerAd.setSTABannerSize(STA_AutoAdSize)
-
-        constrain(adContainerView, bannerAd, replace: bannerGroup) { container, banner in
-
-            container.leading ~== container.superview!.leading
-            container.trailing ~== container.superview!.trailing
-            container.bottom ~== container.superview!.bottom - tabBar.frame.height
-            container.height ~== 90 ~~ 50
-
-            banner.leading ~== banner.superview!.leading
-            banner.trailing ~== banner.superview!.trailing
-            banner.bottom ~== banner.superview!.bottom
-            (banner.top ~== banner.superview!.top) ~ Global.notMaxPriority
-        }
-    }
-
-    func showSAInterstitialIfReady() {
-        guard let interstitialAd = SAInterstitialAd, interstitialReady, Int.random(in: 1..<4) == 3 else { return }
-        interstitialReady = false
-        interstitialAd.show()
-        // Wait 30 seconds before showing a new interstitial ad
-        delay(30) {
-            self.interstitialReady = true
-        }
     }
 }

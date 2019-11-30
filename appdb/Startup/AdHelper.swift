@@ -50,20 +50,6 @@ enum GADAdHelper {
     }
 }
 
-enum StartAppAdsHelper {
-    static func generateBanner(on viewController: UIViewController) -> STABannerView? {
-        guard !Preferences.pro else { return nil }
-        let banner = STABannerView(size: STA_AutoAdSize, autoOrigin: STAAdOrigin_Bottom, withDelegate: viewController as? STABannerDelegateProtocol)
-        return banner
-    }
-
-    static func generateInterstitial() -> STAStartAppAd? {
-        guard !Preferences.pro else { return nil }
-        let interstitial = STAStartAppAd()
-        return interstitial
-    }
-}
-
 protocol AdAware: class {
     func adMobAdjustContentInsetsIfNeeded()
 }
