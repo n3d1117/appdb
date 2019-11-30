@@ -51,7 +51,13 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 
         // Add wishes button
 
-        let wishesButton = UIBarButtonItem(image: UIImage(named: "wishes"), style: .plain, target: self, action: #selector(self.openWishes))
+        var wishesButtonImage: UIImage!
+        if #available(iOS 13.0, *) {
+            wishesButtonImage = UIImage(systemName: "wand.and.stars")
+        } else {
+            wishesButtonImage = UIImage(named: "wishes")
+        }
+        let wishesButton = UIBarButtonItem(image: wishesButtonImage, style: .plain, target: self, action: #selector(self.openWishes))
         navigationItem.rightBarButtonItem = wishesButton
         navigationItem.rightBarButtonItem?.isEnabled = false
 
