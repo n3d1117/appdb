@@ -283,19 +283,19 @@ class ItemCollection: FeaturedCell {
 
     // Current parameters
 
-    private var currentIosCategory: String! = "0"
-    private var currentCydiaCategory: String! = "0"
-    private var currentBooksCategory: String! = "0"
+    private var currentIosCategory: String = "0"
+    private var currentCydiaCategory: String = "0"
+    private var currentBooksCategory: String = "0"
 
-    private var currentCategory: String {
-        switch currentType! {
+    var currentCategory: String {
+        switch currentType {
         case .cydia: return currentCydiaCategory
         case .books: return currentBooksCategory
         default: return currentIosCategory
         }
     }
 
-    private var currentType: ItemType! {
+    var currentType: ItemType {
         guard let identifier = reuseIdentifier else { return .ios }
         guard let type = Featured.CellType(rawValue: identifier) else { return .ios }
         switch type {
@@ -305,7 +305,7 @@ class ItemCollection: FeaturedCell {
         }
     }
 
-    private var currentPrice: Price! {
+    private var currentPrice: Price {
         guard let identifier = reuseIdentifier else { return .all }
         guard let type = Featured.CellType(rawValue: identifier) else { return .all }
         switch type {
@@ -315,7 +315,7 @@ class ItemCollection: FeaturedCell {
         }
     }
 
-    private var currentOrder: Order! {
+    private var currentOrder: Order {
         guard let identifier = reuseIdentifier else { return .added }
         guard let type = Featured.CellType(rawValue: identifier) else { return .added }
         switch type {
