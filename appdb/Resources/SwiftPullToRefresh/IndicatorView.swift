@@ -32,9 +32,9 @@ class IndicatorView: RefreshView {
     
     private let isHeader: Bool
     
-    init(isHeader: Bool, height: CGFloat, action: @escaping () -> Void) {
+    init(isHeader: Bool, height: CGFloat, positiveOffset: CGFloat = 0, action: @escaping () -> Void) {
         self.isHeader = isHeader
-        super.init(style: isHeader ? .header : .footer, height: height, action: action)
+        super.init(style: isHeader ? .header : .footer, height: height, positiveOffset: positiveOffset, action: action)
         
         indicator.theme_activityIndicatorViewStyle = [.gray, .white, .white]
         

@@ -51,9 +51,8 @@ public extension UIScrollView {
     /// - Parameters:
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    func spr_setIndicatorHeader(height: CGFloat = 60,
-                                       action: @escaping () -> Void) {
-        spr_header = IndicatorView(isHeader: true, height: height, action: action)
+    func spr_setIndicatorHeader(height: CGFloat = 60, positiveOffset: CGFloat = 0, action: @escaping () -> Void) {
+        spr_header = IndicatorView(isHeader: true, height: height, positiveOffset: positiveOffset, action: action)
     }
 
     /// Custom header

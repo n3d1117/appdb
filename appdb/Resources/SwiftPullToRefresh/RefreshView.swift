@@ -17,11 +17,13 @@ open class RefreshView: UIView {
     
     private let style: Style
     public let height: CGFloat
+    public let positiveOffset: CGFloat
     private let action: () -> Void
     
-    public init(style: Style, height: CGFloat, action: @escaping () -> Void) {
+    public init(style: Style, height: CGFloat, positiveOffset: CGFloat = 0, action: @escaping () -> Void) {
         self.style = style
         self.height = height
+        self.positiveOffset = positiveOffset
         self.action = action
         super.init(frame: .zero)
         autoresizingMask = [.flexibleWidth]
@@ -78,7 +80,7 @@ open class RefreshView: UIView {
             self?.scrollViewDidEndDragging(scrollView)
         }
         if style == .header {
-            frame = CGRect(x: 0, y: -height, width: scrollView.contentSize.width, height: height)
+            frame = CGRect(x: 0, y: -height+positiveOffset, width: scrollView.contentSize.width, height: height)
         } else {
             sizeToken = scrollView.observe(\.contentSize) { [weak self] scrollView, _ in
                 self?.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: scrollView.contentSize.width, height: self?.height ?? 0)
