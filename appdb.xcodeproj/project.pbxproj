@@ -1505,9 +1505,9 @@
 				TargetAttributes = {
 					8167A60E1DAC246000F96AC2 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = A2SY882DX2;
+						DevelopmentTeam = 9Y4562FZWB;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -1976,10 +1976,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = A2SY882DX2;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9Y4562FZWB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
@@ -1995,7 +1995,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ned's provisioning profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2009,10 +2009,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = A2SY882DX2;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9Y4562FZWB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
@@ -2028,7 +2028,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ned's provisioning profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
