@@ -70,7 +70,7 @@ extension AdvancedOptions {
             if isRevoked {
                 var message: String = "Revoked on %@".localizedFormat(revokedOn.revokedDateDecoded)
                 if Preferences.usesCustomDeveloperIdentity {
-                    message = "Custom Developer Identity\n" + message
+                    message = "Custom Developer Identity".localized() + "\n" + message
                 }
                 Messages.shared.showError(message: message, duration: 4, context: .viewController(self))
             } else {
