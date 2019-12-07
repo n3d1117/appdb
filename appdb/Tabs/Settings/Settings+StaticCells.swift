@@ -173,6 +173,9 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
             activeLabel.text = "Custom Developer Identity".localized()
             selectionStyle = .none
             accessoryType = .none
+            if proRevoked {
+                expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
+            }
         } else if proRevoked {
             activeLabel.theme_textColor = Color.softRed
             expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
@@ -199,9 +202,9 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
             }
         }
 
-        expirationLabel.isHidden = usesCustomDeveloperIdentity
+        expirationLabel.isHidden = usesCustomDeveloperIdentity && !proRevoked
 
-        if usesCustomDeveloperIdentity {
+        if usesCustomDeveloperIdentity && !proRevoked {
             constrain(activeLabel, replace: constraintGroup) { active in
                 active.centerY ~== active.superview!.centerY
                 active.trailing ~== active.superview!.trailingMargin

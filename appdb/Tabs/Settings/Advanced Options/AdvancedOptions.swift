@@ -68,7 +68,11 @@ extension AdvancedOptions {
     fileprivate func checkProRevocationStatus() {
         API.checkRevocation(completion: { isRevoked, revokedOn in
             if isRevoked {
-                Messages.shared.showError(message: "Revoked on %@".localizedFormat(revokedOn.revokedDateDecoded), duration: 4, context: .viewController(self))
+                var message: String = "Revoked on %@".localizedFormat(revokedOn.revokedDateDecoded)
+                if Preferences.usesCustomDeveloperIdentity {
+                    message = "Custom Developer Identity\n" + message
+                }
+                Messages.shared.showError(message: message, duration: 4, context: .viewController(self))
             } else {
                 Messages.shared.showSuccess(message: "Your PRO has not been revoked!".localized(), context: .viewController(self))
             }
