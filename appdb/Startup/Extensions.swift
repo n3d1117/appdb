@@ -28,7 +28,7 @@ func ~~ <T>(left: T, right: T) -> T { return Global.isIpad ? left : right }
 // UINavigationBar extension to hide bottom hairline. Useful for segmented control under Navigation Bar
 extension UINavigationBar {
     func hideBottomHairline() {
-        self.setValue(true, forKey: "hidesShadow")
+        setValue(true, forKey: "hidesShadow")
     }
 }
 
@@ -68,7 +68,7 @@ extension String {
         case "INVALID_VOUCHER": return "Invalid voucher.".localized()
         case "VOUCHER_ALREADY_USED": return "Voucher already used.".localized()
         case "NO_DEVICES_WITH_THIS_EMAIL": return "No devices with this email.".localized()
-        default: return self.localized()
+        default: return localized()
         }
     }
 
@@ -80,7 +80,7 @@ extension String {
     //
     var decoded: String {
         let regex = "(?:(?:(?:\\<br\\ \\/\\>))|(?:(?:\\<br\\/\\>))|(?:(?:\\<p\\/\\>)))"
-        var newString: String = self.replacingOccurrences(of: "\n", with: "")
+        var newString: String = replacingOccurrences(of: "\n", with: "")
         newString = newString.replacingOccurrences(of: regex, with: "\n", options: .regularExpression)
         do {
             return try HTML(html: newString, encoding: .utf8).text ?? ""
@@ -170,7 +170,10 @@ extension String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d HH:mm:ss yyyy Z"
         formatter.locale = Locale(identifier: "en_US")
-        if let date = formatter.date(from: self.replacingOccurrences(of: "Revocation Time: ", with: "")) {
+        var cleanedString = replacingOccurrences(of: "Revoked by Apple, Inc. \tRevocation Time: ", with: "")
+        cleanedString = cleanedString.replacingOccurrences(of: "Revocation Time: ", with: "")
+        cleanedString = cleanedString.replacingOccurrences(of: "  ", with: " ")
+        if let date = formatter.date(from: cleanedString) {
             formatter.locale = Locale(identifier: Localize.currentLanguage())
             formatter.dateStyle = .medium
             formatter.timeStyle = .short
@@ -181,8 +184,8 @@ extension String {
 
     // Returns string without ending \n
     func trimTrailingWhitespace() -> String {
-        if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
-            return self.replacingCharacters(in: trailingWs, with: "")
+        if let trailingWs = range(of: "\\s+$", options: .regularExpression) {
+            return replacingCharacters(in: trailingWs, with: "")
         } else {
             return self
         }
@@ -190,7 +193,7 @@ extension String {
 
     // Convert string to Base 64
     func toBase64() -> String {
-        return Data(self.utf8).base64EncodedString()
+        return Data(utf8).base64EncodedString()
     }
 }
 
@@ -250,7 +253,7 @@ public extension UIColor {
         let rect = CGRect(origin: .zero, size: CGSize(width: 1, height: 1))
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(self.cgColor)
+        context.setFillColor(cgColor)
         context.fill(rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -273,12 +276,12 @@ extension UILabel {
 
 extension NSMutableAttributedString {
     func setAttachmentsAlignment(_ alignment: NSTextAlignment) {
-        self.enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: self.length), options: .longestEffectiveRangeNotRequired) { attribute, range, _ -> Void in
+        enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: length), options: .longestEffectiveRangeNotRequired) { attribute, range, _ -> Void in
             if attribute is NSTextAttachment {
                 let paragraphStyle = NSMutableParagraphStyle()
                 paragraphStyle.alignment = alignment
                 paragraphStyle.lineBreakMode = .byTruncatingTail
-                self.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: range)
+                addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: range)
             }
         }
     }
