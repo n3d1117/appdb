@@ -15,6 +15,8 @@ class SelectorBulletinPage: BLTNPageItem {
     private var firstButton: UIButton!
     private var secondButton: UIButton!
 
+    public var deviceIsNotYetLinked: Bool = false
+
     override func tearDown() {
         firstButton?.removeTarget(self, action: nil, for: .touchUpInside)
         secondButton?.removeTarget(self, action: nil, for: .touchUpInside)
@@ -95,6 +97,8 @@ class SelectorBulletinPage: BLTNPageItem {
         secondButton.layer.theme_borderColor = Color.copyrightTextCgColor
         secondButton.theme_setTitleColor(Color.copyrightText, forState: .normal)
 
+        deviceIsNotYetLinked = false
+
         // Set the next item
         next = DeviceLinkIntroBulletins.makeLinkCodeTextFieldPage()
     }
@@ -107,7 +111,9 @@ class SelectorBulletinPage: BLTNPageItem {
         firstButton.layer.theme_borderColor = Color.copyrightTextCgColor
         firstButton.theme_setTitleColor(Color.copyrightText, forState: .normal)
 
-        // Set the next item
-        next = DeviceLinkIntroBulletins.makeEmailTextFieldPage()
+        deviceIsNotYetLinked = true
+
+        // Just a dummy item (never actually pushed)
+        next = BLTNPageItem()
     }
 }

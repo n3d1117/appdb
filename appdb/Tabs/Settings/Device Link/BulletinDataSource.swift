@@ -19,24 +19,18 @@ enum DeviceLinkIntroBulletins {
         page.appearance.theme_actionButtonColor = Color.mainTint
         page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
         page.appearance.shouldUseCompactDescriptionText = true
-
-        // If device was authorized before, linkDevice will succeed with any code given
-        // So there's no need to ask the user to paste the code/enter email!
-        // If it fails, just show the next item
         page.actionHandler = { item in
-            item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
-
-            delay(0.3) {
-                API.linkDevice(code: "anything", success: {
-                    API.getConfiguration(success: {
-                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
-                        item.manager?.push(item: completionPage)
-                    }, fail: { _ in
-                        item.manager?.displayNextItem()
-                    })
-                }, fail: { _ in
+            if page.deviceIsNotYetLinked {
+                // If device is not yet linked to appdb there's not much I can do: just redirect
+                // user to the web page where he can link it (APIs to link manually no longer work)
+                let linkPageUrlString = "\(Global.mainSite)link.php"
+                NotificationCenter.default.post(name: .OpenSafari, object: self, userInfo: ["URLString": "\(linkPageUrlString)"])
+            } else {
+                // Otherwise, show page where user can enter link code as usual
+                item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
+                delay(0.2) {
                     item.manager?.displayNextItem()
-                })
+                }
             }
         }
 
@@ -66,54 +60,17 @@ enum DeviceLinkIntroBulletins {
 
                 API.linkDevice(code: code, success: {
                     API.getConfiguration(success: {
-                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
+                        let completionPage = makeCompletionPage()
                         item.manager?.push(item: completionPage)
                     }, fail: { error in
-                        let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
+                        let errorPage = makeErrorPage(with: error.prettified)
                         item.manager?.push(item: errorPage)
                     })
                 }, fail: { error in
-                    let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
+                    let errorPage = makeErrorPage(with: error.prettified)
                     item.manager?.push(item: errorPage)
                 })
             }
-        }
-
-        return page
-    }
-
-    static func makeEmailTextFieldPage() -> EnterEmailBulletinPage {
-        let page = EnterEmailBulletinPage(title: "Enter Email".localized())
-        page.isDismissable = true
-        page.descriptionText = "Please enter your email address below and click Continue. You will be redirected to the Settings app where you can proceed with appdb profile installation.".localized()
-        page.actionButtonTitle = "Continue".localized()
-        page.appearance.titleFontSize = 25
-        page.appearance.theme_actionButtonColor = Color.mainTint
-        page.appearance.theme_alternativeButtonTitleColor = Color.mainTint
-        page.alternativeButtonTitle = "Go Back".localized()
-        page.appearance.shouldUseCompactDescriptionText = true
-        page.textInputHandler = { item, email in
-            guard let email = email else { return }
-
-            item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
-
-            API.linkNewDevice(email: email, success: {
-                API.setConfiguration(params: [.appsync: "no"], success: {
-                    API.getConfiguration(success: {
-                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
-                        item.manager?.push(item: completionPage)
-                    }, fail: { error in
-                        let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
-                        item.manager?.push(item: errorPage)
-                    })
-                }, fail: { error in
-                    let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
-                    item.manager?.push(item: errorPage)
-                })
-            }, fail: { error in
-                let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified)
-                item.manager?.push(item: errorPage)
-            })
         }
 
         return page
@@ -220,14 +177,14 @@ enum DeviceLinkIntroBulletins {
             delay(0.6) {
                 API.linkDevice(code: code, success: {
                     API.getConfiguration(success: {
-                        let completionPage = DeviceLinkIntroBulletins.makeCompletionPage()
+                        let completionPage = makeCompletionPage()
                         item.manager?.push(item: completionPage)
                     }, fail: { error in
-                        let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified, displayBackButton: false)
+                        let errorPage = makeErrorPage(with: error.prettified, displayBackButton: false)
                         item.manager?.push(item: errorPage)
                     })
                 }, fail: { error in
-                    let errorPage = DeviceLinkIntroBulletins.makeErrorPage(with: error.prettified, displayBackButton: false)
+                    let errorPage = makeErrorPage(with: error.prettified, displayBackButton: false)
                     item.manager?.push(item: errorPage)
                 })
             }

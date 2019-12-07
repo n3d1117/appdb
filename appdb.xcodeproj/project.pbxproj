@@ -39,6 +39,7 @@
 		81207DB1215EC6AC00296D20 /* API+Install.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81207DB0215EC6AC00296D20 /* API+Install.swift */; };
 		81236AC91E3B6899009748E0 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236AC81E3B6899009748E0 /* ButtonFactory.swift */; };
 		81236ACC1E3B8A56009748E0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */; };
+		81239683239C2E000006348A /* EnterLinkCodeBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81239682239C2E000006348A /* EnterLinkCodeBulletinPage.swift */; };
 		81262019215444A400B06F88 /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262013215444A300B06F88 /* AttributedLabel.swift */; };
 		8126201A215444A400B06F88 /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262014215444A300B06F88 /* AttributedText.swift */; };
 		8126201B215444A400B06F88 /* NSScanner+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262015215444A300B06F88 /* NSScanner+Swift.swift */; };
@@ -46,7 +47,6 @@
 		8126201D215444A400B06F88 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262017215444A400B06F88 /* NSAttributedString+Utils.swift */; };
 		8126201E215444A400B06F88 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262018215444A400B06F88 /* String+Detection.swift */; };
 		812C3542207D235300D39748 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812C3541207D235300D39748 /* Swifter.framework */; };
-		812C3544207D237300D39748 /* ConfigServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812C3543207D237300D39748 /* ConfigServer.swift */; };
 		81324068205BD86000945CE9 /* Settings+StaticCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81324067205BD86000945CE9 /* Settings+StaticCells.swift */; };
 		8132406B205BE50000945CE9 /* News+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132406A205BE50000945CE9 /* News+Detail.swift */; };
 		8133C45C208B629600F2F9F5 /* SeeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133C45B208B629600F2F9F5 /* SeeAll.swift */; };
@@ -102,8 +102,6 @@
 		817236A620BB1F8F0014F61A /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 817236A520BB1F8E0014F61A /* BLTNBoard.framework */; };
 		8173FBED207BC90200EF779F /* BulletinDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBEC207BC90200EF779F /* BulletinDataSource.swift */; };
 		8173FBF0207BCAE200EF779F /* SelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */; };
-		8173FBF4207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBF3207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift */; };
-		8173FBF6207BE8BE00EF779F /* EnterEmailBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173FBF5207BE8BE00EF779F /* EnterEmailBulletinPage.swift */; };
 		817418A52165368A00BB70EB /* LoadingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817418A42165368A00BB70EB /* LoadingCollectionView.swift */; };
 		817610EF21515A3200602FF2 /* API+SystemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817610E521515A3100602FF2 /* API+SystemStatus.swift */; };
 		817610F021515A3200602FF2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817610E621515A3100602FF2 /* API.swift */; };
@@ -279,6 +277,7 @@
 		81207DB0215EC6AC00296D20 /* API+Install.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Install.swift"; sourceTree = "<group>"; };
 		81236AC81E3B6899009748E0 /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ButtonFactory.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81236ACB1E3B8A56009748E0 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		81239682239C2E000006348A /* EnterLinkCodeBulletinPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterLinkCodeBulletinPage.swift; sourceTree = "<group>"; };
 		81262013215444A300B06F88 /* AttributedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabel.swift; sourceTree = "<group>"; };
 		81262014215444A300B06F88 /* AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		81262015215444A300B06F88 /* NSScanner+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSScanner+Swift.swift"; sourceTree = "<group>"; };
@@ -286,7 +285,6 @@
 		81262017215444A400B06F88 /* NSAttributedString+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		81262018215444A400B06F88 /* String+Detection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Detection.swift"; sourceTree = "<group>"; };
 		812C3541207D235300D39748 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
-		812C3543207D237300D39748 /* ConfigServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServer.swift; sourceTree = "<group>"; };
 		81324067205BD86000945CE9 /* Settings+StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+StaticCells.swift"; sourceTree = "<group>"; };
 		8132406A205BE50000945CE9 /* News+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail.swift"; sourceTree = "<group>"; };
 		8133C45B208B629600F2F9F5 /* SeeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAll.swift; sourceTree = "<group>"; };
@@ -346,8 +344,6 @@
 		817236A520BB1F8E0014F61A /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
 		8173FBEC207BC90200EF779F /* BulletinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinDataSource.swift; sourceTree = "<group>"; };
 		8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
-		8173FBF3207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLinkCodeBulletinPage.swift; sourceTree = "<group>"; };
-		8173FBF5207BE8BE00EF779F /* EnterEmailBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailBulletinPage.swift; sourceTree = "<group>"; };
 		817418A42165368A00BB70EB /* LoadingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionView.swift; sourceTree = "<group>"; };
 		817610E521515A3100602FF2 /* API+SystemStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+SystemStatus.swift"; sourceTree = "<group>"; };
 		817610E621515A3100602FF2 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -686,7 +682,6 @@
 			children = (
 				8173FBEE207BC9F600EF779F /* Bulletins */,
 				8173FBEC207BC90200EF779F /* BulletinDataSource.swift */,
-				812C3543207D237300D39748 /* ConfigServer.swift */,
 			);
 			path = "Device Link";
 			sourceTree = "<group>";
@@ -837,8 +832,7 @@
 		8173FBEE207BC9F600EF779F /* Bulletins */ = {
 			isa = PBXGroup;
 			children = (
-				8173FBF5207BE8BE00EF779F /* EnterEmailBulletinPage.swift */,
-				8173FBF3207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift */,
+				81239682239C2E000006348A /* EnterLinkCodeBulletinPage.swift */,
 				8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */,
 			);
 			path = Bulletins;
@@ -1511,9 +1505,9 @@
 				TargetAttributes = {
 					8167A60E1DAC246000F96AC2 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 9Y4562FZWB;
+						DevelopmentTeam = A2SY882DX2;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -1717,7 +1711,6 @@
 				81F05AF3219A19120030E5AD /* UpdateCell.swift in Sources */,
 				819AE78F1E637361009D6AF3 /* Details+TweakedNotice.swift in Sources */,
 				811BEE292151538600F1F56A /* Link.swift in Sources */,
-				8173FBF6207BE8BE00EF779F /* EnterEmailBulletinPage.swift in Sources */,
 				814F4FBF2197589E005A8111 /* IgnoredCell.swift in Sources */,
 				81EC00791DAD8B5A009EEFFA /* Copyright.swift in Sources */,
 				817610F721515A3200602FF2 /* API+Links.swift in Sources */,
@@ -1728,6 +1721,7 @@
 				817610F121515A3200602FF2 /* API+Genres.swift in Sources */,
 				816D1F231F9165C700172094 /* SearchCells~iPad.swift in Sources */,
 				817610F021515A3200602FF2 /* API.swift in Sources */,
+				81239683239C2E000006348A /* EnterLinkCodeBulletinPage.swift in Sources */,
 				819EC27A20A76EAD007138CF /* ThemeChooser.swift in Sources */,
 				81BE066F1E6C52FE00AD9827 /* Details+Publisher.swift in Sources */,
 				815C4AA01F954FDA0002AB08 /* Search.swift in Sources */,
@@ -1773,8 +1767,6 @@
 				817610F621515A3200602FF2 /* API+DeviceStatus.swift in Sources */,
 				81DFE215229D4BFD009BD7C1 /* API+CheckAppUpdate.swift in Sources */,
 				81190B49216A302C00C81BEB /* MixedScreenshotsSearchCell_L->P+Stars.swift in Sources */,
-				8173FBF4207BDE1A00EF779F /* EnterLinkCodeBulletinPage.swift in Sources */,
-				812C3544207D237300D39748 /* ConfigServer.swift in Sources */,
 				819E69921F8FCD0200C4608F /* TwoPortraitScreenshotsSearchCell.swift in Sources */,
 				81DEB2AE1E7DDF3200A94B26 /* Details+VersionHeader.swift in Sources */,
 				815A43922275F5EF00868949 /* LocalIPACell.swift in Sources */,
@@ -1986,8 +1978,8 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9Y4562FZWB;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = A2SY882DX2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
@@ -2003,7 +1995,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ned's provisioning profile";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2019,8 +2011,8 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9Y4562FZWB;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = A2SY882DX2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
@@ -2036,7 +2028,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ned's provisioning profile";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
