@@ -142,7 +142,7 @@
 ////////////////////
 
 "Search iOS Apps" = "Buscar apps";
-"Search Cydia Apps" = "Buscar appd de Cydia";
+"Search Cydia Apps" = "Buscar apps de Cydia";
 "Search Books" = "Buscar libros";
 "Trending iOS Apps" = "Top Apps para iOS";
 "Trending Cydia Apps" = "Top Cydia Apps";
@@ -297,7 +297,7 @@
 "Your version: %@" = "Tu versión: %@";
 "New version: %@" = "Nueva versión: %@";
 "Update Available" = "Actualización disponible";
-"What's New in version %@" = "Quéhay de nuevo en la versión %@";
+"What's New in version %@" = "Qué hay de nuevo en la versión %@";
 
 ////////////////////
 //     ERRORS     //
