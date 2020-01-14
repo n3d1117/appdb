@@ -13,7 +13,7 @@ import Localize_Swift
 enum API {
     static let endpoint = "https://api.dbservices.to/v1.2/"
     static let statusEndpoint = "https://status.dbservices.to/API/v1.0/"
-    static let itmsHelperEndpoint = "https://itms-plist-helper.vapor.cloud/"
+    static let itmsHelperEndpoint = "https://itms-plist-helper.herokuapp.com/"
 
     static var languageCode: String {
         return Localize.currentLanguage()

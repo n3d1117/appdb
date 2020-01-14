@@ -202,7 +202,7 @@ extension Library {
             } else {
 
                 // Install ipa without signing and without appdb, using itms-services directly
-                // Uses https://itms-plist-helper.vapor.cloud/
+                // Uses https://itms-plist-helper.herokuapp.com/
                 // See https://github.com/n3d1117/itms-helper
 
                 guard let bundleId = IPAFileManager.shared.getBundleId(from: ipa) else { return }
