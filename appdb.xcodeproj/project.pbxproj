@@ -334,6 +334,7 @@
 		8167A61E1DAC246000F96AC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8167A6201DAC246000F96AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8167A6261DAC24F700F96AC2 /* appdb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appdb.entitlements; sourceTree = "<group>"; };
+		816A376C23E894830021BFBE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		816B343B20B727500019DE5C /* DeepDiff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeepDiff.framework; path = Carthage/Build/iOS/DeepDiff.framework; sourceTree = "<group>"; };
 		816CEED81DBCE8A2002CFF6E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Categories.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1529,6 +1530,7 @@
 				id,
 				fr,
 				"jv-ID",
+				de,
 			);
 			mainGroup = 8167A6061DAC246000F96AC2;
 			productRefGroup = 8167A6101DAC246000F96AC2 /* Products */;
@@ -1823,6 +1825,7 @@
 				81DCAF16235EEBBF00B7706F /* id */,
 				81D873332365BAD800F7240E /* fr */,
 				81B601AD23675C950070555D /* jv-ID */,
+				816A376C23E894830021BFBE /* de */,
 			);
 			name = Localizable.strings;
 			path = .;
