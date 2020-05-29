@@ -31,6 +31,6 @@ struct RequestedApp: Matchable, Codable, Equatable {
     }
 
     static func == (lhs: RequestedApp, rhs: RequestedApp) -> Bool {
-        return lhs.linkId == rhs.linkId
+        lhs.linkId == rhs.linkId
     }
 }

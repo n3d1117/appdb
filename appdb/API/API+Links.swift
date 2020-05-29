@@ -12,7 +12,7 @@ import SwiftyJSON
 extension API {
 
     static func getLinks(type: ItemType, trackid: String, success:@escaping (_ items: [Version]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.getLinks.rawValue, "type": type.rawValue, "trackids": trackid], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.getLinks.rawValue, "type": type.rawValue, "trackids": trackid], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -83,7 +83,7 @@ extension API {
     }
 
     static func reportLink(id: String, type: ItemType, reason: String, completion:@escaping (_ error: String?) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.report.rawValue, "type": type.rawValue, "id": id, "reason": reason], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.report.rawValue, "type": type.rawValue, "id": id, "reason": reason], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):

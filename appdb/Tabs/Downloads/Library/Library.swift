@@ -111,7 +111,7 @@ class Library: LoadingCollectionView {
     // MARK: - Collection view delegate
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        2
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

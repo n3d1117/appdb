@@ -33,7 +33,7 @@ class DetailsSegmentControl: TableViewHeader {
         }
     }
 
-    static var height: CGFloat { return 45 }
+    static var height: CGFloat { 45 }
 
     convenience init(_ items: [DetailsSelectedSegmentState], state: DetailsSelectedSegmentState, enabled: Bool, delegate: SwitchDetailsSegmentDelegate) {
         self.init(frame: .zero)

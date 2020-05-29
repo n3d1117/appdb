@@ -16,16 +16,16 @@ class App: Item {
     }
 
     override var id: String {
-        get { return super.id }
+        get { super.id }
         set { super.id = newValue }
     }
 
     override class func type() -> ItemType {
-        return .ios
+        .ios
     }
 
     static func == (lhs: App, rhs: App) -> Bool {
-        return lhs.id == rhs.id && lhs.version == rhs.version
+        lhs.id == rhs.id && lhs.version == rhs.version
     }
 
     var name: String = ""

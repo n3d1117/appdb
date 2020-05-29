@@ -41,89 +41,89 @@ enum Preferences {
     // Sensitive data
 
     static var deviceIsLinked: Bool {
-        return !(KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? "").isEmpty
+        !(KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? "").isEmpty
     }
 
     static var pro: Bool {
-        return KeychainWrapper.standard.bool(forKey: SecureKeys.pro.rawValue) ?? false
+        KeychainWrapper.standard.bool(forKey: SecureKeys.pro.rawValue) ?? false
     }
 
     static var proUntil: String {
-        return KeychainWrapper.standard.string(forKey: SecureKeys.proUntil.rawValue) ?? ""
+        KeychainWrapper.standard.string(forKey: SecureKeys.proUntil.rawValue) ?? ""
     }
 
     static var proRevoked: Bool {
-        return KeychainWrapper.standard.bool(forKey: SecureKeys.proRevoked.rawValue) ?? false
+        KeychainWrapper.standard.bool(forKey: SecureKeys.proRevoked.rawValue) ?? false
     }
 
     static var proRevokedOn: String {
-        return KeychainWrapper.standard.string(forKey: SecureKeys.proRevokedOn.rawValue) ?? ""
+        KeychainWrapper.standard.string(forKey: SecureKeys.proRevokedOn.rawValue) ?? ""
     }
 
     static var usesCustomDeveloperIdentity: Bool {
-        return KeychainWrapper.standard.bool(forKey: SecureKeys.usesCustomDeveloperIdentity.rawValue) ?? false
+        KeychainWrapper.standard.bool(forKey: SecureKeys.usesCustomDeveloperIdentity.rawValue) ?? false
     }
 
     static var linkCode: String {
-        return KeychainWrapper.standard.string(forKey: SecureKeys.linkCode.rawValue) ?? ""
+        KeychainWrapper.standard.string(forKey: SecureKeys.linkCode.rawValue) ?? ""
     }
 
     static var linkToken: String {
-        return KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? ""
+        KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? ""
     }
 
     // Non sensitive data
 
     static var didSpecifyPreferredLanguage: Bool {
-        return defaults[.didSpecifyPreferredLanguage]
+        defaults[.didSpecifyPreferredLanguage]
     }
 
     static var appsync: Bool {
-        return defaults[.appsync]
+        defaults[.appsync]
     }
 
     static var adBannerHeight: Int {
-        return defaults[.adBannerHeight]
+        defaults[.adBannerHeight]
     }
 
     static var ignoresCompatibility: Bool {
-        return defaults[.ignoreCompatibility]
+        defaults[.ignoreCompatibility]
     }
 
     static var askForInstallationOptions: Bool {
-        return defaults[.askForInstallationOptions]
+        defaults[.askForInstallationOptions]
     }
 
     static var showBadgeForUpdates: Bool {
-        return defaults[.showBadgeForUpdates]
+        defaults[.showBadgeForUpdates]
     }
 
     static var changeBundleBeforeUpload: Bool {
-        return defaults[.changeBundleBeforeUpload]
+        defaults[.changeBundleBeforeUpload]
     }
 
     static var theme: Int {
-        return defaults[.theme]
+        defaults[.theme]
     }
 
     static var ignoredUpdateableApps: [IgnoredApp] {
-        return defaults[.ignoredUpdateableApps]
+        defaults[.ignoredUpdateableApps]
     }
 
     static var resumeQueuedApps: [RequestedApp] {
-        return defaults[.resumeQueuedApps]
+        defaults[.resumeQueuedApps]
     }
 
     static var genres: [Genre] {
-        return defaults[.genres]
+        defaults[.genres]
     }
 
     static var followSystemAppearance: Bool {
-        return defaults[.followSystemAppearance]
+        defaults[.followSystemAppearance]
     }
 
     static var shouldSwitchToDarkerTheme: Bool {
-        return defaults[.shouldSwitchToDarkerTheme]
+        defaults[.shouldSwitchToDarkerTheme]
     }
 }
 

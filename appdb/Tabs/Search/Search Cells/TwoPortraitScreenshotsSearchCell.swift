@@ -11,7 +11,7 @@ import Cartography
 
 class TwoPortraitScreenshotsSearchCell: SearchCell {
 
-    override var height: CGFloat { return round(iconSize + portraitSize + margin * 2 + spaceFromIcon) }
+    override var height: CGFloat { round(iconSize + portraitSize + margin * 2 + spaceFromIcon) }
 
     var screenshotOne: UIImageView!
     var screenshotTwo: UIImageView!
@@ -57,8 +57,8 @@ class TwoPortraitScreenshotsSearchCell: SearchCell {
         guard item.itemFirstTwoScreenshotsUrls.count > 1 else { return }
         if let url1 = URL(string: item.itemFirstTwoScreenshotsUrls[0]), let url2 = URL(string: item.itemFirstTwoScreenshotsUrls[1]) {
             let filter = Global.screenshotRoundedFilter(size: screenshotOne.frame.size, radius: 5)
-            screenshotOne.af_setImage(withURL: url1, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
-            screenshotTwo.af_setImage(withURL: url2, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
+            screenshotOne.af.setImage(withURL: url1, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
+            screenshotTwo.af.setImage(withURL: url2, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
         }
     }
 

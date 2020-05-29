@@ -25,7 +25,7 @@ class UpdateCell: UITableViewCell {
         info.text = versionOld + " → " + versionNew
         whatsnew.text = changelog.decoded
         if let url = URL(string: image) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
                              filter: Global.roundedFilter(from: 80 ~~ 60),
                              imageTransition: .crossDissolve(0.2))
         }

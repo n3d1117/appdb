@@ -17,7 +17,7 @@ struct DownloadingApp: Hashable {
     var util: LocalIPADownloadUtil?
 
     static func == (lhs: DownloadingApp, rhs: DownloadingApp) -> Bool {
-        return lhs.filename == rhs.filename
+        lhs.filename == rhs.filename
     }
 
     func hash(into hasher: inout Hasher) {
@@ -41,7 +41,7 @@ class DownloadingCell: UICollectionViewCell {
     func configureForDownload(with app: DownloadingApp) {
         filename.text = app.filename
         if !app.icon.isEmpty, let url = URL(string: app.icon) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize),
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize),
                              imageTransition: .crossDissolve(0.2))
         } else {
             icon.image = #imageLiteral(resourceName: "blank_icon")

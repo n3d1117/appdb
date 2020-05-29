@@ -12,7 +12,7 @@ import SwiftyJSON
 extension API {
 
     static func activateVoucher(voucher: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["voucher": voucher, "action": Actions.activatePro.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["voucher": voucher, "action": Actions.activatePro.rawValue], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -29,7 +29,7 @@ extension API {
     }
 
     static func validateVoucher(voucher: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["voucher": voucher, "action": Actions.validatePro.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["voucher": voucher, "action": Actions.validatePro.rawValue], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):

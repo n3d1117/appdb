@@ -199,6 +199,6 @@ extension DeviceStatusCell {
     }
 
     private func prettify(_ text: String) -> String {
-        return text.isEmpty ? "N/A" : text
+        text.isEmpty ? "N/A" : text
     }
 }

@@ -18,17 +18,17 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshot", for: indexPath) as? DetailsScreenshotCell else { return UICollectionViewCell() }
         if let url = URL(string: screenshots[indexPath.row].image) {
-            cell.image.af_setImage(withURL: url, filter: filterAtIndex(indexPath.row), imageTransition: .crossDissolve(0.2))
+            cell.image.af.setImage(withURL: url, filter: filterAtIndex(indexPath.row), imageTransition: .crossDissolve(0.2))
         }
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenshots.count
+        screenshots.count
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return sizeAtIndex(indexPath.row)
+        sizeAtIndex(indexPath.row)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -37,7 +37,7 @@ extension DetailsScreenshots: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 class DetailsScreenshots: DetailsCell {
-    override var identifier: String { return "screenshots" }
+    override var identifier: String { "screenshots" }
     override var height: CGFloat {
         if screenshots.isEmpty { return 0 }
         return allLandscape ? (230 ~~ 176) : (314 ~~ 280)
@@ -54,10 +54,10 @@ class DetailsScreenshots: DetailsCell {
         return 0
     }
 
-    var widthIfPortrait: CGFloat { return round(((314 ~~ 280) - (Global.Size.margin.value * 2)) / magic) }
-    var widthIfLandscape: CGFloat { return round(((230 ~~ 176) - (Global.Size.margin.value * 2)) * magic) }
-    var allLandscape: Bool { return (screenshots.filter({$0.class_=="portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
-    var mixedClasses: Bool { return !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
+    var widthIfPortrait: CGFloat { round(((314 ~~ 280) - (Global.Size.margin.value * 2)) / magic) }
+    var widthIfLandscape: CGFloat { round(((230 ~~ 176) - (Global.Size.margin.value * 2)) * magic) }
+    var allLandscape: Bool { (screenshots.filter({$0.class_=="portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
+    var mixedClasses: Bool { !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
     var spacing: CGFloat = 15
 
     func sizeAtIndex(_ index: Int) -> CGSize {
@@ -69,7 +69,7 @@ class DetailsScreenshots: DetailsCell {
     }
 
     func filterAtIndex(_ index: Int) -> ImageFilter {
-        return Global.screenshotRoundedFilter(size: sizeAtIndex(index), radius: 7)
+        Global.screenshotRoundedFilter(size: sizeAtIndex(index), radius: 7)
     }
 
     convenience init(type: ItemType, screenshots: [Screenshot], delegate: ScreenshotRedirectionDelegate) {

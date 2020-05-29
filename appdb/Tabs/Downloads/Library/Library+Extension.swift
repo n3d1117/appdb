@@ -210,7 +210,7 @@ extension Library {
                 API.getPlistFromItmsHelper(bundleId: bundleId, localIpaUrlString: link, title: ipa.filename, completion: { plistUrlString in
                     if let plistUrlString = plistUrlString {
                         if let url = URL(string: "itms-services://?action=download-manifest&url=\(plistUrlString)") {
-                            UIApplication.shared.openURL(url)
+                            UIApplication.shared.open(url)
                             cell.updateText(ipa.size)
                             // Allowing up to 3 mins for app to install...
                             delay(180) { IPAFileManager.shared.stopServer() }
@@ -415,7 +415,7 @@ extension Library {
 
 extension Library: ETCollectionViewDelegateWaterfallLayout {
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20 ~~ 15)
+        UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20 ~~ 15)
     }
 
     var layout: ETCollectionViewWaterfallLayout {
@@ -468,7 +468,7 @@ extension Library: ETCollectionViewDelegateWaterfallLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (68 ~~ 63) : (60 ~~ 55))
+        CGSize(width: itemDimension, height: indexPath.section == Section.myappstore.rawValue ? (68 ~~ 63) : (60 ~~ 55))
     }
 }
 

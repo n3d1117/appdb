@@ -12,7 +12,7 @@ import SwiftyJSON
 extension API {
 
     static func install(id: String, type: ItemType, alongsideId: String = "", displayName: String = "", completion:@escaping (_ error: String?) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.install.rawValue, "type": type.rawValue, "id": id, "is_alongside": alongsideId.lowercased(), "display_name": displayName], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.install.rawValue, "type": type.rawValue, "id": id, "is_alongside": alongsideId.lowercased(), "display_name": displayName], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -29,7 +29,7 @@ extension API {
     }
 
     static func requestInstallJB(plist: String, icon: String, link: String, completion:@escaping (_ error: String?) -> Void) {
-        Alamofire.request(endpoint, method: .post, parameters: ["action": Actions.customInstall.rawValue, "plist": plist, "icon": icon, "link": link], headers: headersWithCookie)
+        AF.request(endpoint, method: .post, parameters: ["action": Actions.customInstall.rawValue, "plist": plist, "icon": icon, "link": link], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -46,7 +46,7 @@ extension API {
     }
 
     static func getPlistFromItmsHelper(bundleId: String, localIpaUrlString: String, title: String, completion:@escaping (_ plistUrl: String?) -> Void) {
-        Alamofire.request(itmsHelperEndpoint + "request", method: .get, parameters: ["bundle": bundleId, "link": localIpaUrlString, "title": title], headers: headers).responseJSON { response in
+        AF.request(itmsHelperEndpoint + "request", method: .get, parameters: ["bundle": bundleId, "link": localIpaUrlString, "title": title], headers: headers).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)

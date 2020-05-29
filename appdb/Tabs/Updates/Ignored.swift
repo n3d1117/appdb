@@ -18,7 +18,7 @@ class Ignored: LoadingTableView {
     weak var delegate: IgnoredAppsListChanged?
 
     var apps: [IgnoredApp] {
-        return Preferences.ignoredUpdateableApps.sorted { $0.name.lowercased() < $1.name.lowercased() }
+        Preferences.ignoredUpdateableApps.sorted { $0.name.lowercased() < $1.name.lowercased() }
     }
 
     convenience init() {
@@ -54,11 +54,11 @@ class Ignored: LoadingTableView {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return apps.isEmpty ? 0 : 1
+        apps.isEmpty ? 0 : 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return apps.count
+        apps.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,7 +84,7 @@ class Ignored: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        50
     }
 
     // MARK: - Remove from ignored list

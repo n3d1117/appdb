@@ -182,19 +182,19 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return state == .done ? cells.count : 0
+        state == .done ? cells.count : 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return state == .done ? cells[indexPath.row] : UITableViewCell()
+        state == .done ? cells[indexPath.row] : UITableViewCell()
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return state == .done ? cells[indexPath.row].height : 0
+        state == .done ? cells[indexPath.row].height : 0
     }
 
     // Open wishes

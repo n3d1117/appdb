@@ -26,7 +26,7 @@ class LanguageChooser: UITableViewController {
     let availableLanguages = Localize.availableLanguages().filter({ !Localize.displayNameForLanguage($0).isEmpty }).sorted(by: { Localize.displayNameForLanguage($1) > Localize.displayNameForLanguage($0) })
 
     var currentLanguage: String {
-        return Localize.currentLanguage()
+        Localize.currentLanguage()
     }
 
     convenience init() {
@@ -76,11 +76,11 @@ class LanguageChooser: UITableViewController {
     // MARK: - UITableViewDelegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableLanguages.count
+        availableLanguages.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,7 +107,7 @@ class LanguageChooser: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Available Languages".localized()
+        "Available Languages".localized()
     }
 }
 

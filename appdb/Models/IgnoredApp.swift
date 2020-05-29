@@ -23,6 +23,6 @@ struct IgnoredApp: Equatable, Codable {
     }
 
     static func == (lhs: IgnoredApp, rhs: IgnoredApp) -> Bool {
-        return lhs.trackid == rhs.trackid && lhs.type == rhs.type
+        lhs.trackid == rhs.trackid && lhs.type == rhs.type
     }
 }

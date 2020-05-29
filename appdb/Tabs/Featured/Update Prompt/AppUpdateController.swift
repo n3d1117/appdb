@@ -104,11 +104,11 @@ class AppUpdateController: UITableViewController {
     // MARK: - UITableViewDelegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        2
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -133,7 +133,7 @@ class AppUpdateController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.row == 0 ? AppUpdateHeader.height : UITableView.automaticDimension
+        indexPath.row == 0 ? AppUpdateHeader.height : UITableView.automaticDimension
     }
 
     // MARK: - Rotation

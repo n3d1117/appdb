@@ -13,8 +13,8 @@ import ObjectMapper
 // Details cell template
 class DetailsCell: UITableViewCell {
     var type: ItemType = .ios
-    var identifier: String { return "" }
-    var height: CGFloat { return 0 }
+    var identifier: String { "" }
+    var height: CGFloat { 0 }
     func setConstraints() {}
 }
 

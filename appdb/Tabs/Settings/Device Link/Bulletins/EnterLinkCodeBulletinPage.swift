@@ -66,11 +66,11 @@ class EnterLinkCodeBulletinPage: BLTNPageItem {
 
 extension EnterLinkCodeBulletinPage: UITextFieldDelegate {
     @objc open func isInputValid(text: String?) -> Bool {
-        return text != nil && !text!.isEmpty
+        text != nil && !text!.isEmpty
     }
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return true
+        true
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -12,7 +12,7 @@ import SwiftyJSON
 extension API {
 
     static func getConfiguration(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.getConfiguration.rawValue,
+        AF.request(endpoint, parameters: ["action": Actions.getConfiguration.rawValue,
                                                  "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
@@ -62,7 +62,7 @@ extension API {
         var parameters: [String: Any] = ["action": Actions.configure.rawValue, "lang": languageCode]
         for (key, value) in params { parameters[key.rawValue] = value }
 
-        Alamofire.request(endpoint, parameters: parameters, headers: headersWithCookie)
+        AF.request(endpoint, parameters: parameters, headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -87,7 +87,7 @@ extension API {
     }
 
     static func checkRevocation(completion: @escaping (_ revoked: Bool, _ revokedOn: String) -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.checkRevoke.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.checkRevoke.rawValue], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):

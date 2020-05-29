@@ -25,7 +25,7 @@ class SeeAllCellWithStars: UITableViewCell {
         stars.rating = rating
         stars.text = num
         if let url = URL(string: iconUrl) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
                              filter: Global.roundedFilter(from: 80 ~~ 60),
                              imageTransition: .crossDissolve(0.2))
         }
@@ -44,7 +44,7 @@ class SeeAllCellWithStars: UITableViewCell {
         stars.rating = rating
         stars.text = num
         if let url = URL(string: coverUrl) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
         }
     }
 

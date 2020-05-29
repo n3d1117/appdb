@@ -32,11 +32,11 @@ enum Global {
         case search, wishes, updates, news
 
         static func createItems(for items: [ShortcutItem]) -> [UIApplicationShortcutItem] {
-            return items.map { createItem(for: $0) }
+            items.map { createItem(for: $0) }
         }
 
         static func createItem(for item: ShortcutItem) -> UIApplicationShortcutItem {
-            return UIApplicationShortcutItem(type: item.rawValue, localizedTitle: item.title, localizedSubtitle: nil, icon: item.icon, userInfo: nil)
+            UIApplicationShortcutItem(type: item.rawValue, localizedTitle: item.title, localizedSubtitle: nil, icon: item.icon, userInfo: nil)
         }
 
         var icon: UIApplicationShortcutIcon {
@@ -159,16 +159,16 @@ enum Global {
     static let sizeBooks = CGSize(width: Global.Size.itemWidth.value, height: Global.Size.heightBooks.value)
 
     // Common corner radius for ios app icons
-    static func cornerRadius(from width: CGFloat) -> CGFloat { return (width / 4.2) /* around 23% */ }
+    static func cornerRadius(from width: CGFloat) -> CGFloat { (width / 4.2) /* around 23% */ }
 
     // Returns appropriate ios app icon filter based on width
     static func roundedFilter(from width: CGFloat) -> ImageFilter {
-        return AspectScaledToFillSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: cornerRadius(from: width))
+        AspectScaledToFillSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: cornerRadius(from: width))
     }
 
     // Returns appropriate screenshot filter base on size and radius
     static func screenshotRoundedFilter(size: CGSize, radius: CGFloat) -> ImageFilter {
-        return AspectScaledToFillSizeWithRoundedCornersFilter(size: size, radius: radius)
+        AspectScaledToFillSizeWithRoundedCornersFilter(size: size, radius: radius)
     }
 
     // Returns a random string with given length
@@ -204,7 +204,7 @@ enum Global {
 
     // Human readable size from byte count
     static func humanReadableSize(bytes: Int64) -> String {
-        return ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
+        ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
     }
 
     // Sets app language the same as device language, unless it's been previously changed from Settings

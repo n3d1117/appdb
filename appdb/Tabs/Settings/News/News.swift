@@ -139,11 +139,11 @@ class News: LoadingTableView {
     // MARK: - Table View data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering() ? filteredNews.count : displayedNews.count
+        isFiltering() ? filteredNews.count : displayedNews.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -173,7 +173,7 @@ extension News: UISearchResultsUpdating {
     }
 
     func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
+        searchController.searchBar.text?.isEmpty ?? true
     }
 
     func filterNewsForSearchText(_ searchText: String) {
@@ -184,7 +184,7 @@ extension News: UISearchResultsUpdating {
     }
 
     func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
+        searchController.isActive && !searchBarIsEmpty()
     }
 }
 

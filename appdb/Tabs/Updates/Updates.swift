@@ -145,11 +145,11 @@ class Updates: LoadingTableView {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? updateableApps.count : nonUpdateableApps.count
+        section == 0 ? updateableApps.count : nonUpdateableApps.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

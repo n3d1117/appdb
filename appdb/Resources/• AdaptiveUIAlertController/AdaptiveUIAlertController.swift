@@ -20,7 +20,7 @@ extension UIAlertController {
 
     public var blurStyle: UIBlurEffect.Style {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.blurStyleKey) as? UIBlurEffect.Style ?? .extraLight
+            objc_getAssociatedObject(self, &AssociatedKeys.blurStyleKey) as? UIBlurEffect.Style ?? .extraLight
         } set (style) {
             objc_setAssociatedObject(self, &AssociatedKeys.blurStyleKey, style, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             view.setNeedsLayout()
@@ -29,15 +29,15 @@ extension UIAlertController {
     }
 
     public var cancelButtonColor: UIColor? {
-        return blurStyle == .dark ? UIColor(red: 28.0 / 255.0, green: 28.0 / 255.0, blue: 28.0 / 255.0, alpha: 1.0) : nil
+        blurStyle == .dark ? UIColor(red: 28.0 / 255.0, green: 28.0 / 255.0, blue: 28.0 / 255.0, alpha: 1.0) : nil
     }
 
     private var cancelActionView: UIView? {
-        return view.recursiveSubviews.compactMap({ $0 as? UILabel}).first(where: { $0.text == actions.first(where: { $0.style == .cancel })?.title })?.superview?.superview
+        view.recursiveSubviews.compactMap({ $0 as? UILabel}).first(where: { $0.text == actions.first(where: { $0.style == .cancel })?.title })?.superview?.superview
     }
 
     private var visualEffectView: UIVisualEffectView? {
-        return view.recursiveSubviews.compactMap({$0 as? UIVisualEffectView}).first
+        view.recursiveSubviews.compactMap({$0 as? UIVisualEffectView}).first
     }
 
     public convenience init(title: String?, message: String?, preferredStyle: UIAlertController.Style, adaptive: Bool) {

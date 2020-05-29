@@ -13,7 +13,7 @@ class Copyright: FeaturedCell {
 
     var copyrightNotice: UILabel!
 
-    override var height: CGFloat { return UITableView.automaticDimension }
+    override var height: CGFloat { UITableView.automaticDimension }
 
     convenience init() {
         self.init(style: .default, reuseIdentifier: Featured.CellType.copyright.rawValue)

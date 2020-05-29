@@ -9,71 +9,71 @@
 import UIKit
 
 final class PortraitScreenshotSearchCelliPhone: PortraitScreenshotSearchCell {
-    override var magic: CGFloat { return 1.775 }
-    override var portraitSize: CGFloat { return (220 ~~ 210) }
-    override var identifier: String { return "portraitscreenshotcelliphone" }
+    override var magic: CGFloat { 1.775 }
+    override var portraitSize: CGFloat { (220 ~~ 210) }
+    override var identifier: String { "portraitscreenshotcelliphone" }
 }
 
 final class PortraitScreenshotSearchCellWithStarsiPhone: PortraitScreenshotSearchCellWithStars {
-    override var magic: CGFloat { return 1.775 }
-    override var portraitSize: CGFloat { return (220 ~~ 210) }
-    override var identifier: String { return "portraitscreenshotcellstarsiphone" }
+    override var magic: CGFloat { 1.775 }
+    override var portraitSize: CGFloat { (220 ~~ 210) }
+    override var identifier: String { "portraitscreenshotcellstarsiphone" }
 }
 
 final class TwoPortraitScreenshotsSearchCelliPhone: TwoPortraitScreenshotsSearchCell {
-    override var magic: CGFloat { return 1.775 }
-    override var portraitSize: CGFloat { return (220 ~~ 210) }
-    override var identifier: String { return "portraitscreenshotscelliphone" }
+    override var magic: CGFloat { 1.775 }
+    override var portraitSize: CGFloat { (220 ~~ 210) }
+    override var identifier: String { "portraitscreenshotscelliphone" }
 }
 
 final class TwoPortraitScreenshotsSearchCellWithStarsiPhone: TwoPortraitScreenshotsSearchCellWithStars {
-    override var magic: CGFloat { return 1.775 }
-    override var portraitSize: CGFloat { return (220 ~~ 210) }
-    override var identifier: String { return "portraitscreenshotscellstarsiphone" }
+    override var magic: CGFloat { 1.775 }
+    override var portraitSize: CGFloat { (220 ~~ 210) }
+    override var identifier: String { "portraitscreenshotscellstarsiphone" }
 }
 
 final class ThreePortraitScreenshotsSearchCelliPhone: ThreePortraitScreenshotsSearchCell {
-    override var magic: CGFloat { return 1.775 }
-    override var identifier: String { return "threeportraitscreenshotscelliphone" }
-    override var compactPortraitSize: CGFloat { return (130 ~~ 140) }
+    override var magic: CGFloat { 1.775 }
+    override var identifier: String { "threeportraitscreenshotscelliphone" }
+    override var compactPortraitSize: CGFloat { (130 ~~ 140) }
 }
 
 final class ThreePortraitScreenshotsSearchCellWithStarsiPhone: ThreePortraitScreenshotsSearchCellWithStars {
-    override var magic: CGFloat { return 1.775 }
-    override var identifier: String { return "threeportraitscreenshotscellstarsiphone" }
-    override var compactPortraitSize: CGFloat { return (130 ~~ 140) }
+    override var magic: CGFloat { 1.775 }
+    override var identifier: String { "threeportraitscreenshotscellstarsiphone" }
+    override var compactPortraitSize: CGFloat { (130 ~~ 140) }
 }
 
 final class LandscapeScreenshotSearchCelliPhone: LandscapeScreenshotSearchCell {
-    override var magic: CGFloat { return 1.775 }
-    override var identifier: String { return "landscapescreenshotcelliphone" }
+    override var magic: CGFloat { 1.775 }
+    override var identifier: String { "landscapescreenshotcelliphone" }
 }
 
 final class LandscapeScreenshotSearchCellWithStarsiPhone: LandscapeScreenshotSearchCellWithStars {
-    override var magic: CGFloat { return 1.775 }
-    override var identifier: String { return "landscapescreenshotcellstarsiphone" }
+    override var magic: CGFloat { 1.775 }
+    override var identifier: String { "landscapescreenshotcellstarsiphone" }
 }
 
 final class MixedScreenshotsSearchCellOneiPhone: MixedScreenshotsSearchCellOne {
-    override var magic: CGFloat { return 1.775 }
-    override var mixedPortraitSize: CGFloat { return (125 ~~ 130) }
-    override var identifier: String { return "mixedscreenshotcelloneiphone" }
+    override var magic: CGFloat { 1.775 }
+    override var mixedPortraitSize: CGFloat { (125 ~~ 130) }
+    override var identifier: String { "mixedscreenshotcelloneiphone" }
 }
 
 final class MixedScreenshotsSearchCellOneWithStarsiPhone: MixedScreenshotsSearchCellOneWithStars {
-    override var magic: CGFloat { return 1.775 }
-    override var mixedPortraitSize: CGFloat { return (125 ~~ 120) }
-    override var identifier: String { return "mixedscreenshotcellonestarsiphone" }
+    override var magic: CGFloat { 1.775 }
+    override var mixedPortraitSize: CGFloat { (125 ~~ 120) }
+    override var identifier: String { "mixedscreenshotcellonestarsiphone" }
 }
 
 final class MixedScreenshotsSearchCellTwoiPhone: MixedScreenshotsSearchCellTwo {
-    override var magic: CGFloat { return 1.775 }
-    override var mixedPortraitSize: CGFloat { return (125 ~~ 140) }
-    override var identifier: String { return "mixedscreenshotcelltwoiphone" }
+    override var magic: CGFloat { 1.775 }
+    override var mixedPortraitSize: CGFloat { (125 ~~ 140) }
+    override var identifier: String { "mixedscreenshotcelltwoiphone" }
 }
 
 final class MixedScreenshotsSearchCellTwoWithStarsiPhone: MixedScreenshotsSearchCellTwoWithStars {
-    override var magic: CGFloat { return 1.775 }
-    override var mixedPortraitSize: CGFloat { return (125 ~~ 140) }
-    override var identifier: String { return "mixedscreenshotcelltwostarsiphone" }
+    override var magic: CGFloat { 1.775 }
+    override var mixedPortraitSize: CGFloat { (125 ~~ 140) }
+    override var identifier: String { "mixedscreenshotcelltwostarsiphone" }
 }

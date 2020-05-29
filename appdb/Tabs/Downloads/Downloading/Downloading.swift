@@ -83,11 +83,11 @@ class Downloading: LoadingCollectionView {
     // MARK: - Collection view delegate
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        1
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (isLoading || hasError) ? 0 : downloadingApps.count
+        (isLoading || hasError) ? 0 : downloadingApps.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -200,11 +200,11 @@ extension Downloading {
 
 extension Downloading: ETCollectionViewDelegateWaterfallLayout {
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20 ~~ 15)
+        UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : (20 ~~ 15)
     }
 
     var topInset: CGFloat {
-        return Global.isIpad ? 25 : 15
+        Global.isIpad ? 25 : 15
     }
 
     var layout: ETCollectionViewWaterfallLayout {
@@ -225,6 +225,6 @@ extension Downloading: ETCollectionViewDelegateWaterfallLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDimension, height: (50 ~~ 40) + (15 ~~ 12) * 2)
+        CGSize(width: itemDimension, height: (50 ~~ 40) + (15 ~~ 12) * 2)
     }
 }

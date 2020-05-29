@@ -14,7 +14,7 @@ extension API {
     // MARK: - Genres
 
     static func listGenres(completion:@escaping () -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.listGenres.rawValue, "lang": languageCode], headers: headers)
+        AF.request(endpoint, parameters: ["action": Actions.listGenres.rawValue, "lang": languageCode], headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -83,7 +83,7 @@ extension API {
     }
 
     static func getIcon(id: String, type: ItemType, completion:@escaping (String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue], headers: headers)
+        AF.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue], headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):

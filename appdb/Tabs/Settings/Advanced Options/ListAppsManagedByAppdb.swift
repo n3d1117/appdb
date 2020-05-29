@@ -81,11 +81,11 @@ class ListAppsManagedByAppdb: LoadingTableView {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bundleIds.count
+        bundleIds.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,11 +98,11 @@ class ListAppsManagedByAppdb: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return bundleIds.isEmpty ? nil : "Bundle IDs".localized()
+        bundleIds.isEmpty ? nil : "Bundle IDs".localized()
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return bundleIds.isEmpty ? nil : "Only apps that are managed by appdb will appear here.".localized()
+        bundleIds.isEmpty ? nil : "Only apps that are managed by appdb will appear here.".localized()
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -28,11 +28,11 @@ struct UpdateableApp: Equatable {
     var date: String = ""
 
     var isIgnored: Bool {
-        return !Preferences.ignoredUpdateableApps.filter({ $0.trackid == trackid }).isEmpty
+        !Preferences.ignoredUpdateableApps.filter({ $0.trackid == trackid }).isEmpty
     }
 
     static func == (lhs: UpdateableApp, rhs: UpdateableApp) -> Bool {
-        return lhs.trackid == rhs.trackid && lhs.type == rhs.type
+        lhs.trackid == rhs.trackid && lhs.type == rhs.type
     }
 }
 

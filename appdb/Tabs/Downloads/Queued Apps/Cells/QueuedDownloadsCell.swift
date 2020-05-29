@@ -23,7 +23,7 @@ class QueuedDownloadsCell: UICollectionViewCell {
         status.text = app.status
         if app.type != .myAppstore {
             if let url = URL(string: app.image) {
-                icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize),
+                icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize),
                              imageTransition: .crossDissolve(0.2))
             }
         } else {

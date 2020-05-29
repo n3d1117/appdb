@@ -23,7 +23,7 @@ class SuggestionsWhileTyping: UITableViewController, UISearchResultsUpdating {
     var type: ItemType = .ios
 
     var matchingColor: UIColor {
-        return Themes.isNight ? .white : .black
+        Themes.isNight ? .white : .black
     }
 
     override func viewDidLoad() {
@@ -62,11 +62,11 @@ class SuggestionsWhileTyping: UITableViewController, UISearchResultsUpdating {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        50
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count
+        results.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

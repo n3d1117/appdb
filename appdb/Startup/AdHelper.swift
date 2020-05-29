@@ -18,14 +18,14 @@ enum AdHelper {
     static let GADAdInterstitialUnitID: String = "GADINTERSTITIAL_ID"
 
     static var adAwareContentInsets: UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: CGFloat(Preferences.adBannerHeight), right: 0)
+        UIEdgeInsets(top: 0, left: 0, bottom: CGFloat(Preferences.adBannerHeight), right: 0)
     }
 }
 
 enum GADAdHelper {
 
     static var GADAdSize: GADAdSize {
-        return UIApplication.shared.statusBarOrientation.isLandscape ? kGADAdSizeSmartBannerLandscape : kGADAdSizeSmartBannerPortrait
+        UIApplication.shared.statusBarOrientation.isLandscape ? kGADAdSizeSmartBannerLandscape : kGADAdSizeSmartBannerPortrait
     }
 
     static func generateBanner(on viewController: UIViewController) -> GADBannerView? {

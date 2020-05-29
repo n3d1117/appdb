@@ -12,8 +12,8 @@ import Cosmos
 
 class NoScreenshotsSearchCellBookWithStars: SearchCell {
 
-    override var identifier: String { return "noscreenshotscellbookstars" }
-    override var height: CGFloat { return coverHeight + margin * 2 }
+    override var identifier: String { "noscreenshotscellbookstars" }
+    override var height: CGFloat { coverHeight + margin * 2 }
     var stars: CosmosView!
 
     required init?(coder aDecoder: NSCoder) {
@@ -27,7 +27,7 @@ class NoScreenshotsSearchCellBookWithStars: SearchCell {
         self.stars.rating = item.itemNumberOfStars
         self.stars.text = item.itemRating
         guard let url = URL(string: item.itemIconUrl) else { return }
-        icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
+        icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
     }
 
     override init(frame: CGRect) {

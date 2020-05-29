@@ -134,7 +134,7 @@ extension Item {
     }
 
     var itemFirstScreenshotUrl: String {
-        return itemScreenshots.first?.image ?? ""
+        itemScreenshots.first?.image ?? ""
     }
 
     var itemFirstTwoScreenshotsUrls: [String] {

@@ -37,7 +37,7 @@ class DetailsHeader: DetailsCell {
         }
     }
 
-    override var identifier: String { return "header" }
+    override var identifier: String { "header" }
 
     convenience init(type: ItemType, content: Item, delegate: DetailsSellerRedirectionDelegate) {
         self.init(style: .default, reuseIdentifier: "header")
@@ -85,7 +85,7 @@ class DetailsHeader: DetailsCell {
             }
 
             if let url = URL(string: app.image) {
-                icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
+                icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
             }
 
             self.devId = app.artistId
@@ -102,7 +102,7 @@ class DetailsHeader: DetailsCell {
 
             icon.layer.cornerRadius = Global.cornerRadius(from: (130 ~~ 100))
             if let url = URL(string: cydiaApp.image) {
-                icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
+                icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
             }
 
             self.devId = cydiaApp.developerId
@@ -135,7 +135,7 @@ class DetailsHeader: DetailsCell {
             }
 
             if let url = URL(string: book.image) {
-                icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
+                icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
             }
 
             self.devId = book.artistId

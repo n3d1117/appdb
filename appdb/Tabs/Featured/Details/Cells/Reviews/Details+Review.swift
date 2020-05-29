@@ -16,7 +16,7 @@ class DetailsReview: DetailsCell {
     var stars: CosmosView!
     var desc: ElasticLabel!
 
-    static var height: CGFloat { return UITableView.automaticDimension }
+    static var height: CGFloat { UITableView.automaticDimension }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

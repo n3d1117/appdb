@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         if let item = Global.ShortcutItem(rawValue: shortcutItem.type) {
-            delay(0.7) { application.openURL(item.resolvedUrl) }
+            delay(0.7) { application.open(item.resolvedUrl) }
         }
     }
 
@@ -120,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return application(app, open: url, sourceApplication: "", annotation: options)
+        application(app, open: url, sourceApplication: "", annotation: options)
     }
 
     // MARK: - URL Schemes

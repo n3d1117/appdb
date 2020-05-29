@@ -17,7 +17,7 @@ struct Version: Equatable {
     }
 
     static func == (lhs: Version, rhs: Version) -> Bool {
-        return lhs.number == rhs.number
+        lhs.number == rhs.number
     }
 }
 

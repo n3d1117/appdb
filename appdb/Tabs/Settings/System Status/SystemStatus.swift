@@ -75,11 +75,11 @@ class SystemStatus: LoadingTableView {
     @objc func dismissAnimated() { dismiss(animated: true) }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return services.count
+        services.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,7 +95,7 @@ class SystemStatus: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return services.isEmpty ? nil : (self.checkedAt)
+        services.isEmpty ? nil : (self.checkedAt)
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

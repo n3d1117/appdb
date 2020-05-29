@@ -16,16 +16,16 @@ class CydiaApp: Item {
     }
 
     override var id: String {
-        get { return super.id }
+        get { super.id }
         set { super.id = newValue }
     }
 
     override class func type() -> ItemType {
-        return .cydia
+        .cydia
     }
 
     static func == (lhs: CydiaApp, rhs: CydiaApp) -> Bool {
-        return lhs.id == rhs.id && lhs.version == rhs.version
+        lhs.id == rhs.id && lhs.version == rhs.version
     }
 
     var screenshotsData: String = ""

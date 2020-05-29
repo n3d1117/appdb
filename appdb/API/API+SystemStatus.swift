@@ -12,8 +12,8 @@ import SwiftyJSON
 extension API {
 
     static func getSystemStatus(success:@escaping (_ items: [ServiceStatus]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
-        Alamofire.request(statusEndpoint, headers: headers)
-            .responseArray(keyPath: "data") { (response: DataResponse<[ServiceStatus]>) in
+        AF.request(statusEndpoint, headers: headers)
+            .responseArray(keyPath: "data") { (response: AFDataResponse<[ServiceStatus]>) in
                 switch response.result {
                 case .success(let results):
                     success(results)
@@ -24,7 +24,7 @@ extension API {
     }
 
     static func getLastSystemStatusUpdateTime(success:@escaping (_ checkedAt: String) -> Void) {
-        Alamofire.request(statusEndpoint, headers: headers)
+        AF.request(statusEndpoint, headers: headers)
         .responseJSON { response in
             switch response.result {
             case .success(let value):

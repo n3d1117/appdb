@@ -223,7 +223,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
     // MARK: - Collection view delegate
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        1
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

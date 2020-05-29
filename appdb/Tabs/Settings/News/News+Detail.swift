@@ -86,11 +86,11 @@ class NewsDetail: LoadingTableView {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return state == .done ? 2 : 0
+        state == .done ? 2 : 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -201,16 +201,16 @@ extension AttributedLabel {
                 var partialUrl = url.absoluteString.replacingOccurrences(of: "&amp;", with: "&")
                 if !partialUrl.hasPrefix("http") { partialUrl = "http://" + partialUrl }
                 guard let fullUrl = URL(string: partialUrl) else { return }
-                UIApplication.shared.openURL(fullUrl)
+                UIApplication.shared.open(fullUrl)
             case .tag(let tag):
                 if tag.name == "a", let href = tag.attributes["href"] {
                     if href.hasPrefix("http") {
                         guard let url = URL(string: href.replacingOccurrences(of: "&amp;", with: "&")) else { return }
-                        UIApplication.shared.openURL(url)
+                        UIApplication.shared.open(url)
                     } else {
                         let urlString: String = "\(Global.mainSite)\(href)".replacingOccurrences(of: "&amp;", with: "&")
                         guard let url = URL(string: urlString) else { return }
-                        UIApplication.shared.openURL(url)
+                        UIApplication.shared.open(url)
                     }
                 }
             default:

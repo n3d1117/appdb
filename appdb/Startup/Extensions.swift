@@ -22,7 +22,7 @@ func delay(_ delay: Double, closure: @escaping () -> Void) {
 
 // Operator ~~ for quickly separating iphone/ipad sizes
 infix operator ~~: AdditionPrecedence
-func ~~ <T>(left: T, right: T) -> T { return Global.isIpad ? left : right }
+func ~~ <T>(left: T, right: T) -> T { Global.isIpad ? left : right }
 
 // MARK: - UINavigationBar
 // UINavigationBar extension to hide bottom hairline. Useful for segmented control under Navigation Bar
@@ -193,7 +193,7 @@ extension String {
 
     // Convert string to Base 64
     func toBase64() -> String {
-        return Data(utf8).base64EncodedString()
+        Data(utf8).base64EncodedString()
     }
 }
 
@@ -425,11 +425,11 @@ extension UIApplication {
 
 extension DiffAware where Self: Hashable {
     public var diffId: Int {
-        return hashValue
+        hashValue
     }
 
     public static func compareContent(_ a: Self, _ b: Self) -> Bool {
-        return a == b
+        a == b
     }
 }
 

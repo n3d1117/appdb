@@ -54,7 +54,7 @@ public class RoundedButton: UIButton {
             setTitleColor(newTintColor, for: .normal)
             refreshBorderColor()
         }
-        get { return super.tintColor }
+        get { super.tintColor }
     }
 
     public override var isEnabled: Bool {
@@ -88,6 +88,6 @@ public class RoundedButton: UIButton {
                 setNeedsDisplay()
             }
         }
-        get { return super.isHighlighted }
+        get { super.isHighlighted }
     }
 }

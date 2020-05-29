@@ -236,7 +236,7 @@ class Details: LoadingTableView {
                 let svc = SFSafariViewController(url: url)
                 present(svc, animated: true)
             } else {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             }
         } else if !cell.devId.isEmpty {
             let vc = SeeAll(title: cell.devName, type: contentType, devId: cell.devId)
@@ -324,7 +324,7 @@ class Details: LoadingTableView {
     // MARK: - Report link with reason
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexForSegment == .download && Preferences.deviceIsLinked && !versions.isEmpty
+        indexForSegment == .download && Preferences.deviceIsLinked && !versions.isEmpty
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

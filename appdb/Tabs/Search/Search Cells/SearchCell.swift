@@ -45,14 +45,14 @@ class SearchCell: UICollectionViewCell {
         return label
     }()
 
-    var magic: CGFloat { return 0 }
+    var magic: CGFloat { 0 }
 
-    var identifier: String { return "" }
-    var height: CGFloat { return 0 }
+    var identifier: String { "" }
+    var height: CGFloat { 0 }
 
-    var compactPortraitSize: CGFloat { return 0 }
-    var portraitSize: CGFloat { return 0 }
-    var mixedPortraitSize: CGFloat { return 0 }
+    var compactPortraitSize: CGFloat { 0 }
+    var portraitSize: CGFloat { 0 }
+    var mixedPortraitSize: CGFloat { 0 }
 
     var landscapeSize: CGFloat = (150 ~~ 140)
     var iconSize: CGFloat = (80 ~~ 70)
@@ -71,7 +71,7 @@ class SearchCell: UICollectionViewCell {
         self.tweaked = item.itemIsTweaked
         if self.tweaked { paddingLabel.text = API.categoryFromId(id: item.itemCydiaCategoryId, type: .cydia).uppercased() }
         guard let url = URL(string: item.itemIconUrl) else { return }
-        icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize), imageTransition: .crossDissolve(0.2))
+        icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: iconSize), imageTransition: .crossDissolve(0.2))
     }
 
     func sharedSetup() {

@@ -22,7 +22,7 @@ enum Themes: Int, CaseIterable {
         }
     }
 
-    static var current: Themes { return Themes(rawValue: ThemeManager.currentThemeIndex)! }
+    static var current: Themes { Themes(rawValue: ThemeManager.currentThemeIndex)! }
 
     // MARK: - Switch Theme
 
@@ -33,7 +33,7 @@ enum Themes: Int, CaseIterable {
         }
     }
 
-    static var isNight: Bool { return current != .light }
+    static var isNight: Bool { current != .light }
 
     // MARK: - Save & Restore
 

@@ -11,8 +11,8 @@ import Cartography
 
 class DetailsDownloadEmptyCell: DetailsCell {
 
-    static var height: CGFloat { return 170 }
-    override var identifier: String { return "downloademptycell" }
+    static var height: CGFloat { 170 }
+    override var identifier: String { "downloademptycell" }
 
     var error: UILabel!
 

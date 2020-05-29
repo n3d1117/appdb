@@ -67,7 +67,7 @@ class AskBundleBeforeUploadViewController: TableViewController {
     }
 
     var sections: [Static.Section] {
-        return [
+        [
             Section(rows: [
                 Row(selection: { [unowned self] _ in
                     self.newBundleId = Global.randomString(length: 4) + "." + self.originalBundleId

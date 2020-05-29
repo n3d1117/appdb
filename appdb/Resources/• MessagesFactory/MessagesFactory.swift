@@ -52,17 +52,17 @@ struct Messages {
 
     @discardableResult
     mutating func showSuccess(title: String = "", message: String, duration: Double = 2.5, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
-        return show(message: message, theme: .success, context: context, duration: .seconds(seconds: duration))
+        show(message: message, theme: .success, context: context, duration: .seconds(seconds: duration))
     }
 
     @discardableResult
     mutating func showError(title: String = "", message: String, duration: Double = 2.5, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
-        return show(message: message, theme: .error, context: context, duration: .seconds(seconds: duration))
+        show(message: message, theme: .error, context: context, duration: .seconds(seconds: duration))
     }
 
     @discardableResult
     mutating func showMinimal(message: String, iconStyle: IconStyle, color: ThemeColorPicker, duration: SwiftMessages.Duration, context: SwiftMessages.PresentationContext? = nil) -> MessageView {
-        return show(message: message, theme: .success, context: context, iconStyle: iconStyle, color: color, duration: duration)
+        show(message: message, theme: .success, context: context, iconStyle: iconStyle, color: color, duration: duration)
     }
 
     func generateModalSegue(vc: UIViewController, source: UIViewController, trackKeyboard: Bool = false) -> SwiftMessagesSegue {

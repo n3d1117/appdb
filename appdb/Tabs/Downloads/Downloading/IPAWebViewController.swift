@@ -197,7 +197,7 @@ extension IPAWebViewController {
         }
 
         if url.absoluteString.hasPrefix("itms-services://") || url.absoluteString.hasPrefix("https://itunes.apple.com") {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url)
             decisionHandler(.cancel)
             return
         }

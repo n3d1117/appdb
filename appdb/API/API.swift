@@ -16,7 +16,7 @@ enum API {
     static let itmsHelperEndpoint = "https://itms-plist-helper.herokuapp.com/"
 
     static var languageCode: String {
-        return Localize.currentLanguage()
+        Localize.currentLanguage()
     }
 
     static let headers: HTTPHeaders = ["User-Agent": "appdb iOS Client v\(Global.appVersion)"]

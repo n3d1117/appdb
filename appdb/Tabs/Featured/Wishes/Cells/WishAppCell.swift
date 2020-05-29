@@ -25,7 +25,7 @@ class WishAppCell: UITableViewCell {
             statusLabel.text = app.status.prettified + Global.bulletPoint + app.statusChangedAt
         }
         if let url = URL(string: app.image) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
                              filter: Global.roundedFilter(from: 80 ~~ 60),
                              imageTransition: .crossDissolve(0.2))
         }

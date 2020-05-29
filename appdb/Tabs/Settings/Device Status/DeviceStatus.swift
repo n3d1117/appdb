@@ -157,11 +157,11 @@ class DeviceStatus: LoadingTableView {
     @objc func dismissAnimated() { dismiss(animated: true) }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return statuses.count
+        statuses.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

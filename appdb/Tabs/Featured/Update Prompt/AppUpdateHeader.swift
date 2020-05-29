@@ -30,7 +30,7 @@ class AppUpdateHeader: UITableViewCell {
             newVersion.text = ""
         }
         if let url = URL(string: app.image) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (100 ~~ 80)), imageTransition: .crossDissolve(0.2))
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (100 ~~ 80)), imageTransition: .crossDissolve(0.2))
         }
     }
 

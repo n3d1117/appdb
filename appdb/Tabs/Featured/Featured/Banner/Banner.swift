@@ -24,12 +24,12 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        1
     }
 
     // TODO dynamic
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        1
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

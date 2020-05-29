@@ -22,7 +22,7 @@ class SeeAllCell: UITableViewCell {
         nameLabel.text = name
         infoLabel.text = category + Global.bulletPoint + version + (!size.isEmpty ? Global.bulletPoint + size : "")
         if let url = URL(string: iconUrl) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
                              filter: Global.roundedFilter(from: 80 ~~ 60),
                              imageTransition: .crossDissolve(0.2))
         }
@@ -35,7 +35,7 @@ class SeeAllCell: UITableViewCell {
         let cat = API.categoryFromId(id: categoryId, type: .cydia)
         infoLabel.text = cat + Global.bulletPoint + version
         if let url = URL(string: iconUrl) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
                              filter: Global.roundedFilter(from: 80 ~~ 60),
                              imageTransition: .crossDissolve(0.2))
         }
@@ -52,7 +52,7 @@ class SeeAllCell: UITableViewCell {
             infoLabel.text = author
         }
         if let url = URL(string: coverUrl) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
         }
     }
 

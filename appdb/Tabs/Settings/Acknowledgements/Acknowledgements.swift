@@ -94,11 +94,11 @@ class Acknowledgements: LoadingTableView {
     @objc func dismissAnimated() { dismiss(animated: true) }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return licenses.count
+        licenses.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -121,6 +121,6 @@ class Acknowledgements: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return licenses[section].title
+        licenses[section].title
     }
 }

@@ -29,7 +29,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             if let cat = app.category { cell.category.text = cat.name.isEmpty ? "Unknown".localized() : cat.name
             } else { cell.category.text = "Unknown".localized() }
             if let url = URL(string: app.image) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: Global.Size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+                cell.icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: Global.Size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }
@@ -39,7 +39,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.tweaked = cydiaApp.isTweaked
             cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
             if let url = URL(string: cydiaApp.image) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: Global.Size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+                cell.icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: Global.Size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }
@@ -48,7 +48,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.title.text = book.name.decoded
             cell.author.text = book.author
             if let url = URL(string: book.image) {
-                cell.cover.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
+                cell.cover.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
             }
             return cell
         }
@@ -57,7 +57,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

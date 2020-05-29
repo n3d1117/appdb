@@ -12,11 +12,11 @@ import ObjectMapper
 extension Search {
 
     var topInset: CGFloat {
-        return Global.isIpad ? 25 : 15
+        Global.isIpad ? 25 : 15
     }
 
     var margin: CGFloat {
-        return UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : 15
+        UIApplication.shared.statusBarOrientation.isLandscape && Global.hasNotch ? 60 : 15
     }
 
     func pushDetailsController(with content: Item) {
@@ -378,11 +378,11 @@ extension Search: UIPopoverPresentationControllerDelegate, SearchDidSelectTypePr
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
+        .none
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
+        .none
     }
 
     func selectedTypeWithIndex(_ index: Int) {
@@ -424,11 +424,11 @@ class SmallTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        3
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

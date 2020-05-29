@@ -17,7 +17,7 @@ class DetailsFullScreenshotsNavController: UINavigationController {
     }
     // Let's hide home indicator on iPhone X
     override var prefersHomeIndicatorAutoHidden: Bool {
-        return true
+        true
     }
 }
 
@@ -30,7 +30,7 @@ extension DetailsFullScreenshots: UICollectionViewDelegate, UICollectionViewData
         // If 'mixedClasses' is true, assign image and rotate left if landscape.
         if mixedClasses {
             imageDownloader.download(URLRequest(url: url)) { response in
-                guard let image = response.result.value else { return }
+                guard let image = try? response.result.get() else { return }
                 if self.screenshots[indexPath.row].class_ == "landscape", let cgImage = image.cgImage {
                     cell.image.image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .left)
                 } else {
@@ -39,21 +39,21 @@ extension DetailsFullScreenshots: UICollectionViewDelegate, UICollectionViewData
             }
         // if not, simply set image from url
         } else {
-            cell.image.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
+            cell.image.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
         }
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenshots.count
+        screenshots.count
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return itemSize(for: indexPath.row)
+        itemSize(for: indexPath.row)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: top, left: left, bottom: bottom, right: left)
+        UIEdgeInsets(top: top, left: left, bottom: bottom, right: left)
     }
 }
 
@@ -77,7 +77,7 @@ class DetailsFullScreenshots: UIViewController {
         imageCache: AutoPurgingImageCache()
     )
 
-    var isPortrait: Bool { return UIApplication.shared.statusBarOrientation.isPortrait }
+    var isPortrait: Bool { UIApplication.shared.statusBarOrientation.isPortrait }
 
     // We get these from previous view
     var mixedClasses, allLandscape: Bool!

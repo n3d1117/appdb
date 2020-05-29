@@ -13,7 +13,7 @@ struct AdBlocker {
     static let shared = AdBlocker()
 
     func shouldBlock(host: String) -> Bool {
-        return ads.contains(host)
+        ads.contains(host)
     }
 }
 

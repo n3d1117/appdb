@@ -16,12 +16,12 @@ class Book: Item {
     }
 
     override var id: String {
-        get { return super.id }
+        get { super.id }
         set { super.id = newValue }
     }
 
     override class func type() -> ItemType {
-        return .books
+        .books
     }
 
     // iTunes data

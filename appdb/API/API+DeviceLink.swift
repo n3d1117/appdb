@@ -12,7 +12,7 @@ import SwiftyJSON
 extension API {
 
     static func linkDevice(code: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.link.rawValue, "type": "control", "link_code": code,
+        AF.request(endpoint, parameters: ["action": Actions.link.rawValue, "type": "control", "link_code": code,
                                                  "lang": languageCode], headers: headers)
             .responseJSON { response in
                 switch response.result {
@@ -38,7 +38,7 @@ extension API {
     }
 
     static func getLinkCode(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.getLinkCode.rawValue, "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.getLinkCode.rawValue, "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -56,7 +56,7 @@ extension API {
     }
 
     static func emailLinkCode(email: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["email": email, "action": Actions.emailLinkCode.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["email": email, "action": Actions.emailLinkCode.rawValue], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -73,7 +73,7 @@ extension API {
     }
 
     static func getAppdbAppsBundleIdsTicket(success:@escaping (_ ticket: String) -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["action": Actions.getAppdbAppsBundleIdsTicket.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.getAppdbAppsBundleIdsTicket.rawValue], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -90,7 +90,7 @@ extension API {
     }
 
     static func getAppdbAppsBundleIds(ticket: String, success:@escaping (_ bundleIds: [String]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        Alamofire.request(endpoint, parameters: ["t": ticket, "action": Actions.getAppdbAppsBundleIds.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["t": ticket, "action": Actions.getAppdbAppsBundleIds.rawValue], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):

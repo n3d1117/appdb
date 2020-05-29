@@ -27,23 +27,23 @@ struct IPAFileManager {
     private var backgroundTask: BackgroundTaskUtil?
 
     func documentsDirectoryURL() -> URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
 
     func cachesDirectoryURL() -> URL {
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
 
     func inboxDirectoryURL() -> URL {
-        return documentsDirectoryURL().appendingPathComponent("Inbox")
+        documentsDirectoryURL().appendingPathComponent("Inbox")
     }
 
     func url(for ipa: LocalIPAFile) -> URL {
-        return documentsDirectoryURL().appendingPathComponent(ipa.filename)
+        documentsDirectoryURL().appendingPathComponent(ipa.filename)
     }
 
     func urlFromFilename(filename: String) -> URL {
-        return documentsDirectoryURL().appendingPathComponent(filename)
+        documentsDirectoryURL().appendingPathComponent(filename)
     }
 
     // MARK: - Clear temporary folder - there may be leftovers
@@ -368,7 +368,7 @@ protocol LocalIPAServer {
 
 extension IPAFileManager: LocalIPAServer {
     func getIpaLocalUrl(from ipa: LocalIPAFile) -> String {
-         return "http://127.0.0.1:8080/\(ipa.filename)"
+         "http://127.0.0.1:8080/\(ipa.filename)"
     }
 
     mutating func startServer() {

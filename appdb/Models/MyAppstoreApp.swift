@@ -16,11 +16,11 @@ class MyAppStoreApp: Item {
     }
 
     override class func type() -> ItemType {
-        return .myAppstore
+        .myAppstore
     }
 
     override var id: String {
-        get { return super.id }
+        get { super.id }
         set { super.id = newValue }
     }
 

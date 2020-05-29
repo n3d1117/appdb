@@ -28,7 +28,6 @@ struct WishApp: Mappable {
     enum Status: String {
         case cracking, fulfilled, failed, new
 
-        // todo  localize
         var prettified: String {
             switch self {
             case .new: return "New".localized()

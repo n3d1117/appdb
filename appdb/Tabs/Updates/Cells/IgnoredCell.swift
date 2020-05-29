@@ -22,7 +22,7 @@ class IgnoredCell: UITableViewCell {
     func configure(with text: String, image: String) {
         name.text = text
         if let url = URL(string: image) {
-            icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: 30), imageTransition: .crossDissolve(0.2))
+            icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: 30), imageTransition: .crossDissolve(0.2))
         }
     }
 

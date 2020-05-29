@@ -9,7 +9,7 @@
 import Alamofire
 
 /*
- *   TL;DR A class that wraps a Alamofire.DownloadRequest, used to subscribe to progress notifications
+ *   TL;DR A class that wraps a AF.DownloadRequest, used to subscribe to progress notifications
  *
  *   It provides:
  *      - onPause() callback, called when upload request has been paused via pause() func
@@ -23,7 +23,7 @@ class LocalIPADownloadUtil {
     private var request: Alamofire.DownloadRequest?
 
     var isPaused: Bool {
-        return paused
+        paused
     }
 
     var lastCachedFraction: Float = 0.0

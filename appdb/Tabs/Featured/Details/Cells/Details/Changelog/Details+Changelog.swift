@@ -17,8 +17,8 @@ class DetailsChangelog: DetailsCell {
     var date: UILabel!
     var desc: ElasticLabel!
 
-    override var height: CGFloat { return changelog.isEmpty ? 0 : UITableView.automaticDimension }
-    override var identifier: String { return "changelog" }
+    override var height: CGFloat { changelog.isEmpty ? 0 : UITableView.automaticDimension }
+    override var identifier: String { "changelog" }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

@@ -174,11 +174,11 @@ class SeeAll: LoadingTableView {
     @objc func dismissAnimated() { dismiss(animated: true) }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering() ? filteredItems.count : items.count
+        isFiltering() ? filteredItems.count : items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -237,7 +237,7 @@ extension SeeAll: UISearchResultsUpdating {
     }
 
     func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
+        searchController.searchBar.text?.isEmpty ?? true
     }
 
     func filterContentForSearchText(_ searchText: String) {
@@ -266,7 +266,7 @@ extension SeeAll: UISearchResultsUpdating {
     }
 
     func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
+        searchController.isActive && !searchBarIsEmpty()
     }
 }
 

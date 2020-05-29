@@ -37,8 +37,8 @@ class DetailsInformation: DetailsCell {
     var printLength: UILabel!
     var printLengthText: UILabel!
 
-    override var height: CGFloat { return UITableView.automaticDimension }
-    override var identifier: String { return "information" }
+    override var height: CGFloat { UITableView.automaticDimension }
+    override var identifier: String { "information" }
 
     convenience init(type: ItemType, content: Item) {
         self.init(style: .default, reuseIdentifier: "information")

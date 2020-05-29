@@ -16,8 +16,8 @@ class DetailsDescription: DetailsCell {
 
     var descriptionText: String! = ""
 
-    override var height: CGFloat { return descriptionText.isEmpty ? 0 : UITableView.automaticDimension }
-    override var identifier: String { return "description" }
+    override var height: CGFloat { descriptionText.isEmpty ? 0 : UITableView.automaticDimension }
+    override var identifier: String { "description" }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

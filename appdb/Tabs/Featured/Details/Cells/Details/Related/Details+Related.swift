@@ -24,7 +24,7 @@ extension DetailsRelated: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.title.text = item.name
             cell.category.text = item.artist
             if let url = URL(string: item.icon) {
-                cell.icon.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (75 ~~ 65)), imageTransition: .crossDissolve(0.2))
+                cell.icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (75 ~~ 65)), imageTransition: .crossDissolve(0.2))
             }
             return cell
         case .books:
@@ -32,7 +32,7 @@ extension DetailsRelated: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.title.text = item.name
             cell.author.text = item.artist
             if let url = URL(string: item.icon) {
-                cell.cover.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
+                cell.cover.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
             }
             return cell
         default: break
@@ -41,7 +41,7 @@ extension DetailsRelated: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return relatedContent.count
+        relatedContent.count
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -56,8 +56,8 @@ class DetailsRelated: DetailsCell {
 
     weak var delegate: RelatedRedirectionDelegate?
 
-    override var height: CGFloat { return relatedContent.isEmpty ? 0 : (type == .books ? (190 ~~ 165) : (140 ~~ 130)) + (44 ~~ 39) }
-    override var identifier: String { return "related" }
+    override var height: CGFloat { relatedContent.isEmpty ? 0 : (type == .books ? (190 ~~ 165) : (140 ~~ 130)) + (44 ~~ 39) }
+    override var identifier: String { "related" }
 
     convenience init(type: ItemType, related: [RelatedContent], delegate: RelatedRedirectionDelegate) {
         self.init(style: .default, reuseIdentifier: "related")

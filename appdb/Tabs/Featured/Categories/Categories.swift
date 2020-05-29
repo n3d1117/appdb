@@ -167,11 +167,11 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        categories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -184,7 +184,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.name.text = categories[indexPath.row].name
 
         if let url = URL(string: categories[indexPath.row].icon) {
-            cell.icon.af_setImage(withURL: url, placeholderImage: placeholder, filter: isBookCell ? nil : Global.roundedFilter(from: 30), imageTransition: .crossDissolve(0.2))
+            cell.icon.af.setImage(withURL: url, placeholderImage: placeholder, filter: isBookCell ? nil : Global.roundedFilter(from: 30), imageTransition: .crossDissolve(0.2))
         }
 
         cell.name.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.title

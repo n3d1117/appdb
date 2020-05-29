@@ -101,24 +101,24 @@ class Credits: TableViewController {
         case .telegram(let username):
             let link = "tg://resolve?domain=\(username)"
             if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             } else if let url = URL(string: "https://t.me/\(username)") {
                 if #available(iOS 9.0, *) {
                     let svc = SFSafariViewController(url: url)
                     present(svc, animated: true)
                 } else {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url)
                 }
             }
         case .twitter(let username):
             let tweetbotLink = "tweetbot:///user_profile/\(username)"
             if let url = URL(string: tweetbotLink), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
                 return
             }
             let twitterLink = "twitter://user?screen_name=\(username)"
             if let url = URL(string: twitterLink), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
                 return
             }
             if let url = URL(string: "https://twitter.com/\(username)") {
@@ -126,7 +126,7 @@ class Credits: TableViewController {
                     let svc = SFSafariViewController(url: url)
                     present(svc, animated: true)
                 } else {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url)
                 }
             }
         case .website(let site):
@@ -135,7 +135,7 @@ class Credits: TableViewController {
                     let svc = SFSafariViewController(url: url)
                     present(svc, animated: true)
                 } else {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url)
                 }
             }
         }

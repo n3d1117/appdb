@@ -17,11 +17,11 @@ class Item: Hashable, Mappable {
     var id: String = ""
 
     class func type() -> ItemType {
-        return .ios // Default implementation
+        .ios // Default implementation
     }
 
     static func == (lhs: Item, rhs: Item) -> Bool {
-        return lhs.id == rhs.id // Default implementation
+        lhs.id == rhs.id // Default implementation
     }
 
     func hash(into hasher: inout Hasher) {
@@ -94,6 +94,6 @@ struct Genre: Equatable, Codable {
     }
 
     static func == (lhs: Genre, rhs: Genre) -> Bool {
-        return lhs.compound == rhs.compound
+        lhs.compound == rhs.compound
     }
 }

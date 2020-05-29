@@ -12,7 +12,7 @@ import AlamofireImage
 
 class PortraitScreenshotSearchCell: SearchCell {
 
-    override var height: CGFloat { return round(iconSize + portraitSize + margin * 2 + spaceFromIcon) }
+    override var height: CGFloat { round(iconSize + portraitSize + margin * 2 + spaceFromIcon) }
 
     var screenshot: UIImageView!
 
@@ -45,7 +45,7 @@ class PortraitScreenshotSearchCell: SearchCell {
 
         if let url = URL(string: item.itemFirstScreenshotUrl) {
             let filter = Global.screenshotRoundedFilter(size: screenshot.frame.size, radius: 5)
-            screenshot.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
+            screenshot.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
         }
     }
 

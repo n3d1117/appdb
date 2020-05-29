@@ -11,8 +11,8 @@ import Cartography
 
 class DetailsPublisher: DetailsCell {
 
-    override var height: CGFloat { return UITableView.automaticDimension }
-    override var identifier: String { return "publisher" }
+    override var height: CGFloat { UITableView.automaticDimension }
+    override var identifier: String { "publisher" }
 
     var label: UILabel!
 

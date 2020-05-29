@@ -24,15 +24,15 @@ public class SafariActivity: UIActivity {
     }
 
     public override var activityTitle: String? {
-        return "Open in Safari".localized()
+        "Open in Safari".localized()
     }
 
     public override var activityType: UIActivity.ActivityType? {
-        return UIActivity.ActivityType.openInSafari
+        UIActivity.ActivityType.openInSafari
     }
 
     public override var activityImage: UIImage? {
-        return #imageLiteral(resourceName: "icon_safari")
+        #imageLiteral(resourceName: "icon_safari")
     }
 
     var canOpen: (Any) -> Bool = { item in
@@ -41,7 +41,7 @@ public class SafariActivity: UIActivity {
     }
 
     public override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
-        return activityItems.contains(where: canOpen)
+        activityItems.contains(where: canOpen)
     }
 
     public override func prepare(withActivityItems activityItems: [Any]) {
@@ -53,6 +53,7 @@ public class SafariActivity: UIActivity {
             activityDidFinish(false)
             return
         }
-        activityDidFinish(UIApplication.shared.openURL(url))
+        UIApplication.shared.open(url)
+        activityDidFinish(true)
     }
 }

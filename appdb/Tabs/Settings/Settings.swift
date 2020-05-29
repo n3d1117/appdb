@@ -183,13 +183,13 @@ class Settings: TableViewController {
         let username = Global.telegramUsername
         let link = "tg://resolve?domain=\(username)"
         if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url)
         } else if let url = URL(string: "https://t.me/\(username)") {
             if #available(iOS 9.0, *) {
                 let svc = SFSafariViewController(url: url)
                 present(svc, animated: true)
             } else {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             }
         }
     }
@@ -201,7 +201,7 @@ class Settings: TableViewController {
             let svc = SFSafariViewController(url: url)
             present(svc, animated: true)
         } else {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url)
         }
     }
 
@@ -210,13 +210,13 @@ class Settings: TableViewController {
         guard let urlString = notification.userInfo?["URLString"] as? String else { return }
         guard let url = URL(string: urlString) else { return }
 
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url)
 
         /*if #available(iOS 9.0, *) {
             let svc = SFSafariViewController(url: url)
             deviceLinkBulletinManager.present(svc, animated: true, completion: nil)
         } else {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url)
         }*/
     }
 
@@ -271,7 +271,10 @@ extension Settings: UITableViewDelegate {
     @available(iOS 13.0, *)
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard let row = dataSource.row(at: point) else { return nil }
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: { self.getNavControllerForText(row.text ?? "") })
+        if let text = row.text, let navController = getNavControllerForText(text) {
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: { navController })
+        }
+        return nil
     }
 
     @available(iOS 13.0, *)
@@ -383,19 +386,19 @@ extension Settings: MFMailComposeViewControllerDelegate {
             present(mail, animated: true)
         case .gmail:
             if let gmailUrl = URL(string: "googlegmail://co?subject=\(subject)&to=\(recipient)") {
-                UIApplication.shared.openURL(gmailUrl)
+                UIApplication.shared.open(gmailUrl)
             }
         case .spark:
             if let sparkUrl = URL(string: "readdle-spark://compose?subject=\(subject)&recipient=\(recipient)") {
-                UIApplication.shared.openURL(sparkUrl)
+                UIApplication.shared.open(sparkUrl)
             }
         case .yahoo:
             if let yahooUrl = URL(string: "ymail://mail/compose?subject=\(subject)&to=\(recipient)") {
-                UIApplication.shared.openURL(yahooUrl)
+                UIApplication.shared.open(yahooUrl)
             }
         case .outlook:
             if let outlookUrl = URL(string: "ms-outlook://compose?subject=\(subject)&to=\(recipient)") {
-                UIApplication.shared.openURL(outlookUrl)
+                UIApplication.shared.open(outlookUrl)
             }
         }
     }

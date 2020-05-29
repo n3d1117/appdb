@@ -19,15 +19,15 @@ extension Settings {
     }
 
     var forumSite: String {
-        return "https://forum." + Global.mainSite.components(separatedBy: "https://")[1]
+        "https://forum." + Global.mainSite.components(separatedBy: "https://")[1]
     }
 
     var proSite: String {
-        return Global.mainSite + "pro.php?lt=" + Preferences.linkToken
+        Global.mainSite + "pro.php?lt=" + Preferences.linkToken
     }
 
     var themeSection: [Static.Section] {
-        return [
+        [
             Section(header: .title("User Interface".localized()), rows: [
                 Row(text: "Choose Theme".localized(),
                     detailText: Themes.current.toString, selection: { [unowned self] _ in
@@ -44,7 +44,7 @@ extension Settings {
     // Common sections shared between linked/non linked settings view
 
     var commonSections: [Static.Section] {
-        return [
+        [
             Section(header: .title("Support".localized()), rows: [
                 Row(text: "News".localized(), selection: { [unowned self] _ in
                     self.push(News())
@@ -73,7 +73,7 @@ extension Settings {
     // Sections exclusive for the 'not linked' state
 
     var deviceNotLinkedSections: [Static.Section] {
-        return themeSection + [
+        themeSection + [
             Section(header: .title("General".localized()), rows: [
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self)
             ]),
@@ -90,7 +90,7 @@ extension Settings {
     // Sections exclusive for the 'linked' state
 
     var deviceLinkedSections: [Static.Section] {
-        return themeSection + [
+        themeSection + [
 
             Section(header: .title("General".localized()), rows: [
                 Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),

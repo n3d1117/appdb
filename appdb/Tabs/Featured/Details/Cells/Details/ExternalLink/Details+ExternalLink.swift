@@ -11,8 +11,8 @@ import Cartography
 
 class DetailsExternalLink: DetailsCell {
 
-    override var height: CGFloat { return 45 }
-    override var identifier: String { return "link" }
+    override var height: CGFloat { 45 }
+    override var identifier: String { "link" }
 
     var label: UILabel!
     var url: String!
