@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,6 +46,11 @@
 		8126201C215444A400B06F88 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262016215444A400B06F88 /* Style.swift */; };
 		8126201D215444A400B06F88 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262017215444A400B06F88 /* NSAttributedString+Utils.swift */; };
 		8126201E215444A400B06F88 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262018215444A400B06F88 /* String+Detection.swift */; };
+		8127C4A82482628A00EC1081 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4A42482628900EC1081 /* nanopb.xcframework */; };
+		8127C4A92482628A00EC1081 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4A52482628900EC1081 /* GoogleAppMeasurement.framework */; };
+		8127C4AA2482628A00EC1081 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4A62482628900EC1081 /* GoogleMobileAds.framework */; };
+		8127C4AB2482628A00EC1081 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4A72482628A00EC1081 /* GoogleUtilities.xcframework */; };
+		8127C4AD2482631A00EC1081 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4AC2482631A00EC1081 /* PromisesObjC.xcframework */; };
 		812C3542207D235300D39748 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812C3541207D235300D39748 /* Swifter.framework */; };
 		81324068205BD86000945CE9 /* Settings+StaticCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81324067205BD86000945CE9 /* Settings+StaticCells.swift */; };
 		8132406B205BE50000945CE9 /* News+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132406A205BE50000945CE9 /* News+Detail.swift */; };
@@ -205,10 +210,6 @@
 		81F055ED2298147200E76874 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F055EB2298147200E76874 /* KeychainItemAccessibility.swift */; };
 		81F055EE2298147200E76874 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F055EC2298147200E76874 /* KeychainWrapper.swift */; };
 		81F05AF3219A19120030E5AD /* UpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F05AF2219A19120030E5AD /* UpdateCell.swift */; };
-		81F0C0A3235357C400604A10 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0C09F235357C300604A10 /* GoogleAppMeasurement.framework */; };
-		81F0C0A4235357C400604A10 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0C0A0235357C300604A10 /* GoogleMobileAds.framework */; };
-		81F0C0A5235357C400604A10 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0C0A1235357C300604A10 /* nanopb.framework */; };
-		81F0C0A6235357C400604A10 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0C0A2235357C300604A10 /* GoogleUtilities.framework */; };
 		81F0C0A923535B5C00604A10 /* AdvancedOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0C0A823535B5C00604A10 /* AdvancedOptions.swift */; };
 		81F0C0AB2353BF5400604A10 /* API+Voucher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0C0AA2353BF5400604A10 /* API+Voucher.swift */; };
 		81F1FE7F1E5AF12400C1CD44 /* DismissableModalNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F1FE7E1E5AF12400C1CD44 /* DismissableModalNavController.swift */; };
@@ -284,6 +285,11 @@
 		81262016215444A400B06F88 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		81262017215444A400B06F88 /* NSAttributedString+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		81262018215444A400B06F88 /* String+Detection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Detection.swift"; sourceTree = "<group>"; };
+		8127C4A42482628900EC1081 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = nanopb.xcframework; sourceTree = "<group>"; };
+		8127C4A52482628900EC1081 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		8127C4A62482628900EC1081 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		8127C4A72482628A00EC1081 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
+		8127C4AC2482631A00EC1081 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PromisesObjC.xcframework; sourceTree = "<group>"; };
 		812C3541207D235300D39748 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		81324067205BD86000945CE9 /* Settings+StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+StaticCells.swift"; sourceTree = "<group>"; };
 		8132406A205BE50000945CE9 /* News+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail.swift"; sourceTree = "<group>"; };
@@ -453,10 +459,6 @@
 		81F055EB2298147200E76874 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		81F055EC2298147200E76874 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		81F05AF2219A19120030E5AD /* UpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCell.swift; sourceTree = "<group>"; };
-		81F0C09F235357C300604A10 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppMeasurement.framework; sourceTree = "<group>"; };
-		81F0C0A0235357C300604A10 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
-		81F0C0A1235357C300604A10 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = nanopb.framework; sourceTree = "<group>"; };
-		81F0C0A2235357C300604A10 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
 		81F0C0A823535B5C00604A10 /* AdvancedOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedOptions.swift; sourceTree = "<group>"; };
 		81F0C0AA2353BF5400604A10 /* API+Voucher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Voucher.swift"; sourceTree = "<group>"; };
 		81F1FE7E1E5AF12400C1CD44 /* DismissableModalNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DismissableModalNavController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -486,32 +488,33 @@
 			files = (
 				81BFC99922F4CE7B008073D8 /* AVFoundation.framework in Frameworks */,
 				81BFC98B22F4CE41008073D8 /* CoreTelephony.framework in Frameworks */,
+				8127C4A92482628A00EC1081 /* GoogleAppMeasurement.framework in Frameworks */,
 				81BFC99D22F4CE8B008073D8 /* libz.tbd in Frameworks */,
 				81BFC99B22F4CE81008073D8 /* WebKit.framework in Frameworks */,
 				81BFC99722F4CE73008073D8 /* CoreMedia.framework in Frameworks */,
-				81F0C0A4235357C400604A10 /* GoogleMobileAds.framework in Frameworks */,
 				81BFC99522F4CE6C008073D8 /* QuartzCore.framework in Frameworks */,
 				81BFC99322F4CE64008073D8 /* AdSupport.framework in Frameworks */,
 				81BFC98F22F4CE50008073D8 /* CoreGraphics.framework in Frameworks */,
+				8127C4AD2482631A00EC1081 /* PromisesObjC.xcframework in Frameworks */,
 				81BFC98D22F4CE49008073D8 /* SystemConfiguration.framework in Frameworks */,
 				815234CF2278479000B1AE65 /* ZIPFoundation.framework in Frameworks */,
+				8127C4AB2482628A00EC1081 /* GoogleUtilities.xcframework in Frameworks */,
 				817D2EDA1E8EBBE500B8AE0D /* Alamofire.framework in Frameworks */,
 				817D2EDD1E8EBBE500B8AE0D /* Cartography.framework in Frameworks */,
 				816B343C20B727500019DE5C /* DeepDiff.framework in Frameworks */,
 				8138538C1F2B7EA300DC7C54 /* Kanna.framework in Frameworks */,
 				81FF1C531F9211B00086EEE0 /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				81FF1C541F9211B00086EEE0 /* SwiftTheme.framework in Frameworks */,
-				81F0C0A3235357C400604A10 /* GoogleAppMeasurement.framework in Frameworks */,
 				81FF1C551F9211B00086EEE0 /* Localize_Swift.framework in Frameworks */,
-				81F0C0A6235357C400604A10 /* GoogleUtilities.framework in Frameworks */,
+				8127C4A82482628A00EC1081 /* nanopb.xcframework in Frameworks */,
 				81FF1C561F9211B00086EEE0 /* Cosmos.framework in Frameworks */,
-				81F0C0A5235357C400604A10 /* nanopb.framework in Frameworks */,
 				817236A620BB1F8F0014F61A /* BLTNBoard.framework in Frameworks */,
 				81FF1C571F9211B00086EEE0 /* AlamofireImage.framework in Frameworks */,
 				81FF1C4D1F9211B00086EEE0 /* ObjectMapper.framework in Frameworks */,
 				81876E35227B725C00E27CB8 /* SwiftMessages.framework in Frameworks */,
 				817D2EE11E8EBBE500B8AE0D /* SwiftyJSON.framework in Frameworks */,
 				814B76F8205ADB63004D46DD /* Static.framework in Frameworks */,
+				8127C4AA2482628A00EC1081 /* GoogleMobileAds.framework in Frameworks */,
 				812C3542207D235300D39748 /* Swifter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1122,10 +1125,11 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81F0C09F235357C300604A10 /* GoogleAppMeasurement.framework */,
-				81F0C0A0235357C300604A10 /* GoogleMobileAds.framework */,
-				81F0C0A2235357C300604A10 /* GoogleUtilities.framework */,
-				81F0C0A1235357C300604A10 /* nanopb.framework */,
+				8127C4AC2482631A00EC1081 /* PromisesObjC.xcframework */,
+				8127C4A52482628900EC1081 /* GoogleAppMeasurement.framework */,
+				8127C4A62482628900EC1081 /* GoogleMobileAds.framework */,
+				8127C4A72482628A00EC1081 /* GoogleUtilities.xcframework */,
+				8127C4A42482628900EC1081 /* nanopb.xcframework */,
 				81BFC99C22F4CE8A008073D8 /* libz.tbd */,
 				81BFC99A22F4CE81008073D8 /* WebKit.framework */,
 				81BFC99822F4CE7A008073D8 /* AVFoundation.framework */,
@@ -1965,8 +1969,9 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_INCLUDE_PATHS = /Users/ned/Documents/xcode/appdb/Modules;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1992,7 +1997,10 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = appdb/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0.4;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";
@@ -2025,7 +2033,10 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = appdb/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0.4;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";

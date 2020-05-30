@@ -25,8 +25,8 @@ Carthage/Build
 /install
 /build
 /AppDB.sketch
-/StartApp.framework
-/nanopb.framework
-/GoogleUtilities.framework
+/nanopb.xcframework
+/GoogleUtilities.xcframework
 /GoogleMobileAds.framework
 /GoogleAppMeasurement.framework
+/PromisesObjC.xcframework
