@@ -85,11 +85,13 @@ struct Genre: Equatable, Codable {
     var name: String = ""
     var icon: String = ""
     var compound: String = ""
+    var amount: String = ""
 
-    init(category: String, id: String, name: String) {
+    init(category: String, id: String, name: String, amount: String = "") {
         self.category = category
         self.id = id
         self.name = name
+        self.amount = amount
         self.compound = self.id + "-" + self.category
     }
 

@@ -182,6 +182,7 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reusableId, for: indexPath) as? CategoryCell else { return UITableViewCell() }
 
         cell.name.text = categories[indexPath.row].name
+        cell.amount.text = categories[indexPath.row].amount
 
         if let url = URL(string: categories[indexPath.row].icon) {
             cell.icon.af.setImage(withURL: url, placeholderImage: placeholder, filter: isBookCell ? nil : Global.roundedFilter(from: 30), imageTransition: .crossDissolve(0.2))
@@ -189,6 +190,10 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         cell.name.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.title
         cell.name.font = checked[selected]![indexPath.row] ? .boldSystemFont(ofSize: cell.name.font.pointSize) : .systemFont(ofSize: cell.name.font.pointSize)
+
+        cell.amount.theme_textColor = checked[selected]![indexPath.row] ? Color.mainTint : Color.darkGray
+        cell.amount.font = checked[selected]![indexPath.row] ? .boldSystemFont(ofSize: cell.amount.font.pointSize) : .systemFont(ofSize: cell.amount.font.pointSize)
+
         cell.accessoryType = checked[selected]![indexPath.row] ? .checkmark : .none
 
         return cell

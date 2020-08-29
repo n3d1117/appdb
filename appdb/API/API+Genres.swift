@@ -30,17 +30,23 @@ extension API {
 
                     // Cydia genres
                     for (key, value):(String, JSON) in data["cydia"] {
-                        genres.append(Genre(category: "cydia", id: key, name: value.stringValue))
+                        genres.append(
+                            Genre(category: "cydia", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
+                        )
                     }
 
                     // iOS Genres
                     for (key, value):(String, JSON) in data["ios"] {
-                        genres.append(Genre(category: "ios", id: key, name: value.stringValue))
+                        genres.append(
+                            Genre(category: "ios", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
+                        )
                     }
 
                     // Books Genres
                     for (key, value):(String, JSON) in data["books"] {
-                        genres.append(Genre(category: "books", id: key, name: value.stringValue))
+                        genres.append(
+                            Genre(category: "books", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
+                        )
                     }
 
                     // Remove delete genres

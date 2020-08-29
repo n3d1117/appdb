@@ -12,6 +12,7 @@ import Cartography
 class CategoryCell: UITableViewCell {
 
     var name: UILabel!
+    var amount: UILabel!
     var icon: UIImageView!
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,23 +53,38 @@ class CategoryCell: UITableViewCell {
         name.numberOfLines = 1
         name.makeDynamicFont()
 
+        // Name
+        amount = UILabel()
+        amount.font = .systemFont(ofSize: (14 ~~ 13))
+        amount.numberOfLines = 1
+        amount.makeDynamicFont()
+
+        // Amount
         contentView.addSubview(icon)
         contentView.addSubview(name)
+        contentView.addSubview(amount)
 
         setConstraints()
     }
 
     private func setConstraints() {
-        constrain(icon, name) { icon, name in
+        constrain(icon, name, amount) { icon, name, amount in
             icon.width ~== 30
 
-            if reuseIdentifier == "category_ios" { icon.height ~== icon.width } else if reuseIdentifier == "category_books" { icon.height ~== icon.width ~* 1.542 }
+            if reuseIdentifier == "category_ios" {
+                icon.height ~== icon.width
+            } else if reuseIdentifier == "category_books" {
+                icon.height ~== icon.width ~* 1.542
+            }
 
-            icon.left ~== icon.superview!.left ~+ Global.Size.margin.value
+            icon.leading ~== icon.superview!.leading ~+ Global.Size.margin.value
             icon.centerY ~== icon.superview!.centerY
 
-            name.left ~== icon.right ~+ 10
+            name.leading ~== icon.trailing ~+ 10
             name.centerY ~== icon.centerY
+
+            amount.trailing ~== amount.superview!.trailing ~- Global.Size.margin.value
+            amount.centerY ~== name.centerY
         }
     }
 }
