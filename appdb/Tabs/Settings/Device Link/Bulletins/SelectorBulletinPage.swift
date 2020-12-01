@@ -114,6 +114,6 @@ class SelectorBulletinPage: BLTNPageItem {
         deviceIsNotYetLinked = true
 
         // Just a dummy item (never actually pushed)
-        next = BLTNPageItem()
+        next = BLTNPageItem(title: "")
     }
 }

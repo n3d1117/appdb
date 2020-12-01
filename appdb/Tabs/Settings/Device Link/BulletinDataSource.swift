@@ -168,7 +168,7 @@ enum DeviceLinkIntroBulletins {
     // MARK: - link device from url scheme with given code
 
     static func makeLinkCodeFromURLSchemePage(code: String) -> BLTNPageItem {
-        let page = DummyBulletinPage()
+        let page = DummyBulletinPage(title: "")
         page.shouldStartWithActivityIndicator = true
         page.image = #imageLiteral(resourceName: "completed") // just a placeholder, never actually displayed
         page.actionButtonTitle = ""

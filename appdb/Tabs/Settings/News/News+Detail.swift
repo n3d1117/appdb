@@ -56,7 +56,7 @@ class NewsDetail: LoadingTableView {
         state = .loading
 
         guard let id = self.id else { return }
-        API.getNewsDetail(id: id, success: { [weak self] result in
+        API.getNewsDetail(id: id, success: { [weak self] (result: SingleNews) in
             guard let self = self else { return }
             self.item = result
             self.state = .done

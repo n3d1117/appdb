@@ -6,6 +6,7 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 
 extension API {
