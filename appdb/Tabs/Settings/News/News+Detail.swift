@@ -71,7 +71,7 @@ class NewsDetail: LoadingTableView {
 
     @objc private func share(sender: UIBarButtonItem) {
         let text = item.title
-        let urlString = "\(Global.mainSite)news.php?id=\(item.id)"
+        let urlString = "\(Global.mainSite)news/\(item.id)"
         guard let url = URL(string: urlString) else { return }
         let activity = UIActivityViewController(activityItems: [text, url], applicationActivities: [SafariActivity()])
         if #available(iOS 11.0, *) {} else {

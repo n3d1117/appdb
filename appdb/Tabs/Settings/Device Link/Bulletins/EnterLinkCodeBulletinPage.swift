@@ -26,7 +26,7 @@ class EnterLinkCodeBulletinPage: BLTNPageItem {
 
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         let button = UIButton(type: .system)
-        button.setTitle("\(Global.mainSite)link.php", for: .normal)
+        button.setTitle("\(Global.mainSite)link", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         button.theme_setTitleColor(Color.mainTint, forState: .normal)
         button.addTarget(self, action: #selector(self.linkButtonTapped), for: .touchUpInside)

@@ -23,7 +23,7 @@ extension Settings {
     }
 
     var proSite: String {
-        Global.mainSite + "pro.php?lt=" + Preferences.linkToken
+        Global.mainSite + "my/buy?lt=" + Preferences.linkToken
     }
 
     var themeSection: [Static.Section] {
