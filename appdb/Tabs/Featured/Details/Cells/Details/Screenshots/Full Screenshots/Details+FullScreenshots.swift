@@ -29,14 +29,14 @@ extension DetailsFullScreenshots: UICollectionViewDelegate, UICollectionViewData
 
         // If 'mixedClasses' is true, assign image and rotate left if landscape.
         if mixedClasses {
-            imageDownloader.download(URLRequest(url: url)) { response in
+            imageDownloader.download(URLRequest(url: url), completion: { response in
                 guard let image = try? response.result.get() else { return }
                 if self.screenshots[indexPath.row].class_ == "landscape", let cgImage = image.cgImage {
                     cell.image.image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .left)
                 } else {
                     cell.image.image = image
                 }
-            }
+            })
         // if not, simply set image from url
         } else {
             cell.image.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))

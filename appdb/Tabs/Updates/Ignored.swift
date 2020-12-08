@@ -97,7 +97,7 @@ class Ignored: LoadingTableView {
                 Preferences.remove(.ignoredUpdateableApps, at: index)
                 tableView.beginUpdates()
                 if apps.isEmpty {
-                    tableView.deleteSections(IndexSet(arrayLiteral: 0), with: .fade)
+                    tableView.deleteSections(IndexSet(integer: 0), with: .fade)
                 } else {
                     tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
                 }

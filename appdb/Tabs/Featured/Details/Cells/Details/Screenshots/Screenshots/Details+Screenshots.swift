@@ -49,15 +49,15 @@ class DetailsScreenshots: DetailsCell {
     var screenshots: [Screenshot] = []
 
     var magic: CGFloat {
-        if screenshots.filter({$0.type=="ipad"}).isEmpty { return 1.775 }
-        if screenshots.filter({$0.type=="iphone"}).isEmpty { return 1.333 }
+        if screenshots.filter({$0.type == "ipad"}).isEmpty { return 1.775 }
+        if screenshots.filter({$0.type == "iphone"}).isEmpty { return 1.333 }
         return 0
     }
 
     var widthIfPortrait: CGFloat { round(((314 ~~ 280) - (Global.Size.margin.value * 2)) / magic) }
     var widthIfLandscape: CGFloat { round(((230 ~~ 176) - (Global.Size.margin.value * 2)) * magic) }
-    var allLandscape: Bool { (screenshots.filter({$0.class_=="portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
-    var mixedClasses: Bool { !screenshots.filter({$0.class_=="portrait"}).isEmpty && !screenshots.filter({$0.class_=="landscape"}).isEmpty }
+    var allLandscape: Bool { (screenshots.filter({$0.class_ == "portrait"}).isEmpty && screenshots.filter({$0.class_.isEmpty}).isEmpty) }
+    var mixedClasses: Bool { !screenshots.filter({$0.class_ == "portrait"}).isEmpty && !screenshots.filter({$0.class_ == "landscape"}).isEmpty }
     var spacing: CGFloat = 15
 
     func sizeAtIndex(_ index: Int) -> CGSize {

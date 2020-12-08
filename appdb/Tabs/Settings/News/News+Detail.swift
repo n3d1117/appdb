@@ -195,7 +195,7 @@ extension AttributedLabel {
         attributedText = str
 
         // Click on url detection
-        onClick = { label, detection in
+        onClick = { _, detection in
             switch detection.type {
             case .link(let url):
                 var partialUrl = url.absoluteString.replacingOccurrences(of: "&amp;", with: "&")

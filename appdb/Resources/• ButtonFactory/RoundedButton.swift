@@ -49,12 +49,12 @@ public class RoundedButton: UIButton {
     // MARK: Override
 
     public override var tintColor: UIColor? {
+        get { super.tintColor }
         set(newTintColor) {
             super.tintColor = newTintColor
             setTitleColor(newTintColor, for: .normal)
             refreshBorderColor()
         }
-        get { super.tintColor }
     }
 
     public override var isEnabled: Bool {
@@ -77,6 +77,7 @@ public class RoundedButton: UIButton {
     }
 
     public override var isHighlighted: Bool {
+        get { super.isHighlighted }
         set(newHighlighted) {
             if isHighlighted != newHighlighted {
                 super.isHighlighted = newHighlighted
@@ -88,6 +89,5 @@ public class RoundedButton: UIButton {
                 setNeedsDisplay()
             }
         }
-        get { super.isHighlighted }
     }
 }
