@@ -389,14 +389,6 @@ class Details: LoadingTableView {
 extension Details: SwitchDetailsSegmentDelegate {
     func segmentSelected(_ state: DetailsSelectedSegmentState) {
         indexForSegment = state
-
-        if indexForSegment == .download {
-            delay(1) {
-                let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
-                tabBarController?.showGADInterstitialIfReady()
-            }
-        }
-
         tableView.reloadData()
     }
 }
@@ -482,10 +474,6 @@ extension Details: IPAWebViewControllerDelegate {
         if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
         delay(0.8) {
             Messages.shared.showSuccess(message: "File download has started".localized(), context: Global.isIpad ? .viewController(self) : nil)
-            delay(1) {
-                let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
-                tabBarController?.showGADInterstitialIfReady()
-            }
         }
     }
 }

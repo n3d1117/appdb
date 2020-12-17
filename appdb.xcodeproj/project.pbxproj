@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,11 +46,6 @@
 		8126201C215444A400B06F88 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262016215444A400B06F88 /* Style.swift */; };
 		8126201D215444A400B06F88 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262017215444A400B06F88 /* NSAttributedString+Utils.swift */; };
 		8126201E215444A400B06F88 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81262018215444A400B06F88 /* String+Detection.swift */; };
-		8127C4A82482628A00EC1081 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4A42482628900EC1081 /* nanopb.xcframework */; };
-		8127C4A92482628A00EC1081 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4A52482628900EC1081 /* GoogleAppMeasurement.framework */; };
-		8127C4AA2482628A00EC1081 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4A62482628900EC1081 /* GoogleMobileAds.framework */; };
-		8127C4AB2482628A00EC1081 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4A72482628A00EC1081 /* GoogleUtilities.xcframework */; };
-		8127C4AD2482631A00EC1081 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127C4AC2482631A00EC1081 /* PromisesObjC.xcframework */; };
 		812C3542207D235300D39748 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812C3541207D235300D39748 /* Swifter.framework */; };
 		81324068205BD86000945CE9 /* Settings+StaticCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81324067205BD86000945CE9 /* Settings+StaticCells.swift */; };
 		8132406B205BE50000945CE9 /* News+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132406A205BE50000945CE9 /* News+Detail.swift */; };
@@ -144,7 +139,6 @@
 		818A55A920584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A720584D9100162E51 /* LNZSnapToCenterCollectionViewLayout.swift */; };
 		818A55AA20584D9100162E51 /* LNZInfiniteCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55A820584D9100162E51 /* LNZInfiniteCollectionViewLayout.swift */; };
 		818A55AC20584F2B00162E51 /* BannerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A55AB20584F2B00162E51 /* BannerImage.swift */; };
-		818D75F222CCF32900A69C56 /* AdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D75F122CCF32900A69C56 /* AdHelper.swift */; };
 		818DE6361E87F4E700E41B51 /* Details+FullScreenshotsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818DE6351E87F4E700E41B51 /* Details+FullScreenshotsCell.swift */; };
 		81939B471E3BA98D00179615 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81939B461E3BA98D00179615 /* Themes.swift */; };
 		819AE78C1E63135A009D6AF3 /* Details+Changelog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AE78B1E63135A009D6AF3 /* Details+Changelog.swift */; };
@@ -390,7 +384,6 @@
 		818A55A820584D9100162E51 /* LNZInfiniteCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNZInfiniteCollectionViewLayout.swift; sourceTree = "<group>"; };
 		818A55AB20584F2B00162E51 /* BannerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImage.swift; sourceTree = "<group>"; };
 		818CB5D41E787AB400A69213 /* Details+FullScreenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+FullScreenshots.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		818D75F122CCF32900A69C56 /* AdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHelper.swift; sourceTree = "<group>"; };
 		818DE6351E87F4E700E41B51 /* Details+FullScreenshotsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+FullScreenshotsCell.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81939B461E3BA98D00179615 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Themes.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		819AE78B1E63135A009D6AF3 /* Details+Changelog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Changelog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -488,17 +481,14 @@
 			files = (
 				81BFC99922F4CE7B008073D8 /* AVFoundation.framework in Frameworks */,
 				81BFC98B22F4CE41008073D8 /* CoreTelephony.framework in Frameworks */,
-				8127C4A92482628A00EC1081 /* GoogleAppMeasurement.framework in Frameworks */,
 				81BFC99D22F4CE8B008073D8 /* libz.tbd in Frameworks */,
 				81BFC99B22F4CE81008073D8 /* WebKit.framework in Frameworks */,
 				81BFC99722F4CE73008073D8 /* CoreMedia.framework in Frameworks */,
 				81BFC99522F4CE6C008073D8 /* QuartzCore.framework in Frameworks */,
 				81BFC99322F4CE64008073D8 /* AdSupport.framework in Frameworks */,
 				81BFC98F22F4CE50008073D8 /* CoreGraphics.framework in Frameworks */,
-				8127C4AD2482631A00EC1081 /* PromisesObjC.xcframework in Frameworks */,
 				81BFC98D22F4CE49008073D8 /* SystemConfiguration.framework in Frameworks */,
 				815234CF2278479000B1AE65 /* ZIPFoundation.framework in Frameworks */,
-				8127C4AB2482628A00EC1081 /* GoogleUtilities.xcframework in Frameworks */,
 				817D2EDA1E8EBBE500B8AE0D /* Alamofire.framework in Frameworks */,
 				817D2EDD1E8EBBE500B8AE0D /* Cartography.framework in Frameworks */,
 				816B343C20B727500019DE5C /* DeepDiff.framework in Frameworks */,
@@ -506,7 +496,6 @@
 				81FF1C531F9211B00086EEE0 /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				81FF1C541F9211B00086EEE0 /* SwiftTheme.framework in Frameworks */,
 				81FF1C551F9211B00086EEE0 /* Localize_Swift.framework in Frameworks */,
-				8127C4A82482628A00EC1081 /* nanopb.xcframework in Frameworks */,
 				81FF1C561F9211B00086EEE0 /* Cosmos.framework in Frameworks */,
 				817236A620BB1F8F0014F61A /* BLTNBoard.framework in Frameworks */,
 				81FF1C571F9211B00086EEE0 /* AlamofireImage.framework in Frameworks */,
@@ -514,7 +503,6 @@
 				81876E35227B725C00E27CB8 /* SwiftMessages.framework in Frameworks */,
 				817D2EE11E8EBBE500B8AE0D /* SwiftyJSON.framework in Frameworks */,
 				814B76F8205ADB63004D46DD /* Static.framework in Frameworks */,
-				8127C4AA2482628A00EC1081 /* GoogleMobileAds.framework in Frameworks */,
 				812C3542207D235300D39748 /* Swifter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1326,7 +1314,6 @@
 		81EC00661DAD76BE009EEFFA /* Startup */ = {
 			isa = PBXGroup;
 			children = (
-				818D75F122CCF32900A69C56 /* AdHelper.swift */,
 				8167A6121DAC246000F96AC2 /* AppDelegate.swift */,
 				8142FCD021987131003CD6DE /* BadgeManager.swift */,
 				81EC00691DAD7704009EEFFA /* Colors.swift */,
@@ -1638,7 +1625,6 @@
 				8142FCD32198E1FE003CD6DE /* Updates+Extension.swift in Sources */,
 				8126201B215444A400B06F88 /* NSScanner+Swift.swift in Sources */,
 				817418A52165368A00BB70EB /* LoadingCollectionView.swift in Sources */,
-				818D75F222CCF32900A69C56 /* AdHelper.swift in Sources */,
 				81FC8B4122735E5E003788F3 /* API+MyAppstore.swift in Sources */,
 				815016A12312DAFE00E06E1E /* WishAppCell.swift in Sources */,
 				814F4FB92196F5F9005A8111 /* API+Updates.swift in Sources */,
@@ -1971,9 +1957,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_INCLUDE_PATHS = /Users/ned/Documents/xcode/appdb/Modules;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2000,10 +1985,7 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = appdb/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";
@@ -2037,10 +2019,7 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = appdb/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";

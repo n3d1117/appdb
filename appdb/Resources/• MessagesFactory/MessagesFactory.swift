@@ -20,16 +20,7 @@ struct Messages {
 
     func getConfig(_ context: SwiftMessages.PresentationContext? = nil) -> SwiftMessages.Config {
         var config = SwiftMessages.Config()
-        switch context {
-        case .viewController(let vc):
-            if vc is FulfilledWishes || vc is NewWishes {
-                config.presentationStyle = .bottom
-            } else {
-                config.presentationStyle = Preferences.adBannerHeight > 0 ? .top : .bottom
-            }
-        default:
-            config.presentationStyle = Preferences.adBannerHeight > 0 ? .top : .bottom
-        }
+        config.presentationStyle = .bottom
         config.presentationContext = context ?? .automatic
         config.dimMode = .none
         return config

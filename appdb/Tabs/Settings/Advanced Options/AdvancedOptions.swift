@@ -59,8 +59,6 @@ class AdvancedOptions: TableViewController {
             ])
         ]
         dataSource.sections = sections
-
-        adMobAdjustContentInsetsIfNeeded()
     }
 }
 

@@ -17,7 +17,6 @@ extension Defaults.Keys {
     static let askForInstallationOptions = Key<Bool>("askForInstallationOptions", default: false)
     static let showBadgeForUpdates = Key<Bool>("showBadgeForUpdates", default: true)
     static let changeBundleBeforeUpload = Key<Bool>("changeBundleBeforeUpload", default: false)
-    static let adBannerHeight = Key<Int>("adBannerHeight", default: 0)
     static let ignoredUpdateableApps = Key<[IgnoredApp]>("ignoredUpdateableApps", default: [])
     static let resumeQueuedApps = Key<[RequestedApp]>("resumeQueuedApps", default: [])
     static let genres = Key<[Genre]>("genres", default: [])
@@ -80,10 +79,6 @@ enum Preferences {
 
     static var appsync: Bool {
         defaults[.appsync]
-    }
-
-    static var adBannerHeight: Int {
-        defaults[.adBannerHeight]
     }
 
     static var ignoresCompatibility: Bool {

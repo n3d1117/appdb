@@ -92,8 +92,6 @@ class Credits: TableViewController {
         }
 
         dataSource.sections = sections
-
-        adMobAdjustContentInsetsIfNeeded()
     }
 
     private func handleTap(for handle: Handle) {

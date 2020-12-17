@@ -45,8 +45,6 @@ class LoadingCollectionView: UICollectionViewController {
         return secondaryErrorMessage
     }()
 
-    var adChangeObservation: DefaultsObservation?
-
     var hasSegment: Bool = false
 
     override func viewDidLoad() {
@@ -63,13 +61,6 @@ class LoadingCollectionView: UICollectionViewController {
         collectionView.alwaysBounceVertical = true
 
         setConstraints()
-
-        adMobAdjustContentInsetsIfNeeded()
-
-        adChangeObservation = defaults.observe(.adBannerHeight) { [weak self] _ in
-            guard let self = self else { return }
-            self.adMobAdjustContentInsetsIfNeeded()
-        }
     }
 
     private func setConstraints() {

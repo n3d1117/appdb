@@ -39,8 +39,6 @@ class Settings: TableViewController {
 
     var urlSchemeLinkCodeBulletinManager: BLTNItemManager?
 
-    var adChangeObservation: DefaultsObservation?
-
     deinit { NotificationCenter.default.removeObserver(self) }
 
     convenience init() {
@@ -102,16 +100,10 @@ class Settings: TableViewController {
         }
 
         reloadConfiguration()
-        adMobAdjustContentInsetsIfNeeded()
 
         // Refresh action
         tableView.spr_setIndicatorHeader {
             reloadConfiguration()
-        }
-
-        adChangeObservation = defaults.observe(.adBannerHeight) { [weak self] _ in
-            guard let self = self else { return }
-            self.adMobAdjustContentInsetsIfNeeded()
         }
     }
 
@@ -127,14 +119,6 @@ class Settings: TableViewController {
     }
 
     func push(_ viewController: UIViewController) {
-
-        // Show ad if needed
-        if viewController is DeviceStatus {
-            delay(1) {
-                let tabBarController: TabBarController? = (UIApplication.shared.keyWindow?.rootViewController ~~ self.tabBarController) as? TabBarController
-                tabBarController?.showGADInterstitialIfReady()
-            }
-        }
 
         // Set delegates for view controllers that require one
         if let themeChooser = viewController as? ThemeChooser {

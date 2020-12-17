@@ -53,8 +53,6 @@ class LanguageChooser: UITableViewController {
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
             navigationItem.rightBarButtonItems = [dismissButton]
         }
-
-        adMobAdjustContentInsetsIfNeeded()
     }
 
     @objc private func dismissAnimated() { dismiss(animated: true) }
