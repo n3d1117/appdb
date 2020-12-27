@@ -56,9 +56,6 @@ $ cd appdb/
 $ carthage update --platform iOS
 $ open appdb.xcodeproj
 ```
-Note: this project references the AdMob SDK. You will need to download it from [here](https://developers.google.com/admob/ios/download), unzip it and drag the `.[xc]framework` files (`GoogleMobileAds.framework`, `GoogleAppMeasurement.framework`, `GoogleUtilities.xcframework`, `nanopb.xcframework` and `PromisesObjC.xcframework`) inside the project's `Frameworks` folder. Make sure to select `Copy items if needed` when copying the files.
-
-Don't forget to change `GADApplicationIdentifier` in `Info.plist` to your identifier and update ad identifiers in `AdHelper.swift` accordingly.
 
 ## License
 MIT License. See [LICENSE](LICENSE) file for further information.
