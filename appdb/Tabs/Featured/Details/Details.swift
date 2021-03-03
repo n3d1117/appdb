@@ -75,10 +75,9 @@ class Details: LoadingTableView {
     // MARK: - Share
 
     @objc func share(sender: UIBarButtonItem) {
-        let text = "Check out '%@' on appdb!".localizedFormat(content.itemName)
         let urlString = "\(Global.mainSite)app/\(contentType.rawValue)/\(content.itemId)"
         guard let url = URL(string: urlString) else { return }
-        let activity = UIActivityViewController(activityItems: [text, url], applicationActivities: [SafariActivity()])
+        let activity = UIActivityViewController(activityItems: [url], applicationActivities: [SafariActivity()])
         if #available(iOS 11.0, *) {} else {
             activity.excludedActivityTypes = [.airDrop]
         }
