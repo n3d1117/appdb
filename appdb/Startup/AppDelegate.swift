@@ -84,16 +84,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         // Handle IPA
         if url.isFileURL && IPAFileManager.shared.supportedFileExtensions.contains(url.pathExtension.lowercased()) {
+            
+            func copyIfNeeded() {
+                if !url.absoluteString.contains("/Documents/Inbox/") {
+                    IPAFileManager.shared.copyToDocuments(url: url)
+                }
+            }
 
             if !FileManager.default.isReadableFile(atPath: url.path) {
                 // Handle 'Open in appdb' from share sheet
                 if url.startAccessingSecurityScopedResource() {
-                    IPAFileManager.shared.copyToDocuments(url: url)
+                    copyIfNeeded()
                     url.stopAccessingSecurityScopedResource()
                 }
             } else {
-                // Handle 'Copy to appdb' from share sheet
-                IPAFileManager.shared.copyToDocuments(url: url)
+                copyIfNeeded()
             }
 
             guard let tabController = window?.rootViewController as? TabBarController else { return false }
