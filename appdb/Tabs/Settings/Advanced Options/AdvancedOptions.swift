@@ -38,6 +38,14 @@ class AdvancedOptions: TableViewController {
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
 
+        if #available(iOS 13.0, *) {} else {
+            if Global.isIpad {
+                // Add 'Dismiss' button for iPad
+                let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
+                self.navigationItem.rightBarButtonItems = [dismissButton]
+            }
+        }
+
         let sections = [
             Section(),
             Section(rows: [
@@ -69,6 +77,8 @@ class AdvancedOptions: TableViewController {
         ]
         dataSource.sections = sections
     }
+
+    @objc func dismissAnimated() { dismiss(animated: true) }
 }
 
 extension AdvancedOptions {

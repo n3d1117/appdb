@@ -133,9 +133,14 @@ class Settings: TableViewController {
 
         // Show view controller
         if Global.isIpad {
-            let nav = DismissableModalNavController(rootViewController: viewController)
-            nav.modalPresentationStyle = .formSheet
-            self.navigationController?.present(nav, animated: true)
+            if (viewController is ThemeChooser || viewController is LanguageChooser || viewController is AdvancedOptions),
+               #available(iOS 13.0, *) {
+                self.navigationController?.pushViewController(viewController, animated: true)
+            } else {
+                let nav = DismissableModalNavController(rootViewController: viewController)
+                nav.modalPresentationStyle = .formSheet
+                self.navigationController?.present(nav, animated: true)
+            }
         } else {
             self.navigationController?.pushViewController(viewController, animated: true)
         }

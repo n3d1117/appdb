@@ -76,6 +76,12 @@ class Credits: TableViewController {
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
 
+        if Global.isIpad {
+            // Add 'Dismiss' button for iPad
+            let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
+            self.navigationItem.rightBarButtonItems = [dismissButton]
+        }
+
         dataSource = DataSource(tableViewDelegate: self)
 
         var sections = [Static.Section]()
@@ -97,6 +103,8 @@ class Credits: TableViewController {
 
         dataSource.sections = sections
     }
+
+    @objc func dismissAnimated() { dismiss(animated: true) }
 
     private func handleTap(for handle: Handle) {
         switch handle {

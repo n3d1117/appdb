@@ -49,13 +49,17 @@ class LanguageChooser: UITableViewController {
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         view.theme_backgroundColor = Color.tableViewBackgroundColor
 
+        tableView.cellLayoutMarginsFollowReadableWidth = true
+
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
-        if Global.isIpad {
-            // Add 'Dismiss' button for iPad
-            let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
-            navigationItem.rightBarButtonItems = [dismissButton]
+        if #available(iOS 13.0, *) {} else {
+            if Global.isIpad {
+                // Add 'Dismiss' button for iPad
+                let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
+                navigationItem.rightBarButtonItems = [dismissButton]
+            }
         }
     }
 

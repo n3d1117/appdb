@@ -40,6 +40,8 @@ class ListAppsManagedByAppdb: LoadingTableView {
         tableView.theme_backgroundColor = Color.tableViewBackgroundColor
         view.theme_backgroundColor = Color.tableViewBackgroundColor
 
+        tableView.cellLayoutMarginsFollowReadableWidth = true
+
         animated = false
         showsErrorButton = false
         showsSpinner = false
