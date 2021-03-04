@@ -104,7 +104,7 @@ extension API {
             var i: Int = 0
             while FileManager.default.fileExists(atPath: fileURL.path) {
                 i += 1
-                let newName = String(filename.dropLast(4)) + "_\(i).\(url.pathExtension)"
+                let newName = String(filename.dropLast(4)) + " (\(i)).\(url.pathExtension)"
                 fileURL = IPAFileManager.shared.documentsDirectoryURL().appendingPathComponent(newName)
             }
             return (fileURL, [])

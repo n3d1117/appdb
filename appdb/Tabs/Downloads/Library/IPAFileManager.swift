@@ -298,7 +298,7 @@ struct IPAFileManager {
             var i: Int = 0
             while FileManager.default.fileExists(atPath: endURL.path) {
                 i += 1
-                let newName = url.deletingPathExtension().lastPathComponent + "_\(i).\(url.pathExtension)"
+                let newName = url.deletingPathExtension().lastPathComponent + " (\(i)).\(url.pathExtension)"
                 endURL = documentsDirectoryURL().appendingPathComponent(newName)
             }
             do {
@@ -320,7 +320,7 @@ struct IPAFileManager {
             var i: Int = 0
             while FileManager.default.fileExists(atPath: endURL.path) {
                 i += 1
-                let newName = url.deletingPathExtension().lastPathComponent + "_\(i).\(url.pathExtension)"
+                let newName = url.deletingPathExtension().lastPathComponent + " (\(i)).\(url.pathExtension)"
                 endURL = documentsDirectoryURL().appendingPathComponent(newName)
             }
             do {
