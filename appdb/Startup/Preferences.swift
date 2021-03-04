@@ -23,6 +23,10 @@ extension Defaults.Keys {
     static let followSystemAppearance = Key<Bool>("followSystemAppearance", default: true)
     static let shouldSwitchToDarkerTheme = Key<Bool>("shouldSwitchToDarkerTheme", default: false)
     static let niceDeviceModel = Key<String>("niceDeviceModel", default: "")
+    static let enableIapPatch = Key<Bool>("enableIapPatch", default: false)
+    static let preserveEntitlements = Key<Bool>("preserveEntitlements", default: false)
+    static let disableRevocationChecks = Key<Bool>("disableRevocationChecks", default: false)
+    static let forceDisablePRO = Key<Bool>("forceDisablePRO", default: false)
 }
 
 // Sensitive data is stored in Keychain
@@ -125,6 +129,22 @@ enum Preferences {
     static var niceDeviceModel: String {
         defaults[.niceDeviceModel]
     }
+
+    static var enableIapPatch: Bool {
+        defaults[.enableIapPatch]
+    }
+
+    static var preserveEntitlements: Bool {
+        defaults[.preserveEntitlements]
+    }
+
+    static var disableRevocationChecks: Bool {
+        defaults[.disableRevocationChecks]
+    }
+
+    static var forceDisablePRO: Bool {
+        defaults[.forceDisablePRO]
+    }
 }
 
 extension Preferences {
@@ -167,6 +187,10 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.resumeQueuedApps.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.niceDeviceModel.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.enableIapPatch.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.preserveEntitlements.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.disableRevocationChecks.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.forceDisablePRO.name)
     }
 
     // Remove secure keys

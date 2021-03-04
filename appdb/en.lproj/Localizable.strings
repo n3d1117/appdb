@@ -276,6 +276,13 @@
 "Only apps that are managed by appdb will appear here." = "Only apps that are managed by appdb will appear here.";
 "Custom Developer Identity" = "Custom Developer Identity";
 "Copy" = "Copy";
+"Clear developer identity" = "Clear developer identity";
+"Identity cleared!" = "Identity cleared!";
+"Patch in-app Purchases" = "Patch in-app Purchases";
+"Preserve Entitlements Comments" = "Preserve Entitlements Comments";
+"Disable Revocation Checks" = "Disable Revocation Checks";
+"Force Disable PRO" = "Force Disable PRO";
+"For Psychic Paper exploit" = "For Psychic Paper exploit";
 
 /////////////////////
 //     UPDATES     //

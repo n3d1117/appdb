@@ -77,7 +77,6 @@ class Settings: TableViewController {
         navigationItem.backBarButtonItem = backItem
 
         dataSource = DataSource(tableViewDelegate: self)
-
         refreshSources()
 
         // Refresh link code & configuration parameters
@@ -268,7 +267,7 @@ extension Settings: UITableViewDelegate {
             return UIContextMenuConfiguration(identifier: nil, previewProvider: { navController })
         } else if row.copyAction != nil {
             return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: nil) { _ in
-                return UIMenu(title: "", children: [
+                UIMenu(title: "", children: [
                     UIAction(title: "Copy".localized(), image: UIImage(systemName: "doc.on.doc")) { _ in
                         row.copyAction?(row)
                     }

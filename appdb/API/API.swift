@@ -95,4 +95,9 @@ enum ConfigurationParameters: String {
     case appsync = "params[appsync]"
     case ignoreCompatibility = "params[ignore_compatibility]"
     case askForOptions = "params[ask_for_installation_options]"
+    case clearDevEntity = "params[clear_developer_entity]"
+    case preserveEntitlements = "params[enable_psychic_paper]"
+    case disableProtectionChecks = "params[disable_protection_checks]"
+    case enableIapPatch = "params[enable_inapp_patch]"
+    case forceDisablePRO = "params[is_pro_disabled]"
 }

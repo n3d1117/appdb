@@ -37,7 +37,7 @@ class TabBarController: UITabBarController {
 
     // Bounce animation
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
+
         guard !Global.isIpad else { return }
 
         func animate(_ image: UIImageView) {

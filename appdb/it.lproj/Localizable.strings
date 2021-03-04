@@ -134,7 +134,7 @@
 "name@example.com" = "nome@esempio.it";
 "Deauthorization" = "Scollegamento";
 "Deauthorized" = "Scollegato";
-"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Sei sicuro di voler scollgare l'app e rimuovere l'autorizzazione ad installare app sul tuo dispositivo?\n\nNOTA: Per cancellare completamente il tuo dispositivo da appdb, rimuovi il profilo da Impostazioni -> Generali -> Profili.";
+"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "Sei sicuro di voler scollegare l'app e rimuovere l'autorizzazione ad installare app sul tuo dispositivo?\n\nNOTA: Per cancellare completamente il tuo dispositivo da appdb, rimuovi il profilo da Impostazioni -> Generali -> Profili.";
 "App was deauthorized successfully." = "App scollegata con successo.";
 
 ////////////////////
@@ -204,7 +204,7 @@
 
 "Device Configuration" = "Configurazione";
 "Link Code" = "Codice link";
-"Jailbroken w/ Appsync" = "Con Jailbreak e Appsync";
+"Jailbroken w/ Appsync" = "Jailbreak e Appsync";
 "Compatibility Checks" = "Controlli di compatibilità";
 "Ask for installation options" = "Chiedi opzioni di installazione";
 "Deauthorize" = "Scollega app";
@@ -274,8 +274,15 @@
 "Apps managed by appdb" = "App gestite da appdb";
 "Bundle IDs" = "Bundle ID";
 "Only apps that are managed by appdb will appear here." = "Solo le app gestite da appdb appariranno qui.";
-"Custom Developer Identity" = "Identità sviluppatore personalizzata";
+"Custom Developer Identity" = "Identità sviluppatore";
 "Copy" = "Copia";
+"Clear developer identity" = "Pulisci identità sviluppatore";
+"Identity cleared!" = "Identità pulita!";
+"Patch in-app Purchases" = "Patch acquisti in-app";
+"Preserve Entitlements Comments" = "Preserva commenti entitlements";
+"Disable Revocation Checks" = "Disabilita controlli revoche";
+"Force Disable PRO" = "Disabilita PRO";
+"For Psychic Paper exploit" = "Per exploit Psychic Paper";
 
 /////////////////////
 //     UPDATES     //

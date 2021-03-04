@@ -46,8 +46,21 @@ class AdvancedOptions: TableViewController {
             }
         }
 
-        let sections = [
-            Section(),
+        var sections = [
+            Section(rows: [
+                Row(text: "Patch in-app Purchases".localized(), accessory: .switchToggle(value: Preferences.enableIapPatch) { newValue in
+                    API.setConfiguration(params: [.enableIapPatch: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+                }, cellClass: SimpleStaticCell.self),
+                Row(text: "Preserve Entitlements Comments".localized(), detailText: "For Psychic Paper exploit".localized(), accessory: .switchToggle(value: Preferences.preserveEntitlements) { newValue in
+                    API.setConfiguration(params: [.preserveEntitlements: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+                }, cellClass: SimpleSubtitleCell.self),
+                Row(text: "Disable Revocation Checks".localized(), accessory: .switchToggle(value: Preferences.disableRevocationChecks) { newValue in
+                    API.setConfiguration(params: [.disableProtectionChecks: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+                }, cellClass: SimpleStaticCell.self),
+                Row(text: "Force Disable PRO".localized(), accessory: .switchToggle(value: Preferences.forceDisablePRO) { newValue in
+                    API.setConfiguration(params: [.forceDisablePRO: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+                }, cellClass: SimpleStaticCell.self)
+            ]),
             Section(rows: [
                 Row(text: "Check PRO Revocation".localized(), selection: { [unowned self] _ in
                     self.checkProRevocationStatus()
@@ -57,28 +70,34 @@ class AdvancedOptions: TableViewController {
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Activate PRO Voucher".localized(), selection: { [unowned self] _ in
                     self.activateVoucher()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
-            ]),
-            Section(rows: [
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Email Link Code".localized(), selection: { [unowned self] _ in
                     self.emailLinkCode()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
-            ]),
-            Section(rows: [
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "List apps managed by appdb".localized(), selection: { [unowned self] _ in
                     self.listAppsManagedByAppdb()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ]),
             Section(rows: [
-                Row(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
-                    Preferences.set(.changeBundleBeforeUpload, to: new)
-                }, "value": Preferences.changeBundleBeforeUpload])
-            ], footer: .title("Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.".localized()))
+                Row(text: "Clear developer identity".localized(), selection: { _ in }, cellClass: ClearIdentityStaticCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
+            ])
         ]
+        if #available(iOS 13.0, *) {} else { sections.insert(Section(), at: 0) }
+        dataSource = DataSource(tableViewDelegate: self)
         dataSource.sections = sections
     }
 
     @objc func dismissAnimated() { dismiss(animated: true) }
+}
+
+extension AdvancedOptions: UITableViewDelegate {
+
+    // Call clearDeveloperIdentity() on cell tap, I do this here because I need the indexPath
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath) is ClearIdentityStaticCell {
+            clearDeveloperIdentity(indexPath: indexPath)
+        }
+    }
 }
 
 extension AdvancedOptions {
@@ -144,6 +163,27 @@ extension AdvancedOptions {
     fileprivate func listAppsManagedByAppdb() {
         let listAppsManagedByAppdbViewController = ListAppsManagedByAppdb()
         self.navigationController?.pushViewController(listAppsManagedByAppdbViewController, animated: true)
+    }
+
+    fileprivate func clearDeveloperIdentity(indexPath: IndexPath) {
+        let title = "Are you sure you want to clear developer identity?".localized() // todo
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, adaptive: true)
+        alertController.addAction(UIAlertAction(title: "Clear developer identity", style: .destructive) { _ in
+            API.setConfiguration(params: [.clearDevEntity: "yes"], success: { [weak self] in
+                guard let self = self else { return }
+                Messages.shared.showSuccess(message: "Identity cleared!".localized(), context: .viewController(self))
+            }, fail: { _ in })
+        })
+        alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        if let presenter = alertController.popoverPresentationController {
+            presenter.theme_backgroundColor = Color.popoverArrowColor
+            presenter.sourceView = tableView
+            presenter.sourceRect = tableView.rectForRow(at: indexPath)
+            presenter.permittedArrowDirections = [.up, .down]
+        }
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+        }
     }
 }
 

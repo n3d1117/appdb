@@ -78,6 +78,11 @@ extension API {
                             case .appsync: Preferences.set(.appsync, to: value == "yes")
                             case .askForOptions: Preferences.set(.askForInstallationOptions, to: value == "yes")
                             case .ignoreCompatibility: Preferences.set(.ignoreCompatibility, to: value == "yes")
+                            case .enableIapPatch: Preferences.set(.enableIapPatch, to: value == "yes")
+                            case .preserveEntitlements: Preferences.set(.preserveEntitlements, to: value == "yes")
+                            case .disableProtectionChecks: Preferences.set(.disableRevocationChecks, to: value == "yes")
+                            case .forceDisablePRO: Preferences.set(.forceDisablePRO, to: value == "yes")
+                            case .clearDevEntity: break
                             }
                         }
                         success()
