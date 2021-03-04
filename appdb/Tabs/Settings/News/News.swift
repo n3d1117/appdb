@@ -31,6 +31,14 @@ class News: LoadingTableView {
     // Store the result from registerForPreviewing(with:sourceView:)
     var previewingContext: UIViewControllerPreviewing?
 
+    convenience init() {
+        if #available(iOS 13.0, *) {
+            self.init(style: .insetGrouped)
+        } else {
+            self.init(style: .grouped)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -162,6 +170,22 @@ class News: LoadingTableView {
         guard !item.id.isEmpty else { return }
         let newsDetailViewController = NewsDetail(with: item.id)
         navigationController?.pushViewController(newsDetailViewController, animated: true)
+    }
+
+    // Dummies
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if #available(iOS 13.0, *) {
+            return 20
+        }
+        return 0
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if #available(iOS 13.0, *) {
+            return " "
+        }
+        return nil
     }
 }
 

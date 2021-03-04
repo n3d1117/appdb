@@ -47,6 +47,8 @@ extension API {
                                 Preferences.set(.usesCustomDeveloperIdentity, to: false)
                             }
 
+                            Preferences.set(.niceDeviceModel, to: data["nice_idevice_model"].stringValue)
+
                             success()
                         }, fail: { error in
                             fail(error)

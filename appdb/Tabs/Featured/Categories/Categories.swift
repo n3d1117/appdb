@@ -44,7 +44,13 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let nav = navigationController { nav.navigationBar.hideBottomHairline() }
 
         // Init and add subviews
-        tableView = UITableView(frame: view.frame, style: .plain)
+        if !Global.isIpad, #available(iOS 13.0, *) {
+            tableView = UITableView(frame: view.frame, style: .insetGrouped)
+            tableView.automaticallyAdjustsScrollIndicatorInsets = false
+            tableView.contentInset.top = -20 // sigh, Apple...
+        } else {
+            tableView = UITableView(frame: view.frame, style: .plain)
+        }
         tableView.delegate = self
         tableView.dataSource = self
 

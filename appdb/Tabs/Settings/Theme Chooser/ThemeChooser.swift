@@ -24,7 +24,11 @@ class ThemeChooser: UITableViewController {
     }()
 
     convenience init() {
-        self.init(style: .grouped)
+        if #available(iOS 13.0, *) {
+            self.init(style: .insetGrouped)
+        } else {
+            self.init(style: .grouped)
+        }
 
         if #available(iOS 13.0, *) {
             followSystemAppearanceToggle = UISwitch()
