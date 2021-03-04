@@ -37,7 +37,10 @@ class TabBarController: UITabBarController {
 
     // Bounce animation
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if !Global.isIpad, let view = item.value(forKey: "view") as? UIView, let image = view.subviews.first as? UIImageView {
+        
+        guard !Global.isIpad else { return }
+
+        func animate(_ image: UIImageView) {
             UIView.animate(withDuration: 0.1, animations: {
                 image.transform = CGAffineTransform(scaleX: 0.93, y: 0.93)
             }, completion: { _ in
@@ -45,6 +48,19 @@ class TabBarController: UITabBarController {
                     image.transform = .identity
                 }
             })
+        }
+
+        if #available(iOS 13.0, *) {
+            if let selected = item.value(forKey: "_view") as? UIView,
+               let underlyingVisualEffectView = selected.subviews.compactMap({ $0 as? UIVisualEffectView }).first,
+               let image = underlyingVisualEffectView.contentView.subviews.compactMap({ $0 as? UIImageView }).first {
+                animate(image)
+            }
+        } else {
+            if let view = item.value(forKey: "view") as? UIView,
+               let image = view.subviews.first as? UIImageView {
+                animate(image)
+            }
         }
     }
 }
