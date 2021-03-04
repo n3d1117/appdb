@@ -275,6 +275,7 @@
 "Bundle IDs" = "Идентификаторы";
 "Only apps that are managed by appdb will appear here." = "Тут отображаются приложения, установленные через appdb";
 "Custom Developer Identity" = "Ваш профиль разработчика";
+"Copy" = "копировать";
 
 /////////////////////
 //     UPDATES     //

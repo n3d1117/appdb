@@ -275,6 +275,7 @@
 "Bundle IDs" = "Bundle IDs";
 "Only apps that are managed by appdb will appear here." = "Seules les applications gérées par appdb apparaissent ici.";
 "Custom Developer Identity" = "Identité de développeur personnalisée";
+"Copy" = "Copie";
 
 /////////////////////
 //     UPDATES     //

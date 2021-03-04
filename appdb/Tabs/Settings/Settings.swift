@@ -266,6 +266,14 @@ extension Settings: UITableViewDelegate {
         guard let row = dataSource.row(at: point) else { return nil }
         if let text = row.text, let navController = getNavControllerForText(text) {
             return UIContextMenuConfiguration(identifier: nil, previewProvider: { navController })
+        } else if row.copyAction != nil {
+            return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: nil) { _ in
+                return UIMenu(title: "", children: [
+                    UIAction(title: "Copy".localized(), image: UIImage(systemName: "doc.on.doc")) { _ in
+                        row.copyAction?(row)
+                    }
+                ])
+            }
         }
         return nil
     }

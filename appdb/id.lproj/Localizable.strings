@@ -275,6 +275,7 @@
 "Bundle IDs" = "Bundle IDs";
 "Only apps that are managed by appdb will appear here." = "Hanya aplikasi yang dikelola oleh appdb yang akan muncul di sini. ";
 "Custom Developer Identity" = "Identitas Pengembang Khusus";
+"Copy" = "Salinan";
 
 /////////////////////
 //     UPDATES     //
