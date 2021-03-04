@@ -56,7 +56,12 @@ class AdvancedOptions: TableViewController {
                 Row(text: "List apps managed by appdb".localized(), selection: { [unowned self] _ in
                     self.listAppsManagedByAppdb()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
-            ])
+            ]),
+            Section(rows: [
+                Row(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
+                    Preferences.set(.changeBundleBeforeUpload, to: new)
+                }, "value": Preferences.changeBundleBeforeUpload])
+            ], footer: .title("Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.".localized()))
         ]
         dataSource.sections = sections
     }

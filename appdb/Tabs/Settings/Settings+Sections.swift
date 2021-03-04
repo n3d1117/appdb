@@ -130,17 +130,11 @@ extension Settings {
                     self.push(AdvancedOptions())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ]),
-
             Section(rows: [
                 Row(text: "Show badge for updates".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
                     Preferences.set(.showBadgeForUpdates, to: new)
-                }, "value": Preferences.showBadgeForUpdates]),
-
-                Row(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
-                    Preferences.set(.changeBundleBeforeUpload, to: new)
-                }, "value": Preferences.changeBundleBeforeUpload])
-            ], footer: .title("Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.".localized())),
-
+                }, "value": Preferences.showBadgeForUpdates])
+            ]),
             Section(rows: [
                 Row(text: "Device Status".localized(), selection: { [unowned self] _ in
                     self.push(DeviceStatus())
