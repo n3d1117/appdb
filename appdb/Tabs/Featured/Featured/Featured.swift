@@ -140,9 +140,9 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 
     // MARK: - Retry Loading
 
-    func pullToRefreshAction() {
+    func pullToRefreshAction(recursive: Bool = false) {
         let itemCells = self.cells.compactMap {$0 as? ItemCollection}
-        for cell in itemCells {
+        for cell in (recursive ? itemCells.filter({!$0.response.success}) : itemCells) {
             cell.reloadAfterCategoryChange(id: cell.currentCategory, type: cell.currentType)
         }
         delay(0.3) {
@@ -150,7 +150,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
                 if !itemCells.filter({!$0.response.errorDescription.isEmpty}).isEmpty {
                     self.tableView.spr_endRefreshing()
                 } else {
-                    delay(0.3) { self.pullToRefreshAction() }
+                    delay(0.3) { self.pullToRefreshAction(recursive: true) }
                 }
             } else {
                 self.tableView.spr_endRefreshing()
