@@ -78,6 +78,7 @@ class SeeAll: LoadingTableView {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
         // Search Controller
+        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self
         searchController.delegate = self
         if #available(iOS 9.1, *) {

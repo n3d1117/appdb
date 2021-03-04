@@ -1,23 +1,23 @@
 {
   "images" : [
     {
+      "filename" : "tnt.jpg",
       "idiom" : "universal",
-      "filename" : "tnt-3.jpeg",
       "scale" : "1x"
     },
     {
+      "filename" : "tnt-1.jpg",
       "idiom" : "universal",
-      "filename" : "tnt-1.jpeg",
       "scale" : "2x"
     },
     {
+      "filename" : "tnt-2.jpg",
       "idiom" : "universal",
-      "filename" : "tnt-2.jpeg",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
