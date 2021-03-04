@@ -22,6 +22,7 @@ extension Defaults.Keys {
     static let genres = Key<[Genre]>("genres", default: [])
     static let followSystemAppearance = Key<Bool>("followSystemAppearance", default: true)
     static let shouldSwitchToDarkerTheme = Key<Bool>("shouldSwitchToDarkerTheme", default: false)
+    static let niceDeviceModel = Key<String>("niceDeviceModel", default: "")
 }
 
 // Sensitive data is stored in Keychain
@@ -120,6 +121,10 @@ enum Preferences {
     static var shouldSwitchToDarkerTheme: Bool {
         defaults[.shouldSwitchToDarkerTheme]
     }
+
+    static var niceDeviceModel: String {
+        defaults[.niceDeviceModel]
+    }
 }
 
 extension Preferences {
@@ -131,6 +136,10 @@ extension Preferences {
     }
 
     static func set(_ key: Defaults.Key<Int>, to: Int) {
+        defaults[key] = to
+    }
+
+    static func set(_ key: Defaults.Key<String>, to: String) {
         defaults[key] = to
     }
 
@@ -157,6 +166,7 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.changeBundleBeforeUpload.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.resumeQueuedApps.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.niceDeviceModel.name)
     }
 
     // Remove secure keys

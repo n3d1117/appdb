@@ -15,7 +15,11 @@ extension Settings {
     // Device info string, e.g. "iPhone 6s (10.2)"
     var deviceInfoString: String {
         let device = UIDevice.current
-        return device.deviceType.displayName + " (" + device.systemVersion + ")"
+        if Preferences.deviceIsLinked && device.deviceType == .notAvailable {
+            return Preferences.niceDeviceModel + " (" + device.systemVersion + ")"
+        } else {
+            return device.deviceType.displayName + " (" + device.systemVersion + ")"
+        }
     }
 
     var forumSite: String {
