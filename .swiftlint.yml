@@ -37,7 +37,6 @@ disabled_rules:
   - function_body_length
   - cyclomatic_complexity
   - yoda_condition
-  - unused_private_declaration
   - trailing_closure
   - toggle_bool
 

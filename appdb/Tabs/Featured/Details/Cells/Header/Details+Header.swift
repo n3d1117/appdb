@@ -50,7 +50,7 @@ class DetailsHeader: DetailsCell {
         separatorInset.left = 10000
         layoutMargins = .zero
 
-        //UI
+        // UI
         theme_backgroundColor = Color.veryVeryLightGray
         setBackgroundColor(Color.veryVeryLightGray)
 

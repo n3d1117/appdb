@@ -70,7 +70,7 @@ class SeeAllCell: UITableViewCell {
 
     // Shared initializer
     private func sharedInit() {
-        //UI
+        // UI
         theme_backgroundColor = Color.veryVeryLightGray
         setBackgroundColor(Color.veryVeryLightGray)
         let bgColorView = UIView()

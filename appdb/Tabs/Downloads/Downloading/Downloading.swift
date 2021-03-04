@@ -52,11 +52,11 @@ class Downloading: LoadingCollectionView {
             guard let self = self else { return }
             if let index = self.downloadingApps.firstIndex(of: app) {
                 self.downloadingApps[index].util = nil
-                //self.downloadingApps.remove(at: index)
-                //self.collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-                //if self.downloadingApps.isEmpty {
-                    //self.setErrorMessageIfEmpty()
-                //}
+                // self.downloadingApps.remove(at: index)
+                // self.collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
+                // if self.downloadingApps.isEmpty {
+                    // self.setErrorMessageIfEmpty()
+                // }
             }
         }
     }

@@ -96,7 +96,7 @@ public struct SHA1 {
         while data.count >= range.upperBound {
             //print("Reading \(range.count) bytes @ position \(range.lowerBound)")
             w.withUnsafeMutableBufferPointer{ dest in
-                _=data.copyBytes(to: dest, from: range)               // Retrieve one chunk
+                data.copyBytes(to: dest, from: range)               // Retrieve one chunk
             }
             context.process(chunk: &w)                                // Process the chunk
             range = range.upperBound..<range.upperBound+64            // Make range for next chunk
@@ -106,7 +106,7 @@ public struct SHA1 {
         w = ContiguousArray<UInt32>(repeating: 0x00000000, count: CHUNKSIZE) // Initialise empty chunk
         range = range.lowerBound..<data.count                         // Range for remainder of message
         w.withUnsafeMutableBufferPointer{ dest in
-            _=data.copyBytes(to: dest, from: range)                   // Retrieve remainder
+            data.copyBytes(to: dest, from: range)                   // Retrieve remainder
         }
         let bytetochange=range.count % 4                              // The bit to the right of the
         let shift = UInt32(bytetochange * 8)                          // last bit of the actual message

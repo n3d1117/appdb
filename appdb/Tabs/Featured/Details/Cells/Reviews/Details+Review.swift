@@ -54,7 +54,7 @@ class DetailsReview: DetailsCell {
         stars.settings.totalStars = 5
         stars.settings.fillMode = .full
         stars.settings.starMargin = 0
-        //stars.settings.textSize = 11.5
+        // stars.settings.textSize = 11.5
         stars.settings.textMargin = 4
 
         // Desc

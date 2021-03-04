@@ -61,7 +61,7 @@ class Acknowledgements: LoadingTableView {
         guard let url = Bundle.main.url(forResource: "Acknowledgements", withExtension: "plist") else { fail(); return }
 
         // Debug
-        //debugLog("SHA1 of acknowledgements file is \(SHA1.hexString(fromFile: url.path)!)")
+        // debugLog("SHA1 of acknowledgements file is \(SHA1.hexString(fromFile: url.path)!)")
 
         guard SHA1.hexString(fromFile: url.path) == "AFB2D061 CD29BC3D 8DBF4E1C 776147C1 C97CA35A" else { fail(); return }
 

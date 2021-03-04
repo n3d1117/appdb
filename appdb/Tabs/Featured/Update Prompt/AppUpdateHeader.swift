@@ -46,7 +46,7 @@ class AppUpdateHeader: UITableViewCell {
         layoutMargins.left = 0
         separatorInset.left = 0
 
-        //UI
+        // UI
         theme_backgroundColor = Color.veryVeryLightGray
         setBackgroundColor(Color.veryVeryLightGray)
 

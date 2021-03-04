@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func applicationWillTerminate(_ application: UIApplication) {
         IPAFileManager.shared.clearTmpDirectory()
-        //IPAFileManager.shared.clearCacheDirectory()
+        // IPAFileManager.shared.clearCacheDirectory()
 
         // If there are any queued apps still pending, add them to UserDefaults
         for app in ObserveQueuedApps.shared.requestedApps where !Preferences.resumeQueuedApps.contains(app) {
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         // Handle IPA
         if url.isFileURL && IPAFileManager.shared.supportedFileExtensions.contains(url.pathExtension.lowercased()) {
-            
+
             func copyIfNeeded() {
                 if !url.absoluteString.contains("/Documents/Inbox/") {
                     IPAFileManager.shared.copyToDocuments(url: url)

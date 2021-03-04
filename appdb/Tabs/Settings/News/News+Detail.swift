@@ -171,27 +171,27 @@ extension AttributedLabel {
         // See https://github.com/psharanda/Atributika/issues/54
 
         // Supports <img>
-        //let img = Style("img")
+        // let img = Style("img")
 
         // Close <img> tag manually (otherwise it's not detected)
-        //var newText = text
-        //if text.contains("<img src") {
+        // var newText = text
+        // if text.contains("<img src") {
         //    let tmp = text.components(separatedBy: "<img src")[1].components(separatedBy: ">")[0]
         //    newText = text.replacingOccurrences(of: tmp + ">", with: tmp + "></img>")
-        //}
+        // }
 
         // Apply styles
         // swiftlint:disable:next comma
         let str = text.style(tags: [b, i, strong, u,/* img,*/ link], transformers: transformers).styleLinks(link)
 
         // Create NSMutableAttributedString
-        //let mutableAttrStr = NSMutableAttributedString(attributedString: str.attributedString)
+        // let mutableAttrStr = NSMutableAttributedString(attributedString: str.attributedString)
 
         // Insert image if <img> tag is found
-        //addImageSupport(mutableAttrStr: mutableAttrStr, detections: str.detections)
+        // addImageSupport(mutableAttrStr: mutableAttrStr, detections: str.detections)
 
         // Update text
-        //attributedText = mutableAttrStr.styleLinks(link)
+        // attributedText = mutableAttrStr.styleLinks(link)
         attributedText = str
 
         // Click on url detection

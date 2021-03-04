@@ -174,7 +174,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             })
 
             for cell in self.cells.compactMap({$0 as? ItemCollection}) { cell.requestItems() }
-            //self.banner.setImageInputs()
+            // self.banner.setImageInputs()
             self.reloadTableWhenReady()
         }
     }
