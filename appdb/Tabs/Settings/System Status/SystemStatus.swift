@@ -57,13 +57,9 @@ class SystemStatus: LoadingTableView {
     }
 
     private func fetchStatus() {
-        API.getLastSystemStatusUpdateTime { [weak self] checkedAt in
+        API.getSystemStatus(success: { [weak self] checkedAt, services in
             guard let self = self else { return }
             self.checkedAt = checkedAt
-        }
-
-        API.getSystemStatus(success: { [weak self] services in
-            guard let self = self else { return }
             self.services = services.sorted { $0.name.lowercased() < $1.name.lowercased() }
         }, fail: { [weak self] error in
             guard let self = self else { return }
@@ -95,7 +91,7 @@ class SystemStatus: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        services.isEmpty ? nil : (self.checkedAt)
+        services.isEmpty ? nil : checkedAt
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

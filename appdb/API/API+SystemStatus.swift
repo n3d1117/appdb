@@ -11,28 +11,25 @@ import SwiftyJSON
 
 extension API {
 
-    static func getSystemStatus(success:@escaping (_ items: [ServiceStatus]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+    static func getSystemStatus(success:@escaping (_ checkedAt: String, _ items: [ServiceStatus]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+        var checkedAt: String!
         AF.request(statusEndpoint, headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    checkedAt = JSON(value)["checked_at"].stringValue.rfc2822decoded
+                case .failure(let error):
+                    fail(error as NSError)
+                    return
+                }
+            }
             .responseArray(keyPath: "data") { (response: AFDataResponse<[ServiceStatus]>) in
                 switch response.result {
                 case .success(let results):
-                    success(results)
+                    success(checkedAt, results)
                 case .failure(let error):
                     fail(error as NSError)
                 }
             }
-    }
-
-    static func getLastSystemStatusUpdateTime(success:@escaping (_ checkedAt: String) -> Void) {
-        AF.request(statusEndpoint, headers: headers)
-        .responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                success(json["checked_at"].stringValue.rfc2822decoded)
-            case .failure:
-                break
-            }
-        }
     }
 }
