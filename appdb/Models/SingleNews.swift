@@ -23,7 +23,7 @@ struct SingleNews: Mappable {
         text <- map["text"]
         added <- map["added"]
 
-        added = added.unixToString
+        added = added.rfc2822decoded
         title = title.decoded
     }
 }

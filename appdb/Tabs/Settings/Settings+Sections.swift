@@ -15,7 +15,7 @@ extension Settings {
     // Device info string, e.g. "iPhone 6s (10.2)"
     var deviceInfoString: String {
         let device = UIDevice.current
-        if Preferences.deviceIsLinked && device.deviceType == .notAvailable {
+        if device.deviceType == .notAvailable && !Preferences.niceDeviceModel.isEmpty {
             return Preferences.niceDeviceModel + " (" + device.systemVersion + ")"
         } else {
             return device.deviceType.displayName + " (" + device.systemVersion + ")"
