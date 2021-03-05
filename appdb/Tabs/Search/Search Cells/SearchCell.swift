@@ -78,7 +78,11 @@ class SearchCell: UICollectionViewCell {
         theme_backgroundColor = Color.veryVeryLightGray
         contentView.theme_backgroundColor = Color.veryVeryLightGray
 
-        contentView.layer.cornerRadius = 6
+        if #available(iOS 13.0, *) {
+            contentView.layer.cornerRadius = 10
+        } else {
+            contentView.layer.cornerRadius = 6
+        }
         contentView.layer.borderWidth = 1 / UIScreen.main.scale
         contentView.layer.theme_borderColor = Color.borderCgColor
         layer.backgroundColor = UIColor.clear.cgColor
