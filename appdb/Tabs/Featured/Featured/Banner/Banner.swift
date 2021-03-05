@@ -13,13 +13,8 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as? BannerImage else { return UICollectionViewCell() }
-
-        // TODO: add more / fetch from APIs?
-        switch indexPath.row {
-        case 0: cell.image.image = #imageLiteral(resourceName: "banner")
-        default: cell.image.image = #imageLiteral(resourceName: "placeholderBanner")
-        }
-
+        let banner = banners[indexPath.row % 3]
+        cell.image.image = UIImage(named: banner)
         return cell
     }
 
@@ -27,9 +22,8 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
         1
     }
 
-    // TODO dynamic
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        banners.count * multiplier // simulate infinite scroll
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -40,24 +34,31 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
         setTimerIfNeeded()
 
         // Update current index to the correct one
-        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+        let visibleRect = CGRect(origin: scrollView.contentOffset, size: scrollView.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         guard let indexPath = collectionView.indexPathForItem(at: visiblePoint) else { return }
         currentIndex = indexPath.row
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch banners[indexPath.row % 3] {
+        case "tweaked_apps_banner": UIApplication.shared.open(URL(string: "appdb-ios://?tab=custom_apps")!)
+        case "unc0ver_banner": UIApplication.shared.open(URL(string: "appdb-ios://?trackid=1900000487&type=cydia")!)
+        default: break
+        }
+    }
 }
 
-class Banner: UITableViewCell {
+class Banner: UIView {
+
+    let multiplier: Int = 2
+    let banners: [String] = ["main_banner", "tweaked_apps_banner", "unc0ver_banner"]
     var collectionView: UICollectionView!
 
-    // Cell height
-    let height: CGFloat = {
+    static let height: CGFloat = {
         let w = Double(UIScreen.main.bounds.width)
         let h = Double(UIScreen.main.bounds.height)
-
         let screenWidth: Double = min(w, h)
-
-        // Experimental
         return (230 ~~ CGFloat(screenWidth / 2.517 + 2))
     }()
 
@@ -74,16 +75,13 @@ class Banner: UITableViewCell {
         }
     }
 
-    deinit { pauseTimer() }
-
     convenience init() {
-        self.init(style: .default, reuseIdentifier: Featured.CellType.banner.rawValue)
+        self.init(frame: .zero)
 
-        contentView.backgroundColor = .clear
         backgroundColor = .clear
 
         let layout = LNZInfiniteCollectionViewLayout()
-        layout.itemSize = CGSize(width: height * 2.5, height: height)
+        layout.itemSize = CGSize(width: Banner.height * 2.5, height: Banner.height)
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(BannerImage.self, forCellWithReuseIdentifier: "image")
@@ -93,34 +91,17 @@ class Banner: UITableViewCell {
         collectionView.alwaysBounceVertical = false
 
         collectionView.theme_backgroundColor = Color.tableViewBackgroundColor
-        contentView.addSubview(collectionView)
+        addSubview(collectionView)
 
         // Add constraints
         constrain(collectionView) { collectionView in
             collectionView.top ~== collectionView.superview!.top
             collectionView.left ~== collectionView.superview!.left
             collectionView.right ~== collectionView.superview!.right
-            collectionView.height ~== height
+            collectionView.height ~== Banner.height
         }
 
         slideshowInterval = 4.5
-
-        //
-        // Get Promotions
-        // TODO: ask fred to add banner image to API
-        //
-
-        /*API.getPromotions( success: { items in
-            
-            if items.isEmpty {
-                debugLog("no promotions to show")
-            } else {
-                debugLog("found \(items.count) promotions.")
-            }
-            
-        }, fail: { error in
-                debugLog(error.localizedDescription)
-        })*/
     }
 
     // Set up timer if needed
@@ -132,11 +113,14 @@ class Banner: UITableViewCell {
 
     // Increase current index & scroll
     @objc func slideshowTick(_ timer: Timer) {
-        let numberOfItems = collectionView.numberOfItems(inSection: 0)
-        guard numberOfItems != 0 else { return }
         currentIndex += 1
-        if currentIndex == numberOfItems { currentIndex = 0 }
-        collectionView.scrollToItem(at: IndexPath(row: currentIndex, section: 0), at: .centeredHorizontally, animated: true)
+        if currentIndex == banners.count * multiplier { currentIndex = 0 }
+        let bannerWidth: CGFloat = Banner.height * 2.5
+        let newPoint = CGPoint(
+            x: collectionView.contentOffset.x + bannerWidth,
+            y: collectionView.contentOffset.y
+        )
+        collectionView.setContentOffset(newPoint, animated: true)
     }
 
     // Invalidate timer

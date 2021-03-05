@@ -33,7 +33,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         Copyright()
     ]
 
-    var banner = Banner()
+    let banner = Banner()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,8 +119,8 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             if #available(iOS 10.0, *) { UIImpactFeedbackGenerator(style: .light).impactOccurred() }
 
             // Pull to refresh
-            tableView.scrollIndicatorInsets.top = banner.height
-            tableView.spr_setIndicatorHeader(height: 80, positiveOffset: banner.height - 10) { [weak self] in
+            tableView.scrollIndicatorInsets.top = Banner.height
+            tableView.spr_setIndicatorHeader(height: 80, positiveOffset: Banner.height - 10) { [weak self] in
                 self?.pullToRefreshAction()
             }
 
@@ -174,7 +174,6 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
             })
 
             for cell in self.cells.compactMap({$0 as? ItemCollection}) { cell.requestItems() }
-            // self.banner.setImageInputs()
             self.reloadTableWhenReady()
         }
     }

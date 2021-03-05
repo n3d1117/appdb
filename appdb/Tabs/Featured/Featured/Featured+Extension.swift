@@ -32,11 +32,20 @@ extension Featured {
         case cydia = "cydia"
         case books = "books"
         case dummy = "dummy"
-        case banner = "banner"
         case copyright = "copyright"
     }
 
     static let iosTypes: [CellType] = [.iosNew, .iosPaid, .iosPopular, .cydia]
+
+    // Invalidate banner timer when view disappears
+    override func viewWillDisappear(_ animated: Bool) {
+        banner.pauseTimer()
+    }
+
+    // Resume timer when view reappears
+    override func viewWillAppear(_ animated: Bool) {
+        banner.setTimerIfNeeded()
+    }
 
     // Set up
     func setUp() {
@@ -44,7 +53,6 @@ extension Featured {
         for id in Featured.iosTypes { tableView.register(ItemCollection.self, forCellReuseIdentifier: id.rawValue) }
         tableView.register(ItemCollection.self, forCellReuseIdentifier: CellType.books.rawValue)
         tableView.register(Dummy.self, forCellReuseIdentifier: CellType.dummy.rawValue)
-        tableView.register(Banner.self, forCellReuseIdentifier: CellType.banner.rawValue)
         tableView.register(Copyright.self, forCellReuseIdentifier: CellType.copyright.rawValue)
 
         for cell in cells.compactMap({$0 as? ItemCollection}) { cell.delegate = self; cell.delegateCategory = self }
@@ -70,9 +78,8 @@ extension Featured {
     // Add Banner
     func addBanner(_ banner: Banner) {
         tableView.tableHeaderView = banner
-        banner.setTimerIfNeeded()
         if let headerView = tableView.tableHeaderView {
-            let height: CGFloat = banner.height
+            let height: CGFloat = Banner.height
             var headerFrame = headerView.frame
             if height != headerFrame.size.height {
                 headerFrame.size.height = height
@@ -87,9 +94,9 @@ extension Featured {
         if let headerView = tableView.tableHeaderView as? Banner, let nav = navigationController {
             let minOff: CGFloat = -nav.navigationBar.frame.height - UIApplication.shared.statusBarFrame.height
             if scrollView.contentOffset.y < minOff {
-                headerView.subviews[0].bounds.origin.y = minOff - scrollView.contentOffset.y
+                headerView.bounds.origin.y = minOff - scrollView.contentOffset.y
             } else {
-                headerView.subviews[0].bounds.origin.y = 0
+                headerView.bounds.origin.y = 0
             }
         }
     }

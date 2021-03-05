@@ -38,6 +38,7 @@ A fully-featured iOS client for [appdb.to](https://appdb.to) written in Swift 5 
 * `appdb-ios://?tab=system_status`
 * `appdb-ios://?tab=device_status`
 * `appdb-ios://?tab=wishes`
+* `appdb-ios://?tab=custom_apps`
 * `appdb-ios://?trackid=1900000538&type=[ios, cydia, books]`
 * `appdb-ios://?q=facebook&type=[ios, cydia, books]`
 * `appdb-ios://?url=https://appdb.to`

@@ -169,6 +169,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 } else {
                     nav.present(UINavigationController(rootViewController: Wishes()), animated: true)
                 }
+            case "custom_apps":
+                tab.selectedIndex = 0
+                guard let nav = tab.viewControllers?[0] as? UINavigationController else { break }
+                let customAppsViewController = SeeAll(title: "Custom Apps".localized(),
+                                                  type: .cydia, category: "0", price: .all, order: .added)
+                if Global.isIpad {
+                    let modalNav = DismissableModalNavController(rootViewController: customAppsViewController)
+                    nav.modalPresentationStyle = .formSheet
+                    nav.present(modalNav, animated: true)
+                } else {
+                    nav.pushViewController(customAppsViewController, animated: true)
+                }
             default: break
             }
 
