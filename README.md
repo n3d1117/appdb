@@ -53,7 +53,7 @@ Make sure you have [Carthage](https://github.com/Carthage/Carthage) installed. R
 ```
 $ git clone https://github.com/n3d1117/appdb.git
 $ cd appdb/
-$ carthage update --platform iOS
+$ carthage update --platform iOS --use-xcframeworks
 $ open appdb.xcodeproj
 ```
 
