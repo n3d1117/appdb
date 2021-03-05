@@ -13,7 +13,7 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as? BannerImage else { return UICollectionViewCell() }
-        let banner = banners[indexPath.row % 3]
+        let banner = banners[indexPath.row % banners.count]
         cell.image.image = UIImage(named: banner)
         return cell
     }
@@ -41,9 +41,10 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch banners[indexPath.row % 3] {
+        switch banners[indexPath.row % banners.count] {
         case "tweaked_apps_banner": UIApplication.shared.open(URL(string: "appdb-ios://?tab=custom_apps")!)
         case "unc0ver_banner": UIApplication.shared.open(URL(string: "appdb-ios://?trackid=1900000487&type=cydia")!)
+        case "delta_banner": UIApplication.shared.open(URL(string: "appdb-ios://?trackid=1900000176&type=cydia")!)
         default: break
         }
     }
@@ -52,7 +53,7 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
 class Banner: UIView {
 
     let multiplier: Int = 2
-    let banners: [String] = ["main_banner", "tweaked_apps_banner", "unc0ver_banner"]
+    let banners: [String] = ["main_banner", "tweaked_apps_banner", "unc0ver_banner", "delta_banner"]
     var collectionView: UICollectionView!
 
     static let height: CGFloat = {
