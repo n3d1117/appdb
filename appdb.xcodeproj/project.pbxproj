@@ -302,17 +302,10 @@
 		81262016215444A400B06F88 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		81262017215444A400B06F88 /* NSAttributedString+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		81262018215444A400B06F88 /* String+Detection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Detection.swift"; sourceTree = "<group>"; };
-		8127C4A42482628900EC1081 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = nanopb.xcframework; sourceTree = "<group>"; };
-		8127C4A52482628900EC1081 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppMeasurement.framework; sourceTree = "<group>"; };
-		8127C4A62482628900EC1081 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
-		8127C4A72482628A00EC1081 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
-		8127C4AC2482631A00EC1081 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PromisesObjC.xcframework; sourceTree = "<group>"; };
-		812C3541207D235300D39748 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		81324067205BD86000945CE9 /* Settings+StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+StaticCells.swift"; sourceTree = "<group>"; };
 		8132406A205BE50000945CE9 /* News+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail.swift"; sourceTree = "<group>"; };
 		8133C45B208B629600F2F9F5 /* SeeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAll.swift; sourceTree = "<group>"; };
 		8133C45D208B874600F2F9F5 /* SeeAllCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllCell.swift; sourceTree = "<group>"; };
-		8138538B1F2B7EA300DC7C54 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = Carthage/Build/iOS/Kanna.framework; sourceTree = "<group>"; };
 		81395198219B479200329223 /* UpdatesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesSectionHeaderView.swift; sourceTree = "<group>"; };
 		8141CB621F817BD200DBDD89 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		8142FCD021987131003CD6DE /* BadgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeManager.swift; sourceTree = "<group>"; };
@@ -325,7 +318,6 @@
 		8148D85B226DE68E006AD9E0 /* Downloading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloading.swift; sourceTree = "<group>"; };
 		8148D85D226DE9A5006AD9E0 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		814AEBF11E68312C00A207CC /* Details+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Information.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		814B76F7205ADB62004D46DD /* Static.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Static.framework; path = Carthage/Build/iOS/Static.framework; sourceTree = "<group>"; };
 		814B76F9205ADE6D004D46DD /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		814B7705205B2DCA004D46DD /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		814B7707205B2DCA004D46DD /* IndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
@@ -341,7 +333,6 @@
 		8150169C2312DAFE00E06E1E /* Wishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wishes.swift; sourceTree = "<group>"; };
 		8150169E2312DAFE00E06E1E /* NewWishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWishes.swift; sourceTree = "<group>"; };
 		815016A02312DAFE00E06E1E /* FulfilledWishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfilledWishes.swift; sourceTree = "<group>"; };
-		815234CE2278479000B1AE65 /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZIPFoundation.framework; path = Carthage/Build/iOS/ZIPFoundation.framework; sourceTree = "<group>"; };
 		815234D12278A6BF00B1AE65 /* SHA1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA1.swift; sourceTree = "<group>"; };
 		815234D42278C10A00B1AE65 /* BackgroundTaskUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskUtil.swift; sourceTree = "<group>"; };
 		8155094922748F0E00509B20 /* LibrarySectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarySectionHeaderView.swift; sourceTree = "<group>"; };
@@ -358,14 +349,12 @@
 		8167A6201DAC246000F96AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8167A6261DAC24F700F96AC2 /* appdb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appdb.entitlements; sourceTree = "<group>"; };
 		816A376C23E894830021BFBE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		816B343B20B727500019DE5C /* DeepDiff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeepDiff.framework; path = Carthage/Build/iOS/DeepDiff.framework; sourceTree = "<group>"; };
 		816CEED81DBCE8A2002CFF6E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Categories.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		816CEEDA1DBD00E5002CFF6E /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		816D1F1C1F913BDB00172094 /* MixedScreenshotsSearchCell_L->P.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixedScreenshotsSearchCell_L->P.swift"; sourceTree = "<group>"; };
 		816D1F1E1F9143C800172094 /* MixedScreenshotsSearchCell_P->L.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixedScreenshotsSearchCell_P->L.swift"; sourceTree = "<group>"; };
 		816D1F221F9165C700172094 /* SearchCells~iPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchCells~iPad.swift"; sourceTree = "<group>"; };
 		816D1F241F91679000172094 /* SearchCells~iPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchCells~iPhone.swift"; sourceTree = "<group>"; };
-		817236A520BB1F8E0014F61A /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
 		8173FBEC207BC90200EF779F /* BulletinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinDataSource.swift; sourceTree = "<group>"; };
 		8173FBEF207BCAE200EF779F /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
 		817418A42165368A00BB70EB /* LoadingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionView.swift; sourceTree = "<group>"; };
@@ -389,11 +378,7 @@
 		8182756520792464000E9F87 /* News+Detail+HTMLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail+HTMLCell.swift"; sourceTree = "<group>"; };
 		81876E2E227B192B00E27CB8 /* Library+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Library+Extension.swift"; sourceTree = "<group>"; };
 		81876E32227B723D00E27CB8 /* MessagesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFactory.swift; sourceTree = "<group>"; };
-		81876E34227B725C00E27CB8 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMessages.framework; path = Carthage/Build/iOS/SwiftMessages.framework; sourceTree = "<group>"; };
 		8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticLabel.swift; sourceTree = "<group>"; };
-		8188E8D71DB198B800462256 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		8188E8D81DB198B800462256 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/iOS/Cartography.framework; sourceTree = "<group>"; };
-		8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		81892559227CC9690096F661 /* AdaptiveUIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveUIAlertController.swift; sourceTree = "<group>"; };
 		818979402284853A00EC87B2 /* DownloadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingCell.swift; sourceTree = "<group>"; };
 		81897942228485AA00EC87B2 /* LocalIPADownloadUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalIPADownloadUtil.swift; sourceTree = "<group>"; };
@@ -429,17 +414,6 @@
 		81BE066B1E6C2EA500AD9827 /* Details+ExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+ExternalLink.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81BE066E1E6C52FE00AD9827 /* Details+Publisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+Publisher.swift"; sourceTree = "<group>"; };
 		81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+SegmentControl.swift"; sourceTree = "<group>"; };
-		81BFC98A22F4CE41008073D8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		81BFC98C22F4CE49008073D8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		81BFC98E22F4CE50008073D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		81BFC99222F4CE64008073D8 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		81BFC99422F4CE6C008073D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		81BFC99622F4CE72008073D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		81BFC99822F4CE7A008073D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		81BFC99A22F4CE81008073D8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		81BFC99C22F4CE8A008073D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		81C114C11E60699A00EE17A6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
-		81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		81C274D7229FFA57000D8BEB /* Credits+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Credits+Views.swift"; sourceTree = "<group>"; };
 		81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskBundleBeforeUploadViewController.swift; sourceTree = "<group>"; };
 		81CD0A9425F27FBF001C9EEA /* SwiftMessages.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftMessages.xcframework; path = Carthage/Build/SwiftMessages.xcframework; sourceTree = "<group>"; };
@@ -499,17 +473,11 @@
 		81F271E121690B97005C7314 /* NoScreenshotsSearchCell~Book+Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoScreenshotsSearchCell~Book+Stars.swift"; sourceTree = "<group>"; };
 		81F3D6571E1310BA003CD808 /* ILTranslucentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ILTranslucentView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F504E51E5CE4F70000FACC /* DimmableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmableView.swift; sourceTree = "<group>"; };
-		81F9868C1F7EC9790032C3FB /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		81FC8B4022735E5E003788F3 /* API+MyAppstore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+MyAppstore.swift"; sourceTree = "<group>"; };
 		81FC8B4222735EA8003788F3 /* MyAppstoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppstoreApp.swift; sourceTree = "<group>"; };
 		81FC8B4422736CC1003788F3 /* MyAppstoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppstoreCell.swift; sourceTree = "<group>"; };
 		81FCAFCD226E1028004FAFD6 /* QueuedDownloadsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuedDownloadsCell.swift; sourceTree = "<group>"; };
 		81FCAFCF226E1D0C004FAFD6 /* RequestedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedApp.swift; sourceTree = "<group>"; };
-		81FF1C4E1F9211B00086EEE0 /* AlamofireNetworkActivityIndicator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireNetworkActivityIndicator.framework; path = Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework; sourceTree = "<group>"; };
-		81FF1C4F1F9211B00086EEE0 /* SwiftTheme.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftTheme.framework; path = Carthage/Build/iOS/SwiftTheme.framework; sourceTree = "<group>"; };
-		81FF1C501F9211B00086EEE0 /* Localize_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localize_Swift.framework; path = Carthage/Build/iOS/Localize_Swift.framework; sourceTree = "<group>"; };
-		81FF1C511F9211B00086EEE0 /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = Carthage/Build/iOS/Cosmos.framework; sourceTree = "<group>"; };
-		81FF1C521F9211B00086EEE0 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		88BEFFC722B3A24A008FD371 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1159,38 +1127,6 @@
 				81CD0A9D25F27FBF001C9EEA /* SwiftTheme.xcframework */,
 				81CD0A9525F27FBF001C9EEA /* SwiftyJSON.xcframework */,
 				81CD0AA225F27FBF001C9EEA /* ZIPFoundation.xcframework */,
-				8127C4AC2482631A00EC1081 /* PromisesObjC.xcframework */,
-				8127C4A52482628900EC1081 /* GoogleAppMeasurement.framework */,
-				8127C4A62482628900EC1081 /* GoogleMobileAds.framework */,
-				8127C4A72482628A00EC1081 /* GoogleUtilities.xcframework */,
-				8127C4A42482628900EC1081 /* nanopb.xcframework */,
-				81BFC99C22F4CE8A008073D8 /* libz.tbd */,
-				81BFC99A22F4CE81008073D8 /* WebKit.framework */,
-				81BFC99822F4CE7A008073D8 /* AVFoundation.framework */,
-				81BFC99622F4CE72008073D8 /* CoreMedia.framework */,
-				81BFC99422F4CE6C008073D8 /* QuartzCore.framework */,
-				81BFC99222F4CE64008073D8 /* AdSupport.framework */,
-				81BFC98E22F4CE50008073D8 /* CoreGraphics.framework */,
-				81BFC98C22F4CE49008073D8 /* SystemConfiguration.framework */,
-				81BFC98A22F4CE41008073D8 /* CoreTelephony.framework */,
-				81876E34227B725C00E27CB8 /* SwiftMessages.framework */,
-				815234CE2278479000B1AE65 /* ZIPFoundation.framework */,
-				817236A520BB1F8E0014F61A /* BLTNBoard.framework */,
-				816B343B20B727500019DE5C /* DeepDiff.framework */,
-				812C3541207D235300D39748 /* Swifter.framework */,
-				814B76F7205ADB62004D46DD /* Static.framework */,
-				81FF1C521F9211B00086EEE0 /* AlamofireImage.framework */,
-				81FF1C4E1F9211B00086EEE0 /* AlamofireNetworkActivityIndicator.framework */,
-				81FF1C511F9211B00086EEE0 /* Cosmos.framework */,
-				81FF1C501F9211B00086EEE0 /* Localize_Swift.framework */,
-				81FF1C4F1F9211B00086EEE0 /* SwiftTheme.framework */,
-				81F9868C1F7EC9790032C3FB /* ObjectMapper.framework */,
-				8138538B1F2B7EA300DC7C54 /* Kanna.framework */,
-				81C114C31E6069AA00EE17A6 /* libxml2.2.tbd */,
-				81C114C11E60699A00EE17A6 /* libxml2.tbd */,
-				8188E8E91DB23B6E00462256 /* SwiftyJSON.framework */,
-				8188E8D71DB198B800462256 /* Alamofire.framework */,
-				8188E8D81DB198B800462256 /* Cartography.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1995,7 +1931,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build",
 					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
@@ -2032,7 +1968,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build",
 					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
