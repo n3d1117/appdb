@@ -116,13 +116,16 @@ class ObserveQueuedApps {
                         // Track status progress
                         if item.type == "linked_device_info", !self.ignoredLinkedDeviceInfoUUIDs.contains(item.uuid) {
                             if item.statusShort == "failed" {
-                                Messages.shared.showError(message: item.statusText)
+                                Messages.shared.showError(message: item.status == "ok" ? item.statusText : item.status)
                                 self.ignoredLinkedDeviceInfoUUIDs.append(item.uuid)
                                 self.removeApp(linkId: item.linkId)
                             } else {
-                                var newStatus: String = item.statusShort + "\n" + item.statusText
-                                if newStatus == "\n" { newStatus = "Waiting...".localized() }
-                                if newStatus.hasSuffix("requesting installation") { newStatus = "ok\nSigned, requesting installation" }
+                                var newStatus: String
+                                if item.statusText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                    newStatus = "Waiting...".localized()
+                                } else {
+                                    newStatus = self.parseLatestStatus(from: item) + "..."
+                                }
                                 self.updateStatus(linkId: item.linkId, status: newStatus)
                             }
                         }
@@ -133,6 +136,32 @@ class ObserveQueuedApps {
 
                 self.onUpdate?(self.requestedApps)
             }, fail: { _ in })
+        }
+    }
+
+    /* TEST CASES
+     
+     "In queue<br/> \nsince Fri, 05 Mar 2021 16:39:41 +0000 (0 seconds)" -> "In queue"
+    
+     "In queue<br/>Unpacking\nsince ..." -> "Unpacking"
+    
+     "In queue<br/>Unpacking\n<br/>Removing metadata\nsince ..." -> "Removing metadata"
+     
+     "In queue<br/>Unpacking<br/>Removing metadata\n<br/>Signed someapp.app<br/>\nsince ..." -> "Signed someapp.app"
+     */
+    fileprivate func parseLatestStatus(from item: DeviceStatusItem) -> String {
+        if item.statusText.components(separatedBy: "<br/> ").count == 2 {
+            return item.statusText.components(separatedBy: "<br/>").first!
+        } else if let latestStatus = item.statusText
+                    .components(separatedBy: "<br/>").last?
+                    .components(separatedBy: "\n").first {
+            if latestStatus.isEmpty {
+                return item.statusText
+                    .components(separatedBy: "<br/>").dropLast().last ?? item.statusText
+            }
+            return latestStatus
+        } else {
+            return item.statusText
         }
     }
 }
