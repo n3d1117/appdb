@@ -18,10 +18,11 @@ class Credits: TableViewController {
         case translations = "Translations"
     }
 
-    enum Handle {
+    enum Handle: Equatable {
         case twitter(username: String)
         case website(site: String)
         case telegram(username: String)
+        case none
     }
 
     struct Credit {
@@ -39,7 +40,7 @@ class Credits: TableViewController {
         Credit(name: "appdb team", detail: nil, imageName: "appdb", type: .specialThanks, handle: .website(site: Global.mainSite)),
         Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), imageName: "aesign", type: .specialThanks, handle: .website(site: "https://aesign.me")),
 
-        Credit(name: "TNT 🇪🇸", detail: nil, imageName: "tnt", type: .translations, handle: .twitter(username: "itistnt")),
+        Credit(name: "TNT 🇪🇸", detail: nil, imageName: "tnt", type: .translations, handle: .none),
         Credit(name: "ZonD80 🇷🇺", detail: nil, imageName: "zond", type: .translations, handle: .website(site: "https://github.com/ZonD80")),
         Credit(name: "Am1nCmd 🇮🇩", detail: nil, imageName: "Am1nCmd", type: .translations, handle: .website(site: "https://ams1gn.id")),
         Credit(name: "DzMohaipa 🇫🇷", detail: nil, imageName: "DzMoha_31", type: .translations, handle: .twitter(username: "DzMoha_31")),
@@ -96,7 +97,7 @@ class Credits: TableViewController {
                 section.rows.append(
                     Row(text: credit.name.localized(), detailText: credit.detail, selection: { [unowned self] _ in
                         self.handleTap(for: credit.handle)
-                    }, accessory: .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["imageName": credit.imageName])
+                    }, accessory: credit.handle == .none ? .none : .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["imageName": credit.imageName])
                 )
             }
             if index == CreditType.allCases.endIndex - 1 { section.footer = .title("\n\n") } // just to add some bottom padding
@@ -150,6 +151,7 @@ class Credits: TableViewController {
                     UIApplication.shared.open(url)
                 }
             }
+        case .none: break
         }
     }
 }
