@@ -142,7 +142,7 @@
 ////////////////////
 
 "Search iOS Apps" = "Nggoleki Aplikasi iOS ";
-"Search Cydia Apps" = "Nggoleki Aplikasi Cydia";
+"Search Custom Apps" = "Nggoleki Aplikasi Modifan";
 "Search Books" = "Nggoleki Buku";
 "Trending iOS Apps" = "Tren Aplikasi iOS";
 "Trending Cydia Apps" = "Tren Aplikasi Cydia";
@@ -276,6 +276,14 @@
 "Only apps that are managed by appdb will appear here." = "Mung aplikasi sing diopeni karo appdb sing bakal metu nang kene. ";
 "Custom Developer Identity" = "Nggenti Identitas e Developer";
 "Copy" = "Salinan";
+"Clear developer identity" = "Busek identitas developer";
+"Are you sure you want to clear developer identity?" = "Opo sampeyan yakin arep ngebusek identitas developer?";
+"Identity cleared!" ="Identitas wes dibusek";
+"Patch in-app Purchases" = "Patch in-app Purchases";
+"Preserve Entitlements Comments" = "Pertahanake Entitlements Comments";
+"Disable Revocation Checks" = "Mateni Revocation Checks";
+"Force Disable PRO" = "Pateni Pekso PRO";
+"For Psychic Paper exploit" = "Kanggo eksploitasi Psychic Paper";
 
 /////////////////////
 //     UPDATES     //

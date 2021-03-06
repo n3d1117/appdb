@@ -88,7 +88,7 @@ class SeeAll: LoadingTableView {
         }
         switch type {
         case .ios: searchController.searchBar.placeholder = "Search iOS Apps".localized()
-        case .cydia: searchController.searchBar.placeholder = "Search Cydia Apps".localized()
+        case .cydia: searchController.searchBar.placeholder = "Search Custom Apps".localized()
         case .books: searchController.searchBar.placeholder = "Search Books".localized()
         default: break
         }

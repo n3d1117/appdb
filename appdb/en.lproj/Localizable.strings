@@ -142,7 +142,7 @@
 ////////////////////
 
 "Search iOS Apps" = "Search iOS Apps";
-"Search Cydia Apps" = "Search Cydia Apps";
+"Search Custom Apps" = "Search Custom Apps";
 "Search Books" = "Search Books";
 "Trending iOS Apps" = "Trending iOS Apps";
 "Trending Cydia Apps" = "Trending Cydia Apps";
@@ -277,6 +277,7 @@
 "Custom Developer Identity" = "Custom Developer Identity";
 "Copy" = "Copy";
 "Clear developer identity" = "Clear developer identity";
+"Are you sure you want to clear developer identity?" = "Are you sure you want to clear developer identity?";
 "Identity cleared!" = "Identity cleared!";
 "Patch in-app Purchases" = "Patch in-app Purchases";
 "Preserve Entitlements Comments" = "Preserve Entitlements Comments";

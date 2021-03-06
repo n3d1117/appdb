@@ -166,7 +166,7 @@ extension AdvancedOptions {
     }
 
     fileprivate func clearDeveloperIdentity(indexPath: IndexPath) {
-        let title = "Are you sure you want to clear developer identity?".localized() // todo
+        let title = "Are you sure you want to clear developer identity?".localized()
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, adaptive: true)
         alertController.addAction(UIAlertAction(title: "Clear developer identity", style: .destructive) { _ in
             API.setConfiguration(params: [.clearDevEntity: "yes"], success: { [weak self] in

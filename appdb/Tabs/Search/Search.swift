@@ -191,7 +191,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             searchController.searchBar.placeholder = "Search iOS Apps".localized()
         case 1:
             updateSuggestions.type = .cydia
-            searchController.searchBar.placeholder = "Search Cydia Apps".localized()
+            searchController.searchBar.placeholder = "Search Custom Apps".localized()
         case 2:
             updateSuggestions.type = .books
             searchController.searchBar.placeholder = "Search Books".localized()
@@ -211,7 +211,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
             searchController.searchBar.placeholder = "Search iOS Apps".localized()
         case .cydia:
             searchController.searchBar.selectedScopeButtonIndex = 1
-            searchController.searchBar.placeholder = "Search Cydia Apps".localized()
+            searchController.searchBar.placeholder = "Search Custom Apps".localized()
         default:
             searchController.searchBar.selectedScopeButtonIndex = 2
             searchController.searchBar.placeholder = "Search Books".localized()
