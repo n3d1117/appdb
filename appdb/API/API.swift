@@ -42,19 +42,57 @@ enum ItemType: String, Codable {
     case myAppstore = "MyAppStore"
 }
 
-enum Order: String {
+enum Order: String, CaseIterable {
     case added = "added"
     case day = "clicks_day"
     case week = "clicks_week"
     case month = "clicks_month"
     case year = "clicks_year"
     case all = "clicks_all"
+
+    var pretty: String {
+        switch self {
+        case .added: return "Recently Uploaded".localized()
+        case .day: return "Popular Today".localized()
+        case .week: return "Popular This Week".localized()
+        case .month: return "Popular This Month".localized()
+        case .year: return "Popular This Year".localized()
+        case .all: return "Popular All Time".localized()
+        }
+    }
+
+    var associatedImage: String {
+        switch self {
+        case .added: return "clock"
+        case .day: return "calendar"
+        case .week: return "calendar"
+        case .month: return "calendar"
+        case .year: return "calendar"
+        case .all: return "flame"
+        }
+    }
 }
 
-enum Price: String {
+enum Price: String, CaseIterable {
     case all = "0"
     case paid = "1"
     case free = "2"
+
+    var pretty: String {
+        switch self {
+        case .all: return "Any Price".localized()
+        case .paid: return "Paid".localized()
+        case .free: return "Free".localized()
+        }
+    }
+
+    var associatedImage: String {
+        switch self {
+        case .all: return "cart"
+        case .paid: return "dollarsign.circle"
+        case .free: return "giftcard"
+        }
+    }
 }
 
 enum Actions: String {

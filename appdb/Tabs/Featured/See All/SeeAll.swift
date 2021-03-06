@@ -77,6 +77,8 @@ class SeeAll: LoadingTableView {
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
+        setupFiltersButton()
+
         // Search Controller
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self
@@ -120,6 +122,43 @@ class SeeAll: LoadingTableView {
 
         // Begin refresh
         tableView.spr_beginRefreshing()
+    }
+
+    fileprivate func setupFiltersButton() {
+        if #available(iOS 14.0, *) {
+
+            func load() {
+                currentPage = 1
+                items = []
+                loadContent()
+            }
+
+            let filtersButton = UIBarButtonItem(
+                image: UIImage(systemName: "line.horizontal.3.decrease.circle"), style: .plain, target: self, action: nil
+            )
+
+            let orderActions: [UIAction] = Order.allCases.map { order in
+                UIAction(title: order.pretty, image: UIImage(systemName: order.associatedImage)) { _ in
+                    self.order = order
+                    load()
+                }
+            }
+            let orderMenu = UIMenu(options: .displayInline, children: orderActions)
+
+            if type == .ios {
+                let priceActions: [UIAction] = Price.allCases.map { price in
+                    UIAction(title: price.pretty, image: UIImage(systemName: price.associatedImage)) { _ in
+                        self.price = price
+                        load()
+                    }
+                }
+                let priceMenu = UIMenu(options: .displayInline, children: priceActions)
+                filtersButton.menu = UIMenu(children: [orderMenu, priceMenu])
+            } else {
+                filtersButton.menu = UIMenu(children: [orderMenu])
+            }
+            navigationItem.rightBarButtonItem = filtersButton
+        }
     }
 
     // Called when user reaches bottom, loads 25 more
