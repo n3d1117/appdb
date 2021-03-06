@@ -53,8 +53,13 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
 class Banner: UIView {
 
     let multiplier: Int = 2
-    let banners: [String] = ["main_banner", "tweaked_apps_banner", "unc0ver_banner", "delta_banner"]
     var collectionView: UICollectionView!
+
+    var banners: [String] {
+        var banners = ["main_banner", "tweaked_apps_banner", "unc0ver_banner", "delta_banner"]
+        if Global.isRtl { banners = [banners.first!] + banners.dropFirst().reversed() }
+        return banners
+    }
 
     static let height: CGFloat = {
         let w = Double(UIScreen.main.bounds.width)
@@ -97,8 +102,8 @@ class Banner: UIView {
         // Add constraints
         constrain(collectionView) { collectionView in
             collectionView.top ~== collectionView.superview!.top
-            collectionView.left ~== collectionView.superview!.left
-            collectionView.right ~== collectionView.superview!.right
+            collectionView.leading ~== collectionView.superview!.leading
+            collectionView.trailing ~== collectionView.superview!.trailing
             collectionView.height ~== Banner.height
         }
 
@@ -117,10 +122,10 @@ class Banner: UIView {
         currentIndex += 1
         if currentIndex == banners.count * multiplier { currentIndex = 0 }
         let bannerWidth: CGFloat = Banner.height * 2.517
-        let newPoint = CGPoint(
-            x: collectionView.contentOffset.x + bannerWidth,
-            y: collectionView.contentOffset.y
-        )
+        let newX: CGFloat = Global.isRtl ?
+            collectionView.contentOffset.x - bannerWidth :
+            collectionView.contentOffset.x + bannerWidth
+        let newPoint = CGPoint(x: newX, y: collectionView.contentOffset.y)
         collectionView.setContentOffset(newPoint, animated: true)
     }
 

@@ -42,11 +42,11 @@ class Copyright: FeaturedCell {
 
         constrain(copyrightNotice) { notice in
             if #available(iOS 11.0, *) {
-                notice.left ~== notice.superview!.safeAreaLayoutGuide.left ~+ Global.Size.margin.value
+                notice.leading ~== notice.superview!.safeAreaLayoutGuide.leading ~+ Global.Size.margin.value
             } else {
-                notice.left ~== notice.superview!.left ~+ Global.Size.margin.value
+                notice.leading ~== notice.superview!.leading ~+ Global.Size.margin.value
             }
-            notice.right ~== notice.superview!.right ~- Global.Size.margin.value
+            notice.trailing ~== notice.superview!.trailing ~- Global.Size.margin.value
             notice.top ~== notice.superview!.top ~+ 15
             (notice.bottom ~== notice.superview!.bottom ~- (25 ~~ 15)) ~ Global.notMaxPriority
         }

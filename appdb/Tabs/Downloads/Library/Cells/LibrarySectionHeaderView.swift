@@ -16,7 +16,7 @@ class LibrarySectionHeaderView: UICollectionReusableView {
         label.theme_textColor = Color.copyrightText
         label.font = .systemFont(ofSize: (18.5 ~~ 17.5), weight: .semibold)
         label.numberOfLines = 1
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.makeDynamicFont()
         return label
     }()
@@ -50,18 +50,18 @@ class LibrarySectionHeaderView: UICollectionReusableView {
         addSubview(trashButton)
 
         constrain(label, helpButton, trashButton) { label, help, more in
-            label.left ~== label.superview!.left ~+ Global.Size.margin.value
-            label.right ~== label.superview!.right
+            label.leading ~== label.superview!.leading ~+ Global.Size.margin.value
+            label.trailing ~== label.superview!.trailing
             label.centerY ~== label.superview!.centerY
 
             help.height ~== (22 ~~ 20)
             help.width ~== help.height
-            help.right ~== help.superview!.right ~- Global.Size.margin.value
+            help.trailing ~== help.superview!.trailing ~- Global.Size.margin.value
             help.centerY ~== label.centerY
 
             more.height ~== (22 ~~ 20)
             more.width ~== more.height
-            more.right ~== help.left ~- (12 ~~ 10)
+            more.trailing ~== help.leading ~- (12 ~~ 10)
             more.centerY ~== help.centerY
         }
     }

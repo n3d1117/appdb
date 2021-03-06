@@ -82,16 +82,16 @@ class QueuedDownloadsCell: UICollectionViewCell {
         constrain(name, status, icon) { name, status, icon in
             icon.width ~== iconSize
             icon.height ~== icon.width
-            icon.left ~== icon.superview!.left ~+ margin
+            icon.leading ~== icon.superview!.leading ~+ margin
             icon.centerY ~== icon.superview!.centerY
 
-            (name.left ~== icon.right ~+ (15 ~~ 12)) ~ Global.notMaxPriority
-            name.right ~== name.superview!.right ~- margin
+            (name.leading ~== icon.trailing ~+ (15 ~~ 12)) ~ Global.notMaxPriority
+            name.trailing ~== name.superview!.trailing ~- margin
             name.top ~== icon.top ~+ 5
 
-            status.left ~== name.left
+            status.leading ~== name.leading
             status.top ~== name.bottom ~+ (4 ~~ 2)
-            status.right ~<= status.superview!.right ~- margin
+            status.trailing ~<= status.superview!.trailing ~- margin
         }
     }
 }

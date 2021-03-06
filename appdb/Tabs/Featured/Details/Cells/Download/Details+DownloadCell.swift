@@ -36,7 +36,7 @@ class DetailsDownload: DetailsCell {
 
         selectionStyle = accessoryType == .none ? .none : .default
         constrain(button) { button in
-            button.right ~== button.superview!.right ~- (accessoryType == .none ? Global.Size.margin.value : 10)
+            button.trailing ~== button.superview!.trailing ~- (accessoryType == .none ? Global.Size.margin.value : 10)
         }
     }
 
@@ -89,16 +89,16 @@ class DetailsDownload: DetailsCell {
         constrain(host, cracker, uploader, button) { host, cracker, uploader, button in
             button.centerY ~== button.superview!.centerY
 
-            cracker.left ~== host.left
-            cracker.right ~<= button.left ~- Global.Size.margin.value
+            cracker.leading ~== host.leading
+            cracker.trailing ~<= button.leading ~- Global.Size.margin.value
             cracker.centerY ~== button.centerY + 3
 
             host.bottom ~== cracker.top ~- 3
-            host.left ~== host.superview!.left ~+ Global.Size.margin.value
-            host.right ~<= button.left ~- 9
+            host.leading ~== host.superview!.leading ~+ Global.Size.margin.value
+            host.trailing ~<= button.leading ~- 9
 
-            uploader.left ~== cracker.left
-            uploader.right ~== cracker.right
+            uploader.leading ~== cracker.leading
+            uploader.trailing ~== cracker.trailing
             uploader.top ~== cracker.bottom + 1
         }
     }
@@ -128,7 +128,7 @@ class DetailsDownloadUnified: DetailsCell {
 
         selectionStyle = accessoryType == .none ? .none : .default
         constrain(button) { button in
-            button.right ~== button.superview!.right ~- (accessoryType == .none ? Global.Size.margin.value : 10)
+            button.trailing ~== button.superview!.trailing ~- (accessoryType == .none ? Global.Size.margin.value : 10)
         }
     }
 
@@ -176,11 +176,11 @@ class DetailsDownloadUnified: DetailsCell {
             button.centerY ~== button.superview!.centerY
 
             host.centerY ~== button.centerY ~- 9
-            host.left ~== host.superview!.left ~+ Global.Size.margin.value
-            host.right ~<= button.left ~- 9
+            host.leading ~== host.superview!.leading ~+ Global.Size.margin.value
+            host.trailing ~<= button.leading ~- 9
 
-            cracker.left ~== host.left
-            cracker.right ~== host.right
+            cracker.leading ~== host.leading
+            cracker.trailing ~== host.trailing
             cracker.top ~== host.bottom ~+ 3
         }
     }

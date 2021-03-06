@@ -22,8 +22,8 @@ class SearchCell: UICollectionViewCell {
                     name.numberOfLines = 1
                     paddingLabel.isHidden = false
                     constrain(paddingLabel, seller) { tweaked, seller in
-                        tweaked.left ~== seller.left
-                        tweaked.right ~<= tweaked.superview!.right ~- Global.Size.margin.value
+                        tweaked.leading ~== seller.leading
+                        tweaked.trailing ~<= tweaked.superview!.trailing ~- Global.Size.margin.value
                         tweaked.top ~== seller.bottom ~+ (7 ~~ 6)
                     }
                 } else {
@@ -114,16 +114,16 @@ class SearchCell: UICollectionViewCell {
 
         constrain(name, seller, icon) { name, seller, icon in
             icon.width ~== iconSize
-            icon.left ~== icon.superview!.left ~+ margin
+            icon.leading ~== icon.superview!.leading ~+ margin
             icon.top ~== icon.superview!.top ~+ margin
 
-            (name.left ~== icon.right ~+ (15 ~~ 12)) ~ Global.notMaxPriority
-            name.right ~== name.superview!.right ~- margin
+            (name.leading ~== icon.trailing ~+ (15 ~~ 12)) ~ Global.notMaxPriority
+            name.trailing ~== name.superview!.trailing ~- margin
             name.top ~== icon.top ~+ 3
 
-            seller.left ~== name.left
+            seller.leading ~== name.leading
             seller.top ~== name.bottom ~+ 3
-            seller.right ~<= seller.superview!.right ~- margin
+            seller.trailing ~<= seller.superview!.trailing ~- margin
         }
     }
 

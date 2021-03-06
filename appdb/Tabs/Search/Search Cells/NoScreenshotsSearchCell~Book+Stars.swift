@@ -43,8 +43,8 @@ class NoScreenshotsSearchCellBookWithStars: SearchCell {
             icon.height ~== coverHeight
             icon.bottom ~== icon.superview!.bottom ~- margin
 
-            stars.left ~== seller.left
-            stars.right ~<= stars.superview!.right ~- Global.Size.margin.value
+            stars.leading ~== seller.leading
+            stars.trailing ~<= stars.superview!.trailing ~- Global.Size.margin.value
             stars.top ~== seller.bottom ~+ (7 ~~ 6)
         }
     }

@@ -72,15 +72,15 @@ class DetailsReview: DetailsCell {
     override func setConstraints() {
         constrain(title, stars, desc) { title, stars, desc in
             title.top ~== title.superview!.top ~+ 15
-            title.left ~== title.superview!.left ~+ Global.Size.margin.value
-            title.right ~== title.superview!.right ~- Global.Size.margin.value
+            title.leading ~== title.superview!.leading ~+ Global.Size.margin.value
+            title.trailing ~== title.superview!.trailing ~- Global.Size.margin.value
 
-            stars.left ~== title.left
-            stars.right ~<= stars.superview!.right ~- Global.Size.margin.value
+            stars.leading ~== title.leading
+            stars.trailing ~<= stars.superview!.trailing ~- Global.Size.margin.value
             stars.top ~== title.bottom ~+ (5 ~~ 4)
 
-            desc.left ~== title.left
-            desc.right ~== title.right
+            desc.leading ~== title.leading
+            desc.trailing ~== title.trailing
             (desc.top ~== stars.bottom ~+ 8) ~ Global.notMaxPriority
             desc.bottom == desc.superview!.bottom ~- 15
         }

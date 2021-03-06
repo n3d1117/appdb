@@ -106,11 +106,11 @@ class DetailsRelated: DetailsCell {
     override func setConstraints() {
         constrain(title, collectionView) { title, collection in
             title.top ~== title.superview!.top ~+ 12
-            title.left ~== title.superview!.left ~+ Global.Size.margin.value
-            title.right ~== title.superview!.right ~- Global.Size.margin.value
+            title.leading ~== title.superview!.leading ~+ Global.Size.margin.value
+            title.trailing ~== title.superview!.trailing ~- Global.Size.margin.value
 
-            collection.left ~== collection.superview!.left
-            collection.right ~== collection.superview!.right
+            collection.leading ~== collection.superview!.leading
+            collection.trailing ~== collection.superview!.trailing
             collection.top ~== collection.superview!.top ~+ (44 ~~ 39)
             collection.bottom ~== collection.superview!.bottom
         }

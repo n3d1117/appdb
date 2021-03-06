@@ -116,7 +116,11 @@ class TagListView: UIView {
             currentRowTagCount += 1
             currentRowWidth += tagView.frame.width + marginX
             
-            currentRowView.frame.origin.x = 0
+            if Global.isRtl {
+                currentRowView.frame.origin.x = frame.width - (currentRowWidth - marginX)
+            } else {
+                currentRowView.frame.origin.x = 0
+            }
             currentRowView.frame.size.width = currentRowWidth
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
         }

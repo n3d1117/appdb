@@ -73,11 +73,11 @@ class IgnoredCell: UITableViewCell {
             icon.width ~== 30
             icon.height ~== icon.width
 
-            icon.left ~== icon.superview!.left ~+ (25 ~~ 18)
+            icon.leading ~== icon.superview!.leading ~+ (25 ~~ 18)
             icon.centerY ~== icon.superview!.centerY
 
-            name.left ~== icon.right ~+ (12 ~~ 10)
-            name.right ~== name.superview!.right ~- 30
+            name.leading ~== icon.trailing ~+ (12 ~~ 10)
+            name.trailing ~== name.superview!.trailing ~- 30
             name.centerY ~== icon.centerY
         }
     }

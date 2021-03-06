@@ -183,6 +183,7 @@ class DetailsFullScreenshots: UIViewController {
         pageControl.pageIndicatorTintColor = .lightGray
         pageControl.theme_currentPageIndicatorTintColor = Color.mainTint
         pageControl.isUserInteractionEnabled = false
+        if Global.isRtl { pageControl.transform = CGAffineTransform(scaleX: -1, y: 1) }
 
         // Add done button
         let doneButton = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))

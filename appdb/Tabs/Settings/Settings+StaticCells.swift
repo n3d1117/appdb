@@ -139,13 +139,13 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         activeLabel = UILabel()
         activeLabel.font = .systemFont(ofSize: (15 ~~ 14))
         activeLabel.makeDynamicFont()
-        activeLabel.textAlignment = .right
+        activeLabel.textAlignment = Global.isRtl ? .left : .right
 
         expirationLabel = UILabel()
         expirationLabel.theme_textColor = Color.darkGray
         expirationLabel.font = .systemFont(ofSize: (13 ~~ 12))
         expirationLabel.makeDynamicFont()
-        expirationLabel.textAlignment = .right
+        expirationLabel.textAlignment = Global.isRtl ? .left : .right
 
         theme_backgroundColor = Color.veryVeryLightGray
         setBackgroundColor(Color.veryVeryLightGray)
@@ -277,7 +277,7 @@ class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         textField = UITextField()
         textField.delegate = self
         textField.backgroundColor = .clear
-        textField.textAlignment = .right
+        textField.textAlignment = Global.isRtl ? .left : .right
         textField.theme_textColor = Color.title
         textField.theme_keyboardAppearance = [.light, .dark, .dark]
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -285,10 +285,10 @@ class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         contentView.addSubview(textField)
 
         constrain(textField) { textField in
-            textField.right ~== textField.superview!.layoutMarginsGuide.right// ~- 3
+            textField.trailing ~== textField.superview!.layoutMarginsGuide.trailing// ~- 3
             textField.top ~== textField.superview!.top
             textField.bottom ~== textField.superview!.bottom
-            textField.left ~== textField.superview!.centerX
+            textField.leading ~== textField.superview!.centerX
         }
     }
 
@@ -335,12 +335,12 @@ final class StaticSubtitleTextFieldCell: StaticTextFieldCell {
         title = UILabel()
         title.font = .systemFont(ofSize: (17 ~~ 16))
         title.makeDynamicFont()
-        title.textAlignment = .left
+        title.textAlignment = .natural
 
         subtitle = UILabel()
         subtitle.font = .systemFont(ofSize: (12 ~~ 11))
         subtitle.makeDynamicFont()
-        subtitle.textAlignment = .left
+        subtitle.textAlignment = .natural
 
         dummy = UIView()
         dummy.isHidden = true

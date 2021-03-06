@@ -68,12 +68,12 @@ class MixedScreenshotsSearchCellOne: SearchCell {
 
             (sOne.height ~== mixedPortraitSize) ~ Global.notMaxPriority
             sOne.width ~== sOne.height ~* magic
-            sOne.left ~== sOne.superview!.left ~+ margin ~+ 10
+            sOne.leading ~== sOne.superview!.leading ~+ margin ~+ 10
 
             (sTwo.height ~== sOne.height) ~ Global.notMaxPriority
             sTwo.width ~== sTwo.height ~/ magic
             sTwo.top ~== icon.bottom ~+ spaceFromIcon
-            sTwo.right ~== sTwo.superview!.right ~- margin ~- 10
+            sTwo.trailing ~== sTwo.superview!.trailing ~- margin ~- 10
 
             (sTwo.bottom ~== sTwo.superview!.bottom ~- margin) ~ Global.notMaxPriority
             (sOne.bottom ~== sTwo.bottom) ~ Global.notMaxPriority

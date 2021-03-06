@@ -69,16 +69,16 @@ class DetailsChangelog: DetailsCell {
     override func setConstraints() {
         constrain(title, date, desc) { title, date, desc in
             title.top ~== title.superview!.top ~+ 12
-            title.left ~== title.superview!.left ~+ Global.Size.margin.value
-            title.right ~== title.superview!.right ~- Global.Size.margin.value
+            title.leading ~== title.superview!.leading ~+ Global.Size.margin.value
+            title.trailing ~== title.superview!.trailing ~- Global.Size.margin.value
 
             date.top ~== title.bottom ~- 1
-            date.left ~== title.left
-            date.right ~== title.right
+            date.leading ~== title.leading
+            date.trailing ~== title.trailing
 
             (desc.top ~== date.bottom ~+ 8) ~ Global.notMaxPriority
-            desc.left ~== title.left
-            desc.right ~== title.right
+            desc.leading ~== title.leading
+            desc.trailing ~== title.trailing
             desc.bottom ~== desc.superview!.bottom ~- 15
         }
     }

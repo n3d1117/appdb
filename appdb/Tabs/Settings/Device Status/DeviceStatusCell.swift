@@ -47,8 +47,8 @@ class DeviceStatusCell: UITableViewCell {
         addSubview(line)
         constrain(line) { line in
             line.height ~== 1 / UIScreen.main.scale
-            line.left ~== line.superview!.left
-            line.right ~== line.superview!.right
+            line.leading ~== line.superview!.leading
+            line.trailing ~== line.superview!.trailing
             line.top ~== line.superview!.bottom ~- (1 / UIScreen.main.scale)
         }
 
@@ -68,7 +68,7 @@ class DeviceStatusCell: UITableViewCell {
         timestamp.font = .systemFont(ofSize: (11 ~~ 10))
         timestamp.makeDynamicFont()
         timestamp.numberOfLines = 1
-        timestamp.textAlignment = .right
+        timestamp.textAlignment = Global.isRtl ? .left : .right
 
         moreImageButton = UIImageView(image: #imageLiteral(resourceName: "more"))
         moreImageButton.alpha = 0.8
@@ -93,85 +93,85 @@ class DeviceStatusCell: UITableViewCell {
 
         constrain(moreImageButton) { more in
             more.centerY ~== more.superview!.centerY
-            more.right ~== more.superview!.right ~- Global.Size.margin.value
+            more.trailing ~== more.superview!.trailing ~- Global.Size.margin.value
             more.width ~== (22 ~~ 20)
             more.height ~== more.width
         }
 
         constrain(statusLeft, status, timestamp) { statusLeft, status, timestamp in
             timestamp.top ~== timestamp.superview!.top ~+ (12 ~~ 10)
-            timestamp.right ~== timestamp.superview!.right ~- Global.Size.margin.value
+            timestamp.trailing ~== timestamp.superview!.trailing ~- Global.Size.margin.value
             timestamp.height ~>= 16
 
             statusLeft.top ~== statusLeft.superview!.top ~+ (15 ~~ 12)
-            statusLeft.left ~== statusLeft.superview!.left ~+ Global.Size.margin.value
-            statusLeft.right ~== statusLeft.left ~+ (130 ~~ 95)
+            statusLeft.leading ~== statusLeft.superview!.leading ~+ Global.Size.margin.value
+            statusLeft.trailing ~== statusLeft.leading ~+ (130 ~~ 95)
 
-            status.left ~== statusLeft.right ~+ space
-            status.right ~== status.superview!.right ~- Global.Size.margin.value ~- (60 ~~ 55)
+            status.leading ~== statusLeft.trailing ~+ space
+            status.trailing ~== status.superview!.trailing ~- Global.Size.margin.value ~- (60 ~~ 55)
             status.top ~== statusLeft.top
 
             constrain(typeLeft, type) { typeLeft, type in
                 (typeLeft.top ~== status.bottom ~+ margin) ~ Global.notMaxPriority
-                typeLeft.left ~== statusLeft.left
-                typeLeft.right ~== statusLeft.right
+                typeLeft.leading ~== statusLeft.leading
+                typeLeft.trailing ~== statusLeft.trailing
 
-                type.left ~== typeLeft.right ~+ space
-                type.right ~== type.superview!.right ~- Global.Size.margin.value
+                type.leading ~== typeLeft.trailing ~+ space
+                type.trailing ~== type.superview!.trailing ~- Global.Size.margin.value
                 type.top ~== typeLeft.top
 
                 constrain(titleLeft, title) { titleLeft, title in
                     (titleLeft.top ~== type.bottom ~+ margin) ~ Global.notMaxPriority
-                    titleLeft.left ~== typeLeft.left
-                    titleLeft.right ~== typeLeft.right
+                    titleLeft.leading ~== typeLeft.leading
+                    titleLeft.trailing ~== typeLeft.trailing
 
-                    title.left ~== titleLeft.right ~+ space
-                    title.right ~== title.superview!.right ~- Global.Size.margin.value
+                    title.leading ~== titleLeft.trailing ~+ space
+                    title.trailing ~== title.superview!.trailing ~- Global.Size.margin.value
                     title.top ~== titleLeft.top
 
                     constrain(bundleLeft, bundle) { bundleLeft, bundle in
                         (bundleLeft.top ~== title.bottom ~+ margin) ~ Global.notMaxPriority
-                        bundleLeft.left ~== titleLeft.left
-                        bundleLeft.right ~== titleLeft.right
+                        bundleLeft.leading ~== titleLeft.leading
+                        bundleLeft.trailing ~== titleLeft.trailing
 
-                        bundle.left ~== bundleLeft.right ~+ space
-                        bundle.right ~== bundle.superview!.right ~- Global.Size.margin.value
+                        bundle.leading ~== bundleLeft.trailing ~+ space
+                        bundle.trailing ~== bundle.superview!.trailing ~- Global.Size.margin.value
                         bundle.top ~== bundleLeft.top
 
                         constrain(purposeLeft, purpose) { purposeLeft, purpose in
                             (purposeLeft.top ~== bundle.bottom ~+ margin) ~ Global.notMaxPriority
-                            purposeLeft.left ~== bundleLeft.left
-                            purposeLeft.right ~== bundleLeft.right
+                            purposeLeft.leading ~== bundleLeft.leading
+                            purposeLeft.trailing ~== bundleLeft.trailing
 
-                            purpose.left ~== purposeLeft.right ~+ space
-                            purpose.right ~== purpose.superview!.right ~- Global.Size.margin.value ~- (22 ~~ 20)
+                            purpose.leading ~== purposeLeft.trailing ~+ space
+                            purpose.trailing ~== purpose.superview!.trailing ~- Global.Size.margin.value ~- (22 ~~ 20)
                             purpose.top ~== purposeLeft.top
 
                             constrain(acknowledgedLeft, acknowledged) { ackLeft, ack in
                                 (ackLeft.top ~== purpose.bottom ~+ margin) ~ Global.notMaxPriority
-                                ackLeft.left ~== purposeLeft.left
-                                ackLeft.right ~== purposeLeft.right
+                                ackLeft.leading ~== purposeLeft.leading
+                                ackLeft.trailing ~== purposeLeft.trailing
 
-                                ack.left ~== ackLeft.right ~+ space
-                                ack.right ~== ack.superview!.right ~- Global.Size.margin.value
+                                ack.leading ~== ackLeft.trailing ~+ space
+                                ack.trailing ~== ack.superview!.trailing ~- Global.Size.margin.value
                                 ack.top ~== ackLeft.top
 
                                 constrain(statusShortLeft, statusShort) { statusShortLeft, statusShort in
                                     (statusShortLeft.top ~== ack.bottom ~+ margin) ~ Global.notMaxPriority
-                                    statusShortLeft.left ~== ackLeft.left
-                                    statusShortLeft.right ~== ackLeft.right
+                                    statusShortLeft.leading ~== ackLeft.leading
+                                    statusShortLeft.trailing ~== ackLeft.trailing
 
-                                    statusShort.left ~== statusShortLeft.right ~+ space
-                                    statusShort.right ~== statusShort.superview!.right ~- Global.Size.margin.value
+                                    statusShort.leading ~== statusShortLeft.trailing ~+ space
+                                    statusShort.trailing ~== statusShort.superview!.trailing ~- Global.Size.margin.value
                                     statusShort.top ~== statusShortLeft.top
 
                                     constrain(statusTextLeft, statusText) { statusTextLeft, statusText in
                                         (statusTextLeft.top ~== statusShort.bottom ~+ margin) ~ Global.notMaxPriority
-                                        statusTextLeft.left ~== statusShortLeft.left
-                                        statusTextLeft.right ~== statusShortLeft.right
+                                        statusTextLeft.leading ~== statusShortLeft.leading
+                                        statusTextLeft.trailing ~== statusShortLeft.trailing
 
-                                        statusText.left ~== statusTextLeft.right ~+ space
-                                        statusText.right ~== statusText.superview!.right ~- Global.Size.margin.value
+                                        statusText.leading ~== statusTextLeft.trailing ~+ space
+                                        statusText.trailing ~== statusText.superview!.trailing ~- Global.Size.margin.value
                                         statusText.top ~== statusTextLeft.top
                                         statusText.bottom ~== statusText.superview!.bottom ~- 15
                                     }
@@ -194,7 +194,7 @@ extension DeviceStatusCell {
         label.font = .systemFont(ofSize: (13.5 ~~ 12.5))
         label.makeDynamicFont()
         label.numberOfLines = isContent ? 0 : 1
-        label.textAlignment = isContent ? .left : .right
+        label.textAlignment = isContent ? (Global.isRtl ? .right : .left) : (Global.isRtl ? .left : .right)
         return label
     }
 

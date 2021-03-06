@@ -169,27 +169,27 @@ class ItemCollection: FeaturedCell {
     private func setConstraints() {
         if !didSetConstraints { didSetConstraints = true
             constrain(sectionLabel, categoryLabel, seeAllButton, collectionView, replace: group) { section, category, seeAll, collection in
-                collection.left ~== collection.superview!.left
-                collection.right ~== collection.superview!.right
+                collection.leading ~== collection.superview!.leading
+                collection.trailing ~== collection.superview!.trailing
                 collection.top ~== collection.superview!.top ~+ (44 ~~ 39)
                 collection.bottom ~== collection.superview!.bottom
 
                 if #available(iOS 11.0, *) {
-                    section.left ~== section.superview!.safeAreaLayoutGuide.left ~+ Global.Size.margin.value
+                    section.leading ~== section.superview!.safeAreaLayoutGuide.leading ~+ Global.Size.margin.value
                 } else {
-                    section.left ~== section.superview!.left ~+ Global.Size.margin.value
+                    section.leading ~== section.superview!.leading ~+ Global.Size.margin.value
                 }
-                (section.right ~== section.left ~+ sectionLabel.frame.size.width) ~ Global.notMaxPriority
+                (section.trailing ~== section.leading ~+ sectionLabel.frame.size.width) ~ Global.notMaxPriority
                 section.bottom ~== collection.top ~- (44 ~~ 39 - section.height.item.bounds.height) / 2
 
                 if #available(iOS 11.0, *) {
-                    seeAll.right ~== seeAll.superview!.safeAreaLayoutGuide.right ~- Global.Size.margin.value
+                    seeAll.trailing ~== seeAll.superview!.safeAreaLayoutGuide.trailing ~- Global.Size.margin.value
                 } else {
-                    seeAll.right ~== seeAll.superview!.right ~- Global.Size.margin.value
+                    seeAll.trailing ~== seeAll.superview!.trailing ~- Global.Size.margin.value
                 }
                 seeAll.centerY ~== section.centerY
-                category.left ~== section.right ~+ 8
-                category.right ~<= seeAll.left ~- 8
+                category.leading ~== section.trailing ~+ 8
+                category.trailing ~<= seeAll.leading ~- 8
                 category.centerY ~== section.centerY
             }
             separatorInset.left = showFullSeparator ? 0 : Global.Size.margin.value

@@ -79,16 +79,16 @@ class MyAppStoreCell: UICollectionViewCell {
         contentView.addSubview(dummy)
 
         constrain(name, bundleId, installButton, dummy) { name, bundleId, button, dummy in
-            button.right ~== button.superview!.right ~- Global.Size.margin.value
+            button.trailing ~== button.superview!.trailing ~- Global.Size.margin.value
             button.centerY ~== button.superview!.centerY
 
             dummy.height ~== 1
             dummy.centerY ~== dummy.superview!.centerY
 
-            name.left ~== name.superview!.left ~+ Global.Size.margin.value
+            name.leading ~== name.superview!.leading ~+ Global.Size.margin.value
             name.bottom ~== dummy.top ~+ 2
 
-            bundleId.left ~== name.left
+            bundleId.leading ~== name.leading
             bundleId.top ~== dummy.bottom ~+ 3
         }
 
@@ -99,8 +99,8 @@ class MyAppStoreCell: UICollectionViewCell {
     var group = ConstraintGroup()
     private func updateConstraintOnButtonSizeChange(width: CGFloat) {
         constrain(name, bundleId, replace: group) { name, bundle in
-            name.right ~== name.superview!.right ~- width ~- (Global.Size.margin.value * 2)
-            bundle.right ~== name.right
+            name.trailing ~== name.superview!.trailing ~- width ~- (Global.Size.margin.value * 2)
+            bundle.trailing ~== name.trailing
         }
     }
 

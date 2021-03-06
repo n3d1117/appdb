@@ -47,8 +47,8 @@ class DetailsExternalLink: DetailsCell {
 
         constrain(label) { label in
             label.centerY ~== label.superview!.centerY
-            label.left ~== label.superview!.left ~+ Global.Size.margin.value ~+ 5
-            label.right ~== label.superview!.right ~- Global.Size.margin.value
+            label.leading ~== label.superview!.leading ~+ Global.Size.margin.value ~+ 5
+            label.trailing ~== label.superview!.trailing ~- Global.Size.margin.value
         }
     }
 }

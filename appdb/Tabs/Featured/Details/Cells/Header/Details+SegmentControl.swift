@@ -68,8 +68,8 @@ class DetailsSegmentControl: TableViewHeader {
                 if Global.isIpad {
                     segment.width ~== 380
                 } else {
-                    (segment.left ~== segment.superview!.left ~+ Global.Size.margin.value ~+ 5) ~ Global.notMaxPriority
-                    (segment.right ~== segment.superview!.right ~- Global.Size.margin.value ~- 5) ~ Global.notMaxPriority
+                    (segment.leading ~== segment.superview!.leading ~+ Global.Size.margin.value ~+ 5) ~ Global.notMaxPriority
+                    (segment.trailing ~== segment.superview!.trailing ~- Global.Size.margin.value ~- 5) ~ Global.notMaxPriority
                 }
             } else {
                 segment.width ~== (280 ~~ 250)

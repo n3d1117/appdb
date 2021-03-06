@@ -60,18 +60,18 @@ class FeaturedApp: UICollectionViewCell {
 
     private func setConstraints() {
         constrain(icon, title, category, dim) { icon, title, category, dim in
-            icon.left ~== icon.superview!.left
+            icon.leading ~== icon.superview!.leading
             icon.top ~== icon.superview!.top
-            icon.right ~== icon.superview!.right
+            icon.trailing ~== icon.superview!.trailing
             icon.height ~== frame.size.width
             icon.width ~== icon.height
 
-            title.left ~== title.superview!.left
-            title.right ~== title.superview!.right
+            title.leading ~== title.superview!.leading
+            title.trailing ~== title.superview!.trailing
             title.top ~== icon.bottom ~+ 5
 
-            category.left ~== category.superview!.left
-            category.right ~== category.superview!.right
+            category.leading ~== category.superview!.leading
+            category.trailing ~== category.superview!.trailing
             category.top ~== title.bottom ~+ (2 ~~ 1)
 
             dim.edges ~== icon.edges

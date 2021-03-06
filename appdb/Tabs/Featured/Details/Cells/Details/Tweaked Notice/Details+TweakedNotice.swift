@@ -79,17 +79,15 @@ class DetailsTweakedNotice: DetailsCell {
     override func setConstraints() {
         constrain(title, content, seeOriginal) { title, content, seeOriginal in
             title.top ~== title.superview!.top ~+ 12
-            title.left ~== title.superview!.left ~+ Global.Size.margin.value
+            title.leading ~== title.superview!.leading ~+ Global.Size.margin.value
 
             (content.top ~== title.bottom ~+ 8) ~ Global.notMaxPriority
-            content.left ~== title.left
-            content.right ~== content.superview!.right ~- Global.Size.margin.value
+            content.leading ~== title.leading
+            content.trailing ~== content.superview!.trailing ~- Global.Size.margin.value
             content.bottom ~== content.superview!.bottom ~- 15
 
-            seeOriginal.right ~== seeOriginal.superview!.right ~- Global.Size.margin.value
+            seeOriginal.trailing ~== seeOriginal.superview!.trailing ~- Global.Size.margin.value
             seeOriginal.centerY ~== title.centerY
-
-            title.right ~== seeOriginal.left
         }
     }
 }

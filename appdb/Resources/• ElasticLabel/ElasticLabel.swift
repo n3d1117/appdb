@@ -43,7 +43,7 @@ class ElasticLabel: UILabel {
 
         font = .systemFont(ofSize: (13.5 ~~ 12.5))
         contentMode = .top
-        textAlignment = .left
+        textAlignment = .natural
         isUserInteractionEnabled = true
         collapsed = true
 

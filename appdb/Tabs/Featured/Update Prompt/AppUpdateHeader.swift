@@ -26,7 +26,9 @@ class AppUpdateHeader: UITableViewCell {
             yourVersion.text = "Your version: %@".localizedFormat(Global.appVersion)
             newVersion.text = "New version: %@".localizedFormat(app.version)
         } else {
-            yourVersion.text = Global.appVersion + " → " + app.version
+            yourVersion.text = Global.isRtl ?
+                (app.version + " ← " + Global.appVersion) :
+                (Global.appVersion + " → " + app.version)
             newVersion.text = ""
         }
         if let url = URL(string: app.image) {

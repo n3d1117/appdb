@@ -52,18 +52,18 @@ class FeaturedBook: UICollectionViewCell {
 
     private func setConstraints() {
         constrain(cover, title, author, dim) { cover, title, author, dim in
-            cover.left ~== cover.superview!.left
+            cover.leading ~== cover.superview!.leading
             cover.top ~== cover.superview!.top
-            cover.right ~== cover.superview!.right
+            cover.trailing ~== cover.superview!.trailing
             cover.width ~== frame.size.width
             cover.height ~== cover.width ~* 1.542
 
-            title.left ~== title.superview!.left
-            title.right ~== title.superview!.right
+            title.leading ~== title.superview!.leading
+            title.trailing ~== title.superview!.trailing
             title.top ~== cover.bottom ~+ (4 ~~ 7)
 
-            author.left ~== author.superview!.left
-            author.right ~== author.superview!.right
+            author.leading ~== author.superview!.leading
+            author.trailing ~== author.superview!.trailing
             author.top ~== title.bottom ~+ 2
 
             dim.edges ~== cover.edges

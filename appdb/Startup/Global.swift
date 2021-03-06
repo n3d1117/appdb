@@ -91,6 +91,8 @@ enum Global {
 
     static let isIpad: Bool = UIDevice.current.userInterfaceIdiom == .pad
 
+    static let isRtl: Bool = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
+
     static var hasNotch: Bool {
         if #available(iOS 11, *) {
             guard let window = UIApplication.shared.keyWindow else { return false }

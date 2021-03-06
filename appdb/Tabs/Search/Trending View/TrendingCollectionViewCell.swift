@@ -15,7 +15,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: (22 ~~ 20), weight: .bold)
         label.makeDynamicFont()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.theme_textColor = Color.title
         return label
     }()
@@ -45,6 +45,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(tagView)
 
         constrain(title, tagView) { title, tagView in
+            title.leading ~== title.superview!.leading
             title.top ~== title.superview!.top ~+ 5
 
             tagView.top ~== title.bottom ~+ 15

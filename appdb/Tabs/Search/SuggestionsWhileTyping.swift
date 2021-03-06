@@ -135,11 +135,11 @@ class SearchSuggestionCell: UITableViewCell {
             image.height ~== 20
             image.width ~== image.height
 
-            image.left ~== image.superview!.layoutMarginsGuide.left
+            image.leading ~== image.superview!.layoutMarginsGuide.leading
             image.centerY ~== image.superview!.centerY
 
-            label.left ~== image.right ~+ (10 ~~ 7)
-            label.right ~== label.superview!.layoutMarginsGuide.right
+            label.leading ~== image.trailing ~+ (10 ~~ 7)
+            label.trailing ~== label.superview!.layoutMarginsGuide.trailing
             label.centerY ~== image.centerY
         }
     }

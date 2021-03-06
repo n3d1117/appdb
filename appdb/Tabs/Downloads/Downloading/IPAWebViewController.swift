@@ -121,8 +121,8 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     private func setConstraints() {
         constrain(progressView, replace: group) { progress in
             progress.top ~== progress.superview!.topMargin
-            progress.left ~== progress.superview!.left
-            progress.right ~== progress.superview!.right
+            progress.leading ~== progress.superview!.leading
+            progress.trailing ~== progress.superview!.trailing
         }
     }
 

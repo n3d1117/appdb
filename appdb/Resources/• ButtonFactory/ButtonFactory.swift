@@ -16,7 +16,8 @@ enum ButtonFactory {
         let button = UIButton(type: .system) /* Type is system to keep nice highlighting features */
 
         button.setTitle(text, for: .normal)
-        button.setImage(#imageLiteral(resourceName: "rightArrow").withRenderingMode(.alwaysTemplate), for: .normal)
+        let image = #imageLiteral(resourceName: "rightArrow").withRenderingMode(.alwaysTemplate).imageFlippedForRightToLeftLayoutDirection()
+        button.setImage(image, for: .normal)
         button.theme_setTitleColor(color, forState: .normal)
         button.theme_tintColor = color
         if bold {
@@ -25,14 +26,19 @@ enum ButtonFactory {
             button.titleLabel?.font = .systemFont(ofSize: size)
         }
         button.makeDynamicFont()
-        button.contentHorizontalAlignment = .left
+        button.contentHorizontalAlignment = .leading
         button.titleLabel?.lineBreakMode = .byTruncatingTail
 
         button.imageView!.contentMode = .center
         button.sizeToFit()
 
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -button.imageRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: button.titleRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
+        if Global.isRtl {
+            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -button.imageRect(forContentRect: button.bounds).size.width)
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: button.titleRect(forContentRect: button.bounds).size.width)
+        } else {
+            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -button.imageRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: button.titleRect(forContentRect: button.bounds).size.width, bottom: 0, right: 0)
+        }
 
         return button
     }
@@ -51,7 +57,7 @@ enum ButtonFactory {
         button.titleLabel?.font = .systemFont(ofSize: (14 ~~ 13), weight: .semibold)
 
         button.makeDynamicFont()
-        button.contentHorizontalAlignment = .left
+        button.contentHorizontalAlignment = .leading
         button.titleLabel?.lineBreakMode = .byTruncatingTail
 
         button.layer.borderWidth = 0.8

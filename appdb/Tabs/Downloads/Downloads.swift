@@ -92,13 +92,13 @@ class Downloads: UIViewController {
         constrain(headerView, control, line, replace: group) { header, control, line in
 
             header.top ~== header.superview!.topMargin
-            header.left ~== header.superview!.left
-            header.right ~== header.superview!.right
+            header.leading ~== header.superview!.leading
+            header.trailing ~== header.superview!.trailing
             header.height ~== 40
 
             line.height ~== 1 / UIScreen.main.scale
-            line.left ~== header.left
-            line.right ~== header.right
+            line.leading ~== header.leading
+            line.trailing ~== header.trailing
             line.top ~== header.bottom ~- 0.5
 
             control.top ~== header.top
@@ -156,7 +156,7 @@ extension Downloads {
         new.view.layoutIfNeeded()
 
         // Set add right bar button item if selected tab is Downloading
-        self.navigationItem.rightBarButtonItem = new is Downloading ? UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped)) : nil
+        self.navigationItem.leftBarButtonItem = new is Downloading ? UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped)) : nil
 
         UIView.animate(withDuration: 0.2, animations: {
             new.view.alpha = 1
@@ -175,8 +175,8 @@ extension Downloads {
         constrain(view, subview, headerView) { view, subview, header in
             subview.top ~== header.bottom
             subview.bottom ~== view.bottom
-            subview.right ~== view.right
-            subview.left ~== view.left
+            subview.trailing ~== view.trailing
+            subview.leading ~== view.leading
         }
     }
 }

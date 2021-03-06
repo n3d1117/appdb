@@ -117,16 +117,16 @@ class SeeAllCell: UITableViewCell {
             } else {
                 icon.height ~== icon.width
             }
-            icon.left ~== icon.superview!.layoutMarginsGuide.left
+            icon.leading ~== icon.superview!.layoutMarginsGuide.leading
             icon.centerY ~== icon.superview!.centerY
 
-            name.left ~== icon.right ~+ (15 ~~ 12)
-            name.right ~== name.superview!.right ~- Global.Size.margin.value
+            name.leading ~== icon.trailing ~+ (15 ~~ 12)
+            name.trailing ~== name.superview!.trailing ~- Global.Size.margin.value
             name.centerY ~== name.superview!.centerY ~- (12 ~~ 10)
 
             info.top ~== name.bottom ~+ (5 ~~ 4)
-            info.left ~== name.left
-            info.right ~== name.right
+            info.leading ~== name.leading
+            info.trailing ~== name.trailing
         }
     }
 }

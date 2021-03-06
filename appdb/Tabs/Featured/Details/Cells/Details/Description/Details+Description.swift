@@ -58,12 +58,12 @@ class DetailsDescription: DetailsCell {
     override func setConstraints() {
         constrain(title, desc) { title, desc in
             title.top ~== title.superview!.top ~+ 12
-            title.left ~== title.superview!.left ~+ Global.Size.margin.value
-            title.right ~== title.superview!.right ~- Global.Size.margin.value
+            title.leading ~== title.superview!.leading ~+ Global.Size.margin.value
+            title.trailing ~== title.superview!.trailing ~- Global.Size.margin.value
 
             (desc.top ~== title.bottom ~+ 8) ~ Global.notMaxPriority
-            desc.left ~== title.left
-            desc.right ~== title.right
+            desc.leading ~== title.leading
+            desc.trailing ~== title.trailing
             desc.bottom ~== desc.superview!.bottom ~- 15
         }
     }

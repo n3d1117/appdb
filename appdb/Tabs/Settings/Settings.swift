@@ -225,11 +225,10 @@ class Settings: TableViewController {
 
     // Clear cache folder
     func clearCache(indexPath: IndexPath) {
-        refreshSources() // reload cache size, in case it changed since app load
         let title = "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb.".localized()
-        let size = Settings.cacheFolderReadableSize()
+        let actionTitle = "Clear Cache".localized()
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, adaptive: true)
-        alertController.addAction(UIAlertAction(title: "Clear Cache".localized() + " (\(size))", style: .destructive) { _ in
+        alertController.addAction(UIAlertAction(title: actionTitle, style: .destructive) { _ in
 
             do {
                 let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!

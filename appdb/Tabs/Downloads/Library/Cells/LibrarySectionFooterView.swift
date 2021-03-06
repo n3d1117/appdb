@@ -60,13 +60,13 @@ class LibrarySectionFooterView: UICollectionReusableView {
         constrain(primaryLabel, secondaryLabel) { primary, secondary in
             primary.centerY ~== primary.superview!.centerY ~- 20
             primary.centerX ~== primary.superview!.centerX
-            primary.left ~== primary.superview!.left ~+ (130 ~~ 50)
-            primary.right ~== primary.superview!.right ~- (130 ~~ 50)
+            primary.leading ~== primary.superview!.leading ~+ (130 ~~ 50)
+            primary.trailing ~== primary.superview!.trailing ~- (130 ~~ 50)
 
             secondary.top ~== primary.bottom ~+ 5
             secondary.centerX ~== secondary.superview!.centerX
-            secondary.left ~== primary.left
-            secondary.right ~== primary.right
+            secondary.leading ~== primary.leading
+            secondary.trailing ~== primary.trailing
         }
     }
 }

@@ -47,8 +47,8 @@ class NewsDetailTitleDateCell: UITableViewCell {
         addSubview(line)
         constrain(line) { line in
             line.height ~== 1 / UIScreen.main.scale
-            line.left ~== line.superview!.left ~+ Global.Size.margin.value ~+ 5
-            line.right ~== line.superview!.right
+            line.leading ~== line.superview!.leading ~+ Global.Size.margin.value ~+ 5
+            line.trailing ~== line.superview!.trailing
             line.top ~== line.superview!.bottom ~- (1 / UIScreen.main.scale)
         }
 
@@ -61,12 +61,12 @@ class NewsDetailTitleDateCell: UITableViewCell {
     private func setConstraints() {
         constrain(title, date) { title, date in
             title.top ~== title.superview!.top ~+ Global.Size.margin.value ~+ 5
-            title.left ~== title.superview!.left ~+ Global.Size.margin.value ~+ 5
-            title.right ~== title.superview!.right ~- Global.Size.margin.value ~- 5
+            title.leading ~== title.superview!.leading ~+ Global.Size.margin.value ~+ 5
+            title.trailing ~== title.superview!.trailing ~- Global.Size.margin.value ~- 5
 
             date.top ~== title.bottom ~+ 7
-            date.left ~== title.left
-            date.right ~== title.right
+            date.leading ~== title.leading
+            date.trailing ~== title.trailing
             date.bottom ~== date.superview!.bottom ~- Global.Size.margin.value ~- 5
         }
     }

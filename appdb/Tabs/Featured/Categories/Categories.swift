@@ -136,13 +136,13 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         constrain(tableView, headerView, control, line, replace: group) { tableView, header, control, line in
 
             header.top ~== header.superview!.topMargin
-            header.left ~== header.superview!.left
-            header.right ~== header.superview!.right
+            header.leading ~== header.superview!.leading
+            header.trailing ~== header.superview!.trailing
             header.height ~== 40
 
             line.height ~== (1 / UIScreen.main.scale)
-            line.left ~== header.left
-            line.right ~== header.right
+            line.leading ~== header.leading
+            line.trailing ~== header.trailing
             line.top ~== header.bottom ~- 0.5
 
             control.top ~== header.top
@@ -151,8 +151,8 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
             tableView.top ~== header.bottom
             tableView.bottom ~== tableView.superview!.bottom
-            tableView.right ~== tableView.superview!.right
-            tableView.left ~== tableView.superview!.left
+            tableView.trailing ~== tableView.superview!.trailing
+            tableView.leading ~== tableView.superview!.leading
         }
     }
 

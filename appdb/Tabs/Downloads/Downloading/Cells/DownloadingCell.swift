@@ -148,28 +148,28 @@ class DownloadingCell: UICollectionViewCell {
         constrain(filename, progress, icon, moreImageButton, progressView, dummy) { name, progress, icon, moreButton, progressView, dummy in
             icon.width ~== iconSize
             icon.height ~== icon.width
-            icon.left ~== icon.superview!.left ~+ (15 ~~ 12)
+            icon.leading ~== icon.superview!.leading ~+ (15 ~~ 12)
             icon.centerY ~== icon.superview!.centerY
 
             moreButton.centerY ~== moreButton.superview!.centerY
-            moreButton.right ~== moreButton.superview!.right ~- (15 ~~ 12)
+            moreButton.trailing ~== moreButton.superview!.trailing ~- (15 ~~ 12)
             moreButton.width ~== (22 ~~ 20)
             moreButton.height ~== moreButton.width
 
             dummy.height ~== 1
             dummy.centerY ~== dummy.superview!.centerY
 
-            name.left ~== icon.right ~+ (12 ~~ 10)
-            name.right ~== moreButton.left ~- Global.Size.margin.value
+            name.leading ~== icon.trailing ~+ (12 ~~ 10)
+            name.trailing ~== moreButton.leading ~- Global.Size.margin.value
             name.bottom ~== dummy.top ~+ 2
 
-            progress.left ~== name.left
-            progress.right ~== moreButton.left ~- (5 ~~ 0)
+            progress.leading ~== name.leading
+            progress.trailing ~== moreButton.leading ~- (5 ~~ 0)
             progress.top ~== dummy.bottom + 3
 
             progressView.bottom ~== progressView.superview!.bottom
-            progressView.left ~== progressView.superview!.left
-            progressView.right ~== progressView.superview!.right
+            progressView.leading ~== progressView.superview!.leading
+            progressView.trailing ~== progressView.superview!.trailing
         }
     }
 

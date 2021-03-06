@@ -22,7 +22,7 @@ class UpdateCell: UITableViewCell {
 
     func configure(with title: String, versionOld: String, versionNew: String, changelog: String, image: String) {
         name.text = title
-        info.text = versionOld + " → " + versionNew
+        info.text = Global.isRtl ? (versionNew + " ← " + versionOld) : (versionOld + " → " + versionNew)
         whatsnew.text = changelog.decoded
         if let url = URL(string: image) {
             icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
@@ -80,19 +80,19 @@ class UpdateCell: UITableViewCell {
             (icon.height ~== icon.width) ~ Global.notMaxPriority
             icon.top ~== icon.superview!.top ~+ (15 ~~ 10)
 
-            icon.left ~== icon.superview!.layoutMarginsGuide.left
+            icon.leading ~== icon.superview!.layoutMarginsGuide.leading
 
-            name.left ~== icon.right ~+ (15 ~~ 12)
-            name.right ~== name.superview!.layoutMarginsGuide.right
+            name.leading ~== icon.trailing ~+ (15 ~~ 12)
+            name.trailing ~== name.superview!.layoutMarginsGuide.trailing
             name.centerY ~== icon.centerY ~- (12 ~~ 10)
 
             info.top ~== name.bottom ~+ (5 ~~ 4)
-            info.left ~== name.left
-            info.right ~== name.right
+            info.leading ~== name.leading
+            info.trailing ~== name.trailing
 
             whatsnew.top ~== icon.bottom ~+ (14 ~~ 11)
-            whatsnew.left ~== icon.left
-            whatsnew.right ~== name.right
+            whatsnew.leading ~== icon.leading
+            whatsnew.trailing ~== name.trailing
             whatsnew.bottom ~== whatsnew.superview!.bottom ~- 15
         }
     }

@@ -16,7 +16,7 @@ class DetailsPublisher: DetailsCell {
 
     var label: UILabel!
 
-    convenience init(_ publisher: String, alignment: NSTextAlignment = .left) {
+    convenience init(_ publisher: String, alignment: NSTextAlignment = .natural) {
         self.init(style: .default, reuseIdentifier: "publisher")
 
         selectionStyle = .none
@@ -36,8 +36,8 @@ class DetailsPublisher: DetailsCell {
         contentView.addSubview(label)
 
         constrain(label) { label in
-            label.left ~== label.superview!.left ~+ Global.Size.margin.value
-            label.right ~== label.superview!.right ~- Global.Size.margin.value
+            label.leading ~== label.superview!.leading ~+ Global.Size.margin.value
+            label.trailing ~== label.superview!.trailing ~- Global.Size.margin.value
             label.top ~== label.superview!.top ~+ 15
             label.bottom ~== label.superview!.bottom ~- (20 ~~ 15)
         }

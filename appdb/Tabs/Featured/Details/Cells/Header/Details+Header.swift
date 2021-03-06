@@ -170,36 +170,36 @@ class DetailsHeader: DetailsCell {
                 default: break
                 }
 
-                icon.left ~== icon.superview!.left ~+ Global.Size.margin.value
+                icon.leading ~== icon.superview!.leading ~+ Global.Size.margin.value
                 icon.top ~== icon.superview!.top ~+ Global.Size.margin.value
 
-                name.left ~== icon.right ~+ (15 ~~ 12)
-                name.right ~== name.superview!.right ~- Global.Size.margin.value
+                name.leading ~== icon.trailing ~+ (15 ~~ 12)
+                name.trailing ~== name.superview!.trailing ~- Global.Size.margin.value
                 name.top ~== icon.top ~+ 3
 
-                seller.left ~== name.left
+                seller.leading ~== name.leading
                 seller.top ~== name.bottom ~+ 3
-                seller.right ~<= seller.superview!.right ~- Global.Size.margin.value
+                seller.trailing ~<= seller.superview!.trailing ~- Global.Size.margin.value
             }
         }
 
         if let tweaked = tweaked, type == .cydia {
             constrain(tweaked, seller) { tweaked, seller in
-                tweaked.left ~== seller.left
-                tweaked.right ~<= tweaked.superview!.right ~- Global.Size.margin.value
+                tweaked.leading ~== seller.leading
+                tweaked.trailing ~<= tweaked.superview!.trailing ~- Global.Size.margin.value
                 tweaked.top ~== seller.bottom ~+ (7 ~~ 6)
             }
         }
 
         if let stars = stars, (type == .ios || type == .books) {
             constrain(stars, seller) { stars, seller in
-                stars.left ~== seller.left
-                stars.right ~<= stars.superview!.right ~- Global.Size.margin.value
+                stars.leading ~== seller.leading
+                stars.trailing ~<= stars.superview!.trailing ~- Global.Size.margin.value
 
                 if type == .books, let additional = additionalInfo {
                     constrain(additional) { additional in
-                        additional.left ~== seller.left
-                        additional.right ~<= additional.superview!.right ~- Global.Size.margin.value
+                        additional.leading ~== seller.leading
+                        additional.trailing ~<= additional.superview!.trailing ~- Global.Size.margin.value
                         additional.top ~== seller.bottom ~+ (7 ~~ 6)
                         stars.top ~== additional.bottom ~+ (7 ~~ 6)
                     }
@@ -212,15 +212,15 @@ class DetailsHeader: DetailsCell {
         if let ipadOnly = ipadOnly, type == .ios {
             if let stars = stars {
                 constrain(ipadOnly, stars) { ipadOnly, stars in
-                    ipadOnly.left ~== stars.left
-                    ipadOnly.right ~<= ipadOnly.superview!.right ~- Global.Size.margin.value
+                    ipadOnly.leading ~== stars.leading
+                    ipadOnly.trailing ~<= ipadOnly.superview!.trailing ~- Global.Size.margin.value
                     ipadOnly.top ~== stars.bottom ~+ (7 ~~ 6)
                     ipadOnly.bottom ~<= ipadOnly.superview!.bottom
                 }
             } else {
                 constrain(ipadOnly, seller) { ipadOnly, seller in
-                    ipadOnly.left ~== seller.left
-                    ipadOnly.right ~<= ipadOnly.superview!.right ~- Global.Size.margin.value
+                    ipadOnly.leading ~== seller.leading
+                    ipadOnly.trailing ~<= ipadOnly.superview!.trailing ~- Global.Size.margin.value
                     ipadOnly.top ~== seller.bottom + (7 ~~ 6)
                 }
             }

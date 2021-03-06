@@ -59,8 +59,8 @@ class LandscapeScreenshotSearchCell: SearchCell {
             screeenshot.top ~== icon.bottom ~+ spaceFromIcon
             screeenshot.centerX ~== screeenshot.superview!.centerX
             (screeenshot.bottom ~== screeenshot.superview!.bottom ~- margin) ~ Global.notMaxPriority
-            screeenshot.left ~>= screeenshot.superview!.left ~+ margin
-            screeenshot.right ~<= screeenshot.superview!.right ~- margin
+            screeenshot.leading ~>= screeenshot.superview!.leading ~+ margin
+            screeenshot.trailing ~<= screeenshot.superview!.trailing ~- margin
         }
     }
 }

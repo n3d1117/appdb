@@ -41,7 +41,7 @@ class DetailsVersionHeader: TableViewHeader {
         contentView.addSubview(version)
 
         constrain(version) { version in
-            version.left ~== version.superview!.left ~+ Global.Size.margin.value
+            version.leading ~== version.superview!.leading ~+ Global.Size.margin.value
             version.centerY ~== version.superview!.centerY
         }
     }
