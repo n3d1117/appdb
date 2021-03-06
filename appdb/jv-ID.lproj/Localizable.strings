@@ -109,6 +109,14 @@
 "Cracked by %@" = "di Crack dening %@";
 "Uploaded by %@" = "di Aplot dening %@";
 "Cracked and uploaded by %@" = "di Crack lan di Aplot dening %@";
+"Recently Uploaded" = "Mari diunggah";
+"Popular Today" = "Seng Populer Dino Iki";
+"Popular This Week" = "Seng Populer Minggu Iki";
+"Popular This Month" = "Seng Populer Bulan Iki";
+"Popular This Year" = "Seng Populer Tahun Iki";
+"Popular All Time" = "Populer Kabeh Wektu";
+"Any Price" = "Kabeh Rego";
+"Paid" = "Mbayar";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //

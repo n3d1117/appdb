@@ -109,6 +109,14 @@
 "Cracked by %@" = "Cracked by %@";
 "Uploaded by %@" = "Uploaded by %@";
 "Cracked and uploaded by %@" = "Cracked and uploaded by %@";
+"Recently Uploaded" = "Recently Uploaded";
+"Popular Today" = "Popular Today";
+"Popular This Week" = "Popular This Week";
+"Popular This Month" = "Popular This Month";
+"Popular This Year" = "Popular This Year";
+"Popular All Time" = "Popular All Time";
+"Any Price" = "Any Price";
+"Paid" = "Paid";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //

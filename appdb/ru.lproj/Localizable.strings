@@ -109,6 +109,14 @@
 "Cracked by %@" = "Взломано %@";
 "Uploaded by %@" = "Загружено %@";
 "Cracked and uploaded by %@" = "Взломано и загружено %@";
+"Recently Uploaded" = "Недавно загружено";
+"Popular Today" = "Популярно сегодня";
+"Popular This Week" = "Популярные на этой неделе";
+"Popular This Month" = "Популярные в этом месяце";
+"Popular This Year" = "Популярные в этом году";
+"Popular All Time" = "Популярные за все время";
+"Any Price" = "Любая цена";
+"Paid" = "Оплаченный";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //
@@ -277,18 +285,18 @@
 "Only apps that are managed by appdb will appear here." = "Тут отображаются приложения, установленные через appdb";
 "Custom Developer Identity" = "Ваш профиль разработчика";
 "Copy" = "копировать";
-"Clear developer identity" = "Clear developer identity";
-"Are you sure you want to clear developer identity?" = "Are you sure you want to clear developer identity?";
-"Identity cleared!" = "Identity cleared!";
-"Patch in-app Purchases" = "Patch in-app Purchases";
+"Clear developer identity" = "Четкая идентификация разработчика";
+"Are you sure you want to clear developer identity?" = "Вы уверены, что хотите очистить личность разработчика?";
+"Identity cleared!" = "Личность очищена!";
+"Patch in-app Purchases" = "Патч для покупок в приложении";
 "Preserve Entitlements Comments" = "Preserve Entitlements Comments";
-"Disable Revocation Checks" = "Disable Revocation Checks";
-"Force Disable PRO" = "Force Disable PRO";
-"For Psychic Paper exploit" = "For Psychic Paper exploit";
-"Clear Cache" = "Clear Cache";
-"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb.";
-"Cache cleared successfully!" = "Cache cleared successfully!";
-"Failed to clear cache: %@." = "Failed to clear cache: %@.";
+"Disable Revocation Checks" = "Отключить проверку отзыва";
+"Force Disable PRO" = "Принудительное отключение PRO";
+"For Psychic Paper exploit" = "Для эксплойта Psychic Paper";
+"Clear Cache" = "Очистить кэш";
+"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Вы уверены, что хотите очистить кеш приложения?\n\nПРИМЕЧАНИЕ. Это не приведет к деавторизации приложения, и ваше устройство по-прежнему будет связано с appdb.";
+"Cache cleared successfully!" = "Кеш успешно очищен!";
+"Failed to clear cache: %@." = "Не удалось очистить кеш: %@.";
 
 /////////////////////
 //     UPDATES     //

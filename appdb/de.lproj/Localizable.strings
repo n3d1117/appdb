@@ -109,6 +109,14 @@
 "Cracked by %@" = "Gecrackt von %@";
 "Uploaded by %@" = "Hochgeladen von %@";
 "Cracked and uploaded by %@" = "Gecrackt und hochgeladen von %@";
+"Recently Uploaded" = "Kürzlich hochgeladen";
+"Popular Today" = "Heute beliebt";
+"Popular This Week" = "Beliebt diese Woche";
+"Popular This Month" = "Beliebt in diesem Monat";
+"Popular This Year" = "Beliebt in diesem Jahr";
+"Popular All Time" = "Beliebt zu allen Zeiten";
+"Any Price" = "Jeder Preis";
+"Paid" = "Bezahlt";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //
@@ -277,18 +285,18 @@
 "Only apps that are managed by appdb will appear here." = "Nur Apps, die von Appdb verwaltet werden, werden hier angezeigt.";
 "Custom Developer Identity" = "Benutzerdefinierte Entwickler-Identität";
 "Copy" = "Kopieren";
-"Clear developer identity" = "Clear developer identity";
-"Are you sure you want to clear developer identity?" = "Are you sure you want to clear developer identity?";
-"Identity cleared!" = "Identity cleared!";
-"Patch in-app Purchases" = "Patch in-app Purchases";
+"Clear developer identity" = "Klare Entwickleridentität";
+"Are you sure you want to clear developer identity?" = "Sind Sie sicher, dass Sie die Entwickleridentität löschen möchten?";
+"Identity cleared!" = "Identität gelöscht!";
+"Patch in-app Purchases" = "Patch In-App-Käufe";
 "Preserve Entitlements Comments" = "Preserve Entitlements Comments";
-"Disable Revocation Checks" = "Disable Revocation Checks";
+"Disable Revocation Checks" = "Sperrprüfungen deaktivieren";
 "Force Disable PRO" = "Force Disable PRO";
-"For Psychic Paper exploit" = "For Psychic Paper exploit";
-"Clear Cache" = "Clear Cache";
-"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb.";
-"Cache cleared successfully!" = "Cache cleared successfully!";
-"Failed to clear cache: %@." = "Failed to clear cache: %@.";
+"For Psychic Paper exploit" = "Für Psychic Paper ausnutzen";
+"Clear Cache" = "Cache leeren";
+"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Möchten Sie den App-Cache wirklich löschen?\n\nHINWEIS: Dadurch wird die App nicht deaktiviert, und Ihr Gerät wird weiterhin mit appdb verknüpft.";
+"Cache cleared successfully!" = "Cache erfolgreich gelöscht!";
+"Failed to clear cache: %@." = "Cache konnte nicht gelöscht werden: %@.";
 
 /////////////////////
 //     UPDATES     //

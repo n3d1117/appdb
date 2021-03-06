@@ -109,6 +109,14 @@
 "Cracked by %@" = "Modificado por %@";
 "Uploaded by %@" = "Subido por %@";
 "Cracked and uploaded by %@" = "Modificado y subido por %@";
+"Recently Uploaded" = "Subido recientemente";
+"Popular Today" = "Populares hoy";
+"Popular This Week" = "Populares esta semana";
+"Popular This Month" = "Populares este mes";
+"Popular This Year" = "Populares este año";
+"Popular All Time" = "Populares desde siempre";
+"Any Price" = "Cualquier Precio";
+"Paid" = "De pago";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //
@@ -281,7 +289,7 @@
 "Are you sure you want to clear developer identity?" = "¿Estás seguro de que quieres eliminar el certificado de desarrollador personalizado?";
 "Identity cleared!" = "¡Certificado eliminado!";
 "Patch in-app Purchases" = "Parchear compras dentro de la app";
-"Preserve Entitlements  Comments" = "Conservar Comentario Entitlements";
+"Preserve Entitlements Comments" = "Conservar Comentario Entitlements";
 "Disable Revocation Checks" = "Desactivar la comprobación de revocaciones";
 "Force Disable PRO" = "Forzar desactivar PRO";
 "For Psychic Paper exploit" = "Para el exploit Psychic Paper";
