@@ -30,10 +30,6 @@ struct IPAFileManager {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
 
-    func cachesDirectoryURL() -> URL {
-        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-    }
-
     func inboxDirectoryURL() -> URL {
         documentsDirectoryURL().appendingPathComponent("Inbox")
     }
@@ -61,15 +57,6 @@ struct IPAFileManager {
             try tmpDirectory.forEach { file in
                 try FileManager.default.removeItem(atPath: tmpDirURL.appendingPathComponent(file).path)
             }
-        } catch { }
-    }
-
-    // MARK: - Clear cache folder - TODO call
-
-    func clearCacheDirectory() {
-        do {
-            let contents = try FileManager.default.contentsOfDirectory(at: cachesDirectoryURL(), includingPropertiesForKeys: nil)
-            for file in contents { try FileManager.default.removeItem(at: file) }
         } catch { }
     }
 

@@ -285,6 +285,10 @@
 "Disable Revocation Checks" = "Mateni Revocation Checks";
 "Force Disable PRO" = "Pateni Pekso PRO";
 "For Psychic Paper exploit" = "Kanggo eksploitasi Psychic Paper";
+"Clear Cache" = "Ngresiki Cache";
+"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Opo sampeyan yakin sampeya pengen ngebusek app cache?\n\nNOTE: Iki ora bakal ngeculake otoritas app, lan piranti sampeyan isih bakal disambung karo appdb.";
+"Cache cleared successfully!" = "Cache diresiki kanthi sukses!";
+"Failed to clear cache: %@." = "Gagal mbusek cache: %@.";
 
 /////////////////////
 //     UPDATES     //

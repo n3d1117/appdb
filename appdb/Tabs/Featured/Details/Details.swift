@@ -56,9 +56,11 @@ class Details: LoadingTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Hide the 'Back' text on back button
-        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        if #available(iOS 13.0, *) { } else {
+            // Hide the 'Back' text on back button
+            let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+            navigationItem.backBarButtonItem = backItem
+        }
 
         setUp()
 

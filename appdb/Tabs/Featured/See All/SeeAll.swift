@@ -70,9 +70,11 @@ class SeeAll: LoadingTableView {
             previewingContext = registerForPreviewing(with: self, sourceView: tableView)
         }
 
-        // Hide the 'Back' text on back button
-        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        if #available(iOS 13.0, *) { } else {
+            // Hide the 'Back' text on back button
+            let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+            navigationItem.backBarButtonItem = backItem
+        }
 
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))

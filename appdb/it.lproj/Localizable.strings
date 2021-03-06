@@ -285,6 +285,10 @@
 "Disable Revocation Checks" = "Disabilita controlli revoche";
 "Force Disable PRO" = "Disabilita PRO";
 "For Psychic Paper exploit" = "Per exploit Psychic Paper";
+"Clear Cache" = "Pulisci Cache";
+"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Sicuro di voler pulire la cache?\n\nNOTA: Questo non deautorizza l'app, e il tuo dispositivo resterà collegato con appdb.";
+"Cache cleared successfully!" = "Cache pulita con successo!";
+"Failed to clear cache: %@." = "Impossibile pulire la cache: %@.";
 
 /////////////////////
 //     UPDATES     //

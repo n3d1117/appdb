@@ -34,9 +34,11 @@ class AdvancedOptions: TableViewController {
 
         tableView.rowHeight = 55
 
-        // Hide the 'Back' text on back button
-        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        if #available(iOS 13.0, *) { } else {
+            // Hide the 'Back' text on back button
+            let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+            navigationItem.backBarButtonItem = backItem
+        }
 
         if #available(iOS 13.0, *) {} else {
             if Global.isIpad {
@@ -172,7 +174,7 @@ extension AdvancedOptions {
     fileprivate func clearDeveloperIdentity(indexPath: IndexPath) {
         let title = "Are you sure you want to clear developer identity?".localized()
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, adaptive: true)
-        alertController.addAction(UIAlertAction(title: "Clear developer identity", style: .destructive) { _ in
+        alertController.addAction(UIAlertAction(title: "Clear developer identity".localized(), style: .destructive) { _ in
             API.setConfiguration(params: [.clearDevEntity: "yes"], success: { [weak self] in
                 guard let self = self else { return }
                 Messages.shared.showSuccess(message: "Identity cleared!".localized(), context: .viewController(self))

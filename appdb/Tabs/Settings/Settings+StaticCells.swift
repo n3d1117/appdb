@@ -393,6 +393,20 @@ final class ContactDevStaticCell: SimpleStaticCell {
     }
 }
 
+final class ClearCacheStaticCell: SimpleStaticCell {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func configure(row: Row) {
+        super.configure(row: row)
+    }
+}
+
 final class ClearIdentityStaticCell: SimpleStaticButtonCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

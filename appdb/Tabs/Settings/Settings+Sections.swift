@@ -69,6 +69,8 @@ extension Settings {
                 Row(text: "Acknowledgements".localized(), selection: { [unowned self] _ in
                     self.push(Acknowledgements())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                Row(text: "Clear Cache".localized(), detailText: Settings.cacheFolderReadableSize(), selection: { _ in },
+                    accessory: .disclosureIndicator, cellClass: ClearCacheStaticCell.self),
                 Row(text: "Version".localized(), detailText: "\(Global.appVersion)", cellClass: SimpleStaticCell.self)
             ])
         ]

@@ -70,9 +70,11 @@ extension Featured {
             tableView.insetsContentViewsToSafeArea = false
         }
 
-        // Hide the 'Back' text on back button
-        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        if #available(iOS 13.0, *) { } else {
+            // Hide the 'Back' text on back button
+            let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+            navigationItem.backBarButtonItem = backItem
+        }
     }
 
     // Add Banner

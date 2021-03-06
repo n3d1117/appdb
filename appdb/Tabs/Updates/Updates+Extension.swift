@@ -38,9 +38,11 @@ extension Updates {
         tableView.register(UpdateCell.self, forCellReuseIdentifier: "cell")
         tableView.estimatedRowHeight = (135 ~~ 115)
 
-        // Hide the 'Back' text on back button
-        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        if #available(iOS 13.0, *) { } else {
+            // Hide the 'Back' text on back button
+            let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+            navigationItem.backBarButtonItem = backItem
+        }
 
         // Add 'Ignored' button on the right
         let ignoredButton = UIBarButtonItem(title: "Ignored".localized(), style: .plain, target: self, action: #selector(self.openIgnored))

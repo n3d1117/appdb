@@ -423,6 +423,47 @@ extension UIApplication {
     }
 }
 
+// MARK: - URL & FileManager (credits: Nikolai Ruhe - https://stackoverflow.com/a/28660040)
+
+extension URL {
+
+    static let allocatedSizeResourceKeys: Set<URLResourceKey> = [
+        .isRegularFileKey,
+        .fileAllocatedSizeKey,
+        .totalFileAllocatedSizeKey
+    ]
+
+    func regularFileAllocatedSize() throws -> UInt64 {
+        let resourceValues = try self.resourceValues(forKeys: URL.allocatedSizeResourceKeys)
+        guard resourceValues.isRegularFile ?? false else { return 0 }
+        return UInt64(resourceValues.totalFileAllocatedSize ?? resourceValues.fileAllocatedSize ?? 0)
+    }
+}
+
+extension FileManager {
+    public func sizeOfDirectory(at directoryURL: URL) throws -> UInt64 {
+        var enumeratorError: Error?
+        func errorHandler(_: URL, error: Error) -> Bool {
+            enumeratorError = error
+            return false
+        }
+        let enumerator = self.enumerator(at: directoryURL,
+                                         includingPropertiesForKeys: Array(URL.allocatedSizeResourceKeys),
+                                         options: [],
+                                         errorHandler: errorHandler)!
+        var accumulatedSize: UInt64 = 0
+        for item in enumerator {
+            if enumeratorError != nil { break }
+            guard let contentItemURL = item as? URL else { break }
+            accumulatedSize += try contentItemURL.regularFileAllocatedSize()
+        }
+        if let error = enumeratorError { throw error }
+        return accumulatedSize
+    }
+}
+
+// MARK: - DiffAware
+
 extension DiffAware where Self: Hashable {
     public var diffId: Int {
         hashValue

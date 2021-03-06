@@ -277,14 +277,18 @@
 "Only apps that are managed by appdb will appear here." = "Solamente apps que son manegados por appdb aparecerán aquí.";
 "Custom Developer Identity" = "Identidad de desarrollador personalizado";
 "Copy" = "Copia";
-"Clear developer identity" = "Clear developer identity";
-"Are you sure you want to clear developer identity?" = "Are you sure you want to clear developer identity?";
-"Identity cleared!" = "Identity cleared!";
-"Patch in-app Purchases" = "Patch in-app Purchases";
-"Preserve Entitlements Comments" = "Preserve Entitlements Comments";
-"Disable Revocation Checks" = "Disable Revocation Checks";
-"Force Disable PRO" = "Force Disable PRO";
-"For Psychic Paper exploit" = "For Psychic Paper exploit";
+"Clear developer identity" = "Eliminar certificado de desarrollor personalizado";
+"Are you sure you want to clear developer identity?" = "¿Estás seguro de que quieres eliminar el certificado de desarrollador personalizado?";
+"Identity cleared!" = "¡Certificado eliminado!";
+"Patch in-app Purchases" = "Parchear compras dentro de la app";
+"Preserve Entitlements  Comments" = "Conservar Comentario Entitlements";
+"Disable Revocation Checks" = "Desactivar la comprobación de revocaciones";
+"Force Disable PRO" = "Forzar desactivar PRO";
+"For Psychic Paper exploit" = "Para el exploit Psychic Paper";
+"Clear Cache" = "Limpiar Caché";
+"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "¿Seguro que quieres eliminar el caché de la aplicación?\n\nRECUERDA: Esto no desautorizará la aplicación, y tu dispositivo será vinculado a appdb.";
+"Cache cleared successfully!" = "¡Caché borrado correctamente!";
+"Failed to clear cache: %@." = "Borrado de caché fallado: %@.";
 
 /////////////////////
 //     UPDATES     //

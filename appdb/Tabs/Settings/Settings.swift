@@ -73,8 +73,10 @@ class Settings: TableViewController {
         }
 
         // Hide the 'Back' text on back button
-        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        if #available(iOS 13.0, *) { } else {
+            let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+            navigationItem.backBarButtonItem = backItem
+        }
 
         dataSource = DataSource(tableViewDelegate: self)
         refreshSources()
@@ -212,6 +214,47 @@ class Settings: TableViewController {
         }*/
     }
 
+    // Get size of cache folder
+    static func cacheFolderReadableSize() -> String {
+        do {
+            let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+            let cacheDirectorySize = try FileManager.default.sizeOfDirectory(at: cacheDirectory)
+            return Global.humanReadableSize(bytes: Int64(cacheDirectorySize))
+        } catch { return "" }
+    }
+
+    // Clear cache folder
+    func clearCache(indexPath: IndexPath) {
+        refreshSources() // reload cache size, in case it changed since app load
+        let title = "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb.".localized()
+        let size = Settings.cacheFolderReadableSize()
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet, adaptive: true)
+        alertController.addAction(UIAlertAction(title: "Clear Cache".localized() + " (\(size))", style: .destructive) { _ in
+
+            do {
+                let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+                let cacheDirectoryContents = try FileManager.default.contentsOfDirectory(atPath: cacheDirectory.path)
+                try cacheDirectoryContents.forEach {
+                    try FileManager.default.removeItem(atPath: cacheDirectory.appendingPathComponent($0).path)
+                }
+                self.refreshSources()
+                Messages.shared.showSuccess(message: "Cache cleared successfully!".localized())
+            } catch let error {
+                Messages.shared.showError(message: "Failed to clear cache: %@.".localizedFormat(error.localizedDescription))
+            }
+        })
+        alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        if let presenter = alertController.popoverPresentationController {
+            presenter.theme_backgroundColor = Color.popoverArrowColor
+            presenter.sourceView = tableView
+            presenter.sourceRect = tableView.rectForRow(at: indexPath)
+            presenter.permittedArrowDirections = [.up, .down]
+        }
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+        }
+    }
+
     // Reloads table view
 
     @objc func refreshSources() {
@@ -255,6 +298,8 @@ extension Settings: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.cellForRow(at: indexPath) is ContactDevStaticCell {
             contactDeveloper(indexPath: indexPath)
+        } else if tableView.cellForRow(at: indexPath) is ClearCacheStaticCell {
+            clearCache(indexPath: indexPath)
         }
     }
 
