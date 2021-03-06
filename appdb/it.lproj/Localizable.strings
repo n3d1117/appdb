@@ -263,7 +263,7 @@
 "Email Link Code" = "Invia codice link per email";
 "List apps managed by appdb" = "Lista app gestite da appdb";
 "Your PRO has not been revoked!" = "Il tuo abbonamento PRO non è stato revocato!";
-"Your PRO has not been revoked!" = "La tua identità sviluppatore non è stata revocata!"
+"Your Custom Developer Identity has not been revoked!" = "La tua identità sviluppatore non è stata revocata!";
 "Enter Voucher" = "Inserisci voucher";
 "Paste here the PRO voucher obtained by a reseller:" = "Incolla qui il voucher ottenuto dal tuo rivenditore:";
 "Activate" = "Attiva";

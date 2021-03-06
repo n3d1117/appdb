@@ -263,6 +263,7 @@
 "Email Link Code" = "E-Mail Verknüpfungs/Linkcode";
 "List apps managed by appdb" = "Aufgelistete Apps, die von Appdb verwaltet werden";
 "Your PRO has not been revoked!" = "Dein PRO wurde nicht revoked!";
+"Your Custom Developer Identity has not been revoked!" = "Dein Benutzerdefinierte Entwickler-Identität wurde nicht revoked!";
 "Enter Voucher" = "Voucher eingeben";
 "Paste here the PRO voucher obtained by a reseller:" = "Gib hier den PRO Voucher ein, den du von einem Verkäufer bekommen hast:";
 "Activate" = "Aktivieren";
@@ -276,6 +277,14 @@
 "Only apps that are managed by appdb will appear here." = "Nur Apps, die von Appdb verwaltet werden, werden hier angezeigt.";
 "Custom Developer Identity" = "Benutzerdefinierte Entwickler-Identität";
 "Copy" = "Kopieren";
+"Clear developer identity" = "Clear developer identity";
+"Are you sure you want to clear developer identity?" = "Are you sure you want to clear developer identity?";
+"Identity cleared!" = "Identity cleared!";
+"Patch in-app Purchases" = "Patch in-app Purchases";
+"Preserve Entitlements Comments" = "Preserve Entitlements Comments";
+"Disable Revocation Checks" = "Disable Revocation Checks";
+"Force Disable PRO" = "Force Disable PRO";
+"For Psychic Paper exploit" = "For Psychic Paper exploit";
 
 /////////////////////
 //     UPDATES     //

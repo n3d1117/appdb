@@ -263,6 +263,7 @@
 "Email Link Code" = "Email Kode Tautan";
 "List apps managed by appdb" = "Daftar aplikasi yang dikelola oleh appdb";
 "Your PRO has not been revoked!" = "PRO Anda belum dicabut!";
+"Your Custom Developer Identity has not been revoked!" = "Custom Identitas Pengembang Anda belum dicabut!";
 "Enter Voucher" = "Masukan Voucher";
 "Paste here the PRO voucher obtained by a reseller:" = "Tempel di sini voucher PRO yang diperoleh oleh pengecer:";
 "Activate" = "Aktivasi";
@@ -276,6 +277,14 @@
 "Only apps that are managed by appdb will appear here." = "Hanya aplikasi yang dikelola oleh appdb yang akan muncul di sini. ";
 "Custom Developer Identity" = "Identitas Pengembang Khusus";
 "Copy" = "Salinan";
+"Clear developer identity" = "Hapus identitas pengembang";
+"Are you sure you want to clear developer identity?" = "Anda yakin ingin menghapus identitas pengembang?";
+"Identity cleared!" = "Identitas dihapuskan!";
+"Patch in-app Purchases" = "Patch Pembelian Dalam-Aplikasi";
+"Preserve Entitlements Comments" = "Pertahankan Hak Komentar";
+"Disable Revocation Checks" = "Nonaktifkan Pemeriksaan Pencabutan";
+"Force Disable PRO" = "Paksa Nonaktifkan PRO";
+"For Psychic Paper exploit" = "Untuk mengeksploitasi Psychic Paper";
 
 /////////////////////
 //     UPDATES     //

@@ -263,6 +263,7 @@
 "Email Link Code" = "Código enviado por email";
 "List apps managed by appdb" = "Lista de apps manegadas por appdb";
 "Your PRO has not been revoked!" = "¡Tu PRO no fué revocado!";
+"Your Custom Developer Identity has not been revoked!" = "¡Tu Identidad de desarrollador personalizado no fué revocado!";
 "Enter Voucher" = "Introduce código";
 "Paste here the PRO voucher obtained by a reseller:" = "Pega el código obtenido por los revendedores:";
 "Activate" = "Activar";
@@ -276,6 +277,14 @@
 "Only apps that are managed by appdb will appear here." = "Solamente apps que son manegados por appdb aparecerán aquí.";
 "Custom Developer Identity" = "Identidad de desarrollador personalizado";
 "Copy" = "Copia";
+"Clear developer identity" = "Clear developer identity";
+"Are you sure you want to clear developer identity?" = "Are you sure you want to clear developer identity?";
+"Identity cleared!" = "Identity cleared!";
+"Patch in-app Purchases" = "Patch in-app Purchases";
+"Preserve Entitlements Comments" = "Preserve Entitlements Comments";
+"Disable Revocation Checks" = "Disable Revocation Checks";
+"Force Disable PRO" = "Force Disable PRO";
+"For Psychic Paper exploit" = "For Psychic Paper exploit";
 
 /////////////////////
 //     UPDATES     //
@@ -334,7 +343,7 @@
 "File size not found in resource values" = "Inválido archivo con los valores dados";
 "A report has already been submitted" = "El reporte ha sido enviado";
 "Installation failed, but can be fixed from Settings -> Device Status" = "Instalación fallida, pero se puede arreglar en los ajustes de la app -> Estado del dispositivo";
-"An error has occurred: JSON mal formado" = "Un error ha ocurrido: ";
+"An error has occurred: malformed JSON" = "Un error ha ocurrido: JSON con formato incorrecto";
 "Your PRO subscription has expired." = "Tu subscripción PRO ha expirado.";
 "Your PRO subscription has been revoked by Apple." = "Tu suscripción PRO ha sido revocada por Apple.";
 "Your device doesn't seem to have a PRO subcription." = "Parece que tu dispositivo no tiene PRO.";
