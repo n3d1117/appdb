@@ -82,7 +82,7 @@ class Banner: UIView {
         backgroundColor = .clear
 
         let layout = LNZInfiniteCollectionViewLayout()
-        layout.itemSize = CGSize(width: Banner.height * 2.5, height: Banner.height)
+        layout.itemSize = CGSize(width: Banner.height * 2.517, height: Banner.height)
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(BannerImage.self, forCellWithReuseIdentifier: "image")
@@ -116,7 +116,7 @@ class Banner: UIView {
     @objc func slideshowTick(_ timer: Timer) {
         currentIndex += 1
         if currentIndex == banners.count * multiplier { currentIndex = 0 }
-        let bannerWidth: CGFloat = Banner.height * 2.5
+        let bannerWidth: CGFloat = Banner.height * 2.517
         let newPoint = CGPoint(
             x: collectionView.contentOffset.x + bannerWidth,
             y: collectionView.contentOffset.y
