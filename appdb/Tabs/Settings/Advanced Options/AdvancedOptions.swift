@@ -62,7 +62,7 @@ class AdvancedOptions: TableViewController {
                 }, cellClass: SimpleStaticCell.self)
             ]),
             Section(rows: [
-                Row(text: "Check PRO Revocation".localized(), selection: { [unowned self] _ in
+                Row(text: "Check Revocation".localized(), selection: { [unowned self] _ in
                     self.checkProRevocationStatus()
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
                 Row(text: "Validate PRO Voucher".localized(), selection: { [unowned self] _ in
@@ -110,7 +110,11 @@ extension AdvancedOptions {
                 }
                 Messages.shared.showError(message: message, duration: 4, context: .viewController(self))
             } else {
-                Messages.shared.showSuccess(message: "Your PRO has not been revoked!".localized(), context: .viewController(self))
+                if Preferences.usesCustomDeveloperIdentity {
+                    Messages.shared.showSuccess(message: "Your Custom Developer Identity has not been revoked!".localized(), context: .viewController(self))
+                } else {
+                    Messages.shared.showSuccess(message: "Your PRO has not been revoked!".localized(), context: .viewController(self))
+                }
             }
         }, fail: { error in
             Messages.shared.showError(message: error.prettified, context: .viewController(self))

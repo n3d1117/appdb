@@ -257,7 +257,7 @@
 "Follow System Appearance" = "Melu Tampilan Sistem";
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Otomatis pindah tekan tema padang nang peteng sesuai karo tampilane sistem. Gawe pindah nang tema sing luwih peteng, cukup pilih tema manual pisan ae.\n\nTambahan: Lek awakmu ngrasakne onok masalah (tema gak pindah dewe utowo tema campur) cukup tutup aplikasi tekan multitasking trus bukaen maneh. ";
 "Advanced Options" = "Opsi Liyane";
-"Check PRO Revocation" = "Cek PRO Revocation";
+"Check Revocation" = "Cek Revocation";
 "Validate PRO Voucher" = "Validasi PRO Voucher";
 "Activate PRO Voucher" = "Aktivasi PRO Voucher";
 "Email Link Code" = "Email Kode Cantolan";

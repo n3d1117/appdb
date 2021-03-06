@@ -257,12 +257,13 @@
 "Follow System Appearance" = "Segui tema del sistema";
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Passa automaticamente tra tema scuro e chiaro in base alle impostazioni di sistema. Per passare al tema più scuro, invece, selezionalo manualmente una volta.\n\nNOTA: Se rilevi dei problemi (tema che non cambia in automatico, oppure temi chiaro e scuro mischiati) chiudi l'app dal multitasking e riaprila.";
 "Advanced Options" = "Opzioni Avanzate";
-"Check PRO Revocation" = "Controlla revocazione PRO";
+"Check Revocation" = "Controlla revocazione";
 "Validate PRO Voucher" = "Controlla validità voucher PRO";
 "Activate PRO Voucher" = "Attiva PRO con voucher";
 "Email Link Code" = "Invia codice link per email";
 "List apps managed by appdb" = "Lista app gestite da appdb";
 "Your PRO has not been revoked!" = "Il tuo abbonamento PRO non è stato revocato!";
+"Your PRO has not been revoked!" = "La tua identità sviluppatore non è stata revocata!"
 "Enter Voucher" = "Inserisci voucher";
 "Paste here the PRO voucher obtained by a reseller:" = "Incolla qui il voucher ottenuto dal tuo rivenditore:";
 "Activate" = "Attiva";

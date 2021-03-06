@@ -257,7 +257,7 @@
 "Follow System Appearance" = "Seguir diseño del sistema";
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Automáticamente cambiar la apar de claro o a oscuro dependiendo del sistema. Para cambiar al tema más oscuro, simplemente selecciónelo manualmente una vez.\n\nNOTA: Si estás experimentando errores (el tema no se cambia correctamente o los temas se mezclan) cierra la app en segundo plano y vuélvelo a abrir.";
 "Advanced Options" = "Opciones avanzadas";
-"Check PRO Revocation" = "Comprobar PRO";
+"Check Revocation" = "Comprobar revocación";
 "Validate PRO Voucher" = "Validar código PRO";
 "Activate PRO Voucher" = "Activar código PRO";
 "Email Link Code" = "Código enviado por email";

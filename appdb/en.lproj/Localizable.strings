@@ -257,12 +257,13 @@
 "Follow System Appearance" = "Follow System Appearance";
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it.";
 "Advanced Options" = "Advanced Options";
-"Check PRO Revocation" = "Check PRO Revocation";
+"Check Revocation" = "Check Revocation";
 "Validate PRO Voucher" = "Validate PRO Voucher";
 "Activate PRO Voucher" = "Activate PRO Voucher";
 "Email Link Code" = "Email Link Code";
 "List apps managed by appdb" = "List apps managed by appdb";
 "Your PRO has not been revoked!" = "Your PRO has not been revoked!";
+"Your Custom Developer Identity has not been revoked!" = "Your Custom Developer Identity has not been revoked!";
 "Enter Voucher" = "Enter Voucher";
 "Paste here the PRO voucher obtained by a reseller:" = "Paste here the PRO voucher obtained by a reseller:";
 "Activate" = "Activate";
