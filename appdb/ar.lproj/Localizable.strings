@@ -1,0 +1,426 @@
+/*
+Localizable.strings
+appdb
+
+Created by ned on 31/01/2017.
+Copyright © 2017 ned. All rights reserved.
+*/
+
+/////////////////////
+// APPDB RELATED //
+/////////////////////
+
+"We do not host any prohibited content. All data is publicly available via iTunes API." = "نحن لانستضيف آي محتوى محظور. كافةالبيانات متاحة للجمهور عير iTunes API.";
+
+//////////////////////
+// TAB BAR TITLES //
+//////////////////////
+
+"Featured" = "المميزات";
+"Search" = "بحث";
+"Downloads" = "التنزيلات";
+"Settings" = "الاعدادات";
+"Updates" = "التحديثات";
+
+//////////////////////
+// NETWORKING //
+//////////////////////
+
+"Cannot connect" = "لا يمكن الاتصال";
+"Retry" = "إعادة";
+"Waiting..." = "آنتظار...";
+"Checking..." = "فحص...";
+"Operation has been cancelled." = "تم إلغاء العملية.";
+
+//////////////////////
+// CATEGORIES //
+//////////////////////
+
+"All Categories" = "جميع الفئات";
+"Categories" = "الفئات";
+"Select Category" = "حدد فئة";
+"iOS" = "iOS";
+"Cydia" = "السيدياء";
+"Books" = "الكتب";
+
+/////////////////////////////
+// FEATURED SECTIONS //
+/////////////////////////////
+
+"Custom Apps" = "تطبيقات مخصصة";
+"New and Noteworthy" = "جديد";
+"Top Paid" = "الآعلى مبيعاً";
+"Popular This Week" = "شعبية الآسبوع ";
+"Best Games" = "آفضل الآلعاب";
+"Top Books" = "آفضل الكتب";
+"See All" = "شاهد الكل";
+"News" = "الآخبار";
+"Settings" = "الآعدادات";
+"System Status" = "حالة النظام";
+
+//////////////////////////
+// APPS & BOOKS //
+//////////////////////////
+
+"Description" = "الوصف";
+"What's New" = "ماهو الجديد";
+"Tweaked Version Notice" = "إشعار النسخة المعدلة";
+"This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "تم تعديل هذا التطبيق لتوفير ميزات إضافية. تأكد بأنك تقوم بالتثبيت من المكركين الموثوقين لدينا فقط ، لأن هؤلاء المكركين هم الوحيدون القادرين على ضمان عدم احتواء الملفات على أي رمز ضار.";
+"iPad only" = "فقط آيباد";
+"Information" = "المعلومات";
+"Seller" = "البائع";
+"Developer" = "المطور";
+"Category" = "الفئات";
+"Price" = "السعر";
+"Updated" = "التحديثات";
+"Version" = "‏الإصدار";
+"Compatibility" = "التوافق";
+"Size" = "الحجم";
+"Language" = "اللغة";
+"Languages" = "اللغات";
+"Bundle ID" = "معرف الحزمة";
+"Author" = "الموفر";
+"Print Length" = "طول الطباعة";
+"Requirements" = "المتطلبات";
+"Rating" = "التقييم";
+"Developer Apps" = "تطبيقات المطورين";
+"Developer Website" = "موقع المطور";
+"Developer Support" = "صفحة الدعم للمطور";
+"More by this author" = "المزير من الموفر";
+"Unknown" = "مجهول";
+"See Original" = "النسخة الآصلية ";
+"Details" = "التفاصيل";
+"Reviews" = "مراجعة";
+"Download" = "تحميل";
+"Install" = "تثبيت";
+"Requesting..." = "جاري الطلب...";
+"Requested" = "تم الطلب";
+"by" = "بواسطة";
+"Related Apps" = "تطبيقات ذات صلة";
+"Related Books" = "كتب ذات صلة";
+"Reviews are from Apple's iTunes Store ©" = "المراجعات من متجر آيتونز الخاص بـ آبل ©";
+"Check out '%@' on appdb!" = "Check out '%@' on appdb!";
+"Installation has been queued to your device" = "تم ارسال طلب التثبيت الى قائمة التنفيذ على جهازك";
+"Installation options" = "خيارات التثبيت";
+"Duplicate app" = "تطبيق مكرر";
+"New ID" = "معرف جديد";
+"New display name" = "آسم جديد";
+"Use Original" = "آستخدم الآصلي";
+"Cracked by %@" = "مكرك بواسطة %@";
+"Uploaded by %@" = "رفع بواسطة %@";
+"Cracked and uploaded by %@" = "مكرك ومرفوع بواسطة %@";
+"Recently Uploaded" = "تم تحميله مؤخرًا";
+"Popular Today" = "شعبية اليوم";
+"Popular This Week" = "شعبية هذا الأسبوع";
+"Popular This Month" = "شعبية هذا الشهر";
+"Popular This Year" = "شعبية هذا العام";
+"Popular All Time" = "شعبية في كل الأوقات";
+"Any Price" = "اي سعر";
+"Paid" = "دفع";
+
+//////////////////////////////////
+// DEVICE LINK TUTORIAL //
+//////////////////////////////////
+
+"Authorization" = "الآذونات";
+"Authorize App" = "آُذونات التطبيق";
+"Is your device already linked to appdb? You can check if you have appdb profile installed at Settings -> General -> Profiles." = "هل جهازك مرتبط بالفعل بـ appdb؟ يمكنك التحقق من إذا كان لديك ملف تعريف appdb مثبتًا في الإعدادات -> عام -> الملفات الشخصية.";
+"Continue" = "الآستمرار";
+"Enter Link Code" = "ضع كود الربط";
+"Enter link code here" = "ضع كود الربط هنع";
+"Please enter a valid email address." = "رجاءً ضع عنوان بريد الكتروني صحيح.";
+"Paste the 8 digits case sensitive link code you see on this page:" = "آلصق رمز الارتباط المكون من 8 خانات كما تراه في هذه الصفحة:";
+"Go Back" = "العودة للخلف";
+"Enter Email" = "ضع الآيميل";
+"Please enter your email address below and click Continue. You will be redirected to the Settings app where you can proceed with appdb profile installation." = "يرجى إدخال عنوان بريدك الإلكتروني أدناه ثم آنقر متابعة. ستتم إعادة توجيهك إلى الإعدادات في جهازك حيث يمكنك المتابعة مع تثبيت ملف تعريف appdb.";
+"Success" = "كان ناجحاً";
+"Well done! This app is now authorized to install apps on your device." = "أحسنت! تم منح الصلاحية والتطبيق مخول الآن لتثبيت التطبيقات على جهازك.";
+"Start using appdb!" = "آبداء في استخدام appdb!";
+"Unable to complete" = "غير قادر على الإكتمال";
+"Yes, already linked" = "نعم، مربوط بالفعل";
+"No, not yet linked" = "لا، غير مرتبط ";
+"name@example.com" = "name@example.com";
+"Deauthorization" = "المصادقة";
+"Deauthorized" = "مفوض";
+"Are you sure you want to deauthorize this app from installing apps on your device?\n\nNOTE: This won't unlink your device from appdb. To do so, remove its profile in Settings -> General -> Profiles." = "هل تريد بالتأكيد إلغاء مصادقة هذا التطبيق من تثبيت التطبيقات على جهازك؟ \n\n ملاحظة: لن يؤدي ذلك إلى إلغاء ربط جهازك من appdb. للقيام بذلك ، قم بإزالة ملف التعريف الخاص به في الإعدادات -> عام -> ملفات التعريف.";
+"App was deauthorized successfully." = "تم إلغاء مصادقة التطبيق بنجاح.";
+
+////////////////////
+// SEARCH //
+////////////////////
+
+"Search iOS Apps" = "ابحث في تطبيقات iOS";
+"Search Custom Apps" = "ابحث في تطبيقات السيديا";
+"Search Books" = "ابحث عن الكتب";
+"Trending iOS Apps" = "تطبيقات iOS الرائجة";
+"Trending Cydia Apps" = "تطبيقات السيديا الرائجة";
+"Trending Books" = "الكتب الرائجة";
+"No results found" = "لم يتم العثور على نتائج";
+"No results were found for '%@'" = "لم يتم العثور على نتائج ل '%@'";
+"Please search at least two characters" = "يرجى البحث عن حرفين على الأقل";
+"Search News" = "ابحث عن الاخبار";
+
+///////////////////////
+// DOWNLOADS //
+///////////////////////
+
+"Queued" = "في قائمة الانتظار";
+"Library" = "مكتبة";
+"Downloading" = "جارى التحميل";
+"No queued downloads" = "لا توجد تنزيلات في قائمة الانتظار";
+"File download has started" = "تم بدأ تنزيل الملف";
+"Enter URL" = "ضع الرابط";
+"Enter below the URL of the .ipa file you want to download" = "أدخل أدناه عنوان URL لملف .ipa الذي تريد تنزيله";
+"https://example.com/file.ipa" = "https://example.com/file.ipa";
+"Load" = "حمولة";
+"Uploaded on %@" = "تم التحميل في %@"; // e.g. تم التحميل في %date%
+"Pause" = "ايقاف";
+"Paused" = "توقف";
+"Resume" = "استعاده";
+"Stop" = "انهاء";
+"Install without signing" = "التثبيت بدون توقيع الشهاده";
+"Upload to MyAppStore" = "الرفع الى MyAppStore";
+"Open in..." = "فتح في...";
+"Rename" = "اعادة التسمية";
+"Rename File" = "اعادة تسمية الملف";
+"Delete" = "حذف";
+"Delete all" = "حذف الكل";
+"No Local IPAs Found" = "لم يتم العثور على IPAs محلية";
+"Use iTunes File Sharing or import them from other apps" = "استخدم مشاركة ملفات iTunes أو استوردها من تطبيقات أخرى";
+"No MyAppStore apps" = "لاتوجد تطبيقات في MyAppStore";
+"This is your personal IPA library! Apps you upload over time will appear here" = "هذه هي مكتبة IPA الشخصية الخاصة بك! ستظهر هنا التطبيقات التي تحمّلها بمرور الوقت";
+"Please cancel any pending uploads before deleting local files" = "يرجى إلغاء أي تحميلات معلقة قبل حذف الملفات المحلية";
+"Delete 1 file?" = "حذف 1 ملف?";
+"Local Files" = "ملفات محلية";
+"Are you sure you want to delete %@ files?" = "هل انت متأكد من رغبتك في حذف %@ ملفات?"; // %@ is the number of files to delete
+"Place your local .ipa (or .zip) files in the documents directory, either using iTunes File Sharing, the Files app or import them from other apps.\n\nPath to the documents directory:\n\n%@" = "ضع ملفات .ipa المحلية (أو .zip) في دليل المستندات ، إما باستخدام مشاركة ملفات iTunes أو تطبيق الملفات أو استيرادها من تطبيقات أخرى. \n\n المسار إلى دليل المستندات: \n\n%@";
+"appdb presents MyAppStore - your own AppStore. A brand new custom app installer transformed into your personal IPA library!\n\n• Save your personal apps to appdb\n• Shared across all your devices under the same email\n• Store apps up to 4GB\n• Upload multiple apps at once\n\nTo get started, click on a local IPA and select 'Upload to MyAppStore'" = "يقدم appdb MyAppStore - متجر التطبيقات الخاص بك. مكتبة IPA الشخصية لتثبيت التطبيقات المعدلة والخاصة بك \n\n • حفظ تطبيقاتك الشخصية على appdb \n • مشاركتها عبر جميع أجهزتك تحت نفس البريد الإلكتروني \n • تخزين التطبيقات بسعة تصل إلى 4 جيجابايت \n • تحميل تطبيقات متعددة مرة واحدة \n\n للبدء ، انقر فوق تصفح الملفات بجهازك وحدد تحميل إلى MyAppStore'";
+"No active downloads" = "لا توجد تنزيلات نشطة";
+"Remove from list" = "إزالة من القائمة";
+"File downloaded successfully" = "تم تنزيل الملف بنجاح";
+"File downloaded successfully, added to Library" = "تم تنزيل الملف بنجاح ، تمت إضافته إلى المكتبة";
+"Uploading %@ of %@ (%@)" = "تحميل %@ of %@ (%@)"; // e.g. "Uploading 1.2 MB of 3 MB (33%)"
+"Uploading" = "تحميل"; // please use same translation used above, before first %@
+"Downloading %@ of %@ (%@)" = "تنزيل %@ of %@ (%@)"; // e.g. "Downloading 7.4 MB of 15.2 MB (49%)"
+"Downloading %@" = "تنزيل %@"; // e.g. "Downloading 3 MB"
+"Downloading" = "تنزيل"; // please use same translation used above, before %@
+"File uploaded successfully" = "تم رفع الملف بنجاح";
+
+//////////////////////
+// SETTINGS //
+//////////////////////
+
+"Device Configuration" = "تهيئة الجهاز";
+"Link Code" = "رمز الربط";
+"Jailbroken w/ Appsync" = "به جلبريك/ Appsync مزامنة التطبيقات";
+"Compatibility Checks" = "التحقق من التوافق";
+"Ask for installation options" = "طلب خيارات التثبيت";
+"Deauthorize" = "إلغاء المصادقة";
+"User Interface" = "واجهة المستخدم";
+"Choose Theme" = "اختيار المظهر";
+"Choose Language" = "اختيار اللغة";
+"Language set, please restart the app to apply changes" = "تم تعيين اللغة ، يرجى إعادة تشغيل التطبيق لتطبيق التغييرات";
+"Dark" = "داكن";
+"Darker" = "أغمق";
+"Light" = "مضيء";
+"Support" = "الدعم";
+"Visit appdb forum" = "زيارة منتدى appdb";
+"About" = "عن";
+"Acknowledgements" = "شكر وتقدير";
+"General" = "عام";
+"Device" = "الجهاز";
+"Authorize App" = "تفويض ربط الجهاز";
+"Authorize app with link code from appdb website and enjoy unlimited app installs!" = "قم بتفويض التطبيق برمز الارتباط من موقع appdb والتمتع بتثبيت غير محدود للتطبيق!";
+"PRO Status" = "حالة الاشتراك";
+"Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "استخدم هذا الرمز إذا كنت تريد ربط أجهزة جديدة ب appdb. اضغط مع الاستمرار على الحزمة لنسخها ، أو انقر عليها لإنشاء حزمة جديدة.";
+"Device Status" = "حالة الجهاز";
+"To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "لإلغاء ربط جهازك بالكامل من appdb ، قم بإزالة ملف التعريف الخاص بنا من الإعدادات -> عام -> ملفات التعريف.";
+"Active" = "نشط";
+"Inactive" = "غير نشط";
+"Expires on %@" = "ينتهي في %@";
+"Clear command queue?" = "محو قائمة انتظار الأوامر?";
+"Clear" = "مسح";
+"Fix" = "اصلاح"; // as in fix command from device status
+"Disabled" = "تعطيل"; // as in 'PRO disabled'
+"Revoked" = "تم الإلغاء";
+"Revoked on %@" = "ملغى في %@";
+"Show badge for updates" = "إظهار العلامة للتحديثات";
+"Change bundle id before upload" = "تغيير معرف الحزمة قبل التحميل";
+"Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app." = "قد يكون تغيير معرف الحزمة قبل التحميل إلى MyAppStore مفيدًا عند الرغبة في تثبيت إصدارات مكررة من نفس التطبيق.";
+"New bundle id" = "معرف حزمة جديدة";
+"Tap to generate random" = "انقر لتوليد عشوائي";
+"Overwrite file" = "الكتابة فوق الملف (استبدال)";
+"Bundle ID Change" = "تغيير معرف الحزمة";
+"Change" = "تغيير";
+"Changing bundle id..." = "جاري تغيير معرف الحزمة...";
+"Available Languages" = "اللغات المتوفرة";
+"Available Themes" = "المظاهر المتوفره (ثيم)";
+"Tap to know more" = "اضغط لمعرفة المزيد";
+"Contact Developer" = "التواصل مع المطور";
+"Choose an option" = "تحديد خيار";
+"Select a service" = "تحديد خدمة";
+"Email" = "البريد الالكتروني";
+"Telegram" = "تلقرام";
+"Could not find email service." = "لايمكن العثور على خدمة البريد.";
+"Follow System Appearance" = "تابع مظهر النظام";
+"Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "قم بالتبديل تلقائيًا بين المظهر الفاتح والداكن بناءً على مظهر النظام. للتبديل إلى المظهر الأغمق بدلاً من ذلك، ما عليك سوى تحديد المظهر يدويًا مرة واحدة. \n\n ملاحظة: إذا كنت تواجه مشاكل (السمة لا تتحول تلقائيًا أو السمات المختلطة) ، فما عليك سوى إغلاق التطبيق من تعدد المهام وإعادة فتحه.";
+"Advanced Options" = "خيارات متقدمة";
+"Check Revocation" = "تحقق من إبطال الاشتراك";
+"Validate PRO Voucher" = "تحقق من قسيمة الاشتراك";
+"Activate PRO Voucher" = "تفعيل قسيمة الاشتراك";
+"Email Link Code" = "احصل على ايميل الربط";
+"List apps managed by appdb" = "قائمة التطبيقات التي يديرها appdb";
+"Your PRO has not been revoked!" = "لم يتم إبطال الاشتراك الخاص بك!";
+"Your Custom Developer Identity has not been revoked!" = "لم يتم إبطال هوية المطور المخصصة الخاصة بك!";
+"Enter Voucher" = "ضع القسيمة";
+"Paste here the PRO voucher obtained by a reseller:" = "ضع هنا قسيمة الاشتراك المستلمة من الموزع الرسمي:";
+"Activate" = "تقعيل";
+"Your PRO has been activated successfully!" = "تم تفعيل اشتراك PRO بنجاح!";
+"Validate" = "التحقق من الصحة";
+"Your PRO voucher is valid and can be activated!" = "قسيمة اشتراك PRO الخاصة بك صالحة ولا يمكن تفعيلها!";
+"Enter below the email address where the link code will be sent:" = "ضع هنا الإيميل المراد وصول رمز الارتباط اليه:";
+"Email was sent successfully!" = "تم ارسال البريد بنجاح!";
+"Apps managed by appdb" = "التطبيقات التي يديرها appdb";
+"Bundle IDs" = "معرفات الحزم";
+"Only apps that are managed by appdb will appear here." = "ستظهر هنا فقط التطبيقات التي يديرها appdb.";
+"Custom Developer Identity" = "هوية مطور مخصصة";
+"Copy" = "ينسخ";
+"Clear developer identity" = "مسح هوية المطور";
+"Are you sure you want to clear developer identity?" = "هل أنت متأكد أنك تريد مسح هوية المطور؟";
+"Identity cleared!" = "تم مسح الهوية!";
+"Patch in-app Purchases" = "تصحيح عمليات الشراء داخل التطبيق";
+"Preserve Entitlements Comments" = "تعليقات استحقاقات الاحتفاظ";
+"Disable Revocation Checks" = "تعطيل عمليات التحقق من الإبطال";
+"Force Disable PRO" = "قوة تعطيل PRO";
+"For Psychic Paper exploit" = "لاستغلال الورق النفسي";
+"Clear Cache" = "مسح ذاكرة التخزين المؤقت";
+"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "هل أنت متأكد أنك تريد مسح ذاكرة التخزين المؤقت للتطبيق؟
+\n\nملاحظة: لن يؤدي هذا إلى إلغاء ترخيص التطبيق ، وسيظل جهازك مرتبطًا بـ appdb.";
+"Cache cleared successfully!" = "تم مسح ذاكرة التخزين المؤقت بنجاح!";
+"Failed to clear cache: %@." = "فشل مسح ذاكرة التخزين المؤقت: %@.";
+
+/////////////////////
+// UPDATES //
+/////////////////////
+
+"Ignore" = "تجاهل";
+"No updates found" = "لا يوجد تحديثات";
+"Please authorize app from Settings first" = "يرجى سماح الوصول للتطبيق من الإعدادات أولاً";
+"%@ Updateable app" = "%@ تطبيق قابل للتحديث"; // e.g. 1 Updateable app
+"%@ Updateable apps" = "%@ تطبيقات قابله للتحديث"; // e.g. 6 Updateable apps
+"%@ Non updateable app" = "%@ لايوجد تحديثات";
+"%@ Non updateable apps" = "%@ لايوجد تطبيقات تتطلب التحديث";
+"Non Updateable Apps" = "لايوجد تطبيقات تتطلب التحديث";
+"Ignored" = "تجاهل";
+"Ignored Updates" = "تجاهل التحديثات";
+"No ignored updates" = "لايوجد تحديثات تم تجاهلها";
+"Apps installed from an external source, like the App Store or OTA distribution, can not be updated via appdb because of security limitations. We respect this!\n\nTo update these apps, please remove and reinstall them from appdb.\n\nTo hide these updates, swipe left on any of them and select 'Ignore'." = "لا يمكن تحديث التطبيقات المثبتة من مصدر خارجي ، مثل App Store أو OTA ، لايمكن تحديثها عبر appdb بسبب قيود الأمان. نحن نحترم هذا! \n\n لتحديث هذه التطبيقات ، يرجى إزالتها اولاً وإعادة تثبيتها من appdb. \n\n لإخفاء هذه التحديثات ، اسحب لليمين على أي منها وحدد تجاهل'.";
+"Swipe left on any update to add it to this list" = "مرر لليسار على أي تحديث لإضافته إلى هذه القائمة";
+"Update" = "تحديث"; // green UPDATE button
+"Your version: %@" = "الاصدار الحالي: %@";
+"New version: %@" = "الاصدار الجديد: %@";
+"Update Available" = "التحديث متاح";
+"What's New in version %@" = "الميزات الجديدة في الإصدار %@";
+
+////////////////////
+// ERRORS //
+////////////////////
+
+"Maintenance mode active. We will be back soon!" = "وضع الصيانة نشط. سوف نعود قريبا!";
+"No links found." = "لم نجد الرابط.";
+"Not found" = "غير موجود";
+"Couldn't find content with id %@ in our database" = "تعذر العثور على اي محتوى للمعرف٪ @ ايضاً لم نعثر في قاعدة البيانات الخاصة بنا";
+"An error has occurred" = "حدث خطأ ما";
+"Invalid link code." = "رمز الارتباط غير صالح.";
+"Invalid email address." = "بريد إلكتروني خاطئ.";
+"Link code cannot be empty." = "لا يمكن أن يكون رمز الرابط فارغًا.";
+"Please enter a valid email address." = "من فضلك أدخل بريد أليكترونى صحيح.";
+"No device linked." = " لا يوجد جهاز مربوط.";
+"Unable to fetch device token." = "تعذر الحصول على رمز المعرف للجهاز.";
+"Use link code instead." = "بدلاً من ذلك استخدم رمز الارتباط.";
+"Oops! Something went wrong. Please try again later." = "حسناً! هناك خطأ ما. الرجاء معاودة المحاولة في وقت لاحق.";
+"Missing link code or email." = "رمز الرابط مفقود أو البريد الإكتروني.";
+"Could not parse plist file." = "تعذر التعرف وتحليل ملف plist.";
+"Device status is empty" = "حالة الطلبات للجهاز فارغة";
+"The request timed out" = "انتهت مهلة الطلب";
+"Your device is not compatible with this app" = "جهازك غير متوافق مع هذا التطبيق";
+"Error: malformed url" = "خطأ: عنوان url غير صحيح";
+"IPA Not found" = "ملف IPA غير موجود";
+"IPA is missing Payload folder" = "ملف IPA يفتقد الى مجلد Payload";
+"IPA is missing .app folder" = "ملف IPA يفتقد مجلد .app";
+"IPA is missing Info.plist file" = "ملف IPA مفقود من Info.plist";
+"Unable to read contents of Info.plist file" = "تعذرت قراءة محتويات ملف Info.plist";
+"Unable to encode Info.plist file" = "تعذر ترميز ملف Info.plist￼";
+"File not found at given path" = "لم يتم العثور على الملف في المسار المحدد";
+"Unable to find bundle id in Info.plist" = "تعذر العثور على معرف الحزمة في Info.plist";
+"File size not found in resource values" = "حجم الملف غير موجود في قيم الموارد";
+"A report has already been submitted" = "تم بالفعل تقديم البلاغ";
+"Installation failed, but can be fixed from Settings -> Device Status" = "فشل التثبيت ، لاتقلق يمكن إصلاحه من الإعدادات -> حالة الجهاز";
+"An error has occurred: malformed JSON" = "حدث خطأ: JSON تالف";
+"Your PRO subscription has expired." = "انتهت صلاحية اشتراكك PRO.";
+"Your PRO subscription has been revoked by Apple." = "ألغت Apple اشتراكك في PRO.";
+"Your device doesn't seem to have a PRO subcription." = "لا يبدو أن جهازك يحتوي على اشتراك PRO.";
+"App duplication is currently supported on non-jailbroken devices with PRO." = "تكرار التطبيقات مدعوم بالفعل للأجهزة بدون جلبريك مع اشتراك PRO";
+"Unknown voucher partner." = "مصدر القسيمة غير معروف.";
+"Invalid voucher." = "قسيمة خاطئة.";
+"Voucher already used." = "القسيمة مستخدمة بالفعل.";
+"No devices with this email." = "لا جهاز مسجل على الآيميل";
+
+////////////////////////////
+// LINK REPORTING //
+////////////////////////////
+
+"Send" = "ارسال";
+"Report" = "بلاغ";
+"Reporting a broken link for '%@'." = "الإبلاغ عن رابط متعطل لأجل '%@'.";
+"Enter a reason for your report" = "ضع سبب الآبلاغ";
+"Link reported successfully!" = "تم الإبلاغ عن الارتباط بنجاح!";
+
+/////////////////////
+// CREDITS //
+/////////////////////
+
+"Credits" = "شكر وتقدير";
+"Developer" = "المطور";
+"Special Thanks" = "شكر خاص";
+"Translations" = "الترجمة";
+"appdb team" = "فريق appdb";
+"Icon and banner designer" = "مصمم آيقونة وبانر";
+"View project on GitHub" = "شاهد المشروع على GitHub";
+
+/////////////////////////////////////////
+// WISHES / AUTOMATIC REQUESTS //
+/////////////////////////////////////////
+
+"Wishes" = "الآمنيات";
+"New" = "جديد";
+"Processing" = "جاري المعالجة";
+"Failed" = "فشل";
+"Fulfilled" = "نجح";
+"Free" = "مجاني";
+"Enter AppStore URL" = "ضع رابط لآب ستور";
+"Enter below the AppStore URL of the app you'd like to request" = "ضع بالآسفل رابط آب ستور للتطبيق المراد طلبه";
+"Add" = "إضافة";
+"App has been requested successfully!" = "تم طلب التطبيق بنجاح!";
+"Price: %@" = "السعر: %@";
+"Version: %@" = "الآصدار: %@";
+"No new wishes to show" = "لا توجد رغبات جديدة";
+"No fulfilled wishes to show" = "لا توجد رغبات لعرضها";
+
+///////////////////
+// OTHER //
+///////////////////
+
+"Cancel" = "إلغاء";
+"Dismiss" = "تجاهل";
+"Yes" = "نعم";
+"OK" = "حسناً";
+"No" = "لا";
+"Done" = "تم";
+"more" = "أكثر";
+"Open in Safari" = "إنتقل الى سفاري";
+"%@s ago" = "%@s ago"; // seconds, e.g. 15s ago
+"%@m ago" = "%@m ago"; // minutes, e.g. 5m ago
+"%@h ago" = "%@h ago"; // hours, e.g. 6h ago
+"%@d ago" = "%@d ago"; // days, e.g. 3d ago
+"now" = "الآن";

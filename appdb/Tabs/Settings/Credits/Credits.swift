@@ -34,18 +34,19 @@ class Credits: TableViewController {
     }
 
     lazy var credits: [Credit] = [
-        Credit(name: "ned", detail: nil, imageName: "ned", type: .developer, handle: .telegram(username: Global.telegramUsername)),
-        Credit(name: "View project on GitHub".localized(), detail: nil, imageName: "github", type: .developer, handle: .website(site: Global.githubSite)),
+        Credit(name: "ned", imageName: "ned", type: .developer, handle: .telegram(username: Global.telegramUsername)),
+        Credit(name: "View project on GitHub".localized(), imageName: "github", type: .developer, handle: .website(site: Global.githubSite)),
 
-        Credit(name: "appdb team", detail: nil, imageName: "appdb", type: .specialThanks, handle: .website(site: Global.mainSite)),
+        Credit(name: "appdb team", imageName: "appdb", type: .specialThanks, handle: .website(site: Global.mainSite)),
         Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), imageName: "aesign", type: .specialThanks, handle: .website(site: "https://aesign.me")),
 
-        Credit(name: "TNT 🇪🇸", detail: nil, imageName: "tnt", type: .translations, handle: .none),
-        Credit(name: "ZonD80 🇷🇺", detail: nil, imageName: "zond", type: .translations, handle: .website(site: "https://github.com/ZonD80")),
-        Credit(name: "Am1nCmd 🇮🇩", detail: nil, imageName: "Am1nCmd", type: .translations, handle: .website(site: "https://ams1gn.id")),
-        Credit(name: "DzMohaipa 🇫🇷", detail: nil, imageName: "DzMoha_31", type: .translations, handle: .twitter(username: "DzMoha_31")),
-        Credit(name: "Eskaseptian Team 🇮🇩", detail: nil, imageName: "EskaseptianTeam", type: .translations, handle: .website(site: "https://www.instagram.com/eskaseptian/")),
-        Credit(name: "cryllical 🇩🇪", detail: nil, imageName: "cryllical", type: .translations, handle: .twitter(username: "cryllical"))
+        Credit(name: "TNT 🇪🇸", imageName: "tnt", type: .translations, handle: .none),
+        Credit(name: "ZonD80 🇷🇺", imageName: "zond", type: .translations, handle: .website(site: "https://github.com/ZonD80")),
+        Credit(name: "Am1nCmd 🇮🇩", imageName: "Am1nCmd", type: .translations, handle: .website(site: "https://ams1gn.id")),
+        Credit(name: "DzMohaipa 🇫🇷", imageName: "DzMoha_31", type: .translations, handle: .twitter(username: "DzMoha_31")),
+        Credit(name: "Eskaseptian Team 🇮🇩", imageName: "EskaseptianTeam", type: .translations, handle: .website(site: "https://www.instagram.com/eskaseptian/")),
+        Credit(name: "cryllical 🇩🇪", imageName: "cryllical", type: .translations, handle: .twitter(username: "cryllical")),
+        Credit(name: "raaed-alharbi 🇦🇪", imageName: "placeholderIcon", type: .translations, handle: .website(site: "https://github.com/raaed-alharbi"))
     ]
 
     convenience init() {

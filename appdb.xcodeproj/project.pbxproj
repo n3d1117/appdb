@@ -478,6 +478,7 @@
 		81FC8B4422736CC1003788F3 /* MyAppstoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppstoreCell.swift; sourceTree = "<group>"; };
 		81FCAFCD226E1028004FAFD6 /* QueuedDownloadsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuedDownloadsCell.swift; sourceTree = "<group>"; };
 		81FCAFCF226E1D0C004FAFD6 /* RequestedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedApp.swift; sourceTree = "<group>"; };
+		81FFE92125F3E1440074F8F1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88BEFFC722B3A24A008FD371 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1503,6 +1504,7 @@
 				fr,
 				"jv-ID",
 				de,
+				ar,
 			);
 			mainGroup = 8167A6061DAC246000F96AC2;
 			productRefGroup = 8167A6101DAC246000F96AC2 /* Products */;
@@ -1767,6 +1769,7 @@
 				81D873332365BAD800F7240E /* fr */,
 				81B601AD23675C950070555D /* jv-ID */,
 				816A376C23E894830021BFBE /* de */,
+				81FFE92125F3E1440074F8F1 /* ar */,
 			);
 			name = Localizable.strings;
 			path = .;

@@ -130,6 +130,7 @@ extension LanguageChooser {
             switch language {
             case "en": country = "gb"
             case "jv-ID": country = "id"
+            case "ar": country = "AE"
             default: fatalError("New language detected: \(language), does not have a country code. Please add manually!")
             }
         }
