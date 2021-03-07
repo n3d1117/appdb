@@ -23,7 +23,7 @@ enum DeviceLinkIntroBulletins {
             if page.deviceIsNotYetLinked {
                 // If device is not yet linked to appdb there's not much I can do: just redirect
                 // user to the web page where he can link it (APIs to link manually no longer work)
-                let linkPageUrlString = "\(Global.mainSite)/link"
+                let linkPageUrlString = "\(Global.mainSite)link"
                 NotificationCenter.default.post(name: .OpenSafari, object: self, userInfo: ["URLString": "\(linkPageUrlString)"])
             } else {
                 // Otherwise, show page where user can enter link code as usual
