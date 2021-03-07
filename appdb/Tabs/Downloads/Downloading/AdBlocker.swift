@@ -663,5 +663,18 @@ let ads: Set = [
     "do-not-tracker.org",
     "adexchangegate.com",
     "forcedolphin.com",
-    "163.172.224.35"
+    "163.172.224.35",
+    "www.facebook.com",
+    "onmarshtompor.com",
+    "interst12.com",
+    "interstitial-07.com",
+    "www.google.com",
+    "tpc.googlesyndication.com",
+    "stpopulatorop.info",
+    "styearandah.biz",
+    "myyrel.com",
+    "vpn6aprotectplus.com",
+    "caradstag.casa",
+    "146.59.211.226",
+    "bigog.xyz"
 ]
