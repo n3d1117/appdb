@@ -88,6 +88,7 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     // Loads adblocker with WKContentRuleListStore if iOS >= 11
     // Otherwise just load request, ads will be blocked in decidePolicyFor:navigationAction
     private func startLoading(request: URLRequest) {
+        webView.configuration.userContentController.add(self, name: "readBlob")
         if #available(iOS 11, *) {
             WKContentRuleListStore.default().compileContentRuleList(forIdentifier: "rules",
                 encodedContentRuleList: blockRules) { list, error in
@@ -220,6 +221,27 @@ extension IPAWebViewController {
             return
         }
 
+        if let scheme = url.scheme, scheme == "blob" {
+            // This is MEGA blob data
+            let script = """
+            function blobToDataURL(blob, callback) {
+                var a = new FileReader();
+                a.onload = function(e) {callback(e.target.result);}
+                a.readAsDataURL(blob);
+            }
+            document.querySelectorAll('a').forEach(async(el) => {
+                const url = el.getAttribute('href');
+                if( url.indexOf('blob:')===0 ) {
+                    let blob = await fetch(url).then(r => r.blob());
+                    blobToDataURL(blob, datauri => window.webkit.messageHandlers.readBlob.postMessage(datauri) );
+                }
+            });
+            """
+            webView.evaluateJavaScript(script, completionHandler: nil)
+            decisionHandler(.cancel)
+            return
+        }
+
         guard let host = url.host else {
             decisionHandler(.cancel)
             return
@@ -239,5 +261,26 @@ extension IPAWebViewController {
         #endif
 
         decisionHandler(.allow)
+    }
+}
+
+// MARK: - WKScriptMessageHandler conformance
+
+extension IPAWebViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard let base64DataString = message.body as? String else { return }
+        // Before decoding we need to drop this: "data:application/octet-stream;base64,"
+        guard let dataDecoded = Data(base64Encoded: String(base64DataString.dropFirst(37))) else { return }
+        let filename: String = Global.randomString(length: 15) + "-MEGA.ipa"
+        let fileURL: URL = IPAFileManager.shared.documentsDirectoryURL().appendingPathComponent(filename)
+        do {
+            try dataDecoded.write(to: fileURL)
+            dismissAnimated()
+            delay(0.8) {
+                Messages.shared.showSuccess(message: "File downloaded successfully, added to Library".localized())
+            }
+        } catch {
+            debugLog(error)
+        }
     }
 }
