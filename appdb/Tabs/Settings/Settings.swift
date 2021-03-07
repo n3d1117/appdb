@@ -426,7 +426,7 @@ extension Settings: MFMailComposeViewControllerDelegate {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([recipient])
-            mail.setSubject(subject)
+            mail.setSubject(subject.removingPercentEncoding ?? "")
             present(mail, animated: true)
         case .gmail:
             if let gmailUrl = URL(string: "googlegmail://co?subject=\(subject)&to=\(recipient)") {
