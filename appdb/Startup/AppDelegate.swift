@@ -274,8 +274,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
             dismissCurrentNavIfAny()
 
-            tab.selectedIndex = 2
-
             guard let nav = tab.viewControllers?[2] as? UINavigationController else { return false }
             guard let downloads = nav.viewControllers[0] as? Downloads else { return false }
 
@@ -312,7 +310,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     private func dismissCurrentNavIfAny() {
         guard let tab = window?.rootViewController as? TabBarController else { return }
 
-        if Global.isIpad, let currentNav = (tab.viewControllers?[tab.selectedIndex] as? UINavigationController)?.topViewController?.presentedViewController as? UINavigationController {
+        if let currentNav = (tab.viewControllers?[tab.selectedIndex] as? UINavigationController)?.topViewController?.presentedViewController as? UINavigationController {
             currentNav.dismiss(animated: true)
         }
 

@@ -117,6 +117,7 @@
 "Popular All Time" = "Populer Kabeh Wektu";
 "Any Price" = "Kabeh Rego";
 "Paid" = "Mbayar";
+"Waiting %@ seconds..." = "Menunggu %@ detik...";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //

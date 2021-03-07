@@ -65,9 +65,11 @@ extension API {
                                         verified: link["verified"].boolValue,
                                         di_compatible: link["di_compatible"].boolValue,
                                         hidden: link["is_hidden"] != "0",
-                                        universal: link["is_universal"] != "0"
+                                        universal: link["is_universal"] != "0",
+                                        isTicket: link["link"].stringValue.starts(with: "ticket://")
                                     ))
-                                }; versions.append(version)
+                                }
+                                versions.append(version)
                             }
                         }
 
@@ -95,6 +97,48 @@ extension API {
                     }
                 case .failure(let error):
                     completion(error.localizedDescription)
+                }
+            }
+    }
+
+    static func getRedirectionTicket(t: String, completion:@escaping (_ error: String?, _ rt: String?, _ wait: Int?) -> Void) {
+
+        guard var ticket = t.components(separatedBy: "ticket://").last else { return }
+
+        // If I don't do this, '%3D' gets encoded to '%253D' which makes the ticket invalid
+        ticket = ticket.replacingOccurrences(of: "%3D", with: "=")
+
+        AF.request(endpoint, parameters: ["action": Actions.processRedirect.rawValue, "t": ticket], headers: headersWithCookie)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    if !json["success"].boolValue {
+                        completion(json["errors"][0].stringValue, nil, nil)
+                    } else {
+                        let rt: String = json["data"]["redirection_ticket"].stringValue
+                        let wait: Int = json["data"]["wait"].intValue
+                        completion(nil, rt, wait)
+                    }
+                case .failure(let error):
+                    completion(error.localizedDescription, nil, nil)
+                }
+            }
+    }
+
+    static func getPlainTextLink(rt: String, completion:@escaping (_ error: String?, _ link: String?) -> Void) {
+        AF.request(endpoint, parameters: ["action": Actions.processRedirect.rawValue, "rt": rt], headers: headersWithCookie)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    if !json["success"].boolValue {
+                        completion(json["errors"][0].stringValue, nil)
+                    } else {
+                        completion(nil, json["data"]["link"].stringValue)
+                    }
+                case .failure(let error):
+                    completion(error.localizedDescription, nil)
                 }
             }
     }

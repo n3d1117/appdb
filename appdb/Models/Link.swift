@@ -31,8 +31,9 @@ struct Link {
     var diCompatible: Bool = false
     var hidden: Bool = false
     var universal: Bool = false
+    var isTicket: Bool = false
 
-    init(link: String, cracker: String, uploader: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool) {
+    init(link: String, cracker: String, uploader: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool, isTicket: Bool = false) {
         self.link = link
         self.cracker = cracker
         self.uploader = uploader
@@ -42,6 +43,7 @@ struct Link {
         self.diCompatible = di_compatible
         self.hidden = hidden
         self.universal = universal
+        self.isTicket = isTicket
 
         while self.cracker.hasPrefix(" ") { self.cracker = String(self.cracker.dropFirst()) }
         if self.cracker.isEmpty { self.cracker = "Unknown".localized() }

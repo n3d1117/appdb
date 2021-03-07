@@ -156,7 +156,7 @@ extension Downloads {
         new.view.layoutIfNeeded()
 
         // Set add right bar button item if selected tab is Downloading
-        self.navigationItem.leftBarButtonItem = new is Downloading ? UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped)) : nil
+        self.navigationItem.rightBarButtonItem = new is Downloading ? UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped)) : nil
 
         UIView.animate(withDuration: 0.2, animations: {
             new.view.alpha = 1

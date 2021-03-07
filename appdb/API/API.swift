@@ -127,6 +127,7 @@ enum Actions: String {
     case emailLinkCode = "email_link_code"
     case getAppdbAppsBundleIdsTicket = "get_appdb_apps_bundle_ids_ticket"
     case getAppdbAppsBundleIds = "get_appdb_apps_bundle_ids"
+    case processRedirect = "process_redirect"
 }
 
 enum ConfigurationParameters: String {

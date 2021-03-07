@@ -217,16 +217,44 @@ class Details: LoadingTableView {
 
         if indexForSegment == .download, indexPath.section > 1, contentType != .books {
 
+            func openLink(rt: String) {
+                API.getPlainTextLink(rt: rt) { error, link in
+                    if let error = error {
+                        Messages.shared.showError(message: error.prettified)
+                    } else if let link = link {
+                        UIApplication.shared.open(URL(string: "appdb-ios://?url=\(link)")!)
+                    }
+                }
+            }
+
             let link = versions[indexPath.section - 2].links[indexPath.row]
             let isClickable = contentType != .books && !link.hidden && !link.host.hasSuffix(".onion")
             guard isClickable else { return }
 
-            if let url = URL(string: link.link) {
-                let webVc = IPAWebViewController(delegate: self, url: url, appIcon: content.itemIconUrl)
-                let nav = IPAWebViewNavController(rootViewController: webVc)
-                present(nav, animated: true)
+            if link.isTicket {
+                API.getRedirectionTicket(t: link.link) { error, rt, wait in
+                    if let error = error {
+                        Messages.shared.showError(message: error.prettified)
+                    } else if let redirectionTicket = rt, let wait = wait {
+                        if wait == 0 {
+                            openLink(rt: redirectionTicket)
+                        } else {
+                            Messages.shared.hideAll()
+                            Messages.shared.showMinimal(message: "Waiting %@ seconds...".localizedFormat(String(wait)), iconStyle: .none, color: Color.darkMainTint, duration: .seconds(seconds: Double(wait)))
+                            delay(Double(wait)) {
+                                openLink(rt: redirectionTicket)
+                            }
+                        }
+                    }
+                }
             } else {
-                Messages.shared.showError(message: "Error: malformed url".localized())
+                if let url = URL(string: link.link) {
+                    let webVc = IPAWebViewController(delegate: self, url: url, appIcon: content.itemIconUrl)
+                    let nav = IPAWebViewNavController(rootViewController: webVc)
+                    present(nav, animated: true)
+                } else {
+                    Messages.shared.showError(message: "Error: malformed url".localized())
+                }
             }
             return
         }

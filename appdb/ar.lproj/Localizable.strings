@@ -117,6 +117,7 @@ Copyright © 2017 ned. All rights reserved.
 "Popular All Time" = "شعبية في كل الأوقات";
 "Any Price" = "اي سعر";
 "Paid" = "دفع";
+"Waiting %@ seconds..." = "في انتظار %@ ثانية ...";
 
 //////////////////////////////////
 // DEVICE LINK TUTORIAL //

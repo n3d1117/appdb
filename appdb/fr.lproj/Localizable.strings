@@ -117,6 +117,7 @@
 "Popular All Time" = "Populaire de tous les temps";
 "Any Price" = "N'importe quel prix";
 "Paid" = "Payé";
+"Waiting %@ seconds..." = "En attente de %@ secondes...";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //

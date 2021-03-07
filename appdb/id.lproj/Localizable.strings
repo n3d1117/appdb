@@ -117,6 +117,7 @@
 "Popular All Time" = "Populer Sepanjang Waktu";
 "Any Price" = "Harga Berapapun";
 "Paid" = "Berbayar";
+"Waiting %@ seconds..." = "Menunggu %@ detik...";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //

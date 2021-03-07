@@ -117,6 +117,7 @@
 "Popular All Time" = "Popular All Time";
 "Any Price" = "Any Price";
 "Paid" = "Paid";
+"Waiting %@ seconds..." = "Waiting %@ seconds...";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //
