@@ -217,12 +217,12 @@ class Details: LoadingTableView {
 
         if indexForSegment == .download, indexPath.section > 1, contentType != .books {
 
-            func openLink(rt: String) {
+            func openLink(rt: String, icon: String) {
                 API.getPlainTextLink(rt: rt) { error, link in
                     if let error = error {
                         Messages.shared.showError(message: error.prettified)
                     } else if let link = link {
-                        UIApplication.shared.open(URL(string: "appdb-ios://?url=\(link)")!)
+                        UIApplication.shared.open(URL(string: "appdb-ios://?icon=\(icon)&url=\(link)")!)
                     }
                 }
             }
@@ -232,17 +232,18 @@ class Details: LoadingTableView {
             guard isClickable else { return }
 
             if link.isTicket {
-                API.getRedirectionTicket(t: link.link) { error, rt, wait in
+                API.getRedirectionTicket(t: link.link) { [weak self] error, rt, wait in
+                    guard let self = self else { return }
                     if let error = error {
                         Messages.shared.showError(message: error.prettified)
                     } else if let redirectionTicket = rt, let wait = wait {
                         if wait == 0 {
-                            openLink(rt: redirectionTicket)
+                            openLink(rt: redirectionTicket, icon: self.content.itemIconUrl)
                         } else {
                             Messages.shared.hideAll()
                             Messages.shared.showMinimal(message: "Waiting %@ seconds...".localizedFormat(String(wait)), iconStyle: .none, color: Color.darkMainTint, duration: .seconds(seconds: Double(wait)))
                             delay(Double(wait)) {
-                                openLink(rt: redirectionTicket)
+                                openLink(rt: redirectionTicket, icon: self.content.itemIconUrl)
                             }
                         }
                     }

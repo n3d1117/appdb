@@ -267,17 +267,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             return true
         }
 
-        // Open url in IPAWebViewController, e.g. appdb-ios://?url=https://google.com
+        // Open url in IPAWebViewController, e.g. appdb-ios://?icon=https://some.app/icon.png&url=https://google.com
 
-        if let index1 = queryItems.firstIndex(where: { $0.name == "url" }) {
+        if let index1 = queryItems.firstIndex(where: { $0.name == "url" }), let index2 = queryItems.firstIndex(where: { $0.name == "icon" }) {
             guard let urlString = queryItems[index1].value, let url = URL(string: urlString) else { return false }
+            guard let iconUrlString = queryItems[index2].value else { return false }
 
             dismissCurrentNavIfAny()
 
             guard let nav = tab.viewControllers?[2] as? UINavigationController else { return false }
             guard let downloads = nav.viewControllers[0] as? Downloads else { return false }
 
-            let webVc = IPAWebViewController(delegate: downloads, url: url)
+            let webVc = IPAWebViewController(delegate: downloads, url: url, appIcon: iconUrlString)
             let navController = IPAWebViewNavController(rootViewController: webVc)
             downloads.present(navController, animated: true)
 
