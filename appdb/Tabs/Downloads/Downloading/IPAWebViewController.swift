@@ -63,8 +63,9 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         progressView.progress = 0
         view.addSubview(progressView)
 
-        // Add cancel button
+        // Add cancel and share button
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action: #selector(self.dismissAnimated))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
 
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
@@ -138,6 +139,18 @@ class IPAWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     // MARK: - Dismiss animated
 
     @objc func dismissAnimated() { dismiss(animated: true) }
+
+    // MARK: - Share
+
+    @objc func share(sender: UIBarButtonItem) {
+        guard let url = url else { return }
+        let activity = UIActivityViewController(activityItems: [url], applicationActivities: [SafariActivity()])
+        if #available(iOS 11.0, *) {} else {
+            activity.excludedActivityTypes = [.airDrop]
+        }
+        activity.popoverPresentationController?.barButtonItem = sender
+        present(activity, animated: true)
+    }
 }
 
 extension IPAWebViewController {
