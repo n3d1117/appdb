@@ -221,8 +221,8 @@ class Details: LoadingTableView {
                 API.getPlainTextLink(rt: rt) { error, link in
                     if let error = error {
                         Messages.shared.showError(message: error.prettified)
-                    } else if let link = link {
-                        UIApplication.shared.open(URL(string: "appdb-ios://?icon=\(icon)&url=\(link)")!)
+                    } else if let link = link, let linkEncoded = link.urlEncoded, let iconEncoded = icon.urlEncoded {
+                        UIApplication.shared.open(URL(string: "appdb-ios://?icon=\(iconEncoded)&url=\(linkEncoded)")!)
                     }
                 }
             }
