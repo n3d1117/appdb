@@ -195,6 +195,12 @@ extension String {
     func toBase64() -> String {
         Data(utf8).base64EncodedString()
     }
+
+    /// Encode URL properly (apparently `addingPercentEncoding` with `.urlHostAllowed` does not escape [&=] )
+    var urlEncoded: String? {
+        let set = CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[] ")
+        return self.addingPercentEncoding(withAllowedCharacters: set.inverted)
+    }
 }
 
 // MARK: - Separators
