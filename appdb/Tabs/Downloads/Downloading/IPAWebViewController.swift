@@ -18,7 +18,12 @@ protocol IPAWebViewControllerDelegate: class {
 class IPAWebViewNavController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        modalPresentationStyle = .overFullScreen
+        if #available(iOS 13.0, *) {
+            modalPresentationStyle = .automatic
+            isModalInPresentation = true
+        } else {
+            modalPresentationStyle = .overFullScreen
+        }
     }
 }
 
