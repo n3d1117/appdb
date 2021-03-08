@@ -85,7 +85,13 @@ class SystemStatus: LoadingTableView {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "service", for: indexPath) as? SimpleStaticCell {
             cell.textLabel?.text = services[indexPath.row].name
-            cell.accessoryView = UIImageView(image: services[indexPath.row].isOnline ? #imageLiteral(resourceName: "online") : #imageLiteral(resourceName: "offline"))
+            if let data = services[indexPath.row].data {
+                cell.detailTextLabel?.text = String(data)
+                cell.accessoryView = nil
+            } else {
+                cell.detailTextLabel?.text = ""
+                cell.accessoryView = UIImageView(image: services[indexPath.row].isOnline ? #imageLiteral(resourceName: "online") : #imageLiteral(resourceName: "offline"))
+            }
             cell.accessoryView?.frame.size.width = 24
             cell.accessoryView?.frame.size.height = 24
             cell.selectionStyle = .none
