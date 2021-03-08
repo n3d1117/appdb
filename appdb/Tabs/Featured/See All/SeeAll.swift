@@ -110,7 +110,7 @@ class SeeAll: LoadingTableView {
         if Global.isIpad {
             // Add 'Dismiss' button for iPad
             let dismissButton = UIBarButtonItem(title: "Dismiss".localized(), style: .done, target: self, action: #selector(self.dismissAnimated))
-            self.navigationItem.rightBarButtonItems = [dismissButton]
+            self.navigationItem.leftBarButtonItems = [dismissButton]
         }
 
         // Refresh action

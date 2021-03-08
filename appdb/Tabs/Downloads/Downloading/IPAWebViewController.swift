@@ -269,6 +269,7 @@ extension IPAWebViewController {
 extension IPAWebViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let base64DataString = message.body as? String else { return }
+        guard base64DataString.starts(with: "data:application/octet-stream;base64,") else { return }
         // Before decoding we need to drop this: "data:application/octet-stream;base64,"
         guard let dataDecoded = Data(base64Encoded: String(base64DataString.dropFirst(37))) else { return }
         let filename: String = Global.randomString(length: 15) + "-MEGA.ipa"
