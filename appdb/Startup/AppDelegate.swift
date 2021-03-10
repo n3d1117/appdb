@@ -9,6 +9,7 @@
 import UIKit
 import SwiftTheme
 import AlamofireNetworkActivityIndicator
+import WidgetKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
@@ -70,6 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         NetworkActivityIndicatorManager.shared.isEnabled = true
 
         application.shortcutItems = Global.ShortcutItem.createItems(for: [.search, .wishes, .updates, .news])
+
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
 
         return true
     }
