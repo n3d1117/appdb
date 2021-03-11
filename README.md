@@ -7,7 +7,10 @@ A fully-featured iOS client for [appdb.to](https://appdb.to) written in Swift 5 
 
 ## Screenshots
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/11541888/58879836-df5c4400-86d6-11e9-9fcc-95cb8239d7f3.png" alt="appdb icon" title="appdb" style="width=100%">
+  <img src="https://user-images.githubusercontent.com/11541888/110785557-60ad1700-826b-11eb-989f-824cb31fd47f.png" alt="appdb icon" title="appdb" style="width=100%">
+</p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11541888/110786620-a4ece700-826c-11eb-802a-c326f07696b7.png" alt="appdb icon" title="appdb" style="width=100%">
 </p>
 
 ## Dependencies
@@ -46,7 +49,7 @@ A fully-featured iOS client for [appdb.to](https://appdb.to) written in Swift 5 
 * `appdb-ios://?action=authorize&code=xxx`
 
 ## Download
-You can download the latest .ipa from [here](https://github.com/n3d1117/appdb/releases).
+You can download the latest .ipa from the [releases page](https://github.com/n3d1117/appdb/releases).
 
 ## Build manually
 Alernatively, you can build the project manually. 
