@@ -203,11 +203,12 @@ extension AttributedLabel {
                 guard let fullUrl = URL(string: partialUrl) else { return }
                 UIApplication.shared.open(fullUrl)
             case .tag(let tag):
-                if tag.name == "a", let href = tag.attributes["href"] {
+                if tag.name == "a", var href = tag.attributes["href"] {
                     if href.hasPrefix("http") {
                         guard let url = URL(string: href.replacingOccurrences(of: "&amp;", with: "&")) else { return }
                         UIApplication.shared.open(url)
                     } else {
+                        while href.hasPrefix("/") { href = String(href.dropFirst()) }
                         let urlString: String = "\(Global.mainSite)\(href)".replacingOccurrences(of: "&amp;", with: "&")
                         guard let url = URL(string: urlString) else { return }
                         UIApplication.shared.open(url)
