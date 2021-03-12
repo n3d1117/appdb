@@ -48,6 +48,10 @@ extension API {
                             }
 
                             Preferences.set(.niceDeviceModel, to: data["nice_idevice_model"].stringValue)
+                            Preferences.set(.enableIapPatch, to: data["enable_inapp_patch"].stringValue == "yes")
+                            Preferences.set(.preserveEntitlements, to: data["enable_psychic_paper"].stringValue == "yes")
+                            Preferences.set(.disableRevocationChecks, to: data["disable_protection_checks"].stringValue == "yes")
+                            Preferences.set(.forceDisablePRO, to: data["is_pro_disabled"].stringValue == "yes")
 
                             success()
                         }, fail: { error in
