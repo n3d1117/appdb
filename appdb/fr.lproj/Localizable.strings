@@ -99,7 +99,7 @@
 "Related Apps" = "Applications connexes";
 "Related Books" = "Livres connexes";
 "Reviews are from Apple's iTunes Store ©" = "Les commentaires proviennent de l'iTunes Store d'Apple.©";
-"Check out '%@' on appdb!" = "Découvrez '% @' sur appdb!";
+"Check out '%@' on appdb!" = "Découvrez '%@' sur appdb!";
 "Installation has been queued to your device" = "L'installation a été mise en file d'attente sur votre appareil";
 "Installation options" = "Options d'installation";
 "Duplicate app" = "Dupliquer l'application";
@@ -289,15 +289,15 @@
 "Clear developer identity" = "Identité claire du développeur";
 "Are you sure you want to clear developer identity?" = "Voulez-vous vraiment effacer l'identité du développeur?";
 "Identity cleared!" = "Identité effacée!";
-"Patch in-app Purchases" = "Achats via l'application de correctifs";
-"Preserve Entitlements Comments" = "Preserve Entitlements Comments";
-"Disable Revocation Checks" = "Désactiver contrôles de révocation";
+"Patch in-app Purchases" = "Patch Achats intégrés";
+"Preserve Entitlements Comments" = "Conserver les commentaires sur les droits";
+"Disable Revocation Checks" = "Désactiver les contrôles de révocation";
 "Force Disable PRO" = "Forcer la désactivation de PRO";
 "For Psychic Paper exploit" = "Pour l'exploit Psychic Paper";
 "Clear Cache" = "Vider le cache";
-"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Voulez-vous vraiment effacer le cache de l'application?\n\nNOTE: Cela ne désautorisera pas l'application et votre appareil sera toujours lié à appdb.";
+"Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Voulez-vous vraiment vider le cache de l'application?\n\nNOTE: Cela ne désautorisera pas l'application et votre appareil sera toujours lié à appdb.";
 "Cache cleared successfully!" = "Cache effacé avec succès!";
-"Failed to clear cache: %@." = "Impossible de vider le cache:% @.";
+"Failed to clear cache: %@." = "Échec de la suppression du cache: %@.";
 
 /////////////////////
 //     UPDATES     //
@@ -329,7 +329,7 @@
 "Maintenance mode active. We will be back soon!" = "Mode maintenance actif. Nous serons de retour bientôt!";
 "No links found." = "Aucun lien trouvé.";
 "Not found" = "Pas trouvé";
-"Couldn't find content with id %@ in our database" = "Impossible de trouver le contenu portant l'id% @ dans notre base de données";
+"Couldn't find content with id %@ in our database" = "Impossible de trouver le contenu portant l'id %@ dans notre base de données";
 "An error has occurred" = "Une erreur est survenue";
 "Invalid link code." = "Code de lien invalide.";
 "Invalid email address." = "Email invalide.";
