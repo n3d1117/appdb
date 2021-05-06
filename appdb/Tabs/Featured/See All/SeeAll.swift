@@ -19,7 +19,7 @@ class SeeAll: LoadingTableView {
     var query: String = ""
 
     private var currentPage: Int = 1
-    private var allLoaded: Bool = false
+    private var allLoaded = false
 
     var items: [Item] = []
 

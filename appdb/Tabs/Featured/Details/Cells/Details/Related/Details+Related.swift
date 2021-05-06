@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 import AlamofireImage
 
-protocol RelatedRedirectionDelegate: class {
+protocol RelatedRedirectionDelegate: AnyObject {
     func relatedItemSelected(trackid: String)
 }
 

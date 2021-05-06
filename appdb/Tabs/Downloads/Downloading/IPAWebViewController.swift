@@ -11,7 +11,7 @@ import WebKit
 import Cartography
 import Alamofire
 
-protocol IPAWebViewControllerDelegate: class {
+protocol IPAWebViewControllerDelegate: AnyObject {
     func didDismiss()
 }
 

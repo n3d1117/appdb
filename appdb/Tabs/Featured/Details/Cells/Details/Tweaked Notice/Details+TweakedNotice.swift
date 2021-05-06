@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-protocol DynamicContentRedirection: class {
+protocol DynamicContentRedirection: AnyObject {
     func dynamicContentSelected(type: ItemType, id: String)
 }
 

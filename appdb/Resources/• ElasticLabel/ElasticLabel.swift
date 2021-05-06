@@ -10,7 +10,7 @@
 import UIKit
 import SwiftTheme
 
-protocol ElasticLabelDelegate: class {
+protocol ElasticLabelDelegate: AnyObject {
     func expand(_ label: ElasticLabel)
 }
 
@@ -18,7 +18,7 @@ class ElasticLabel: UILabel {
 
     weak var delegated: ElasticLabelDelegate?
     var maxNumberOfCollapsedLines: Int = 5
-    var collapsed: Bool = true { didSet { numberOfLines = collapsed ? maxNumberOfCollapsedLines : 0 } }
+    var collapsed = true { didSet { numberOfLines = collapsed ? maxNumberOfCollapsedLines : 0 } }
     var recognizer: UITapGestureRecognizer!
     var expandedText: String! = ""
 

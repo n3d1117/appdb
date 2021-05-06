@@ -10,12 +10,12 @@ import UIKit
 import Cartography
 import Localize_Swift
 
-protocol ChangeCategory: class {
+protocol ChangeCategory: AnyObject {
     func openCategories(_ sender: AnyObject)
     func reloadViewAfterCategoryChange(id: String, type: ItemType)
 }
 
-protocol ContentRedirection: class {
+protocol ContentRedirection: AnyObject {
     func pushDetailsController(with content: Item)
     func pushSeeAllController(title: String, type: ItemType, category: String, price: Price, order: Order)
 }

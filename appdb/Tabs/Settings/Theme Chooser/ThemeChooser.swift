@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ChangedTheme: class {
+protocol ChangedTheme: AnyObject {
     func changedTheme()
 }
 

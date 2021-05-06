@@ -14,7 +14,7 @@ public enum ETCollectionViewWaterfallLayoutItemRenderDirection {
     case rightToLeft
 }
 
-@objc protocol ETCollectionViewDelegateWaterfallLayout: class, UICollectionViewDelegate {
+@objc protocol ETCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate {
     
     @objc func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeAt indexPath: IndexPath) -> CGSize
     

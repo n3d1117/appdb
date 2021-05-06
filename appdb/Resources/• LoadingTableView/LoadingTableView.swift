@@ -27,9 +27,9 @@ import Cartography
 
 class LoadingTableView: UITableViewController {
 
-    var animated: Bool = false
-    var showsErrorButton: Bool = true
-    var showsSpinner: Bool = true
+    var animated = false
+    var showsErrorButton = true
+    var showsSpinner = true
 
     let group1 = ConstraintGroup()
     let group2 = ConstraintGroup()

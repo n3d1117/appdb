@@ -16,7 +16,7 @@ class FeaturedApp: UICollectionViewCell {
     var icon: UIImageView!
     var dim: UIView = DimmableView.get()
 
-    var tweaked: Bool = false {
+    var tweaked = false {
         didSet { title.theme_textColor = tweaked ? Color.mainTint: Color.title }
     }
 

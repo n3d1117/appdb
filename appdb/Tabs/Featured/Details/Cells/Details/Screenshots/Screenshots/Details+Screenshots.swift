@@ -9,7 +9,7 @@
 import Cartography
 import AlamofireImage
 
-protocol ScreenshotRedirectionDelegate: class {
+protocol ScreenshotRedirectionDelegate: AnyObject {
     func screenshotImageSelected(with index: Int, _ allLandscape: Bool, _ mixedClasses: Bool, _ magic: CGFloat)
 }
 

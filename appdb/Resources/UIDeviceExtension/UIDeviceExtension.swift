@@ -69,13 +69,18 @@ public enum InternalDeviceType: String, CaseIterable {
     case iPad4
     case iPad5
     case iPad6
+    case iPad7
+    case iPad8
     case iPadMini
     case iPadMiniRetina
     case iPadMini3
     case iPadMini4
+    case iPadMini5
     
     case iPadAir
     case iPadAir2
+    case iPadAir3
+    case iPadAir4
     
     case iPadPro9Inch
     case iPadPro10p5Inch

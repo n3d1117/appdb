@@ -29,7 +29,7 @@ class LocalIPAUploadUtil {
     var lastCachedFraction: Float = 0.0
     var lastCachedProgress: String = "Waiting...".localized()
 
-    private var paused: Bool = false
+    private var paused = false
 
     var onPause: (() -> Void)?
     var onProgress: ((Float, String) -> Void)?

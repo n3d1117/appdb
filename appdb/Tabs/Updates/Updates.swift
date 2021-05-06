@@ -17,7 +17,7 @@ class Updates: LoadingTableView {
     // Keep track of which changelogs are collapsed
     var changelogCollapsedForIndexPath: [IndexPath: Bool] = [:]
 
-    var isLoading: Bool = false
+    var isLoading = false
 
     var retryCount: Int = 0
     var timeoutLimit: Int = 60 // will throw error after 1 min of NOT_READY responses
@@ -47,7 +47,7 @@ class Updates: LoadingTableView {
         checkUpdates()
     }
 
-    private var onlyOnce: Bool = true
+    private var onlyOnce = true
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

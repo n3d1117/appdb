@@ -13,7 +13,7 @@ struct ServiceStatus: Mappable {
     init?(map: Map) { }
 
     var name: String = ""
-    var isOnline: Bool = false
+    var isOnline = false
     var data: Int?
 
     mutating func mapping(map: Map) {

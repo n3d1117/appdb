@@ -9,7 +9,7 @@
 import Cartography
 import ObjectMapper
 
-protocol SearcherDelegate: class {
+protocol SearcherDelegate: AnyObject {
     func didClickSuggestion(_ text: String)
 }
 

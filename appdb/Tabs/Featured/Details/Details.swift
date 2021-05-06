@@ -12,8 +12,8 @@ import SafariServices
 class Details: LoadingTableView {
 
     var content: Item!
-    var descriptionCollapsed: Bool = true
-    var changelogCollapsed: Bool = true
+    var descriptionCollapsed = true
+    var changelogCollapsed = true
     var reviewCollapsedForIndexPath: [IndexPath: Bool] = [:]
     var indexForSegment: DetailsSelectedSegmentState = .details
     var versions: [Version] = []
@@ -21,7 +21,7 @@ class Details: LoadingTableView {
     var header: [DetailsCell] = []
     var details: [DetailsCell] = []
 
-    var loadedLinks: Bool = false {
+    var loadedLinks = false {
         didSet { if loadedLinks, let segment = tableView.headerView(forSection: 1) as? DetailsSegmentControl {
             segment.setLinksEnabled(true)
         }}
@@ -32,7 +32,7 @@ class Details: LoadingTableView {
     var shareButton: UIBarButtonItem!
 
     // Properties for dynamic load
-    var loadDynamically: Bool = false
+    var loadDynamically = false
     var dynamicType: ItemType = .ios
     var dynamicTrackid: String = ""
 

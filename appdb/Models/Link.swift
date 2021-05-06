@@ -27,11 +27,11 @@ struct Link {
     var uploader: String = ""
     var host: String = ""
     var id: String = ""
-    var verified: Bool = false
-    var diCompatible: Bool = false
-    var hidden: Bool = false
-    var universal: Bool = false
-    var isTicket: Bool = false
+    var verified = false
+    var diCompatible = false
+    var hidden = false
+    var universal = false
+    var isTicket = false
 
     init(link: String, cracker: String, uploader: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool, isTicket: Bool = false) {
         self.link = link

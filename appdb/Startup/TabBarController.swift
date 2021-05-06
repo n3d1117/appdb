@@ -12,7 +12,7 @@ import Cartography
 class TabBarController: UITabBarController {
 
     private var bannerGroup = ConstraintGroup()
-    private var interstitialReady: Bool = true
+    private var interstitialReady = true
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -14,7 +14,7 @@ class SearchCell: UICollectionViewCell {
 
     func setConstraints() {}
 
-    var tweaked: Bool = false {
+    var tweaked = false {
         didSet {
             if oldValue != tweaked {
                 name.theme_textColor = tweaked ? Color.mainTint: Color.title

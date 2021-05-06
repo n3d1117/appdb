@@ -16,7 +16,7 @@ class LocalIPACell: UICollectionViewCell {
     private var size: UILabel!
     private var moreImageButton: UIImageView!
     private var dummy: UIView!
-    private var semaphore: Bool = false
+    private var semaphore = false
     private var progressView: UIProgressView!
 
     func updateText(_ text: String) {

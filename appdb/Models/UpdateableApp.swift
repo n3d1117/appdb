@@ -21,7 +21,7 @@ struct UpdateableApp: Equatable {
     var alongsideId: String = ""
     var trackid: String = ""
     var image: String = ""
-    var updateable: Bool = false
+    var updateable = false
     var type: String = ""
     var name: String = ""
     var whatsnew: String = ""

@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-protocol SwitchDetailsSegmentDelegate: class {
+protocol SwitchDetailsSegmentDelegate: AnyObject {
     func segmentSelected(_ state: DetailsSelectedSegmentState)
 }
 

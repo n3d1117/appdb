@@ -9,7 +9,7 @@
 import UIKit
 import Localize_Swift
 
-protocol ChangedLanguage: class {
+protocol ChangedLanguage: AnyObject {
     func changedLanguage()
 }
 

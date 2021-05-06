@@ -43,7 +43,7 @@ class Search: LoadingCollectionView, UISearchBarDelegate {
         return type == .iPhone4S || type == .iPhone5 || type == .iPhone5C || type == .iPhone5S
     }
 
-    internal var shouldRelayout: Bool = false
+    internal var shouldRelayout = false
 
     var trendingLayout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()

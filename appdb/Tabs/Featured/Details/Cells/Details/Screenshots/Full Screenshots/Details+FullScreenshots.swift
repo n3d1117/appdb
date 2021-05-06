@@ -224,7 +224,7 @@ class DetailsFullScreenshots: UIViewController {
     }
 
     // If index != 0, we need to scroll the collection view to given index before presenting
-    var shouldOpenWithCustomOffset: Bool = false
+    var shouldOpenWithCustomOffset = false
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if index != 0, !shouldOpenWithCustomOffset {

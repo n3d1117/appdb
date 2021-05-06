@@ -45,7 +45,7 @@ class LoadingCollectionView: UICollectionViewController {
         return secondaryErrorMessage
     }()
 
-    var hasSegment: Bool = false
+    var hasSegment = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

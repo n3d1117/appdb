@@ -14,7 +14,7 @@ import ObjectMapper
 
 // Struct to handle response correctly from Featured
 struct FeaturedItemCollectionResponse {
-    var success: Bool = false
+    var success = false
     var errorDescription: String = ""
 }
 
@@ -80,7 +80,7 @@ class ItemCollection: FeaturedCell {
     // Array to fill data with
     var items: [Item] = []
 
-    var showFullSeparator: Bool = false
+    var showFullSeparator = false
 
     // Response object
     var response = FeaturedItemCollectionResponse()

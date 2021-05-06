@@ -15,7 +15,7 @@ class SelectorBulletinPage: BLTNPageItem {
     private var firstButton: UIButton!
     private var secondButton: UIButton!
 
-    public var deviceIsNotYetLinked: Bool = false
+    public var deviceIsNotYetLinked = false
 
     override func tearDown() {
         firstButton?.removeTarget(self, action: nil, for: .touchUpInside)

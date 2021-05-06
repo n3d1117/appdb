@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol IgnoredAppsListChanged: class {
+protocol IgnoredAppsListChanged: AnyObject {
     func ignoredChanged()
 }
 

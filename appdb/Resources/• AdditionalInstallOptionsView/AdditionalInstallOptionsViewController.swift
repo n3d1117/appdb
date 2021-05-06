@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 import Static
 
-protocol AdditionalInstallOptionsHeightDelegate: class {
+protocol AdditionalInstallOptionsHeightDelegate: AnyObject {
     func updateHeight()
 }
 
@@ -63,11 +63,11 @@ class AdditionalInstallOptionsViewController: TableViewController {
 
     var onCompletion: ((Bool, String, String) -> Void)?
 
-    private var duplicateApp: Bool = true
+    private var duplicateApp = true
     private var newId: String = ""
     private var newName: String = ""
 
-    var cancelled: Bool = true
+    var cancelled = true
 
     private let placeholder: String = Global.randomString(length: 4).lowercased()
 
@@ -105,7 +105,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
                 self.duplicateApp = newValue
                 self.setInstallButtonEnabled()
                 self.switchMode()
-                }, cellClass: SimpleStaticCell.self),
+            }, cellClass: SimpleStaticCell.self),
             Row(text: "New display name".localized(), cellClass: StaticTextFieldCell.self, context:
                 ["placeholder": "Use Original".localized(), "callback": { [unowned self] (newName: String) in
                     self.newName = newName

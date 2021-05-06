@@ -63,7 +63,7 @@ private class ContentSizeCategoryChangeManager {
     }
 }
 
-protocol FontSizeScalable: class {
+protocol FontSizeScalable: AnyObject {
     var scalableFont: UIFont { get set }
 }
 

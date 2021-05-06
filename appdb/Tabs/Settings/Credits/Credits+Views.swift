@@ -10,7 +10,7 @@ import Static
 import UIKit
 import Cartography
 
-protocol Easter: class {
+protocol Easter: AnyObject {
     func easterTime()
 }
 

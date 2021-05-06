@@ -11,7 +11,7 @@ import UIKit
 class FulfilledWishes: LoadingTableView {
 
     private var currentPage: Int = 1
-    private var allLoaded: Bool = false
+    private var allLoaded = false
     private var items: [WishApp] = []
 
     override func viewDidLoad() {

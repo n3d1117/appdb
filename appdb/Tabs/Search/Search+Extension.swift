@@ -393,7 +393,7 @@ extension Search: UIPopoverPresentationControllerDelegate, SearchDidSelectTypePr
     }
 }
 
-protocol SearchDidSelectTypeProtocol: class {
+protocol SearchDidSelectTypeProtocol: AnyObject {
     func selectedTypeWithIndex(_ index: Int)
 }
 

@@ -56,9 +56,9 @@ class AskBundleBeforeUploadViewController: TableViewController {
     private var originalBundleId: String = ""
 
     private var newBundleId: String = ""
-    private var overwriteFile: Bool = false
+    private var overwriteFile = false
 
-    var cancelled: Bool = true
+    var cancelled = true
 
     private let rowHeight: CGFloat = 50
     var height: CGFloat {

@@ -12,7 +12,7 @@ import UIKit
 class DismissableModalNavController: UINavigationController, UIGestureRecognizerDelegate {
 
     private var recognizer: UITapGestureRecognizer!
-    private var keyboardShown: Bool = false
+    private var keyboardShown = false
 
     // Content size for iPad popover
     var popoverContentSize: CGSize {

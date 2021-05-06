@@ -14,10 +14,10 @@ class News: LoadingTableView {
     private var currentPage: Int = 1
     private var allNews: [SingleNews] = []
     private var displayedNews: [SingleNews] = []
-    private var allLoaded: Bool = false
+    private var allLoaded = false
     private let arbitraryDelay: Double = 0.2
 
-    var isPeeking: Bool = false
+    var isPeeking = false
 
     private var bgColorView: UIView = {
         let bgColorView = UIView()

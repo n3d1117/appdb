@@ -10,7 +10,7 @@ import UIKit
 import Cartography
 import Cosmos
 
-protocol DetailsSellerRedirectionDelegate: class {
+protocol DetailsSellerRedirectionDelegate: AnyObject {
     func sellerSelected(title: String, type: ItemType, devId: String)
 }
 
