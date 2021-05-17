@@ -1,0 +1,378 @@
+
+/** Loco ios export: iOS Localizable.strings
+ * Project: Localizable.strings conversion
+ * Release: Working copy
+ * Locale: cs-CZ, Czech (Czech Republic)
+ * Exported by: Unregistered user
+ * Exported at: Tue, 18 May 2021 00:33:30 +0200*/
+"we-do-not-host-any-prohibited-content-all-data-is-publicly-available-via-itunes-api" = "Nehostujeme žádný zakázaný obsah. Všechna data jsou veřejně dostupná prostřednictvím rozhraní iTunes API.";
+"Featured" = "Doporučené";
+"Search" = "Hledat";
+"Downloads" = "Stahování";
+"Settings" = "Nastavení";
+"Updates" = "Aktualizace";
+"cannot-connect" = "Nelze připojit";
+"Retry" = "Znovu";
+"Waiting..." = "Čekání…";
+"Checking..." = "Kontroluji…";
+"operation-has-been-cancelled" = "Operace byla zrušena.";
+"all-categories" = "Vše";
+"Categories" = "Kategorie";
+"select-category" = "Vybrat kategorii";
+"iOS" = "iOS";
+"Cydia" = "Cydia";
+"Books" = "Knihy";
+"custom-apps" = "Vlastní Aplikace";
+"new-and-noteworthy" = "Novinky a zajímavosti";
+"top-paid" = "Top placene";
+"popular-this-week" = "Populární tento týden";
+"best-games" = "Nejlepší hry";
+"top-books" = "Nejlepší knihy";
+"see-all" = "Zobrazit vše";
+"News" = "Zprávy";
+"Settings-f4f70727dc34561dfde1a3c529b6205c" = "Nastavení";
+"system-status" = "Stav systému";
+"Description" = "Popis";
+"whats-new" = "Co je nového";
+"tweaked-version-notice" = "Upozornění na upravenou verzi";
+"this-app-was-tweaked-to-provide-additional-features-be-sure-to-download-it-from-verified-crackers-on" = "Tato aplikace byla upravena tak, aby poskytovala další funkce. Určitě ji stahujte pouze od ověřených crackerů, protože nikdo kromě nich nemůže zaručit, že neobsahuje žádný škodlivý kód.";
+"ipad-only" = "Pouze iPad";
+"Information" = "Informace";
+"Seller" = "Prodejce";
+"Developer" = "Vývojář";
+"Category" = "Kategorie";
+"Price" = "Cena";
+"Updated" = "Aktualizováno";
+"Version" = "Verze";
+"Compatibility" = "Kompatibilita";
+"Size" = "Velikost";
+"Language" = "Jazyk";
+"Languages" = "Jazyky";
+"bundle-id" = "ID svazku";
+"Author" = "Autor";
+"print-length" = "Délka tisku";
+"Requirements" = "Požadavky";
+"Rating" = "Hodnocení";
+"developer-apps" = "Aplikace pro vývojáře";
+"developer-website" = "Webové stránky vývojáře";
+"developer-support" = "Podpora vývojářů";
+"more-by-this-author" = "Více od tohoto autora";
+"Unknown" = "Neznámé";
+"see-original" = "Viz originál";
+"Details" = "Podrobnosti na";
+"Reviews" = "Recenze";
+"Download" = "Stáhnout";
+"Install" = "Instalace";
+"Requesting..." = "Žádost o...";
+"Requested" = "Požadované";
+"by" = "podle";
+"related-apps" = "Související aplikace";
+"related-books" = "Související knihy";
+"reviews-are-from-apples-itunes-store" = "Recenze pocházejí z obchodu iTunes Store společnosti Apple ©";
+"check-out-on-appdb" = "Podívejte se na '%@' na appdb!";
+"installation-has-been-queued-to-your-device" = "Instalace byla do vašeho zařízení zařazena do fronty";
+"installation-options" = "Možnosti instalace";
+"duplicate-app" = "Duplicitní aplikace";
+"new-id" = "Nové ID";
+"new-display-name" = "Nové zobrazované jméno";
+"use-original" = "Použití originálu";
+"cracked-by" = "Prolomeno %@";
+"uploaded-by" = "Uploadnul %@";
+"cracked-and-uploaded-by" = "Cracked and uploaded by %@";
+"recently-uploaded" = "Nedávno nahrané";
+"popular-today" = "Populární dnes";
+"popular-this-week-9883f7a99b048fe38e746252e0655741" = "Populární tento týden";
+"popular-this-month" = "Populární tento měsíc";
+"popular-this-year" = "Populární v tomto roce";
+"popular-all-time" = "Populární po celou dobu";
+"any-price" = "Jakákoli cena";
+"Paid" = "Placené";
+"waiting-seconds" = "Čekání %@ sekund...";
+"Authorization" = "Autorizace";
+"authorize-app" = "Autorizovat aplikaci";
+"is-your-device-already-linked-to-appdb-you-can-check-if-you-have-appdb-profile-installed-at-settings" = "Je vaše zařízení již připojeno k appdb? Zda máte nainstalovaný profil appdb, můžete zkontrolovat v Nastavení -> Obecné -> Profily.";
+"Continue" = "Pokračovat";
+"enter-link-code" = "Zadejte kód odkazu";
+"enter-link-code-here" = "Zde zadejte kód odkazu";
+"please-enter-a-valid-email-address" = "Zadejte prosím platnou e-mailovou adresu.";
+"paste-the-8-digits-case-sensitive-link-code-you-see-on-this-page" = "Vložte osmimístný kód odkazu, který se zobrazí na této stránce:";
+"go-back" = "Zpět";
+"enter-email" = "Zadejte e-mail";
+"please-enter-your-email-address-below-and-click-continue-you-will-be-redirected-to-the-settings-app-" = "Zadejte prosím níže svou e-mailovou adresu a klikněte na tlačítko Pokračovat. Budete přesměrováni do aplikace Nastavení, kde můžete pokračovat v instalaci profilu appdb.";
+"Success" = "Úspěch";
+"well-done-this-app-is-now-authorized-to-install-apps-on-your-device" = "Výborně! Tato aplikace je nyní oprávněna instalovat aplikace do vašeho zařízení.";
+"start-using-appdb" = "Začněte používat appdb!";
+"unable-to-complete" = "Nelze dokončit";
+"yes-already-linked" = "Ano, již propojeno";
+"no-not-yet-linked" = "Ne, zatím není propojeno";
+"name-example-com" = "name@example.com";
+"Deauthorization" = "Deautorizace";
+"Deauthorized" = "Deautorizované";
+"are-you-sure-you-want-to-deauthorize-this-app-from-installing-apps-on-your-device-note-this-wont-unl" = "Jste si jisti, že chcete zrušit autorizaci této aplikace pro instalaci aplikací do vašeho zařízení?\n\nPOZNÁMKA: Tímto postupem neodpojíte zařízení od appdb. Chcete-li tak učinit, odstraňte její profil v Nastavení -> Obecné -> Profily.";
+"app-was-deauthorized-successfully" = "Aplikace byla úspěšně deautorizována.";
+"search-ios-apps" = "Vyhledávání aplikací pro iOS";
+"search-custom-apps" = "Hledání vlastních aplikací";
+"search-books" = "Vyhledávání knih";
+"trending-ios-apps" = "Trendy aplikace pro iOS";
+"trending-cydia-apps" = "Trendy aplikace Cydia";
+"trending-books" = "Trendy knihy";
+"no-results-found" = "Nebyly nalezeny žádné výsledky";
+"no-results-were-found-for" = "Pro '%@' nebyly nalezeny žádné výsledky";
+"please-search-at-least-two-characters" = "Vyhledejte prosím alespoň dva znaky";
+"search-news" = "Vyhledávání novinek";
+"Queued" = "Fronta";
+"Library" = "Knihovna";
+"Downloading" = "Stahování";
+"no-queued-downloads" = "Žádné stahování ve frontě";
+"file-download-has-started" = "Stahování souborů bylo zahájeno";
+"enter-url" = "Zadejte adresu URL";
+"enter-below-the-url-of-the-ipa-file-you-want-to-download" = "Níže zadejte adresu URL souboru .ipa, který chcete stáhnout.";
+"https-example-com-file-ipa" = "https://example.com/file.ipa";
+"Load" = "Zatížení";
+"uploaded-on" = "Nahráno na %@";
+
+/*e.g. Uploaded on %date%*/
+"Pause" = "Pauza";
+"Paused" = "Pauza";
+"Resume" = "Životopis";
+"Stop" = "Zastavte";
+"install-without-signing" = "Instalace bez podepisování";
+"upload-to-myappstore" = "Nahrání do MyAppStore";
+"open-in" = "Otevřeno v...";
+"Rename" = "Přejmenování";
+"rename-file" = "Přejmenování souboru";
+"Delete" = "Odstranit";
+"delete-all" = "Odstranit vše";
+"no-local-ipas-found" = "Nebyly nalezeny žádné místní IPA";
+"use-itunes-file-sharing-or-import-them-from-other-apps" = "Použijte sdílení souborů v iTunes nebo je importujte z jiných aplikací.";
+"no-myappstore-apps" = "Žádné aplikace MyAppStore";
+"this-is-your-personal-ipa-library-apps-you-upload-over-time-will-appear-here" = "Toto je vaše osobní knihovna IPA! Aplikace, které sem časem nahrajete, se zde budou zobrazovat";
+"please-cancel-any-pending-uploads-before-deleting-local-files" = "Před odstraněním místních souborů zrušte všechny probíhající uploady.";
+"delete-1-file" = "Smazat 1 soubor?";
+"local-files" = "Místní soubory";
+"are-you-sure-you-want-to-delete-files" = "Jste si jisti, že chcete odstranit %@ soubory?";
+
+/*%@ is the number of files to delete*/
+"place-your-local-ipa-or-zip-files-in-the-documents-directory-either-using-itunes-file-sharing-the-fi" = "Umístěte své místní soubory .ipa (nebo .zip) do adresáře s dokumenty pomocí aplikace iTunes File Sharing, aplikace Soubory nebo je importujte z jiných aplikací.\n\nCesta k adresáři dokumentů:\n\n%@";
+"appdb-presents-myappstore-your-own-appstore-a-brand-new-custom-app-installer-transformed-into-your-p" = "appdb představuje MyAppStore - váš vlastní AppStore. Zbrusu nový vlastní instalátor aplikací přeměněný na vaši osobní knihovnu IPA!\n\n- Uložte své osobní aplikace do appdb\n- Sdílené ve všech vašich zařízeních pod stejným e-mailem\n- Ukládání aplikací až do velikosti 4 GB\n- Nahrávání více aplikací najednou\n\nChcete-li začít, klikněte na místní IPA a vyberte možnost \"Upload to MyAppStore\".";
+"no-active-downloads" = "Žádné aktivní stahování";
+"remove-from-list" = "Odebrat ze seznamu";
+"file-downloaded-successfully" = "Soubor byl úspěšně stažen";
+"file-downloaded-successfully-added-to-library" = "Soubor byl úspěšně stažen, přidán do knihovny";
+"uploading-of" = "Nahrávání %@ z %@ (%@)";
+
+/*e.g. "Uploading 1.2 MB of 3 MB (33%)"*/
+"Uploading" = "Nahrávání";
+
+/*please use same translation used above, before first %@*/
+"downloading-of" = "Stahování %@ z %@ (%@)";
+
+/*e.g. "Downloading 7.4 MB of 15.2 MB (49%)"*/
+"downloading" = "Stahování %@";
+
+/*e.g. "Downloading 3 MB"*/
+"Downloading-c7e71badf20a04f36d11be557ceb7a5b" = "Stahování";
+
+/*please use same translation used above, before %@*/
+"file-uploaded-successfully" = "Soubor byl úspěšně nahrán";
+"device-configuration" = "Konfigurace zařízení";
+"link-code" = "Kód odkazu";
+"jailbroken-w-appsync" = "Jailbroken w/ Appsync";
+"compatibility-checks" = "Kontroly kompatibility";
+"ask-for-installation-options" = "Zeptejte se na možnosti instalace";
+"Deauthorize" = "Zrušení autorizace";
+"user-interface" = "Uživatelské rozhraní";
+"choose-theme" = "Výběr tématu";
+"choose-language" = "Výběr jazyka";
+"language-set-please-restart-the-app-to-apply-changes" = "Nastavení jazyka, restartujte aplikaci, aby se změny použily.";
+"Dark" = "Dark";
+"Darker" = "Tmavší";
+"Light" = "Světlo";
+"Support" = "Podpora";
+"visit-appdb-forum" = "Navštivte fóra appdb";
+"About" = "O stránkách";
+"Acknowledgements" = "Poděkování";
+"General" = "Obecné";
+"Device" = "Zařízení";
+"authorize-app-8363acb2340ba314d49ae0a3b3581319" = "Autorizovat aplikaci";
+"authorize-app-with-link-code-from-appdb-website-and-enjoy-unlimited-app-installs" = "Autorizujte aplikaci pomocí kódu odkazu z webové stránky appdb a užívejte si neomezené množství instalací aplikace!";
+"pro-status" = "Stav PRO";
+"use-this-code-if-you-want-to-link-new-devices-to-appdb-press-and-hold-the-cell-to-copy-it-or-tap-it-" = "Tento kód použijte, pokud chcete propojit nová zařízení s appdb. Stisknutím a podržením buňky jej zkopírujete nebo klepnutím na něj vygenerujete nový.";
+"device-status" = "Stav zařízení";
+"to-fully-unlink-your-device-from-appdb-remove-its-profile-in-settings-general-profiles" = "Pro úplné odpojení zařízení od appdb odstraňte jeho profil v Nastavení -> Obecné -> Profily.";
+"Active" = "Aktivní";
+"Inactive" = "Neaktivní";
+"expires-on" = "Platnost končí dne %@";
+"clear-command-queue" = "Vymazat frontu příkazů?";
+"Clear" = "Přehledně";
+"Fix" = "Oprava";
+
+/*as in fix command from device status*/
+"Disabled" = "Bezbariérový";
+
+/*as in 'PRO disabled'*/
+"Revoked" = "Odvoláno";
+"revoked-on" = "Odvoláno dne %@";
+"show-badge-for-updates" = "Zobrazit odznak pro aktualizace";
+"change-bundle-id-before-upload" = "Změna id svazku před odesláním";
+"changing-bundle-identifier-before-uploading-to-myappstore-might-be-useful-when-working-with-multiple" = "Změna identifikátoru balíčku před nahráním do MyAppStore může být užitečná při práci s více verzemi stejné aplikace.";
+"new-bundle-id" = "Nové id svazku";
+"tap-to-generate-random" = "Klepnutím vygenerujete náhodný";
+"overwrite-file" = "Přepsat soubor";
+"bundle-id-change" = "Změna ID svazku";
+"Change" = "Změna";
+"changing-bundle-id" = "Změna identifikace svazku...";
+"available-languages" = "Dostupné jazyky";
+"available-themes" = "Dostupná témata";
+"tap-to-know-more" = "Klepnutím se dozvíte více";
+"contact-developer" = "Kontaktovat vývojáře";
+"choose-an-option" = "Vyberte si možnost";
+"select-a-service" = "Výběr služby";
+"Email" = "E-mail";
+"Telegram" = "Telegram";
+"could-not-find-email-service" = "Nepodařilo se najít e-mailovou službu.";
+"follow-system-appearance" = "Sledování vzhledu systému";
+"automatically-switch-between-light-and-dark-theme-based-on-system-appearance-to-switch-to-the-darker" = "Automatické přepínání mezi světlým a tmavým motivem na základě vzhledu systému. Chcete-li místo toho přepnout na tmavší motiv, stačí jej jednou ručně vybrat.\n\nPOZNÁMKA: Pokud se vyskytnou problémy (motiv se nepřepíná automaticky nebo se motivy mísí), stačí aplikaci zavřít z multitaskingu a znovu ji otevřít.";
+"advanced-options" = "Rozšířené možnosti";
+"check-revocation" = "Zrušení kontroly";
+"validate-pro-voucher" = "Ověření platnosti poukazu PRO";
+"activate-pro-voucher" = "Aktivace poukazu PRO";
+"email-link-code" = "Kód e-mailového odkazu";
+"list-apps-managed-by-appdb" = "Seznam aplikací spravovaných pomocí appdb";
+"your-pro-has-not-been-revoked" = "Vaše oprávnění PRO nebylo zrušeno!";
+"your-custom-developer-identity-has-not-been-revoked" = "Vaše vlastní identita vývojáře nebyla zrušena!";
+"enter-voucher" = "Zadejte poukaz";
+"paste-here-the-pro-voucher-obtained-by-a-reseller" = "Zde vložte poukaz PRO získaný od prodejce:";
+"Activate" = "Aktivace";
+"your-pro-has-been-activated-successfully" = "Váš PRO byl úspěšně aktivován!";
+"Validate" = "Ověřte";
+"your-pro-voucher-is-valid-and-can-be-activated" = "Váš poukaz PRO je platný a lze jej aktivovat!";
+"enter-below-the-email-address-where-the-link-code-will-be-sent" = "Níže zadejte e-mailovou adresu, na kterou vám bude zaslán kód odkazu:";
+"email-was-sent-successfully" = "E-mail byl úspěšně odeslán!";
+"apps-managed-by-appdb" = "Aplikace spravované pomocí appdb";
+"bundle-ids" = "ID svazků";
+"only-apps-that-are-managed-by-appdb-will-appear-here" = "Zobrazí se zde pouze aplikace spravované pomocí appdb.";
+"custom-developer-identity" = "Vlastní identita vývojáře";
+"Copy" = "Kopírovat";
+"clear-developer-identity" = "Jasná identita vývojáře";
+"are-you-sure-you-want-to-clear-developer-identity" = "Jste si jisti, že chcete vymazat identitu vývojáře?";
+"identity-cleared" = "Identita vymazána!";
+"patch-in-app-purchases" = "Nákupy v aplikaci";
+"preserve-entitlements-comments" = "Zachovat oprávnění Komentáře";
+"disable-revocation-checks" = "Zakázat kontroly odvolání";
+"force-disable-pro" = "Vynutit zakázání PRO";
+"for-psychic-paper-exploit" = "Pro využití psychického papíru";
+"clear-cache" = "Vymazat mezipaměť";
+"are-you-sure-you-want-to-clear-app-cache-note-this-will-not-deauthorize-the-app-and-your-device-will" = "Určitě chcete vymazat mezipaměť aplikace?\n\nPOZNÁMKA: Tímto krokem nedojde ke zrušení autorizace aplikace a vaše zařízení bude stále připojeno k appdb.";
+"cache-cleared-successfully" = "Vymazání mezipaměti proběhlo úspěšně!";
+"failed-to-clear-cache" = "Nepodařilo se vymazat mezipaměť: %@.";
+"Ignore" = "Ignorovat";
+"no-updates-found" = "Nebyly nalezeny žádné aktualizace";
+"please-authorize-app-from-settings-first" = "Nejprve autorizujte aplikaci v Nastavení";
+"updateable-app" = "%@ Aktualizovatelná aplikace";
+
+/*e.g. 1 Updateable app*/
+"updateable-apps" = "%@ Aktualizovatelné aplikace";
+
+/*e.g. 6 Updateable apps*/
+"non-updateable-app" = "%@ Neaktualizovatelná aplikace";
+"non-updateable-apps" = "%@ Neaktualizovatelné aplikace";
+"non-updateable-apps-d709768f5b7a919da007eb0fa4163709" = "Neaktualizovatelné aplikace";
+"Ignored" = "Ignorováno";
+"ignored-updates" = "Ignorované aktualizace";
+"no-ignored-updates" = "Žádné ignorované aktualizace";
+"apps-installed-from-an-external-source-like-the-app-store-or-ota-distribution-can-not-be-updated-via" = "Aplikace nainstalované z externího zdroje, například z obchodu App Store nebo distribuce OTA, nelze aktualizovat prostřednictvím appdb z důvodu bezpečnostních omezení. To respektujeme!\n\nChcete-li tyto aplikace aktualizovat, odstraňte je a znovu nainstalujte z appdb.\n\nChcete-li tyto aktualizace skrýt, přejeďte na některé z nich prstem doleva a vyberte možnost \"Ignorovat\".";
+"swipe-left-on-any-update-to-add-it-to-this-list" = "Přejetím doleva na libovolné aktualizaci ji přidáte do tohoto seznamu.";
+"Update" = "Aktualizace";
+
+/*green UPDATE button*/
+"your-version" = "Vaše verze: %@";
+"new-version" = "Nová verze: %@";
+"update-available" = "K dispozici je aktualizace";
+"whats-new-in-version" = "Co je nového ve verzi %@";
+"maintenance-mode-active-we-will-be-back-soon" = "Režim údržby je aktivní. Brzy se vrátíme!";
+"no-links-found" = "Nebyly nalezeny žádné odkazy.";
+"not-found" = "Nenalezeno";
+"couldnt-find-content-with-id-in-our-database" = "V naší databázi se nepodařilo najít obsah s id %@.";
+"an-error-has-occurred" = "Došlo k chybě";
+"invalid-link-code" = "Neplatný kód odkazu.";
+"invalid-email-address" = "Neplatný e-mail.";
+"link-code-cannot-be-empty" = "Kód odkazu nesmí být prázdný.";
+"please-enter-a-valid-email-address-b5bccda6d3a04e1d8f79846355290435" = "Zadejte prosím platnou e-mailovou adresu.";
+"no-device-linked" = "Žádné propojené zařízení.";
+"unable-to-fetch-device-token" = "Nelze načíst token zařízení.";
+"use-link-code-instead" = "Místo toho použijte kód odkazu.";
+"oops-something-went-wrong-please-try-again-later" = "Ups! Něco se pokazilo. Zkuste to prosím později.";
+"missing-link-code-or-email" = "Chybějící kód odkazu nebo e-mail.";
+"could-not-parse-plist-file" = "Nelze analyzovat soubor plist.";
+"device-status-is-empty" = "Stav zařízení je prázdný";
+"the-request-timed-out" = "Požadavek se vyčerpal";
+"your-device-is-not-compatible-with-this-app" = "Vaše zařízení není s touto aplikací kompatibilní";
+"error-malformed-url" = "Chyba: chybně zadaná url adresa";
+"ipa-not-found" = "IPA Nenalezeno";
+"ipa-is-missing-payload-folder" = "IPA chybí složka Payload";
+"ipa-is-missing-app-folder" = "IPA chybí složka .app";
+"ipa-is-missing-info-plist-file" = "IPA chybí soubor Info.plist";
+"unable-to-read-contents-of-info-plist-file" = "Nelze načíst obsah souboru Info.plist";
+"unable-to-encode-info-plist-file" = "Nelze zakódovat soubor Info.plist";
+"file-not-found-at-given-path" = "Soubor nebyl nalezen na zadané cestě";
+"unable-to-find-bundle-id-in-info-plist" = "Nelze najít id svazku v souboru Info.plist";
+"file-size-not-found-in-resource-values" = "V hodnotách prostředků nebyla nalezena velikost souboru";
+"a-report-has-already-been-submitted" = "Zpráva již byla předložena";
+"installation-failed-but-can-be-fixed-from-settings-device-status" = "Instalace se nezdařila, ale lze ji opravit v Nastavení -> Stav zařízení";
+"an-error-has-occurred-malformed-json" = "Došlo k chybě: chybný JSON";
+"your-pro-subscription-has-expired" = "Vaše předplatné PRO vypršelo.";
+"your-pro-subscription-has-been-revoked-by-apple" = "Společnost Apple zrušila vaše předplatné PRO.";
+"your-device-doesnt-seem-to-have-a-pro-subcription" = "Zdá se, že vaše zařízení nemá předplatné PRO.";
+"app-duplication-is-currently-supported-on-non-jailbroken-devices-with-pro" = "Duplikace aplikací je v současné době podporována na zařízeních bez prolomení vězení s verzí PRO.";
+"unknown-voucher-partner" = "Neznámý partner voucheru.";
+"invalid-voucher" = "Neplatný voucher.";
+"voucher-already-used" = "Voucher již byl použit.";
+"no-devices-with-this-email" = "Žádná zařízení s tímto e-mailem.";
+"Send" = "Odeslat";
+"Report" = "Nahlásit";
+"reporting-a-broken-link-for" = "Nahlášení nefunkčního odkazu pro '%@'.";
+"enter-a-reason-for-your-report" = "Zadejte důvod zprávy";
+"link-reported-successfully" = "Odkaz byl úspěšně nahlášen!";
+"Credits" = "Kredity";
+"Developer-672caf27f5363dc833bda5099775e891" = "Vývojář";
+"special-thanks" = "Zvláštní poděkování";
+"Translations" = "Překlady";
+"appdb-team" = "tým appdb";
+"icon-and-banner-designer" = "Návrhář ikon a bannerů";
+"view-project-on-github" = "Zobrazit projekt na GitHubu";
+"Wishes" = "Přání";
+"New" = "Nový";
+"Processing" = "Zpracování";
+"Failed" = "Neúspěšný";
+"Fulfilled" = "Splněno";
+"Free" = "Zdarma";
+"enter-appstore-url" = "Zadejte adresu URL obchodu AppStore";
+"enter-below-the-appstore-url-of-the-app-youd-like-to-request" = "Níže zadejte adresu URL AppStore aplikace, o kterou chcete požádat.";
+"Add" = "Přidat";
+"app-has-been-requested-successfully" = "Aplikace byla úspěšně vyžádána!";
+"price" = "Cena: %@";
+"version" = "Verze: %@";
+"no-new-wishes-to-show" = "Žádná nová přání";
+"no-fulfilled-wishes-to-show" = "Žádné splněné přání se neukáže";
+"Cancel" = "Zrušit";
+"Dismiss" = "Odmítnout";
+"Yes" = "Ano";
+"OK" = "OK";
+"No" = "Ne";
+"Done" = "Hotovo";
+"more" = "více";
+"open-in-safari" = "Otevřít v Safari";
+"s-ago" = "%@s ago";
+
+/*seconds, e.g. 15s ago*/
+"m-ago" = "%@m před";
+
+/*minutes, e.g. 5m ago*/
+"h-ago" = "%@h ago";
+
+/*hours, e.g. 6h ago*/
+"d-ago" = "Před %@d";
+
+/*days, e.g. 3d ago*/
+"now" = "nyní";
