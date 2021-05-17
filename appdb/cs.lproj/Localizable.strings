@@ -1,10 +1,4 @@
 
-/** Loco ios export: iOS Localizable.strings
- * Project: Localizable.strings conversion
- * Release: Working copy
- * Locale: cs-CZ, Czech (Czech Republic)
- * Exported by: Unregistered user
- * Exported at: Tue, 18 May 2021 00:33:30 +0200*/
 "we-do-not-host-any-prohibited-content-all-data-is-publicly-available-via-itunes-api" = "Nehostujeme žádný zakázaný obsah. Všechna data jsou veřejně dostupná prostřednictvím rozhraní iTunes API.";
 "Featured" = "Doporučené";
 "Search" = "Hledat";
