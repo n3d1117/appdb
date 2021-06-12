@@ -10,6 +10,7 @@ import UIKit
 import SwiftTheme
 import AlamofireNetworkActivityIndicator
 import WidgetKit
+import TelemetryClient
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
@@ -75,6 +76,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         if #available(iOS 14.0, *) {
             WidgetCenter.shared.reloadAllTimelines()
         }
+
+        let configuration = TelemetryManagerConfiguration(appID: Global.telemetryAppId)
+        configuration.telemetryAllowDebugBuilds = true
+        TelemetryManager.initialize(with: configuration)
+        TelemetryManager.send(Global.Telemetry.launched.rawValue, with: [
+            "isLinked": Preferences.deviceIsLinked.description,
+            "isPro": Preferences.pro.description
+        ])
 
         return true
     }

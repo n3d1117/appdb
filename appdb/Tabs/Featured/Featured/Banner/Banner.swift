@@ -8,6 +8,7 @@
 
 import UIKit
 import Cartography
+import TelemetryClient
 
 extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -47,6 +48,7 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
         case "delta_banner": UIApplication.shared.open(URL(string: "appdb-ios://?trackid=1900000176&type=cydia")!)
         default: break
         }
+        TelemetryManager.send(Global.Telemetry.clickedBanner.rawValue)
     }
 }
 

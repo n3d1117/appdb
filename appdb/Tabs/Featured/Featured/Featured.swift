@@ -9,6 +9,7 @@
 import UIKit
 import Cartography
 import Localize_Swift
+import TelemetryClient
 
 protocol ChangeCategory: AnyObject {
     func openCategories(_ sender: AnyObject)
@@ -206,6 +207,7 @@ class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
         } else {
             navigationController?.present(UINavigationController(rootViewController: wishesController), animated: true)
         }
+        TelemetryManager.send(Global.Telemetry.openedWishes.rawValue)
     }
 }
 
@@ -232,6 +234,7 @@ extension Featured: ChangeCategory {
             }
         }
         present(nav, animated: true, completion: nil)
+        TelemetryManager.send(Global.Telemetry.openedCategories.rawValue)
     }
 
     // Popover on ipad, modal on iphone

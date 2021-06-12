@@ -11,6 +11,7 @@ import Static
 import SafariServices
 import BLTNBoard
 import MessageUI
+import TelemetryClient
 
 class Settings: TableViewController {
 
@@ -116,6 +117,7 @@ class Settings: TableViewController {
     func deauthorize() {
         Preferences.removeKeysOnDeauthorization()
         NotificationCenter.default.post(name: .Deauthorized, object: self)
+        TelemetryManager.send(Global.Telemetry.deauthorized.rawValue)
     }
 
     // Show deauthorization bulletin
@@ -238,6 +240,7 @@ class Settings: TableViewController {
                 }
                 self.refreshSources()
                 Messages.shared.showSuccess(message: "Cache cleared successfully!".localized())
+                TelemetryManager.send(Global.Telemetry.clearedCache.rawValue)
             } catch let error {
                 Messages.shared.showError(message: "Failed to clear cache: %@.".localizedFormat(error.localizedDescription))
             }

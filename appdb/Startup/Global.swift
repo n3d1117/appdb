@@ -25,6 +25,21 @@ enum Global {
     static let githubSite: String = "https://github.com/n3d1117/appdb"
     static let email: String = "appdb.ned@gmail.com"
     static let telegramUsername: String = "ne_do"
+    static let telemetryAppId: String = "4AA0955D-55BD-43DB-AF8A-746A74CEBE60"
+
+    enum Telemetry: String {
+        case launched
+        case openedWishes
+        case openedCategories
+        case openedAdvancedOptions
+        case clickedBanner
+        case downloadIpaRequested
+        case downloadCustomIpaRequested
+        case clearedCache
+        case deauthorized
+        case tappedOnTrendingSearchTag
+        case tappedOnSearchSuggestion
+    }
 
     // Homescreen shortcut items
     enum ShortcutItem: String {

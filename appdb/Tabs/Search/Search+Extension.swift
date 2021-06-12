@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import TelemetryClient
 
 extension Search {
 
@@ -283,7 +284,7 @@ extension Search {
 
     override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard currentPhase == .showResults else { return nil }
-         guard results.indices.contains(indexPath.row) else { return nil }
+        guard results.indices.contains(indexPath.row) else { return nil }
         let item = results[indexPath.row]
         return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: { Details(content: item) })
     }
@@ -341,6 +342,7 @@ extension Search: UIViewControllerPreviewingDelegate {
 extension Search: TagListViewDelegate {
     func tagPressed(_ title: String) {
         actuallySearch(with: title)
+        TelemetryManager.send(Global.Telemetry.tappedOnTrendingSearchTag.rawValue, with: ["title": title])
     }
 }
 
@@ -349,6 +351,7 @@ extension Search: TagListViewDelegate {
 extension Search: SearcherDelegate {
     func didClickSuggestion(_ text: String) {
         actuallySearch(with: text)
+        TelemetryManager.send(Global.Telemetry.tappedOnSearchSuggestion.rawValue)
     }
 }
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import TelemetryClient
 
 class Details: LoadingTableView {
 
@@ -504,6 +505,7 @@ extension Details: IPAWebViewControllerDelegate {
         if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
         delay(0.8) {
             Messages.shared.showSuccess(message: "File download has started".localized(), context: Global.isIpad ? .viewController(self) : nil)
+            TelemetryManager.send(Global.Telemetry.downloadIpaRequested.rawValue)
         }
     }
 }

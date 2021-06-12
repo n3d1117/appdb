@@ -30,3 +30,4 @@ Carthage/Build
 /GoogleMobileAds.framework
 /GoogleAppMeasurement.framework
 /PromisesObjC.xcframework
+/appdb.xcodeproj/project.xcworkspace/xcshareddata/swiftpm

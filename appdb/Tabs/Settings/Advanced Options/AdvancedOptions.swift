@@ -8,6 +8,7 @@
 
 import UIKit
 import Static
+import TelemetryClient
 
 class AdvancedOptions: TableViewController {
 
@@ -90,6 +91,8 @@ class AdvancedOptions: TableViewController {
         if #available(iOS 13.0, *) {} else { sections.insert(Section(), at: 0) }
         dataSource = DataSource(tableViewDelegate: self)
         dataSource.sections = sections
+
+        TelemetryManager.send(Global.Telemetry.openedAdvancedOptions.rawValue)
     }
 
     @objc func dismissAnimated() { dismiss(animated: true) }

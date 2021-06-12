@@ -8,6 +8,7 @@
 
 import UIKit
 import Cartography
+import TelemetryClient
 
 class Downloads: UIViewController {
 
@@ -246,6 +247,7 @@ extension Downloads: IPAWebViewControllerDelegate {
         if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
         delay(0.8) {
             Messages.shared.showSuccess(message: "File download has started".localized())
+            TelemetryManager.send(Global.Telemetry.downloadCustomIpaRequested.rawValue)
         }
     }
 }
