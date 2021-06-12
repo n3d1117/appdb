@@ -298,6 +298,7 @@
 "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Anda yakin ingin menghapus cache aplikasi?\n\nCatatan: Ini tidak akan membatalkan otorisasi aplikasi, dan perangkat Anda akan tetap ditautkan ke appdb.";
 "Cache cleared successfully!" = "Cache berhasil dihapus!";
 "Failed to clear cache: %@." = "Gagal menghapus cache: %@.";
+"Enable Game Trainer" = "Aktifkan Game Trainer";
 
 /////////////////////
 //     UPDATES     //

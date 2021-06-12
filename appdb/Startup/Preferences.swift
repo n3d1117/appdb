@@ -27,6 +27,7 @@ extension Defaults.Keys {
     static let preserveEntitlements = Key<Bool>("preserveEntitlements", default: false)
     static let disableRevocationChecks = Key<Bool>("disableRevocationChecks", default: false)
     static let forceDisablePRO = Key<Bool>("forceDisablePRO", default: false)
+    static let enableTrainer = Key<Bool>("enableTrainer", default: false)
 }
 
 // Sensitive data is stored in Keychain
@@ -145,6 +146,10 @@ enum Preferences {
     static var forceDisablePRO: Bool {
         defaults[.forceDisablePRO]
     }
+
+    static var enableTrainer: Bool {
+        defaults[.enableTrainer]
+    }
 }
 
 extension Preferences {
@@ -191,6 +196,7 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.preserveEntitlements.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.disableRevocationChecks.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.forceDisablePRO.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.enableTrainer.name)
     }
 
     // Remove secure keys

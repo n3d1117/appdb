@@ -299,6 +299,7 @@ Copyright © 2017 ned. All rights reserved.
 \n\nملاحظة: لن يؤدي هذا إلى إلغاء ترخيص التطبيق ، وسيظل جهازك مرتبطًا بـ appdb.";
 "Cache cleared successfully!" = "تم مسح ذاكرة التخزين المؤقت بنجاح!";
 "Failed to clear cache: %@." = "فشل مسح ذاكرة التخزين المؤقت: %@.";
+"Enable Game Trainer" = "تمكين مدرب اللعبة";
 
 /////////////////////
 // UPDATES //

@@ -139,4 +139,5 @@ enum ConfigurationParameters: String {
     case disableProtectionChecks = "params[disable_protection_checks]"
     case enableIapPatch = "params[enable_inapp_patch]"
     case forceDisablePRO = "params[is_pro_disabled]"
+    case enableTrainer = "params[enable_trainer]"
 }

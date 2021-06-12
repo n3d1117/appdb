@@ -298,6 +298,7 @@
 "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "¿Seguro que quieres eliminar el caché de la aplicación?\n\nRECUERDA: Esto no desautorizará la aplicación, y tu dispositivo será vinculado a appdb.";
 "Cache cleared successfully!" = "¡Caché borrado correctamente!";
 "Failed to clear cache: %@." = "Borrado de caché fallado: %@.";
+"Enable Game Trainer" = "Habilitar Game Trainer";
 
 /////////////////////
 //     UPDATES     //

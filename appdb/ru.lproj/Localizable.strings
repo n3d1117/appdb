@@ -298,6 +298,7 @@
 "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Вы уверены, что хотите очистить кеш?\n\nПРИМЕЧАНИЕ: Это не деавторизирует приложение и ваше устройство по-прежнему будет привязано к appdb.";
 "Cache cleared successfully!" = "Кеш успешно очищен!";
 "Failed to clear cache: %@." = "Не удалось очистить кеш: %@.";
+"Enable Game Trainer" = "Включить трейнер в играх";
 
 /////////////////////
 //     UPDATES     //

@@ -52,6 +52,7 @@ extension API {
                             Preferences.set(.preserveEntitlements, to: data["enable_psychic_paper"].stringValue == "yes")
                             Preferences.set(.disableRevocationChecks, to: data["disable_protection_checks"].stringValue == "yes")
                             Preferences.set(.forceDisablePRO, to: data["is_pro_disabled"].stringValue == "yes")
+                            Preferences.set(.enableTrainer, to: data["enable_trainer"].stringValue == "yes")
 
                             success()
                         }, fail: { error in
@@ -87,6 +88,7 @@ extension API {
                             case .disableProtectionChecks: Preferences.set(.disableRevocationChecks, to: value == "yes")
                             case .forceDisablePRO: Preferences.set(.forceDisablePRO, to: value == "yes")
                             case .clearDevEntity: break
+                            case .enableTrainer: Preferences.set(.enableTrainer, to: value == "yes")
                             }
                         }
                         success()
