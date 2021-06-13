@@ -71,7 +71,7 @@ class DeviceChooser: LoadingTableView {
         API.getAllLinkedDevices { [weak self] devices in
             guard let self = self else { return }
 
-            self.devices = devices
+            self.devices = devices.sorted { $0.name.lowercased() < $1.name.lowercased() }
         } fail: { [weak self] error in
             guard let self = self else { return }
 
