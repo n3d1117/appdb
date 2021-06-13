@@ -85,6 +85,11 @@ class AdvancedOptions: TableViewController {
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ]),
             Section(rows: [
+                Row(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
+                    Preferences.set(.changeBundleBeforeUpload, to: new)
+                }, "value": Preferences.changeBundleBeforeUpload])
+            ], footer: .title("Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.".localized())),
+            Section(rows: [
                 Row(text: "Clear developer identity".localized(), selection: { _ in }, cellClass: ClearIdentityStaticCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
             ])
         ]
