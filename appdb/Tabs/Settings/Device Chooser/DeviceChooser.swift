@@ -34,7 +34,7 @@ class DeviceChooser: LoadingTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Choose Device".localized() // todo localize
+        title = "Choose Device".localized()
 
         tableView.register(SimpleSubtitleCell.self, forCellReuseIdentifier: "device")
         tableView.estimatedRowHeight = 50
@@ -121,7 +121,7 @@ class DeviceChooser: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        devices.isEmpty ? nil : "Available Devices".localized() // todo localize
+        devices.isEmpty ? nil : "Available Devices".localized()
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -147,10 +147,9 @@ class DeviceChooser: LoadingTableView {
             API.getConfiguration(success: { [weak self] in
                 guard let self = self else { return }
 
-                // todo localize
                 Messages.shared.hideAll()
                 Messages.shared.showSuccess(
-                    message: "Switched to \"\(name)\"".localized(),
+                    message: "Switched to %@".localizedFormat("\"\(name)\""),
                     context: .viewController(self)
                 )
                 NotificationCenter.default.post(name: .RefreshSettings, object: self)

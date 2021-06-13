@@ -299,6 +299,9 @@
 "Cache cleared successfully!" = "Cache effacé avec succès!";
 "Failed to clear cache: %@." = "Échec de la suppression du cache: %@.";
 "Enable Game Trainer" = "Activer Game Trainer";
+"Choose Device" = "Choisissez l'appareil";
+"Available Devices" = "Appareils disponibles";
+"Switched to %@" = "Basculer vers %@";
 
 /////////////////////
 //     UPDATES     //

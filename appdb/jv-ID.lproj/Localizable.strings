@@ -299,6 +299,9 @@
 "Cache cleared successfully!" = "Cache diresiki kanthi sukses!";
 "Failed to clear cache: %@." = "Gagal mbusek cache: %@.";
 "Enable Game Trainer" = "Aktifkan Game Trainer";
+"Choose Device" = "Pilih Devices";
+"Available Devices" = "Devices Tersedia";
+"Switched to %@" = "Pindah ke %@";
 
 /////////////////////
 //     UPDATES     //

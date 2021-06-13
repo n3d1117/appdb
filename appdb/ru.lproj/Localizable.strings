@@ -299,6 +299,9 @@
 "Cache cleared successfully!" = "Кеш успешно очищен!";
 "Failed to clear cache: %@." = "Не удалось очистить кеш: %@.";
 "Enable Game Trainer" = "Включить трейнер в играх";
+"Choose Device" = "Выберите устройство";
+"Available Devices" = "Доступные устройства";
+"Switched to %@" = "Переключился на %@";
 
 /////////////////////
 //     UPDATES     //

@@ -300,6 +300,9 @@ Copyright © 2017 ned. All rights reserved.
 "Cache cleared successfully!" = "تم مسح ذاكرة التخزين المؤقت بنجاح!";
 "Failed to clear cache: %@." = "فشل مسح ذاكرة التخزين المؤقت: %@.";
 "Enable Game Trainer" = "تمكين مدرب اللعبة";
+"Choose Device" = "اختر الجهاز";
+"Available Devices" = "الأجهزة المتاحة";
+"Switched to %@" = "تحولت إلى %@";
 
 /////////////////////
 // UPDATES //
