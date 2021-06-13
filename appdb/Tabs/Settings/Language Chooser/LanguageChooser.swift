@@ -76,7 +76,7 @@ class LanguageChooser: UITableViewController {
         title = "Choose Language".localized()
         if Global.isIpad { navigationItem.rightBarButtonItem?.title = "Dismiss".localized() }
         Messages.shared.hideAll()
-        Messages.shared.showSuccess(message: "Language set, please restart the app to apply changes".localized(), context: Global.isIpad ? .viewController(self) : nil)
+        Messages.shared.showSuccess(message: "Language set, please restart the app to apply changes".localized(), context: .viewController(self))
     }
 
     // MARK: - UITableViewDelegate

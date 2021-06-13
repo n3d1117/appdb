@@ -290,7 +290,7 @@ class Details: LoadingTableView {
                     guard let self = self else { return }
 
                     if let error = error {
-                        Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
+                        Messages.shared.showError(message: error.prettified, context: .viewController(self))
                         delay(0.3) {
                             setButtonTitle("Install")
                         }
@@ -299,7 +299,7 @@ class Details: LoadingTableView {
 
                         if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
 
-                        Messages.shared.showSuccess(message: "Installation has been queued to your device".localized(), context: Global.isIpad ? .viewController(self) : nil)
+                        Messages.shared.showSuccess(message: "Installation has been queued to your device".localized(), context: .viewController(self))
 
                         if self.contentType != .books {
                             ObserveQueuedApps.shared.addApp(type: self.contentType, linkId: sender.linkId,
@@ -346,7 +346,7 @@ class Details: LoadingTableView {
         } else {
             setButtonTitle("Checking...")
             delay(0.3) {
-                Messages.shared.showError(message: "Please authorize app from Settings first".localized(), context: Global.isIpad ? .viewController(self) : nil)
+                Messages.shared.showError(message: "Please authorize app from Settings first".localized(), context: .viewController(self))
                 setButtonTitle("Install")
             }
         }
@@ -385,9 +385,9 @@ class Details: LoadingTableView {
                     guard let self = self else { return }
 
                     if let error = error {
-                        Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
+                        Messages.shared.showError(message: error.prettified, context: .viewController(self))
                     } else {
-                        Messages.shared.showSuccess(message: "Link reported successfully!".localized(), context: Global.isIpad ? .viewController(self) : nil)
+                        Messages.shared.showSuccess(message: "Link reported successfully!".localized(), context: .viewController(self))
                     }
                 })
             }
@@ -504,7 +504,7 @@ extension Details: IPAWebViewControllerDelegate {
     func didDismiss() {
         if #available(iOS 10.0, *) { UINotificationFeedbackGenerator().notificationOccurred(.success) }
         delay(0.8) {
-            Messages.shared.showSuccess(message: "File download has started".localized(), context: Global.isIpad ? .viewController(self) : nil)
+            Messages.shared.showSuccess(message: "File download has started".localized(), context: .viewController(self))
             TelemetryManager.send(Global.Telemetry.downloadIpaRequested.rawValue)
         }
     }

@@ -141,12 +141,14 @@ class DeviceChooser: LoadingTableView {
         API.getLinkCode(success: {
 
             // Update configuration
-            API.getConfiguration(success: {
+            API.getConfiguration(success: { [weak self] in
+                guard let self = self else { return }
+
                 // todo localize
                 Messages.shared.hideAll()
                 Messages.shared.showSuccess(
                     message: "Switched to \"\(name)\"".localized(),
-                    context: Global.isIpad ? .viewController(self) : nil
+                    context: .viewController(self)
                 )
                 NotificationCenter.default.post(name: .RefreshSettings, object: self)
             }, fail: { _ in })

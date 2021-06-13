@@ -175,6 +175,6 @@ extension Credits: UITableViewDelegate {
 // It's easter time!
 extension Credits: Easter {
     func easterTime() {
-        Messages.shared.showMinimal(message: "Phew, for a minute there\nI lost myself, I lost myself", iconStyle: .none, color: Color.darkMainTint, duration: .forever, context: Global.isIpad ? .viewController(self) : nil)
+        Messages.shared.showMinimal(message: "Phew, for a minute there\nI lost myself, I lost myself", iconStyle: .none, color: Color.darkMainTint, duration: .forever, context: .viewController(self))
     }
 }

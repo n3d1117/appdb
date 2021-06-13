@@ -156,7 +156,7 @@ class AppUpdateController: UITableViewController {
         guard Preferences.deviceIsLinked else {
             setButtonTitle("Checking...")
             delay(0.3) {
-                Messages.shared.showError(message: "Please authorize app from Settings first".localized(), context: Global.isIpad ? .viewController(self) : nil)
+                Messages.shared.showError(message: "Please authorize app from Settings first".localized(), context: .viewController(self))
                 setButtonTitle("Update")
             }
             return
@@ -168,7 +168,7 @@ class AppUpdateController: UITableViewController {
             guard let self = self else { return }
 
             if let error = error {
-                Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
+                Messages.shared.showError(message: error.prettified, context: .viewController(self))
                 delay(0.3) {
                     setButtonTitle("Update")
                 }

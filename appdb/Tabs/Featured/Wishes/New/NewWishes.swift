@@ -125,7 +125,7 @@ class NewWishes: LoadingTableView {
         let upvote = UITableViewRowAction(style: .normal, title: "↑") { _, _ in
             API.createPublishRequest(appStoreUrl: "https://apps.apple.com/app/id\(self.items[indexPath.row].trackid)") { error in
                 if let error = error {
-                    Messages.shared.showError(message: error.prettified, context: Global.isIpad ? .viewController(self) : nil)
+                    Messages.shared.showError(message: error.prettified, context: .viewController(self))
                 }
             }
         }
