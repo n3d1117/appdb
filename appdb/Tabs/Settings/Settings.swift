@@ -272,6 +272,7 @@ class Settings: TableViewController {
 extension Settings {
     fileprivate func getNavControllerForText(_ text: String) -> UINavigationController? {
         switch text {
+        case "Device".localized(): return UINavigationController(rootViewController: DeviceChooser())
         case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
         case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
         case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
