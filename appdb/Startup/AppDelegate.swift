@@ -78,7 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         }
 
         let configuration = TelemetryManagerConfiguration(appID: Global.telemetryAppId)
-        configuration.telemetryAllowDebugBuilds = true
         TelemetryManager.initialize(with: configuration)
         TelemetryManager.send(Global.Telemetry.launched.rawValue, with: [
             "isLinked": Preferences.deviceIsLinked.description,
