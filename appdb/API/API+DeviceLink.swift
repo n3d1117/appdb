@@ -105,4 +105,16 @@ extension API {
             }
         }
     }
+
+    static func getAllLinkedDevices(success:@escaping (_ devices: [LinkedDevice]) -> Void, fail:@escaping (_ error: String) -> Void) {
+        AF.request(endpoint, parameters: ["action": Actions.getAllDevices.rawValue], headers: headersWithCookie)
+            .responseArray(keyPath: "data") { (response: AFDataResponse<[LinkedDevice]>) in
+                switch response.result {
+                case .success(let devices):
+                    success(devices)
+                case .failure(let error as NSError):
+                    fail(error.localizedDescription)
+                }
+            }
+    }
 }

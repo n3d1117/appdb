@@ -47,7 +47,8 @@ extension API {
                                 Preferences.set(.usesCustomDeveloperIdentity, to: false)
                             }
 
-                            Preferences.set(.niceDeviceModel, to: data["nice_idevice_model"].stringValue)
+                            Preferences.set(.deviceName, to: data["name"].stringValue)
+                            Preferences.set(.deviceVersion, to: data["ios_version"].stringValue)
                             Preferences.set(.enableIapPatch, to: data["enable_inapp_patch"].stringValue == "yes")
                             Preferences.set(.preserveEntitlements, to: data["enable_psychic_paper"].stringValue == "yes")
                             Preferences.set(.disableRevocationChecks, to: data["disable_protection_checks"].stringValue == "yes")

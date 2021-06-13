@@ -22,7 +22,8 @@ extension Defaults.Keys {
     static let genres = Key<[Genre]>("genres", default: [])
     static let followSystemAppearance = Key<Bool>("followSystemAppearance", default: true)
     static let shouldSwitchToDarkerTheme = Key<Bool>("shouldSwitchToDarkerTheme", default: false)
-    static let niceDeviceModel = Key<String>("niceDeviceModel", default: "")
+    static let deviceName = Key<String>("deviceName", default: "")
+    static let deviceVersion = Key<String>("deviceVersion", default: "")
     static let enableIapPatch = Key<Bool>("enableIapPatch", default: false)
     static let preserveEntitlements = Key<Bool>("preserveEntitlements", default: false)
     static let disableRevocationChecks = Key<Bool>("disableRevocationChecks", default: false)
@@ -127,8 +128,12 @@ enum Preferences {
         defaults[.shouldSwitchToDarkerTheme]
     }
 
-    static var niceDeviceModel: String {
-        defaults[.niceDeviceModel]
+    static var deviceName: String {
+        defaults[.deviceName]
+    }
+
+    static var deviceVersion: String {
+        defaults[.deviceVersion]
     }
 
     static var enableIapPatch: Bool {
@@ -191,7 +196,8 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.changeBundleBeforeUpload.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.ignoredUpdateableApps.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.resumeQueuedApps.name)
-        UserDefaults.standard.removeObject(forKey: Defaults.Keys.niceDeviceModel.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.deviceName.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.deviceVersion.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.enableIapPatch.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.preserveEntitlements.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.disableRevocationChecks.name)

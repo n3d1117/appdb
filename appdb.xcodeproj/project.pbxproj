@@ -133,6 +133,8 @@
 		817FF9EF1E59CCE60056960F /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FF9EE1E59CCE60056960F /* Details.swift */; };
 		8182756420791DE9000E9F87 /* News+Detail+TitleDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182756320791DE9000E9F87 /* News+Detail+TitleDateCell.swift */; };
 		8182756620792464000E9F87 /* News+Detail+HTMLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182756520792464000E9F87 /* News+Detail+HTMLCell.swift */; };
+		818763BF267629B800049F58 /* DeviceChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818763BE267629B800049F58 /* DeviceChooser.swift */; };
+		818763C126762B1F00049F58 /* LinkedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818763C026762B1F00049F58 /* LinkedDevice.swift */; };
 		81876E2F227B192B00E27CB8 /* Library+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81876E2E227B192B00E27CB8 /* Library+Extension.swift */; };
 		81876E33227B723D00E27CB8 /* MessagesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81876E32227B723D00E27CB8 /* MessagesFactory.swift */; };
 		8188CE9D1F347F1E001D1DB8 /* ElasticLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */; };
@@ -448,6 +450,8 @@
 		817FF9EE1E59CCE60056960F /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Details.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8182756320791DE9000E9F87 /* News+Detail+TitleDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail+TitleDateCell.swift"; sourceTree = "<group>"; };
 		8182756520792464000E9F87 /* News+Detail+HTMLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Detail+HTMLCell.swift"; sourceTree = "<group>"; };
+		818763BE267629B800049F58 /* DeviceChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceChooser.swift; sourceTree = "<group>"; };
+		818763C026762B1F00049F58 /* LinkedDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedDevice.swift; sourceTree = "<group>"; };
 		81876E2E227B192B00E27CB8 /* Library+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Library+Extension.swift"; sourceTree = "<group>"; };
 		81876E32227B723D00E27CB8 /* MessagesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFactory.swift; sourceTree = "<group>"; };
 		8188CE9C1F347F1E001D1DB8 /* ElasticLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticLabel.swift; sourceTree = "<group>"; };
@@ -1016,6 +1020,14 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		818763BD2676299800049F58 /* Device Chooser */ = {
+			isa = PBXGroup;
+			children = (
+				818763BE267629B800049F58 /* DeviceChooser.swift */,
+			);
+			path = "Device Chooser";
+			sourceTree = "<group>";
+		};
 		81876E31227B721300E27CB8 /* • MessagesFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -1110,6 +1122,7 @@
 				8115465920826AA50031C9DA /* Settings+Sections.swift */,
 				81324067205BD86000945CE9 /* Settings+StaticCells.swift */,
 				819EC27420A7249F007138CF /* Acknowledgements */,
+				818763BD2676299800049F58 /* Device Chooser */,
 				814FF02C207B9B5F0049DF9A /* Device Link */,
 				810C71FC20ACDA9800D6310E /* Device Status */,
 				819EC27C20A76EB6007138CF /* Theme Chooser */,
@@ -1422,6 +1435,7 @@
 				811BEE252151538600F1F56A /* ServiceStatus.swift */,
 				811BEE262151538600F1F56A /* SingleNews.swift */,
 				814F4FBA2196FA35005A8111 /* UpdateableApp.swift */,
+				818763C026762B1F00049F58 /* LinkedDevice.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1819,6 +1833,7 @@
 				815016A12312DAFE00E06E1E /* WishAppCell.swift in Sources */,
 				814F4FB92196F5F9005A8111 /* API+Updates.swift in Sources */,
 				8105175B20D0283300B3E1FB /* Identifiable.swift in Sources */,
+				818763C126762B1F00049F58 /* LinkedDevice.swift in Sources */,
 				81F271E221690B97005C7314 /* NoScreenshotsSearchCell~Book+Stars.swift in Sources */,
 				81190B3D21696F8800C81BEB /* PortraitScreenshotSearchCell+Stars.swift in Sources */,
 				8133C45E208B874600F2F9F5 /* SeeAllCell.swift in Sources */,
@@ -1941,6 +1956,7 @@
 				811228472354DDC600C75CC6 /* ListAppsManagedByAppdb.swift in Sources */,
 				81AF3532215115B200A798D7 /* RoundedButton.swift in Sources */,
 				815016A32312DAFE00E06E1E /* NewWishes.swift in Sources */,
+				818763BF267629B800049F58 /* DeviceChooser.swift in Sources */,
 				81EC00681DAD76EC009EEFFA /* Extensions.swift in Sources */,
 				819E69891F8E8C2700C4608F /* SearchCell.swift in Sources */,
 				818979412284853A00EC87B2 /* DownloadingCell.swift in Sources */,

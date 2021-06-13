@@ -128,6 +128,7 @@ enum Actions: String {
     case getAppdbAppsBundleIdsTicket = "get_appdb_apps_bundle_ids_ticket"
     case getAppdbAppsBundleIds = "get_appdb_apps_bundle_ids"
     case processRedirect = "process_redirect"
+    case getAllDevices = "get_all_devices"
 }
 
 enum ConfigurationParameters: String {

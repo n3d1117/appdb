@@ -15,8 +15,8 @@ extension Settings {
     // Device info string, e.g. "iPhone 6s (10.2)"
     var deviceInfoString: String {
         let device = UIDevice.current
-        if device.deviceType == .notAvailable && !Preferences.niceDeviceModel.isEmpty {
-            return Preferences.niceDeviceModel + " (" + device.systemVersion + ")"
+        if !Preferences.deviceName.isEmpty {
+            return Preferences.deviceName + " (" + Preferences.deviceVersion + ")"
         } else {
             return device.deviceType.displayName + " (" + device.systemVersion + ")"
         }
@@ -99,7 +99,9 @@ extension Settings {
         themeSection + [
 
             Section(header: .title("General".localized()), rows: [
-                Row(text: "Device".localized(), detailText: deviceInfoString, cellClass: SimpleStaticCell.self),
+                Row(text: "Device".localized(), detailText: deviceInfoString, selection: { [unowned self] _ in
+                    self.push(DeviceChooser())
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
 
                 Row(text: "PRO Status".localized(), selection: { [unowned self] _ in
                     if !Preferences.usesCustomDeveloperIdentity && (Preferences.proRevoked || !Preferences.pro) {
