@@ -113,8 +113,11 @@ class DeviceChooser: LoadingTableView {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard devices.indices.contains(indexPath.row) else { return }
         let device = devices[indexPath.row]
-        if device.linkToken == Preferences.linkToken { return }
-        switchToDevice(name: device.niceIdeviceModel, linkToken: device.linkToken)
+        if device.linkToken == Preferences.linkToken {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        switchToDevice(name: device.name, linkToken: device.linkToken)
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
