@@ -23,6 +23,7 @@ enum Global {
 
     static let mainSite: String = "https://appdb.to/"
     static let githubSite: String = "https://github.com/n3d1117/appdb"
+    static let donateSite: String = "https://www.buymeacoffee.com/ne_do"
     static let email: String = "appdb.ned@gmail.com"
     static let telegramUsername: String = "ne_do"
     static let telemetryAppId: String = "4AA0955D-55BD-43DB-AF8A-746A74CEBE60"

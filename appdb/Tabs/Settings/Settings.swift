@@ -159,6 +159,9 @@ class Settings: TableViewController {
         alertController.addAction(UIAlertAction(title: "Telegram".localized(), style: .default) { _ in
             self.openTelegramLink()
         })
+        alertController.addAction(UIAlertAction(title: "Buy me a coffee".localized(), style: .default) { _ in
+            self.openInSafari(Global.donateSite)
+        })
         if let popover = alertController.popoverPresentationController {
             popover.sourceView = tableView
             popover.sourceRect = tableView.rectForRow(at: indexPath)

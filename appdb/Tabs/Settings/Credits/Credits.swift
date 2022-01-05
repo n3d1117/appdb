@@ -34,8 +34,9 @@ class Credits: TableViewController {
     }
 
     lazy var credits: [Credit] = [
-        Credit(name: "ned", imageName: "ned", type: .developer, handle: .telegram(username: Global.telegramUsername)),
+        Credit(name: "ned", imageName: "ned", type: .developer, handle: .none),
         Credit(name: "View project on GitHub".localized(), imageName: "github", type: .developer, handle: .website(site: Global.githubSite)),
+        Credit(name: "Buy me a coffee".localized(), imageName: "bmac", type: .developer, handle: .website(site: Global.donateSite)),
 
         Credit(name: "appdb team", imageName: "appdb", type: .specialThanks, handle: .website(site: Global.mainSite)),
         Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), imageName: "aesign", type: .specialThanks, handle: .website(site: "https://aesign.me")),
