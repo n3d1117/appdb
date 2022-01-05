@@ -28,6 +28,8 @@ extension Defaults.Keys {
     static let disableRevocationChecks = Key<Bool>("disableRevocationChecks", default: false)
     static let forceDisablePRO = Key<Bool>("forceDisablePRO", default: false)
     static let enableTrainer = Key<Bool>("enableTrainer", default: false)
+    static let signingIdentityType = Key<String>("signingIdentityType", default: "auto")
+    static let optedOutFromEmails = Key<Bool>("optedOutFromEmails", default: false)
 }
 
 // Sensitive data is stored in Keychain
@@ -150,6 +152,14 @@ enum Preferences {
     static var enableTrainer: Bool {
         defaults[.enableTrainer]
     }
+
+    static var signingIdentityType: String {
+        defaults[.signingIdentityType]
+    }
+
+    static var optedOutFromEmails: Bool {
+        defaults[.optedOutFromEmails]
+    }
 }
 
 extension Preferences {
@@ -197,6 +207,8 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.disableRevocationChecks.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.forceDisablePRO.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.enableTrainer.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.signingIdentityType.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.optedOutFromEmails.name)
     }
 
     // Remove secure keys

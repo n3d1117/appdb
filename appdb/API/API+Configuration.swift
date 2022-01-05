@@ -53,6 +53,8 @@ extension API {
                             Preferences.set(.disableRevocationChecks, to: data["disable_protection_checks"].stringValue == "yes")
                             Preferences.set(.forceDisablePRO, to: data["is_pro_disabled"].stringValue == "yes")
                             Preferences.set(.enableTrainer, to: data["enable_trainer"].stringValue == "yes")
+                            Preferences.set(.signingIdentityType, to: data["signing_identity_type"].stringValue)
+                            Preferences.set(.optedOutFromEmails, to: data["is_opted_out_from_emails"].stringValue == "yes")
 
                             success()
                         }, fail: { error in
@@ -88,6 +90,8 @@ extension API {
                             case .forceDisablePRO: Preferences.set(.forceDisablePRO, to: value == "yes")
                             case .clearDevEntity: break
                             case .enableTrainer: Preferences.set(.enableTrainer, to: value == "yes")
+                            case .signingIdentityType: Preferences.set(.signingIdentityType, to: value)
+                            case .optedOutFromEmails: Preferences.set(.optedOutFromEmails, to: value == "yes")
                             }
                         }
                         success()

@@ -12,6 +12,58 @@ import TelemetryClient
 
 class AdvancedOptions: TableViewController {
 
+    fileprivate func getSections() -> [Static.Section] {
+        var sections = [Section(rows: [
+            Row(text: "Signing Type".localized(),
+                detailText: Preferences.signingIdentityType.capitalizingFirstLetter(), selection: { [unowned self] _ in
+                    self.push(SigningTypeChooser())
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+            Row(text: "Patch in-app Purchases".localized(), accessory: .switchToggle(value: Preferences.enableIapPatch) { newValue in
+                API.setConfiguration(params: [.enableIapPatch: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+            }, cellClass: SimpleStaticCell.self),
+            Row(text: "Enable Game Trainer".localized(), accessory: .switchToggle(value: Preferences.enableTrainer) { newValue in
+                API.setConfiguration(params: [.enableTrainer: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+            }, cellClass: SimpleStaticCell.self),
+            Row(text: "Disable Revocation Checks".localized(), accessory: .switchToggle(value: Preferences.disableRevocationChecks) { newValue in
+                API.setConfiguration(params: [.disableProtectionChecks: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+            }, cellClass: SimpleStaticCell.self),
+            Row(text: "Force Disable PRO".localized(), accessory: .switchToggle(value: Preferences.forceDisablePRO) { newValue in
+                API.setConfiguration(params: [.forceDisablePRO: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+            }, cellClass: SimpleStaticCell.self),
+            Row(text: "Opt-out from emails".localized(), accessory: .switchToggle(value: Preferences.optedOutFromEmails) { newValue in
+                API.setConfiguration(params: [.optedOutFromEmails: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+            }, cellClass: SimpleStaticCell.self)
+        ]),
+        Section(rows: [
+            Row(text: "Check Revocation".localized(), selection: { [unowned self] _ in
+                self.checkProRevocationStatus()
+            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+            Row(text: "Validate PRO Voucher".localized(), selection: { [unowned self] _ in
+                self.validateVoucher()
+            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+            Row(text: "Activate PRO Voucher".localized(), selection: { [unowned self] _ in
+                self.activateVoucher()
+            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+            Row(text: "Email Link Code".localized(), selection: { [unowned self] _ in
+                self.emailLinkCode()
+            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+            Row(text: "List apps managed by appdb".localized(), selection: { [unowned self] _ in
+                self.listAppsManagedByAppdb()
+            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+        ]),
+        Section(rows: [
+            Row(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
+                Preferences.set(.changeBundleBeforeUpload, to: new)
+            }, "value": Preferences.changeBundleBeforeUpload])
+        ], footer: .title("Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.".localized())),
+        Section(rows: [
+            Row(text: "Clear developer identity".localized(), selection: { _ in }, cellClass: ClearIdentityStaticCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
+        ])
+        ]
+        if #available(iOS 13.0, *) {} else { sections.insert(Section(), at: 0) }
+        return sections
+    }
+
     convenience init() {
         if #available(iOS 13.0, *) {
             self.init(style: .insetGrouped)
@@ -49,55 +101,34 @@ class AdvancedOptions: TableViewController {
             }
         }
 
-        var sections = [
-            Section(rows: [
-                Row(text: "Patch in-app Purchases".localized(), accessory: .switchToggle(value: Preferences.enableIapPatch) { newValue in
-                    API.setConfiguration(params: [.enableIapPatch: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-                Row(text: "Enable Game Trainer".localized(), accessory: .switchToggle(value: Preferences.enableTrainer) { newValue in
-                    API.setConfiguration(params: [.enableTrainer: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-                Row(text: "Disable Revocation Checks".localized(), accessory: .switchToggle(value: Preferences.disableRevocationChecks) { newValue in
-                    API.setConfiguration(params: [.disableProtectionChecks: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-                Row(text: "Force Disable PRO".localized(), accessory: .switchToggle(value: Preferences.forceDisablePRO) { newValue in
-                    API.setConfiguration(params: [.forceDisablePRO: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self)
-            ]),
-            Section(rows: [
-                Row(text: "Check Revocation".localized(), selection: { [unowned self] _ in
-                    self.checkProRevocationStatus()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "Validate PRO Voucher".localized(), selection: { [unowned self] _ in
-                    self.validateVoucher()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "Activate PRO Voucher".localized(), selection: { [unowned self] _ in
-                    self.activateVoucher()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "Email Link Code".localized(), selection: { [unowned self] _ in
-                    self.emailLinkCode()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "List apps managed by appdb".localized(), selection: { [unowned self] _ in
-                    self.listAppsManagedByAppdb()
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
-            ]),
-            Section(rows: [
-                Row(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
-                    Preferences.set(.changeBundleBeforeUpload, to: new)
-                }, "value": Preferences.changeBundleBeforeUpload])
-            ], footer: .title("Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.".localized())),
-            Section(rows: [
-                Row(text: "Clear developer identity".localized(), selection: { _ in }, cellClass: ClearIdentityStaticCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
-            ])
-        ]
-        if #available(iOS 13.0, *) {} else { sections.insert(Section(), at: 0) }
         dataSource = DataSource(tableViewDelegate: self)
-        dataSource.sections = sections
+        dataSource.sections = getSections()
 
         TelemetryManager.send(Global.Telemetry.openedAdvancedOptions.rawValue)
     }
 
     @objc func dismissAnimated() { dismiss(animated: true) }
+
+    func push(_ viewController: UIViewController) {
+
+        // Set delegates for view controllers that require one
+        if let typeChooser = viewController as? SigningTypeChooser {
+            typeChooser.changedTypeDelegate = self
+        }
+
+        // Show view controller
+        if Global.isIpad {
+            if (viewController is SigningTypeChooser), #available(iOS 13.0, *) {
+                self.navigationController?.pushViewController(viewController, animated: true)
+            } else {
+                let nav = DismissableModalNavController(rootViewController: viewController)
+                nav.modalPresentationStyle = .formSheet
+                self.navigationController?.present(nav, animated: true)
+            }
+        } else {
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
 }
 
 extension AdvancedOptions: UITableViewDelegate {
@@ -237,5 +268,12 @@ extension AdvancedOptions {
                 (alert.actions[1] as UIAlertAction).isEnabled = false
             }
         }
+    }
+}
+
+extension AdvancedOptions: ChangedSigningType {
+    func changedSigningType() {
+        API.setConfiguration(params: [.signingIdentityType: Preferences.signingIdentityType], success: {}, fail: { _ in })
+        dataSource.sections = getSections()
     }
 }

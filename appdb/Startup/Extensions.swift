@@ -201,6 +201,15 @@ extension String {
         let set = CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[] ")
         return self.addingPercentEncoding(withAllowedCharacters: set.inverted)
     }
+
+    /// Capitalize first letter
+    /// https://www.hackingwithswift.com/example-code/strings/how-to-capitalize-the-first-letter-of-a-string
+    func capitalizingFirstLetter() -> String {
+        prefix(1).capitalized + dropFirst()
+    }
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }
 
 // MARK: - Separators

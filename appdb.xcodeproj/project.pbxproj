@@ -236,6 +236,7 @@
 		81EC00791DAD8B5A009EEFFA /* Copyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00781DAD8B5A009EEFFA /* Copyright.swift */; };
 		81EC007B1DAD92A2009EEFFA /* Featured+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */; };
 		81ED9A61226CB86100F45B75 /* ObserveQueuedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED9A60226CB86100F45B75 /* ObserveQueuedApps.swift */; };
+		81F00E2B2785B8DF0071B16E /* SigningTypeChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F00E2A2785B8DF0071B16E /* SigningTypeChooser.swift */; };
 		81F055E92298144400E76874 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F055E62298144400E76874 /* Defaults.swift */; };
 		81F055EA2298144400E76874 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F055E72298144400E76874 /* Observation.swift */; };
 		81F055ED2298147200E76874 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F055EB2298147200E76874 /* KeychainItemAccessibility.swift */; };
@@ -539,6 +540,7 @@
 		81EC00781DAD8B5A009EEFFA /* Copyright.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Copyright.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Featured+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81ED9A60226CB86100F45B75 /* ObserveQueuedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveQueuedApps.swift; sourceTree = "<group>"; };
+		81F00E2A2785B8DF0071B16E /* SigningTypeChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningTypeChooser.swift; sourceTree = "<group>"; };
 		81F055E62298144400E76874 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		81F055E72298144400E76874 /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 		81F055EB2298147200E76874 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
@@ -1129,6 +1131,7 @@
 				81DD29D52288CD1A00412BE6 /* Language Chooser */,
 				81F0C0A723535B4000604A10 /* Advanced Options */,
 				81324069205BE4C700945CE9 /* News */,
+				81F00E292785B8B90071B16E /* Signing Type Chooser */,
 				81004A10209E2502002414F1 /* System Status */,
 				81638F56229E9CC200B2F891 /* Credits */,
 			);
@@ -1499,6 +1502,14 @@
 				81EC006D1DAD7915009EEFFA /* ItemCollection.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		81F00E292785B8B90071B16E /* Signing Type Chooser */ = {
+			isa = PBXGroup;
+			children = (
+				81F00E2A2785B8DF0071B16E /* SigningTypeChooser.swift */,
+			);
+			path = "Signing Type Chooser";
 			sourceTree = "<group>";
 		};
 		81F055E42298141200E76874 /* Storage */ = {
@@ -1894,6 +1905,7 @@
 				81E170302170D09000A38380 /* TagButton.swift in Sources */,
 				81485A77216617980004184F /* Search+Extension.swift in Sources */,
 				8126201C215444A400B06F88 /* Style.swift in Sources */,
+				81F00E2B2785B8DF0071B16E /* SigningTypeChooser.swift in Sources */,
 				81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */,
 				815016952312DAAE00E06E1E /* WishApp.swift in Sources */,
 				811BEE2D2151538600F1F56A /* App.swift in Sources */,

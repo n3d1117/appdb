@@ -140,4 +140,6 @@ enum ConfigurationParameters: String {
     case enableIapPatch = "params[enable_inapp_patch]"
     case forceDisablePRO = "params[is_pro_disabled]"
     case enableTrainer = "params[enable_trainer]"
+    case signingIdentityType = "params[signing_identity_type]"
+    case optedOutFromEmails = "params[is_opted_out_from_emails]"
 }
