@@ -172,7 +172,7 @@ public enum InternalDeviceType: String, CaseIterable {
         case .iPad6: return "iPad 6"
         case .iPad7: return "iPad 7"   
         case .iPad8: return "iPad 8"
-        case .iPad8: return "iPad 9"
+        case .iPad9: return "iPad 9"
         case .iPadMini: return "iPad Mini"
         case .iPadMiniRetina: return "iPad Mini Retina"
         case .iPadMini3: return "iPad Mini 3"
