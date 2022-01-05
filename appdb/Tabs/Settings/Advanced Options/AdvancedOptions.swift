@@ -57,9 +57,6 @@ class AdvancedOptions: TableViewController {
                 Row(text: "Enable Game Trainer".localized(), accessory: .switchToggle(value: Preferences.enableTrainer) { newValue in
                     API.setConfiguration(params: [.enableTrainer: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
-                Row(text: "Preserve Entitlements Comments".localized(), detailText: "For Psychic Paper exploit".localized(), accessory: .switchToggle(value: Preferences.preserveEntitlements) { newValue in
-                    API.setConfiguration(params: [.preserveEntitlements: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleSubtitleCell.self),
                 Row(text: "Disable Revocation Checks".localized(), accessory: .switchToggle(value: Preferences.disableRevocationChecks) { newValue in
                     API.setConfiguration(params: [.disableProtectionChecks: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),

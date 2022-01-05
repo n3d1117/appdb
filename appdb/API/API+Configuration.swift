@@ -50,7 +50,6 @@ extension API {
                             Preferences.set(.deviceName, to: data["name"].stringValue)
                             Preferences.set(.deviceVersion, to: data["ios_version"].stringValue)
                             Preferences.set(.enableIapPatch, to: data["enable_inapp_patch"].stringValue == "yes")
-                            Preferences.set(.preserveEntitlements, to: data["enable_psychic_paper"].stringValue == "yes")
                             Preferences.set(.disableRevocationChecks, to: data["disable_protection_checks"].stringValue == "yes")
                             Preferences.set(.forceDisablePRO, to: data["is_pro_disabled"].stringValue == "yes")
                             Preferences.set(.enableTrainer, to: data["enable_trainer"].stringValue == "yes")
@@ -85,7 +84,6 @@ extension API {
                             case .askForOptions: Preferences.set(.askForInstallationOptions, to: value == "yes")
                             case .ignoreCompatibility: Preferences.set(.ignoreCompatibility, to: value == "yes")
                             case .enableIapPatch: Preferences.set(.enableIapPatch, to: value == "yes")
-                            case .preserveEntitlements: Preferences.set(.preserveEntitlements, to: value == "yes")
                             case .disableProtectionChecks: Preferences.set(.disableRevocationChecks, to: value == "yes")
                             case .forceDisablePRO: Preferences.set(.forceDisablePRO, to: value == "yes")
                             case .clearDevEntity: break
