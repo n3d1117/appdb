@@ -54,6 +54,11 @@ public enum InternalDeviceType: String, CaseIterable {
     case iPhone12
     case iPhone12Pro
     case iPhone12ProMax
+    
+    case iPhone13Mini
+    case iPhone13
+    case iPhone13Pro
+    case iPhone13ProMax
 
     case iPodTouch1G
     case iPodTouch2G
@@ -71,11 +76,13 @@ public enum InternalDeviceType: String, CaseIterable {
     case iPad6
     case iPad7
     case iPad8
+    case iPad9
     case iPadMini
     case iPadMiniRetina
     case iPadMini3
     case iPadMini4
     case iPadMini5
+    case iPadMini6
     
     case iPadAir
     case iPadAir2
@@ -146,6 +153,10 @@ public enum InternalDeviceType: String, CaseIterable {
         case .iPhone12: return "iPhone 12"
         case .iPhone12Pro: return "iPhone 12 Pro"
         case .iPhone12ProMax: return "iPhone 12 Pro Max"
+        case .iPhone13Mini: return "iPhone 13 Mini"
+        case .iPhone13: return "iPhone 13"
+        case .iPhone13Pro: return "iPhone 13 Pro"
+        case .iPhone13ProMax: return "iPhone 13 Pro Max"
         case .iPodTouch1G: return "iPod Touch 1G"
         case .iPodTouch2G: return "iPod Touch 2G"
         case .iPodTouch3G: return "iPod Touch 3G"
@@ -160,12 +171,14 @@ public enum InternalDeviceType: String, CaseIterable {
         case .iPad5: return "iPad 5"
         case .iPad6: return "iPad 6"
         case .iPad7: return "iPad 7"   
-        case .iPad8: return "iPad 8"   
+        case .iPad8: return "iPad 8"
+        case .iPad8: return "iPad 9"
         case .iPadMini: return "iPad Mini"
         case .iPadMiniRetina: return "iPad Mini Retina"
         case .iPadMini3: return "iPad Mini 3"
         case .iPadMini4: return "iPad Mini 4"
         case .iPadMini5: return "iPad Mini 5"
+        case .iPadMini6: return "iPad Mini 6"
         case .iPadAir: return "iPad Air"
         case .iPadAir2: return "iPad Air 2"
         case .iPadAir3: return "iPad Air 3"        
@@ -184,7 +197,7 @@ public enum InternalDeviceType: String, CaseIterable {
         
         switch self {
         case .notAvailable: return []
-        case .simulator: return ["i386", "x86_64"]
+        case .simulator: return ["i386", "x86_64", "arm64"]
             
         case .iPhone2G: return ["iPhone1,1"]
         case .iPhone3G: return ["iPhone1,2"]
@@ -215,6 +228,10 @@ public enum InternalDeviceType: String, CaseIterable {
         case .iPhone12: return ["iPhone13,2"]
         case .iPhone12Pro: return ["iPhone13,3"]
         case .iPhone12ProMax: return ["iPhone13,4"]
+        case .iPhone13Mini: return ["iPhone14,4"]
+        case .iPhone13: return ["iPhone14,5"]
+        case .iPhone13Pro: return ["iPhone14,2"]
+        case .iPhone13ProMax: return ["iPhone14,3"]
         case .iPodTouch1G: return ["iPod1,1"]
         case .iPodTouch2G: return ["iPod2,1"]
         case .iPodTouch3G: return ["iPod3,1"]
@@ -230,11 +247,13 @@ public enum InternalDeviceType: String, CaseIterable {
         case .iPad6: return ["iPad7,5", "iPad7,6"]
         case .iPad7: return ["iPad7,11", "iPad7,12"]
         case .iPad8: return ["iPad11,6", "iPad11,7"]
+        case .iPad9: return ["iPad12,1", "iPad12,2"]
         case .iPadMini: return ["iPad2,5", "iPad2,6", "iPad2,7"]
         case .iPadMiniRetina: return ["iPad4,4", "iPad4,5", "iPad4,6"]
         case .iPadMini3: return ["iPad4,7", "iPad4,8", "iPad4,9"]
         case .iPadMini4: return ["iPad5,1", "iPad5,2"]
         case .iPadMini5: return ["iPad11,1", "iPad11,2"]
+        case .iPadMini6: return ["iPad14,1", "iPad14,2"]
         case .iPadAir: return ["iPad4,1", "iPad4,2", "iPad4,3"]
         case .iPadAir2: return ["iPad5,3", "iPad5,4"]
         case .iPadAir3: return ["iPad11,3", "iPad11,4"]
