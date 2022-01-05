@@ -82,6 +82,7 @@ struct NewsWidgetsMainContentView: View {
         case .systemSmall: return 1
         case .systemMedium: return 3
         case .systemLarge: return 8
+        case .systemExtraLarge: return 0 // not supported
         @unknown default: return 3
         }
     }
