@@ -130,6 +130,10 @@ extension Settings {
                     API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
                 }, cellClass: SimpleStaticCell.self),
 
+                Row(text: "IPA Cache".localized(), selection: { [unowned self] _ in
+                    self.push(IPACache())
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+
                 Row(text: "Advanced Options".localized(), selection: { [unowned self] _ in
                     self.push(AdvancedOptions())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)

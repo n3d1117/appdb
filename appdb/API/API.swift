@@ -129,6 +129,11 @@ enum Actions: String {
     case getAppdbAppsBundleIds = "get_appdb_apps_bundle_ids"
     case processRedirect = "process_redirect"
     case getAllDevices = "get_all_devices"
+    case getIpaCacheStatus = "get_ipa_cache_status"
+    case installFromCache = "install_from_cache"
+    case clearIpaCache = "clear_ipa_cache"
+    case revalidateIpaCache = "ensure_ipa_cache"
+    case transferIpaCache = "transfer_ipa_cache"
 }
 
 enum ConfigurationParameters: String {
