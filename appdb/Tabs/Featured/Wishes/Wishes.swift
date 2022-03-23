@@ -34,7 +34,11 @@ class Wishes: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped))
 
         headerView = ILTranslucentView(frame: .zero)
-        headerView.translucentAlpha = 1
+        if #available(iOS 15.0, *) {
+            headerView.translucentAlpha = 0
+        } else {
+            headerView.translucentAlpha = 1
+        }
 
         control = UISegmentedControl(items: ["New".localized(), "Fulfilled".localized()])
         control.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)

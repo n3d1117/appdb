@@ -36,7 +36,11 @@ class Downloads: UIViewController {
         if let nav = navigationController { nav.navigationBar.hideBottomHairline() }
 
         headerView = ILTranslucentView(frame: .zero)
-        headerView.translucentAlpha = 1
+        if #available(iOS 15.0, *) {
+            headerView.translucentAlpha = 0
+        } else {
+            headerView.translucentAlpha = 1
+        }
 
         control = UISegmentedControl(items: ["Queued".localized(), "Library".localized(), "Downloading".localized()])
         control.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)

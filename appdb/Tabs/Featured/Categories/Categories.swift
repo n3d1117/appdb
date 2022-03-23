@@ -60,7 +60,11 @@ class Categories: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.theme_separatorColor = Color.borderColor
 
         headerView = ILTranslucentView(frame: .zero)
-        headerView.translucentAlpha = 1
+        if #available(iOS 15.0, *) {
+            headerView.translucentAlpha = 0
+        } else {
+            headerView.translucentAlpha = 1
+        }
 
         control = UISegmentedControl(items: ["iOS".localized(), "Cydia".localized(), "Books".localized()])
         control.addTarget(self, action: #selector(self.indexDidChange), for: .valueChanged)
