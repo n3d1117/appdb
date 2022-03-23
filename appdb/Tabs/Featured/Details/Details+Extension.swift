@@ -65,6 +65,11 @@ extension Details {
 
         // Fix random separator margin issues
         if #available(iOS 9, *) { tableView.cellLayoutMarginsFollowReadableWidth = false }
+
+        // Fix iOS 15 tableview section header padding
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
 
     // Get content dynamically
