@@ -85,21 +85,26 @@ class IPACache: LoadingTableView {
             case 0:
                 cell.textLabel?.text = "Size".localized()
                 cell.detailTextLabel?.text = status.sizeHr
+                cell.textLabel?.theme_textColor = Color.title
                 cell.selectionStyle = .none
             case 1:
                 cell.textLabel?.text = "In Update".localized()
                 cell.detailTextLabel?.text = status.inUpdate ? "Yes".localized() : "No".localized()
+                cell.textLabel?.theme_textColor = Color.title
                 cell.selectionStyle = .none
             case 2:
                 cell.textLabel?.text = "Reinstall everything".localized()
+                cell.detailTextLabel?.text = nil
                 cell.textLabel?.theme_textColor = Color.mainTint
                 cell.selectionStyle = .default
             case 3:
                 cell.textLabel?.text = "Clear IPA cache".localized()
+                cell.detailTextLabel?.text = nil
                 cell.textLabel?.theme_textColor = Color.mainTint
                 cell.selectionStyle = .default
             case 4:
                 cell.textLabel?.text = "Re-validate IPA cache".localized()
+                cell.detailTextLabel?.text = nil
                 cell.textLabel?.theme_textColor = Color.mainTint
                 cell.selectionStyle = .default
             default: break
