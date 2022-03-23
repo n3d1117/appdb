@@ -12,13 +12,13 @@ import SwiftyJSON
 extension API {
 
     static func getUpdatesTicket(success:@escaping (_ ticket: String) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getUpdatesTicket.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.getUpdatesTicket.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        fail(json["errors"][0].stringValue)
+                        fail(json["errors"][0]["translated"].stringValue)
                     } else {
                         success(json["data"].stringValue)
                     }
@@ -29,7 +29,7 @@ extension API {
     }
 
     static func getUpdates(ticket: String, success:@escaping (_ items: [UpdateableApp]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        let request = AF.request(endpoint, parameters: ["action": Actions.getUpdates.rawValue, "t": ticket], headers: headersWithCookie)
+        let request = AF.request(endpoint, parameters: ["action": Actions.getUpdates.rawValue, "t": ticket, "lang": languageCode], headers: headersWithCookie)
 
         quickCheckForErrors(request, completion: { ok, hasError in
             if ok {

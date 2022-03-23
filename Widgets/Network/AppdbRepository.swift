@@ -53,7 +53,7 @@ struct AppdbSearchResource: APIResource {
     var queryItems: [URLQueryItem]?
 
     init(_ contentType: ContentType, _ sortOrder: SortOrder, _ contentPrice: ContentPrice) {
-        methodPath = "/v1.4/"
+        methodPath = "/v1.5/"
         queryItems = [
             URLQueryItem(name: "action", value: "search"),
             URLQueryItem(name: "type", value: type(from: contentType)),
@@ -66,7 +66,7 @@ struct AppdbSearchResource: APIResource {
 extension AppdbSearchResource {
     struct Response: Decodable {
         let success: Bool
-        let errors: [String]
+        let errors: [APIResponseError]
         let data: [Content]
     }
 }
@@ -77,7 +77,7 @@ struct AppdbNewsResource: APIResource {
     var queryItems: [URLQueryItem]?
 
     init() {
-        methodPath = "/v1.4/"
+        methodPath = "/v1.5/"
         queryItems = [
             URLQueryItem(name: "action", value: "get_pages"),
             URLQueryItem(name: "category", value: "news"),
@@ -89,7 +89,7 @@ struct AppdbNewsResource: APIResource {
 extension AppdbNewsResource {
     struct Response: Decodable {
         let success: Bool
-        let errors: [String]
+        let errors: [APIResponseError]
         let data: [News]
     }
 }

@@ -19,7 +19,7 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        fail(json["errors"][0].stringValue)
+                        fail(json["errors"][0]["translated"].stringValue)
                     } else {
                         // Save token
                         Preferences.set(.token, to: json["data"]["link_token"].stringValue)
@@ -44,7 +44,7 @@ extension API {
             case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
-                    fail(json["errors"][0].stringValue)
+                    fail(json["errors"][0]["translated"].stringValue)
                 } else {
                     Preferences.set(.linkCode, to: json["data"].stringValue)
                     success()
@@ -56,13 +56,14 @@ extension API {
     }
 
     static func emailLinkCode(email: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["email": email, "action": Actions.emailLinkCode.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["email": email, "action": Actions.emailLinkCode.rawValue,
+                                          "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
-                    fail(json["errors"][0].stringValue)
+                    fail(json["errors"][0]["translated"].stringValue)
                 } else {
                     success()
                 }
@@ -73,13 +74,14 @@ extension API {
     }
 
     static func getAppdbAppsBundleIdsTicket(success:@escaping (_ ticket: String) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getAppdbAppsBundleIdsTicket.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.getAppdbAppsBundleIdsTicket.rawValue,
+                                          "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
-                    fail(json["errors"][0].stringValue)
+                    fail(json["errors"][0]["translated"].stringValue)
                 } else {
                     success(json["data"].stringValue)
                 }
@@ -90,13 +92,14 @@ extension API {
     }
 
     static func getAppdbAppsBundleIds(ticket: String, success:@escaping (_ bundleIds: [String]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["t": ticket, "action": Actions.getAppdbAppsBundleIds.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["t": ticket, "action": Actions.getAppdbAppsBundleIds.rawValue,
+                                          "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
-                    fail(json["errors"][0].stringValue)
+                    fail(json["errors"][0]["translated"].stringValue)
                 } else {
                     success(json["data"].arrayValue.map { $0.stringValue})
                 }
@@ -107,7 +110,8 @@ extension API {
     }
 
     static func getAllLinkedDevices(success:@escaping (_ devices: [LinkedDevice]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getAllDevices.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.getAllDevices.rawValue,
+                                          "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[LinkedDevice]>) in
                 switch response.result {
                 case .success(let devices):

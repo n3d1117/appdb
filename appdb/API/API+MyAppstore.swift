@@ -30,7 +30,7 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        completion(json["errors"][0].stringValue)
+                        completion(json["errors"][0]["translated"].stringValue)
                     } else {
                         completion(nil)
                     }
@@ -57,7 +57,7 @@ extension API {
             case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
-                    completion(json["errors"][0].stringValue)
+                    completion(json["errors"][0]["translated"].stringValue)
                 } else {
                     completion(nil)
                 }
@@ -68,14 +68,14 @@ extension API {
     }
 
     static func analyzeJob(jobId: String, completion:@escaping (_ error: String?) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.analyzeIpa.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.analyzeIpa.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
 
                     if !json["success"].boolValue {
-                        completion(json["errors"][0].stringValue)
+                        completion(json["errors"][0]["translated"].stringValue)
                     } else {
                         for i in 0..<json["data"].count {
                             let job = json["data"][i]

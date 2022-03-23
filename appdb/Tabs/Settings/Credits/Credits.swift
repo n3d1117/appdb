@@ -21,7 +21,6 @@ class Credits: TableViewController {
     enum Handle: Equatable {
         case twitter(username: String)
         case website(site: String)
-        case telegram(username: String)
         case none
     }
 
@@ -113,18 +112,6 @@ class Credits: TableViewController {
 
     private func handleTap(for handle: Handle) {
         switch handle {
-        case .telegram(let username):
-            let link = "tg://resolve?domain=\(username)"
-            if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url)
-            } else if let url = URL(string: "https://t.me/\(username)") {
-                if #available(iOS 9.0, *) {
-                    let svc = SFSafariViewController(url: url)
-                    present(svc, animated: true)
-                } else {
-                    UIApplication.shared.open(url)
-                }
-            }
         case .twitter(let username):
             let tweetbotLink = "tweetbot:///user_profile/\(username)"
             if let url = URL(string: tweetbotLink), UIApplication.shared.canOpenURL(url) {

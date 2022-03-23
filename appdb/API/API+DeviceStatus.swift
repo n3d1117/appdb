@@ -24,7 +24,7 @@ extension API {
     }
 
     static func emptyCommandQueue(success:@escaping () -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.clear.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.clear.rawValue, "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success:
@@ -36,10 +36,10 @@ extension API {
     }
 
     static func fixCommand(uuid: String) {
-        AF.request(endpoint, parameters: ["action": Actions.fix.rawValue, "uuid": uuid], headers: headersWithCookie).responseJSON { _ in }
+        AF.request(endpoint, parameters: ["action": Actions.fix.rawValue, "uuid": uuid, "lang": languageCode], headers: headersWithCookie).responseJSON { _ in }
     }
 
     static func retryCommand(uuid: String) {
-        AF.request(endpoint, parameters: ["action": Actions.retry.rawValue, "uuid": uuid], headers: headersWithCookie).responseJSON { _ in }
+        AF.request(endpoint, parameters: ["action": Actions.retry.rawValue, "uuid": uuid, "lang": languageCode], headers: headersWithCookie).responseJSON { _ in }
     }
 }

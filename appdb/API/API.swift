@@ -11,7 +11,7 @@ import SwiftyJSON
 import Localize_Swift
 
 enum API {
-    static let endpoint = "https://api.dbservices.to/v1.4/"
+    static let endpoint = "https://api.dbservices.to/v1.5/"
     static let statusEndpoint = "https://status.dbservices.to/API/v1.0/"
     static let itmsHelperEndpoint = "https://dbservices.to/manifest.php"
 

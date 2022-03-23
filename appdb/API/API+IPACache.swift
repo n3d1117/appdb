@@ -13,7 +13,7 @@ extension API {
 
     static func getIPACacheStatus(success:@escaping (_ status: IPACacheStatus) -> Void, fail:@escaping (_ error: NSError) -> Void) {
 
-        AF.request(endpoint, parameters: ["action": Actions.getIpaCacheStatus.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.getIpaCacheStatus.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseObject(keyPath: "data") { (response: AFDataResponse<IPACacheStatus>) in
                 switch response.result {
                 case .success(let result):
@@ -25,13 +25,13 @@ extension API {
     }
 
     static func reinstallEverything(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.installFromCache.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.installFromCache.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                       fail(json["errors"][0].stringValue)
+                       fail(json["errors"][0]["translated"].stringValue)
                     } else {
                         success()
                     }
@@ -42,14 +42,14 @@ extension API {
     }
 
     static func clearIpaCache(success:@escaping () -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.clearIpaCache.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.clearIpaCache.rawValue, "lang": languageCode], headers: headersWithCookie)
             .response { _ in
                 success()
             }
     }
 
     static func revalidateIpaCache(success:@escaping () -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.revalidateIpaCache.rawValue], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.revalidateIpaCache.rawValue, "lang": languageCode], headers: headersWithCookie)
             .response { _ in
                 success()
             }

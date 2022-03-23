@@ -12,13 +12,13 @@ import SwiftyJSON
 extension API {
 
     static func install(id: String, type: ItemType, alongsideId: String = "", displayName: String = "", completion:@escaping (_ error: String?) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.install.rawValue, "type": type.rawValue, "id": id, "is_alongside": alongsideId.lowercased(), "display_name": displayName], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.install.rawValue, "type": type.rawValue, "id": id, "is_alongside": alongsideId.lowercased(), "display_name": displayName, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        completion(json["errors"][0].stringValue)
+                        completion(json["errors"][0]["translated"].stringValue)
                     } else {
                         completion(nil)
                     }
@@ -29,13 +29,13 @@ extension API {
     }
 
     static func requestInstallJB(plist: String, icon: String, link: String, completion:@escaping (_ error: String?) -> Void) {
-        AF.request(endpoint, method: .post, parameters: ["action": Actions.customInstall.rawValue, "plist": plist, "icon": icon, "link": link], headers: headersWithCookie)
+        AF.request(endpoint, method: .post, parameters: ["action": Actions.customInstall.rawValue, "plist": plist, "icon": icon, "link": link, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        completion(json["errors"][0].stringValue)
+                        completion(json["errors"][0]["translated"].stringValue)
                     } else {
                         completion(nil)
                     }

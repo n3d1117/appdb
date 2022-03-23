@@ -19,7 +19,7 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        fail(json["errors"][0].stringValue)
+                        fail(json["errors"][0]["translated"].stringValue)
                     } else {
 
                         let data = json["data"]
@@ -77,7 +77,7 @@ extension API {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                       fail(json["errors"][0].stringValue)
+                       fail(json["errors"][0]["translated"].stringValue)
                     } else {
                         // Update values
                         for (key, value) in params {

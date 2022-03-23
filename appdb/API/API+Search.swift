@@ -58,7 +58,7 @@ extension API {
                 let json = JSON(value)
                 if !json["success"].boolValue {
                     if !json["errors"].isEmpty {
-                        completion(false, json["errors"][0].stringValue)
+                        completion(false, json["errors"][0]["translated"].stringValue)
                     } else {
                         completion(false, "Oops! Something went wrong. Please try again later.".localized())
                     }

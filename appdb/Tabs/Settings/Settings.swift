@@ -156,9 +156,6 @@ class Settings: TableViewController {
         alertController.addAction(UIAlertAction(title: "Email".localized(), style: .default) { _ in
             self.selectEmail(indexPath: indexPath)
         })
-        alertController.addAction(UIAlertAction(title: "Telegram".localized(), style: .default) { _ in
-            self.openTelegramLink()
-        })
         alertController.addAction(UIAlertAction(title: "Buy me a coffee".localized(), style: .default) { _ in
             self.openInSafari(Global.donateSite)
         })
@@ -175,22 +172,6 @@ class Settings: TableViewController {
     func pushDeviceLink() {
         NotificationCenter.default.addObserver(self, selector: #selector(openSafari(notification:)), name: .OpenSafari, object: nil)
         deviceLinkBulletinManager.showBulletin(above: tabBarController ?? self)
-    }
-
-    // Opens link to contact dev
-    func openTelegramLink() {
-        let username = Global.telegramUsername
-        let link = "tg://resolve?domain=\(username)"
-        if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
-        } else if let url = URL(string: "https://t.me/\(username)") {
-            if #available(iOS 9.0, *) {
-                let svc = SFSafariViewController(url: url)
-                present(svc, animated: true)
-            } else {
-                UIApplication.shared.open(url)
-            }
-        }
     }
 
     // Opens Safari with given URL

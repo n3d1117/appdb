@@ -12,13 +12,13 @@ import SwiftyJSON
 extension API {
 
     static func createPublishRequest(appStoreUrl: String, type: String = "ios", completion:@escaping (_ error: String?) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.createPublishRequest.rawValue, "url": appStoreUrl, "type": type], headers: headersWithCookie)
+        AF.request(endpoint, parameters: ["action": Actions.createPublishRequest.rawValue, "url": appStoreUrl, "type": type, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     if !json["success"].boolValue {
-                        completion(json["errors"][0].stringValue)
+                        completion(json["errors"][0]["translated"].stringValue)
                     } else {
                         completion(nil)
                     }
@@ -29,7 +29,7 @@ extension API {
     }
 
     static func getPublishRequests(includeAll: Bool, page: Int = 1, success:@escaping (_ items: [WishApp]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getPublishRequests.rawValue, "type": "ios", "include_all": includeAll ? 1 : 0, "page": page], headers: headers)
+        AF.request(endpoint, parameters: ["action": Actions.getPublishRequests.rawValue, "type": "ios", "include_all": includeAll ? 1 : 0, "page": page, "lang": languageCode], headers: headers)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[WishApp]>) in
                 switch response.result {
                 case .success(let results):
