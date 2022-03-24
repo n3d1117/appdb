@@ -15,7 +15,7 @@ extension API {
     static func search <T>(type: T.Type, order: Order = .all, price: Price = .all, genre: String = "0", dev: String = "0", trackid: String = "0", q: String = "", page: Int = 1, success:@escaping (_ items: [T]) -> Void, fail:@escaping (_ error: String) -> Void) where T: Item {
         let request = AF.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre, "dev": dev, "trackid": trackid, "q": q, "page": page, "lang": languageCode], headers: headers)
 
-        quickCheckForErrors(request, completion: { ok, hasError, errorCode in
+        quickCheckForErrors(request, completion: { ok, hasError, _ in
             if ok {
                 request.responseArray(keyPath: "data") { (response: AFDataResponse<[T]>) in
                     switch response.result {

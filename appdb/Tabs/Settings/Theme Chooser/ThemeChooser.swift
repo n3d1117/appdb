@@ -91,6 +91,7 @@ class ThemeChooser: UITableViewController {
             cell.accessoryView = followSystemAppearanceToggle
             followSystemAppearanceToggle?.setOn(Preferences.followSystemAppearance, animated: false)
             followSystemAppearanceToggle?.addTarget(self, action: #selector(appearanceToggleValueChanged), for: .valueChanged)
+            cell.accessoryType = .none
             cell.theme_backgroundColor = Color.veryVeryLightGray
             cell.selectedBackgroundView = bgColorView
             return cell
@@ -99,6 +100,7 @@ class ThemeChooser: UITableViewController {
             cell.textLabel?.text = Themes(rawValue: indexPath.row)?.toString
             cell.textLabel?.makeDynamicFont()
             cell.textLabel?.theme_textColor = Color.title
+            cell.accessoryView = nil
             cell.accessoryType = Themes.current == Themes(rawValue: indexPath.row) ? .checkmark : .none
             cell.setBackgroundColor(Color.veryVeryLightGray)
             cell.theme_backgroundColor = Color.veryVeryLightGray
