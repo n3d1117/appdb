@@ -146,6 +146,7 @@ open class RefreshView: UIView {
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.3, animations: {
+                self.progress = 0
                 switch self.style {
                 case .header:
                     scrollView.contentInset.top -= self.height
@@ -154,7 +155,6 @@ open class RefreshView: UIView {
                 }
             }, completion: { _ in
                 self.isRefreshing = false
-                self.progress = 0
                 completion?()
             })
         }

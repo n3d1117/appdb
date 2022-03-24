@@ -40,6 +40,7 @@ class IndicatorView: RefreshView {
         
         layer.addSublayer(arrowLayer)
         addSubview(indicator)
+        alpha = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,6 +60,7 @@ class IndicatorView: RefreshView {
     }
     
     override func didUpdateProgress(_ progress: CGFloat) {
+        alpha = progress
         let rotation = CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
         if isHeader {
             arrowLayer.transform = progress == 1 ? rotation : CATransform3DIdentity
