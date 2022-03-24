@@ -28,10 +28,10 @@ extension API {
             }
     }
 
-    static func getUpdates(ticket: String, success:@escaping (_ items: [UpdateableApp]) -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getUpdates(ticket: String, success:@escaping (_ items: [UpdateableApp]) -> Void, fail:@escaping (_ error: String, _ code: String) -> Void) {
         let request = AF.request(endpoint, parameters: ["action": Actions.getUpdates.rawValue, "t": ticket, "lang": languageCode], headers: headersWithCookie)
 
-        quickCheckForErrors(request, completion: { ok, hasError in
+        quickCheckForErrors(request, completion: { ok, hasError, errorCode in
             if ok {
                 request.responseArray(keyPath: "data") { (response: AFDataResponse<[UpdateableApp]>) in
                     switch response.result {
@@ -52,11 +52,11 @@ extension API {
                         }
                         success(items)
                     case .failure(let error):
-                        fail(error.localizedDescription)
+                        fail(error.localizedDescription, "")
                     }
                 }
             } else {
-                fail(hasError ?? "Cannot connect".localized())
+                fail(hasError ?? "Cannot connect".localized(), errorCode ?? "")
             }
         })
     }

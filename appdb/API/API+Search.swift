@@ -15,7 +15,7 @@ extension API {
     static func search <T>(type: T.Type, order: Order = .all, price: Price = .all, genre: String = "0", dev: String = "0", trackid: String = "0", q: String = "", page: Int = 1, success:@escaping (_ items: [T]) -> Void, fail:@escaping (_ error: String) -> Void) where T: Item {
         let request = AF.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre, "dev": dev, "trackid": trackid, "q": q, "page": page, "lang": languageCode], headers: headers)
 
-        quickCheckForErrors(request, completion: { ok, hasError in
+        quickCheckForErrors(request, completion: { ok, hasError, errorCode in
             if ok {
                 request.responseArray(keyPath: "data") { (response: AFDataResponse<[T]>) in
                     switch response.result {
@@ -51,22 +51,22 @@ extension API {
             }
     }
 
-    static func quickCheckForErrors(_ request: DataRequest, completion: @escaping (_ ok: Bool, _ hasError: String?) -> Void) {
+    static func quickCheckForErrors(_ request: DataRequest, completion: @escaping (_ ok: Bool, _ hasError: String?, _ errorCode: String?) -> Void) {
         request.responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
                     if !json["errors"].isEmpty {
-                        completion(false, json["errors"][0]["translated"].stringValue)
+                        completion(false, json["errors"][0]["translated"].stringValue, json["errors"][0]["code"].stringValue)
                     } else {
-                        completion(false, "Oops! Something went wrong. Please try again later.".localized())
+                        completion(false, "Oops! Something went wrong. Please try again later.".localized(), "")
                     }
                 } else {
-                    completion(true, nil)
+                    completion(true, nil, nil)
                 }
             case .failure(let error):
-                completion(false, error.localizedDescription)
+                completion(false, error.localizedDescription, "")
             }
         }
     }

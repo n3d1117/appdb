@@ -127,10 +127,10 @@ class Updates: LoadingTableView {
             self.updateableApps = mixed.filter { $0.updateable }
             self.nonUpdateableApps = mixed.filter { !$0.updateable }
             done(nil)
-        }, fail: { [weak self] error in
+        }, fail: { [weak self] error, errorCode in
             guard let self = self else { return }
 
-            if error == "NOT_READY" && self.retryCount < self.timeoutLimit {
+            if errorCode == "ERROR_NOT_READY" && self.retryCount < self.timeoutLimit {
                 delay(1) {
                     self.retryCount += 1
                     self.getUpdates(ticket, done: done)
