@@ -49,10 +49,8 @@ extension API {
 
                             Preferences.set(.deviceName, to: data["name"].stringValue)
                             Preferences.set(.deviceVersion, to: data["ios_version"].stringValue)
-                            Preferences.set(.enableIapPatch, to: data["enable_inapp_patch"].stringValue == "yes")
                             Preferences.set(.disableRevocationChecks, to: data["disable_protection_checks"].stringValue == "yes")
                             Preferences.set(.forceDisablePRO, to: data["is_pro_disabled"].stringValue == "yes")
-                            Preferences.set(.enableTrainer, to: data["enable_trainer"].stringValue == "yes")
                             Preferences.set(.signingIdentityType, to: data["signing_identity_type"].stringValue)
                             Preferences.set(.optedOutFromEmails, to: data["is_opted_out_from_emails"].stringValue == "yes")
 

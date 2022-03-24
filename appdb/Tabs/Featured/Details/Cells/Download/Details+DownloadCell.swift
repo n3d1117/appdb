@@ -95,7 +95,7 @@ class DetailsDownload: DetailsCell {
 
             host.bottom ~== cracker.top ~- 3
             host.leading ~== host.superview!.leading ~+ Global.Size.margin.value
-            host.width ~<= host.superview!.width * 0.6
+            host.width ~<= host.superview!.width * 0.65
 
             uploader.leading ~== cracker.leading
             uploader.trailing ~== cracker.trailing
@@ -177,7 +177,7 @@ class DetailsDownloadUnified: DetailsCell {
 
             host.centerY ~== button.centerY ~- 9
             host.leading ~== host.superview!.leading ~+ Global.Size.margin.value
-            host.width ~<= host.superview!.width * 0.6
+            host.width ~<= host.superview!.width * 0.65
 
             cracker.leading ~== host.leading
             cracker.trailing ~== host.trailing

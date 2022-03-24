@@ -285,8 +285,8 @@ class Details: LoadingTableView {
         if Preferences.deviceIsLinked {
             setButtonTitle("Requesting...")
 
-            func install(alongsideId: String = "", displayName: String = "") {
-                API.install(id: sender.linkId, type: self.contentType, alongsideId: alongsideId, displayName: displayName) { [weak self] error in
+            func install(_ additionalOptions: [AdditionalInstallationParameters: Any] = [:]) {
+                API.install(id: sender.linkId, type: self.contentType, additionalOptions: additionalOptions) { [weak self] error in
                     guard let self = self else { return }
 
                     if let error = error {
@@ -333,12 +333,15 @@ class Details: LoadingTableView {
                     }
                 }
 
-                vc.onCompletion = { (duplicate: Bool, newId: String, newName: String) in
-                    if duplicate {
-                        install(alongsideId: newId, displayName: newName)
-                    } else {
-                        install(displayName: newName)
-                    }
+                vc.onCompletion = { (patchIap: Bool, enableGameTrainer: Bool, removePlugins: Bool, enablePushNotifications: Bool, duplicateApp: Bool, newId: String, newName: String) in
+                    var additionalOptions: [AdditionalInstallationParameters: Any] = [:]
+                    if patchIap { additionalOptions[.inApp] = 1 }
+                    if enableGameTrainer { additionalOptions[.trainer] = 1 }
+                    if removePlugins { additionalOptions[.removePlugins] = 1 }
+                    if enablePushNotifications { additionalOptions[.pushNotifications] = 1 }
+                    if duplicateApp && !newId.isEmpty { additionalOptions[.alongside] = newId }
+                    if !newName.isEmpty { additionalOptions[.name] = newName }
+                    install(additionalOptions)
                 }
             } else {
                 install()

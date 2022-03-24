@@ -30,6 +30,9 @@ extension Defaults.Keys {
     static let enableTrainer = Key<Bool>("enableTrainer", default: false)
     static let signingIdentityType = Key<String>("signingIdentityType", default: "auto")
     static let optedOutFromEmails = Key<Bool>("optedOutFromEmails", default: false)
+    static let removePlugins = Key<Bool>("removePlugins", default: false)
+    static let enablePushNotifications = Key<Bool>("enablePush", default: false)
+    static let duplicateApp = Key<Bool>("duplicateApp", default: true)
 }
 
 // Sensitive data is stored in Keychain
@@ -160,6 +163,18 @@ enum Preferences {
     static var optedOutFromEmails: Bool {
         defaults[.optedOutFromEmails]
     }
+
+    static var removePlugins: Bool {
+        defaults[.removePlugins]
+    }
+
+    static var enablePushNotifications: Bool {
+        defaults[.enablePushNotifications]
+    }
+
+    static var duplicateApp: Bool {
+        defaults[.duplicateApp]
+    }
 }
 
 extension Preferences {
@@ -209,6 +224,9 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.enableTrainer.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.signingIdentityType.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.optedOutFromEmails.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.removePlugins.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.enablePushNotifications.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.duplicateApp.name)
     }
 
     // Remove secure keys

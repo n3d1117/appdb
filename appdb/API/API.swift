@@ -142,9 +142,16 @@ enum ConfigurationParameters: String {
     case askForOptions = "params[ask_for_installation_options]"
     case clearDevEntity = "params[clear_developer_entity]"
     case disableProtectionChecks = "params[disable_protection_checks]"
-    case enableIapPatch = "params[enable_inapp_patch]"
     case forceDisablePRO = "params[is_pro_disabled]"
-    case enableTrainer = "params[enable_trainer]"
     case signingIdentityType = "params[signing_identity_type]"
     case optedOutFromEmails = "params[is_opted_out_from_emails]"
+}
+
+enum AdditionalInstallationParameters: String {
+    case alongside = "enable_features[alongside]"
+    case name = "enable_features[name]"
+    case inApp = "enable_features[inapp]"
+    case trainer = "enable_features[trainer]"
+    case removePlugins = "enable_features[remove_plugins]"
+    case pushNotifications = "enable_features[push]"
 }

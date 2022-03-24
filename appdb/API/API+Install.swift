@@ -11,8 +11,11 @@ import SwiftyJSON
 
 extension API {
 
-    static func install(id: String, type: ItemType, alongsideId: String = "", displayName: String = "", completion:@escaping (_ error: String?) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.install.rawValue, "type": type.rawValue, "id": id, "is_alongside": alongsideId.lowercased(), "display_name": displayName, "lang": languageCode], headers: headersWithCookie)
+    static func install(id: String, type: ItemType, additionalOptions: [AdditionalInstallationParameters: Any] = [:], completion:@escaping (_ error: String?) -> Void) {
+        var parameters: [String: Any] = ["action": Actions.install.rawValue, "type": type.rawValue, "id": id, "lang": languageCode]
+        for (key, value) in additionalOptions { parameters[key.rawValue] = value }
+
+        AF.request(endpoint, parameters: parameters, headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):

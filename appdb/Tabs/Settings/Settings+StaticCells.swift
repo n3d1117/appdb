@@ -270,6 +270,8 @@ class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
     var textfieldDidEndEditing: ((String) -> Void)?
 
     var textField: UITextField!
+    var characterLimit: Int?
+    var forceLowercase = false
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -309,11 +311,27 @@ class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         if let callback = row.context?["callback"] as? (String) -> Void {
             self.textfieldDidEndEditing = callback
         }
+        if let limit = row.context?["characterLimit"] as? Int {
+            characterLimit = limit
+        }
+        if let lower = row.context?["forceLowercase"] as? Bool {
+            forceLowercase = lower
+        }
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        textfieldDidEndEditing?(text)
+        var adjustedText = text
+
+        if forceLowercase {
+            adjustedText = adjustedText.lowercased()
+        }
+        if let limit = characterLimit {
+            adjustedText = String(adjustedText.prefix(limit))
+        }
+
+        textField.text = adjustedText
+        textfieldDidEndEditing?(adjustedText)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
