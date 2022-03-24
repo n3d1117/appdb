@@ -14,6 +14,14 @@ class NewWishes: LoadingTableView {
     private var allLoaded = false
     private var items: [WishApp] = []
 
+    convenience init() {
+        if #available(iOS 13.0, *) {
+            self.init(style: .insetGrouped)
+        } else {
+            self.init(style: .plain)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +44,10 @@ class NewWishes: LoadingTableView {
 
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+
+        if #available(iOS 13.0, *) {
+            tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: Global.Size.margin.value))
+        }
 
         // Refresh action
         tableView.spr_setIndicatorHeader { [weak self] in
