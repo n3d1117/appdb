@@ -8,9 +8,6 @@
 
 import UIKit
 
-// TODO: persist choices
-// TODO: test installation options
-
 class IconChooser: UITableViewController {
 
     struct IconOption {

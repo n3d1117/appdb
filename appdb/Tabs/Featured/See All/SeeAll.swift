@@ -29,10 +29,21 @@ class SeeAll: LoadingTableView {
     // Store the result from registerForPreviewing(with:sourceView:)
     var previewingContext: UIViewControllerPreviewing?
 
+    convenience init() {
+        if #available(iOS 13.0, *) {
+            self.init(style: .insetGrouped)
+        } else {
+            self.init(style: .grouped)
+        }
+    }
+
     // Called when 'See All' button is clicked
     convenience init(title: String, type: ItemType, category: String, price: Price, order: Order) {
-        self.init(style: .plain)
-
+        if #available(iOS 13.0, *) {
+            self.init(style: .insetGrouped)
+        } else {
+            self.init(style: .grouped)
+        }
         self.title = title
         self.type = type
         self.categoryId = category
@@ -42,7 +53,11 @@ class SeeAll: LoadingTableView {
 
     // Called when 'See more from this dev/author' is clicked
     convenience init(title: String, type: ItemType, devId: String) {
-        self.init(style: .plain)
+        if #available(iOS 13.0, *) {
+            self.init(style: .insetGrouped)
+        } else {
+            self.init(style: .grouped)
+        }
 
         self.title = title
         self.type = type
@@ -78,6 +93,7 @@ class SeeAll: LoadingTableView {
 
         // Hide last separator
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
         setupFiltersButton()
 
