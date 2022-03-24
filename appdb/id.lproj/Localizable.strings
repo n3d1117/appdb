@@ -302,6 +302,10 @@
 "Choose Device" = "Pilih Devices";
 "Available Devices" = "Devices Tersedia";
 "Switched to %@" = "Pindah ke %@";
+"Enable Push Notifications" = "Aktifkan Push Notifications";
+"Remove Plugins" = "Hapus Plugins";
+"Available Icons" = "Ikon yang tersedia";
+"Choose Icon" = "Pilih ikon";
 
 /////////////////////
 //     UPDATES     //

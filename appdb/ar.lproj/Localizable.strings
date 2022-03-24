@@ -303,6 +303,10 @@ Copyright © 2017 ned. All rights reserved.
 "Choose Device" = "اختر الجهاز";
 "Available Devices" = "الأجهزة المتاحة";
 "Switched to %@" = "تحولت إلى %@";
+"Enable Push Notifications" = "تمكين دفع الإشعارات";
+"Remove Plugins" = "إزالة الإضافات";
+"Available Icons" = "الأيقونات المتوفرة";
+"Choose Icon" = "اختر الرمز";
 
 /////////////////////
 // UPDATES //

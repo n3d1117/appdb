@@ -302,6 +302,10 @@
 "Choose Device" = "Выберите устройство";
 "Available Devices" = "Доступные устройства";
 "Switched to %@" = "Переключился на %@";
+"Enable Push Notifications" = "Включить push-уведомления";
+"Remove Plugins" = "Удалить плагины";
+"Available Icons" = "доступные значки";
+"Choose Icon" = "выбрать значок";
 
 /////////////////////
 //     UPDATES     //

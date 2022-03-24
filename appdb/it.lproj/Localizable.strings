@@ -302,6 +302,10 @@
 "Choose Device" = "Scegli Dispositivo";
 "Available Devices" = "Dispositivi Disponibili";
 "Switched to %@" = "Passato a %@";
+"Enable Push Notifications" = "Abilita notifiche push";
+"Remove Plugins" = "Rimuovi plugin";
+"Available Icons" = "Icone disponibili";
+"Choose Icon" = "Scegli icona";
 
 /////////////////////
 //     UPDATES     //

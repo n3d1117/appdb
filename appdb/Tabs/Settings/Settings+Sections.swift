@@ -31,17 +31,27 @@ extension Settings {
     }
 
     var themeSection: [Static.Section] {
-        [
-            Section(header: .title("User Interface".localized()), rows: [
-                Row(text: "Choose Theme".localized(),
-                    detailText: Themes.current.toString, selection: { [unowned self] _ in
-                        self.push(ThemeChooser())
-                    }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-                Row(text: "Choose Language".localized(),
-                    detailText: Localize.displayNameForLanguage(Localize.currentLanguage()), selection: { [unowned self] _ in
-                        self.push(LanguageChooser())
-                    }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
-            ])
+        var rows: [Static.Row] = [
+            Row(text: "Choose Theme".localized(),
+                detailText: Themes.current.toString, selection: { [unowned self] _ in
+                    self.push(ThemeChooser())
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+            Row(text: "Choose Language".localized(),
+                detailText: Localize.displayNameForLanguage(Localize.currentLanguage()), selection: { [unowned self] _ in
+                    self.push(LanguageChooser())
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+        ]
+
+        if UIApplication.shared.supportsAlternateIcons {
+            rows.append(
+                Row(text: "Choose Icon".localized(), selection: { [unowned self] _ in
+                    self.push(IconChooser())
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+            )
+        }
+
+        return [
+            Section(header: .title("User Interface".localized()), rows: rows)
         ]
     }
 
