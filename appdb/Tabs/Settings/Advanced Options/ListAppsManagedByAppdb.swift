@@ -65,10 +65,14 @@ class ListAppsManagedByAppdb: LoadingTableView {
                 guard let self = self else { return }
                 self.retryCount = 0
                 self.bundleIds = bundleIds.sorted { $0.lowercased() < $1.lowercased() }
-            }, fail: { [weak self] error in
+            }, fail: { [weak self] error, errorCode in
                 guard let self = self else { return }
 
-                if error == "NOT_READY" && self.retryCount < self.maxRetryLimit {
+                if errorCode == "ERROR_NO_APPS_INSTALLED" {
+                    self.retryCount = 0
+                    self.bundleIds = []
+                    self.showErrorMessage(text: error, animated: false)
+                } else if errorCode == "ERROR_NOT_READY" && self.retryCount < self.maxRetryLimit {
                     delay(1) {
                         self.retryCount += 1
                         self.fetchBundleIds()

@@ -91,7 +91,7 @@ extension API {
         }
     }
 
-    static func getAppdbAppsBundleIds(ticket: String, success:@escaping (_ bundleIds: [String]) -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getAppdbAppsBundleIds(ticket: String, success:@escaping (_ bundleIds: [String]) -> Void, fail:@escaping (_ error: String, _ code: String) -> Void) {
         AF.request(endpoint, parameters: ["t": ticket, "action": Actions.getAppdbAppsBundleIds.rawValue,
                                           "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
@@ -99,12 +99,12 @@ extension API {
             case .success(let value):
                 let json = JSON(value)
                 if !json["success"].boolValue {
-                    fail(json["errors"][0]["translated"].stringValue)
+                    fail(json["errors"][0]["translated"].stringValue, json["errors"][0]["code"].stringValue)
                 } else {
                     success(json["data"].arrayValue.map { $0.stringValue})
                 }
             case .failure(let error):
-                fail(error.localizedDescription)
+                fail(error.localizedDescription, "")
             }
         }
     }
