@@ -156,10 +156,12 @@ class ThemeChooser: UITableViewController {
     }
 
     func disableUserInteractionIfNeeded() {
-        if #available(iOS 13.0, *) {
-            (0..<tableView.numberOfRows(inSection: 0)).indices.forEach { rowIndex in
-                if let cell = tableView.cellForRow(at: IndexPath(row: rowIndex, section: 0)) {
-                    cell.setEnabled(on: !Preferences.followSystemAppearance)
+        DispatchQueue.main.async {
+            if #available(iOS 13.0, *) {
+                (0..<self.tableView.numberOfRows(inSection: 0)).indices.forEach { rowIndex in
+                    if let cell = self.tableView.cellForRow(at: IndexPath(row: rowIndex, section: 0)) {
+                        cell.setEnabled(on: !Preferences.followSystemAppearance)
+                    }
                 }
             }
         }
