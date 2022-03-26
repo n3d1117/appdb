@@ -1190,7 +1190,7 @@
 				818763BD2676299800049F58 /* Device Chooser */,
 				814FF02C207B9B5F0049DF9A /* Device Link */,
 				810C71FC20ACDA9800D6310E /* Device Status */,
-				81F20A5D27EBD9BA00CD20C1 /* Icon Chooser */,
+				81CD184827EF1B0D00395652 /* Icon Chooser */,
 				8176EFA72785E5A9004545DA /* IPA Cache */,
 				819EC27C20A76EB6007138CF /* Theme Chooser */,
 				81DD29D52288CD1A00412BE6 /* Language Chooser */,
@@ -1392,6 +1392,15 @@
 				81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */,
 			);
 			path = "• AskBundleBeforeUploadView";
+			sourceTree = "<group>";
+		};
+		81CD184827EF1B0D00395652 /* Icon Chooser */ = {
+			isa = PBXGroup;
+			children = (
+				81F20A5E27EBD9C900CD20C1 /* IconChooser.swift */,
+				81F20A9F27EBE49C00CD20C1 /* IconChooserCell.swift */,
+			);
+			path = "Icon Chooser";
 			sourceTree = "<group>";
 		};
 		81D60A1D215159DC00CDF94C /* API */ = {
@@ -1644,15 +1653,6 @@
 				81E48B0A1E706EED005FBBEC /* Reviews */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		81F20A5D27EBD9BA00CD20C1 /* Icon Chooser */ = {
-			isa = PBXGroup;
-			children = (
-				81F20A5E27EBD9C900CD20C1 /* IconChooser.swift */,
-				81F20A9F27EBE49C00CD20C1 /* IconChooserCell.swift */,
-			);
-			name = "Icon Chooser";
 			sourceTree = "<group>";
 		};
 		81F20A8427EBE12E00CD20C1 /* Icons */ = {
