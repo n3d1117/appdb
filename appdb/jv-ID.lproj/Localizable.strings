@@ -308,6 +308,10 @@
 "Choose Icon" = "Pilih ikon";
 "Opt-out from emails" = "Menyisih dari email";
 "Signing Type" = "Jenis penandatanganan";
+"In Update" = "Dalam pembaruan";
+"Reinstall everything" = "Instal ulang semuanya";
+"Clear IPA cache" = "Hapus IPA cache";
+"Re-validate IPA cache" = "Validasi ulang IPA cache";
 
 /////////////////////
 //     UPDATES     //

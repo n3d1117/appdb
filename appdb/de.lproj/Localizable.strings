@@ -286,7 +286,7 @@
 "Only apps that are managed by appdb will appear here." = "Nur Apps, die von Appdb verwaltet werden, werden hier angezeigt.";
 "Custom Developer Identity" = "Benutzerdefinierte Entwickler-Identität";
 "Copy" = "Kopieren";
-"Clear developer identity" = "Klare Entwickleridentität";
+"Clear developer identity" = "Eigenes Entwickler-Zertifikat entfernen";
 "Are you sure you want to clear developer identity?" = "Sind Sie sicher, dass Sie die Entwickleridentität löschen möchten?";
 "Identity cleared!" = "Identität gelöscht!";
 "Patch in-app Purchases" = "Patch In-App-Käufe";
@@ -306,8 +306,12 @@
 "Remove Plugins" = "Plugins entfernen";
 "Available Icons" = "Verfügbare Symbole";
 "Choose Icon" = "Symbol wählen";
-"Opt-out from emails" = "Opt-out von E-Mails";
+"Opt-out from emails" = "E-Mails abbestellen";
 "Signing Type" = "Signierart";
+"In Update" = "Im Update";
+"Reinstall everything" = "Alles neu installieren";
+"Clear IPA cache" = "IPA-Cache leeren";
+"Re-validate IPA cache" = "IPA-Cache neu validieren";
 
 /////////////////////
 //     UPDATES     //

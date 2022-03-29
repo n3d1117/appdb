@@ -309,6 +309,10 @@ Copyright © 2017 ned. All rights reserved.
 "Choose Icon" = "اختر الرمز";
 "Opt-out from emails" = "الانسحاب من رسائل البريد الإلكتروني";
 "Signing Type" = "نوع التوقيع";
+"In Update" = "قيد التحديث";
+"Reinstall everything" = "أعد تثبيت كل شيء";
+"Clear IPA cache" = "مسح ذاكرة التخزين المؤقت IPA";
+"Re-validate IPA cache" = "إعادة التحقق من صحة ذاكرة التخزين المؤقت IPA";
 
 /////////////////////
 // UPDATES //

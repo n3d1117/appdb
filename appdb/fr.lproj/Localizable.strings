@@ -308,6 +308,10 @@
 "Choose Icon" = "Choisir l'icône";
 "Opt-out from emails" = "Se désinscrire des e-mails";
 "Signing Type" = "Type de signature";
+"In Update" = "En mise à jour";
+"Reinstall everything" = "Tout réinstaller";
+"Clear IPA cache" = "Effacer le cache IPA";
+"Re-validate IPA cache" = "Re-valider le cache IPA";
 
 /////////////////////
 //     UPDATES     //

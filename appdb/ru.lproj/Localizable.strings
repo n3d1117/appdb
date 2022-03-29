@@ -308,6 +308,10 @@
 "Choose Icon" = "выбрать значок";
 "Opt-out from emails" = "Отказ от электронных писем";
 "Signing Type" = "тип подписи";
+"In Update" = "в обновлении";
+"Reinstall everything" = "vПереустановите все";
+"Clear IPA cache" = "Очистить IPA cache";
+"Re-validate IPA cache" = "Повторно проверить IPA cache";
 
 /////////////////////
 //     UPDATES     //
