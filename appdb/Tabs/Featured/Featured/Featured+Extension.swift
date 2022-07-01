@@ -102,6 +102,25 @@ extension Featured {
             }
         }
     }
+
+    func linkAutomaticallyIfNeededAndPossible() {
+        if !Preferences.deviceIsLinked {
+            API.linkAutomaticallyUsingUDID(success: {
+                API.getConfiguration(success: { [weak self] in
+                    guard let self = self else { return }
+
+                    Messages.shared.hideAll()
+                    Messages.shared.showSuccess(
+                        message: "Well done! This app is now authorized to install apps on your device.".localized(),
+                        context: .viewController(self)
+                    )
+                    NotificationCenter.default.post(name: .RefreshSettings, object: self)
+
+                }, fail: { _ in })
+            }, fail: {})
+        }
+    }
+
 }
 
 // MARK: - iOS 13 Context Menus

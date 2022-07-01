@@ -11,6 +11,39 @@ import SwiftyJSON
 
 extension API {
 
+    static func linkAutomaticallyUsingUDID(success:@escaping () -> Void, fail:@escaping () -> Void) {
+
+        // Get UDID from managed configuration
+        guard let deviceUdid = UserDefaults.standard.dictionary(forKey: "com.apple.configuration.managed")?["dbservicesUDID"] as? String else {
+            fail()
+            return
+        }
+
+        AF.request(endpoint, parameters: ["action": Actions.getLinkToken.rawValue, "udid": deviceUdid, "client": "appdb unofficial client"], headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+
+                    if !json["success"].boolValue {
+                        fail()
+                    } else {
+                        let linkToken = json["data"].stringValue
+                        Preferences.set(.token, to: linkToken)
+
+                        // Update link code
+                        API.getLinkCode(success: {
+                            success()
+                        }, fail: { error in
+                            fail()
+                        })
+                    }
+                case .failure:
+                    fail()
+                }
+            }
+    }
+
     static func linkDevice(code: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.link.rawValue, "type": "control", "link_code": code,
                                                  "lang": languageCode], headers: headers)

@@ -26,11 +26,24 @@ enum DeviceLinkIntroBulletins {
                 let linkPageUrlString = "\(Global.mainSite)link"
                 NotificationCenter.default.post(name: .OpenSafari, object: self, userInfo: ["URLString": "\(linkPageUrlString)"])
             } else {
-                // Otherwise, show page where user can enter link code as usual
                 item.manager?.displayActivityIndicator(color: Themes.isNight ? .white : .black)
-                delay(0.2) {
-                    item.manager?.displayNextItem()
-                }
+                // Try automatic linking
+                API.linkAutomaticallyUsingUDID(success: {
+
+                    API.getConfiguration(success: {
+                        let completionPage = makeCompletionPage()
+                        item.manager?.push(item: completionPage)
+                    }, fail: { error in
+                        let errorPage = makeErrorPage(with: error.prettified)
+                        item.manager?.push(item: errorPage)
+                    })
+
+                }, fail: {
+                    // Otherwise, show page where user can enter link code as usual
+                    delay(0.2) {
+                        item.manager?.displayNextItem()
+                    }
+                })
             }
         }
 

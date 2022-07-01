@@ -104,6 +104,7 @@ enum Actions: String {
     case newsCategory = "news"
     case link = "link"
     case getLinkCode = "get_link_code"
+    case getLinkToken = "get_link_token"
     case getConfiguration = "get_configuration"
     case configure = "configure"
     case getStatus = "get_status"
