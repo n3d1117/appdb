@@ -154,6 +154,11 @@ extension Settings {
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ]),
             Section(rows: [
+                Row(text: "AltStore Repos".localized(), selection: { [unowned self] _ in
+                    self.push(AltStoreRepos())
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+            ]),
+            Section(rows: [
                 Row(text: "Show badge for updates".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
                     Preferences.set(.showBadgeForUpdates, to: new)
                 }, "value": Preferences.showBadgeForUpdates])

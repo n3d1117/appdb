@@ -259,6 +259,7 @@ extension Settings {
         case "Device".localized(): return UINavigationController(rootViewController: DeviceChooser())
         case "System Status".localized(): return UINavigationController(rootViewController: SystemStatus())
         case "Device Status".localized(): return UINavigationController(rootViewController: DeviceStatus())
+        case "AltStore Repos".localized(): return UINavigationController(rootViewController: AltStoreRepos())
         case "Acknowledgements".localized(): return UINavigationController(rootViewController: Acknowledgements())
         case "Credits".localized(): return UINavigationController(rootViewController: Credits())
         case "Advanced Options".localized(): return UINavigationController(rootViewController: AdvancedOptions())
