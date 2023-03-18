@@ -40,6 +40,7 @@ enum ItemType: String, Codable {
     case books = "books"
     case cydia = "cydia"
     case myAppstore = "MyAppStore"
+    case altstore = "altstore"
 }
 
 enum Order: String, CaseIterable {
@@ -135,6 +136,9 @@ enum Actions: String {
     case clearIpaCache = "clear_ipa_cache"
     case revalidateIpaCache = "ensure_ipa_cache"
     case transferIpaCache = "transfer_ipa_cache"
+    case getAltStoreRepos = "get_altstore_repos"
+    case editAltStoreRepo = "edit_altstore_repo"
+    case deleteAltStoreRepo = "delete_altstore_repo"
 }
 
 enum ConfigurationParameters: String {

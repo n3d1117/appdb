@@ -376,7 +376,7 @@ class Details: LoadingTableView {
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "Enter a reason for your report".localized()
             textField.theme_keyboardAppearance = [.light, .dark, .dark]
-            textField.addTarget(self, action: #selector(self.reportTextfieldTextChanged), for: .editingChanged)
+            //textField.addTarget(self, action: #selector(self.reportTextfieldTextChanged), for: .editingChanged)
             textField.clearButtonMode = .whileEditing
         })
 
@@ -397,19 +397,19 @@ class Details: LoadingTableView {
         })
 
         alert.addAction(reportAction)
-        reportAction.isEnabled = false
+        //reportAction.isEnabled = false
 
         self.present(alert, animated: true)
     }
 
     // Only enable button if text is not empty
-    @objc func reportTextfieldTextChanged(sender: UITextField) {
+    /*@objc func reportTextfieldTextChanged(sender: UITextField) {
         var responder: UIResponder = sender
         while !(responder is UIAlertController) { responder = responder.next! }
         if let alert = responder as? UIAlertController {
             (alert.actions[1] as UIAlertAction).isEnabled = !(sender.text ?? "").isEmpty
         }
-    }
+    }*/
 }
 
 ////////////////////////////////
@@ -489,10 +489,10 @@ extension Details: DynamicContentRedirection {
 }
 
 //
-// MARK: - DetailsSellerRedirectionDelegate
+// MARK: - DetailsHeaderDelegate
 // Push seeAll view controller when user taps seller button
 //
-extension Details: DetailsSellerRedirectionDelegate {
+extension Details: DetailsHeaderDelegate {
     func sellerSelected(title: String, type: ItemType, devId: String) {
         let vc = SeeAll(title: title, type: type, devId: devId)
         navigationController?.pushViewController(vc, animated: true)

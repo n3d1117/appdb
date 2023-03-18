@@ -149,7 +149,7 @@ extension Wishes {
     @objc private func addTapped() {
         let alert = UIAlertController(title: "Enter AppStore URL".localized(), message: "Enter below the AppStore URL of the app you'd like to request".localized(), preferredStyle: .alert, adaptive: true)
         alert.addTextField(configurationHandler: { textField in
-            textField.addTarget(self, action: #selector(self.urlTextChanged), for: .editingChanged)
+            //textField.addTarget(self, action: #selector(self.urlTextChanged), for: .editingChanged)
             textField.placeholder = "https://apps.apple.com/us/app/...".localized()
             textField.keyboardType = .URL
             textField.theme_keyboardAppearance = [.light, .dark, .dark]
@@ -177,14 +177,14 @@ extension Wishes {
         })
 
         alert.addAction(load)
-        load.isEnabled = false
+        //load.isEnabled = false
 
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
     }
 
-    @objc func urlTextChanged(sender: UITextField) {
+    /*@objc func urlTextChanged(sender: UITextField) {
         var responder: UIResponder = sender
         while !(responder is UIAlertController) { responder = responder.next! }
         if let alert = responder as? UIAlertController {
@@ -195,7 +195,7 @@ extension Wishes {
                 (alert.actions[1] as UIAlertAction).isEnabled = false
             }
         }
-    }
+    }*/
 
     func isValidUrl(urlString: String) -> Bool {
         let types: NSTextCheckingResult.CheckingType = [.link]

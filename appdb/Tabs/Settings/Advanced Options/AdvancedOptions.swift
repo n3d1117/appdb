@@ -230,7 +230,7 @@ extension AdvancedOptions {
     func presentVoucherTextInputAlertController(title: String, message: String, placeholder: String, actionTitle: String, action: @escaping (_ text: String) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert, adaptive: true)
         alert.addTextField(configurationHandler: { textField in
-            textField.addTarget(self, action: #selector(self.voucherTextChanged), for: .editingChanged)
+            //textField.addTarget(self, action: #selector(self.voucherTextChanged), for: .editingChanged)
             textField.placeholder = placeholder
             textField.keyboardType = .URL
             textField.theme_keyboardAppearance = [.light, .dark, .dark]
@@ -245,14 +245,14 @@ extension AdvancedOptions {
         })
 
         alert.addAction(load)
-        load.isEnabled = false
+        //load.isEnabled = false
 
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
     }
 
-    @objc func voucherTextChanged(sender: UITextField) {
+    /*@objc func voucherTextChanged(sender: UITextField) {
         var responder: UIResponder = sender
         while !(responder is UIAlertController) { responder = responder.next! }
         if let alert = responder as? UIAlertController {
@@ -262,7 +262,7 @@ extension AdvancedOptions {
                 (alert.actions[1] as UIAlertAction).isEnabled = false
             }
         }
-    }
+    }*/
 }
 
 extension AdvancedOptions: ChangedSigningType {

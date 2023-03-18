@@ -10,8 +10,19 @@ import UIKit
 import Cartography
 import Cosmos
 
-protocol DetailsSellerRedirectionDelegate: AnyObject {
+protocol DetailsHeaderDelegate: AnyObject {
     func sellerSelected(title: String, type: ItemType, devId: String)
+    func installClicked(sender: RoundedButton)
+}
+
+extension DetailsHeaderDelegate {
+    func sellerSelected(title: String, type: ItemType, devId: String) {
+        fatalError("sellerSelected must be set")
+    }
+    
+    func installClicked(sender: RoundedButton) {
+        fatalError("installClicked must be set")
+    }
 }
 
 class DetailsHeader: DetailsCell {
@@ -23,23 +34,27 @@ class DetailsHeader: DetailsCell {
     var ipadOnly: UILabel?
     var stars: CosmosView?
     var additionalInfo: UILabel?
+    
+    var installButton: RoundedButton?
 
     var devId: String = ""
-    weak var delegate: DetailsSellerRedirectionDelegate?
+    weak var delegate: DetailsHeaderDelegate?
 
     private var _height = (132 ~~ 102) + Global.Size.margin.value
+    private var _heightAltStore = (162 ~~ 132) + Global.Size.margin.value
     private var _heightBooks = round((132 ~~ 102) * 1.542) + Global.Size.margin.value
     override var height: CGFloat {
         switch type {
         case .ios, .cydia: return _height
         case .books: return _heightBooks
+        case .altstore: return _heightAltStore
         default: return 0
         }
     }
 
     override var identifier: String { "header" }
 
-    convenience init(type: ItemType, content: Item, delegate: DetailsSellerRedirectionDelegate) {
+    convenience init(type: ItemType, content: Item, delegate: DetailsHeaderDelegate) {
         self.init(style: .default, reuseIdentifier: "header")
 
         self.type = type
@@ -140,6 +155,35 @@ class DetailsHeader: DetailsCell {
 
             self.devId = book.artistId
         }
+        case .altstore: if let altstoreApp = content as? AltStoreApp {
+            name.text = altstoreApp.name.decoded
+
+            icon.layer.cornerRadius = Global.cornerRadius(from: (130 ~~ 100))
+            if let url = URL(string: altstoreApp.image) {
+                icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
+            }
+            
+            if !altstoreApp.developer.isEmpty {
+                seller = UIButton(type: .custom)
+                seller.titleLabel?.text = altstoreApp.developer
+                seller.titleLabel?.font = UIFont.systemFont(ofSize: (15 ~~ 13))
+                seller.titleLabel?.theme_textColor = Color.darkGray
+                seller.setTitle(altstoreApp.developer, for: .normal)
+                seller.theme_setTitleColor(Color.darkGray, forState: .normal)
+            }
+            
+            if altstoreApp.beta {
+                tweaked = buildPaddingLabel()
+                tweaked!.text = "Beta Version".localized()
+            }
+            
+            installButton = RoundedButton()
+            installButton!.titleLabel?.font = .boldSystemFont(ofSize: 13)
+            installButton!.makeDynamicFont()
+            installButton!.setTitle("Install".localized().uppercased(), for: .normal)
+            installButton!.theme_tintColor = Color.softGreen
+            installButton!.addTarget(self, action: #selector(installTapped), for: .touchUpInside)
+        }
         default:
             break
         }
@@ -151,12 +195,17 @@ class DetailsHeader: DetailsCell {
         if let stars = stars { contentView.addSubview(stars) }
         if let ipadOnly = ipadOnly { contentView.addSubview(ipadOnly) }
         if let additional = additionalInfo { contentView.addSubview(additional) }
+        if let installButton = installButton { contentView.addSubview(installButton) }
 
         setConstraints()
     }
 
     @objc func sellerTapped() {
         delegate?.sellerSelected(title: seller.titleLabel?.text ?? "", type: self.type, devId: self.devId)
+    }
+    
+    @objc func installTapped(sender: RoundedButton) {
+        delegate?.installClicked(sender: sender)
     }
 
     override func setConstraints() {
@@ -183,11 +232,30 @@ class DetailsHeader: DetailsCell {
             }
         }
 
-        if let tweaked = tweaked, type == .cydia {
+        if let tweaked = tweaked, type == .cydia || type == .altstore {
             constrain(tweaked, seller) { tweaked, seller in
                 tweaked.leading ~== seller.leading
                 tweaked.trailing ~<= tweaked.superview!.trailing ~- Global.Size.margin.value
                 tweaked.top ~== seller.bottom ~+ (7 ~~ 6)
+            }
+        }
+        
+        if let installButton = installButton {
+            if let tweaked = tweaked {
+                constrain(installButton, tweaked) { installButton, tweaked in
+                    installButton.trailing ~== installButton.superview!.trailing ~- (26 ~~ 25)
+                    installButton.top ~== tweaked.bottom ~+ (7 ~~ 6)
+                }
+            } else  if let seller = seller {
+                constrain(installButton, seller) { installButton, seller in
+                    installButton.trailing ~== installButton.superview!.trailing ~- (26 ~~ 25)
+                    installButton.top ~== seller.bottom ~+ (7 ~~ 6)
+                }
+            } else {
+                constrain(installButton, name) { installButton, name in
+                    installButton.trailing ~== installButton.superview!.trailing ~- (26 ~~ 25)
+                    installButton.top ~== name.bottom ~+ (7 ~~ 6)
+                }
             }
         }
 
