@@ -9,8 +9,13 @@
 import UIKit
 import SafariServices
 import TelemetryClient
+import UnityAds
 
 class Details: LoadingTableView {
+    
+    var adsInitialized: Bool = false
+    var adsLoaded: Bool = false
+    var currentInstallButton: RoundedButton?
 
     var content: Item!
     var descriptionCollapsed = true
@@ -73,6 +78,8 @@ class Details: LoadingTableView {
             showsErrorButton = false
             fetchInfo(type: dynamicType, trackid: dynamicTrackid)
         }
+        
+        UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
     }
 
     // MARK: - Share
@@ -276,8 +283,13 @@ class Details: LoadingTableView {
     }
 
     // MARK: - Install app
-
+    
     @objc private func install(sender: RoundedButton) {
+        currentInstallButton = sender
+        UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
+    }
+
+    private func actualInstall(sender: RoundedButton) {
         func setButtonTitle(_ text: String) {
             sender.setTitle(text.localized().uppercased(), for: .normal)
         }
@@ -286,6 +298,7 @@ class Details: LoadingTableView {
             setButtonTitle("Requesting...")
 
             func install(_ additionalOptions: [AdditionalInstallationParameters: Any] = [:]) {
+                                
                 API.install(id: sender.linkId, type: self.contentType, additionalOptions: additionalOptions) { [weak self] error in
                     guard let self = self else { return }
 
@@ -510,5 +523,50 @@ extension Details: IPAWebViewControllerDelegate {
             Messages.shared.showSuccess(message: "File download has started".localized(), context: .viewController(self))
             TelemetryManager.send(Global.Telemetry.downloadIpaRequested.rawValue)
         }
+    }
+}
+
+// MARK: - Ads
+
+extension Details: UnityAdsInitializationDelegate {
+    func initializationComplete() {
+        adsInitialized = true
+        
+        UnityAds.load("Interstitial_iOS", loadDelegate: self)
+    }
+    
+    func initializationFailed(_ error: UnityAdsInitializationError, withMessage message: String) {
+        adsInitialized = false
+    }
+}
+
+extension Details: UnityAdsLoadDelegate {
+    func unityAdsAdLoaded(_ placementId: String) {
+        adsLoaded = true
+    }
+    
+    func unityAdsAdFailed(toLoad placementId: String, withError error: UnityAdsLoadError, withMessage message: String) {
+        adsLoaded = false
+    }
+}
+
+extension Details: UnityAdsShowDelegate {
+    func unityAdsShowComplete(_ placementId: String, withFinish state: UnityAdsShowCompletionState) {
+        if currentInstallButton != nil {
+            actualInstall(sender: currentInstallButton!)
+        }
+    }
+    func unityAdsShowFailed(_ placementId: String, withError error: UnityAdsShowError, withMessage message: String) {
+        if currentInstallButton != nil {
+            actualInstall(sender: currentInstallButton!)
+        }
+    }
+    
+    func unityAdsShowStart(_ placementId: String) {
+        
+    }
+    
+    func unityAdsShowClick(_ placementId: String) {
+        
     }
 }

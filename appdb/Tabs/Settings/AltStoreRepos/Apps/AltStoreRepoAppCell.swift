@@ -20,7 +20,7 @@ class AltStoreRepoAppCell: UITableViewCell {
     // iOS
     func configure(app: AltStoreApp) {
         nameLabel.text = app.name
-        infoLabel.text = app.subtitle + Global.bulletPoint + app.version + Global.bulletPoint + app.formattedSize
+        infoLabel.text = (app.subtitle.isEmpty ? "" : app.subtitle + Global.bulletPoint) + app.version + Global.bulletPoint + app.formattedSize
         if let url = URL(string: app.image) {
             icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"),
                              filter: Global.roundedFilter(from: 80 ~~ 60),

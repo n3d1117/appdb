@@ -9,8 +9,13 @@
 import UIKit
 import SafariServices
 import TelemetryClient
+import UnityAds
 
 class AltStoreAppDetails: LoadingTableView {
+    
+    var adsInitialized: Bool = false
+    var adsLoaded: Bool = false
+    var currentInstallButton: RoundedButton?
 
     var app: AltStoreApp!
     var descriptionCollapsed = true
@@ -36,6 +41,8 @@ class AltStoreAppDetails: LoadingTableView {
 
         setUp()
         initializeCells()
+        
+        UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
     }
 
     // MARK: - Table view data source
@@ -93,6 +100,11 @@ class AltStoreAppDetails: LoadingTableView {
     // MARK: - Install app
 
     @objc func install(sender: RoundedButton) {
+        currentInstallButton = sender
+        UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
+    }
+
+    private func actualInstall(sender: RoundedButton) {
         func setButtonTitle(_ text: String) {
             sender.setTitle(text.localized().uppercased(), for: .normal)
         }
@@ -193,5 +205,51 @@ extension AltStoreAppDetails: ScreenshotRedirectionDelegate {
         let vc = DetailsFullScreenshots(app.screenshots, index, allLandscape, mixedClasses, magic)
         let nav = DetailsFullScreenshotsNavController(rootViewController: vc)
         present(nav, animated: true)
+    }
+}
+
+
+// MARK: - Ads
+
+extension AltStoreAppDetails: UnityAdsInitializationDelegate {
+    func initializationComplete() {
+        adsInitialized = true
+        
+        UnityAds.load("Interstitial_iOS", loadDelegate: self)
+    }
+    
+    func initializationFailed(_ error: UnityAdsInitializationError, withMessage message: String) {
+        adsInitialized = false
+    }
+}
+
+extension AltStoreAppDetails: UnityAdsLoadDelegate {
+    func unityAdsAdLoaded(_ placementId: String) {
+        adsLoaded = true
+    }
+    
+    func unityAdsAdFailed(toLoad placementId: String, withError error: UnityAdsLoadError, withMessage message: String) {
+        adsLoaded = false
+    }
+}
+
+extension AltStoreAppDetails: UnityAdsShowDelegate {
+    func unityAdsShowComplete(_ placementId: String, withFinish state: UnityAdsShowCompletionState) {
+        if currentInstallButton != nil {
+            actualInstall(sender: currentInstallButton!)
+        }
+    }
+    func unityAdsShowFailed(_ placementId: String, withError error: UnityAdsShowError, withMessage message: String) {
+        if currentInstallButton != nil {
+            actualInstall(sender: currentInstallButton!)
+        }
+    }
+    
+    func unityAdsShowStart(_ placementId: String) {
+        
+    }
+    
+    func unityAdsShowClick(_ placementId: String) {
+        
     }
 }

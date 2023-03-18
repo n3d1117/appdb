@@ -156,7 +156,7 @@ class DetailsHeader: DetailsCell {
             self.devId = book.artistId
         }
         case .altstore: if let altstoreApp = content as? AltStoreApp {
-            name.text = altstoreApp.name.decoded
+            name.text = altstoreApp.name
 
             icon.layer.cornerRadius = Global.cornerRadius(from: (130 ~~ 100))
             if let url = URL(string: altstoreApp.image) {
@@ -230,30 +230,55 @@ class DetailsHeader: DetailsCell {
                 seller.top ~== name.bottom ~+ 3
                 seller.trailing ~<= seller.superview!.trailing ~- Global.Size.margin.value
             }
+        } else {
+            constrain(name, icon) { name, icon in
+                icon.width ~== (130 ~~ 100)
+
+                switch type {
+                case .ios, .cydia: icon.height ~== icon.width
+                case .books: icon.height ~== icon.width ~* 1.542
+                default: break
+                }
+
+                icon.leading ~== icon.superview!.leading ~+ Global.Size.margin.value
+                icon.top ~== icon.superview!.top ~+ Global.Size.margin.value
+
+                name.leading ~== icon.trailing ~+ (15 ~~ 12)
+                name.trailing ~== name.superview!.trailing ~- Global.Size.margin.value
+                name.top ~== icon.top ~+ 3
+            }
         }
 
         if let tweaked = tweaked, type == .cydia || type == .altstore {
-            constrain(tweaked, seller) { tweaked, seller in
-                tweaked.leading ~== seller.leading
-                tweaked.trailing ~<= tweaked.superview!.trailing ~- Global.Size.margin.value
-                tweaked.top ~== seller.bottom ~+ (7 ~~ 6)
+            if let seller = seller {
+                constrain(tweaked, seller) { tweaked, seller in
+                    tweaked.leading ~== seller.leading
+                    tweaked.trailing ~<= tweaked.superview!.trailing ~- Global.Size.margin.value
+                    tweaked.top ~== seller.bottom ~+ (7 ~~ 6)
+                }
+            } else {
+                constrain(tweaked, name) { tweaked, name in
+                    tweaked.leading ~== name.leading
+                    tweaked.trailing ~<= tweaked.superview!.trailing ~- Global.Size.margin.value
+                    tweaked.top ~== name.bottom ~+ (7 ~~ 6)
+                }
             }
         }
         
         if let installButton = installButton {
             if let tweaked = tweaked {
                 constrain(installButton, tweaked) { installButton, tweaked in
-                    installButton.trailing ~== installButton.superview!.trailing ~- (26 ~~ 25)
+                    installButton.trailing ~== installButton.superview!.trailing ~- Global.Size.margin.value
                     installButton.top ~== tweaked.bottom ~+ (7 ~~ 6)
                 }
             } else  if let seller = seller {
                 constrain(installButton, seller) { installButton, seller in
-                    installButton.trailing ~== installButton.superview!.trailing ~- (26 ~~ 25)
+                    installButton.trailing ~== installButton.superview!.trailing ~- Global.Size.margin.value
                     installButton.top ~== seller.bottom ~+ (7 ~~ 6)
                 }
             } else {
                 constrain(installButton, name) { installButton, name in
-                    installButton.trailing ~== installButton.superview!.trailing ~- (26 ~~ 25)
+                    installButton.trailing ~== installButton.superview!.trailing ~- Global.Size.margin.value
                     installButton.top ~== name.bottom ~+ (7 ~~ 6)
                 }
             }

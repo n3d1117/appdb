@@ -179,6 +179,34 @@ class DetailsInformation: DetailsCell {
             contentView.addSubview(compatibility)
             contentView.addSubview(compatibilityText)
         }
+            
+        case .altstore: if let app = content as? AltStoreApp {
+            seller = buildLabel(text: "Developer")
+            sellerText = buildLabel(text: app.developer, isContent: true)
+
+            bundleId = buildLabel(text: "Bundle ID")
+            bundleIdText = buildLabel(text: app.bundleId, isContent: true)
+            
+            size = buildLabel(text: "Size")
+            sizeText = buildLabel(text: app.formattedSize, isContent: true)
+
+            updated = buildLabel(text: "Updated")
+            updatedText = buildLabel(text: app.updated, isContent: true)
+
+            version = buildLabel(text: "Version")
+            versionText = buildLabel(text: app.version, isContent: true)
+
+            contentView.addSubview(seller)
+            contentView.addSubview(sellerText)
+            contentView.addSubview(bundleId)
+            contentView.addSubview(bundleIdText)
+            contentView.addSubview(size)
+            contentView.addSubview(sizeText)
+            contentView.addSubview(updated)
+            contentView.addSubview(updatedText)
+            contentView.addSubview(version)
+            contentView.addSubview(versionText)
+        }
 
         default: break
         }
@@ -411,6 +439,47 @@ class DetailsInformation: DetailsCell {
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            case .altstore:
+                constrain(seller, sellerText) { seller, sellerText in
+                    (seller.top ~== title.bottom ~+ 9) ~ Global.notMaxPriority
+                    seller.leading ~== title.leading
+                    seller.trailing ~== seller.leading ~+ (100 ~~ 86)
+
+                    sellerText.leading ~== seller.trailing ~+ (20 ~~ 15)
+                    sellerText.trailing ~== sellerText.superview!.trailing ~- Global.Size.margin.value
+                    sellerText.top ~== seller.top
+
+                    constrain(bundleId, bundleIdText) { bundleId, bundleIdText in
+                        bundleId.top ~== sellerText.bottom ~+ (5 ~~ 4)
+                        bundleId.leading ~== seller.leading
+                        bundleId.trailing ~== seller.trailing
+
+                        bundleIdText.leading ~== bundleId.trailing ~+ (20 ~~ 15)
+                        bundleIdText.trailing ~== bundleIdText.superview!.trailing ~- Global.Size.margin.value
+                        bundleIdText.top ~== bundleId.top
+
+                        constrain(updated, updatedText) { updated, updatedText in
+                            updated.top ~== bundleIdText.bottom ~+ (5 ~~ 4)
+                            updated.leading ~== bundleId.leading
+                            updated.trailing ~== bundleId.trailing
+
+                            updatedText.leading ~== updated.trailing ~+ (20 ~~ 15)
+                            updatedText.trailing ~== updatedText.superview!.trailing ~- Global.Size.margin.value
+                            updatedText.top ~== updated.top
+
+                            constrain(version, versionText) { version, versionText in
+                                version.top == updatedText.bottom ~+ (5 ~~ 4)
+                                version.leading == updated.leading
+                                version.trailing == updated.trailing
+
+                                versionText.leading ~== version.trailing ~+ (20 ~~ 15)
+                                versionText.trailing ~== versionText.superview!.trailing ~- Global.Size.margin.value
+                                versionText.top ~== version.top
+                                versionText.bottom ~== versionText.superview!.bottom ~- 15
                             }
                         }
                     }
