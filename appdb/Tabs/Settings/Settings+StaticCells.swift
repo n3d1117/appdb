@@ -121,9 +121,9 @@ class SimpleStaticButtonCell: UITableViewCell, Cell {
     }
 }
 
-// PRO status cell
+// Signing Certificate cell
 
-final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
+final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
     private var dummy: UIView!
     private var activeLabel: UILabel!
     private var expirationLabel: UILabel!
@@ -165,6 +165,11 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
         textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
 
+        guard let signingWith = row.context?["signingWith"] as? String else { return }
+        guard let enterpriseCertId = row.context?["enterpriseCertId"] as? String else { return }
+        guard let freeSignsLeft = row.context?["freeSignsLeft"] as? String else { return }
+        guard let freeSignsLeftNumber = Int(freeSignsLeft) else { return }
+        guard let freeSignsResetAt = row.context?["freeSignsResetAt"] as? String else { return }
         guard let pro = row.context?["active"] as? Bool else { return }
         guard let proExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
         guard let proRevoked = row.context?["revoked"] as? Bool else { return }
@@ -194,7 +199,7 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
                 activeLabel.text = "Active".localized()
                 selectionStyle = .none
                 accessoryType = .none
-            } else {
+            } else if signingWith.isEmpty || enterpriseCertId.isEmpty {
                 activeLabel.theme_textColor = Color.softRed
                 expirationLabel.text = "Tap to know more".localized()
                 activeLabel.text = "Inactive".localized()
@@ -202,6 +207,12 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
                 let bgColorView = UIView()
                 bgColorView.theme_backgroundColor = Color.cellSelectionColor
                 selectedBackgroundView = bgColorView
+            } else {
+                activeLabel.theme_textColor = freeSignsLeftNumber > 0 ? Color.softGreen : Color.softRed
+                expirationLabel.text = signingWith
+                activeLabel.text = "%@ signs left until %@".localizedFormat(freeSignsLeft, freeSignsResetAt.rfc2822decoded)
+                selectionStyle = .none
+                accessoryType = .none
             }
         }
 
@@ -223,6 +234,86 @@ final class SimpleStaticPROStatusCell: UITableViewCell, Cell {
                 expiration.top ~== dummy.bottom ~+ 2
                 expiration.trailing ~== active.trailing
             }
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// PLUS status cell
+
+final class SimpleStaticPLUSStatusCell: UITableViewCell, Cell {
+    private var dummy: UIView!
+    private var activeLabel: UILabel!
+    private var expirationLabel: UILabel!
+
+    private var constraintGroup = ConstraintGroup()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+
+        preservesSuperviewLayoutMargins = true
+        contentView.preservesSuperviewLayoutMargins = true
+
+        activeLabel = UILabel()
+        activeLabel.font = .systemFont(ofSize: (15 ~~ 14))
+        activeLabel.makeDynamicFont()
+        activeLabel.textAlignment = Global.isRtl ? .left : .right
+
+        expirationLabel = UILabel()
+        expirationLabel.theme_textColor = Color.darkGray
+        expirationLabel.font = .systemFont(ofSize: (13 ~~ 12))
+        expirationLabel.makeDynamicFont()
+        expirationLabel.textAlignment = Global.isRtl ? .left : .right
+
+        theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
+
+        textLabel?.makeDynamicFont()
+        textLabel?.theme_textColor = Color.title
+
+        dummy = UIView()
+        dummy.isHidden = true
+
+        contentView.addSubview(activeLabel)
+        contentView.addSubview(expirationLabel)
+        contentView.addSubview(dummy)
+    }
+
+    func configure(row: Row) {
+        textLabel?.theme_textColor = Color.title
+        textLabel?.text = row.text
+
+        guard let isPlus = row.context?["active"] as? Bool else { return }
+        guard let plusExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
+
+        if isPlus {
+            activeLabel.theme_textColor = Color.softGreen
+            expirationLabel.text = "Expires on %@".localizedFormat(plusExpirationDate)
+            activeLabel.text = "Active".localized()
+            selectionStyle = .none
+            accessoryType = .none
+        } else {
+            activeLabel.theme_textColor = Color.softRed
+            expirationLabel.text = "Tap to know more".localized()
+            activeLabel.text = "Inactive".localized()
+            accessoryType = .disclosureIndicator
+            let bgColorView = UIView()
+            bgColorView.theme_backgroundColor = Color.cellSelectionColor
+            selectedBackgroundView = bgColorView
+        }
+        
+       constrain(activeLabel, expirationLabel, dummy, replace: constraintGroup) { active, expiration, dummy in
+            dummy.height ~== 1
+            dummy.centerY ~== dummy.superview!.centerY
+        
+            active.bottom ~== dummy.top ~+ 1
+            active.trailing ~== active.superview!.trailingMargin
+
+            expiration.top ~== dummy.bottom ~+ 2
+            expiration.trailing ~== active.trailing
         }
     }
 

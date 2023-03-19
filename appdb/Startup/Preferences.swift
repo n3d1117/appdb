@@ -20,8 +20,10 @@ extension Defaults.Keys {
     static let ignoredUpdateableApps = Key<[IgnoredApp]>("ignoredUpdateableApps", default: [])
     static let resumeQueuedApps = Key<[RequestedApp]>("resumeQueuedApps", default: [])
     static let genres = Key<[Genre]>("genres", default: [])
+    static let isAppleSilicon = Key<Bool>("is_apple_silicon", default: true)
     static let followSystemAppearance = Key<Bool>("followSystemAppearance", default: true)
     static let shouldSwitchToDarkerTheme = Key<Bool>("shouldSwitchToDarkerTheme", default: false)
+    static let enterpriseCertId = Key<String>("enterprise_cert_id", default: "")
     static let deviceName = Key<String>("deviceName", default: "")
     static let deviceVersion = Key<String>("deviceVersion", default: "")
     static let enableIapPatch = Key<Bool>("enableIapPatch", default: false)
@@ -29,6 +31,7 @@ extension Defaults.Keys {
     static let forceDisablePRO = Key<Bool>("forceDisablePRO", default: false)
     static let enableTrainer = Key<Bool>("enableTrainer", default: false)
     static let signingIdentityType = Key<String>("signingIdentityType", default: "auto")
+    static let signingWith = Key<String>("signing_with", default: "")
     static let optedOutFromEmails = Key<Bool>("optedOutFromEmails", default: false)
     static let removePlugins = Key<Bool>("removePlugins", default: false)
     static let enablePushNotifications = Key<Bool>("enablePush", default: false)
@@ -44,14 +47,44 @@ enum SecureKeys: String, CaseIterable {
     case proRevoked
     case proRevokedOn
     case usesCustomDeveloperIdentity
+    case freeSignsLeft
+    case freeSignsResetAt
+    case email
+    case isPlus
+    case plusUntil
+    case plusProvider
 }
 
 enum Preferences {
 
     // Sensitive data
+    
+    static var email: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.email.rawValue) ?? ""
+    }
 
     static var deviceIsLinked: Bool {
         !(KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? "").isEmpty
+    }
+    
+    static var isPlus: Bool {
+        KeychainWrapper.standard.bool(forKey: SecureKeys.isPlus.rawValue) ?? false
+    }
+    
+    static var plusUntil: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.plusUntil.rawValue) ?? ""
+    }
+    
+    static var freeSignsLeft: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.freeSignsLeft.rawValue) ?? ""
+    }
+    
+    static var freeSignsResetAt: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.freeSignsResetAt.rawValue) ?? ""
+    }
+    
+    static var plusProvider: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.plusProvider.rawValue) ?? ""
     }
 
     static var pro: Bool {
@@ -83,6 +116,10 @@ enum Preferences {
     }
 
     // Non sensitive data
+    
+    static var isAppleSilicon: Bool {
+        defaults[.isAppleSilicon]
+    }
 
     static var didSpecifyPreferredLanguage: Bool {
         defaults[.didSpecifyPreferredLanguage]
@@ -131,7 +168,11 @@ enum Preferences {
     static var shouldSwitchToDarkerTheme: Bool {
         defaults[.shouldSwitchToDarkerTheme]
     }
-
+    
+    static var enterpriseCertId: String {
+        defaults[.enterpriseCertId]
+    }
+    
     static var deviceName: String {
         defaults[.deviceName]
     }
@@ -158,6 +199,10 @@ enum Preferences {
 
     static var signingIdentityType: String {
         defaults[.signingIdentityType]
+    }
+    
+    static var signingWith: String {
+        defaults[.signingWith]
     }
 
     static var optedOutFromEmails: Bool {
@@ -227,6 +272,8 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.removePlugins.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.enablePushNotifications.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.duplicateApp.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.isAppleSilicon.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.signingWith.name)
     }
 
     // Remove secure keys

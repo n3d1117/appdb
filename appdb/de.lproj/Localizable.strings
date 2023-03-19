@@ -54,7 +54,7 @@
 "Best Games" = "Beste Spiele";
 "Top Books" = "Top Bücher";
 "See All" = "Alle sehen";
-"News" = "Nachrichten";
+"News" = "Neuigkeiten";
 "Settings" = "Einstellungen";
 "System Status" = "System Status";
 
@@ -159,13 +159,13 @@
 "No results found" = "Keine Ergebnisse gefunden";
 "No results were found for '%@'" = "Unter '%@' konnten keine Ergebnisse gefunden werden.";
 "Please search at least two characters" = "Deine Suche muss mindestens zwei Zeichen enthalten.";
-"Search News" = "Nachrichten suchen";
+"Search News" = "Neuigkeiten suchen";
 
 ///////////////////////
 //     DOWNLOADS     //
 ///////////////////////
 
-"Queued" = "In der Warteschlange";
+"Queued" = "Warteschlange";
 "Library" = "Bibliothek";
 "Downloading" = "Lädt herunter";
 "No queued downloads"  = "Keine Downloads in der Warteschlange";
@@ -204,7 +204,7 @@
 "Uploading" = "Hochladen"; // please use same translation used above, before first %@
 "Downloading %@ of %@ (%@)" = "%@ von %@ herunterladen (%@)"; // e.g. "Downloading 7.4 MB of 15.2 MB (49%)"
 "Downloading %@" = "%@ herunterladen"; // e.g. "Downloading 3 MB"
-"Downloading" = "Lade herunter"; // please use same translation used above, before %@
+"Downloading" = "Lädt herunter"; // please use same translation used above, before %@
 "File uploaded successfully" = "Datei erfolgreich hochgeladen";
 
 //////////////////////
@@ -232,7 +232,9 @@
 "Device" = "Gerät";
 "Authorize App" = "App autorisieren";
 "Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Autorisiere die App mit deinem Verknüpfungs/Linkcode von der Appdb Webseite und genieße unendlich viele App Installationen!";
-"PRO Status" = "PRO Status";
+"PLUS Status" = "PLUS Status";
+"Signing" = "Signieren";
+"%@ signs left until %@" = "%@ Signierungen übrig bis %@";
 "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Nutze diesen Code, wenn du ein neues Gerät mit Appdb verknüpfen möchtest. Halte die Spalte gedrückt um den Code zu kopieren, oder tippe einmal darauf um einen neuen zu generieren.";
 "Device Status" = "Gerätestatus";
 "To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "Um die Verknüpfung deines Geräts zu Appdb aufzuheben, entferne das Appdb Profil in Einstellungen -> Allgemein -> Profile.";
@@ -266,19 +268,11 @@
 "Follow System Appearance" = "Nach System-Erscheinungsbild richten";
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Automatisch zwischen dem hellen und dunklen Erscheinungsbild wechseln (richtet sich nach dem Systemerscheinungsbild). Um zu einem dunkleren Erscheinungsbild zu wechseln, wähle es einmal manuell aus.\n\nHINWEIS: Wenn du Probleme mit diesem Feature hast (Theme wird nicht automatisch gewechselt, vermischte Themes), schließe die App von der Multitasking Ansicht und öffne sie erneut.";
 "Advanced Options" = "Erweiterte Optionen";
-"Check Revocation" = "Revoke überprüfen";
-"Validate PRO Voucher" = "PRO Voucher validieren";
-"Activate PRO Voucher" = "PRO Voucher aktivieren";
+"Check Revocation" = "Prüfe Revocation";
 "Email Link Code" = "E-Mail Verknüpfungs/Linkcode";
-"List apps managed by appdb" = "Aufgelistete Apps, die von Appdb verwaltet werden";
-"Your PRO has not been revoked!" = "Dein PRO wurde nicht revoked!";
+"List apps managed by appdb" = "Apps, die von Appdb verwaltet werden";
 "Your Custom Developer Identity has not been revoked!" = "Dein Benutzerdefinierte Entwickler-Identität wurde nicht revoked!";
-"Enter Voucher" = "Voucher eingeben";
-"Paste here the PRO voucher obtained by a reseller:" = "Gib hier den PRO Voucher ein, den du von einem Verkäufer bekommen hast:";
 "Activate" = "Aktivieren";
-"Your PRO has been activated successfully!" = "Dein PRO wurde erfolgreich aktiviert!";
-"Validate" = "Validieren";
-"Your PRO voucher is valid and can be activated!" = "Dein PRO Voucher ist gültig und kann aktiviert werden!";
 "Enter below the email address where the link code will be sent:" = "Gib nachfolgend die E-Mail Adresse ein, an die der Verknüpfungs/Linkcode gesendet werden soll";
 "Email was sent successfully!" = "E-Mail wurde erfolgreich gesendet!";
 "Apps managed by appdb" = "Apps, die von Appdb verwaltet werden";
@@ -312,6 +306,26 @@
 "Reinstall everything" = "Alles neu installieren";
 "Clear IPA cache" = "IPA-Cache leeren";
 "Re-validate IPA cache" = "IPA-Cache neu validieren";
+
+/////////////////////
+//       PLUS      //
+/////////////////////
+"Available PLUS subscriptions" = "Verfügbare PLUS Pakete";
+"Purchase PLUS" = "PLUS kaufen";
+"Pay by" = "Zahle mit";
+"excl. VAT" = "exkl. MwST";
+"What is appdb PLUS?" = "Was ist appdb PLUS?";
+"appdb PLUS allows you to use appdb on non-jailbroken device or Apple Silicon Mac with your own developer account and sign apps in the cloud without any limitations\n\nPLUS is activated per device, separately for each of your devices\n\nWe use this money to pay for servers, traffic, and support the community\n\nPLUS is not transferable between devices, you can cancel it at any time, or we will notify your about existing subscription for unlinked device, so you can cancel it if you sold your device\n\nPLUS is not compatible with corporate-owned devices with MDM. Please use appdb on your personal devices" = "appdb PLUS erlaubt es dir, appdb auf Geräten ohne Jailbreak sowie Apple Silicon Macs zu verwenden und mit deinem eigenen Entwickler-Account unlimitiert viele Apps in der Cloud zu signieren\n\nPLUS wird für jeweils ein Gerät aktiviert\n\nWir verwenden diese Einnahmen um Server und Traffic zu finanzieren, sowie die Community zu unterstützen\n\nPLUS ist nicht zwischen Geräten transferierbar. Du kannst PLUS jederzeit kündigen. Wenn dein Gerät von appdb entfernt wird, benachrichtigen wir dich über dein bestehendes Abo, sodass du es kündigen kannst, wenn du dein Gerät bspw. verkaufst\n\nPLUS ist mit Firmengeräten, die MDM verwenden, nicht kompatibel. Bitte verwende appdb auf deinen privaten Geräten";
+
+/////////////////////
+//     ALTSTORE    //
+/////////////////////
+"AltStore Repos" = "AltStore Quellen";
+"Please enter repository URL" = "Bitte gib eine URL zur Quelle an";
+"Repository URL" = "URL zur Quelle";
+"Add repo" = "Quelle hinzufügen";
+"%@ Apps" = "%@ Apps";
+"Search Apps" = "Apps suchen";
 
 /////////////////////
 //     UPDATES     //
@@ -401,6 +415,8 @@
 "appdb team" = "Appdb Team";
 "Icon and banner designer" = "Icon und Banner Designer";
 "View project on GitHub" = "Projekt auf GitHub ansehen";
+"Original Developer" = "Original Entwickler";
+"Current Maintainer" = "Aktueller Entwickler";
 
 /////////////////////////////////////////
 //     WISHES / AUTOMATIC REQUESTS     //

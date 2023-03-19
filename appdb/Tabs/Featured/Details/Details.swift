@@ -185,13 +185,13 @@ class Details: LoadingTableView {
                     if link.cracker == link.uploader {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: "downloadUnified", for: indexPath) as? DetailsDownloadUnified else { return UITableViewCell() }
                         cell.accessoryType = shouldHideDisclosureIndicator ? .none : .disclosureIndicator
-                        cell.configure(with: link)
+                        cell.configure(with: link, installEnabled: adsLoaded)
                         cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                         return cell
                     } else {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as? DetailsDownload else { return UITableViewCell() }
                         cell.accessoryType = shouldHideDisclosureIndicator ? .none : .disclosureIndicator
-                        cell.configure(with: link)
+                        cell.configure(with: link, installEnabled: adsLoaded)
                         cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                         return cell
                     }
@@ -543,23 +543,37 @@ extension Details: UnityAdsInitializationDelegate {
 extension Details: UnityAdsLoadDelegate {
     func unityAdsAdLoaded(_ placementId: String) {
         adsLoaded = true
+        if indexForSegment == .download {
+            tableView.reloadData()
+        }
     }
     
     func unityAdsAdFailed(toLoad placementId: String, withError error: UnityAdsLoadError, withMessage message: String) {
-        adsLoaded = false
+        adsLoaded = true
+        if indexForSegment == .download {
+            tableView.reloadData()
+        }
     }
 }
 
 extension Details: UnityAdsShowDelegate {
-    func unityAdsShowComplete(_ placementId: String, withFinish state: UnityAdsShowCompletionState) {
+    
+    func performActualInstall() {
         if currentInstallButton != nil {
             actualInstall(sender: currentInstallButton!)
+            adsLoaded = false
+            if indexForSegment == .download {
+                tableView.reloadData()
+            }
+            UnityAds.load("Interstitial_iOS", loadDelegate: self)
         }
     }
+    
+    func unityAdsShowComplete(_ placementId: String, withFinish state: UnityAdsShowCompletionState) {
+        performActualInstall()
+    }
     func unityAdsShowFailed(_ placementId: String, withError error: UnityAdsShowError, withMessage message: String) {
-        if currentInstallButton != nil {
-            actualInstall(sender: currentInstallButton!)
-        }
+        performActualInstall()
     }
     
     func unityAdsShowStart(_ placementId: String) {

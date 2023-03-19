@@ -30,14 +30,8 @@ class AdvancedOptions: TableViewController {
         ]),
         Section(rows: [
             Row(text: "Check Revocation".localized(), selection: { [unowned self] _ in
-                self.checkProRevocationStatus()
-            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-            Row(text: "Validate PRO Voucher".localized(), selection: { [unowned self] _ in
-                self.validateVoucher()
-            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-            Row(text: "Activate PRO Voucher".localized(), selection: { [unowned self] _ in
-                self.activateVoucher()
-            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                            self.checkRevocationStatus()
+                        }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
             Row(text: "Email Link Code".localized(), selection: { [unowned self] _ in
                 self.emailLinkCode()
             }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
@@ -136,61 +130,32 @@ extension AdvancedOptions: UITableViewDelegate {
 }
 
 extension AdvancedOptions {
-    fileprivate func checkProRevocationStatus() {
-        API.checkRevocation(completion: { isRevoked, revokedOn in
-            if isRevoked {
-                var message: String = "Revoked on %@".localizedFormat(revokedOn.revokedDateDecoded)
-                if Preferences.usesCustomDeveloperIdentity {
-                    message = "Custom Developer Identity".localized() + "\n" + message
-                }
-                Messages.shared.showError(message: message, duration: 4, context: .viewController(self))
-            } else {
-                if Preferences.usesCustomDeveloperIdentity {
-                    Messages.shared.showSuccess(message: "Your Custom Developer Identity has not been revoked!".localized(), context: .viewController(self))
+    
+    fileprivate func checkRevocationStatus() {
+            API.checkRevocation(completion: { isRevoked, revokedOn in
+                if isRevoked {
+                    var message: String = "Revoked on %@".localizedFormat(revokedOn.revokedDateDecoded)
+                    if Preferences.usesCustomDeveloperIdentity {
+                        message = "Custom Developer Identity".localized() + "\n" + message
+                    }
+                    Messages.shared.showError(message: message, duration: 4, context: .viewController(self))
                 } else {
-                    Messages.shared.showSuccess(message: "Your PRO has not been revoked!".localized(), context: .viewController(self))
+                    if Preferences.usesCustomDeveloperIdentity {
+                        Messages.shared.showSuccess(message: "Your Custom Developer Identity has not been revoked!".localized(), context: .viewController(self))
+                    } else {
+                        Messages.shared.showSuccess(message: "Your PRO has not been revoked!".localized(), context: .viewController(self))
+                    }
                 }
-            }
-        }, fail: { error in
-            Messages.shared.showError(message: error.prettified, context: .viewController(self))
-        })
-    }
-
-    fileprivate func activateVoucher() {
-        let title = "Enter Voucher".localized()
-        let message = "Paste here the PRO voucher obtained by a reseller:".localized()
-        let placeholder = "x:xxxx:xxxx"
-        presentVoucherTextInputAlertController(title: title, message: message, placeholder: placeholder, actionTitle: "Activate".localized(), action: { voucher in
-            API.activateVoucher(voucher: voucher, success: {
-                API.getConfiguration(success: { [weak self] in
-                    guard let self = self else { return }
-                    Messages.shared.showSuccess(message: "Your PRO has been activated successfully!".localized(), context: .viewController(self))
-                    NotificationCenter.default.post(name: .RefreshSettings, object: self)
-                }, fail: { _ in })
             }, fail: { error in
                 Messages.shared.showError(message: error.prettified, context: .viewController(self))
             })
-        })
-    }
-
-    fileprivate func validateVoucher() {
-        let title = "Enter Voucher".localized()
-        let message = "Paste here the PRO voucher obtained by a reseller:".localized()
-        let placeholder = "x:xxxx:xxxx"
-        presentVoucherTextInputAlertController(title: title, message: message, placeholder: placeholder, actionTitle: "Validate".localized(), action: { voucher in
-            API.validateVoucher(voucher: voucher, success: {
-                Messages.shared.showSuccess(message: "Your PRO voucher is valid and can be activated!".localized(), context: .viewController(self))
-            }, fail: { error in
-                Messages.shared.showError(message: error.prettified, context: .viewController(self))
-            })
-        })
-    }
-
+        }
+    
     fileprivate func emailLinkCode() {
         let title = "Enter Email".localized()
         let message = "Enter below the email address where the link code will be sent:".localized()
         let placeholder = "name@example.com".localized()
-        presentVoucherTextInputAlertController(title: title, message: message, placeholder: placeholder, actionTitle: "Send".localized(), action: { email in
+        presentEmailInputAlertController(title: title, message: message, placeholder: placeholder, actionTitle: "Send".localized(), action: { email in
             API.emailLinkCode(email: email, success: {
                 Messages.shared.showSuccess(message: "Email was sent successfully!".localized(), context: .viewController(self))
             }, fail: { error in
@@ -227,12 +192,12 @@ extension AdvancedOptions {
 }
 
 extension AdvancedOptions {
-    func presentVoucherTextInputAlertController(title: String, message: String, placeholder: String, actionTitle: String, action: @escaping (_ text: String) -> Void) {
+    func presentEmailInputAlertController(title: String, message: String, placeholder: String, actionTitle: String, action: @escaping (_ text: String) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert, adaptive: true)
         alert.addTextField(configurationHandler: { textField in
             //textField.addTarget(self, action: #selector(self.voucherTextChanged), for: .editingChanged)
             textField.placeholder = placeholder
-            textField.keyboardType = .URL
+            textField.keyboardType = .emailAddress
             textField.theme_keyboardAppearance = [.light, .dark, .dark]
             textField.clearButtonMode = .whileEditing
         })

@@ -24,7 +24,7 @@ class DetailsDownload: DetailsCell {
         return view
     }()
 
-    func configure(with link: Link) {
+    func configure(with link: Link, installEnabled: Bool) {
         host.text = link.host
         cracker.text = "Cracked by %@".localizedFormat(link.cracker.decoded)
         cracker.theme_textColor = link.verified ? Color.softGreen : Color.softRed
@@ -32,6 +32,7 @@ class DetailsDownload: DetailsCell {
         uploader.theme_textColor = link.verified ? Color.softGreen : Color.softRed
         button.linkId = link.id
         button.isHidden = !link.diCompatible
+        button.isEnabled = installEnabled
         host.theme_textColor = link.universal ? Color.mainTint : Color.title
 
         selectionStyle = accessoryType == .none ? .none : .default
@@ -117,12 +118,13 @@ class DetailsDownloadUnified: DetailsCell {
         return view
     }()
 
-    func configure(with link: Link) {
+    func configure(with link: Link, installEnabled: Bool) {
         host.text = link.host
         cracker.text = "Cracked and uploaded by %@".localizedFormat(link.cracker.decoded)
         cracker.theme_textColor = link.verified ? Color.softGreen : Color.softRed
         button.linkId = link.id
         button.isHidden = !link.diCompatible
+        button.isEnabled = installEnabled
         button.setTitle(button.isHidden ? "" : "Install".localized().uppercased(), for: .normal)
         host.theme_textColor = link.universal ? Color.mainTint : Color.title
 

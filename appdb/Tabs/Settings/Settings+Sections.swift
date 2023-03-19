@@ -113,11 +113,19 @@ extension Settings {
                     self.push(DeviceChooser())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
 
-                Row(text: "PRO Status".localized(), selection: { [unowned self] _ in
-                    if !Preferences.usesCustomDeveloperIdentity && (Preferences.proRevoked || !Preferences.pro) {
+                Row(text: "Signing".localized(), selection: { [unowned self] _ in
+                    if !Preferences.usesCustomDeveloperIdentity && (Preferences.proRevoked || !Preferences.pro && Preferences.enterpriseCertId.isEmpty) {
                         self.openInSafari(self.proSite)
+                    } else if !Preferences.enterpriseCertId.isEmpty {
+                        // @todo implement switching between free certs
                     }
-                    }, cellClass: SimpleStaticPROStatusCell.self, context: ["active": Preferences.pro, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "usesCustomDevIdentity": Preferences.usesCustomDeveloperIdentity]),
+                }, cellClass: SimpleStaticSigningCertificateCell.self, context: ["active": Preferences.pro, "signingWith": Preferences.signingWith, "enterpriseCertId": Preferences.enterpriseCertId, "freeSignsLeft": Preferences.freeSignsLeft, "freeSignsResetAt": Preferences.freeSignsResetAt, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "usesCustomDevIdentity": Preferences.usesCustomDeveloperIdentity]),
+                
+                Row(text: "PLUS Status".localized(), selection: { [unowned self] _ in
+                    if !Preferences.isPlus {
+                        self.push(PlusPurchase())
+                    }
+                    }, cellClass: SimpleStaticPLUSStatusCell.self, context: ["active": Preferences.isPlus, "expire": Preferences.plusUntil]),
 
                 Row(text: "Link Code".localized(), detailText: Preferences.linkCode, selection: { [unowned self] _ in
                         API.getLinkCode(success: { self.refreshSources() }, fail: { _ in })

@@ -139,6 +139,7 @@ enum Actions: String {
     case getAltStoreRepos = "get_altstore_repos"
     case editAltStoreRepo = "edit_altstore_repo"
     case deleteAltStoreRepo = "delete_altstore_repo"
+    case getPlusPurchaseOptions = "get_plus_purchase_options"
 }
 
 enum ConfigurationParameters: String {
@@ -149,6 +150,7 @@ enum ConfigurationParameters: String {
     case disableProtectionChecks = "params[disable_protection_checks]"
     case forceDisablePRO = "params[is_pro_disabled]"
     case signingIdentityType = "params[signing_identity_type]"
+    case enterpriseCertId = "params[enterprise_cert_id]"
     case optedOutFromEmails = "params[is_opted_out_from_emails]"
 }
 

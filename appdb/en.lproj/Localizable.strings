@@ -232,7 +232,9 @@
 "Device" = "Device";
 "Authorize App" = "Authorize App";
 "Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Authorize app with link code from appdb website and enjoy unlimited app installs!";
-"PRO Status" = "PRO Status";
+"PLUS Status" = "PLUS Status";
+"Signing" = "Signing";
+"%@ signs left until %@" = "%@ signs left until %@";
 "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.";
 "Device Status" = "Device Status";
 "To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles." = "To fully unlink your device from appdb remove its profile in Settings -> General -> Profiles.";
@@ -267,18 +269,9 @@
 "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it." = "Automatically switch between light and dark theme based on System Appearance. To switch to the Darker theme instead, just manually select it once.\n\nNOTE: If you're experiencing issues (theme not switching automatically or mixed themes) just close the app from multitasking and reopen it.";
 "Advanced Options" = "Advanced Options";
 "Check Revocation" = "Check Revocation";
-"Validate PRO Voucher" = "Validate PRO Voucher";
-"Activate PRO Voucher" = "Activate PRO Voucher";
 "Email Link Code" = "Email Link Code";
 "List apps managed by appdb" = "List apps managed by appdb";
-"Your PRO has not been revoked!" = "Your PRO has not been revoked!";
 "Your Custom Developer Identity has not been revoked!" = "Your Custom Developer Identity has not been revoked!";
-"Enter Voucher" = "Enter Voucher";
-"Paste here the PRO voucher obtained by a reseller:" = "Paste here the PRO voucher obtained by a reseller:";
-"Activate" = "Activate";
-"Your PRO has been activated successfully!" = "Your PRO has been activated successfully!";
-"Validate" = "Validate";
-"Your PRO voucher is valid and can be activated!" = "Your PRO voucher is valid and can be activated!";
 "Enter below the email address where the link code will be sent:" = "Enter below the email address where the link code will be sent:";
 "Email was sent successfully!" = "Email was sent successfully!";
 "Apps managed by appdb" = "Apps managed by appdb";
@@ -312,6 +305,27 @@
 "Reinstall everything" = "Reinstall everything";
 "Clear IPA cache" = "Clear IPA cache";
 "Re-validate IPA cache" = "Re-validate IPA cache";
+
+
+/////////////////////
+//       PLUS      //
+/////////////////////
+"Available PLUS subscriptions" = "Available PLUS subscriptions";
+"Purchase PLUS" = "Purchase PLUS";
+"Pay by" = "Pay by";
+"excl. VAT" = "excl. VAT";
+"What is appdb PLUS?" = "What is appdb PLUS?";
+"appdb PLUS allows you to use appdb on non-jailbroken device or Apple Silicon Mac with your own developer account and sign apps in the cloud without any limitations\n\nPLUS is activated per device, separately for each of your devices\n\nWe use this money to pay for servers, traffic, and support the community\n\nPLUS is not transferable between devices, you can cancel it at any time, or we will notify your about existing subscription for unlinked device, so you can cancel it if you sold your device\n\nPLUS is not compatible with corporate-owned devices with MDM. Please use appdb on your personal devices" = "appdb PLUS allows you to use appdb on non-jailbroken device or Apple Silicon Mac with your own developer account and sign apps in the cloud without any limitations\n\nPLUS is activated per device, separately for each of your devices\n\nWe use this money to pay for servers, traffic, and support the community\n\nPLUS is not transferable between devices, you can cancel it at any time, or we will notify your about existing subscription for unlinked device, so you can cancel it if you sold your device\n\nPLUS is not compatible with corporate-owned devices with MDM. Please use appdb on your personal devices";
+
+/////////////////////
+//     ALTSTORE    //
+/////////////////////
+"AltStore Repos" = "AltStore Repos";
+"Please enter repository URL" = "Please enter repository URL";
+"Repository URL" = "Repository URL";
+"Add repo" = "Add repo";
+"%@ Apps" = "%@ Apps";
+"Search Apps" = "Search Apps";
 
 /////////////////////
 //     UPDATES     //
@@ -401,6 +415,8 @@
 "appdb team" = "appdb team";
 "Icon and banner designer" = "Icon and banner designer";
 "View project on GitHub" = "View project on GitHub";
+"Original Developer" = "Original Developer";
+"Current Maintainer" = "Current Maintainer";
 
 /////////////////////////////////////////
 //     WISHES / AUTOMATIC REQUESTS     //

@@ -224,12 +224,20 @@ extension AltStoreAppDetails: UnityAdsInitializationDelegate {
 }
 
 extension AltStoreAppDetails: UnityAdsLoadDelegate {
+    func enableInstallButton() {
+        if let detailsHeader = header.first as? DetailsHeader, let installButton = detailsHeader.installButton {
+            installButton.isEnabled = true
+        }
+    }
+    
     func unityAdsAdLoaded(_ placementId: String) {
         adsLoaded = true
+        enableInstallButton()
     }
     
     func unityAdsAdFailed(toLoad placementId: String, withError error: UnityAdsLoadError, withMessage message: String) {
         adsLoaded = false
+        enableInstallButton()
     }
 }
 

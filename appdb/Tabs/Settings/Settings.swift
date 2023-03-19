@@ -156,6 +156,9 @@ class Settings: TableViewController {
         alertController.addAction(UIAlertAction(title: "Email".localized(), style: .default) { _ in
             self.selectEmail(indexPath: indexPath)
         })
+        alertController.addAction(UIAlertAction(title: "Telegram", style: .default) { _ in
+            self.openInSafari(Global.telegram)
+        })
         alertController.addAction(UIAlertAction(title: "Buy me a coffee".localized(), style: .default) { _ in
             self.openInSafari(Global.donateSite)
         })

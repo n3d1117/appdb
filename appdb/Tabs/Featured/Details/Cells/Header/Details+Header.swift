@@ -183,6 +183,7 @@ class DetailsHeader: DetailsCell {
             installButton!.setTitle("Install".localized().uppercased(), for: .normal)
             installButton!.theme_tintColor = Color.softGreen
             installButton!.addTarget(self, action: #selector(installTapped), for: .touchUpInside)
+            installButton!.isEnabled = false
         }
         default:
             break

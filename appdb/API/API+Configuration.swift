@@ -47,13 +47,22 @@ extension API {
                                 Preferences.set(.usesCustomDeveloperIdentity, to: false)
                             }
 
+                            Preferences.set(.email, to: data["email"].stringValue)
                             Preferences.set(.deviceName, to: data["name"].stringValue)
                             Preferences.set(.deviceVersion, to: data["ios_version"].stringValue)
+                            
+                            Preferences.set(.isPlus, to: data["is_plus"].stringValue == "yes")
+                            Preferences.set(.plusUntil, to: data["plus_till"].stringValue)
+                            Preferences.set(.enterpriseCertId, to: data["enterprise_cert_id"].stringValue)
+                            Preferences.set(.signingWith, to: data["signing_with"].stringValue)
+                            Preferences.set(.freeSignsLeft, to: data["free_signs_left"].stringValue)
+                            Preferences.set(.freeSignsResetAt, to: data["free_signs_reset_at"].stringValue)
+
                             Preferences.set(.disableRevocationChecks, to: data["disable_protection_checks"].stringValue == "yes")
                             Preferences.set(.forceDisablePRO, to: data["is_pro_disabled"].stringValue == "yes")
                             Preferences.set(.signingIdentityType, to: data["signing_identity_type"].stringValue)
                             Preferences.set(.optedOutFromEmails, to: data["is_opted_out_from_emails"].stringValue == "yes")
-
+                            
                             success()
                         }, fail: { error in
                             fail(error)
@@ -87,6 +96,7 @@ extension API {
                             case .forceDisablePRO: Preferences.set(.forceDisablePRO, to: value == "yes")
                             case .clearDevEntity: break
                             case .signingIdentityType: Preferences.set(.signingIdentityType, to: value)
+                            case .enterpriseCertId: Preferences.set(.enterpriseCertId, to: value)
                             case .optedOutFromEmails: Preferences.set(.optedOutFromEmails, to: value == "yes")
                             }
                         }
