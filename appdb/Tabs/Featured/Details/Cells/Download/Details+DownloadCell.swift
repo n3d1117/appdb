@@ -160,7 +160,7 @@ class DetailsDownloadUnified: DetailsCell {
         
         if !link.reportReason.isEmpty {
             compatibility.theme_textColor = Color.softRed
-            compatibility.text = link.reportReason
+            compatibility.text = "We’ve got reports reg. this link: \"%@\"".localizedFormat(link.reportReason)
         }
         
         constrain(cracker, compatibility, button) { cracker, compatibility, button in
