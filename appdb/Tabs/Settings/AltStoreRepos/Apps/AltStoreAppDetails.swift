@@ -14,7 +14,7 @@ import UnityAds
 class AltStoreAppDetails: LoadingTableView {
     
     var adsInitialized: Bool = false
-    var adsLoaded: Bool = false
+    var adsLoaded: Bool = Global.DEBUG || Preferences.isPlus
     var currentInstallButton: RoundedButton?
 
     var app: AltStoreApp!
@@ -42,7 +42,9 @@ class AltStoreAppDetails: LoadingTableView {
         setUp()
         initializeCells()
         
-        UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
+        if !Global.DEBUG && !Preferences.isPlus {
+            UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
+        }
     }
 
     // MARK: - Table view data source
@@ -101,7 +103,11 @@ class AltStoreAppDetails: LoadingTableView {
 
     @objc func install(sender: RoundedButton) {
         currentInstallButton = sender
-        UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
+        if Global.DEBUG || Preferences.isPlus {
+            actualInstall(sender: currentInstallButton!)
+        } else {
+            UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
+        }
     }
 
     private func actualInstall(sender: RoundedButton) {
@@ -154,7 +160,7 @@ class AltStoreAppDetails: LoadingTableView {
                     }
                 }
 
-                vc.onCompletion = { [weak self] (patchIap: Bool, enableGameTrainer: Bool, removePlugins: Bool, enablePushNotifications: Bool, duplicateApp: Bool, newId: String, newName: String) in
+                vc.onCompletion = { [weak self] (patchIap: Bool, enableGameTrainer: Bool, removePlugins: Bool, enablePushNotifications: Bool, duplicateApp: Bool, newId: String, newName: String, selectedDylibs: [String]) in
                     guard let self = self else { return }
                     var additionalOptions: [AdditionalInstallationParameters: Any] = [:]
                     if patchIap { additionalOptions[.inApp] = 1 }
@@ -163,6 +169,7 @@ class AltStoreAppDetails: LoadingTableView {
                     if enablePushNotifications { additionalOptions[.pushNotifications] = 1 }
                     if duplicateApp && !newId.isEmpty { additionalOptions[.alongside] = newId }
                     if !newName.isEmpty { additionalOptions[.name] = newName }
+                    if !selectedDylibs.isEmpty { additionalOptions[.injectDylibs] = selectedDylibs }
                     install(self.app, additionalOptions: additionalOptions)
                 }
             } else {
@@ -215,7 +222,9 @@ extension AltStoreAppDetails: UnityAdsInitializationDelegate {
     func initializationComplete() {
         adsInitialized = true
         
-        UnityAds.load("Interstitial_iOS", loadDelegate: self)
+        if !Global.DEBUG && !Preferences.isPlus {
+            UnityAds.load("Interstitial_iOS", loadDelegate: self)
+        }
     }
     
     func initializationFailed(_ error: UnityAdsInitializationError, withMessage message: String) {

@@ -52,7 +52,7 @@ class AltStoreRepos: LoadingTableView {
             navigationController?.navigationBar.tintAdjustmentMode = .automatic
         }
 
-        // If device was just linked, start checking for updates as soon as view appears
+        // If device was just linked, start checking for repos as soon as view appears
         if Preferences.deviceIsLinked, state == .error, errorMessage.text != "No repos found".localized() {
             self.animated = onlyOnce
             if onlyOnce { onlyOnce = false }
@@ -79,7 +79,7 @@ class AltStoreRepos: LoadingTableView {
 
                     if self.privateRepos.isEmpty && self.publicRepos.isEmpty {
                         self.tableView.reloadData()
-                        self.showErrorMessage(text: "No AltStore repos found".localized(), animated: self.animated)
+                        self.showErrorMessage(text: "No repos found".localized(), animated: self.animated)
                     } else {
                         self.state = .done
                     }

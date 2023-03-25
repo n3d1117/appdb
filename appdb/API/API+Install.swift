@@ -10,6 +10,18 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
+    
+    static func getInstallationOptions(success:@escaping (_ items: [InstallationOption]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+        AF.request(endpoint, parameters: ["action": Actions.getFeatures.rawValue, "lang": languageCode], headers: headersWithCookie)
+            .responseArray(keyPath: "data") { (response: AFDataResponse<[InstallationOption]>) in
+                switch response.result {
+                case .success(let installationOptions):
+                    success(installationOptions)
+                case .failure(let error as NSError):
+                    fail(error)
+                }
+            }
+    }
 
     static func install(id: String, type: ItemType, additionalOptions: [AdditionalInstallationParameters: Any] = [:], completion:@escaping (_ error: String?) -> Void) {
         var parameters: [String: Any] = ["action": Actions.install.rawValue, "type": type.rawValue, "id": id, "lang": languageCode]

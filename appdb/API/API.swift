@@ -140,6 +140,10 @@ enum Actions: String {
     case editAltStoreRepo = "edit_altstore_repo"
     case deleteAltStoreRepo = "delete_altstore_repo"
     case getPlusPurchaseOptions = "get_plus_purchase_options"
+    case getFeatures = "get_features"
+    case getDylibs = "get_dylibs"
+    case addDylib = "add_dylib"
+    case deleteDylib = "delete_dylib"
 }
 
 enum ConfigurationParameters: String {
@@ -161,4 +165,5 @@ enum AdditionalInstallationParameters: String {
     case trainer = "enable_features[trainer]"
     case removePlugins = "enable_features[remove_plugins]"
     case pushNotifications = "enable_features[push]"
+    case injectDylibs = "enabled_features[inject_dylibs]"
 }

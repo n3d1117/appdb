@@ -11,11 +11,12 @@ import Cartography
 
 class DetailsDownload: DetailsCell {
 
-    static var height: CGFloat = 75 ~~ 70
+    static var height: CGFloat = 135 ~~ 130
 
     var host: UILabel!
     var cracker: UILabel!
     var uploader: UILabel!
+    var compatibility: UILabel!
     var button: RoundedButton!
 
     lazy var bgColorView: UIView = {
@@ -36,7 +37,21 @@ class DetailsDownload: DetailsCell {
         host.theme_textColor = link.universal ? Color.mainTint : Color.title
 
         selectionStyle = accessoryType == .none ? .none : .default
-        constrain(button) { button in
+        
+        compatibility.text = link.compatibility
+        compatibility.theme_textColor = link.isCompatible ? Color.softGreen : Color.softRed
+        
+        if !link.reportReason.isEmpty {
+            compatibility.theme_textColor = Color.softRed
+            compatibility.text = link.reportReason
+        }
+        
+        constrain(uploader, compatibility, button) { uploader, compatibility, button in
+            
+            compatibility.leading ~== uploader.leading
+            compatibility.width ~<= compatibility.superview!.width * 0.9
+            compatibility.top ~== uploader.bottom + 10
+            
             button.trailing ~== button.superview!.trailing ~- (accessoryType == .none ? Global.Size.margin.value : 10)
         }
     }
@@ -71,7 +86,12 @@ class DetailsDownload: DetailsCell {
         uploader.font = .systemFont(ofSize: (12.5 ~~ 11.5))
         uploader.makeDynamicFont()
         uploader.numberOfLines = 1
-
+        
+        compatibility = UILabel()
+        compatibility.font = .systemFont(ofSize: (12.5 ~~ 11.5))
+        compatibility.makeDynamicFont()
+        compatibility.numberOfLines = 2
+        
         button = RoundedButton()
         button.titleLabel?.font = .boldSystemFont(ofSize: 13)
         button.makeDynamicFont()
@@ -81,6 +101,7 @@ class DetailsDownload: DetailsCell {
         contentView.addSubview(host)
         contentView.addSubview(cracker)
         contentView.addSubview(uploader)
+        contentView.addSubview(compatibility)
         contentView.addSubview(button)
 
         setConstraints()
@@ -93,23 +114,27 @@ class DetailsDownload: DetailsCell {
             cracker.leading ~== host.leading
             cracker.trailing ~<= button.leading ~- Global.Size.margin.value
             cracker.centerY ~== button.centerY + 3
+            cracker.width ~<= cracker.superview!.width * 0.65
 
-            host.bottom ~== cracker.top ~- 3
+
+            host.bottom ~== cracker.top ~- 25
             host.leading ~== host.superview!.leading ~+ Global.Size.margin.value
-            host.width ~<= host.superview!.width * 0.65
+            host.width ~<= host.superview!.width * 0.9
 
             uploader.leading ~== cracker.leading
             uploader.trailing ~== cracker.trailing
             uploader.top ~== cracker.bottom + 1
+            uploader.width ~<= uploader.superview!.width * 0.65
         }
     }
 }
 
 class DetailsDownloadUnified: DetailsCell {
-    static var height: CGFloat = 60 ~~ 55
+    static var height: CGFloat = 125 ~~ 120
 
     var host: UILabel!
     var cracker: UILabel!
+    var compatibility: UILabel!
     var button: RoundedButton!
 
     lazy var bgColorView: UIView = {
@@ -129,7 +154,21 @@ class DetailsDownloadUnified: DetailsCell {
         host.theme_textColor = link.universal ? Color.mainTint : Color.title
 
         selectionStyle = accessoryType == .none ? .none : .default
-        constrain(button) { button in
+        
+        compatibility.text = link.compatibility
+        compatibility.theme_textColor = link.isCompatible ? Color.softGreen : Color.softRed
+        
+        if !link.reportReason.isEmpty {
+            compatibility.theme_textColor = Color.softRed
+            compatibility.text = link.reportReason
+        }
+        
+        constrain(cracker, compatibility, button) { cracker, compatibility, button in
+            
+            compatibility.leading ~== cracker.leading
+            compatibility.width ~<= compatibility.superview!.width * 0.9
+            compatibility.top ~== cracker.bottom + 20
+            
             button.trailing ~== button.superview!.trailing ~- (accessoryType == .none ? Global.Size.margin.value : 10)
         }
     }
@@ -160,6 +199,11 @@ class DetailsDownloadUnified: DetailsCell {
         cracker.makeDynamicFont()
         cracker.numberOfLines = 1
         cracker.theme_textColor = Color.title
+        
+        compatibility = UILabel()
+        compatibility.font = .systemFont(ofSize: (12.5 ~~ 11.5))
+        compatibility.makeDynamicFont()
+        compatibility.numberOfLines = 2
 
         button = RoundedButton()
         button.titleLabel?.font = .boldSystemFont(ofSize: 13)
@@ -168,6 +212,7 @@ class DetailsDownloadUnified: DetailsCell {
 
         contentView.addSubview(host)
         contentView.addSubview(cracker)
+        contentView.addSubview(compatibility)
         contentView.addSubview(button)
 
         setConstraints()
@@ -177,13 +222,14 @@ class DetailsDownloadUnified: DetailsCell {
         constrain(host, cracker, button) { host, cracker, button in
             button.centerY ~== button.superview!.centerY
 
-            host.centerY ~== button.centerY ~- 9
+            host.top ~== button.top ~- 25
             host.leading ~== host.superview!.leading ~+ Global.Size.margin.value
-            host.width ~<= host.superview!.width * 0.65
+            host.width ~<= host.superview!.width * 0.9
 
             cracker.leading ~== host.leading
             cracker.trailing ~== host.trailing
             cracker.top ~== host.bottom ~+ 3
+            cracker.width ~<= cracker.superview!.width * 0.65
         }
     }
 }

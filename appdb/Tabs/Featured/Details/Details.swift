@@ -14,7 +14,7 @@ import UnityAds
 class Details: LoadingTableView {
     
     var adsInitialized: Bool = false
-    var adsLoaded: Bool = false
+    var adsLoaded: Bool = Global.DEBUG || Preferences.isPlus
     var currentInstallButton: RoundedButton?
 
     var content: Item!
@@ -79,7 +79,9 @@ class Details: LoadingTableView {
             fetchInfo(type: dynamicType, trackid: dynamicTrackid)
         }
         
-        UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
+        if !Global.DEBUG && !Preferences.isPlus {
+            UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
+        }
     }
 
     // MARK: - Share
@@ -286,7 +288,11 @@ class Details: LoadingTableView {
     
     @objc private func install(sender: RoundedButton) {
         currentInstallButton = sender
-        UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
+        if Global.DEBUG || Preferences.isPlus {
+            actualInstall(sender: currentInstallButton!)
+        } else {
+            UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
+        }
     }
 
     private func actualInstall(sender: RoundedButton) {
@@ -346,7 +352,7 @@ class Details: LoadingTableView {
                     }
                 }
 
-                vc.onCompletion = { (patchIap: Bool, enableGameTrainer: Bool, removePlugins: Bool, enablePushNotifications: Bool, duplicateApp: Bool, newId: String, newName: String) in
+                vc.onCompletion = { (patchIap: Bool, enableGameTrainer: Bool, removePlugins: Bool, enablePushNotifications: Bool, duplicateApp: Bool, newId: String, newName: String, selectedDylibs: [String]) in
                     var additionalOptions: [AdditionalInstallationParameters: Any] = [:]
                     if patchIap { additionalOptions[.inApp] = 1 }
                     if enableGameTrainer { additionalOptions[.trainer] = 1 }
@@ -354,6 +360,7 @@ class Details: LoadingTableView {
                     if enablePushNotifications { additionalOptions[.pushNotifications] = 1 }
                     if duplicateApp && !newId.isEmpty { additionalOptions[.alongside] = newId }
                     if !newName.isEmpty { additionalOptions[.name] = newName }
+                    if !selectedDylibs.isEmpty { additionalOptions[.injectDylibs] = selectedDylibs }
                     install(additionalOptions)
                 }
             } else {
@@ -532,7 +539,9 @@ extension Details: UnityAdsInitializationDelegate {
     func initializationComplete() {
         adsInitialized = true
         
-        UnityAds.load("Interstitial_iOS", loadDelegate: self)
+        if !Global.DEBUG && !Preferences.isPlus {
+            UnityAds.load("Interstitial_iOS", loadDelegate: self)
+        }
     }
     
     func initializationFailed(_ error: UnityAdsInitializationError, withMessage message: String) {
@@ -565,7 +574,9 @@ extension Details: UnityAdsShowDelegate {
             if indexForSegment == .download {
                 tableView.reloadData()
             }
-            UnityAds.load("Interstitial_iOS", loadDelegate: self)
+            if !Global.DEBUG && !Preferences.isPlus {
+                UnityAds.load("Interstitial_iOS", loadDelegate: self)
+            }
         }
     }
     

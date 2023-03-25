@@ -119,7 +119,7 @@ extension Settings {
                     } else if !Preferences.enterpriseCertId.isEmpty {
                         // @todo implement switching between free certs
                     }
-                }, cellClass: SimpleStaticSigningCertificateCell.self, context: ["active": Preferences.pro, "signingWith": Preferences.signingWith, "enterpriseCertId": Preferences.enterpriseCertId, "freeSignsLeft": Preferences.freeSignsLeft, "freeSignsResetAt": Preferences.freeSignsResetAt, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "usesCustomDevIdentity": Preferences.usesCustomDeveloperIdentity]),
+                }, cellClass: SimpleStaticSigningCertificateCell.self, context: ["active": Preferences.pro, "signingWith": Preferences.signingWith, "isPlus": Preferences.isPlus, "plusUntil": Preferences.plusUntil, "plusAccountStatus": Preferences.plusAccountStatusTranslated, "enterpriseCertId": Preferences.enterpriseCertId, "freeSignsLeft": Preferences.freeSignsLeft, "freeSignsResetAt": Preferences.freeSignsResetAt, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "usesCustomDevIdentity": Preferences.usesCustomDeveloperIdentity]),
                 
                 Row(text: "PLUS Status".localized(), selection: { [unowned self] _ in
                     if !Preferences.isPlus {
@@ -159,6 +159,11 @@ extension Settings {
             Section(rows: [
                 Row(text: "Device Status".localized(), selection: { [unowned self] _ in
                     self.push(DeviceStatus())
+                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
+            ]),
+            Section(rows: [
+                Row(text: "My Dylibs, Frameworks and Debs".localized(), selection: { [unowned self] _ in
+                    self.push(MyDylibs())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
             ]),
             Section(rows: [

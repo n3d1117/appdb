@@ -170,6 +170,9 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
         guard let freeSignsLeft = row.context?["freeSignsLeft"] as? String else { return }
         guard let freeSignsLeftNumber = Int(freeSignsLeft) else { return }
         guard let freeSignsResetAt = row.context?["freeSignsResetAt"] as? String else { return }
+        guard let plus = row.context?["isPlus"] as? Bool else { return }
+        guard let plusUntil = (row.context?["plusUntil"] as? String)?.rfc2822decodedShort else { return }
+        guard let plusAccountStatus = row.context?["plusAccountStatus"] as? String else { return }
         guard let pro = row.context?["active"] as? Bool else { return }
         guard let proExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
         guard let proRevoked = row.context?["revoked"] as? Bool else { return }
@@ -184,6 +187,11 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
             if proRevoked {
                 expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
             }
+        } else if !plusAccountStatus.isEmpty {
+            activeLabel.theme_textColor = Color.softGreen
+            activeLabel.text = "Custom Developer Account".localized()
+            selectionStyle = .none
+            accessoryType = .none
         } else if proRevoked {
             activeLabel.theme_textColor = Color.softRed
             expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
@@ -193,7 +201,13 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
             bgColorView.theme_backgroundColor = Color.cellSelectionColor
             selectedBackgroundView = bgColorView
         } else {
-            if pro {
+            if plus {
+                activeLabel.theme_textColor = Color.softGreen
+                expirationLabel.text = "Expires on %@".localizedFormat(plusUntil)
+                activeLabel.text = "Unlimited signs left".localized()
+                selectionStyle = .none
+                accessoryType = .none
+            } else if pro {
                 activeLabel.theme_textColor = Color.softGreen
                 expirationLabel.text = "Expires on %@".localizedFormat(proExpirationDate)
                 activeLabel.text = "Active".localized()
@@ -315,6 +329,58 @@ final class SimpleStaticPLUSStatusCell: UITableViewCell, Cell {
             expiration.top ~== dummy.bottom ~+ 2
             expiration.trailing ~== active.trailing
         }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// Installation Options Dylibs cell
+
+final class SimpleStaticDylibsSelectionCell: UITableViewCell, Cell {
+    private var titleLabel: UILabel!
+    private var selectedDylibsLabel: UILabel!
+
+    private var constraintGroup = ConstraintGroup()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+
+        preservesSuperviewLayoutMargins = true
+        contentView.preservesSuperviewLayoutMargins = true
+
+        selectedDylibsLabel = UILabel()
+        selectedDylibsLabel.theme_textColor = Color.darkGray
+        selectedDylibsLabel.font = .systemFont(ofSize: (13 ~~ 12))
+        selectedDylibsLabel.makeDynamicFont()
+        selectedDylibsLabel.numberOfLines = 10
+        selectedDylibsLabel.textAlignment = Global.isRtl ? .left : .right
+
+        theme_backgroundColor = Color.veryVeryLightGray
+        setBackgroundColor(Color.veryVeryLightGray)
+
+        textLabel?.makeDynamicFont()
+        textLabel?.theme_textColor = Color.title
+
+        contentView.addSubview(selectedDylibsLabel)
+    }
+
+    func configure(row: Row) {
+        textLabel?.theme_textColor = Color.title
+        textLabel?.text = row.text
+        
+        guard let selectedDylibs = row.context?["selectedDylibs"] as? [String] else { return }
+        
+        if !selectedDylibs.isEmpty {
+            textLabel?.text = "Selected %i dylibs".localizedFormat(selectedDylibs.count)
+        }
+        
+        selectedDylibsLabel.theme_textColor = Color.darkGray
+        accessoryType = .disclosureIndicator
+        let bgColorView = UIView()
+        bgColorView.theme_backgroundColor = Color.cellSelectionColor
+        selectedBackgroundView = bgColorView
     }
 
     required init?(coder aDecoder: NSCoder) {

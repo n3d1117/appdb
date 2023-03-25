@@ -308,7 +308,7 @@ extension Library {
                     }
                 }
 
-                vc.onCompletion = { (patchIap: Bool, enableGameTrainer: Bool, removePlugins: Bool, enablePushNotifications: Bool, duplicateApp: Bool, newId: String, newName: String) in
+                vc.onCompletion = { (patchIap: Bool, enableGameTrainer: Bool, removePlugins: Bool, enablePushNotifications: Bool, duplicateApp: Bool, newId: String, newName: String, selectedDylibs: [String]) in
                     var additionalOptions: [AdditionalInstallationParameters: Any] = [:]
                     if patchIap { additionalOptions[.inApp] = 1 }
                     if enableGameTrainer { additionalOptions[.trainer] = 1 }
@@ -316,6 +316,7 @@ extension Library {
                     if enablePushNotifications { additionalOptions[.pushNotifications] = 1 }
                     if duplicateApp && !newId.isEmpty { additionalOptions[.alongside] = newId }
                     if !newName.isEmpty { additionalOptions[.name] = newName }
+                    if !selectedDylibs.isEmpty { additionalOptions[.injectDylibs] = selectedDylibs }
                     install(additionalOptions)
                 }
             } else {

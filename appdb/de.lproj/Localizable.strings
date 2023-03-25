@@ -105,6 +105,7 @@
 "Duplicate app" = "App duplizieren";
 "New ID" = "Neue ID";
 "New display name" = "Neuer Anzeigename";
+"Select Dylibs, Frameworks or Debs" = "Wähle Dylibs, Frameworks or Debs";
 "Use Original" = "Original verwenden";
 "Cracked by %@" = "Gecrackt von %@";
 "Uploaded by %@" = "Hochgeladen von %@";
@@ -326,6 +327,16 @@
 "Add repo" = "Quelle hinzufügen";
 "%@ Apps" = "%@ Apps";
 "Search Apps" = "Apps suchen";
+"No repos found" = "Keine Quellen gefunden";
+"The repository was deleted successfully" = "Die Quelle wurde erfolgreich gelöscht";
+
+/////////////////////
+//      DYLIBS     //
+/////////////////////
+"My Dylibs, Frameworks and Debs" = "Meine Dylibs, Frameworks und Debs";
+"No dylibs found" = "Keine Dylibs gefunden";
+"The dylib was deleted successfully" = "Die Dylib wurde erfolgreich gelöscht";
+"Here you can upload or import dynamic libraries, frameworks or debian packages or ZIP archives with tweaks to inject into apps that you are installing via appdb. Uploading or importing of any file will enable “Ask for Installation Options” feature for current device, so you can choose what tweaks you want to include in the app. You can disable this option later on device features configuration page.\n\nPlease note that not all packages, dylibs or frameworks that were built for jailbroken devices will work on your non-jailbroken devices." = "Hier kannst du Dynamic Libraries (dylibs), Frameworks oder Debian Packages (debs), sowie ZIP Archive mit Tweaks hochladen und importieren um diese in Apps, die du mit appdb installierst, zu injecten. Wenn du eine Datei hochlädst wird die Funktion “Nach Installationsoptionen fragen” für das aktuelle Gerät automatisch aktiviert, sodass du wählen kannst, welche Tweaks du injecten willst, wenn du deine App installierst. Du kannst diese Funktion in der Gerätekonfiguration wieder deaktivieren.\n\nBitte beachte, dass nicht alle dylibs oder Frameworks, die für Jailbreak-Geräte erstellt wurden, auf einem Geräte ohne Jailbreak funktioneren.";
 
 /////////////////////
 //     UPDATES     //

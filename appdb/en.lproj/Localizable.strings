@@ -105,6 +105,7 @@
 "Duplicate app" = "Duplicate app";
 "New ID" = "New ID";
 "New display name" = "New display name";
+"Select Dylibs, Frameworks or Debs" = "Select Dylibs, Frameworks or Debs";
 "Use Original" = "Use Original";
 "Cracked by %@" = "Cracked by %@";
 "Uploaded by %@" = "Uploaded by %@";
@@ -326,6 +327,16 @@
 "Add repo" = "Add repo";
 "%@ Apps" = "%@ Apps";
 "Search Apps" = "Search Apps";
+"No repos found" = "No repos found";
+"The repository was deleted successfully" = "The repository was deleted successfully";
+
+/////////////////////
+//      DYLIBS     //
+/////////////////////
+"My Dylibs, Frameworks and Debs" = "My Dylibs, Frameworks and Debs";
+"No dylibs found" = "No dylibs found";
+"The dylib was deleted successfully" = "The dylib was deleted successfully";
+"Here you can upload or import dynamic libraries, frameworks or debian packages or ZIP archives with tweaks to inject into apps that you are installing via appdb. Uploading or importing of any file will enable “Ask for Installation Options” feature for current device, so you can choose what tweaks you want to include in the app. You can disable this option later on device features configuration page.\n\nPlease note that not all packages, dylibs or frameworks that were built for jailbroken devices will work on your non-jailbroken devices." = "Here you can upload or import dynamic libraries, frameworks or debian packages or ZIP archives with tweaks to inject into apps that you are installing via appdb. Uploading or importing of any file will enable “Ask for Installation Options” feature for current device, so you can choose what tweaks you want to include in the app. You can disable this option later on device features configuration page.\n\nPlease note that not all packages, dylibs or frameworks that were built for jailbroken devices will work on your non-jailbroken devices.";
 
 /////////////////////
 //     UPDATES     //

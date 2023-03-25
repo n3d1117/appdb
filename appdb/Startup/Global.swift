@@ -22,7 +22,12 @@ func debugLog(_ arg: Any) {
 enum Global {
 
     static let adsId: String = "5209496"
-    static let adsTestMode: Bool = true
+    #if DEBUG
+    static let DEBUG = true
+    #else
+    static let DEBUG = false
+    #endif
+    static let adsTestMode: Bool = !DEBUG
 
     static let mainSite: String = "https://appdb.to/"
     static let githubSite: String = "https://github.com/n3d1117/appdb"

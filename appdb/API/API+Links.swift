@@ -31,6 +31,14 @@ extension API {
                                 var version = Version(number: Global.tilde)
                                 for e in 0..<fetched.count {
                                     let link: JSON = fetched[e]
+                                    var incompatibility_reason: String = ""
+                                    if link["is_compatible"]["reason"].exists() {
+                                        incompatibility_reason = link["is_compatible"]["reason"].stringValue
+                                    }
+                                    var report_reason: String = ""
+                                    if !link["reports"].isEmpty && link["reports"].arrayValue.first!["reason"].exists() {
+                                        report_reason = link["reports"].arrayValue.first!["reason"].stringValue
+                                    }
                                     version.links.append(Link(
                                         link: link["link"].stringValue,
                                         cracker: link["cracker"].stringValue,
@@ -40,7 +48,10 @@ extension API {
                                         verified: link["verified"].boolValue,
                                         di_compatible: link["di_compatible"].boolValue,
                                         hidden: link["is_hidden"] != "0",
-                                        universal: link["is_universal"] != "0"
+                                        universal: link["is_universal"] != "0",
+                                        is_compatible: link["is_compatible"]["result"] == "yes",
+                                        incompatibility_reason: incompatibility_reason,
+                                        report_reason: report_reason
                                     ))
                                 }; versions.append(version)
                             }
@@ -56,6 +67,14 @@ extension API {
                                 var version = Version(number: key), fetched: JSON = data[trackid][key]
                                 for e in 0..<fetched.count {
                                     let link: JSON = fetched[e]
+                                    var incompatibility_reason: String = ""
+                                    if link["is_compatible"]["reason"].exists() {
+                                        incompatibility_reason = link["is_compatible"]["reason"].stringValue
+                                    }
+                                    var report_reason: String = ""
+                                    if !link["reports"].isEmpty && link["reports"].arrayValue.first!["reason"].exists() {
+                                        report_reason = link["reports"].arrayValue.first!["reason"].stringValue
+                                    }
                                     version.links.append(Link(
                                         link: link["link"].stringValue,
                                         cracker: link["cracker"].stringValue,
@@ -66,7 +85,10 @@ extension API {
                                         di_compatible: link["di_compatible"].boolValue,
                                         hidden: link["is_hidden"] != "0",
                                         universal: link["is_universal"] != "0",
-                                        isTicket: link["link"].stringValue.starts(with: "ticket://")
+                                        is_compatible: link["is_compatible"]["result"] == "yes",
+                                        isTicket: link["link"].stringValue.starts(with: "ticket://"),
+                                        incompatibility_reason: incompatibility_reason,
+                                        report_reason: report_reason
                                     ))
                                 }
                                 versions.append(version)

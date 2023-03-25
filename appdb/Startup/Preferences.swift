@@ -36,6 +36,8 @@ extension Defaults.Keys {
     static let removePlugins = Key<Bool>("removePlugins", default: false)
     static let enablePushNotifications = Key<Bool>("enablePush", default: false)
     static let duplicateApp = Key<Bool>("duplicateApp", default: true)
+    static let plusStatus = Key<String>("plus_account_status", default: "")
+    static let plusStatusTranslated = Key<String>("plus_account_status_translated", default: "")
 }
 
 // Sensitive data is stored in Keychain
@@ -116,6 +118,14 @@ enum Preferences {
     }
 
     // Non sensitive data
+    
+    static var plusAccountStatus: String {
+        defaults[.plusStatus]
+    }
+    
+    static var plusAccountStatusTranslated: String {
+        defaults[.plusStatusTranslated]
+    }
     
     static var isAppleSilicon: Bool {
         defaults[.isAppleSilicon]

@@ -27,13 +27,16 @@ struct Link {
     var uploader: String = ""
     var host: String = ""
     var id: String = ""
+    var reportReason: String = ""
+    var compatibility: String = ""
+    var isCompatible = false
     var verified = false
     var diCompatible = false
     var hidden = false
     var universal = false
     var isTicket = false
 
-    init(link: String, cracker: String, uploader: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool, isTicket: Bool = false) {
+    init(link: String, cracker: String, uploader: String, host: String, id: String, verified: Bool, di_compatible: Bool, hidden: Bool, universal: Bool, is_compatible: Bool, isTicket: Bool = false, incompatibility_reason: String = "", report_reason: String = "") {
         self.link = link
         self.cracker = cracker
         self.uploader = uploader
@@ -50,5 +53,9 @@ struct Link {
 
         while self.uploader.hasPrefix(" ") { self.uploader = String(self.uploader.dropFirst()) }
         if self.uploader.isEmpty { self.uploader = "Unknown".localized() }
+        
+        self.isCompatible = is_compatible
+        self.compatibility = is_compatible ? "Compatible with your device".localized() : incompatibility_reason
+        self.reportReason = report_reason
     }
 }
