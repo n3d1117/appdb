@@ -404,6 +404,7 @@
 "Invalid voucher." = "Invalid voucher.";
 "Voucher already used." = "Voucher already used.";
 "No devices with this email." = "No devices with this email.";
+"We’ve got reports reg. this link: \"%@\"" = "We’ve got reports reg. this link: \"%@\"";
 
 ////////////////////////////
 //     LINK REPORTING     //
