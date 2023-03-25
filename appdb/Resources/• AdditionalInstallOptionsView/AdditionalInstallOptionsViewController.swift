@@ -127,6 +127,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
                     self.reloadTable()
                 }, "value": Preferences.duplicateApp]))
                 if Preferences.duplicateApp {
+                    self.newId = self.placeholder
                     rows.append(Row(text: "New ID".localized(), cellClass: StaticTextFieldCell.self, context:
                                         ["placeholder": installationOption.placeholder /*placeholder*/, "callback": { [unowned self] (newId: String) in
                                             self.newId = newId.isEmpty ? /*installationOption.placeholder*/ self.placeholder : newId
