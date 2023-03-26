@@ -130,8 +130,11 @@ class IPACache: LoadingTableView {
     // MARK: - Section header view
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil
+        }
         let view = UpdatesSectionHeader(showsButton: section == 0)
-        view.configure(with: section == 0 ? status?.updatedAt ?? "" : "IPA cache status for current device".localized())
+        view.configure(with: "IPA cache status for current device".localized())
         view.helpButton.addTarget(self, action: #selector(self.showHelp), for: .touchUpInside)
         return view
     }
