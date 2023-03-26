@@ -38,7 +38,7 @@ class EnterpriseCertChooser: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Enterprise Certificate".localized()
+        title = "Choose Enterprise Certificate".localized()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 50

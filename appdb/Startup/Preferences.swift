@@ -38,17 +38,14 @@ extension Defaults.Keys {
     static let duplicateApp = Key<Bool>("duplicateApp", default: true)
     static let plusStatus = Key<String>("plus_account_status", default: "")
     static let plusStatusTranslated = Key<String>("plus_account_status_translated", default: "")
-    static let usesEnterpriseCert = Key<Bool>("uses_enterprise_cert", default: false)
 }
 
 // Sensitive data is stored in Keychain
 enum SecureKeys: String, CaseIterable {
     case token
     case linkCode
-    case pro
-    case proUntil
-    case proRevoked
-    case proRevokedOn
+    case revoked
+    case revokedOn
     case usesCustomDeveloperIdentity
     case freeSignsLeft
     case freeSignsResetAt
@@ -90,20 +87,12 @@ enum Preferences {
         KeychainWrapper.standard.string(forKey: SecureKeys.plusProvider.rawValue) ?? ""
     }
 
-    static var pro: Bool {
-        KeychainWrapper.standard.bool(forKey: SecureKeys.pro.rawValue) ?? false
+    static var revoked: Bool {
+        KeychainWrapper.standard.bool(forKey: SecureKeys.revoked.rawValue) ?? false
     }
 
-    static var proUntil: String {
-        KeychainWrapper.standard.string(forKey: SecureKeys.proUntil.rawValue) ?? ""
-    }
-
-    static var proRevoked: Bool {
-        KeychainWrapper.standard.bool(forKey: SecureKeys.proRevoked.rawValue) ?? false
-    }
-
-    static var proRevokedOn: String {
-        KeychainWrapper.standard.string(forKey: SecureKeys.proRevokedOn.rawValue) ?? ""
+    static var revokedOn: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.revokedOn.rawValue) ?? ""
     }
 
     static var usesCustomDeveloperIdentity: Bool {
@@ -231,10 +220,6 @@ enum Preferences {
     static var duplicateApp: Bool {
         defaults[.duplicateApp]
     }
-    
-    static var usesEnterpriseCert: Bool {
-        defaults[.usesEnterpriseCert]
-    }
 }
 
 extension Preferences {
@@ -289,7 +274,6 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.duplicateApp.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.isAppleSilicon.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.signingWith.name)
-        UserDefaults.standard.removeObject(forKey: Defaults.Keys.usesEnterpriseCert.name)
     }
 
     // Remove secure keys

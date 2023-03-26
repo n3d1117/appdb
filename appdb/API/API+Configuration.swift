@@ -40,21 +40,11 @@ extension API {
                             Preferences.set(.ignoreCompatibility, to: data["ignore_compatibility"].stringValue == "yes")
                             Preferences.set(.askForInstallationOptions, to: data["ask_for_installation_options"].stringValue == "yes")
 
-                            Preferences.set(.proRevoked, to: isRevoked)
-                            Preferences.set(.proRevokedOn, to: revokedOn)
-                            if Preferences.proRevoked {
-                                Preferences.set(.pro, to: false)
-                            } else {
-                                Preferences.set(.pro, to: data["is_pro"].stringValue == "yes")
-                            }
-                            Preferences.set(.proUntil, to: data["pro_till"].stringValue)
+                            Preferences.set(.revoked, to: isRevoked)
+                            Preferences.set(.revokedOn, to: revokedOn)
 
                             if !data["p12_password"].stringValue.isEmpty, !data["p12"].stringValue.isEmpty, !data["provision"].stringValue.isEmpty {
-                                if Preferences.pro {
-                                    Preferences.set(.usesCustomDeveloperIdentity, to: data["is_pro_disabled"].stringValue == "yes")
-                                } else {
-                                    Preferences.set(.usesCustomDeveloperIdentity, to: true)
-                                }
+                                Preferences.set(.usesCustomDeveloperIdentity, to: true)
                             } else {
                                 Preferences.set(.usesCustomDeveloperIdentity, to: false)
                             }
@@ -76,9 +66,6 @@ extension API {
                             Preferences.set(.signingWith, to: data["signing_with"].stringValue)
                             Preferences.set(.freeSignsLeft, to: data["free_signs_left"].stringValue)
                             Preferences.set(.freeSignsResetAt, to: data["free_signs_reset_at"].stringValue)
-                            
-                            // @todo update as soon as there is a specific field for it in API response
-                            Preferences.set(.usesEnterpriseCert, to: data["signing_with"].stringValue == "Sideloading with 3rd party certificate")
                             
                             Preferences.set(.plusStatus, to: data["plus_account"]["status"].stringValue)
                             Preferences.set(.plusStatusTranslated, to: data["plus_account"]["status_translated"].stringValue)

@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         TelemetryManager.initialize(with: configuration)
         TelemetryManager.send(Global.Telemetry.launched.rawValue, with: [
             "isLinked": Preferences.deviceIsLinked.description,
-            "isPro": Preferences.pro.description
+            "isPlus": Preferences.isPlus.description
         ])
 
         return true

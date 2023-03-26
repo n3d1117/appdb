@@ -235,6 +235,7 @@
 "Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Authorize app with link code from appdb website and enjoy unlimited app installs!";
 "PLUS Status" = "PLUS Status";
 "Signing" = "Signing";
+"Choose Enterprise Certificate" = "Choose Enterprise Certificate";
 "%@ signs left until %@" = "%@ signs left until %@";
 "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.";
 "Device Status" = "Device Status";

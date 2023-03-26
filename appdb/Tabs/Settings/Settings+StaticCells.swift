@@ -173,72 +173,39 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
         guard let plus = row.context?["isPlus"] as? Bool else { return }
         guard let plusUntil = (row.context?["plusUntil"] as? String)?.rfc2822decodedShort else { return }
         guard let plusAccountStatus = row.context?["plusAccountStatus"] as? String else { return }
-        guard let pro = row.context?["active"] as? Bool else { return }
-        guard let proExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
-        guard let proRevoked = row.context?["revoked"] as? Bool else { return }
-        guard let proRevokedOn = (row.context?["revokedOn"] as? String)?.revokedDateDecoded else { return }
+        guard let revoked = row.context?["revoked"] as? Bool else { return }
+        guard let revokedOn = (row.context?["revokedOn"] as? String)?.revokedDateDecoded else { return }
         guard let usesCustomDeveloperIdentity = row.context?["usesCustomDevIdentity"] as? Bool else { return }
         
-        guard let usesEnterpriseCert = row.context?["usesEnterpriseCert"] as? Bool else { return }
-
         if usesCustomDeveloperIdentity {
             activeLabel.theme_textColor = Color.softGreen
             activeLabel.text = "Custom Developer Identity".localized()
-            selectionStyle = .none
-            accessoryType = .none
-            if proRevoked {
-                expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
+            if revoked {
+                expirationLabel.text = "Revoked on %@".localizedFormat(revokedOn)
             }
         } else if !plusAccountStatus.isEmpty {
             activeLabel.theme_textColor = Color.softGreen
             activeLabel.text = "Custom Developer Account".localized()
-            selectionStyle = .none
-            accessoryType = .none
-        } else if proRevoked {
+        } else if revoked {
             activeLabel.theme_textColor = Color.softRed
-            expirationLabel.text = "Revoked on %@".localizedFormat(proRevokedOn)
+            expirationLabel.text = "Revoked on %@".localizedFormat(revokedOn)
             activeLabel.text = "Revoked".localized()
-            accessoryType = .disclosureIndicator
-            let bgColorView = UIView()
-            bgColorView.theme_backgroundColor = Color.cellSelectionColor
-            selectedBackgroundView = bgColorView
+        } else if plus {
+            activeLabel.theme_textColor = Color.softGreen
+            expirationLabel.text = "Expires on %@".localizedFormat(plusUntil)
+            activeLabel.text = "Unlimited signs left".localized()
         } else {
-            if plus {
-                activeLabel.theme_textColor = Color.softGreen
-                expirationLabel.text = "Expires on %@".localizedFormat(plusUntil)
-                activeLabel.text = "Unlimited signs left".localized()
-                selectionStyle = .none
-                accessoryType = .none
-            } else if pro {
-                activeLabel.theme_textColor = Color.softGreen
-                expirationLabel.text = "Expires on %@".localizedFormat(proExpirationDate)
-                activeLabel.text = "Active".localized()
-                selectionStyle = .none
-                accessoryType = .none
-            } else if signingWith.isEmpty && enterpriseCertId.isEmpty {
-                activeLabel.theme_textColor = Color.softRed
-                expirationLabel.text = "Tap to know more".localized()
-                activeLabel.text = "Inactive".localized()
-                accessoryType = .disclosureIndicator
-                let bgColorView = UIView()
-                bgColorView.theme_backgroundColor = Color.cellSelectionColor
-                selectedBackgroundView = bgColorView
-            } else {
-                activeLabel.theme_textColor = freeSignsLeftNumber > 0 ? Color.softGreen : Color.softRed
-                expirationLabel.text = signingWith
-                activeLabel.text = "%@ signs left until %@".localizedFormat(freeSignsLeft, freeSignsResetAt.rfc2822decoded)
-                selectionStyle = .none
-                accessoryType = .none
-                if usesEnterpriseCert {
-                    selectionStyle = .default
-                    accessoryType = .disclosureIndicator
-                }
-            }
+            activeLabel.theme_textColor = freeSignsLeftNumber > 0 ? Color.softGreen : Color.softRed
+            expirationLabel.text = signingWith
+            activeLabel.text = "%@ signs left until %@".localizedFormat(freeSignsLeft, freeSignsResetAt.rfc2822decoded)
         }
+        
+        selectionStyle = .default
+        accessoryType = .disclosureIndicator
 
-        expirationLabel.isHidden = usesCustomDeveloperIdentity && !proRevoked
+        expirationLabel.isHidden = usesCustomDeveloperIdentity && !revoked
 
-        if usesCustomDeveloperIdentity && !proRevoked {
+        if usesCustomDeveloperIdentity && !revoked {
             constrain(activeLabel, replace: constraintGroup) { active in
                 active.centerY ~== active.superview!.centerY
                 active.trailing ~== active.superview!.trailingMargin
