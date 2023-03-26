@@ -235,8 +235,7 @@
 "Authorize app with link code from appdb website and enjoy unlimited app installs!" = "Autorisiere die App mit deinem Verknüpfungs/Linkcode von der Appdb Webseite und genieße unendlich viele App Installationen!";
 "PLUS Status" = "PLUS Status";
 "Signing" = "Signieren";
-"Choose Enterprise Certificate" = "Enterprise Zertifikat wählen
-";
+"Choose Enterprise Certificate" = "Enterprise Zertifikat wählen";
 "%@ signs left until %@" = "%@ Signierungen übrig bis %@";
 "Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one." = "Nutze diesen Code, wenn du ein neues Gerät mit Appdb verknüpfen möchtest. Halte die Spalte gedrückt um den Code zu kopieren, oder tippe einmal darauf um einen neuen zu generieren.";
 "Device Status" = "Gerätestatus";
