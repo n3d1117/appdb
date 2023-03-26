@@ -289,6 +289,10 @@
 "Force Disable PRO" = "Force Disable PRO";
 "For Psychic Paper exploit" = "For Psychic Paper exploit";
 "Clear Cache" = "Clear Cache";
+"Cached IPAs" = "Cached IPAs";
+"IPA cache status for current device" = "IPA cache status for current device";
+"The cached IPA was deleted successfully" = "The cached IPA was deleted successfully";
+"appdb saves all installed IPA files for your device to cache, so you can easily restore all your apps after device reset or revocation. Cache is stored per device, and will be deleted if you will unlink your device. If you restored your device and missing appdb profile, you can visit device status page and tap \"Update profile\" button to install it, or link device via email by tapping \"Just link new device\" in message from appdb.\n\nNote: IPA files does not contain app data, if you want to keep your app data, backup device via Finder or iTunes, Remove revoked apps, Install apps from cache and then restore backup from Finder or iTunes." = "appdb saves all installed IPA files for your device to cache, so you can easily restore all your apps after device reset or revocation. Cache is stored per device, and will be deleted if you will unlink your device. If you restored your device and missing appdb profile, you can visit device status page and tap \"Update profile\" button to install it, or link device via email by tapping \"Just link new device\" in message from appdb.\n\nNote: IPA files does not contain app data, if you want to keep your app data, backup device via Finder or iTunes, Remove revoked apps, Install apps from cache and then restore backup from Finder or iTunes.";
 "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb." = "Are you sure you want to clear app cache?\n\nNOTE: This will not deauthorize the app, and your device will still be linked to appdb.";
 "Cache cleared successfully!" = "Cache cleared successfully!";
 "Failed to clear cache: %@." = "Failed to clear cache: %@.";

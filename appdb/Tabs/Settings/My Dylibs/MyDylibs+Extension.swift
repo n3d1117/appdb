@@ -41,10 +41,6 @@ extension MyDylibs {
 
         state = .loading
         animated = true
-        showsErrorButton = false
-
-        // Observe deauthorization event
-        NotificationCenter.default.addObserver(self, selector: #selector(onDeauthorization), name: .Deauthorized, object: nil)
     }
     
     
@@ -117,11 +113,6 @@ extension MyDylibs {
         //addAction.isEnabled = false
         
         present(alertController, animated: true)
-    }
-
-    @objc func onDeauthorization() {
-        self.cleanup()
-        showErrorMessage(text: "An error has occurred".localized(), secondaryText: "Please authorize app from Settings first".localized(), animated: false)
     }
 }
 

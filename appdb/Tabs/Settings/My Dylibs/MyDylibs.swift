@@ -14,14 +14,6 @@ class MyDylibs: LoadingTableView {
     var myDylibs: [String] = []
 
     var isLoading = false
-    
-    // Observation token to observe changes in Settings tab, used to update badge
-    var observation: DefaultsObservation?
-
-    deinit {
-        observation = nil
-        NotificationCenter.default.removeObserver(self)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,26 +29,6 @@ class MyDylibs: LoadingTableView {
         }
 
         loadDylibs()
-    }
-
-    private var onlyOnce = true
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // https://stackoverflow.com/a/47839657/6022481
-        if #available(iOS 11.2, *) {
-            navigationController?.navigationBar.tintAdjustmentMode = .normal
-            navigationController?.navigationBar.tintAdjustmentMode = .automatic
-        }
-
-        // If device was just linked, start checking for dylibs as soon as view appears
-        if Preferences.deviceIsLinked, state == .error, errorMessage.text != "No dylibs found".localized() {
-            self.animated = onlyOnce
-            if onlyOnce { onlyOnce = false }
-            state = .loading
-            loadDylibs()
-        }
     }
 
     // get update ticket -> check updates -> update UI

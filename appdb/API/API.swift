@@ -134,6 +134,7 @@ enum Actions: String {
     case getIpaCacheStatus = "get_ipa_cache_status"
     case installFromCache = "install_from_cache"
     case clearIpaCache = "clear_ipa_cache"
+    case deleteIpaFromCache = "delete_ipa_from_cache"
     case revalidateIpaCache = "ensure_ipa_cache"
     case transferIpaCache = "transfer_ipa_cache"
     case getAltStoreRepos = "get_altstore_repos"

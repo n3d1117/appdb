@@ -47,6 +47,13 @@ extension API {
                 success()
             }
     }
+    
+    static func deleteIpaFromCache(bundleId: String, success:@escaping () -> Void) {
+        AF.request(endpoint, parameters: ["action": Actions.deleteIpaFromCache.rawValue, "bundle_id": bundleId, "lang": languageCode], headers: headersWithCookie)
+            .response { _ in
+                success()
+            }
+    }
 
     static func revalidateIpaCache(success:@escaping () -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.revalidateIpaCache.rawValue, "lang": languageCode], headers: headersWithCookie)
