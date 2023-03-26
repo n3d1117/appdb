@@ -116,10 +116,12 @@ extension Settings {
                 Row(text: "Signing".localized(), selection: { [unowned self] _ in
                     if !Preferences.usesCustomDeveloperIdentity && (Preferences.proRevoked || !Preferences.pro && Preferences.enterpriseCertId.isEmpty) {
                         self.openInSafari(self.proSite)
-                    } else if !Preferences.enterpriseCertId.isEmpty {
-                        // @todo implement switching between free certs
+                    } else if Preferences.usesEnterpriseCert {
+                        let certificateChooser = EnterpriseCertChooser()
+                        certificateChooser.changedCertDelegate = self
+                        self.push(certificateChooser)
                     }
-                }, cellClass: SimpleStaticSigningCertificateCell.self, context: ["active": Preferences.pro, "signingWith": Preferences.signingWith, "isPlus": Preferences.isPlus, "plusUntil": Preferences.plusUntil, "plusAccountStatus": Preferences.plusAccountStatusTranslated, "enterpriseCertId": Preferences.enterpriseCertId, "freeSignsLeft": Preferences.freeSignsLeft, "freeSignsResetAt": Preferences.freeSignsResetAt, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "usesCustomDevIdentity": Preferences.usesCustomDeveloperIdentity]),
+                }, cellClass: SimpleStaticSigningCertificateCell.self, context: ["active": Preferences.pro, "signingWith": Preferences.signingWith, "isPlus": Preferences.isPlus, "plusUntil": Preferences.plusUntil, "plusAccountStatus": Preferences.plusAccountStatusTranslated, "enterpriseCertId": Preferences.enterpriseCertId, "freeSignsLeft": Preferences.freeSignsLeft, "freeSignsResetAt": Preferences.freeSignsResetAt, "expire": Preferences.proUntil, "revoked": Preferences.proRevoked, "revokedOn": Preferences.proRevokedOn, "usesCustomDevIdentity": Preferences.usesCustomDeveloperIdentity, "usesEnterpriseCert": Preferences.usesEnterpriseCert]),
                 
                 Row(text: "PLUS Status".localized(), selection: { [unowned self] _ in
                     if !Preferences.isPlus {

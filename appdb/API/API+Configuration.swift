@@ -10,6 +10,18 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
+    
+    static func getEnterpriseCerts(success:@escaping (_ items: [EnterpriseCertificate]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+        AF.request(endpoint, parameters: ["action": Actions.getEnterpriseCerts.rawValue, "lang": languageCode], headers: headersWithCookie)
+            .responseArray(keyPath: "data") { (response: AFDataResponse<[EnterpriseCertificate]>) in
+                switch response.result {
+                case .success(let certs):
+                    success(certs)
+                case .failure(let error):
+                    fail(error as NSError)
+                }
+            }
+    }
 
     static func getConfiguration(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getConfiguration.rawValue,
@@ -64,6 +76,9 @@ extension API {
                             Preferences.set(.signingWith, to: data["signing_with"].stringValue)
                             Preferences.set(.freeSignsLeft, to: data["free_signs_left"].stringValue)
                             Preferences.set(.freeSignsResetAt, to: data["free_signs_reset_at"].stringValue)
+                            
+                            // @todo update as soon as there is a specific field for it in API response
+                            Preferences.set(.usesEnterpriseCert, to: data["signing_with"].stringValue == "Sideloading with 3rd party certificate")
                             
                             Preferences.set(.plusStatus, to: data["plus_account"]["status"].stringValue)
                             Preferences.set(.plusStatusTranslated, to: data["plus_account"]["status_translated"].stringValue)

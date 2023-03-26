@@ -178,6 +178,8 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
         guard let proRevoked = row.context?["revoked"] as? Bool else { return }
         guard let proRevokedOn = (row.context?["revokedOn"] as? String)?.revokedDateDecoded else { return }
         guard let usesCustomDeveloperIdentity = row.context?["usesCustomDevIdentity"] as? Bool else { return }
+        
+        guard let usesEnterpriseCert = row.context?["usesEnterpriseCert"] as? Bool else { return }
 
         if usesCustomDeveloperIdentity {
             activeLabel.theme_textColor = Color.softGreen
@@ -213,7 +215,7 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
                 activeLabel.text = "Active".localized()
                 selectionStyle = .none
                 accessoryType = .none
-            } else if signingWith.isEmpty || enterpriseCertId.isEmpty {
+            } else if signingWith.isEmpty && enterpriseCertId.isEmpty {
                 activeLabel.theme_textColor = Color.softRed
                 expirationLabel.text = "Tap to know more".localized()
                 activeLabel.text = "Inactive".localized()
@@ -227,6 +229,10 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
                 activeLabel.text = "%@ signs left until %@".localizedFormat(freeSignsLeft, freeSignsResetAt.rfc2822decoded)
                 selectionStyle = .none
                 accessoryType = .none
+                if usesEnterpriseCert {
+                    selectionStyle = .default
+                    accessoryType = .disclosureIndicator
+                }
             }
         }
 

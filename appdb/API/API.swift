@@ -144,6 +144,7 @@ enum Actions: String {
     case getDylibs = "get_dylibs"
     case addDylib = "add_dylib"
     case deleteDylib = "delete_dylib"
+    case getEnterpriseCerts = "get_enterprise_certs"
 }
 
 enum ConfigurationParameters: String {

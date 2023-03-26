@@ -38,6 +38,7 @@ extension Defaults.Keys {
     static let duplicateApp = Key<Bool>("duplicateApp", default: true)
     static let plusStatus = Key<String>("plus_account_status", default: "")
     static let plusStatusTranslated = Key<String>("plus_account_status_translated", default: "")
+    static let usesEnterpriseCert = Key<Bool>("uses_enterprise_cert", default: false)
 }
 
 // Sensitive data is stored in Keychain
@@ -230,6 +231,10 @@ enum Preferences {
     static var duplicateApp: Bool {
         defaults[.duplicateApp]
     }
+    
+    static var usesEnterpriseCert: Bool {
+        defaults[.usesEnterpriseCert]
+    }
 }
 
 extension Preferences {
@@ -284,6 +289,7 @@ extension Preferences {
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.duplicateApp.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.isAppleSilicon.name)
         UserDefaults.standard.removeObject(forKey: Defaults.Keys.signingWith.name)
+        UserDefaults.standard.removeObject(forKey: Defaults.Keys.usesEnterpriseCert.name)
     }
 
     // Remove secure keys
