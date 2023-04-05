@@ -429,3 +429,4 @@
 "%@h ago" = "%@h fa"; // hours, e.g. 6h ago
 "%@d ago" = "%@d fa"; // days, e.g. 3d ago
 "now" = "adesso";
+

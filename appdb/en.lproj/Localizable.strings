@@ -471,3 +471,20 @@
 "%@h ago" = "%@h ago"; // hours, e.g. 6h ago
 "%@d ago" = "%@d ago"; // days, e.g. 3d ago
 "now" = "now";
+
+
+///////////////////
+//     ICONS     //
+///////////////////
+"Main (by aesign)" = "Main (by aesign)";
+"Dark (by stayxnegative)" = "Dark (by stayxnegative)";
+"Green" = "Green";
+"Purple" = "Purple";
+"Yellow" = "Yellow";
+"Pink" = "Pink";
+"Red" = "Red";
+"Aqua" = "Aqua";
+"Black" = "Black";
+
+"Alternate icons seem to not work on this device" = "Alternate icons seem to not work on this device";
+"App icon was set to %@" = "App icon was set to %@";

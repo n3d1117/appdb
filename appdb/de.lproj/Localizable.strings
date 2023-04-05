@@ -471,3 +471,20 @@
 "%@h ago" = "vor %@h Stunden"; // hours, e.g. 6h ago
 "%@d ago" = "vor %@d Tagen"; // days, e.g. 3d ago
 "now" = "jetzt";
+
+
+///////////////////
+//     ICONS     //
+///////////////////
+"Main (by aesign)" = "Haupticon (by aesign)";
+"Dark (by stayxnegative)" = "Dunkel (by stayxnegative)";
+"Green" = "Grün";
+"Purple" = "Lila";
+"Yellow" = "Gelb";
+"Pink" = "Pink";
+"Red" = "Rot";
+"Aqua" = "Aqua";
+"Black" = "Schwarz";
+
+"Alternate icons seem to not work on this device" = "Alternative Icons scheinen auf diesem Gerät nicht zu funktonieren";
+"App icon was set to %@" = "App-Icon wurde auf %@ umgestellt";

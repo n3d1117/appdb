@@ -42,6 +42,15 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
+			<key>Black</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Black</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
 			<key>Dark</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -120,6 +129,12 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
+			<key>Black</key>
+			<dict/>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>Black</string>
+			</array>
 			<key>Dark</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -165,6 +180,8 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
+			<key>UIPrerenderedIcon</key>
+			<false/>
 			<key>Yellow</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
