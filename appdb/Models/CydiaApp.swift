@@ -56,6 +56,13 @@ class CydiaApp: Item {
     // Screenshots
     var screenshotsIphone = [Screenshot]()
     var screenshotsIpad = [Screenshot]()
+    
+    // Download stats
+    var clicksDay: String = "0"
+    var clicksWeek: String = "0"
+    var clicksMonth: String = "0"
+    var clicksYear: String = "0"
+    var clicksAll: String = "0"
 
     override func mapping(map: Map) {
         name <- map["name"]
@@ -97,5 +104,11 @@ class CydiaApp: Item {
                 ))
             }; screenshotsIpad = tmpScreensIpad
         }
+        
+        clicksDay <- map["clicks_day"]
+        clicksWeek <- map["clicks_week"]
+        clicksMonth <- map["clicks_month"]
+        clicksYear <- map["clicks_year"]
+        clicksAll <- map["clicks_all"]
     }
 }

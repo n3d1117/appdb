@@ -91,7 +91,7 @@ class IconChooser: UITableViewController {
         changeIcon(iconName: indexPath.row == 0 ? nil : icons[indexPath.row].filename) { result in
             switch result {
             case .success(_):
-                Messages.shared.showSuccess(message: "App icon was set to %@".localized(using: self.icons[indexPath.row].label.localized()))
+                Messages.shared.showSuccess(message: "App icon was set to '%@'".localizedFormat(self.icons[indexPath.row].label.localized()))
             case .failure(let error):
                 Messages.shared.showError(message: error.localizedDescription)
             }

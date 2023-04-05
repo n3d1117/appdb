@@ -68,6 +68,7 @@
 "This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code.";
 "iPad only" = "iPad only";
 "Information" = "Information";
+"Downloads" = "Downloads";
 "Seller" = "Seller";
 "Developer" = "Developer";
 "Category" = "Category";
@@ -119,6 +120,13 @@
 "Any Price" = "Any Price";
 "Paid" = "Paid";
 "Waiting %@ seconds..." = "Waiting %@ seconds...";
+
+// Download stats
+"%@ today" = "%@ today";
+"%@ this week" = "%@ this week";
+"%@ this month" = "%@ this month";
+"%@ this year" = "%@ this year";
+"%@ total" = "%@ total";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //
@@ -487,4 +495,4 @@
 "Black" = "Black";
 
 "Alternate icons seem to not work on this device" = "Alternate icons seem to not work on this device";
-"App icon was set to %@" = "App icon was set to %@";
+"App icon was set to '%@'" = "App icon was set to '%@'";

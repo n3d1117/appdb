@@ -68,6 +68,7 @@
 "This app was tweaked to provide additional features. Be sure to download it from verified crackers only, because no one except them can guarantee that it doesn't contain any malicious code." = "Diese App wurde modifiziert, um erweiterte Funktionen hinzuzufügen. Stelle sicher, nur von verifizierten Crackern herunterzuladen, weil sonst nicht garantiert werden kann, dass keine Schadcodes enthalten sind.";
 "iPad only" = "Nur iPad";
 "Information" = "Information";
+"Downloads" = "Downloads";
 "Seller" = "Verkäufer";
 "Developer" = "Entwickler";
 "Category" = "Kategorie";
@@ -119,6 +120,13 @@
 "Any Price" = "Jeder Preis";
 "Paid" = "Bezahlt";
 "Waiting %@ seconds..." = "%@ Sekunden warten...";
+
+// Download stats
+"%@ today" = "%@ heute";
+"%@ this week" = "%@ diese Woche";
+"%@ this month" = "%@ diesen Monat";
+"%@ this year" = "%@ dieses Jahr";
+"%@ total" = "%@ gesamt";
 
 //////////////////////////////////
 //     DEVICE LINK TUTORIAL     //
@@ -487,4 +495,4 @@
 "Black" = "Schwarz";
 
 "Alternate icons seem to not work on this device" = "Alternative Icons scheinen auf diesem Gerät nicht zu funktonieren";
-"App icon was set to %@" = "App-Icon wurde auf %@ umgestellt";
+"App icon was set to '%@'" = "App-Icon wurde auf '%@' umgestellt";

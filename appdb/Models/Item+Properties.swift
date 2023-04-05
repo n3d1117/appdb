@@ -169,4 +169,35 @@ extension Item {
         if let book = self as? Book { return book.numberOfRating }
         return ""
     }
+    
+    var downloadsDay: String {
+        if let app = self as? App { return app.clicksDay }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksDay }
+        if let book = self as? Book { return book.clicksDay }
+        return "-"
+    }
+    var downloadsWeek: String {
+        if let app = self as? App { return app.clicksWeek }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksWeek }
+        if let book = self as? Book { return book.clicksWeek }
+        return "-"
+    }
+    var downloadsMonth: String {
+        if let app = self as? App { return app.clicksMonth }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksMonth }
+        if let book = self as? Book { return book.clicksMonth }
+        return "-"
+    }
+    var downloadsYear: String {
+        if let app = self as? App { return app.clicksYear }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksYear }
+        if let book = self as? Book { return book.clicksYear }
+        return "-"
+    }
+    var downloadsAll: String {
+        if let app = self as? App { return app.clicksAll }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksAll }
+        if let book = self as? Book { return book.clicksAll }
+        return "-"
+    }
 }

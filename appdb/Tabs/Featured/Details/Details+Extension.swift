@@ -120,7 +120,8 @@ extension Details {
             DetailsDescription(), // dynamic
             DetailsChangelog(), // dynamic
             DetailsRelated(type: contentType, related: content.itemRelatedContent, delegate: self),
-            DetailsInformation(type: contentType, content: content)
+            DetailsInformation(type: contentType, content: content),
+            DetailsDownloadStats(content: content),
         ]
 
         switch contentType {
