@@ -14,7 +14,7 @@ import UnityAds
 class AltStoreAppDetails: LoadingTableView {
     
     var adsInitialized: Bool = false
-    var adsLoaded: Bool = Global.DEBUG || Preferences.isPlus
+    var adsLoaded: Bool = !Global.showAds || Global.DEBUG || Preferences.isPlus
     var currentInstallButton: RoundedButton?
 
     var app: AltStoreApp!
@@ -42,7 +42,7 @@ class AltStoreAppDetails: LoadingTableView {
         setUp()
         initializeCells()
         
-        if !Global.DEBUG && !Preferences.isPlus {
+        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
             UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
         }
     }
@@ -103,7 +103,7 @@ class AltStoreAppDetails: LoadingTableView {
 
     @objc func install(sender: RoundedButton) {
         currentInstallButton = sender
-        if Global.DEBUG || Preferences.isPlus {
+        if !Global.showAds || Global.DEBUG || Preferences.isPlus {
             actualInstall(sender: currentInstallButton!)
         } else {
             UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
@@ -222,7 +222,7 @@ extension AltStoreAppDetails: UnityAdsInitializationDelegate {
     func initializationComplete() {
         adsInitialized = true
         
-        if !Global.DEBUG && !Preferences.isPlus {
+        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
             UnityAds.load("Interstitial_iOS", loadDelegate: self)
         }
     }

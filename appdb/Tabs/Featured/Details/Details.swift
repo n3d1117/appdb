@@ -79,7 +79,7 @@ class Details: LoadingTableView {
             fetchInfo(type: dynamicType, trackid: dynamicTrackid)
         }
         
-        if !Global.DEBUG && !Preferences.isPlus {
+        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
             UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
         }
     }
@@ -187,13 +187,13 @@ class Details: LoadingTableView {
                     if link.cracker == link.uploader {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: "downloadUnified", for: indexPath) as? DetailsDownloadUnified else { return UITableViewCell() }
                         cell.accessoryType = shouldHideDisclosureIndicator ? .none : .disclosureIndicator
-                        cell.configure(with: link, installEnabled: adsLoaded)
+                        cell.configure(with: link, installEnabled: !Global.showAds || adsLoaded)
                         cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                         return cell
                     } else {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as? DetailsDownload else { return UITableViewCell() }
                         cell.accessoryType = shouldHideDisclosureIndicator ? .none : .disclosureIndicator
-                        cell.configure(with: link, installEnabled: adsLoaded)
+                        cell.configure(with: link, installEnabled: !Global.showAds || adsLoaded)
                         cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                         return cell
                     }
@@ -288,7 +288,7 @@ class Details: LoadingTableView {
     
     @objc private func install(sender: RoundedButton) {
         currentInstallButton = sender
-        if Global.DEBUG || Preferences.isPlus {
+        if !Global.showAds || Global.DEBUG || Preferences.isPlus {
             actualInstall(sender: currentInstallButton!)
         } else {
             UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
@@ -539,7 +539,7 @@ extension Details: UnityAdsInitializationDelegate {
     func initializationComplete() {
         adsInitialized = true
         
-        if !Global.DEBUG && !Preferences.isPlus {
+        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
             UnityAds.load("Interstitial_iOS", loadDelegate: self)
         }
     }
@@ -574,7 +574,7 @@ extension Details: UnityAdsShowDelegate {
             if indexForSegment == .download {
                 tableView.reloadData()
             }
-            if !Global.DEBUG && !Preferences.isPlus {
+            if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
                 UnityAds.load("Interstitial_iOS", loadDelegate: self)
             }
         }
