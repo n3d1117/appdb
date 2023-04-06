@@ -205,7 +205,7 @@ extension AttributedLabel {
             case .tag(let tag):
                 if tag.name == "a", var href = tag.attributes["href"] {
                     if href.hasPrefix("http") {
-                        guard let url = URL(string: href.replacingOccurrences(of: "&amp;", with: "&")) else { return }
+                        guard let url = URL(string: href.replacingOccurrences(of: "&amp;", with: "&") + "&ref=" + Global.refCode) else { return }
                         UIApplication.shared.open(url)
                     } else {
                         while href.hasPrefix("/") { href = String(href.dropFirst()) }
