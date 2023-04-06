@@ -71,7 +71,7 @@ class NewsDetail: LoadingTableView {
 
     @objc private func share(sender: UIBarButtonItem) {
         let text = item.title
-        let urlString = "\(Global.mainSite)news/\(item.id)"
+        let urlString = "\(Global.mainSite)news/\(item.id)?ref=\(Global.refCode)"
         guard let url = URL(string: urlString) else { return }
         let activity = UIActivityViewController(activityItems: [text, url], applicationActivities: [SafariActivity()])
         if #available(iOS 11.0, *) {} else {
@@ -199,7 +199,7 @@ extension AttributedLabel {
             switch detection.type {
             case .link(let url):
                 var partialUrl = url.absoluteString.replacingOccurrences(of: "&amp;", with: "&")
-                if !partialUrl.hasPrefix("http") { partialUrl = "http://" + partialUrl }
+                if !partialUrl.hasPrefix("http") { partialUrl = "http://" + partialUrl + "&ref=\(Global.refCode)" }
                 guard let fullUrl = URL(string: partialUrl) else { return }
                 UIApplication.shared.open(fullUrl)
             case .tag(let tag):
@@ -209,7 +209,7 @@ extension AttributedLabel {
                         UIApplication.shared.open(url)
                     } else {
                         while href.hasPrefix("/") { href = String(href.dropFirst()) }
-                        let urlString: String = "\(Global.mainSite)\(href)".replacingOccurrences(of: "&amp;", with: "&")
+                        let urlString: String = "\(Global.mainSite)\(href)&ref=\(Global.refCode)".replacingOccurrences(of: "&amp;", with: "&")
                         guard let url = URL(string: urlString) else { return }
                         UIApplication.shared.open(url)
                     }

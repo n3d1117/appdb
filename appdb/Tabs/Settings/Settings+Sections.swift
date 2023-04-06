@@ -27,7 +27,7 @@ extension Settings {
     }
 
     var proSite: String {
-        Global.mainSite + "my/buy?lt=" + Preferences.linkToken
+        Global.mainSite + "my/buy?ref=" + Global.refCode + "&lt=" + Preferences.linkToken
     }
 
     var themeSection: [Static.Section] {

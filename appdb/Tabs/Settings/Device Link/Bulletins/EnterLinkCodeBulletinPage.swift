@@ -49,7 +49,7 @@ class EnterLinkCodeBulletinPage: BLTNPageItem {
 
     @objc private func linkButtonTapped(sender: UIButton) {
         guard let url = sender.titleLabel?.text else { return }
-        NotificationCenter.default.post(name: .OpenSafari, object: self, userInfo: ["URLString": "\(url)"])
+        NotificationCenter.default.post(name: .OpenSafari, object: self, userInfo: ["URLString": "\(url)?ref=\(Global.refCode)"])
     }
 
     override func actionButtonTapped(sender: UIButton) {

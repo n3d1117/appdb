@@ -38,7 +38,7 @@ class Credits: TableViewController {
         Credit(name: "View project on GitHub".localized(), imageName: "github", type: .developer, handle: .website(site: Global.githubSite)),
         Credit(name: "Buy me a coffee".localized(), imageName: "bmac", type: .developer, handle: .website(site: Global.donateSite)),
 
-        Credit(name: "appdb team", imageName: "appdb", type: .specialThanks, handle: .website(site: Global.mainSite)),
+        Credit(name: "appdb team", imageName: "appdb", type: .specialThanks, handle: .website(site: Global.mainSite + "?ref=" + Global.refCode)),
         Credit(name: "Alessandro Chiarlitti (aesign)", detail: "Icon and banner designer".localized(), imageName: "aesign", type: .specialThanks, handle: .website(site: "https://aesign.me")),
 
         Credit(name: "TNT 🇪🇸", imageName: "tnt", type: .translations, handle: .none),

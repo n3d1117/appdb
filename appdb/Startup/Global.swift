@@ -32,6 +32,8 @@ enum Global {
     static let adsTestMode: Bool = !DEBUG
 
     static let mainSite: String = "https://appdb.to/"
+    static let refCode: String = "fc2b87d32abe29180b9da168d5a599e8"
+    
     static let githubSite: String = "https://github.com/n3d1117/appdb"
     static let donateSite: String = "https://www.buymeacoffee.com/ne_do"
 //    static let email: String = "appdb.ned@gmail.com"

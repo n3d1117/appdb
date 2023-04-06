@@ -87,7 +87,7 @@ class Details: LoadingTableView {
     // MARK: - Share
 
     @objc func share(sender: UIBarButtonItem) {
-        let urlString = "\(Global.mainSite)app/\(contentType.rawValue)/\(content.itemId)"
+        let urlString = "\(Global.mainSite)app/\(contentType.rawValue)/\(content.itemId)?ref=\(Global.refCode)"
         guard let url = URL(string: urlString) else { return }
         let activity = UIActivityViewController(activityItems: [url], applicationActivities: [SafariActivity()])
         if #available(iOS 11.0, *) {} else {
