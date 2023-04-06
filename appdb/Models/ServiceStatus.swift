@@ -14,7 +14,7 @@ struct ServiceStatus: Mappable {
 
     var name: String = ""
     var isOnline = false
-    var data: Int?
+    var data: String?
 
     mutating func mapping(map: Map) {
         name <- map["name"]

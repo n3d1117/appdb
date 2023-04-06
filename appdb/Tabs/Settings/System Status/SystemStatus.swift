@@ -86,7 +86,7 @@ class SystemStatus: LoadingTableView {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "service", for: indexPath) as? SimpleStaticCell {
             cell.textLabel?.text = services[indexPath.row].name
             if let data = services[indexPath.row].data {
-                cell.detailTextLabel?.text = String(data)
+                cell.detailTextLabel?.text = data
                 cell.accessoryView = nil
             } else {
                 cell.detailTextLabel?.text = ""
