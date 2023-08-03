@@ -101,7 +101,7 @@ class IPACache: LoadingTableView {
                     cell.selectionStyle = .none
                 case 1:
                     cell.textLabel?.text = "In Update".localized()
-                    cell.detailTextLabel?.text = status.inUpdate ? "Yes".localized() : "No".localized()
+                    cell.detailTextLabel?.text = status.inUpdate == 1 ? "Yes".localized() : "No".localized()
                     cell.textLabel?.theme_textColor = Color.title
                     cell.selectionStyle = .none
                 case 2:

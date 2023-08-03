@@ -12,7 +12,7 @@ import Alamofire
 extension API {
 
     static func getPromotions(success: @escaping (_ items: [Promotion]) -> Void, fail: @escaping (_ error: NSError) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.promotions.rawValue, "lang": languageCode], headers: headers)
+        AF.request(endpoint + Actions.promotions.rawValue, parameters: ["lang": languageCode], headers: headers)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[Promotion]>) in
                 switch response.result {
                 case .success(let promotions):

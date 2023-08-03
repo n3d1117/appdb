@@ -119,8 +119,8 @@ extension Updates: ElasticLabelDelegate {
 extension Updates: IgnoredAppsListChanged {
     func ignoredChanged() {
         let updatedList = allApps.filter({ !$0.isIgnored }).sorted { $0.name.lowercased() < $1.name.lowercased() }
-        let updatedList1 = updatedList.filter({ $0.updateable })
-        let updatedList2 = updatedList.filter({ !$0.updateable })
+        let updatedList1 = updatedList.filter({ $0.updateable == 1 })
+        let updatedList2 = updatedList.filter({ $0.updateable == 0 })
 
         if self.updateableApps != updatedList1 {
             self.updateableApps = updatedList1
@@ -146,7 +146,7 @@ extension Updates {
         let apps = indexPath.section == 0 ? updateableApps : nonUpdateableApps
         guard apps.indices.contains(indexPath.row) else { return nil }
         let item = apps[indexPath.row]
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: { Details(type: item.itemType, trackid: item.trackid) })
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { Details(type: item.itemType, trackid: item.trackid.description) })
     }
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
@@ -173,7 +173,7 @@ extension Updates: UIViewControllerPreviewingDelegate {
         let apps = indexPath.section == 0 ? updateableApps : nonUpdateableApps
         guard apps.indices.contains(indexPath.row) else { return nil }
         let item = apps[indexPath.row]
-        let vc = Details(type: item.itemType, trackid: item.trackid)
+        let vc = Details(type: item.itemType, trackid: item.trackid.description)
         return vc
     }
 

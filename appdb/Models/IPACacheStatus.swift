@@ -16,7 +16,7 @@ struct IPACacheStatus: Mappable {
 
     var sizeHr: String = ""
     var sizeLimitHr: String = ""
-    var inUpdate = false
+    var inUpdate: Int = 0
     var updatedAt: String = ""
     var ipas: [CachedIPA] = []
 

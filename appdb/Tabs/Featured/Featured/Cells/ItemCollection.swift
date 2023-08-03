@@ -37,7 +37,7 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cydia", for: indexPath) as? FeaturedApp else { return UICollectionViewCell() }
             cell.title.text = cydiaApp.name.decoded
             cell.tweaked = cydiaApp.isTweaked
-            cell.category.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia)
+            cell.category.text = API.categoryFromId(id: cydiaApp.categoryId.description, type: .cydia)
             if let url = URL(string: cydiaApp.image) {
                 cell.icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: Global.Size.itemWidth.value), imageTransition: .crossDissolve(0.2))
             }

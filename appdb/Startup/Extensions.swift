@@ -127,40 +127,6 @@ extension String {
     }
 
     //
-    // Returns formatted string from rfc2822 date
-    // E.G. "Sat, 05 May 2018 13:42:01 -0400" -> "May 5, 2018 at 10.07 PM"
-    //
-    var rfc2822decoded: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
-        formatter.locale = Locale(identifier: "en_US")
-        if let date = formatter.date(from: self) {
-            formatter.locale = Locale(identifier: Localize.currentLanguage())
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .short
-            return formatter.string(from: date)
-        }
-        return ""
-    }
-
-    //
-    // Returns short formatted string from rfc2822 date
-    // E.G. "Sat, 05 May 2018 13:42:01 -0400" -> "May 5, 2018"
-    //
-    var rfc2822decodedShort: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
-        formatter.locale = Locale(identifier: "en_US")
-        if let date = formatter.date(from: self) {
-            formatter.locale = Locale(identifier: Localize.currentLanguage())
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            return formatter.string(from: date)
-        }
-        return ""
-    }
-
-    //
     // Returns short formatted string from revocation date
     // E.G. "Revocation Time: May 30 22:03:50 2019 GMT" -> "May 31, 2019 at 12:03 AM"
     //

@@ -13,7 +13,7 @@ import SwiftyJSON
 extension API {
 
     static func getEnterpriseCerts(success: @escaping (_ items: [EnterpriseCertificate]) -> Void, fail: @escaping (_ error: NSError) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getEnterpriseCerts.rawValue, "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.getEnterpriseCerts.rawValue, parameters: ["lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[EnterpriseCertificate]>) in
                 switch response.result {
                 case .success(let certs):
@@ -25,8 +25,7 @@ extension API {
     }
 
     static func getConfiguration(success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getConfiguration.rawValue,
-                                                 "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.getConfiguration.rawValue, parameters: ["lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -36,13 +35,13 @@ extension API {
                     } else {
 
                         let data = json["data"]
-                        checkRevocation(completion: { isRevoked, revokedOn in
+                        // checkRevocation(completion: { isRevoked, revokedOn in
                             Preferences.set(.appsync, to: data["appsync"].stringValue == "yes")
                             Preferences.set(.ignoreCompatibility, to: data["ignore_compatibility"].stringValue == "yes")
                             Preferences.set(.askForInstallationOptions, to: data["ask_for_installation_options"].stringValue == "yes")
 
-                            Preferences.set(.revoked, to: isRevoked)
-                            Preferences.set(.revokedOn, to: revokedOn)
+                            // Preferences.set(.revoked, to: isRevoked)
+                            // Preferences.set(.revokedOn, to: revokedOn)
 
                             if !data["p12_password"].stringValue.isEmpty, !data["p12"].stringValue.isEmpty, !data["provision"].stringValue.isEmpty {
                                 Preferences.set(.usesCustomDeveloperIdentity, to: true)
@@ -77,9 +76,9 @@ extension API {
                             Preferences.set(.optedOutFromEmails, to: data["is_opted_out_from_emails"].stringValue == "yes")
 
                             success()
-                        }, fail: { error in
-                            fail(error)
-                        })
+                        // }, fail: { error in
+                        //    fail(error)
+                        // })
                     }
                 case .failure(let error):
                     fail(error.localizedDescription)
@@ -88,10 +87,10 @@ extension API {
     }
 
     static func setConfiguration(params: [ConfigurationParameters: String], success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
-        var parameters: [String: Any] = ["action": Actions.configure.rawValue, "lang": languageCode]
+        var parameters: [String: Any] = ["lang": languageCode]
         for (key, value) in params { parameters[key.rawValue] = value }
 
-        AF.request(endpoint, parameters: parameters, headers: headersWithCookie)
+        AF.request(endpoint + Actions.configure.rawValue, parameters: parameters, headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -121,8 +120,8 @@ extension API {
             }
     }
 
-    static func checkRevocation(completion: @escaping (_ revoked: Bool, _ revokedOn: String) -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.checkRevoke.rawValue], headers: headersWithCookie)
+    /*static func checkRevocation(completion: @escaping (_ revoked: Bool, _ revokedOn: String) -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.checkRevoke.rawValue, headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -132,5 +131,5 @@ extension API {
                 fail(error.localizedDescription)
             }
         }
-    }
+    }*/
 }

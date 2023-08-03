@@ -18,7 +18,7 @@ extension API {
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
-                    checkedAt = JSON(value)["checked_at"].stringValue.rfc2822decoded
+                    checkedAt = JSON(value)["checked_at"].stringValue.unixToString
                 case .failure(let error):
                     fail(error as NSError)
                     return

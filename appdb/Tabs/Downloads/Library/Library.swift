@@ -165,7 +165,7 @@ class Library: LoadingCollectionView {
             }
         })
         alertController.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in
-            self.deleteMyAppStoreApp(id: app.id, indexPath: indexPath)
+            self.deleteMyAppStoreApp(id: app.id.description, indexPath: indexPath)
         })
 
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
@@ -316,7 +316,7 @@ extension Library {
 
                 let deleteCancel = UIAction(title: "Cancel".localized(), image: UIImage(systemName: "xmark")) { _ in }
                 let deleteConfirmation = UIAction(title: "Delete".localized(), image: UIImage(systemName: "checkmark"), attributes: .destructive) { _ in
-                   self.deleteMyAppStoreApp(id: app.id, indexPath: indexPath)
+                    self.deleteMyAppStoreApp(id: app.id.description, indexPath: indexPath)
                 }
 
                 let delete = UIMenu(title: "Delete".localized(), image: UIImage(systemName: "trash"), options: .destructive, children: [deleteCancel, deleteConfirmation])

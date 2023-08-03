@@ -670,22 +670,6 @@
 		81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+SegmentControl.swift"; sourceTree = "<group>"; };
 		81C274D7229FFA57000D8BEB /* Credits+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Credits+Views.swift"; sourceTree = "<group>"; };
 		81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskBundleBeforeUploadViewController.swift; sourceTree = "<group>"; };
-		81CD0A9425F27FBF001C9EEA /* SwiftMessages.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftMessages.xcframework; path = Carthage/Build/SwiftMessages.xcframework; sourceTree = "<group>"; };
-		81CD0A9525F27FBF001C9EEA /* SwiftyJSON.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftyJSON.xcframework; path = Carthage/Build/SwiftyJSON.xcframework; sourceTree = "<group>"; };
-		81CD0A9625F27FBF001C9EEA /* AlamofireImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AlamofireImage.xcframework; path = Carthage/Build/AlamofireImage.xcframework; sourceTree = "<group>"; };
-		81CD0A9725F27FBF001C9EEA /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
-		81CD0A9825F27FBF001C9EEA /* Localize_Swift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Localize_Swift.xcframework; path = Carthage/Build/Localize_Swift.xcframework; sourceTree = "<group>"; };
-		81CD0A9925F27FBF001C9EEA /* AlamofireNetworkActivityIndicator.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AlamofireNetworkActivityIndicator.xcframework; path = Carthage/Build/AlamofireNetworkActivityIndicator.xcframework; sourceTree = "<group>"; };
-		81CD0A9A25F27FBF001C9EEA /* Cartography.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Cartography.xcframework; path = Carthage/Build/Cartography.xcframework; sourceTree = "<group>"; };
-		81CD0A9B25F27FBF001C9EEA /* BLTNBoard.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BLTNBoard.xcframework; path = Carthage/Build/BLTNBoard.xcframework; sourceTree = "<group>"; };
-		81CD0A9C25F27FBF001C9EEA /* Static.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Static.xcframework; path = Carthage/Build/Static.xcframework; sourceTree = "<group>"; };
-		81CD0A9D25F27FBF001C9EEA /* SwiftTheme.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftTheme.xcframework; path = Carthage/Build/SwiftTheme.xcframework; sourceTree = "<group>"; };
-		81CD0A9E25F27FBF001C9EEA /* DeepDiff.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DeepDiff.xcframework; path = Carthage/Build/DeepDiff.xcframework; sourceTree = "<group>"; };
-		81CD0A9F25F27FBF001C9EEA /* Swifter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Swifter.xcframework; path = Carthage/Build/Swifter.xcframework; sourceTree = "<group>"; };
-		81CD0AA025F27FBF001C9EEA /* Kanna.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Kanna.xcframework; path = Carthage/Build/Kanna.xcframework; sourceTree = "<group>"; };
-		81CD0AA125F27FBF001C9EEA /* ObjectMapper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ObjectMapper.xcframework; path = Carthage/Build/ObjectMapper.xcframework; sourceTree = "<group>"; };
-		81CD0AA225F27FBF001C9EEA /* ZIPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ZIPFoundation.xcframework; path = Carthage/Build/ZIPFoundation.xcframework; sourceTree = "<group>"; };
-		81CD0AA325F27FBF001C9EEA /* Cosmos.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Cosmos.xcframework; path = Carthage/Build/Cosmos.xcframework; sourceTree = "<group>"; };
 		81D3F72A2163E1DA001EC9F2 /* Item+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Properties.swift"; sourceTree = "<group>"; };
 		81D661751E5A0B6C00BB6461 /* Details+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81D873332365BAD800F7240E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1023,8 +1007,8 @@
 			children = (
 				813F01772A7C02C2008DCA2E /* AltStoreRepoCell.swift */,
 				813F01782A7C02C2008DCA2E /* AltStoreRepos+Extension.swift */,
-				813F01792A7C02C2008DCA2E /* Apps */,
 				813F017E2A7C02C2008DCA2E /* AltStoreRepos.swift */,
+				813F01792A7C02C2008DCA2E /* Apps */,
 			);
 			name = AltStoreRepos;
 			path = appdb/Tabs/Settings/AltStoreRepos;
@@ -1615,22 +1599,6 @@
 		81AB37A31DAC2ED7003A586F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81CD0A9725F27FBF001C9EEA /* Alamofire.xcframework */,
-				81CD0A9625F27FBF001C9EEA /* AlamofireImage.xcframework */,
-				81CD0A9925F27FBF001C9EEA /* AlamofireNetworkActivityIndicator.xcframework */,
-				81CD0A9B25F27FBF001C9EEA /* BLTNBoard.xcframework */,
-				81CD0A9A25F27FBF001C9EEA /* Cartography.xcframework */,
-				81CD0AA325F27FBF001C9EEA /* Cosmos.xcframework */,
-				81CD0A9E25F27FBF001C9EEA /* DeepDiff.xcframework */,
-				81CD0AA025F27FBF001C9EEA /* Kanna.xcframework */,
-				81CD0A9825F27FBF001C9EEA /* Localize_Swift.xcframework */,
-				81CD0AA125F27FBF001C9EEA /* ObjectMapper.xcframework */,
-				81CD0A9C25F27FBF001C9EEA /* Static.xcframework */,
-				81CD0A9F25F27FBF001C9EEA /* Swifter.xcframework */,
-				81CD0A9425F27FBF001C9EEA /* SwiftMessages.xcframework */,
-				81CD0A9D25F27FBF001C9EEA /* SwiftTheme.xcframework */,
-				81CD0A9525F27FBF001C9EEA /* SwiftyJSON.xcframework */,
-				81CD0AA225F27FBF001C9EEA /* ZIPFoundation.xcframework */,
 				81521EAB25F672600064CA84 /* WidgetKit.framework */,
 				81521EAD25F672600064CA84 /* SwiftUI.framework */,
 			);
@@ -2629,7 +2597,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios.Widgets";
@@ -2662,7 +2630,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.6;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios.Widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2840,7 +2808,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.6;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2879,7 +2847,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.6;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.ned.appdb-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2953,7 +2921,7 @@
 			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 4.2.0;
 			};
 		};
 		813F013C2A7BFF50008DCA2E /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityIndicator" */ = {

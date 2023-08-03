@@ -20,7 +20,7 @@ func debugLog(_ arg: Any) {
 
 enum Global {
 
-    static let showAds = false
+    // static let showAds = false
 
     static let adsId: String = "5209496"
     #if DEBUG

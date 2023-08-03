@@ -15,7 +15,7 @@ class CydiaApp: Item {
         super.init(map: map)
     }
 
-    override var id: String {
+    override var id: Int {
         get { super.id }
         set { super.id = newValue }
     }
@@ -34,9 +34,9 @@ class CydiaApp: Item {
     var image: String = ""
 
     // General
-    var categoryId: String = ""
+    var categoryId: Int = 0
     var developer: String = ""
-    var developerId: String = ""
+    var developerId: Int = 0
 
     // Text
     var description_: String = ""
@@ -49,7 +49,7 @@ class CydiaApp: Item {
     var updated: String = ""
 
     // Tweaked
-    var originalTrackid: String = ""
+    var originalTrackid: Int = 0
     var originalSection: String = ""
     var isTweaked = false
 
@@ -58,11 +58,11 @@ class CydiaApp: Item {
     var screenshotsIpad = [Screenshot]()
 
     // Download stats
-    var clicksDay: String = "0"
-    var clicksWeek: String = "0"
-    var clicksMonth: String = "0"
-    var clicksYear: String = "0"
-    var clicksAll: String = "0"
+    var clicksDay: Int = 0
+    var clicksWeek: Int = 0
+    var clicksMonth: Int = 0
+    var clicksYear: Int = 0
+    var clicksAll: Int = 0
 
     override func mapping(map: Map) {
         name <- map["name"]
@@ -81,7 +81,7 @@ class CydiaApp: Item {
         originalSection <- map["original_section"]
         screenshotsData <- map["screenshots"]
 
-        isTweaked = originalTrackid != "0"
+        isTweaked = originalTrackid != 0
         if developer.hasSuffix(" ") { developer = String(developer.dropLast()) }
 
         if let data = screenshotsData.data(using: .utf8), let screenshotsParse = try? JSON(data: data) {

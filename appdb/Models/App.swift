@@ -16,7 +16,7 @@ class App: Item {
         super.init(map: map)
     }
 
-    override var id: String {
+    override var id: Int {
         get { super.id }
         set { super.id = newValue }
     }
@@ -45,8 +45,8 @@ class App: Item {
     var whatsnew: String = ""
 
     // Dev apps
-    var artistId: String = ""
-    var genreId: String = ""
+    var artistId: Int = 0
+    var genreId: Int = 0
 
     // Copyright notice
     var publisher: String = ""
@@ -76,11 +76,11 @@ class App: Item {
     var screenshotsIpad = [Screenshot]()
 
     // Download stats
-    var clicksDay: String = "0"
-    var clicksWeek: String = "0"
-    var clicksMonth: String = "0"
-    var clicksYear: String = "0"
-    var clicksAll: String = "0"
+    var clicksDay: Int = 0
+    var clicksWeek: Int = 0
+    var clicksMonth: Int = 0
+    var clicksYear: Int = 0
+    var clicksAll: Int = 0
 
     override func mapping(map: Map) {
         name <- map["name"]
@@ -125,7 +125,7 @@ class App: Item {
             // Pulled app?
 
             // Fix categories not showing for pulled apps
-            if let genre = Preferences.genres.first(where: { $0.category == "ios" && $0.id == genreId }) {
+            if let genre = Preferences.genres.first(where: { $0.category == "ios" && $0.id == genreId.description }) {
                 category = Category(name: genre.name, id: genre.id)
             }
             seller = pname

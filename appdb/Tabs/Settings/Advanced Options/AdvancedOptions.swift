@@ -29,9 +29,9 @@ class AdvancedOptions: TableViewController {
             }, cellClass: SimpleStaticCell.self)
         ]),
         StaticSection(rows: [
-            StaticRow(text: "Check Revocation".localized(), selection: { [unowned self] _ in
+            /*StaticRow(text: "Check Revocation".localized(), selection: { [unowned self] _ in
                             self.checkRevocationStatus()
-                        }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
+                        }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),*/
             StaticRow(text: "Email Link Code".localized(), selection: { [unowned self] _ in
                 self.emailLinkCode()
             }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
@@ -131,7 +131,7 @@ extension AdvancedOptions: UITableViewDelegate {
 
 extension AdvancedOptions {
 
-    fileprivate func checkRevocationStatus() {
+    /*fileprivate func checkRevocationStatus() {
             API.checkRevocation(completion: { isRevoked, revokedOn in
                 if isRevoked {
                     var message: String = "Revoked on %@".localizedFormat(revokedOn.revokedDateDecoded)
@@ -149,7 +149,7 @@ extension AdvancedOptions {
             }, fail: { error in
                 Messages.shared.showError(message: error.prettified, context: .viewController(self))
             })
-        }
+        }*/
 
     fileprivate func emailLinkCode() {
         let title = "Enter Email".localized()

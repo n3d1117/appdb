@@ -14,7 +14,7 @@ struct AltStoreRepo: Mappable {
 
     init?(map: Map) { }
 
-    var id: String = ""
+    var id: Int = 0
     var name: String = ""
     var identifier: String = ""
     var url: String = ""
@@ -22,7 +22,7 @@ struct AltStoreRepo: Mappable {
     var statusTranslated: String = ""
     var statusString: String = ""
     var status: Status = .ok
-    var totalApps: String = "0"
+    var totalApps: Int = 0
     var addedAt: String = ""
     var lastCheckedAt: String = ""
     var contents: AltStoreRepoContents?

@@ -23,7 +23,7 @@ class SigningTypeChooser: UITableViewController {
         return bgColorView
     }()
 
-    let availableOptions = ["auto", "development", "production"]
+    let availableOptions = ["auto", "development", "distribution"]
 
     static var currentType: String {
         Preferences.signingIdentityType

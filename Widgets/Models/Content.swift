@@ -10,11 +10,11 @@ import Foundation
 
 struct Content: Identifiable, Decodable {
 
-    let id: String
+    let id: Int
     let name: String
     let image: String
 
     static var dummy: Content {
-        Content(id: "", name: "Example Name", image: "")
+        Content(id: 0, name: "Example Name", image: "")
     }
 }

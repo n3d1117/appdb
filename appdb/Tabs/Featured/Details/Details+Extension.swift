@@ -120,12 +120,12 @@ extension Details {
             DetailsChangelog(), // dynamic
             DetailsRelated(type: contentType, related: content.itemRelatedContent, delegate: self),
             DetailsInformation(type: contentType, content: content),
-            DetailsDownloadStats(content: content),
+            DetailsDownloadStats(content: content)
         ]
 
         switch contentType {
         case .ios: if let app = content as? App {
-            details.append(DetailsExternalLink(text: "Developer Apps".localized(), devId: app.artistId, devName: app.seller))
+            details.append(DetailsExternalLink(text: "Developer Apps".localized(), devId: app.artistId.description, devName: app.seller))
             if !app.website.isEmpty { details.append(DetailsExternalLink(text: "Developer Website".localized(), url: content.itemWebsite)) }
             if !app.support.isEmpty { details.append(DetailsExternalLink(text: "Developer Support".localized(), url: content.itemSupport)) }
             if !app.publisher.isEmpty { details.append(DetailsPublisher(app.publisher)) }
@@ -134,7 +134,7 @@ extension Details {
             details.append(DetailsPublisher("© " + app.developer))
             }
         case .books: if let book = content as? Book {
-            details.append(DetailsExternalLink(text: "More by this author".localized(), devId: book.artistId, devName: book.author))
+            details.append(DetailsExternalLink(text: "More by this author".localized(), devId: book.artistId.description, devName: book.author))
             if !book.publisher.isEmpty { details.append(DetailsPublisher(book.publisher)) } else if !book.author.isEmpty { details.append(DetailsPublisher("© " + book.author)) }
             }
         default:

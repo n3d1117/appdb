@@ -33,7 +33,7 @@ class DetailsDownload: DetailsCell {
         button.linkId = link.id
         button.isHidden = !link.diCompatible
         button.isEnabled = installEnabled
-        host.theme_textColor = link.universal ? Color.mainTint : Color.title
+        host.theme_textColor = Color.title
 
         selectionStyle = accessoryType == .none ? .none : .default
 
@@ -149,7 +149,7 @@ class DetailsDownloadUnified: DetailsCell {
         button.isHidden = !link.diCompatible
         button.isEnabled = installEnabled
         button.setTitle(button.isHidden ? "" : "Install".localized().uppercased(), for: .normal)
-        host.theme_textColor = link.universal ? Color.mainTint : Color.title
+        host.theme_textColor = Color.title
 
         selectionStyle = accessoryType == .none ? .none : .default
 

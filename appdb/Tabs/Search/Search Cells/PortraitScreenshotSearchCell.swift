@@ -44,8 +44,7 @@ class PortraitScreenshotSearchCell: SearchCell {
         super.configure(with: item)
 
         if let url = URL(string: item.itemFirstScreenshotUrl) {
-            let filter = Global.screenshotRoundedFilter(size: screenshot.frame.size, radius: 5)
-            screenshot.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
+            screenshot.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
         }
     }
 

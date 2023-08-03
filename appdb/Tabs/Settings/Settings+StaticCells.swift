@@ -168,7 +168,7 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
         guard let freeSignsLeftNumber = Int(freeSignsLeft) else { return }
         guard let freeSignsResetAt = row.context?["freeSignsResetAt"] as? String else { return }
         guard let plus = row.context?["isPlus"] as? Bool else { return }
-        guard let plusUntil = (row.context?["plusUntil"] as? String)?.rfc2822decodedShort else { return }
+        guard let plusUntil = (row.context?["plusUntil"] as? String)?.unixToString else { return }
         guard let plusAccountStatus = row.context?["plusAccountStatus"] as? String else { return }
         guard let revoked = row.context?["revoked"] as? Bool else { return }
         guard let revokedOn = (row.context?["revokedOn"] as? String)?.revokedDateDecoded else { return }
@@ -194,7 +194,7 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
         } else {
             activeLabel.theme_textColor = freeSignsLeftNumber > 0 ? Color.softGreen : Color.softRed
             expirationLabel.text = signingWith
-            activeLabel.text = "%@ signs left until %@".localizedFormat(freeSignsLeft, freeSignsResetAt.rfc2822decoded)
+            activeLabel.text = "%@ signs left until %@".localizedFormat(freeSignsLeft, freeSignsResetAt.unixToString)
         }
 
         selectionStyle = .default
@@ -271,7 +271,7 @@ final class SimpleStaticPLUSStatusCell: UITableViewCell, Cell {
         textLabel?.text = row.text
 
         guard let isPlus = row.context?["active"] as? Bool else { return }
-        guard let plusExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
+        guard let plusExpirationDate = (row.context?["expire"] as? String)?.unixToString else { return }
 
         if isPlus {
             activeLabel.theme_textColor = Color.softGreen

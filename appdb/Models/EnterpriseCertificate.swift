@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-import Foundation
 import ObjectMapper
 
 struct EnterpriseCertificate: Equatable, Codable {

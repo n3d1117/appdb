@@ -12,10 +12,10 @@ struct Promotion: Mappable {
 
     init?(map: Map) { }
 
-    var id: String = ""
+    var id: Int = 0
     var lead: String = ""
     var type: String = ""
-    var trackid: String = ""
+    var trackid: Int = 0
     var name: String = ""
     var image: String = ""
 

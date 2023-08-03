@@ -20,7 +20,7 @@ extension API {
             return
         }
 
-        AF.request(endpoint, parameters: ["action": Actions.getLinkToken.rawValue, "udid": deviceUdid, "client": "appdb unofficial client"], headers: headers)
+        AF.request(endpoint + Actions.getLinkToken.rawValue, parameters: ["udid": deviceUdid, "client": "appdb unofficial client"], headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -39,14 +39,14 @@ extension API {
                             fail()
                         })
                     }
-                case .failure:
+                case .failure(let error):
                     fail()
                 }
             }
     }
 
     static func linkDevice(code: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.link.rawValue, "type": "control", "link_code": code,
+        AF.request(endpoint + Actions.link.rawValue, parameters: ["type": "control", "link_code": code,
                                                  "lang": languageCode], headers: headers)
             .responseJSON { response in
                 switch response.result {
@@ -72,7 +72,7 @@ extension API {
     }
 
     static func getLinkCode(success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getLinkCode.rawValue, "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.getLinkCode.rawValue, parameters: ["lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -90,7 +90,7 @@ extension API {
     }
 
     static func emailLinkCode(email: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["email": email, "action": Actions.emailLinkCode.rawValue,
+        AF.request(endpoint + Actions.emailLinkCode.rawValue, parameters: ["email": email,
                                           "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
@@ -108,8 +108,7 @@ extension API {
     }
 
     static func getAppdbAppsBundleIdsTicket(success: @escaping (_ ticket: String) -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getAppdbAppsBundleIdsTicket.rawValue,
-                                          "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.getAppdbAppsBundleIdsTicket.rawValue, parameters: ["lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -126,7 +125,7 @@ extension API {
     }
 
     static func getAppdbAppsBundleIds(ticket: String, success: @escaping (_ bundleIds: [String]) -> Void, fail: @escaping (_ error: String, _ code: String) -> Void) {
-        AF.request(endpoint, parameters: ["t": ticket, "action": Actions.getAppdbAppsBundleIds.rawValue,
+        AF.request(endpoint + Actions.getAppdbAppsBundleIds.rawValue, parameters: ["t": ticket,
                                           "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
@@ -144,8 +143,7 @@ extension API {
     }
 
     static func getAllLinkedDevices(success: @escaping (_ devices: [LinkedDevice]) -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getAllDevices.rawValue,
-                                          "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.getAllDevices.rawValue, parameters: ["lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[LinkedDevice]>) in
                 switch response.result {
                 case .success(let devices):

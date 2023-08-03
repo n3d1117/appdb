@@ -13,7 +13,7 @@ import SwiftyJSON
 extension API {
 
     static func getLinks(type: ItemType, trackid: String, success: @escaping (_ items: [Version]) -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getLinks.rawValue, "type": type.rawValue, "trackids": trackid, "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.getLinks.rawValue, parameters: ["type": type.rawValue, "trackids": trackid, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -47,9 +47,8 @@ extension API {
                                         host: link["host"].stringValue,
                                         id: link["id"].stringValue,
                                         verified: link["verified"].boolValue,
-                                        di_compatible: link["di_compatible"].boolValue,
+                                        di_compatible: link["di_compatible"].intValue == 1,
                                         hidden: link["is_hidden"] != "0",
-                                        universal: link["is_universal"] != "0",
                                         is_compatible: link["is_compatible"]["result"] == "yes",
                                         incompatibility_reason: incompatibility_reason,
                                         report_reason: report_reason
@@ -83,9 +82,8 @@ extension API {
                                         host: link["host"].stringValue,
                                         id: link["id"].stringValue,
                                         verified: link["verified"].boolValue,
-                                        di_compatible: link["di_compatible"].boolValue,
+                                        di_compatible: link["di_compatible"].intValue == 1,
                                         hidden: link["is_hidden"] != "0",
-                                        universal: link["is_universal"] != "0",
                                         is_compatible: link["is_compatible"]["result"] == "yes",
                                         isTicket: link["link"].stringValue.starts(with: "ticket://"),
                                         incompatibility_reason: incompatibility_reason,
@@ -108,7 +106,7 @@ extension API {
     }
 
     static func reportLink(id: String, type: ItemType, reason: String, completion: @escaping (_ error: String?) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.report.rawValue, "type": type.rawValue, "id": id, "reason": reason, "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.report.rawValue, parameters: ["type": type.rawValue, "id": id, "reason": reason, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -131,7 +129,7 @@ extension API {
         // If I don't do this, '%3D' gets encoded to '%253D' which makes the ticket invalid
         ticket = ticket.replacingOccurrences(of: "%3D", with: "=")
 
-        AF.request(endpoint, parameters: ["action": Actions.processRedirect.rawValue, "t": ticket, "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.processRedirect.rawValue, parameters: ["t": ticket, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -150,7 +148,7 @@ extension API {
     }
 
     static func getPlainTextLink(rt: String, completion: @escaping (_ error: String?, _ link: String?) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.processRedirect.rawValue, "rt": rt, "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.processRedirect.rawValue, parameters: ["rt": rt, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):

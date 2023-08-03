@@ -261,19 +261,18 @@ class SeeAll: LoadingTableView {
             if book.itemHasStars {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "seeallcellwithstars_book",
                                                                for: indexPath) as? SeeAllCellWithStars else { return UITableViewCell() }
-                cell.configure(name: book.name, author: book.author, language: book.language, categoryId: book.categoryId,
-                               coverUrl: book.image, rating: book.numberOfStars, num: book.numberOfRating)
+                cell.configure(name: book.name, author: book.author, language: book.language, categoryId: book.categoryId.description, coverUrl: book.image, rating: book.numberOfStars, num: book.numberOfRating)
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "seeallcell_book",
                                                                for: indexPath) as? SeeAllCell else { return UITableViewCell() }
-                cell.configure(name: book.name, author: book.author, language: book.language, categoryId: book.categoryId, coverUrl: book.image)
+                cell.configure(name: book.name, author: book.author, language: book.language, categoryId: book.categoryId.description, coverUrl: book.image)
                 return cell
             }
         } else if let cydiaApp = item as? CydiaApp {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "seeallcell",
                                                            for: indexPath) as? SeeAllCell else { return UITableViewCell() }
-            cell.configure(name: cydiaApp.name, categoryId: cydiaApp.categoryId, version: cydiaApp.version,
+            cell.configure(name: cydiaApp.name, categoryId: cydiaApp.categoryId.description, version: cydiaApp.version,
                            iconUrl: cydiaApp.image, tweaked: cydiaApp.isTweaked)
             return cell
         }

@@ -14,7 +14,7 @@ extension API {
     // MARK: - Genres
 
     static func listGenres(completion: @escaping () -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.listGenres.rawValue, "lang": languageCode], headers: headers)
+        AF.request(endpoint + Actions.listGenres.rawValue, parameters: ["lang": languageCode], headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -29,23 +29,23 @@ extension API {
                     genres.append(Genre(category: "books", id: "0", name: "All Categories".localized()))
 
                     // Cydia genres
-                    for (key, value): (String, JSON) in data["cydia"] {
+                    for value in data["cydia"].arrayValue {
                         genres.append(
-                            Genre(category: "cydia", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
+                            Genre(category: "cydia", id: value["id"].intValue.description, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
                         )
                     }
 
                     // iOS Genres
-                    for (key, value): (String, JSON) in data["ios"] {
+                    for value in data["ios"].arrayValue {
                         genres.append(
-                            Genre(category: "ios", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
+                            Genre(category: "ios", id: value["id"].stringValue, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
                         )
                     }
 
                     // Books Genres
-                    for (key, value): (String, JSON) in data["books"] {
+                    for value in data["books"].arrayValue {
                         genres.append(
-                            Genre(category: "books", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
+                            Genre(category: "books", id: value["id"].stringValue, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
                         )
                     }
 
@@ -89,7 +89,7 @@ extension API {
     }
 
     static func getIcon(id: String, type: ItemType, completion: @escaping (String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue, "lang": languageCode], headers: headers)
+        AF.request(endpoint + Actions.search.rawValue, parameters: ["type": type.rawValue, "genre": id, "order": Order.all.rawValue, "lang": languageCode], headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):

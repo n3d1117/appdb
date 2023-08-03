@@ -193,7 +193,7 @@ class AltStoreRepos: LoadingTableView {
             let item = repos[indexPath.row]
 
             if !item.isPublic {
-                API.deleteAltStoreRepo(id: item.id) {
+                API.deleteAltStoreRepo(id: String(item.id)) {
                     Messages.shared.showSuccess(message: "The repository was deleted successfully".localized(), context: .viewController(self))
                     self.loadRepos()
                 } fail: { error in

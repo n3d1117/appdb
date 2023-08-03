@@ -12,7 +12,7 @@ import SwiftyJSON
 extension API {
 
     static func getUpdatesTicket(success: @escaping (_ ticket: String) -> Void, fail: @escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getUpdatesTicket.rawValue, "lang": languageCode], headers: headersWithCookie)
+        AF.request(endpoint + Actions.getUpdatesTicket.rawValue, parameters: ["lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -29,7 +29,7 @@ extension API {
     }
 
     static func getUpdates(ticket: String, success: @escaping (_ items: [UpdateableApp]) -> Void, fail: @escaping (_ error: String, _ code: String) -> Void) {
-        let request = AF.request(endpoint, parameters: ["action": Actions.getUpdates.rawValue, "t": ticket, "lang": languageCode], headers: headersWithCookie)
+        let request = AF.request(endpoint + Actions.getUpdates.rawValue, parameters: ["t": ticket, "lang": languageCode], headers: headersWithCookie)
 
         quickCheckForErrors(request, completion: { ok, hasError, errorCode in
             if ok {

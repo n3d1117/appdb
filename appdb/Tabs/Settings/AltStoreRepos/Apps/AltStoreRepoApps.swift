@@ -106,7 +106,7 @@ class AltStoreRepoApps: LoadingTableView {
     }
 
     private func loadContent() {
-        API.getAltStoreRepo(id: repo.id, success: { [weak self] _repo in
+        API.getAltStoreRepo(id: String(repo.id), success: { [weak self] _repo in
             guard let self = self else { return }
 
             self.repo = _repo

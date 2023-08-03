@@ -103,7 +103,7 @@ class DetailsHeader: DetailsCell {
                 icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
             }
 
-            self.devId = app.artistId
+            self.devId = app.artistId.description
         }
         case .cydia: if let cydiaApp = content as? CydiaApp {
             name.text = cydiaApp.name.decoded
@@ -113,14 +113,14 @@ class DetailsHeader: DetailsCell {
             }
 
             tweaked = buildPaddingLabel()
-            tweaked!.text = API.categoryFromId(id: cydiaApp.categoryId, type: .cydia).uppercased()
+            tweaked!.text = API.categoryFromId(id: cydiaApp.categoryId.description, type: .cydia).uppercased()
 
             icon.layer.cornerRadius = Global.cornerRadius(from: (130 ~~ 100))
             if let url = URL(string: cydiaApp.image) {
                 icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
             }
 
-            self.devId = cydiaApp.developerId
+            self.devId = cydiaApp.developerId.description
         }
         case .books: if let book = content as? Book {
             name.text = book.name.decoded
@@ -153,7 +153,7 @@ class DetailsHeader: DetailsCell {
                 icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
             }
 
-            self.devId = book.artistId
+            self.devId = book.artistId.description
         }
         case .altstore: if let altstoreApp = content as? AltStoreApp {
             name.text = altstoreApp.name
@@ -183,7 +183,7 @@ class DetailsHeader: DetailsCell {
             installButton!.setTitle("Install".localized().uppercased(), for: .normal)
             installButton!.theme_tintColor = Color.softGreen
             installButton!.addTarget(self, action: #selector(installTapped), for: .touchUpInside)
-            installButton!.isEnabled = !Global.showAds || Global.DEBUG || Preferences.isPlus
+            installButton!.isEnabled = true
         }
         default:
             break
