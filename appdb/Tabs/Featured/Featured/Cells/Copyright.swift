@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 
 class Copyright: FeaturedCell {
 

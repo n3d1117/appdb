@@ -6,12 +6,13 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 import SwiftyJSON
 
 extension API {
 
-    static func getSystemStatus(success:@escaping (_ checkedAt: String, _ items: [ServiceStatus]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+    static func getSystemStatus(success: @escaping (_ checkedAt: String, _ items: [ServiceStatus]) -> Void, fail: @escaping (_ error: NSError) -> Void) {
         var checkedAt: String!
         AF.request(statusEndpoint, headers: headers)
             .responseJSON { response in

@@ -8,7 +8,7 @@
 
 import UIKit
 import WebKit
-import Cartography
+
 import Alamofire
 
 protocol IPAWebViewControllerDelegate: AnyObject {

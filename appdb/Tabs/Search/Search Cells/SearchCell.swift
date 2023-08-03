@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import AlamofireImage
 
 class SearchCell: UICollectionViewCell {
@@ -17,7 +17,7 @@ class SearchCell: UICollectionViewCell {
     var tweaked = false {
         didSet {
             if oldValue != tweaked {
-                name.theme_textColor = tweaked ? Color.mainTint: Color.title
+                name.theme_textColor = tweaked ? Color.mainTint : Color.title
                 if tweaked {
                     name.numberOfLines = 1
                     paddingLabel.isHidden = false

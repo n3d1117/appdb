@@ -7,48 +7,48 @@
 //
 
 import UIKit
-import Static
+
 import TelemetryClient
 
 class AdvancedOptions: TableViewController {
 
-    fileprivate func getSections() -> [Static.Section] {
-        var sections = [Section(rows: [
-            Row(text: "Signing Type".localized(),
+    fileprivate func getSections() -> [StaticSection] {
+        var sections = [StaticSection(rows: [
+            StaticRow(text: "Signing Type".localized(),
                 detailText: Preferences.signingIdentityType.capitalizingFirstLetter(), selection: { [unowned self] _ in
                     self.push(SigningTypeChooser())
                 }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-            Row(text: "Disable Revocation Checks".localized(), accessory: .switchToggle(value: Preferences.disableRevocationChecks) { newValue in
+            StaticRow(text: "Disable Revocation Checks".localized(), accessory: .switchToggle(value: Preferences.disableRevocationChecks) { newValue in
                 API.setConfiguration(params: [.disableProtectionChecks: newValue ? "yes" : "no"], success: {}, fail: { _ in })
             }, cellClass: SimpleStaticCell.self),
-            Row(text: "Force Disable PRO".localized(), accessory: .switchToggle(value: Preferences.forceDisablePRO) { newValue in
+            StaticRow(text: "Force Disable PRO".localized(), accessory: .switchToggle(value: Preferences.forceDisablePRO) { newValue in
                 API.setConfiguration(params: [.forceDisablePRO: newValue ? "yes" : "no"], success: {}, fail: { _ in })
             }, cellClass: SimpleStaticCell.self),
-            Row(text: "Opt-out from emails".localized(), accessory: .switchToggle(value: Preferences.optedOutFromEmails) { newValue in
+            StaticRow(text: "Opt-out from emails".localized(), accessory: .switchToggle(value: Preferences.optedOutFromEmails) { newValue in
                 API.setConfiguration(params: [.optedOutFromEmails: newValue ? "yes" : "no"], success: {}, fail: { _ in })
             }, cellClass: SimpleStaticCell.self)
         ]),
-        Section(rows: [
-            Row(text: "Check Revocation".localized(), selection: { [unowned self] _ in
+        StaticSection(rows: [
+            StaticRow(text: "Check Revocation".localized(), selection: { [unowned self] _ in
                             self.checkRevocationStatus()
                         }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-            Row(text: "Email Link Code".localized(), selection: { [unowned self] _ in
+            StaticRow(text: "Email Link Code".localized(), selection: { [unowned self] _ in
                 self.emailLinkCode()
             }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-            Row(text: "List apps managed by appdb".localized(), selection: { [unowned self] _ in
+            StaticRow(text: "List apps managed by appdb".localized(), selection: { [unowned self] _ in
                 self.listAppsManagedByAppdb()
             }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
         ]),
-        Section(rows: [
-            Row(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
+        StaticSection(rows: [
+            StaticRow(text: "Change bundle id before upload".localized(), cellClass: SwitchCell.self, context: ["valueChange": { new in
                 Preferences.set(.changeBundleBeforeUpload, to: new)
             }, "value": Preferences.changeBundleBeforeUpload])
         ], footer: .title("Changing bundle identifier before uploading to MyAppStore might be useful when working with multiple versions of the same app.".localized())),
-        Section(rows: [
-            Row(text: "Clear developer identity".localized(), selection: { _ in }, cellClass: ClearIdentityStaticCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
+        StaticSection(rows: [
+            StaticRow(text: "Clear developer identity".localized(), selection: { _ in }, cellClass: ClearIdentityStaticCell.self, context: ["bgColor": Color.softRed, "bgHover": Color.darkRed])
         ])
         ]
-        if #available(iOS 13.0, *) {} else { sections.insert(Section(), at: 0) }
+        if #available(iOS 13.0, *) {} else { sections.insert(StaticSection(), at: 0) }
         return sections
     }
 
@@ -130,7 +130,7 @@ extension AdvancedOptions: UITableViewDelegate {
 }
 
 extension AdvancedOptions {
-    
+
     fileprivate func checkRevocationStatus() {
             API.checkRevocation(completion: { isRevoked, revokedOn in
                 if isRevoked {
@@ -150,7 +150,7 @@ extension AdvancedOptions {
                 Messages.shared.showError(message: error.prettified, context: .viewController(self))
             })
         }
-    
+
     fileprivate func emailLinkCode() {
         let title = "Enter Email".localized()
         let message = "Enter below the email address where the link code will be sent:".localized()

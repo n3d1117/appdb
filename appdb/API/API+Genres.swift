@@ -13,7 +13,7 @@ extension API {
 
     // MARK: - Genres
 
-    static func listGenres(completion:@escaping () -> Void) {
+    static func listGenres(completion: @escaping () -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.listGenres.rawValue, "lang": languageCode], headers: headers)
             .responseJSON { response in
                 switch response.result {
@@ -29,21 +29,21 @@ extension API {
                     genres.append(Genre(category: "books", id: "0", name: "All Categories".localized()))
 
                     // Cydia genres
-                    for (key, value):(String, JSON) in data["cydia"] {
+                    for (key, value): (String, JSON) in data["cydia"] {
                         genres.append(
                             Genre(category: "cydia", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
                         )
                     }
 
                     // iOS Genres
-                    for (key, value):(String, JSON) in data["ios"] {
+                    for (key, value): (String, JSON) in data["ios"] {
                         genres.append(
                             Genre(category: "ios", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
                         )
                     }
 
                     // Books Genres
-                    for (key, value):(String, JSON) in data["books"] {
+                    for (key, value): (String, JSON) in data["books"] {
                         genres.append(
                             Genre(category: "books", id: key, name: value["name"].stringValue, amount: value["content_amount"].stringValue)
                         )
@@ -88,7 +88,7 @@ extension API {
             }
     }
 
-    static func getIcon(id: String, type: ItemType, completion:@escaping (String) -> Void) {
+    static func getIcon(id: String, type: ItemType, completion: @escaping (String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.search.rawValue, "type": type.rawValue, "genre": id, "order": Order.all.rawValue, "lang": languageCode], headers: headers)
             .responseJSON { response in
                 switch response.result {

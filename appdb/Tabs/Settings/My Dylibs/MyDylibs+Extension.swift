@@ -35,15 +35,14 @@ extension MyDylibs {
             let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
             navigationItem.backBarButtonItem = backItem
         }
-        
+
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDylibClicked))
         navigationItem.rightBarButtonItem = addItem
 
         state = .loading
         animated = true
     }
-    
-    
+
     // Only enable button if text is not empty
     /*@objc func repoUrlTextfieldTextChanged(sender: UITextField) {
         var responder: UIResponder = sender
@@ -52,7 +51,7 @@ extension MyDylibs {
             (alert.actions[1] as UIAlertAction).isEnabled = !(sender.text ?? "").isEmpty
         }
     }*/
-    
+
     @objc func addDylibClicked() {
         self.addDylibFromUrl()
         /*
@@ -70,7 +69,7 @@ extension MyDylibs {
         
         present(alertController, animated: true)*/
     }
-    
+
     /*
     func addDylibFromFile() {
         var docPicker: UIDocumentPickerViewController?
@@ -88,7 +87,7 @@ extension MyDylibs {
         }
         self.present(docPicker!, animated: true, completion: nil)
     }*/
-    
+
     func addDylibFromUrl() {
         let alertController = UIAlertController(title: "Please enter URL to .dylib/.deb/.framework.zip".localized(), message: nil, preferredStyle: .alert, adaptive: true)
         alertController.addTextField { textField in
@@ -99,7 +98,7 @@ extension MyDylibs {
             textField.clearButtonMode = .whileEditing
         }
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
-        
+
         let addAction = UIAlertAction(title: "Add .dylib/.deb/.framework.zip".localized(), style: .default, handler: { _ in
             guard let text = alertController.textFields?[0].text else { return }
             API.addDylib(url: text) {
@@ -111,7 +110,7 @@ extension MyDylibs {
         })
         alertController.addAction(addAction)
         //addAction.isEnabled = false
-        
+
         present(alertController, animated: true)
     }
 }

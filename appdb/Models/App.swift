@@ -6,6 +6,7 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
+import UIKit
 import SwiftyJSON
 import ObjectMapper
 
@@ -73,7 +74,7 @@ class App: Item {
     // Screenshots
     var screenshotsIphone = [Screenshot]()
     var screenshotsIpad = [Screenshot]()
-    
+
     // Download stats
     var clicksDay: String = "0"
     var clicksWeek: String = "0"
@@ -152,7 +153,7 @@ class App: Item {
                 ))
             }; screenshotsIpad = tmpScreensIpad
         }
-        
+
         clicksDay <- map["clicks_day"]
         clicksWeek <- map["clicks_week"]
         clicksMonth <- map["clicks_month"]

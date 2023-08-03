@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftTheme
+
 import AlamofireNetworkActivityIndicator
 import WidgetKit
 import TelemetryClient

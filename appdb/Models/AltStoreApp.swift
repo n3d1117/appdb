@@ -11,7 +11,7 @@ import Localize_Swift
 import UIKit
 
 class AltStoreApp: Item {
-    
+
     required init?(map: Map) {
         super.init(map: map)
     }
@@ -80,22 +80,22 @@ class AltStoreApp: Item {
         subtitle = subtitle.decoded
         description_ = description_.decoded
         whatsnew = whatsnew.decoded
-        
+
         formattedSize = Global.humanReadableSize(bytes: size)
-        
+
         tintColor = .init(rgba: tintColorHex)
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: Localize.currentLanguage())
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        
+
         let date = updated.unixToDate
         updated = dateFormatter.string(from: date)
-        
+
         if !screenshotURLs.isEmpty {
             screenshots = screenshotURLs.map({ screenshotURL in
-                return Screenshot(src: screenshotURL, type: "iphone")
+                Screenshot(src: screenshotURL, type: "iphone")
             })
         }
     }

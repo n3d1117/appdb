@@ -6,8 +6,6 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
-import SwiftTheme
-
 enum Themes: Int, CaseIterable {
 
     case light = 0

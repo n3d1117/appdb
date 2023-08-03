@@ -12,11 +12,11 @@ import ObjectMapper
 class AltStoreRepoApps: LoadingTableView {
 
     var repo: AltStoreRepo!
-    
+
     var query: String = ""
 
     var apps: [AltStoreApp] = []
-    
+
     private var filteredApps: [AltStoreApp] = []
     private let searchController = UISearchController(searchResultsController: nil)
 
@@ -100,22 +100,21 @@ class AltStoreRepoApps: LoadingTableView {
         tableView.spr_setIndicatorHeader { [weak self] in
             self?.loadContent()
         }
-        
+
         // Begin refresh
         tableView.spr_beginRefreshing()
     }
 
-
     private func loadContent() {
         API.getAltStoreRepo(id: repo.id, success: { [weak self] _repo in
             guard let self = self else { return }
-            
+
             self.repo = _repo
-            
-            if _repo.apps != nil  && !_repo.apps!.isEmpty {
+
+            if _repo.apps != nil && !_repo.apps!.isEmpty {
                 self.apps = _repo.apps!
             }
-            
+
             print("apps: \(self.apps)")
 
             self.state = .done
@@ -235,4 +234,3 @@ extension AltStoreRepoApps: UISearchControllerDelegate {
         }
     }
 }
-

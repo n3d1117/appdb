@@ -11,7 +11,7 @@ import SwiftyJSON
 
 extension API {
 
-    static func getPlusPurchaseOptions(success:@escaping (_ items: [PlusPurchaseOption]) -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getPlusPurchaseOptions(success: @escaping (_ items: [PlusPurchaseOption]) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getPlusPurchaseOptions.rawValue,
                                                  "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[PlusPurchaseOption]>) in
@@ -24,4 +24,3 @@ extension API {
             }
     }
 }
-

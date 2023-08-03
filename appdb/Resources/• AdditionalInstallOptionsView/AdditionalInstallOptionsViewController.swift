@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Cartography
-import Static
 
 protocol AdditionalInstallOptionsHeightDelegate: AnyObject {
     func updateHeight()
@@ -65,7 +63,7 @@ class AdditionalInstallOptionsNavController: UINavigationController, AdditionalI
 }
 
 class AdditionalInstallOptionsViewController: TableViewController {
-    
+
     var installationOptions: [InstallationOption] = []
 
     weak var heightDelegate: AdditionalInstallOptionsHeightDelegate?
@@ -89,31 +87,31 @@ class AdditionalInstallOptionsViewController: TableViewController {
         }
         return navbarHeight + rowHeight * CGFloat(sections.first!.rows.count)
     }
-    
-    var sections: [Static.Section] = [
-        Section(header: .title("Loading...".localized()), rows: [
-            Row(text: "Loading...")
+
+    var sections: [StaticSection] = [
+        StaticSection(header: .title("Loading...".localized()), rows: [
+            StaticRow(text: "Loading...")
         ], footer: .none, indexTitle: "", uuid: "loading")
     ]
-    
-     func loadSections() -> [Static.Section] {
-        
+
+     func loadSections() -> [StaticSection] {
+
         if installationOptions.isEmpty {
             return [
-                Section(header: .title("Loading...".localized()), rows: [
-                    Row(text: "Loading...")
+                StaticSection(header: .title("Loading...".localized()), rows: [
+                    StaticRow(text: "Loading...")
                 ], footer: .none, indexTitle: "", uuid: "loading")
             ]
         }
-         
+
          navigationItem.rightBarButtonItem?.isEnabled = true
-         
-        var rows: [Static.Row] = []
-                
+
+        var rows: [StaticRow] = []
+
         for installationOption in installationOptions {
             switch installationOption.identifier {
             case .name:
-                rows.append(Row(text: "New display name".localized(), cellClass: StaticTextFieldCell.self, context:
+                rows.append(StaticRow(text: "New display name".localized(), cellClass: StaticTextFieldCell.self, context:
                                     ["placeholder": "Use Original".localized(), "callback": { [unowned self] (newName: String) in
                                         self.newName = newName
                                         self.setInstallButtonEnabled()
@@ -121,14 +119,14 @@ class AdditionalInstallOptionsViewController: TableViewController {
                                 ))
                 break
             case .alongside:
-                rows.append(Row(text: "Duplicate app".localized(), cellClass: SwitchCell.self, context: ["valueChange": { (new: Bool) in
+                rows.append(StaticRow(text: "Duplicate app".localized(), cellClass: SwitchCell.self, context: ["valueChange": { (new: Bool) in
                     Preferences.set(.duplicateApp, to: new)
                     self.setInstallButtonEnabled()
                     self.reloadTable()
                 }, "value": Preferences.duplicateApp]))
                 if Preferences.duplicateApp {
                     self.newId = self.placeholder
-                    rows.append(Row(text: "New ID".localized(), cellClass: StaticTextFieldCell.self, context:
+                    rows.append(StaticRow(text: "New ID".localized(), cellClass: StaticTextFieldCell.self, context:
                                         ["placeholder": installationOption.placeholder /*placeholder*/, "callback": { [unowned self] (newId: String) in
                                             self.newId = newId.isEmpty ? /*installationOption.placeholder*/ self.placeholder : newId
                                             self.setInstallButtonEnabled()
@@ -138,31 +136,31 @@ class AdditionalInstallOptionsViewController: TableViewController {
                 break
             case .inapp:
                 /* "Patch in-app Purchases".localized() */
-                rows.append(Row(text: installationOption.question, cellClass: SwitchCell.self, context: ["valueChange": { new in
+                rows.append(StaticRow(text: installationOption.question, cellClass: SwitchCell.self, context: ["valueChange": { new in
                     Preferences.set(.enableIapPatch, to: new)
                 }, "value": Preferences.enableIapPatch]))
                 break
             case .trainer:
                 /* "Enable Game Trainer".localized() */
-                rows.append(Row(text: installationOption.question, cellClass: SwitchCell.self, context: ["valueChange": { new in
+                rows.append(StaticRow(text: installationOption.question, cellClass: SwitchCell.self, context: ["valueChange": { new in
                     Preferences.set(.enableTrainer, to: new)
                 }, "value": Preferences.enableTrainer]))
                 break
             case .removePlugins:
                 /* "Remove Plugins".localized() */
-                rows.append(Row(text: installationOption.question, cellClass: SwitchCell.self, context: ["valueChange": { new in
+                rows.append(StaticRow(text: installationOption.question, cellClass: SwitchCell.self, context: ["valueChange": { new in
                     Preferences.set(.removePlugins, to: new)
                 }, "value": Preferences.removePlugins]))
                 break
             case .push:
                 /* "Enable Push Notifications".localized() */
-                rows.append(Row(text: installationOption.question, cellClass: SwitchCell.self, context: ["valueChange": { new in
+                rows.append(StaticRow(text: installationOption.question, cellClass: SwitchCell.self, context: ["valueChange": { new in
                     Preferences.set(.enablePushNotifications, to: new)
                 }, "value": Preferences.enablePushNotifications]))
                 break
             case .injectDylibs:
                 /*"Inject dylibs, frameworks or debs?".localized()*/
-                rows.append(Row(text: installationOption.question, selection: { row in
+                rows.append(StaticRow(text: installationOption.question, selection: { row in
                     self.askForDylibSelection(dylibOptions: installationOption.chooseFrom)
                 }, cellClass: SimpleStaticDylibsSelectionCell.self, context: ["selectedDylibs": selectedDylibs]))
                 break
@@ -170,7 +168,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
         }
 
         return [
-            Section(rows: rows)
+            StaticSection(rows: rows)
         ]
     }
 
@@ -198,7 +196,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
 
         //newId = placeholder
         dataSource.sections = sections
-        
+
         loadInstallationOptions()
     }
 
@@ -216,22 +214,22 @@ class AdditionalInstallOptionsViewController: TableViewController {
     private func setInstallButtonEnabled() {
         navigationItem.rightBarButtonItem?.isEnabled = !Preferences.duplicateApp || newId.count == 5 && !newId.contains(" ")
     }
-    
+
     private func askForDylibSelection(dylibOptions: [String]) {
-        
+
         let vc = InstallOptionsDylibSelectViewController(dylibOptions: dylibOptions, selectedDylibs: selectedDylibs)
         let nav = InstallOptionsDylibSelectNavController(rootViewController: vc)
 
         vc.heightDelegate = nav
         vc.dylibSelectDelegate = self
-        
+
         let segue = Messages.shared.generateModalSegue(vc: nav, source: self, trackKeyboard: true)
 
         delay(0.3) {
             segue.perform()
         }
     }
-    
+
     private func loadInstallationOptions() {
         API.getInstallationOptions { _installationOptions in
             self.installationOptions = _installationOptions
@@ -240,7 +238,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
             Messages.shared.showError(message: error.localizedDescription)
         }
     }
-    
+
     func reloadTable() {
         sections = loadSections()
         dataSource.sections = sections

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftTheme
+
 
 protocol TagListViewDelegate: AnyObject {
     func tagPressed(_ title: String) -> Void

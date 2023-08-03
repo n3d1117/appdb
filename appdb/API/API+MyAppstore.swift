@@ -6,12 +6,13 @@
 //  Copyright © 2019 ned. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 import SwiftyJSON
 
 extension API {
 
-    static func getIpas(success:@escaping (_ items: [MyAppStoreApp]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+    static func getIpas(success: @escaping (_ items: [MyAppStoreApp]) -> Void, fail: @escaping (_ error: NSError) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getIpas.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[MyAppStoreApp]>) in
                 switch response.result {
@@ -23,7 +24,7 @@ extension API {
             }
     }
 
-    static func deleteIpa(id: String, completion:@escaping (_ error: String?) -> Void) {
+    static func deleteIpa(id: String, completion: @escaping (_ error: String?) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.deleteIpa.rawValue, "id": id, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
@@ -40,7 +41,7 @@ extension API {
             }
     }
 
-    static func addToMyAppStore(jobId: String, fileURL: URL, request:@escaping (_ r: Alamofire.UploadRequest) -> Void, completion:@escaping (_ error: String?) -> Void) {
+    static func addToMyAppStore(jobId: String, fileURL: URL, request: @escaping (_ r: Alamofire.UploadRequest) -> Void, completion: @escaping (_ error: String?) -> Void) {
         let parameters = [
             "action": Actions.addIpa.rawValue,
             "job_id": jobId
@@ -67,7 +68,7 @@ extension API {
         })
     }
 
-    static func analyzeJob(jobId: String, completion:@escaping (_ error: String?) -> Void) {
+    static func analyzeJob(jobId: String, completion: @escaping (_ error: String?) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.analyzeIpa.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
@@ -95,7 +96,7 @@ extension API {
             }
     }
 
-    static func downloadIPA(url: String, request:@escaping (_ r: DownloadRequest) -> Void, completion:@escaping (_ error: String?) -> Void) {
+    static func downloadIPA(url: String, request: @escaping (_ r: DownloadRequest) -> Void, completion: @escaping (_ error: String?) -> Void) {
         guard let url = URL(string: url) else { return }
 
         let destination: DownloadRequest.Destination = { _, response in

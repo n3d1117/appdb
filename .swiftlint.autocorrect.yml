@@ -1,5 +1,4 @@
 excluded:
-  - Carthage
   - appdb/*.lproj
   - appdb/Other
   - appdb/Resources/AlamofireObjectMapper
@@ -14,6 +13,9 @@ excluded:
   - appdb/Resources/TagView
   - appdb/Resources/UIDeviceExtension
   - appdb/Resources/WaterfallLayout
+  - appdb/Resources/Static
+  - appdb/Resources/SwiftTheme
+  - appdb/Resources/Cartography
 
 whitelist_rules:
   - trailing_newline

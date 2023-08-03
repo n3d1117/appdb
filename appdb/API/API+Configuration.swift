@@ -6,12 +6,13 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 import SwiftyJSON
 
 extension API {
-    
-    static func getEnterpriseCerts(success:@escaping (_ items: [EnterpriseCertificate]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+
+    static func getEnterpriseCerts(success: @escaping (_ items: [EnterpriseCertificate]) -> Void, fail: @escaping (_ error: NSError) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getEnterpriseCerts.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[EnterpriseCertificate]>) in
                 switch response.result {
@@ -23,7 +24,7 @@ extension API {
             }
     }
 
-    static func getConfiguration(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getConfiguration(success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getConfiguration.rawValue,
                                                  "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
@@ -52,7 +53,7 @@ extension API {
                             Preferences.set(.email, to: data["email"].stringValue)
                             Preferences.set(.deviceName, to: data["name"].stringValue)
                             Preferences.set(.deviceVersion, to: data["ios_version"].stringValue)
-                            
+
                             // Preferences.set(.isPlus, to: data["is_plus"].stringValue == "yes")
                             let plusUntil = data["plus_till"].stringValue
                             let formatter = DateFormatter()
@@ -66,7 +67,7 @@ extension API {
                             Preferences.set(.signingWith, to: data["signing_with"].stringValue)
                             Preferences.set(.freeSignsLeft, to: data["free_signs_left"].stringValue)
                             Preferences.set(.freeSignsResetAt, to: data["free_signs_reset_at"].stringValue)
-                            
+
                             Preferences.set(.plusStatus, to: data["plus_account"]["status"].stringValue)
                             Preferences.set(.plusStatusTranslated, to: data["plus_account"]["status_translated"].stringValue)
 
@@ -74,7 +75,7 @@ extension API {
                             Preferences.set(.forceDisablePRO, to: data["is_pro_disabled"].stringValue == "yes")
                             Preferences.set(.signingIdentityType, to: data["signing_identity_type"].stringValue)
                             Preferences.set(.optedOutFromEmails, to: data["is_opted_out_from_emails"].stringValue == "yes")
-                            
+
                             success()
                         }, fail: { error in
                             fail(error)
@@ -86,7 +87,7 @@ extension API {
             }
     }
 
-    static func setConfiguration(params: [ConfigurationParameters: String], success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func setConfiguration(params: [ConfigurationParameters: String], success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
         var parameters: [String: Any] = ["action": Actions.configure.rawValue, "lang": languageCode]
         for (key, value) in params { parameters[key.rawValue] = value }
 
@@ -120,7 +121,7 @@ extension API {
             }
     }
 
-    static func checkRevocation(completion: @escaping (_ revoked: Bool, _ revokedOn: String) -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func checkRevocation(completion: @escaping (_ revoked: Bool, _ revokedOn: String) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.checkRevoke.rawValue], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {

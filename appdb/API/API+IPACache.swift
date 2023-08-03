@@ -6,12 +6,13 @@
 //  Copyright © 2022 ned. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 import SwiftyJSON
 
 extension API {
 
-    static func getIPACacheStatus(success:@escaping (_ status: IPACacheStatus) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+    static func getIPACacheStatus(success: @escaping (_ status: IPACacheStatus) -> Void, fail: @escaping (_ error: NSError) -> Void) {
 
         AF.request(endpoint, parameters: ["action": Actions.getIpaCacheStatus.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseObject(keyPath: "data") { (response: AFDataResponse<IPACacheStatus>) in
@@ -24,7 +25,7 @@ extension API {
             }
     }
 
-    static func reinstallEverything(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func reinstallEverything(success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.installFromCache.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
@@ -41,21 +42,21 @@ extension API {
             }
     }
 
-    static func clearIpaCache(success:@escaping () -> Void) {
+    static func clearIpaCache(success: @escaping () -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.clearIpaCache.rawValue, "lang": languageCode], headers: headersWithCookie)
             .response { _ in
                 success()
             }
     }
-    
-    static func deleteIpaFromCache(bundleId: String, success:@escaping () -> Void) {
+
+    static func deleteIpaFromCache(bundleId: String, success: @escaping () -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.deleteIpaFromCache.rawValue, "bundle_id": bundleId, "lang": languageCode], headers: headersWithCookie)
             .response { _ in
                 success()
             }
     }
 
-    static func revalidateIpaCache(success:@escaping () -> Void) {
+    static func revalidateIpaCache(success: @escaping () -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.revalidateIpaCache.rawValue, "lang": languageCode], headers: headersWithCookie)
             .response { _ in
                 success()

@@ -8,7 +8,6 @@
 
 import UIKit
 import UniformTypeIdentifiers
-import Static
 
 extension CachedIPAs {
 

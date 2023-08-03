@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import DeepDiff
 import AlamofireImage
 import ObjectMapper

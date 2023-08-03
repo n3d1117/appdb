@@ -10,32 +10,31 @@ import UIKit
 import WebKit
 
 class PlusPurchaseWeb: UIViewController {
-    
+
     var webView: WKWebView!
     var loadingIndicator: UIActivityIndicatorView!
     var formHtml: String!
     var navigatedCount: Int = 0
-    var submittedForm: Bool = false
+    var submittedForm = false
 
     init(with purchaseOption: PlusPurchaseOption) {
         formHtml = "<html><body>\(purchaseOption.html)<script>document.querySelector(\"form\").submit()</script></body></html>"
-        
+
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = .white
         webView = WKWebView(frame: view.frame)
         webView.allowsBackForwardNavigationGestures = true
-        
-        
+
         if #available(iOS 13.0, *) {
             loadingIndicator = UIActivityIndicatorView(style: .large)
         } else {
             loadingIndicator = UIActivityIndicatorView(style: .gray)
         }
-        
+
         loadingIndicator.startAnimating()
-                
+
         navigationItem.title = purchaseOption.name
-                        
+
         webView.navigationDelegate = self
         view.addSubview(webView)
 
@@ -53,15 +52,15 @@ class PlusPurchaseWeb: UIViewController {
             NSLayoutConstraint(item: webView!, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0),
         ])
     }
-    
+
     func loadWebView() {
         webView.loadHTMLString(formHtml, baseURL: nil)
     }
-    
-    @objc func dismissAnimated() -> Void {
+
+    @objc func dismissAnimated() {
         dismiss(animated: true, completion: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -79,10 +78,9 @@ extension PlusPurchaseWeb: WKNavigationDelegate {
             submittedForm = true
         }
     }
-    
+
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         Messages.shared.showError(message: error.localizedDescription)
         dismissAnimated()
     }
 }
-

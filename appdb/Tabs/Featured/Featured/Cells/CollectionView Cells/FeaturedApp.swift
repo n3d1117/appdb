@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 
 class FeaturedApp: UICollectionViewCell {
 
@@ -17,7 +16,7 @@ class FeaturedApp: UICollectionViewCell {
     var dim: UIView = DimmableView.get()
 
     var tweaked = false {
-        didSet { title.theme_textColor = tweaked ? Color.mainTint: Color.title }
+        didSet { title.theme_textColor = tweaked ? Color.mainTint : Color.title }
     }
 
     required init?(coder aDecoder: NSCoder) {

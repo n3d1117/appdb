@@ -58,7 +58,7 @@ enum SecureKeys: String, CaseIterable {
 enum Preferences {
 
     // Sensitive data
-    
+
     static var email: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.email.rawValue) ?? ""
     }
@@ -66,23 +66,23 @@ enum Preferences {
     static var deviceIsLinked: Bool {
         !(KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? "").isEmpty
     }
-    
+
     static var isPlus: Bool {
         KeychainWrapper.standard.bool(forKey: SecureKeys.isPlus.rawValue) ?? false
     }
-    
+
     static var plusUntil: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.plusUntil.rawValue) ?? ""
     }
-    
+
     static var freeSignsLeft: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.freeSignsLeft.rawValue) ?? ""
     }
-    
+
     static var freeSignsResetAt: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.freeSignsResetAt.rawValue) ?? ""
     }
-    
+
     static var plusProvider: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.plusProvider.rawValue) ?? ""
     }
@@ -108,15 +108,15 @@ enum Preferences {
     }
 
     // Non sensitive data
-    
+
     static var plusAccountStatus: String {
         defaults[.plusStatus]
     }
-    
+
     static var plusAccountStatusTranslated: String {
         defaults[.plusStatusTranslated]
     }
-    
+
     static var isAppleSilicon: Bool {
         defaults[.isAppleSilicon]
     }
@@ -168,11 +168,11 @@ enum Preferences {
     static var shouldSwitchToDarkerTheme: Bool {
         defaults[.shouldSwitchToDarkerTheme]
     }
-    
+
     static var enterpriseCertId: String {
         defaults[.enterpriseCertId]
     }
-    
+
     static var deviceName: String {
         defaults[.deviceName]
     }
@@ -200,7 +200,7 @@ enum Preferences {
     static var signingIdentityType: String {
         defaults[.signingIdentityType]
     }
-    
+
     static var signingWith: String {
         defaults[.signingWith]
     }

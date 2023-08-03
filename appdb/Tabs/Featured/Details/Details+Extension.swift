@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 import ObjectMapper
 
 // Details cell template
@@ -73,7 +72,7 @@ extension Details {
     }
 
     // Get content dynamically
-    func getContent<T>(type: T.Type, trackid: String, success:@escaping (_ item: T) -> Void) where T: Item {
+    func getContent<T>(type: T.Type, trackid: String, success: @escaping (_ item: T) -> Void) where T: Item {
         API.search(type: type, trackid: trackid, success: { [weak self] items in
             guard let self = self else { return }
             if let item = items.first { success(item) } else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find content with id %@ in our database".localizedFormat(trackid)) }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import AlamofireImage
 
 class PortraitScreenshotSearchCell: SearchCell {

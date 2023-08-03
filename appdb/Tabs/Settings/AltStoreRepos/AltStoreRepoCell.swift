@@ -6,9 +6,7 @@
 //  Copyright © 2023 stev3fvcks. All rights reserved.
 //
 
-
 import UIKit
-import Cartography
 
 class AltStoreRepoCell: UITableViewCell {
 
@@ -81,7 +79,7 @@ class AltStoreRepoCell: UITableViewCell {
 
             lastChecked.top ~== lastChecked.superview!.top ~+ (12 ~~ 10)
             lastChecked.trailing ~== lastChecked.superview!.trailing ~- 15
-            
+
             totalApps.top ~== lastChecked.bottom ~+ (14 ~~ 11)
             totalApps.trailing ~== lastChecked.trailing
         }

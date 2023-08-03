@@ -9,11 +9,10 @@
 import UIKit
 import SafariServices
 import TelemetryClient
-import UnityAds
 
 class Details: LoadingTableView {
-    
-    var adsInitialized: Bool = false
+
+    var adsInitialized = false
     var adsLoaded: Bool = Global.DEBUG || Preferences.isPlus
     var currentInstallButton: RoundedButton?
 
@@ -78,10 +77,10 @@ class Details: LoadingTableView {
             showsErrorButton = false
             fetchInfo(type: dynamicType, trackid: dynamicTrackid)
         }
-        
-        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
+
+        /*if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
             UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
-        }
+        }*/
     }
 
     // MARK: - Share
@@ -285,14 +284,14 @@ class Details: LoadingTableView {
     }
 
     // MARK: - Install app
-    
+
     @objc private func install(sender: RoundedButton) {
         currentInstallButton = sender
         if !Global.showAds || Global.DEBUG || Preferences.isPlus {
             actualInstall(sender: currentInstallButton!)
-        } else {
+        }/* else {
             UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
-        }
+        }*/
     }
 
     private func actualInstall(sender: RoundedButton) {
@@ -304,7 +303,7 @@ class Details: LoadingTableView {
             setButtonTitle("Requesting...")
 
             func install(_ additionalOptions: [AdditionalInstallationParameters: Any] = [:]) {
-                                
+
                 API.install(id: sender.linkId, type: self.contentType, additionalOptions: additionalOptions) { [weak self] error in
                     guard let self = self else { return }
 
@@ -535,7 +534,7 @@ extension Details: IPAWebViewControllerDelegate {
 
 // MARK: - Ads
 
-extension Details: UnityAdsInitializationDelegate {
+/*extension Details: UnityAdsInitializationDelegate {
     func initializationComplete() {
         adsInitialized = true
         
@@ -594,4 +593,4 @@ extension Details: UnityAdsShowDelegate {
     func unityAdsShowClick(_ placementId: String) {
         
     }
-}
+}*/

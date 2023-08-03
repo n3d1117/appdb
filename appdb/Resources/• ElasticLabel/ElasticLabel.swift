@@ -8,7 +8,6 @@
 //
 
 import UIKit
-import SwiftTheme
 
 protocol ElasticLabelDelegate: AnyObject {
     func expand(_ label: ElasticLabel)

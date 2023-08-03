@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import Alamofire
 
 class LocalIPACell: UICollectionViewCell {

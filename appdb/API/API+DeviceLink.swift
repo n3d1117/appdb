@@ -6,12 +6,13 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 import SwiftyJSON
 
 extension API {
 
-    static func linkAutomaticallyUsingUDID(success:@escaping () -> Void, fail:@escaping () -> Void) {
+    static func linkAutomaticallyUsingUDID(success: @escaping () -> Void, fail: @escaping () -> Void) {
 
         // Get UDID from managed configuration
         guard let deviceUdid = UserDefaults.standard.dictionary(forKey: "com.apple.configuration.managed")?["dbservicesUDID"] as? String else {
@@ -44,7 +45,7 @@ extension API {
             }
     }
 
-    static func linkDevice(code: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func linkDevice(code: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.link.rawValue, "type": "control", "link_code": code,
                                                  "lang": languageCode], headers: headers)
             .responseJSON { response in
@@ -70,7 +71,7 @@ extension API {
             }
     }
 
-    static func getLinkCode(success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getLinkCode(success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getLinkCode.rawValue, "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
@@ -88,7 +89,7 @@ extension API {
         }
     }
 
-    static func emailLinkCode(email: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func emailLinkCode(email: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["email": email, "action": Actions.emailLinkCode.rawValue,
                                           "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
@@ -106,7 +107,7 @@ extension API {
         }
     }
 
-    static func getAppdbAppsBundleIdsTicket(success:@escaping (_ ticket: String) -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getAppdbAppsBundleIdsTicket(success: @escaping (_ ticket: String) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getAppdbAppsBundleIdsTicket.rawValue,
                                           "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
@@ -124,7 +125,7 @@ extension API {
         }
     }
 
-    static func getAppdbAppsBundleIds(ticket: String, success:@escaping (_ bundleIds: [String]) -> Void, fail:@escaping (_ error: String, _ code: String) -> Void) {
+    static func getAppdbAppsBundleIds(ticket: String, success: @escaping (_ bundleIds: [String]) -> Void, fail: @escaping (_ error: String, _ code: String) -> Void) {
         AF.request(endpoint, parameters: ["t": ticket, "action": Actions.getAppdbAppsBundleIds.rawValue,
                                           "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
@@ -142,7 +143,7 @@ extension API {
         }
     }
 
-    static func getAllLinkedDevices(success:@escaping (_ devices: [LinkedDevice]) -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getAllLinkedDevices(success: @escaping (_ devices: [LinkedDevice]) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getAllDevices.rawValue,
                                           "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[LinkedDevice]>) in

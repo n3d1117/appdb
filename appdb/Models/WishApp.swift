@@ -6,6 +6,7 @@
 //  Copyright © 2019 ned. All rights reserved.
 //
 
+import UIKit
 import ObjectMapper
 import Localize_Swift
 

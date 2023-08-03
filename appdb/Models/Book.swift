@@ -6,6 +6,7 @@
 //  Copyright © 2016 ned. All rights reserved.
 //
 
+import UIKit
 import SwiftyJSON
 import ObjectMapper
 
@@ -60,7 +61,7 @@ class Book: Item {
 
     // Related Apps
     var reviews = [Review]()
-    
+
     // Download stats
     var clicksDay: String = "0"
     var clicksWeek: String = "0"
@@ -158,7 +159,7 @@ class Book: Item {
                 ))
             }; reviews = tmpReviews
         }
-        
+
         clicksDay <- map["clicks_day"]
         clicksWeek <- map["clicks_week"]
         clicksMonth <- map["clicks_month"]

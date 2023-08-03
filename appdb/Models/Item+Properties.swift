@@ -169,7 +169,7 @@ extension Item {
         if let book = self as? Book { return book.numberOfRating }
         return ""
     }
-    
+
     var downloadsDay: String {
         if let app = self as? App { return app.clicksDay }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksDay }

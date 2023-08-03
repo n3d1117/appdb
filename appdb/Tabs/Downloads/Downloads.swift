@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import TelemetryClient
 
 class Downloads: UIViewController {

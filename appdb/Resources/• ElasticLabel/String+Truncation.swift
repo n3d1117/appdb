@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import SwiftTheme
 
 extension String {
 

@@ -53,7 +53,7 @@ struct Link {
 
         while self.uploader.hasPrefix(" ") { self.uploader = String(self.uploader.dropFirst()) }
         if self.uploader.isEmpty { self.uploader = "Unknown".localized() }
-        
+
         self.isCompatible = is_compatible
         self.compatibility = is_compatible ? "Compatible with your device".localized() : incompatibility_reason
         self.reportReason = report_reason

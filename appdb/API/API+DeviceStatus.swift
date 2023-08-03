@@ -6,12 +6,13 @@
 //  Copyright © 2018 ned. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 import SwiftyJSON
 
 extension API {
 
-    static func getDeviceStatus(success:@escaping (_ items: [DeviceStatusItem]) -> Void, fail:@escaping (_ error: NSError) -> Void) {
+    static func getDeviceStatus(success: @escaping (_ items: [DeviceStatusItem]) -> Void, fail: @escaping (_ error: NSError) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getStatus.rawValue, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[DeviceStatusItem]>) in
                 switch response.result {
@@ -23,7 +24,7 @@ extension API {
             }
     }
 
-    static func emptyCommandQueue(success:@escaping () -> Void) {
+    static func emptyCommandQueue(success: @escaping () -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.clear.rawValue, "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {

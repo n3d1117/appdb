@@ -6,12 +6,13 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 import SwiftyJSON
 
 extension API {
 
-    static func getLinks(type: ItemType, trackid: String, success:@escaping (_ items: [Version]) -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getLinks(type: ItemType, trackid: String, success: @escaping (_ items: [Version]) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getLinks.rawValue, "type": type.rawValue, "trackids": trackid, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
@@ -106,7 +107,7 @@ extension API {
             }
     }
 
-    static func reportLink(id: String, type: ItemType, reason: String, completion:@escaping (_ error: String?) -> Void) {
+    static func reportLink(id: String, type: ItemType, reason: String, completion: @escaping (_ error: String?) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.report.rawValue, "type": type.rawValue, "id": id, "reason": reason, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
@@ -123,7 +124,7 @@ extension API {
             }
     }
 
-    static func getRedirectionTicket(t: String, completion:@escaping (_ error: String?, _ rt: String?, _ wait: Int?) -> Void) {
+    static func getRedirectionTicket(t: String, completion: @escaping (_ error: String?, _ rt: String?, _ wait: Int?) -> Void) {
 
         guard var ticket = t.components(separatedBy: "ticket://").last else { return }
 
@@ -148,7 +149,7 @@ extension API {
             }
     }
 
-    static func getPlainTextLink(rt: String, completion:@escaping (_ error: String?, _ link: String?) -> Void) {
+    static func getPlainTextLink(rt: String, completion: @escaping (_ error: String?, _ link: String?) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.processRedirect.rawValue, "rt": rt, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {

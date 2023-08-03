@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import TelemetryClient
 
 extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {

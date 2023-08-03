@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 
 /* This ugly af */
 class DetailsInformation: DetailsCell {
@@ -179,14 +178,14 @@ class DetailsInformation: DetailsCell {
             contentView.addSubview(compatibility)
             contentView.addSubview(compatibilityText)
         }
-            
+
         case .altstore: if let app = content as? AltStoreApp {
             seller = buildLabel(text: "Developer")
             sellerText = buildLabel(text: app.developer, isContent: true)
 
             bundleId = buildLabel(text: "Bundle ID")
             bundleIdText = buildLabel(text: app.bundleId, isContent: true)
-            
+
             size = buildLabel(text: "Size")
             sizeText = buildLabel(text: app.formattedSize, isContent: true)
 

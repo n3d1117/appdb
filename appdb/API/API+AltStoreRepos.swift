@@ -11,7 +11,7 @@ import SwiftyJSON
 
 extension API {
 
-    static func getAltStoreRepos(isPublic: Bool = false, success:@escaping (_ items: [AltStoreRepo]) -> Void, fail:@escaping (_ error: String) -> Void) {
+    static func getAltStoreRepos(isPublic: Bool = false, success: @escaping (_ items: [AltStoreRepo]) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getAltStoreRepos.rawValue, "is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[AltStoreRepo]>) in
                 switch response.result {
@@ -22,8 +22,8 @@ extension API {
                 }
             }
     }
-    
-    static func getAltStoreRepo(id: String, success:@escaping (_ item: AltStoreRepo) -> Void, fail:@escaping (_ error: String) -> Void) {
+
+    static func getAltStoreRepo(id: String, success: @escaping (_ item: AltStoreRepo) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.getAltStoreRepos.rawValue, "id": id, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[AltStoreRepo]>) in
                 switch response.result {
@@ -38,8 +38,8 @@ extension API {
                 }
             }
     }
-    
-    static func addAltStoreRepo(url: String, isPublic: Bool = false, success:@escaping (_ item: AltStoreRepo) -> Void, fail:@escaping (_ error: String) -> Void) {
+
+    static func addAltStoreRepo(url: String, isPublic: Bool = false, success: @escaping (_ item: AltStoreRepo) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.editAltStoreRepo.rawValue, "url": url, "is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
             .responseObject(keyPath: "data") { (response: AFDataResponse<AltStoreRepo>) in
                 switch response.result {
@@ -50,8 +50,8 @@ extension API {
                 }
             }
     }
-    
-    static func editAltStoreRepo(id: String, url: String, isPublic: Bool = false, success:@escaping (_ item: AltStoreRepo) -> Void, fail:@escaping (_ error: String) -> Void) {
+
+    static func editAltStoreRepo(id: String, url: String, isPublic: Bool = false, success: @escaping (_ item: AltStoreRepo) -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.editAltStoreRepo.rawValue, "id": id, "url": url, "is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
             .responseObject(keyPath: "data") { (response: AFDataResponse<AltStoreRepo>) in
                 switch response.result {
@@ -62,8 +62,8 @@ extension API {
                 }
             }
     }
-    
-    static func deleteAltStoreRepo(id: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
+
+    static func deleteAltStoreRepo(id: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
         AF.request(endpoint, parameters: ["action": Actions.deleteAltStoreRepo.rawValue, "id": id, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {

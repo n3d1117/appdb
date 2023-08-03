@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import Cosmos
 
 class NoScreenshotsSearchCellBookWithStars: SearchCell {

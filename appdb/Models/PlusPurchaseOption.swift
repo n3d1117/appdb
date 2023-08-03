@@ -17,8 +17,8 @@ struct PlusPurchaseOption: Mappable {
     var link: String = ""
     var name: String = ""
     var html: String = ""
-    var isReseller: Bool = false
-    var requiresDeviceLink: Bool = true
+    var isReseller = false
+    var requiresDeviceLink = true
 
     mutating func mapping(map: Map) {
         type <- map["type"]

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 extension API {
 
-    static func checkIfUpdateIsAvailable(success:@escaping (CydiaApp, String) -> Void) {
+    static func checkIfUpdateIsAvailable(success: @escaping (CydiaApp, String) -> Void) {
 
         let trackid: String = "1900000538"
         let currentVersion: String = Global.appVersion

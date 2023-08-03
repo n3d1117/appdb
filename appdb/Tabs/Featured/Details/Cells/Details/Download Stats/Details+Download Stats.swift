@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 
 class DetailsDownloadStats: DetailsCell {
 
@@ -36,7 +35,7 @@ class DetailsDownloadStats: DetailsCell {
         contentView.addSubview(title)
 
         var statsText = ""
-        
+
         statsText += "%@ today".localizedFormat(content.downloadsDay)
         statsText += Global.bulletPoint + "%@ this week".localizedFormat(content.downloadsWeek)
         statsText += Global.bulletPoint + "%@ this month".localizedFormat(content.downloadsMonth)
@@ -51,9 +50,9 @@ class DetailsDownloadStats: DetailsCell {
         downloadStats.setLineSpacing(lineHeightMultiple: 1.5)
         downloadStats.textAlignment = (Global.isRtl ? .right : .left)
         downloadStats.numberOfLines = 10
-        
+
         contentView.addSubview(downloadStats)
-        
+
         setConstraints()
     }
 

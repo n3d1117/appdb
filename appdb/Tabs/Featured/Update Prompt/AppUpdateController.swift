@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 
 protocol AppUpdateDynamicHeightChange: AnyObject {
     func updateHeight(with value: CGFloat)

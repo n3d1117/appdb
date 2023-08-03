@@ -6,7 +6,6 @@
 //  Copyright © 2023 stev3fvcks. All rights reserved.
 //
 
-
 import UIKit
 
 class AltStoreRepos: LoadingTableView {
@@ -16,7 +15,7 @@ class AltStoreRepos: LoadingTableView {
     var publicRepos: [AltStoreRepo] = []
 
     var isLoading = false
-    
+
     // Observation token to observe changes in Settings tab, used to update badge
     var observation: DefaultsObservation?
 
@@ -29,7 +28,7 @@ class AltStoreRepos: LoadingTableView {
         super.viewDidLoad()
 
         self.title = "AltStore Repos".localized()
-        
+
         setUp()
 
         // Refresh action
@@ -107,9 +106,9 @@ class AltStoreRepos: LoadingTableView {
 
                 self.privateRepos = _privateRepos
                 self.publicRepos = _publicRepos
-                
+
                 self.allRepos = _privateRepos + _publicRepos
-                
+
                 done(nil)
             }, fail: { error in
                 done(error.prettified)
@@ -178,21 +177,21 @@ class AltStoreRepos: LoadingTableView {
             return publicRepos.isEmpty ? 0 : (60 ~~ 50)
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 0
+        indexPath.section == 0
     }
-    
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
+
         if indexPath.section != 0 {
             return nil
         }
-        
+
         return [UITableViewRowAction(style: .destructive, title: "Delete".localized(), handler: { _, indexPath in
             let repos = indexPath.section == 0 ? self.privateRepos : self.publicRepos
             let item = repos[indexPath.row]
-            
+
             if !item.isPublic {
                 API.deleteAltStoreRepo(id: item.id) {
                     Messages.shared.showSuccess(message: "The repository was deleted successfully".localized(), context: .viewController(self))
@@ -200,7 +199,6 @@ class AltStoreRepos: LoadingTableView {
                 } fail: { error in
                     Messages.shared.showError(message: error, context: .viewController(self))
                 }
-
             }
         })]
     }

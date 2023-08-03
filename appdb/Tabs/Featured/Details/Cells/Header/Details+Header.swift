@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import Cosmos
 
 protocol DetailsHeaderDelegate: AnyObject {
@@ -19,7 +19,7 @@ extension DetailsHeaderDelegate {
     func sellerSelected(title: String, type: ItemType, devId: String) {
         fatalError("sellerSelected must be set")
     }
-    
+
     func installClicked(sender: RoundedButton) {
         fatalError("installClicked must be set")
     }
@@ -34,7 +34,7 @@ class DetailsHeader: DetailsCell {
     var ipadOnly: UILabel?
     var stars: CosmosView?
     var additionalInfo: UILabel?
-    
+
     var installButton: RoundedButton?
 
     var devId: String = ""
@@ -162,7 +162,7 @@ class DetailsHeader: DetailsCell {
             if let url = URL(string: altstoreApp.image) {
                 icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
             }
-            
+
             if !altstoreApp.developer.isEmpty {
                 seller = UIButton(type: .custom)
                 seller.titleLabel?.text = altstoreApp.developer
@@ -171,12 +171,12 @@ class DetailsHeader: DetailsCell {
                 seller.setTitle(altstoreApp.developer, for: .normal)
                 seller.theme_setTitleColor(Color.darkGray, forState: .normal)
             }
-            
+
             if altstoreApp.beta {
                 tweaked = buildPaddingLabel()
                 tweaked!.text = "Beta Version".localized()
             }
-            
+
             installButton = RoundedButton()
             installButton!.titleLabel?.font = .boldSystemFont(ofSize: 13)
             installButton!.makeDynamicFont()
@@ -204,7 +204,7 @@ class DetailsHeader: DetailsCell {
     @objc func sellerTapped() {
         delegate?.sellerSelected(title: seller.titleLabel?.text ?? "", type: self.type, devId: self.devId)
     }
-    
+
     @objc func installTapped(sender: RoundedButton) {
         delegate?.installClicked(sender: sender)
     }
@@ -265,7 +265,7 @@ class DetailsHeader: DetailsCell {
                 }
             }
         }
-        
+
         if let installButton = installButton {
             if let tweaked = tweaked {
                 constrain(installButton, tweaked) { installButton, tweaked in

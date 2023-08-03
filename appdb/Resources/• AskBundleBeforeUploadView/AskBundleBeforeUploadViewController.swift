@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Cartography
-import Static
 
 // A custom UINavigationController suited to wrap a AskBundleBeforeUploadViewController
 
@@ -66,10 +64,10 @@ class AskBundleBeforeUploadViewController: TableViewController {
         return navbarHeight + rowHeight * 2
     }
 
-    var sections: [Static.Section] {
+    var sections: [StaticSection] {
         [
-            Section(rows: [
-                Row(selection: { [unowned self] _ in
+            StaticSection(rows: [
+                StaticRow(selection: { [unowned self] _ in
                     self.newBundleId = Global.randomString(length: 4) + "." + self.originalBundleId
                     self.refresh()
                 }, cellClass: StaticSubtitleTextFieldCell.self, context:
@@ -78,7 +76,7 @@ class AskBundleBeforeUploadViewController: TableViewController {
                         self.setUploadButtonEnabled()
                     }, "title": "New bundle id".localized(), "subtitle": "Tap to generate random".localized()]
                 ),
-                Row(text: "Overwrite file".localized(), accessory: .switchToggle(value: overwriteFile) { [unowned self] newValue in
+                StaticRow(text: "Overwrite file".localized(), accessory: .switchToggle(value: overwriteFile) { [unowned self] newValue in
                     self.overwriteFile = newValue
                 }, cellClass: SimpleStaticCell.self)
             ])

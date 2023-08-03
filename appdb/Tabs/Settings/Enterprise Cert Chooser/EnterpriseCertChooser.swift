@@ -59,25 +59,25 @@ class EnterpriseCertChooser: UITableViewController {
                 navigationItem.rightBarButtonItems = [dismissButton]
             }
         }
-        
+
         // Refresh action
         tableView.spr_setIndicatorHeader { [weak self] in
             self?.loadAvailableCertificates()
         }
-        
+
         loadAvailableCertificates()
     }
-    
-    private func loadAvailableCertificates() -> Void {
+
+    private func loadAvailableCertificates() {
         API.getEnterpriseCerts { newCertificates in
             self.availableCertificates = newCertificates
-            
+
             if let _currentCertificate = newCertificates.first(where: { cert in
-                return cert.id == Preferences.enterpriseCertId
+                cert.id == Preferences.enterpriseCertId
             }) {
                 self.currentCertificate = _currentCertificate
             }
-            
+
             self.tableView.spr_endRefreshing()
             self.tableView.reloadData()
         } fail: { error in

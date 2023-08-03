@@ -9,11 +9,10 @@
 import UIKit
 import SafariServices
 import TelemetryClient
-import UnityAds
 
 class AltStoreAppDetails: LoadingTableView {
-    
-    var adsInitialized: Bool = false
+
+    var adsInitialized = false
     var adsLoaded: Bool = !Global.showAds || Global.DEBUG || Preferences.isPlus
     var currentInstallButton: RoundedButton?
 
@@ -29,7 +28,7 @@ class AltStoreAppDetails: LoadingTableView {
         self.init(style: .plain)
         self.app = item
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,16 +40,16 @@ class AltStoreAppDetails: LoadingTableView {
 
         setUp()
         initializeCells()
-        
-        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
+
+        /*if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
             UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
-        }
+        }*/
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,16 +104,16 @@ class AltStoreAppDetails: LoadingTableView {
         currentInstallButton = sender
         if !Global.showAds || Global.DEBUG || Preferences.isPlus {
             actualInstall(sender: currentInstallButton!)
-        } else {
+        }/* else {
             UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
-        }
+        }*/
     }
 
     private func actualInstall(sender: RoundedButton) {
         func setButtonTitle(_ text: String) {
             sender.setTitle(text.localized().uppercased(), for: .normal)
         }
-        
+
         if Preferences.deviceIsLinked {
             setButtonTitle("Requesting...")
 
@@ -215,10 +214,9 @@ extension AltStoreAppDetails: ScreenshotRedirectionDelegate {
     }
 }
 
-
 // MARK: - Ads
 
-extension AltStoreAppDetails: UnityAdsInitializationDelegate {
+/*extension AltStoreAppDetails: UnityAdsInitializationDelegate {
     func initializationComplete() {
         adsInitialized = true
         
@@ -270,3 +268,4 @@ extension AltStoreAppDetails: UnityAdsShowDelegate {
         
     }
 }
+*/

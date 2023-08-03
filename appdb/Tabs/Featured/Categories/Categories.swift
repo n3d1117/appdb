@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import AlamofireImage
 
 private var categories: [Genre] = []

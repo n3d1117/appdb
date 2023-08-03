@@ -26,12 +26,12 @@ struct CachedIPA: Mappable {
         size <- map["size"]
         sizeHr <- map["size_hr"]
         addedAt <- map["added_at"]
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: Localize.currentLanguage())
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        
+
         let date = addedAt.unixToDate
         addedAt = dateFormatter.string(from: date)
     }
