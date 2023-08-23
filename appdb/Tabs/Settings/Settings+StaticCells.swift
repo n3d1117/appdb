@@ -433,7 +433,7 @@ class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         }
         if let placeholder = row.context?["placeholder"] as? String {
             textField.placeholder = placeholder
-            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: textLabel?.font?.pointSize ?? (17 ~~ 16))])
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: textLabel?.font?.pointSize ?? (17 ~~ 16))])
         }
         if let callback = row.context?["callback"] as? (String) -> Void {
             self.textfieldDidEndEditing = callback

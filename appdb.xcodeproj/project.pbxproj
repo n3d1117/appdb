@@ -356,6 +356,8 @@
 		81FC8B4522736CC1003788F3 /* MyAppstoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC8B4422736CC1003788F3 /* MyAppstoreCell.swift */; };
 		81FCAFCE226E1028004FAFD6 /* QueuedDownloadsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FCAFCD226E1028004FAFD6 /* QueuedDownloadsCell.swift */; };
 		81FCAFD0226E1D0C004FAFD6 /* RequestedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FCAFCF226E1D0C004FAFD6 /* RequestedApp.swift */; };
+		C469E68A2A95B370001A24DC /* SigningCerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469E6892A95B370001A24DC /* SigningCerts.swift */; };
+		C469E6902A9671E8001A24DC /* API+UDID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469E68F2A9671E8001A24DC /* API+UDID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -727,6 +729,8 @@
 		81FCAFCF226E1D0C004FAFD6 /* RequestedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedApp.swift; sourceTree = "<group>"; };
 		81FFE92125F3E1440074F8F1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88BEFFC722B3A24A008FD371 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C469E6892A95B370001A24DC /* SigningCerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningCerts.swift; sourceTree = "<group>"; };
+		C469E68F2A9671E8001A24DC /* API+UDID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+UDID.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1047,6 +1051,7 @@
 		813F01842A7C02C2008DCA2E /* Plus */ = {
 			isa = PBXGroup;
 			children = (
+				C469E6892A95B370001A24DC /* SigningCerts.swift */,
 				813F01852A7C02C2008DCA2E /* PlusPurchaseWeb.swift */,
 				813F01862A7C02C2008DCA2E /* PlusPurchase.swift */,
 				813F01872A7C02C2008DCA2E /* PlusPurchaseCell.swift */,
@@ -1682,6 +1687,7 @@
 				813F015D2A7C01ED008DCA2E /* API+AltStoreRepos.swift */,
 				813F015E2A7C01ED008DCA2E /* API+Dylibs.swift */,
 				813F015C2A7C01ED008DCA2E /* API+Plus.swift */,
+				C469E68F2A9671E8001A24DC /* API+UDID.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -2356,6 +2362,7 @@
 				81F1FE7F1E5AF12400C1CD44 /* DismissableModalNavController.swift in Sources */,
 				81876E2F227B192B00E27CB8 /* Library+Extension.swift in Sources */,
 				81324068205BD86000945CE9 /* Settings+StaticCells.swift in Sources */,
+				C469E6902A9671E8001A24DC /* API+UDID.swift in Sources */,
 				81F1FE831E5B123A00C1CD44 /* Details+Header.swift in Sources */,
 				813F016B2A7C0216008DCA2E /* AltStoreRepo.swift in Sources */,
 				817610EF21515A3200602FF2 /* API+SystemStatus.swift in Sources */,
@@ -2490,6 +2497,7 @@
 				817A40E41E5E2FB2003FD6F1 /* SnappableFlowLayout.swift in Sources */,
 				813F018B2A7C02C2008DCA2E /* AltStoreAppDetails.swift in Sources */,
 				811B570B227DDBED000B2866 /* LocalIPAUploadUtil.swift in Sources */,
+				C469E68A2A95B370001A24DC /* SigningCerts.swift in Sources */,
 				8189255A227CC9690096F661 /* AdaptiveUIAlertController.swift in Sources */,
 				81A1038E1F7FCA030011F4B3 /* DynamicFontSizeHelper.swift in Sources */,
 				811A824D2289D18C00969946 /* AdditionalInstallOptionsViewController.swift in Sources */,

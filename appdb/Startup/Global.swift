@@ -35,6 +35,9 @@ enum Global {
 
     static let githubSite: String = "https://github.com/n3d1117/appdb"
     static let donateSite: String = "https://www.buymeacoffee.com/ne_do"
+    static let signingCertsEmbedUrl: String = "https://api.signingcerts.com/v1/products/?embed=html"
+    static let signingCertsUdidApi: String = "https://api.signingcerts.com/v1/appdb-udid/"
+    static let signingCertsBlogArticle: String = "https://signingcerts.com/blog/apple-signing-certificates-what-they-are-and-how-use-them"
 //    static let email: String = "appdb.ned@gmail.com"
     static let email: String = "stev3fvcks@gmail.com"
     static let telegram: String = "https://t.me/stev3fvcks"

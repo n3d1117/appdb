@@ -57,6 +57,8 @@ extension API {
                     } else {
                         // Save token
                         Preferences.set(.token, to: json["data"]["link_token"].stringValue)
+                        
+                        
 
                         // Update link code
                         API.getLinkCode(success: {

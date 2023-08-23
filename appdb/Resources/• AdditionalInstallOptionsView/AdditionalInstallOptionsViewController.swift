@@ -77,7 +77,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
 
     var cancelled = true
 
-    private let placeholder: String = Global.randomString(length: 5).lowercased()
+    private var placeholder: String = Global.randomString(length: 5).lowercased()
 
     private let rowHeight: CGFloat = 50
     func getHeight() -> CGFloat {
@@ -106,9 +106,16 @@ class AdditionalInstallOptionsViewController: TableViewController {
 
          navigationItem.rightBarButtonItem?.isEnabled = true
 
-        var rows: [StaticRow] = []
+         var rows: [StaticRow] = []
+         var addedRowTypes: [String] = []
 
         for installationOption in installationOptions {
+            if addedRowTypes.contains(where: { _addedRowType in
+                return _addedRowType == installationOption.identifier.rawValue
+            }) {
+                continue;
+            }
+            addedRowTypes.append(installationOption.identifier.rawValue)
             switch installationOption.identifier {
             case .name:
                 rows.append(StaticRow(text: "New display name".localized(), cellClass: StaticTextFieldCell.self, context:
@@ -125,9 +132,10 @@ class AdditionalInstallOptionsViewController: TableViewController {
                     self.reloadTable()
                 }, "value": Preferences.duplicateApp]))
                 if Preferences.duplicateApp {
+                    self.placeholder = Global.randomString(length: 5).lowercased()
                     self.newId = self.placeholder
                     rows.append(StaticRow(text: "New ID".localized(), cellClass: StaticTextFieldCell.self, context:
-                                        ["placeholder": installationOption.placeholder /*placeholder*/, "callback": { [unowned self] (newId: String) in
+                                            ["placeholder": installationOption.placeholder.isEmpty ? self.placeholder : installationOption.placeholder /*placeholder*/, "callback": { [unowned self] (newId: String) in
                                             self.newId = newId.isEmpty ? /*installationOption.placeholder*/ self.placeholder : newId
                                             self.setInstallButtonEnabled()
                                         }, "forceLowercase": true, "characterLimit": 5]

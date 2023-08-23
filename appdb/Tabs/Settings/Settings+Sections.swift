@@ -105,7 +105,30 @@ extension Settings {
     // Sections exclusive for the 'linked' state
 
     var deviceLinkedSections: [StaticSection] {
-        themeSection + [
+        var deviceConfigRows = [
+            StaticRow(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: Preferences.appsync) { newValue in
+                API.setConfiguration(params: [.appsync: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+            }, cellClass: SimpleStaticCell.self),
+
+            StaticRow(text: "Compatibility Checks".localized(), accessory: .switchToggle(value: !Preferences.ignoresCompatibility) { newValue in
+                API.setConfiguration(params: [.ignoreCompatibility: newValue ? "no" : "yes"], success: {}, fail: { _ in })
+            }, cellClass: SimpleStaticCell.self),
+
+            StaticRow(text: "Ask for installation options".localized(), accessory: .switchToggle(value: Preferences.askForInstallationOptions) { newValue in
+                API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
+            }, cellClass: SimpleStaticCell.self)
+        ]
+        
+        if Preferences.isPlus {
+            deviceConfigRows.append( StaticRow(text: "IPA Cache".localized(), selection: { [unowned self] _ in
+                self.push(IPACache())
+            }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self))
+        }
+        deviceConfigRows.append(StaticRow(text: "Advanced Options".localized(), selection: { [unowned self] _ in
+            self.push(AdvancedOptions())
+        }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self))
+        
+        return themeSection + [
 
             StaticSection(header: .title("General".localized()), rows: [
                 StaticRow(text: "Device".localized(), detailText: deviceInfoString, selection: { [unowned self] _ in
@@ -120,7 +143,7 @@ extension Settings {
 
                 StaticRow(text: "PLUS Status".localized(), selection: { [unowned self] _ in
                     if !Preferences.isPlus {
-                        self.push(PlusPurchase())
+                        self.push(SigningCerts())
                     }
                     }, cellClass: SimpleStaticPLUSStatusCell.self, context: ["active": Preferences.isPlus, "expire": Preferences.plusUntil]),
 
@@ -131,28 +154,7 @@ extension Settings {
                     }
                 )
             ], footer: .title("Use this code if you want to link new devices to appdb. Press and hold the cell to copy it, or tap it to generate a new one.".localized())),
-
-            StaticSection(header: .title("Device Configuration".localized()), rows: [
-                StaticRow(text: "Jailbroken w/ Appsync".localized(), accessory: .switchToggle(value: Preferences.appsync) { newValue in
-                    API.setConfiguration(params: [.appsync: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-
-                StaticRow(text: "Compatibility Checks".localized(), accessory: .switchToggle(value: !Preferences.ignoresCompatibility) { newValue in
-                    API.setConfiguration(params: [.ignoreCompatibility: newValue ? "no" : "yes"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-
-                StaticRow(text: "Ask for installation options".localized(), accessory: .switchToggle(value: Preferences.askForInstallationOptions) { newValue in
-                    API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
-                }, cellClass: SimpleStaticCell.self),
-
-                StaticRow(text: "IPA Cache".localized(), selection: { [unowned self] _ in
-                    self.push(IPACache())
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self),
-
-                StaticRow(text: "Advanced Options".localized(), selection: { [unowned self] _ in
-                    self.push(AdvancedOptions())
-                }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self)
-            ]),
+            StaticSection(header: .title("Device Configuration".localized()), rows: deviceConfigRows),
             StaticSection(rows: [
                 StaticRow(text: "Device Status".localized(), selection: { [unowned self] _ in
                     self.push(DeviceStatus())

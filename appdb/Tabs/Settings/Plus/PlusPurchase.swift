@@ -9,6 +9,8 @@
 import UIKit
 import WebKit
 
+/** not in use for now */
+
 class PlusPurchase: LoadingTableView {
 
     private var bgColorView: UIView = {

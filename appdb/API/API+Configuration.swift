@@ -54,21 +54,19 @@ extension API {
                             Preferences.set(.deviceVersion, to: data["ios_version"].stringValue)
 
                             // Preferences.set(.isPlus, to: data["is_plus"].stringValue == "yes")
-                            let plusUntil = data["plus_till"].stringValue
-                            let formatter = DateFormatter()
-                            formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
-                            formatter.locale = Locale(identifier: "en_US")
-                            if let plusUntilDate = formatter.date(from: plusUntil) {
-                                Preferences.set(.isPlus, to: plusUntilDate.timeIntervalSince1970 > Date().timeIntervalSince1970)
-                            }
+                            let plusUntil = data["plus_till"].stringValue.unixToDate
+                            Preferences.set(.isPlus, to: plusUntil.timeIntervalSince1970 > Date().timeIntervalSince1970)
                             Preferences.set(.plusUntil, to: data["plus_till"].stringValue)
                             Preferences.set(.enterpriseCertId, to: data["enterprise_cert_id"].stringValue)
                             Preferences.set(.signingWith, to: data["signing_with"].stringValue)
                             Preferences.set(.freeSignsLeft, to: data["free_signs_left"].stringValue)
                             Preferences.set(.freeSignsResetAt, to: data["free_signs_reset_at"].stringValue)
+                            Preferences.set(.p12ValidationResult, to: data["p12_validation_result"].boolValue)
 
                             Preferences.set(.plusStatus, to: data["plus_account"]["status"].stringValue)
                             Preferences.set(.plusStatusTranslated, to: data["plus_account"]["status_translated"].stringValue)
+                            Preferences.set(.plusProvider, to: data["plus_provider"].stringValue)
+                            Preferences.set(.plusSupportUri, to: data["plus_support_uri"].stringValue)
 
                             Preferences.set(.disableRevocationChecks, to: data["disable_protection_checks"].stringValue == "yes")
                             Preferences.set(.forceDisablePRO, to: data["is_pro_disabled"].stringValue == "yes")

@@ -53,6 +53,9 @@ enum SecureKeys: String, CaseIterable {
     case isPlus
     case plusUntil
     case plusProvider
+    case plusSupportUri
+    case p12ValidationResult
+    case udid
 }
 
 enum Preferences {
@@ -61,6 +64,10 @@ enum Preferences {
 
     static var email: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.email.rawValue) ?? ""
+    }
+    
+    static var udid: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.udid.rawValue) ?? ""
     }
 
     static var deviceIsLinked: Bool {
@@ -86,6 +93,10 @@ enum Preferences {
     static var plusProvider: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.plusProvider.rawValue) ?? ""
     }
+    
+    static var plusSupportUri: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.plusSupportUri.rawValue) ?? ""
+    }
 
     static var revoked: Bool {
         KeychainWrapper.standard.bool(forKey: SecureKeys.revoked.rawValue) ?? false
@@ -105,6 +116,11 @@ enum Preferences {
 
     static var linkToken: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? ""
+    }
+    
+    
+    static var p12ValidationResult: Bool {
+        KeychainWrapper.standard.bool(forKey: SecureKeys.p12ValidationResult.rawValue) ?? false
     }
 
     // Non sensitive data

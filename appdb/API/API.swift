@@ -141,6 +141,7 @@ enum Actions: String {
     case editAltStoreRepo = "edit_altstore_repo"
     case deleteAltStoreRepo = "delete_altstore_repo"
     case getPlusPurchaseOptions = "get_plus_purchase_options"
+    case getSideloadingOptions = "get_sideloading_options"
     case getFeatures = "get_features"
     case getDylibs = "get_dylibs"
     case addDylib = "add_dylib"
