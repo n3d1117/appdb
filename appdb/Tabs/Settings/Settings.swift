@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Static
+
 import SafariServices
 import BLTNBoard
 import MessageUI
@@ -475,7 +475,7 @@ extension Settings: MFMailComposeViewControllerDelegate {
 }
 
 extension Settings: ChangedEnterpriseCertificate {
-    
+
     func changedEnterpriseCertificate() {
         API.setConfiguration(params: [.enterpriseCertId: Preferences.enterpriseCertId], success: {}, fail: { _ in })
         refreshSources()

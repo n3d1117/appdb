@@ -43,7 +43,7 @@ struct InstallationOption: Mappable {
         type <- map["type"]
         placeholder <- map["placeholder"]
         chooseFrom <- map["choose_from"]
-        
+
         identifier = InstallationOptionIdentifier(rawValue: identifierString) ?? .alongside
         type = InstallationOptionType(rawValue: typeString) ?? .string
     }

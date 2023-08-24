@@ -7,11 +7,9 @@
 //
 
 import UIKit
-import Cartography
-import Static
 
 class InstallOptionsDylibSelectNavController: UINavigationController, AdditionalInstallOptionsHeightDelegate {
-    
+
     var group = ConstraintGroup()
 
     override init(rootViewController: UIViewController) {
@@ -55,23 +53,23 @@ class InstallOptionsDylibSelectNavController: UINavigationController, Additional
 }
 
 class InstallOptionsDylibSelectViewController: TableViewController {
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     init(dylibOptions: [String], selectedDylibs: [String]) {
         super.init(style: .plain)
-        
+
         self.dylibOptions = dylibOptions
         self.selectedDylibs = selectedDylibs
     }
-    
+
     var dylibOptions: [String] = []
 
     weak var heightDelegate: AdditionalInstallOptionsHeightDelegate?
     var dylibSelectDelegate: InstallOptionsDylibSelectDelegate?
-    
+
     private var selectedDylibs: [String] = []
 
     private let rowHeight: CGFloat = 50
@@ -79,26 +77,26 @@ class InstallOptionsDylibSelectViewController: TableViewController {
         let navbarHeight: CGFloat = navigationController?.navigationBar.frame.height ?? 44
         return navbarHeight + rowHeight * CGFloat(sections.first!.rows.count)
     }
-    
+
     /**
      ["callback": { [unowned self] (newDylibs: [String]) in
          self.selectedDylibs = newDylibs.isEmpty ? [] : newDylibs
      }]
      */
 
-    lazy var sections: [Static.Section] = {
-        return loadSections()
+    lazy var sections: [StaticSection] = {
+        loadSections()
     }()
-    
-    func loadSections() -> [Static.Section] {
+
+    func loadSections() -> [StaticSection] {
         var currentIndex = 0
-        let rows = dylibOptions.map { dylibOption -> Row in
+        let rows = dylibOptions.map { dylibOption -> StaticRow in
             let selected = selectedDylibs.contains(dylibOption)
             currentIndex += 1
-            return Row(text: dylibOption, selection: { row in
+            return StaticRow(text: dylibOption, selection: { row in
                 if selected {
                     self.selectedDylibs.removeAll { option in
-                        return option == dylibOption
+                        option == dylibOption
                     }
                 } else {
                     self.selectedDylibs.append(dylibOption)
@@ -108,9 +106,9 @@ class InstallOptionsDylibSelectViewController: TableViewController {
                 self.tableView.reloadRows(at: [IndexPath(row: currentIndex - 1, section: 0)], with: .none)
             }, accessory: (selected ? .checkmark : .checkmarkPlaceholder), cellClass: SimpleStaticCell.self)
         }
-        
+
         return [
-            Section(rows: rows)
+            StaticSection(rows: rows)
         ]
     }
 
@@ -149,4 +147,3 @@ class InstallOptionsDylibSelectViewController: TableViewController {
         dismiss(animated: true)
     }
 }
-

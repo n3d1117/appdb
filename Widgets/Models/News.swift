@@ -10,11 +10,11 @@ import Foundation
 
 struct News: Identifiable, Decodable {
 
-    let id: String
+    let id: Int
     let title: String
     let added: String
 
     static var dummy: News {
-        News(id: "", title: "Example News Title Goes Here", added: "Tue, 16 Feb 2021 14:30:48 +0000")
+        News(id: 0, title: "Example News Title Goes Here", added: "Tue, 16 Feb 2021 14:30:48 +0000")
     }
 }

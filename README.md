@@ -56,12 +56,10 @@ A fully-featured iOS client for [appdb.to](https://appdb.to) written in Swift 5 
 You can download the latest .ipa from the [releases page](https://github.com/n3d1117/appdb/releases).
 
 ## Build manually
-Alernatively, you can build the project manually. 
-Make sure you have [Carthage](https://github.com/Carthage/Carthage) installed. Run the following commands:
+Alernatively, you can build the project manually. Run the following commands:
 ```
 $ git clone https://github.com/n3d1117/appdb.git
 $ cd appdb/
-$ carthage update --platform iOS --use-xcframeworks
 $ open appdb.xcodeproj
 ```
 

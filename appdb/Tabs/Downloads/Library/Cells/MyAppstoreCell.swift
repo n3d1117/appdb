@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 
 class MyAppStoreCell: UICollectionViewCell {
 
@@ -19,7 +18,7 @@ class MyAppStoreCell: UICollectionViewCell {
     func configure(with app: MyAppStoreApp) {
         name.text = app.name + " (\(app.version))"
         bundleId.text = app.bundleId
-        installButton.linkId = app.id
+        installButton.linkId = app.id.description
     }
 
     required init?(coder aDecoder: NSCoder) {

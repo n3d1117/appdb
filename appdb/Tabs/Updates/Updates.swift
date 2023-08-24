@@ -124,8 +124,8 @@ class Updates: LoadingTableView {
             self.retryCount = 0
             self.allApps = apps
             let mixed = apps.filter({ !$0.isIgnored }).sorted { $0.name.lowercased() < $1.name.lowercased() }
-            self.updateableApps = mixed.filter { $0.updateable }
-            self.nonUpdateableApps = mixed.filter { !$0.updateable }
+            self.updateableApps = mixed.filter { $0.updateable == 1 }
+            self.nonUpdateableApps = mixed.filter { $0.updateable == 0 }
             done(nil)
         }, fail: { [weak self] error, errorCode in
             guard let self = self else { return }
@@ -175,7 +175,7 @@ class Updates: LoadingTableView {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let apps = indexPath.section == 0 ? updateableApps : nonUpdateableApps
         let item = apps[indexPath.row]
-        let vc = Details(type: item.itemType, trackid: item.trackid)
+        let vc = Details(type: item.itemType, trackid: item.trackid.description)
         if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: vc)
             nav.modalPresentationStyle = .formSheet
@@ -222,7 +222,7 @@ class Updates: LoadingTableView {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let ignore = UITableViewRowAction(style: .normal, title: "Ignore".localized()) { _, _ in
             let app = (indexPath.section == 0 ? self.updateableApps : self.nonUpdateableApps)[indexPath.row]
-            let ignoredApp = IgnoredApp(trackid: app.trackid, name: app.name, iconUrl: app.image, type: app.type)
+            let ignoredApp = IgnoredApp(trackid: app.trackid.description, name: app.name, iconUrl: app.image, type: app.type)
             Preferences.append(.ignoredUpdateableApps, element: ignoredApp)
 
             if indexPath.section == 0 {

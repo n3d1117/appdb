@@ -8,7 +8,6 @@
 
 import UIKit
 import BLTNBoard
-import SwiftTheme
 
 class SelectorBulletinPage: BLTNPageItem {
 

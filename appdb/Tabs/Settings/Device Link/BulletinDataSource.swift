@@ -37,7 +37,6 @@ enum DeviceLinkIntroBulletins {
                         let errorPage = makeErrorPage(with: error.prettified)
                         item.manager?.push(item: errorPage)
                     })
-
                 }, fail: {
                     // Otherwise, show page where user can enter link code as usual
                     delay(0.2) {

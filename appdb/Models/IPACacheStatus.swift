@@ -6,6 +6,7 @@
 //  Copyright © 2022 ned. All rights reserved.
 //
 
+import UIKit
 import ObjectMapper
 import Localize_Swift
 
@@ -15,7 +16,7 @@ struct IPACacheStatus: Mappable {
 
     var sizeHr: String = ""
     var sizeLimitHr: String = ""
-    var inUpdate = false
+    var inUpdate: Int = 0
     var updatedAt: String = ""
     var ipas: [CachedIPA] = []
 
@@ -30,7 +31,7 @@ struct IPACacheStatus: Mappable {
         dateFormatter.locale = Locale(identifier: Localize.currentLanguage())
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        
+
         let date = updatedAt.unixToDate
         updatedAt = dateFormatter.string(from: date)
     }

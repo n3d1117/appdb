@@ -168,8 +168,8 @@ class News: LoadingTableView {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = isFiltering() ? filteredNews[indexPath.row] : displayedNews[indexPath.row]
-        guard !item.id.isEmpty else { return }
-        let newsDetailViewController = NewsDetail(with: item.id)
+        guard item.id != 0 else { return }
+        let newsDetailViewController = NewsDetail(with: item.id.description)
         navigationController?.pushViewController(newsDetailViewController, animated: true)
     }
 
@@ -220,8 +220,8 @@ extension News {
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let item = isFiltering() ? filteredNews[indexPath.row] : displayedNews[indexPath.row]
-        guard !item.id.isEmpty else { return nil }
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: { NewsDetail(with: item.id) })
+        guard item.id != 0 else { return nil }
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { NewsDetail(with: item.id.description) })
     }
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
@@ -241,8 +241,8 @@ extension News: UIViewControllerPreviewingDelegate {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         let item = isFiltering() ? filteredNews[indexPath.row] : displayedNews[indexPath.row]
-        guard !item.id.isEmpty else { return nil }
-        let newsDetailViewController = NewsDetail(with: item.id)
+        guard item.id != 0 else { return nil }
+        let newsDetailViewController = NewsDetail(with: item.id.description)
         return newsDetailViewController
     }
 

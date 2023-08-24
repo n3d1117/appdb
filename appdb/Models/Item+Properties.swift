@@ -14,9 +14,9 @@ import UIKit
 extension Item {
 
     var itemId: String {
-        if let app = self as? App { return app.id }
-        if let cydiaApp = self as? CydiaApp { return cydiaApp.id }
-        if let book = self as? Book { return book.id }
+        if let app = self as? App { return app.id.description }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.id.description }
+        if let book = self as? Book { return book.id.description }
         return ""
     }
 
@@ -66,7 +66,7 @@ extension Item {
     }
 
     var itemCydiaCategoryId: String {
-        if let cydiaApp = self as? CydiaApp { return cydiaApp.categoryId }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.categoryId.description }
         return ""
     }
 
@@ -95,7 +95,7 @@ extension Item {
     }
 
     var itemOriginalTrackid: String {
-        if let cydiaApp = self as? CydiaApp { return cydiaApp.originalTrackid }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.originalTrackid.description }
         return ""
     }
 
@@ -169,35 +169,35 @@ extension Item {
         if let book = self as? Book { return book.numberOfRating }
         return ""
     }
-    
+
     var downloadsDay: String {
-        if let app = self as? App { return app.clicksDay }
-        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksDay }
-        if let book = self as? Book { return book.clicksDay }
+        if let app = self as? App { return app.clicksDay.description }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksDay.description }
+        if let book = self as? Book { return book.clicksDay.description }
         return "-"
     }
     var downloadsWeek: String {
-        if let app = self as? App { return app.clicksWeek }
-        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksWeek }
-        if let book = self as? Book { return book.clicksWeek }
+        if let app = self as? App { return app.clicksWeek.description }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksWeek.description }
+        if let book = self as? Book { return book.clicksWeek.description }
         return "-"
     }
     var downloadsMonth: String {
-        if let app = self as? App { return app.clicksMonth }
-        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksMonth }
-        if let book = self as? Book { return book.clicksMonth }
+        if let app = self as? App { return app.clicksMonth.description }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksMonth.description }
+        if let book = self as? Book { return book.clicksMonth.description }
         return "-"
     }
     var downloadsYear: String {
-        if let app = self as? App { return app.clicksYear }
-        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksYear }
-        if let book = self as? Book { return book.clicksYear }
+        if let app = self as? App { return app.clicksYear.description }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksYear.description }
+        if let book = self as? Book { return book.clicksYear.description }
         return "-"
     }
     var downloadsAll: String {
-        if let app = self as? App { return app.clicksAll }
-        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksAll }
-        if let book = self as? Book { return book.clicksAll }
+        if let app = self as? App { return app.clicksAll.description }
+        if let cydiaApp = self as? CydiaApp { return cydiaApp.clicksAll.description }
+        if let book = self as? Book { return book.clicksAll.description }
         return "-"
     }
 }

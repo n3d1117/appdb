@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 
 class TwoPortraitScreenshotsSearchCell: SearchCell {
 
@@ -56,9 +55,8 @@ class TwoPortraitScreenshotsSearchCell: SearchCell {
         super.configure(with: item)
         guard item.itemFirstTwoScreenshotsUrls.count > 1 else { return }
         if let url1 = URL(string: item.itemFirstTwoScreenshotsUrls[0]), let url2 = URL(string: item.itemFirstTwoScreenshotsUrls[1]) {
-            let filter = Global.screenshotRoundedFilter(size: screenshotOne.frame.size, radius: 5)
-            screenshotOne.af.setImage(withURL: url1, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
-            screenshotTwo.af.setImage(withURL: url2, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), filter: filter, imageTransition: .crossDissolve(0.2))
+            screenshotOne.af.setImage(withURL: url1, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
+            screenshotTwo.af.setImage(withURL: url2, placeholderImage: #imageLiteral(resourceName: "placeholderCover"), imageTransition: .crossDissolve(0.2))
         }
     }
 

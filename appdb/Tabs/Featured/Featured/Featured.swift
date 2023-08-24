@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import Localize_Swift
 import TelemetryClient
 

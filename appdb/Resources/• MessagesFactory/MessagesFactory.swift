@@ -6,8 +6,8 @@
 //  Copyright © 2019 ned. All rights reserved.
 //
 
+import UIKit
 import SwiftMessages
-import SwiftTheme
 
 struct Messages {
 

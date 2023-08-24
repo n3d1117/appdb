@@ -9,6 +9,8 @@
 import UIKit
 import WebKit
 
+/** not in use for now */
+
 class PlusPurchase: LoadingTableView {
 
     private var bgColorView: UIView = {
@@ -113,10 +115,10 @@ class PlusPurchase: LoadingTableView {
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if purchaseOptions.isEmpty { return nil }
-        
+
         let view = UpdatesSectionHeader(showsButton: true)
         view.configure(with: "Available PLUS subscriptions".localized())
         view.helpButton.addTarget(self, action: #selector(self.showHelp), for: .touchUpInside)
@@ -124,9 +126,9 @@ class PlusPurchase: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return purchaseOptions.isEmpty ? 0 : (60 ~~ 50)
+        purchaseOptions.isEmpty ? 0 : (60 ~~ 50)
     }
-    
+
     @objc func showHelp() {
         let message = "appdb PLUS allows you to use appdb on non-jailbroken device or Apple Silicon Mac with your own developer account and sign apps in the cloud without any limitations\n\nPLUS is activated per device, separately for each of your devices\n\nWe use this money to pay for servers, traffic, and support the community\n\nPLUS is not transferable between devices, you can cancel it at any time, or we will notify your about existing subscription for unlinked device, so you can cancel it if you sold your device\n\nPLUS is not compatible with corporate-owned devices with MDM. Please use appdb on your personal devices".localized()
         let alertController = UIAlertController(title: "What is appdb PLUS?".localized(), message: message, preferredStyle: .alert, adaptive: true)

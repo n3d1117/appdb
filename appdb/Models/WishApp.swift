@@ -6,6 +6,7 @@
 //  Copyright © 2019 ned. All rights reserved.
 //
 
+import UIKit
 import ObjectMapper
 import Localize_Swift
 
@@ -13,8 +14,8 @@ struct WishApp: Mappable {
 
     init?(map: Map) { }
 
-    var id: String = ""
-    var trackid: String = ""
+    var id: Int = 0
+    var trackid: Int = 0
     var version: String = ""
     var image: String = ""
     var name: String = ""

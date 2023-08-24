@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Static
-import SwiftTheme
-import Cartography
 
 // A simple cell for the 'Static' framework that adapts to theme changes
 // and has has dynamic text font size. Used for Settings cells.
@@ -29,7 +26,7 @@ class SimpleStaticCell: UITableViewCell, Cell {
         detailTextLabel?.theme_textColor = Color.darkGray
     }
 
-    func configure(row: Row) {
+    func configure(row: StaticRow) {
         textLabel?.theme_textColor = Color.title
         detailTextLabel?.theme_textColor = Color.darkGray
         textLabel?.text = row.text
@@ -71,7 +68,7 @@ final class SimpleSubtitleCell: UITableViewCell, Cell {
         detailTextLabel?.theme_textColor = Color.darkGray
     }
 
-    func configure(row: Row) {
+    func configure(row: StaticRow) {
         accessoryType = row.accessory.type
 
         textLabel?.theme_textColor = Color.title
@@ -101,7 +98,7 @@ class SimpleStaticButtonCell: UITableViewCell, Cell {
         textLabel?.textAlignment = .center
     }
 
-    func configure(row: Row) {
+    func configure(row: StaticRow) {
         textLabel?.theme_textColor = Color.dirtyWhite
         textLabel?.textAlignment = .center
 
@@ -161,7 +158,7 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
         contentView.addSubview(dummy)
     }
 
-    func configure(row: Row) {
+    func configure(row: StaticRow) {
         textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
 
@@ -171,12 +168,12 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
         guard let freeSignsLeftNumber = Int(freeSignsLeft) else { return }
         guard let freeSignsResetAt = row.context?["freeSignsResetAt"] as? String else { return }
         guard let plus = row.context?["isPlus"] as? Bool else { return }
-        guard let plusUntil = (row.context?["plusUntil"] as? String)?.rfc2822decodedShort else { return }
+        guard let plusUntil = (row.context?["plusUntil"] as? String)?.unixToString else { return }
         guard let plusAccountStatus = row.context?["plusAccountStatus"] as? String else { return }
         guard let revoked = row.context?["revoked"] as? Bool else { return }
         guard let revokedOn = (row.context?["revokedOn"] as? String)?.revokedDateDecoded else { return }
         guard let usesCustomDeveloperIdentity = row.context?["usesCustomDevIdentity"] as? Bool else { return }
-        
+
         if usesCustomDeveloperIdentity {
             activeLabel.theme_textColor = Color.softGreen
             activeLabel.text = "Custom Developer Identity".localized()
@@ -197,9 +194,9 @@ final class SimpleStaticSigningCertificateCell: UITableViewCell, Cell {
         } else {
             activeLabel.theme_textColor = freeSignsLeftNumber > 0 ? Color.softGreen : Color.softRed
             expirationLabel.text = signingWith
-            activeLabel.text = "%@ signs left until %@".localizedFormat(freeSignsLeft, freeSignsResetAt.rfc2822decoded)
+            activeLabel.text = "%@ signs left until %@".localizedFormat(freeSignsLeft, freeSignsResetAt.unixToString)
         }
-        
+
         selectionStyle = .default
         accessoryType = .disclosureIndicator
 
@@ -269,12 +266,12 @@ final class SimpleStaticPLUSStatusCell: UITableViewCell, Cell {
         contentView.addSubview(dummy)
     }
 
-    func configure(row: Row) {
+    func configure(row: StaticRow) {
         textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
 
         guard let isPlus = row.context?["active"] as? Bool else { return }
-        guard let plusExpirationDate = (row.context?["expire"] as? String)?.rfc2822decodedShort else { return }
+        guard let plusExpirationDate = (row.context?["expire"] as? String)?.unixToString else { return }
 
         if isPlus {
             activeLabel.theme_textColor = Color.softGreen
@@ -291,11 +288,11 @@ final class SimpleStaticPLUSStatusCell: UITableViewCell, Cell {
             bgColorView.theme_backgroundColor = Color.cellSelectionColor
             selectedBackgroundView = bgColorView
         }
-        
+
        constrain(activeLabel, expirationLabel, dummy, replace: constraintGroup) { active, expiration, dummy in
             dummy.height ~== 1
             dummy.centerY ~== dummy.superview!.centerY
-        
+
             active.bottom ~== dummy.top ~+ 1
             active.trailing ~== active.superview!.trailingMargin
 
@@ -339,16 +336,16 @@ final class SimpleStaticDylibsSelectionCell: UITableViewCell, Cell {
         contentView.addSubview(selectedDylibsLabel)
     }
 
-    func configure(row: Row) {
+    func configure(row: StaticRow) {
         textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
-        
+
         guard let selectedDylibs = row.context?["selectedDylibs"] as? [String] else { return }
-        
+
         if !selectedDylibs.isEmpty {
             textLabel?.text = "Selected %i dylibs".localizedFormat(selectedDylibs.count)
         }
-        
+
         selectedDylibsLabel.theme_textColor = Color.darkGray
         accessoryType = .disclosureIndicator
         let bgColorView = UIView()
@@ -384,7 +381,7 @@ final class SwitchCell: SimpleStaticCell {
         valueChange?(toggle.isOn)
     }
 
-    override func configure(row: Row) {
+    override func configure(row: StaticRow) {
         textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
 
@@ -428,7 +425,7 @@ class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func configure(row: Row) {
+    override func configure(row: StaticRow) {
         textLabel?.theme_textColor = Color.title
         textLabel?.text = row.text
         if let initialText = row.context?["initialText"] as? String {
@@ -436,7 +433,7 @@ class StaticTextFieldCell: SimpleStaticCell, UITextFieldDelegate {
         }
         if let placeholder = row.context?["placeholder"] as? String {
             textField.placeholder = placeholder
-            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: textLabel?.font?.pointSize ?? (17 ~~ 16))])
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor(rgba: "#8D8D8D"), .font: UIFont.systemFont(ofSize: textLabel?.font?.pointSize ?? (17 ~~ 16))])
         }
         if let callback = row.context?["callback"] as? (String) -> Void {
             self.textfieldDidEndEditing = callback
@@ -514,7 +511,7 @@ final class StaticSubtitleTextFieldCell: StaticTextFieldCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func configure(row: Row) {
+    override func configure(row: StaticRow) {
         super.configure(row: row)
 
         selectionStyle = .none
@@ -536,7 +533,7 @@ final class ContactDevStaticCell: SimpleStaticCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func configure(row: Row) {
+    override func configure(row: StaticRow) {
         super.configure(row: row)
     }
 }
@@ -550,7 +547,7 @@ final class ClearCacheStaticCell: SimpleStaticCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func configure(row: Row) {
+    override func configure(row: StaticRow) {
         super.configure(row: row)
     }
 }
@@ -564,7 +561,7 @@ final class ClearIdentityStaticCell: SimpleStaticButtonCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func configure(row: Row) {
+    override func configure(row: StaticRow) {
         super.configure(row: row)
     }
 }

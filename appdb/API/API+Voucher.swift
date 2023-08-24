@@ -11,8 +11,8 @@ import SwiftyJSON
 
 extension API {
 
-    static func activateVoucher(voucher: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["voucher": voucher, "action": Actions.activatePro.rawValue, "lang": languageCode], headers: headersWithCookie)
+    static func activateVoucher(voucher: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.activatePro.rawValue, parameters: ["voucher": voucher, "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -28,8 +28,8 @@ extension API {
         }
     }
 
-    static func validateVoucher(voucher: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["voucher": voucher, "action": Actions.validatePro.rawValue, "lang": languageCode], headers: headersWithCookie)
+    static func validateVoucher(voucher: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.validatePro.rawValue, parameters: ["voucher": voucher, "lang": languageCode], headers: headersWithCookie)
         .responseJSON { response in
             switch response.result {
             case .success(let value):

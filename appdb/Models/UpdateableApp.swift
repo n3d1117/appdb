@@ -19,16 +19,16 @@ struct UpdateableApp: Equatable {
     var versionOld: String = ""
     var versionNew: String = ""
     var alongsideId: String = ""
-    var trackid: String = ""
+    var trackid: Int = 0
     var image: String = ""
-    var updateable = false
+    var updateable = 0
     var type: String = ""
     var name: String = ""
     var whatsnew: String = ""
     var date: String = ""
 
     var isIgnored: Bool {
-        !Preferences.ignoredUpdateableApps.filter({ $0.trackid == trackid }).isEmpty
+        !Preferences.ignoredUpdateableApps.filter({ $0.trackid == String(trackid) }).isEmpty
     }
 
     static func == (lhs: UpdateableApp, rhs: UpdateableApp) -> Bool {

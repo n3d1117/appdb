@@ -11,8 +11,8 @@ import SwiftyJSON
 
 extension API {
 
-    static func getAltStoreRepos(isPublic: Bool = false, success:@escaping (_ items: [AltStoreRepo]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getAltStoreRepos.rawValue, "is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
+    static func getAltStoreRepos(isPublic: Bool = false, success: @escaping (_ items: [AltStoreRepo]) -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.getAltStoreRepos.rawValue, parameters: ["is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[AltStoreRepo]>) in
                 switch response.result {
                 case .success(let results):
@@ -22,9 +22,9 @@ extension API {
                 }
             }
     }
-    
-    static func getAltStoreRepo(id: String, success:@escaping (_ item: AltStoreRepo) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getAltStoreRepos.rawValue, "id": id, "lang": languageCode], headers: headersWithCookie)
+
+    static func getAltStoreRepo(id: String, success: @escaping (_ item: AltStoreRepo) -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.getAltStoreRepos.rawValue, parameters: ["id": id, "lang": languageCode], headers: headersWithCookie)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[AltStoreRepo]>) in
                 switch response.result {
                 case .success(let result):
@@ -38,9 +38,9 @@ extension API {
                 }
             }
     }
-    
-    static func addAltStoreRepo(url: String, isPublic: Bool = false, success:@escaping (_ item: AltStoreRepo) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.editAltStoreRepo.rawValue, "url": url, "is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
+
+    static func addAltStoreRepo(url: String, isPublic: Bool = false, success: @escaping (_ item: AltStoreRepo) -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.editAltStoreRepo.rawValue, parameters: ["url": url, "is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
             .responseObject(keyPath: "data") { (response: AFDataResponse<AltStoreRepo>) in
                 switch response.result {
                 case .success(let result):
@@ -50,9 +50,9 @@ extension API {
                 }
             }
     }
-    
-    static func editAltStoreRepo(id: String, url: String, isPublic: Bool = false, success:@escaping (_ item: AltStoreRepo) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.editAltStoreRepo.rawValue, "id": id, "url": url, "is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
+
+    static func editAltStoreRepo(id: String, url: String, isPublic: Bool = false, success: @escaping (_ item: AltStoreRepo) -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.editAltStoreRepo.rawValue, parameters: ["id": id, "url": url, "is_public": isPublic ? 1 : 0, "lang": languageCode], headers: headersWithCookie)
             .responseObject(keyPath: "data") { (response: AFDataResponse<AltStoreRepo>) in
                 switch response.result {
                 case .success(let result):
@@ -62,9 +62,9 @@ extension API {
                 }
             }
     }
-    
-    static func deleteAltStoreRepo(id: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.deleteAltStoreRepo.rawValue, "id": id, "lang": languageCode], headers: headersWithCookie)
+
+    static func deleteAltStoreRepo(id: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.deleteAltStoreRepo.rawValue, parameters: ["id": id, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):

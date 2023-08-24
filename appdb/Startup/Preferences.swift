@@ -53,38 +53,49 @@ enum SecureKeys: String, CaseIterable {
     case isPlus
     case plusUntil
     case plusProvider
+    case plusSupportUri
+    case p12ValidationResult
+    case udid
 }
 
 enum Preferences {
 
     // Sensitive data
-    
+
     static var email: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.email.rawValue) ?? ""
+    }
+    
+    static var udid: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.udid.rawValue) ?? ""
     }
 
     static var deviceIsLinked: Bool {
         !(KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? "").isEmpty
     }
-    
+
     static var isPlus: Bool {
         KeychainWrapper.standard.bool(forKey: SecureKeys.isPlus.rawValue) ?? false
     }
-    
+
     static var plusUntil: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.plusUntil.rawValue) ?? ""
     }
-    
+
     static var freeSignsLeft: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.freeSignsLeft.rawValue) ?? ""
     }
-    
+
     static var freeSignsResetAt: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.freeSignsResetAt.rawValue) ?? ""
     }
-    
+
     static var plusProvider: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.plusProvider.rawValue) ?? ""
+    }
+    
+    static var plusSupportUri: String {
+        KeychainWrapper.standard.string(forKey: SecureKeys.plusSupportUri.rawValue) ?? ""
     }
 
     static var revoked: Bool {
@@ -106,17 +117,22 @@ enum Preferences {
     static var linkToken: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? ""
     }
+    
+    
+    static var p12ValidationResult: Bool {
+        KeychainWrapper.standard.bool(forKey: SecureKeys.p12ValidationResult.rawValue) ?? false
+    }
 
     // Non sensitive data
-    
+
     static var plusAccountStatus: String {
         defaults[.plusStatus]
     }
-    
+
     static var plusAccountStatusTranslated: String {
         defaults[.plusStatusTranslated]
     }
-    
+
     static var isAppleSilicon: Bool {
         defaults[.isAppleSilicon]
     }
@@ -168,11 +184,11 @@ enum Preferences {
     static var shouldSwitchToDarkerTheme: Bool {
         defaults[.shouldSwitchToDarkerTheme]
     }
-    
+
     static var enterpriseCertId: String {
         defaults[.enterpriseCertId]
     }
-    
+
     static var deviceName: String {
         defaults[.deviceName]
     }
@@ -200,7 +216,7 @@ enum Preferences {
     static var signingIdentityType: String {
         defaults[.signingIdentityType]
     }
-    
+
     static var signingWith: String {
         defaults[.signingWith]
     }

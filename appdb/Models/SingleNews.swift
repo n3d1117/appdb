@@ -12,7 +12,7 @@ struct SingleNews: Mappable {
 
     init?(map: Map) { }
 
-    var id: String = ""
+    var id: Int = 0
     var title: String = ""
     var text: String = ""
     var added: String = ""
@@ -23,7 +23,7 @@ struct SingleNews: Mappable {
         text <- map["text"]
         added <- map["added"]
 
-        added = added.rfc2822decoded
+        added = added.unixToString
         title = title.decoded
     }
 }

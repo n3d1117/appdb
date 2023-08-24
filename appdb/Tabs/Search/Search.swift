@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+
 import ObjectMapper
 
 class Search: LoadingCollectionView, UISearchBarDelegate {

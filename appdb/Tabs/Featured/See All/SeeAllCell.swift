@@ -8,7 +8,6 @@
 
 import UIKit
 import Cosmos
-import Cartography
 
 class SeeAllCell: UITableViewCell {
 

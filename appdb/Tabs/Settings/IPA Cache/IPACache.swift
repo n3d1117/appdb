@@ -101,7 +101,7 @@ class IPACache: LoadingTableView {
                     cell.selectionStyle = .none
                 case 1:
                     cell.textLabel?.text = "In Update".localized()
-                    cell.detailTextLabel?.text = status.inUpdate ? "Yes".localized() : "No".localized()
+                    cell.detailTextLabel?.text = status.inUpdate == 1 ? "Yes".localized() : "No".localized()
                     cell.textLabel?.theme_textColor = Color.title
                     cell.selectionStyle = .none
                 case 2:
@@ -140,9 +140,8 @@ class IPACache: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return status == nil ? 0 : (60 ~~ 50)
+        status == nil ? 0 : (60 ~~ 50)
     }
-
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         status == nil
@@ -177,7 +176,7 @@ class IPACache: LoadingTableView {
             }
         }
     }
-    
+
     @objc func showHelp() {
         let message = "appdb saves all installed IPA files for your device to cache, so you can easily restore all your apps after device reset or revocation. Cache is stored per device, and will be deleted if you will unlink your device. If you restored your device and missing appdb profile, you can visit device status page and tap \"Update profile\" button to install it, or link device via email by tapping \"Just link new device\" in message from appdb.\n\nNote: IPA files does not contain app data, if you want to keep your app data, backup device via Finder or iTunes, Remove revoked apps, Install apps from cache and then restore backup from Finder or iTunes.".localized()
         let alertController = UIAlertController(title: "IPA cache status for current device".localized(), message: message, preferredStyle: .alert, adaptive: true)

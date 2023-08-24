@@ -39,6 +39,8 @@ class EnterpriseCertChooser: UITableViewController {
         super.viewDidLoad()
 
         title = "Choose Enterprise Certificate".localized()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "info"), style: .plain, target: self, action: #selector(openSigningInfoBlogArticle))
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 50
@@ -59,25 +61,25 @@ class EnterpriseCertChooser: UITableViewController {
                 navigationItem.rightBarButtonItems = [dismissButton]
             }
         }
-        
+
         // Refresh action
         tableView.spr_setIndicatorHeader { [weak self] in
             self?.loadAvailableCertificates()
         }
-        
+
         loadAvailableCertificates()
     }
-    
-    private func loadAvailableCertificates() -> Void {
+
+    private func loadAvailableCertificates() {
         API.getEnterpriseCerts { newCertificates in
             self.availableCertificates = newCertificates
-            
+
             if let _currentCertificate = newCertificates.first(where: { cert in
-                return cert.id == Preferences.enterpriseCertId
+                cert.id == Preferences.enterpriseCertId
             }) {
                 self.currentCertificate = _currentCertificate
             }
-            
+
             self.tableView.spr_endRefreshing()
             self.tableView.reloadData()
         } fail: { error in
@@ -86,38 +88,63 @@ class EnterpriseCertChooser: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    
+    @objc private func openSigningInfoBlogArticle() {
+        UIApplication.shared.open(URL(string: Global.signingCertsBlogArticle)!)
+    }
 
     @objc private func dismissAnimated() { dismiss(animated: true) }
 
     // MARK: - UITableViewDelegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        Preferences.p12ValidationResult ? 1 : 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        availableCertificates.count
+        section == 0 ? availableCertificates.count : 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let certificate = availableCertificates[indexPath.row]
-        cell.textLabel?.text = certificate.name
+        
+        if indexPath.section == 0 {
+            let certificate = availableCertificates[indexPath.row]
+            cell.textLabel?.text = certificate.name
+            cell.accessoryType = certificate.id == currentCertificate?.id ? .checkmark : .none
+        } else {
+            cell.textLabel?.text = "Most Reliable Signing Certificate + Service guarantee for 1 year + Instant Activation!".localized()
+            cell.accessoryType = .disclosureIndicator
+        }
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.numberOfLines = 3
         cell.textLabel?.theme_textColor = Color.title
         cell.textLabel?.makeDynamicFont()
-        cell.accessoryType = certificate.id == currentCertificate?.id ? .checkmark : .none
         cell.setBackgroundColor(Color.veryVeryLightGray)
         cell.theme_backgroundColor = Color.veryVeryLightGray
         cell.selectedBackgroundView = bgColorView
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? "Public Free Enterprise Certificates (frequent revokes and device blacklists)".localized() : "1-Year-Guaranteed signing certificates".localized()
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard availableCertificates.indices.contains(indexPath.row) else { return }
-        let certificate = availableCertificates[indexPath.row]
-        if currentCertificate?.id != certificate.id {
-            change(to: certificate)
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 {
+            guard availableCertificates.indices.contains(indexPath.row) else { return }
+            let certificate = availableCertificates[indexPath.row]
+            if currentCertificate?.id != certificate.id {
+                change(to: certificate)
+            }
+        } else {
+            present(SigningCerts(), animated: true)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 75 : 85
     }
 
     fileprivate func change(to certificate: EnterpriseCertificate) {

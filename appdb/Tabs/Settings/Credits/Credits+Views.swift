@@ -6,9 +6,7 @@
 //  Copyright © 2019 ned. All rights reserved.
 //
 
-import Static
 import UIKit
-import Cartography
 
 protocol Easter: AnyObject {
     func easterTime()
@@ -48,7 +46,7 @@ final class CreditsStaticCell: SimpleStaticCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func configure(row: Row) {
+    override func configure(row: StaticRow) {
 
         let bgColorView = UIView()
         bgColorView.theme_backgroundColor = Color.cellSelectionColor

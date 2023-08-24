@@ -11,8 +11,8 @@ import SwiftyJSON
 
 extension API {
 
-    static func createPublishRequest(appStoreUrl: String, type: String = "ios", completion:@escaping (_ error: String?) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.createPublishRequest.rawValue, "url": appStoreUrl, "type": type, "lang": languageCode], headers: headersWithCookie)
+    static func createPublishRequest(appStoreUrl: String, type: String = "ios", completion: @escaping (_ error: String?) -> Void) {
+        AF.request(endpoint + Actions.createPublishRequest.rawValue, parameters: ["url": appStoreUrl, "type": type, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -28,8 +28,8 @@ extension API {
             }
     }
 
-    static func getPublishRequests(includeAll: Bool, page: Int = 1, success:@escaping (_ items: [WishApp]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getPublishRequests.rawValue, "type": "ios", "include_all": includeAll ? 1 : 0, "page": page, "lang": languageCode], headers: headers)
+    static func getPublishRequests(includeAll: Bool, page: Int = 1, success: @escaping (_ items: [WishApp]) -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.getPublishRequests.rawValue, parameters: ["type": "ios", "include_all": includeAll ? 1 : 0, "start": 25 * (page - 1), "length": 25, "lang": languageCode], headers: headers)
             .responseArray(keyPath: "data") { (response: AFDataResponse<[WishApp]>) in
                 switch response.result {
                 case .success(let results):

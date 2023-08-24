@@ -6,7 +6,7 @@
 //  Copyright © 2017 ned. All rights reserved.
 //
 
-import Cartography
+import UIKit
 import AlamofireImage
 
 protocol ScreenshotRedirectionDelegate: AnyObject {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cartography
 
 /* This ugly af */
 class DetailsInformation: DetailsCell {
@@ -121,7 +120,7 @@ class DetailsInformation: DetailsCell {
             bundleIdText = buildLabel(text: app.bundleId, isContent: true)
 
             category = buildLabel(text: "Category")
-            categoryText = buildLabel(text: API.categoryFromId(id: app.categoryId, type: .cydia), isContent: true)
+            categoryText = buildLabel(text: API.categoryFromId(id: app.categoryId.description, type: .cydia), isContent: true)
 
             updated = buildLabel(text: "Updated")
             updatedText = buildLabel(text: app.updated.unixToString, isContent: true)
@@ -146,7 +145,7 @@ class DetailsInformation: DetailsCell {
             sellerText = buildLabel(text: book.author, isContent: true)
 
             category = buildLabel(text: "Category")
-            categoryText = buildLabel(text: API.categoryFromId(id: book.categoryId, type: .books), isContent: true)
+            categoryText = buildLabel(text: API.categoryFromId(id: book.categoryId.description, type: .books), isContent: true)
             if categoryText.text!.isEmpty { categoryText.text = "Unknown".localized() }
 
             updated = buildLabel(text: "Updated")
@@ -179,14 +178,14 @@ class DetailsInformation: DetailsCell {
             contentView.addSubview(compatibility)
             contentView.addSubview(compatibilityText)
         }
-            
+
         case .altstore: if let app = content as? AltStoreApp {
             seller = buildLabel(text: "Developer")
             sellerText = buildLabel(text: app.developer, isContent: true)
 
             bundleId = buildLabel(text: "Bundle ID")
             bundleIdText = buildLabel(text: app.bundleId, isContent: true)
-            
+
             size = buildLabel(text: "Size")
             sizeText = buildLabel(text: app.formattedSize, isContent: true)
 

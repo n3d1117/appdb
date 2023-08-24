@@ -19,7 +19,7 @@ class MyAppStoreApp: Item {
         .myAppstore
     }
 
-    override var id: String {
+    override var id: Int {
         get { super.id }
         set { super.id = newValue }
     }

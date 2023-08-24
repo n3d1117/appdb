@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Static
 
 class CachedIPAs: LoadingTableView {
 
@@ -19,7 +18,7 @@ class CachedIPAs: LoadingTableView {
         super.viewDidLoad()
 
         self.title = "Cached IPAs".localized()
-        
+
         setUp()
 
         // Refresh action
@@ -30,7 +29,7 @@ class CachedIPAs: LoadingTableView {
 
         loadCachedIPAs()
     }
-    
+
     func loadCachedIPAs() {
         isLoading = true
         self.getCachedIPAs(done: { [weak self] error in
@@ -70,42 +69,42 @@ class CachedIPAs: LoadingTableView {
             done(error.localizedDescription)
         })
     }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cachedIPAs.count
+        cachedIPAs.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SimpleStaticCell {
-            
+
             let item = cachedIPAs[indexPath.row]
-            
+
             cell.textLabel?.text = item.name
             cell.detailTextLabel?.text = item.sizeHr
             cell.textLabel?.theme_textColor = Color.title
             cell.selectionStyle = .none
             cell.accessoryType = .none
-            
+
             return cell
         }
         return UITableViewCell()
     }
-    
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        true
     }
-    
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        return [UITableViewRowAction(style: .destructive, title: "Delete".localized(), handler: { _, indexPath in
+
+        [UITableViewRowAction(style: .destructive, title: "Delete".localized(), handler: { _, indexPath in
             let item = self.cachedIPAs[indexPath.row]
-            
+
             API.deleteIpaFromCache(bundleId: item.bundleId) {
                 Messages.shared.showSuccess(message: "The cached IPA was deleted successfully".localized(), context: .viewController(self))
                 self.loadCachedIPAs()

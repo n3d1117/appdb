@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftTheme
 
 /* First is light theme, second is Dark theme hex, third is darker theme (oled). */
 

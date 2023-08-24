@@ -9,12 +9,9 @@
 import UIKit
 import SafariServices
 import TelemetryClient
-import UnityAds
 
 class AltStoreAppDetails: LoadingTableView {
-    
-    var adsInitialized: Bool = false
-    var adsLoaded: Bool = !Global.showAds || Global.DEBUG || Preferences.isPlus
+
     var currentInstallButton: RoundedButton?
 
     var app: AltStoreApp!
@@ -29,7 +26,7 @@ class AltStoreAppDetails: LoadingTableView {
         self.init(style: .plain)
         self.app = item
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,16 +38,12 @@ class AltStoreAppDetails: LoadingTableView {
 
         setUp()
         initializeCells()
-        
-        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
-            UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
-        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,18 +96,14 @@ class AltStoreAppDetails: LoadingTableView {
 
     @objc func install(sender: RoundedButton) {
         currentInstallButton = sender
-        if !Global.showAds || Global.DEBUG || Preferences.isPlus {
-            actualInstall(sender: currentInstallButton!)
-        } else {
-            UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
-        }
+        actualInstall(sender: currentInstallButton!)
     }
 
     private func actualInstall(sender: RoundedButton) {
         func setButtonTitle(_ text: String) {
             sender.setTitle(text.localized().uppercased(), for: .normal)
         }
-        
+
         if Preferences.deviceIsLinked {
             setButtonTitle("Requesting...")
 
@@ -212,61 +201,5 @@ extension AltStoreAppDetails: ScreenshotRedirectionDelegate {
         let vc = DetailsFullScreenshots(app.screenshots, index, allLandscape, mixedClasses, magic)
         let nav = DetailsFullScreenshotsNavController(rootViewController: vc)
         present(nav, animated: true)
-    }
-}
-
-
-// MARK: - Ads
-
-extension AltStoreAppDetails: UnityAdsInitializationDelegate {
-    func initializationComplete() {
-        adsInitialized = true
-        
-        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
-            UnityAds.load("Interstitial_iOS", loadDelegate: self)
-        }
-    }
-    
-    func initializationFailed(_ error: UnityAdsInitializationError, withMessage message: String) {
-        adsInitialized = false
-    }
-}
-
-extension AltStoreAppDetails: UnityAdsLoadDelegate {
-    func enableInstallButton() {
-        if let detailsHeader = header.first as? DetailsHeader, let installButton = detailsHeader.installButton {
-            installButton.isEnabled = true
-        }
-    }
-    
-    func unityAdsAdLoaded(_ placementId: String) {
-        adsLoaded = true
-        enableInstallButton()
-    }
-    
-    func unityAdsAdFailed(toLoad placementId: String, withError error: UnityAdsLoadError, withMessage message: String) {
-        adsLoaded = false
-        enableInstallButton()
-    }
-}
-
-extension AltStoreAppDetails: UnityAdsShowDelegate {
-    func unityAdsShowComplete(_ placementId: String, withFinish state: UnityAdsShowCompletionState) {
-        if currentInstallButton != nil {
-            actualInstall(sender: currentInstallButton!)
-        }
-    }
-    func unityAdsShowFailed(_ placementId: String, withError error: UnityAdsShowError, withMessage message: String) {
-        if currentInstallButton != nil {
-            actualInstall(sender: currentInstallButton!)
-        }
-    }
-    
-    func unityAdsShowStart(_ placementId: String) {
-        
-    }
-    
-    func unityAdsShowClick(_ placementId: String) {
-        
     }
 }

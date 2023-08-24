@@ -38,7 +38,7 @@ extension AltStoreRepos {
             let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
             navigationItem.backBarButtonItem = backItem
         }
-        
+
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRepoClicked))
         navigationItem.rightBarButtonItem = addItem
 
@@ -49,8 +49,7 @@ extension AltStoreRepos {
         // Observe deauthorization event
         NotificationCenter.default.addObserver(self, selector: #selector(onDeauthorization), name: .Deauthorized, object: nil)
     }
-    
-    
+
     // Only enable button if text is not empty
     /*@objc func repoUrlTextfieldTextChanged(sender: UITextField) {
         var responder: UIResponder = sender
@@ -59,7 +58,7 @@ extension AltStoreRepos {
             (alert.actions[1] as UIAlertAction).isEnabled = !(sender.text ?? "").isEmpty
         }
     }*/
-    
+
     @objc func addRepoClicked() {
         let alertController = UIAlertController(title: "Please enter repository URL".localized(), message: nil, preferredStyle: .alert, adaptive: true)
         alertController.addTextField { textField in
@@ -70,7 +69,7 @@ extension AltStoreRepos {
             textField.clearButtonMode = .whileEditing
         }
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
-        
+
         let addAction = UIAlertAction(title: "Add repo".localized(), style: .default, handler: { _ in
             guard let text = alertController.textFields?[0].text else { return }
             API.addAltStoreRepo(url: text) { item in
@@ -82,7 +81,7 @@ extension AltStoreRepos {
         })
         alertController.addAction(addAction)
         //addAction.isEnabled = false
-        
+
         present(alertController, animated: true)
     }
 
@@ -95,7 +94,6 @@ extension AltStoreRepos {
 ////////////////////////////////
 //  PROTOCOL IMPLEMENTATIONS  //
 ////////////////////////////////
-
 
 // MARK: - iOS 13 Context Menus
 
@@ -141,4 +139,3 @@ extension AltStoreRepos: UIViewControllerPreviewingDelegate {
         show(viewControllerToCommit, sender: self)
     }
 }
-

@@ -3,7 +3,7 @@
 //  Copyright © 2017 Atributika. All rights reserved.
 //
 import Foundation
-import SwiftTheme
+
 
 #if os(iOS)
     

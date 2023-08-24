@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Static
+
 import SafariServices
 
 class Credits: TableViewController {
@@ -89,15 +89,15 @@ class Credits: TableViewController {
 
         dataSource = DataSource(tableViewDelegate: self)
 
-        var sections = [Static.Section]()
+        var sections = [StaticSection]()
 
-        sections.append(Section(header: .autoLayoutView(CreditsIconView(text: "appdb v\(Global.appVersion)", imageName: "appdb", easterDelegate: self))))
+        sections.append(StaticSection(header: .autoLayoutView(CreditsIconView(text: "appdb v\(Global.appVersion)", imageName: "appdb", easterDelegate: self))))
 
         for (index, creditType) in CreditType.allCases.enumerated() {
-            var section: Static.Section = Section(header: .title(creditType.rawValue.localized()), rows: [])
+            var section = StaticSection(header: .title(creditType.rawValue.localized()), rows: [])
             for credit in credits where credit.type == creditType {
                 section.rows.append(
-                    Row(text: credit.name.localized(), detailText: credit.detail, selection: { [unowned self] _ in
+                    StaticRow(text: credit.name.localized(), detailText: credit.detail, selection: { [unowned self] _ in
                         self.handleTap(for: credit.handle)
                     }, accessory: credit.handle == .none ? .none : .disclosureIndicator, cellClass: CreditsStaticCell.self, context: ["imageName": credit.imageName])
                 )

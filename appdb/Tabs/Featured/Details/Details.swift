@@ -9,11 +9,10 @@
 import UIKit
 import SafariServices
 import TelemetryClient
-import UnityAds
 
 class Details: LoadingTableView {
-    
-    var adsInitialized: Bool = false
+
+    var adsInitialized = false
     var adsLoaded: Bool = Global.DEBUG || Preferences.isPlus
     var currentInstallButton: RoundedButton?
 
@@ -77,10 +76,6 @@ class Details: LoadingTableView {
             state = .loading
             showsErrorButton = false
             fetchInfo(type: dynamicType, trackid: dynamicTrackid)
-        }
-        
-        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
-            UnityAds.initialize(Global.adsId, testMode: Global.adsTestMode, initializationDelegate: self)
         }
     }
 
@@ -187,13 +182,13 @@ class Details: LoadingTableView {
                     if link.cracker == link.uploader {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: "downloadUnified", for: indexPath) as? DetailsDownloadUnified else { return UITableViewCell() }
                         cell.accessoryType = shouldHideDisclosureIndicator ? .none : .disclosureIndicator
-                        cell.configure(with: link, installEnabled: !Global.showAds || adsLoaded)
+                        cell.configure(with: link, installEnabled: true)
                         cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                         return cell
                     } else {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: "download", for: indexPath) as? DetailsDownload else { return UITableViewCell() }
                         cell.accessoryType = shouldHideDisclosureIndicator ? .none : .disclosureIndicator
-                        cell.configure(with: link, installEnabled: !Global.showAds || adsLoaded)
+                        cell.configure(with: link, installEnabled: true)
                         cell.button.addTarget(self, action: #selector(self.install), for: .touchUpInside)
                         return cell
                     }
@@ -285,14 +280,10 @@ class Details: LoadingTableView {
     }
 
     // MARK: - Install app
-    
+
     @objc private func install(sender: RoundedButton) {
         currentInstallButton = sender
-        if !Global.showAds || Global.DEBUG || Preferences.isPlus {
-            actualInstall(sender: currentInstallButton!)
-        } else {
-            UnityAds.show(self, placementId: "Interstitial_iOS", showDelegate: self)
-        }
+        actualInstall(sender: currentInstallButton!)
     }
 
     private func actualInstall(sender: RoundedButton) {
@@ -304,7 +295,7 @@ class Details: LoadingTableView {
             setButtonTitle("Requesting...")
 
             func install(_ additionalOptions: [AdditionalInstallationParameters: Any] = [:]) {
-                                
+
                 API.install(id: sender.linkId, type: self.contentType, additionalOptions: additionalOptions) { [weak self] error in
                     guard let self = self else { return }
 
@@ -530,68 +521,5 @@ extension Details: IPAWebViewControllerDelegate {
             Messages.shared.showSuccess(message: "File download has started".localized(), context: .viewController(self))
             TelemetryManager.send(Global.Telemetry.downloadIpaRequested.rawValue)
         }
-    }
-}
-
-// MARK: - Ads
-
-extension Details: UnityAdsInitializationDelegate {
-    func initializationComplete() {
-        adsInitialized = true
-        
-        if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
-            UnityAds.load("Interstitial_iOS", loadDelegate: self)
-        }
-    }
-    
-    func initializationFailed(_ error: UnityAdsInitializationError, withMessage message: String) {
-        adsInitialized = false
-    }
-}
-
-extension Details: UnityAdsLoadDelegate {
-    func unityAdsAdLoaded(_ placementId: String) {
-        adsLoaded = true
-        if indexForSegment == .download {
-            tableView.reloadData()
-        }
-    }
-    
-    func unityAdsAdFailed(toLoad placementId: String, withError error: UnityAdsLoadError, withMessage message: String) {
-        adsLoaded = true
-        if indexForSegment == .download {
-            tableView.reloadData()
-        }
-    }
-}
-
-extension Details: UnityAdsShowDelegate {
-    
-    func performActualInstall() {
-        if currentInstallButton != nil {
-            actualInstall(sender: currentInstallButton!)
-            adsLoaded = false
-            if indexForSegment == .download {
-                tableView.reloadData()
-            }
-            if Global.showAds && !Global.DEBUG && !Preferences.isPlus {
-                UnityAds.load("Interstitial_iOS", loadDelegate: self)
-            }
-        }
-    }
-    
-    func unityAdsShowComplete(_ placementId: String, withFinish state: UnityAdsShowCompletionState) {
-        performActualInstall()
-    }
-    func unityAdsShowFailed(_ placementId: String, withError error: UnityAdsShowError, withMessage message: String) {
-        performActualInstall()
-    }
-    
-    func unityAdsShowStart(_ placementId: String) {
-        
-    }
-    
-    func unityAdsShowClick(_ placementId: String) {
-        
     }
 }

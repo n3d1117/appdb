@@ -6,13 +6,14 @@
 //  Copyright © 2023 stev3fvcks. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 import SwiftyJSON
 
 extension API {
 
-    static func getDylibs(success:@escaping (_ items: [String]) -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.getDylibs.rawValue, "lang": languageCode], headers: headersWithCookie)
+    static func getDylibs(success: @escaping (_ items: [String]) -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.getDylibs.rawValue, parameters: ["lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -27,9 +28,9 @@ extension API {
                 }
             }
     }
-    
-    static func addDylib(url: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.addDylib.rawValue, "url": url, "lang": languageCode], headers: headersWithCookie)
+
+    static func addDylib(url: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.addDylib.rawValue, parameters: ["url": url, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -45,18 +46,12 @@ extension API {
                 }
             }
     }
-    
-    static func uploadDylib(fileURL: URL, request:@escaping (_ r: Alamofire.UploadRequest) -> Void, completion:@escaping (_ error: String?) -> Void) {
-        let parameters = [
-            "action": Actions.addDylib.rawValue,
-        ]
+
+    static func uploadDylib(fileURL: URL, request: @escaping (_ r: Alamofire.UploadRequest) -> Void, completion: @escaping (_ error: String?) -> Void) {
 
         request(AF.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(fileURL, withName: "dylib")
-            for (key, value) in parameters {
-                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-            }
-        }, to: endpoint, method: .post, headers: headersWithCookie).responseJSON { response in
+        }, to: endpoint + Actions.addDylib.rawValue, method: .post, headers: headersWithCookie).responseJSON { response in
 
             switch response.result {
             case .success(let value):
@@ -71,9 +66,9 @@ extension API {
             }
         })
     }
-    
-    static func deleteDylib(name: String, success:@escaping () -> Void, fail:@escaping (_ error: String) -> Void) {
-        AF.request(endpoint, parameters: ["action": Actions.deleteDylib.rawValue, "name": name, "lang": languageCode], headers: headersWithCookie)
+
+    static func deleteDylib(name: String, success: @escaping () -> Void, fail: @escaping (_ error: String) -> Void) {
+        AF.request(endpoint + Actions.deleteDylib.rawValue, parameters: ["name": name, "lang": languageCode], headers: headersWithCookie)
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):

@@ -9,7 +9,6 @@
 import UIKit
 import BLTNBoard
 import SafariServices
-import SwiftTheme
 
 class EnterLinkCodeBulletinPage: BLTNPageItem {
 

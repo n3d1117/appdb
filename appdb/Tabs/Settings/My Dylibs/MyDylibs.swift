@@ -6,7 +6,6 @@
 //  Copyright © 2023 stev3fvcks. All rights reserved.
 //
 
-
 import UIKit
 
 class MyDylibs: LoadingTableView {
@@ -19,7 +18,7 @@ class MyDylibs: LoadingTableView {
         super.viewDidLoad()
 
         self.title = "My Dylibs, Frameworks and Debs".localized()
-        
+
         setUp()
 
         // Refresh action
@@ -73,7 +72,7 @@ class MyDylibs: LoadingTableView {
         API.getDylibs(success: { [weak self] dylibs in
             guard let self = self else { return }
 
-            self.myDylibs = dylibs            
+            self.myDylibs = dylibs
             done(nil)
         }, fail: { error in
             done(error.prettified)
@@ -93,7 +92,7 @@ class MyDylibs: LoadingTableView {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? UITableViewCell else { return UITableViewCell() }
         let item = myDylibs[indexPath.row]
-        
+
         cell.selectionStyle = .none
         cell.textLabel!.text = item
 
@@ -110,18 +109,18 @@ class MyDylibs: LoadingTableView {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return myDylibs.isEmpty ? 0 : (60 ~~ 50)
+        myDylibs.isEmpty ? 0 : (60 ~~ 50)
     }
-    
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        true
     }
-    
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        return [UITableViewRowAction(style: .destructive, title: "Delete".localized(), handler: { _, indexPath in
+
+        [UITableViewRowAction(style: .destructive, title: "Delete".localized(), handler: { _, indexPath in
             let item = self.myDylibs[indexPath.row]
-            
+
             API.deleteDylib(name: item) {
                 Messages.shared.showSuccess(message: "The dylib was deleted successfully".localized(), context: .viewController(self))
                 self.loadDylibs()
@@ -140,7 +139,7 @@ class MyDylibs: LoadingTableView {
             if self.myDylibs.count > 0 { self.tableView.reloadData() }
         }, completion: nil)
     }
-    
+
     @objc func showHelp() {
         let message = "Here you can upload or import dynamic libraries, frameworks or debian packages or ZIP archives with tweaks to inject into apps that you are installing via appdb. Uploading or importing of any file will enable “Ask for Installation Options” feature for current device, so you can choose what tweaks you want to include in the app. You can disable this option later on device features configuration page.\n\nPlease note that not all packages, dylibs or frameworks that were built for jailbroken devices will work on your non-jailbroken devices.".localized()
         let alertController = UIAlertController(title: "My Dylibs, Frameworks and Debs".localized(), message: message, preferredStyle: .alert, adaptive: true)

@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import Cartography
+
 import Kanna
 import Localize_Swift
 import DeepDiff
-import SwiftTheme
-import Static
 
 // Delay function
 func delay(_ delay: Double, closure: @escaping () -> Void) {
@@ -124,40 +122,6 @@ extension String {
             dateFormatter.dateStyle = .long
             dateFormatter.timeStyle = .medium
             return dateFormatter.string(from: date)
-        }
-        return ""
-    }
-
-    //
-    // Returns formatted string from rfc2822 date
-    // E.G. "Sat, 05 May 2018 13:42:01 -0400" -> "May 5, 2018 at 10.07 PM"
-    //
-    var rfc2822decoded: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
-        formatter.locale = Locale(identifier: "en_US")
-        if let date = formatter.date(from: self) {
-            formatter.locale = Locale(identifier: Localize.currentLanguage())
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .short
-            return formatter.string(from: date)
-        }
-        return ""
-    }
-
-    //
-    // Returns short formatted string from rfc2822 date
-    // E.G. "Sat, 05 May 2018 13:42:01 -0400" -> "May 5, 2018"
-    //
-    var rfc2822decodedShort: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z" // RFC 2822
-        formatter.locale = Locale(identifier: "en_US")
-        if let date = formatter.date(from: self) {
-            formatter.locale = Locale(identifier: Localize.currentLanguage())
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            return formatter.string(from: date)
         }
         return ""
     }
@@ -491,3 +455,30 @@ extension DiffAware where Self: Hashable {
 
 extension Item: DiffAware { }
 extension LocalIPAFile: DiffAware { }
+
+extension UILabel {
+
+    func setLineSpacing(lineSpacing: CGFloat = 0.0, lineHeightMultiple: CGFloat = 0.0) {
+
+        guard let labelText = self.text else { return }
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineSpacing
+        paragraphStyle.lineHeightMultiple = lineHeightMultiple
+
+        let attributedString: NSMutableAttributedString
+        if let labelattributedText = self.attributedText {
+            attributedString = NSMutableAttributedString(attributedString: labelattributedText)
+        } else {
+            attributedString = NSMutableAttributedString(string: labelText)
+        }
+
+        // (Swift 4.2 and above) Line spacing attribute
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+
+        // (Swift 4.1 and 4.0) Line spacing attribute
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+
+        self.attributedText = attributedString
+    }
+}

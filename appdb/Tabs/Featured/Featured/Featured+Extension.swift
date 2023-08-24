@@ -115,12 +115,10 @@ extension Featured {
                         context: .viewController(self)
                     )
                     NotificationCenter.default.post(name: .RefreshSettings, object: self)
-
                 }, fail: { _ in })
             }, fail: {})
         }
     }
-
 }
 
 // MARK: - iOS 13 Context Menus

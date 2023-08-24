@@ -14,7 +14,7 @@ class Item: Hashable, Mappable {
     required init?(map: Map) { }
     func mapping(map: Map) { }
 
-    var id: String = ""
+    var id: Int = 0
 
     class func type() -> ItemType {
         .ios // Default implementation
